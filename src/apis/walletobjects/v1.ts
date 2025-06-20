@@ -4338,6 +4338,60 @@ export namespace walletobjects_v1 {
 
     /**
      * Adds a message to the event ticket class referenced by the given class ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.eventticketclass.addmessage({
+     *     // The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "message": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "resource": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4440,6 +4494,98 @@ export namespace walletobjects_v1 {
 
     /**
      * Returns the event ticket class with the given class ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.eventticketclass.get({
+     *     // The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allowMultipleUsersPerObject": false,
+     *   //   "appLinkData": {},
+     *   //   "callbackOptions": {},
+     *   //   "classTemplateInfo": {},
+     *   //   "confirmationCodeLabel": "my_confirmationCodeLabel",
+     *   //   "countryCode": "my_countryCode",
+     *   //   "customConfirmationCodeLabel": {},
+     *   //   "customGateLabel": {},
+     *   //   "customRowLabel": {},
+     *   //   "customSeatLabel": {},
+     *   //   "customSectionLabel": {},
+     *   //   "dateTime": {},
+     *   //   "enableSmartTap": false,
+     *   //   "eventId": "my_eventId",
+     *   //   "eventName": {},
+     *   //   "finePrint": {},
+     *   //   "gateLabel": "my_gateLabel",
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "homepageUri": {},
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "issuerName": "my_issuerName",
+     *   //   "kind": "my_kind",
+     *   //   "linksModuleData": {},
+     *   //   "localizedIssuerName": {},
+     *   //   "locations": [],
+     *   //   "logo": {},
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "redemptionIssuers": [],
+     *   //   "review": {},
+     *   //   "reviewStatus": "my_reviewStatus",
+     *   //   "rowLabel": "my_rowLabel",
+     *   //   "seatLabel": "my_seatLabel",
+     *   //   "sectionLabel": "my_sectionLabel",
+     *   //   "securityAnimation": {},
+     *   //   "textModulesData": [],
+     *   //   "valueAddedModuleData": [],
+     *   //   "venue": {},
+     *   //   "version": "my_version",
+     *   //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *   //   "wideLogo": {},
+     *   //   "wordMark": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4531,6 +4677,149 @@ export namespace walletobjects_v1 {
 
     /**
      * Inserts an event ticket class with the given ID and properties.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.eventticketclass.insert({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "allowMultipleUsersPerObject": false,
+     *       //   "appLinkData": {},
+     *       //   "callbackOptions": {},
+     *       //   "classTemplateInfo": {},
+     *       //   "confirmationCodeLabel": "my_confirmationCodeLabel",
+     *       //   "countryCode": "my_countryCode",
+     *       //   "customConfirmationCodeLabel": {},
+     *       //   "customGateLabel": {},
+     *       //   "customRowLabel": {},
+     *       //   "customSeatLabel": {},
+     *       //   "customSectionLabel": {},
+     *       //   "dateTime": {},
+     *       //   "enableSmartTap": false,
+     *       //   "eventId": "my_eventId",
+     *       //   "eventName": {},
+     *       //   "finePrint": {},
+     *       //   "gateLabel": "my_gateLabel",
+     *       //   "heroImage": {},
+     *       //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *       //   "homepageUri": {},
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "infoModuleData": {},
+     *       //   "issuerName": "my_issuerName",
+     *       //   "kind": "my_kind",
+     *       //   "linksModuleData": {},
+     *       //   "localizedIssuerName": {},
+     *       //   "locations": [],
+     *       //   "logo": {},
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *       //   "notifyPreference": "my_notifyPreference",
+     *       //   "redemptionIssuers": [],
+     *       //   "review": {},
+     *       //   "reviewStatus": "my_reviewStatus",
+     *       //   "rowLabel": "my_rowLabel",
+     *       //   "seatLabel": "my_seatLabel",
+     *       //   "sectionLabel": "my_sectionLabel",
+     *       //   "securityAnimation": {},
+     *       //   "textModulesData": [],
+     *       //   "valueAddedModuleData": [],
+     *       //   "venue": {},
+     *       //   "version": "my_version",
+     *       //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *       //   "wideLogo": {},
+     *       //   "wordMark": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allowMultipleUsersPerObject": false,
+     *   //   "appLinkData": {},
+     *   //   "callbackOptions": {},
+     *   //   "classTemplateInfo": {},
+     *   //   "confirmationCodeLabel": "my_confirmationCodeLabel",
+     *   //   "countryCode": "my_countryCode",
+     *   //   "customConfirmationCodeLabel": {},
+     *   //   "customGateLabel": {},
+     *   //   "customRowLabel": {},
+     *   //   "customSeatLabel": {},
+     *   //   "customSectionLabel": {},
+     *   //   "dateTime": {},
+     *   //   "enableSmartTap": false,
+     *   //   "eventId": "my_eventId",
+     *   //   "eventName": {},
+     *   //   "finePrint": {},
+     *   //   "gateLabel": "my_gateLabel",
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "homepageUri": {},
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "issuerName": "my_issuerName",
+     *   //   "kind": "my_kind",
+     *   //   "linksModuleData": {},
+     *   //   "localizedIssuerName": {},
+     *   //   "locations": [],
+     *   //   "logo": {},
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "redemptionIssuers": [],
+     *   //   "review": {},
+     *   //   "reviewStatus": "my_reviewStatus",
+     *   //   "rowLabel": "my_rowLabel",
+     *   //   "seatLabel": "my_seatLabel",
+     *   //   "sectionLabel": "my_sectionLabel",
+     *   //   "securityAnimation": {},
+     *   //   "textModulesData": [],
+     *   //   "valueAddedModuleData": [],
+     *   //   "venue": {},
+     *   //   "version": "my_version",
+     *   //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *   //   "wideLogo": {},
+     *   //   "wordMark": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4623,6 +4912,57 @@ export namespace walletobjects_v1 {
 
     /**
      * Returns a list of all event ticket classes for a given issuer ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.eventticketclass.list({
+     *     // The ID of the issuer authorized to list classes.
+     *     issuerId: 'placeholder-value',
+     *     // Identifies the max number of results returned by a list. All results are returned if `maxResults` isn't defined.
+     *     maxResults: 'placeholder-value',
+     *     // Used to get the next set of results if `maxResults` is specified, but more than `maxResults` classes are available in a list. For example, if you have a list of 200 classes and you call list with `maxResults` set to 20, list will return the first 20 classes and a token. Call list again with `maxResults` set to 20 and the token to get the next 20 classes.
+     *     token: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "pagination": {},
+     *   //   "resources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4721,6 +5061,152 @@ export namespace walletobjects_v1 {
 
     /**
      * Updates the event ticket class referenced by the given class ID. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.eventticketclass.patch({
+     *     // The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "allowMultipleUsersPerObject": false,
+     *       //   "appLinkData": {},
+     *       //   "callbackOptions": {},
+     *       //   "classTemplateInfo": {},
+     *       //   "confirmationCodeLabel": "my_confirmationCodeLabel",
+     *       //   "countryCode": "my_countryCode",
+     *       //   "customConfirmationCodeLabel": {},
+     *       //   "customGateLabel": {},
+     *       //   "customRowLabel": {},
+     *       //   "customSeatLabel": {},
+     *       //   "customSectionLabel": {},
+     *       //   "dateTime": {},
+     *       //   "enableSmartTap": false,
+     *       //   "eventId": "my_eventId",
+     *       //   "eventName": {},
+     *       //   "finePrint": {},
+     *       //   "gateLabel": "my_gateLabel",
+     *       //   "heroImage": {},
+     *       //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *       //   "homepageUri": {},
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "infoModuleData": {},
+     *       //   "issuerName": "my_issuerName",
+     *       //   "kind": "my_kind",
+     *       //   "linksModuleData": {},
+     *       //   "localizedIssuerName": {},
+     *       //   "locations": [],
+     *       //   "logo": {},
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *       //   "notifyPreference": "my_notifyPreference",
+     *       //   "redemptionIssuers": [],
+     *       //   "review": {},
+     *       //   "reviewStatus": "my_reviewStatus",
+     *       //   "rowLabel": "my_rowLabel",
+     *       //   "seatLabel": "my_seatLabel",
+     *       //   "sectionLabel": "my_sectionLabel",
+     *       //   "securityAnimation": {},
+     *       //   "textModulesData": [],
+     *       //   "valueAddedModuleData": [],
+     *       //   "venue": {},
+     *       //   "version": "my_version",
+     *       //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *       //   "wideLogo": {},
+     *       //   "wordMark": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allowMultipleUsersPerObject": false,
+     *   //   "appLinkData": {},
+     *   //   "callbackOptions": {},
+     *   //   "classTemplateInfo": {},
+     *   //   "confirmationCodeLabel": "my_confirmationCodeLabel",
+     *   //   "countryCode": "my_countryCode",
+     *   //   "customConfirmationCodeLabel": {},
+     *   //   "customGateLabel": {},
+     *   //   "customRowLabel": {},
+     *   //   "customSeatLabel": {},
+     *   //   "customSectionLabel": {},
+     *   //   "dateTime": {},
+     *   //   "enableSmartTap": false,
+     *   //   "eventId": "my_eventId",
+     *   //   "eventName": {},
+     *   //   "finePrint": {},
+     *   //   "gateLabel": "my_gateLabel",
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "homepageUri": {},
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "issuerName": "my_issuerName",
+     *   //   "kind": "my_kind",
+     *   //   "linksModuleData": {},
+     *   //   "localizedIssuerName": {},
+     *   //   "locations": [],
+     *   //   "logo": {},
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "redemptionIssuers": [],
+     *   //   "review": {},
+     *   //   "reviewStatus": "my_reviewStatus",
+     *   //   "rowLabel": "my_rowLabel",
+     *   //   "seatLabel": "my_seatLabel",
+     *   //   "sectionLabel": "my_sectionLabel",
+     *   //   "securityAnimation": {},
+     *   //   "textModulesData": [],
+     *   //   "valueAddedModuleData": [],
+     *   //   "venue": {},
+     *   //   "version": "my_version",
+     *   //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *   //   "wideLogo": {},
+     *   //   "wordMark": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4812,6 +5298,152 @@ export namespace walletobjects_v1 {
 
     /**
      * Updates the event ticket class referenced by the given class ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.eventticketclass.update({
+     *     // The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "allowMultipleUsersPerObject": false,
+     *       //   "appLinkData": {},
+     *       //   "callbackOptions": {},
+     *       //   "classTemplateInfo": {},
+     *       //   "confirmationCodeLabel": "my_confirmationCodeLabel",
+     *       //   "countryCode": "my_countryCode",
+     *       //   "customConfirmationCodeLabel": {},
+     *       //   "customGateLabel": {},
+     *       //   "customRowLabel": {},
+     *       //   "customSeatLabel": {},
+     *       //   "customSectionLabel": {},
+     *       //   "dateTime": {},
+     *       //   "enableSmartTap": false,
+     *       //   "eventId": "my_eventId",
+     *       //   "eventName": {},
+     *       //   "finePrint": {},
+     *       //   "gateLabel": "my_gateLabel",
+     *       //   "heroImage": {},
+     *       //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *       //   "homepageUri": {},
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "infoModuleData": {},
+     *       //   "issuerName": "my_issuerName",
+     *       //   "kind": "my_kind",
+     *       //   "linksModuleData": {},
+     *       //   "localizedIssuerName": {},
+     *       //   "locations": [],
+     *       //   "logo": {},
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *       //   "notifyPreference": "my_notifyPreference",
+     *       //   "redemptionIssuers": [],
+     *       //   "review": {},
+     *       //   "reviewStatus": "my_reviewStatus",
+     *       //   "rowLabel": "my_rowLabel",
+     *       //   "seatLabel": "my_seatLabel",
+     *       //   "sectionLabel": "my_sectionLabel",
+     *       //   "securityAnimation": {},
+     *       //   "textModulesData": [],
+     *       //   "valueAddedModuleData": [],
+     *       //   "venue": {},
+     *       //   "version": "my_version",
+     *       //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *       //   "wideLogo": {},
+     *       //   "wordMark": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allowMultipleUsersPerObject": false,
+     *   //   "appLinkData": {},
+     *   //   "callbackOptions": {},
+     *   //   "classTemplateInfo": {},
+     *   //   "confirmationCodeLabel": "my_confirmationCodeLabel",
+     *   //   "countryCode": "my_countryCode",
+     *   //   "customConfirmationCodeLabel": {},
+     *   //   "customGateLabel": {},
+     *   //   "customRowLabel": {},
+     *   //   "customSeatLabel": {},
+     *   //   "customSectionLabel": {},
+     *   //   "dateTime": {},
+     *   //   "enableSmartTap": false,
+     *   //   "eventId": "my_eventId",
+     *   //   "eventName": {},
+     *   //   "finePrint": {},
+     *   //   "gateLabel": "my_gateLabel",
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "homepageUri": {},
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "issuerName": "my_issuerName",
+     *   //   "kind": "my_kind",
+     *   //   "linksModuleData": {},
+     *   //   "localizedIssuerName": {},
+     *   //   "locations": [],
+     *   //   "logo": {},
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "redemptionIssuers": [],
+     *   //   "review": {},
+     *   //   "reviewStatus": "my_reviewStatus",
+     *   //   "rowLabel": "my_rowLabel",
+     *   //   "seatLabel": "my_seatLabel",
+     *   //   "sectionLabel": "my_sectionLabel",
+     *   //   "securityAnimation": {},
+     *   //   "textModulesData": [],
+     *   //   "valueAddedModuleData": [],
+     *   //   "venue": {},
+     *   //   "version": "my_version",
+     *   //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *   //   "wideLogo": {},
+     *   //   "wordMark": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4976,6 +5608,60 @@ export namespace walletobjects_v1 {
 
     /**
      * Adds a message to the event ticket object referenced by the given object ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.eventticketobject.addmessage({
+     *     // The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "message": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "resource": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5078,6 +5764,87 @@ export namespace walletobjects_v1 {
 
     /**
      * Returns the event ticket object with the given object ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.eventticketobject.get({
+     *     // The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appLinkData": {},
+     *   //   "barcode": {},
+     *   //   "classId": "my_classId",
+     *   //   "classReference": {},
+     *   //   "disableExpirationNotification": false,
+     *   //   "faceValue": {},
+     *   //   "groupingInfo": {},
+     *   //   "hasLinkedDevice": false,
+     *   //   "hasUsers": false,
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "kind": "my_kind",
+     *   //   "linkedObjectIds": [],
+     *   //   "linkedOfferIds": [],
+     *   //   "linksModuleData": {},
+     *   //   "locations": [],
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "passConstraints": {},
+     *   //   "reservationInfo": {},
+     *   //   "rotatingBarcode": {},
+     *   //   "saveRestrictions": {},
+     *   //   "seatInfo": {},
+     *   //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *   //   "state": "my_state",
+     *   //   "textModulesData": [],
+     *   //   "ticketHolderName": "my_ticketHolderName",
+     *   //   "ticketNumber": "my_ticketNumber",
+     *   //   "ticketType": {},
+     *   //   "validTimeInterval": {},
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5169,6 +5936,127 @@ export namespace walletobjects_v1 {
 
     /**
      * Inserts an event ticket object with the given ID and properties.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.eventticketobject.insert({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "appLinkData": {},
+     *       //   "barcode": {},
+     *       //   "classId": "my_classId",
+     *       //   "classReference": {},
+     *       //   "disableExpirationNotification": false,
+     *       //   "faceValue": {},
+     *       //   "groupingInfo": {},
+     *       //   "hasLinkedDevice": false,
+     *       //   "hasUsers": false,
+     *       //   "heroImage": {},
+     *       //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "infoModuleData": {},
+     *       //   "kind": "my_kind",
+     *       //   "linkedObjectIds": [],
+     *       //   "linkedOfferIds": [],
+     *       //   "linksModuleData": {},
+     *       //   "locations": [],
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "notifyPreference": "my_notifyPreference",
+     *       //   "passConstraints": {},
+     *       //   "reservationInfo": {},
+     *       //   "rotatingBarcode": {},
+     *       //   "saveRestrictions": {},
+     *       //   "seatInfo": {},
+     *       //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *       //   "state": "my_state",
+     *       //   "textModulesData": [],
+     *       //   "ticketHolderName": "my_ticketHolderName",
+     *       //   "ticketNumber": "my_ticketNumber",
+     *       //   "ticketType": {},
+     *       //   "validTimeInterval": {},
+     *       //   "valueAddedModuleData": [],
+     *       //   "version": "my_version"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appLinkData": {},
+     *   //   "barcode": {},
+     *   //   "classId": "my_classId",
+     *   //   "classReference": {},
+     *   //   "disableExpirationNotification": false,
+     *   //   "faceValue": {},
+     *   //   "groupingInfo": {},
+     *   //   "hasLinkedDevice": false,
+     *   //   "hasUsers": false,
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "kind": "my_kind",
+     *   //   "linkedObjectIds": [],
+     *   //   "linkedOfferIds": [],
+     *   //   "linksModuleData": {},
+     *   //   "locations": [],
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "passConstraints": {},
+     *   //   "reservationInfo": {},
+     *   //   "rotatingBarcode": {},
+     *   //   "saveRestrictions": {},
+     *   //   "seatInfo": {},
+     *   //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *   //   "state": "my_state",
+     *   //   "textModulesData": [],
+     *   //   "ticketHolderName": "my_ticketHolderName",
+     *   //   "ticketNumber": "my_ticketNumber",
+     *   //   "ticketType": {},
+     *   //   "validTimeInterval": {},
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5261,6 +6149,57 @@ export namespace walletobjects_v1 {
 
     /**
      * Returns a list of all event ticket objects for a given issuer ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.eventticketobject.list({
+     *     // The ID of the class whose objects will be listed.
+     *     classId: 'placeholder-value',
+     *     // Identifies the max number of results returned by a list. All results are returned if `maxResults` isn't defined.
+     *     maxResults: 'placeholder-value',
+     *     // Used to get the next set of results if `maxResults` is specified, but more than `maxResults` objects are available in a list. For example, if you have a list of 200 objects and you call list with `maxResults` set to 20, list will return the first 20 objects and a token. Call list again with `maxResults` set to 20 and the token to get the next 20 objects.
+     *     token: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "pagination": {},
+     *   //   "resources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5359,6 +6298,95 @@ export namespace walletobjects_v1 {
 
     /**
      * Modifies linked offer objects for the event ticket object with the given ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.eventticketobject.modifylinkedofferobjects({
+     *     // The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "linkedOfferObjectIds": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appLinkData": {},
+     *   //   "barcode": {},
+     *   //   "classId": "my_classId",
+     *   //   "classReference": {},
+     *   //   "disableExpirationNotification": false,
+     *   //   "faceValue": {},
+     *   //   "groupingInfo": {},
+     *   //   "hasLinkedDevice": false,
+     *   //   "hasUsers": false,
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "kind": "my_kind",
+     *   //   "linkedObjectIds": [],
+     *   //   "linkedOfferIds": [],
+     *   //   "linksModuleData": {},
+     *   //   "locations": [],
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "passConstraints": {},
+     *   //   "reservationInfo": {},
+     *   //   "rotatingBarcode": {},
+     *   //   "saveRestrictions": {},
+     *   //   "seatInfo": {},
+     *   //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *   //   "state": "my_state",
+     *   //   "textModulesData": [],
+     *   //   "ticketHolderName": "my_ticketHolderName",
+     *   //   "ticketNumber": "my_ticketNumber",
+     *   //   "ticketType": {},
+     *   //   "validTimeInterval": {},
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5454,6 +6482,130 @@ export namespace walletobjects_v1 {
 
     /**
      * Updates the event ticket object referenced by the given object ID. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.eventticketobject.patch({
+     *     // The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "appLinkData": {},
+     *       //   "barcode": {},
+     *       //   "classId": "my_classId",
+     *       //   "classReference": {},
+     *       //   "disableExpirationNotification": false,
+     *       //   "faceValue": {},
+     *       //   "groupingInfo": {},
+     *       //   "hasLinkedDevice": false,
+     *       //   "hasUsers": false,
+     *       //   "heroImage": {},
+     *       //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "infoModuleData": {},
+     *       //   "kind": "my_kind",
+     *       //   "linkedObjectIds": [],
+     *       //   "linkedOfferIds": [],
+     *       //   "linksModuleData": {},
+     *       //   "locations": [],
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "notifyPreference": "my_notifyPreference",
+     *       //   "passConstraints": {},
+     *       //   "reservationInfo": {},
+     *       //   "rotatingBarcode": {},
+     *       //   "saveRestrictions": {},
+     *       //   "seatInfo": {},
+     *       //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *       //   "state": "my_state",
+     *       //   "textModulesData": [],
+     *       //   "ticketHolderName": "my_ticketHolderName",
+     *       //   "ticketNumber": "my_ticketNumber",
+     *       //   "ticketType": {},
+     *       //   "validTimeInterval": {},
+     *       //   "valueAddedModuleData": [],
+     *       //   "version": "my_version"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appLinkData": {},
+     *   //   "barcode": {},
+     *   //   "classId": "my_classId",
+     *   //   "classReference": {},
+     *   //   "disableExpirationNotification": false,
+     *   //   "faceValue": {},
+     *   //   "groupingInfo": {},
+     *   //   "hasLinkedDevice": false,
+     *   //   "hasUsers": false,
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "kind": "my_kind",
+     *   //   "linkedObjectIds": [],
+     *   //   "linkedOfferIds": [],
+     *   //   "linksModuleData": {},
+     *   //   "locations": [],
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "passConstraints": {},
+     *   //   "reservationInfo": {},
+     *   //   "rotatingBarcode": {},
+     *   //   "saveRestrictions": {},
+     *   //   "seatInfo": {},
+     *   //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *   //   "state": "my_state",
+     *   //   "textModulesData": [],
+     *   //   "ticketHolderName": "my_ticketHolderName",
+     *   //   "ticketNumber": "my_ticketNumber",
+     *   //   "ticketType": {},
+     *   //   "validTimeInterval": {},
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5545,6 +6697,130 @@ export namespace walletobjects_v1 {
 
     /**
      * Updates the event ticket object referenced by the given object ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.eventticketobject.update({
+     *     // The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "appLinkData": {},
+     *       //   "barcode": {},
+     *       //   "classId": "my_classId",
+     *       //   "classReference": {},
+     *       //   "disableExpirationNotification": false,
+     *       //   "faceValue": {},
+     *       //   "groupingInfo": {},
+     *       //   "hasLinkedDevice": false,
+     *       //   "hasUsers": false,
+     *       //   "heroImage": {},
+     *       //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "infoModuleData": {},
+     *       //   "kind": "my_kind",
+     *       //   "linkedObjectIds": [],
+     *       //   "linkedOfferIds": [],
+     *       //   "linksModuleData": {},
+     *       //   "locations": [],
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "notifyPreference": "my_notifyPreference",
+     *       //   "passConstraints": {},
+     *       //   "reservationInfo": {},
+     *       //   "rotatingBarcode": {},
+     *       //   "saveRestrictions": {},
+     *       //   "seatInfo": {},
+     *       //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *       //   "state": "my_state",
+     *       //   "textModulesData": [],
+     *       //   "ticketHolderName": "my_ticketHolderName",
+     *       //   "ticketNumber": "my_ticketNumber",
+     *       //   "ticketType": {},
+     *       //   "validTimeInterval": {},
+     *       //   "valueAddedModuleData": [],
+     *       //   "version": "my_version"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appLinkData": {},
+     *   //   "barcode": {},
+     *   //   "classId": "my_classId",
+     *   //   "classReference": {},
+     *   //   "disableExpirationNotification": false,
+     *   //   "faceValue": {},
+     *   //   "groupingInfo": {},
+     *   //   "hasLinkedDevice": false,
+     *   //   "hasUsers": false,
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "kind": "my_kind",
+     *   //   "linkedObjectIds": [],
+     *   //   "linkedOfferIds": [],
+     *   //   "linksModuleData": {},
+     *   //   "locations": [],
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "passConstraints": {},
+     *   //   "reservationInfo": {},
+     *   //   "rotatingBarcode": {},
+     *   //   "saveRestrictions": {},
+     *   //   "seatInfo": {},
+     *   //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *   //   "state": "my_state",
+     *   //   "textModulesData": [],
+     *   //   "ticketHolderName": "my_ticketHolderName",
+     *   //   "ticketNumber": "my_ticketNumber",
+     *   //   "ticketType": {},
+     *   //   "validTimeInterval": {},
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5721,6 +6997,60 @@ export namespace walletobjects_v1 {
 
     /**
      * Adds a message to the flight class referenced by the given class ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.flightclass.addmessage({
+     *     // The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "message": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "resource": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5818,6 +7148,93 @@ export namespace walletobjects_v1 {
 
     /**
      * Returns the flight class with the given class ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.flightclass.get({
+     *     // The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allowMultipleUsersPerObject": false,
+     *   //   "appLinkData": {},
+     *   //   "boardingAndSeatingPolicy": {},
+     *   //   "callbackOptions": {},
+     *   //   "classTemplateInfo": {},
+     *   //   "countryCode": "my_countryCode",
+     *   //   "destination": {},
+     *   //   "enableSmartTap": false,
+     *   //   "flightHeader": {},
+     *   //   "flightStatus": "my_flightStatus",
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "homepageUri": {},
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "issuerName": "my_issuerName",
+     *   //   "kind": "my_kind",
+     *   //   "languageOverride": "my_languageOverride",
+     *   //   "linksModuleData": {},
+     *   //   "localBoardingDateTime": "my_localBoardingDateTime",
+     *   //   "localEstimatedOrActualArrivalDateTime": "my_localEstimatedOrActualArrivalDateTime",
+     *   //   "localEstimatedOrActualDepartureDateTime": "my_localEstimatedOrActualDepartureDateTime",
+     *   //   "localGateClosingDateTime": "my_localGateClosingDateTime",
+     *   //   "localScheduledArrivalDateTime": "my_localScheduledArrivalDateTime",
+     *   //   "localScheduledDepartureDateTime": "my_localScheduledDepartureDateTime",
+     *   //   "localizedIssuerName": {},
+     *   //   "locations": [],
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "origin": {},
+     *   //   "redemptionIssuers": [],
+     *   //   "review": {},
+     *   //   "reviewStatus": "my_reviewStatus",
+     *   //   "securityAnimation": {},
+     *   //   "textModulesData": [],
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version",
+     *   //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *   //   "wordMark": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5908,6 +7325,139 @@ export namespace walletobjects_v1 {
 
     /**
      * Inserts an flight class with the given ID and properties.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.flightclass.insert({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "allowMultipleUsersPerObject": false,
+     *       //   "appLinkData": {},
+     *       //   "boardingAndSeatingPolicy": {},
+     *       //   "callbackOptions": {},
+     *       //   "classTemplateInfo": {},
+     *       //   "countryCode": "my_countryCode",
+     *       //   "destination": {},
+     *       //   "enableSmartTap": false,
+     *       //   "flightHeader": {},
+     *       //   "flightStatus": "my_flightStatus",
+     *       //   "heroImage": {},
+     *       //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *       //   "homepageUri": {},
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "infoModuleData": {},
+     *       //   "issuerName": "my_issuerName",
+     *       //   "kind": "my_kind",
+     *       //   "languageOverride": "my_languageOverride",
+     *       //   "linksModuleData": {},
+     *       //   "localBoardingDateTime": "my_localBoardingDateTime",
+     *       //   "localEstimatedOrActualArrivalDateTime": "my_localEstimatedOrActualArrivalDateTime",
+     *       //   "localEstimatedOrActualDepartureDateTime": "my_localEstimatedOrActualDepartureDateTime",
+     *       //   "localGateClosingDateTime": "my_localGateClosingDateTime",
+     *       //   "localScheduledArrivalDateTime": "my_localScheduledArrivalDateTime",
+     *       //   "localScheduledDepartureDateTime": "my_localScheduledDepartureDateTime",
+     *       //   "localizedIssuerName": {},
+     *       //   "locations": [],
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *       //   "notifyPreference": "my_notifyPreference",
+     *       //   "origin": {},
+     *       //   "redemptionIssuers": [],
+     *       //   "review": {},
+     *       //   "reviewStatus": "my_reviewStatus",
+     *       //   "securityAnimation": {},
+     *       //   "textModulesData": [],
+     *       //   "valueAddedModuleData": [],
+     *       //   "version": "my_version",
+     *       //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *       //   "wordMark": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allowMultipleUsersPerObject": false,
+     *   //   "appLinkData": {},
+     *   //   "boardingAndSeatingPolicy": {},
+     *   //   "callbackOptions": {},
+     *   //   "classTemplateInfo": {},
+     *   //   "countryCode": "my_countryCode",
+     *   //   "destination": {},
+     *   //   "enableSmartTap": false,
+     *   //   "flightHeader": {},
+     *   //   "flightStatus": "my_flightStatus",
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "homepageUri": {},
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "issuerName": "my_issuerName",
+     *   //   "kind": "my_kind",
+     *   //   "languageOverride": "my_languageOverride",
+     *   //   "linksModuleData": {},
+     *   //   "localBoardingDateTime": "my_localBoardingDateTime",
+     *   //   "localEstimatedOrActualArrivalDateTime": "my_localEstimatedOrActualArrivalDateTime",
+     *   //   "localEstimatedOrActualDepartureDateTime": "my_localEstimatedOrActualDepartureDateTime",
+     *   //   "localGateClosingDateTime": "my_localGateClosingDateTime",
+     *   //   "localScheduledArrivalDateTime": "my_localScheduledArrivalDateTime",
+     *   //   "localScheduledDepartureDateTime": "my_localScheduledDepartureDateTime",
+     *   //   "localizedIssuerName": {},
+     *   //   "locations": [],
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "origin": {},
+     *   //   "redemptionIssuers": [],
+     *   //   "review": {},
+     *   //   "reviewStatus": "my_reviewStatus",
+     *   //   "securityAnimation": {},
+     *   //   "textModulesData": [],
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version",
+     *   //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *   //   "wordMark": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6000,6 +7550,57 @@ export namespace walletobjects_v1 {
 
     /**
      * Returns a list of all flight classes for a given issuer ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.flightclass.list({
+     *     // The ID of the issuer authorized to list classes.
+     *     issuerId: 'placeholder-value',
+     *     // Identifies the max number of results returned by a list. All results are returned if `maxResults` isn't defined.
+     *     maxResults: 'placeholder-value',
+     *     // Used to get the next set of results if `maxResults` is specified, but more than `maxResults` classes are available in a list. For example, if you have a list of 200 classes and you call list with `maxResults` set to 20, list will return the first 20 classes and a token. Call list again with `maxResults` set to 20 and the token to get the next 20 classes.
+     *     token: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "pagination": {},
+     *   //   "resources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6093,6 +7694,142 @@ export namespace walletobjects_v1 {
 
     /**
      * Updates the flight class referenced by the given class ID. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.flightclass.patch({
+     *     // The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "allowMultipleUsersPerObject": false,
+     *       //   "appLinkData": {},
+     *       //   "boardingAndSeatingPolicy": {},
+     *       //   "callbackOptions": {},
+     *       //   "classTemplateInfo": {},
+     *       //   "countryCode": "my_countryCode",
+     *       //   "destination": {},
+     *       //   "enableSmartTap": false,
+     *       //   "flightHeader": {},
+     *       //   "flightStatus": "my_flightStatus",
+     *       //   "heroImage": {},
+     *       //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *       //   "homepageUri": {},
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "infoModuleData": {},
+     *       //   "issuerName": "my_issuerName",
+     *       //   "kind": "my_kind",
+     *       //   "languageOverride": "my_languageOverride",
+     *       //   "linksModuleData": {},
+     *       //   "localBoardingDateTime": "my_localBoardingDateTime",
+     *       //   "localEstimatedOrActualArrivalDateTime": "my_localEstimatedOrActualArrivalDateTime",
+     *       //   "localEstimatedOrActualDepartureDateTime": "my_localEstimatedOrActualDepartureDateTime",
+     *       //   "localGateClosingDateTime": "my_localGateClosingDateTime",
+     *       //   "localScheduledArrivalDateTime": "my_localScheduledArrivalDateTime",
+     *       //   "localScheduledDepartureDateTime": "my_localScheduledDepartureDateTime",
+     *       //   "localizedIssuerName": {},
+     *       //   "locations": [],
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *       //   "notifyPreference": "my_notifyPreference",
+     *       //   "origin": {},
+     *       //   "redemptionIssuers": [],
+     *       //   "review": {},
+     *       //   "reviewStatus": "my_reviewStatus",
+     *       //   "securityAnimation": {},
+     *       //   "textModulesData": [],
+     *       //   "valueAddedModuleData": [],
+     *       //   "version": "my_version",
+     *       //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *       //   "wordMark": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allowMultipleUsersPerObject": false,
+     *   //   "appLinkData": {},
+     *   //   "boardingAndSeatingPolicy": {},
+     *   //   "callbackOptions": {},
+     *   //   "classTemplateInfo": {},
+     *   //   "countryCode": "my_countryCode",
+     *   //   "destination": {},
+     *   //   "enableSmartTap": false,
+     *   //   "flightHeader": {},
+     *   //   "flightStatus": "my_flightStatus",
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "homepageUri": {},
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "issuerName": "my_issuerName",
+     *   //   "kind": "my_kind",
+     *   //   "languageOverride": "my_languageOverride",
+     *   //   "linksModuleData": {},
+     *   //   "localBoardingDateTime": "my_localBoardingDateTime",
+     *   //   "localEstimatedOrActualArrivalDateTime": "my_localEstimatedOrActualArrivalDateTime",
+     *   //   "localEstimatedOrActualDepartureDateTime": "my_localEstimatedOrActualDepartureDateTime",
+     *   //   "localGateClosingDateTime": "my_localGateClosingDateTime",
+     *   //   "localScheduledArrivalDateTime": "my_localScheduledArrivalDateTime",
+     *   //   "localScheduledDepartureDateTime": "my_localScheduledDepartureDateTime",
+     *   //   "localizedIssuerName": {},
+     *   //   "locations": [],
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "origin": {},
+     *   //   "redemptionIssuers": [],
+     *   //   "review": {},
+     *   //   "reviewStatus": "my_reviewStatus",
+     *   //   "securityAnimation": {},
+     *   //   "textModulesData": [],
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version",
+     *   //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *   //   "wordMark": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6184,6 +7921,142 @@ export namespace walletobjects_v1 {
 
     /**
      * Updates the flight class referenced by the given class ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.flightclass.update({
+     *     // The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "allowMultipleUsersPerObject": false,
+     *       //   "appLinkData": {},
+     *       //   "boardingAndSeatingPolicy": {},
+     *       //   "callbackOptions": {},
+     *       //   "classTemplateInfo": {},
+     *       //   "countryCode": "my_countryCode",
+     *       //   "destination": {},
+     *       //   "enableSmartTap": false,
+     *       //   "flightHeader": {},
+     *       //   "flightStatus": "my_flightStatus",
+     *       //   "heroImage": {},
+     *       //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *       //   "homepageUri": {},
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "infoModuleData": {},
+     *       //   "issuerName": "my_issuerName",
+     *       //   "kind": "my_kind",
+     *       //   "languageOverride": "my_languageOverride",
+     *       //   "linksModuleData": {},
+     *       //   "localBoardingDateTime": "my_localBoardingDateTime",
+     *       //   "localEstimatedOrActualArrivalDateTime": "my_localEstimatedOrActualArrivalDateTime",
+     *       //   "localEstimatedOrActualDepartureDateTime": "my_localEstimatedOrActualDepartureDateTime",
+     *       //   "localGateClosingDateTime": "my_localGateClosingDateTime",
+     *       //   "localScheduledArrivalDateTime": "my_localScheduledArrivalDateTime",
+     *       //   "localScheduledDepartureDateTime": "my_localScheduledDepartureDateTime",
+     *       //   "localizedIssuerName": {},
+     *       //   "locations": [],
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *       //   "notifyPreference": "my_notifyPreference",
+     *       //   "origin": {},
+     *       //   "redemptionIssuers": [],
+     *       //   "review": {},
+     *       //   "reviewStatus": "my_reviewStatus",
+     *       //   "securityAnimation": {},
+     *       //   "textModulesData": [],
+     *       //   "valueAddedModuleData": [],
+     *       //   "version": "my_version",
+     *       //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *       //   "wordMark": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allowMultipleUsersPerObject": false,
+     *   //   "appLinkData": {},
+     *   //   "boardingAndSeatingPolicy": {},
+     *   //   "callbackOptions": {},
+     *   //   "classTemplateInfo": {},
+     *   //   "countryCode": "my_countryCode",
+     *   //   "destination": {},
+     *   //   "enableSmartTap": false,
+     *   //   "flightHeader": {},
+     *   //   "flightStatus": "my_flightStatus",
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "homepageUri": {},
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "issuerName": "my_issuerName",
+     *   //   "kind": "my_kind",
+     *   //   "languageOverride": "my_languageOverride",
+     *   //   "linksModuleData": {},
+     *   //   "localBoardingDateTime": "my_localBoardingDateTime",
+     *   //   "localEstimatedOrActualArrivalDateTime": "my_localEstimatedOrActualArrivalDateTime",
+     *   //   "localEstimatedOrActualDepartureDateTime": "my_localEstimatedOrActualDepartureDateTime",
+     *   //   "localGateClosingDateTime": "my_localGateClosingDateTime",
+     *   //   "localScheduledArrivalDateTime": "my_localScheduledArrivalDateTime",
+     *   //   "localScheduledDepartureDateTime": "my_localScheduledDepartureDateTime",
+     *   //   "localizedIssuerName": {},
+     *   //   "locations": [],
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "origin": {},
+     *   //   "redemptionIssuers": [],
+     *   //   "review": {},
+     *   //   "reviewStatus": "my_reviewStatus",
+     *   //   "securityAnimation": {},
+     *   //   "textModulesData": [],
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version",
+     *   //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *   //   "wordMark": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6346,6 +8219,60 @@ export namespace walletobjects_v1 {
 
     /**
      * Adds a message to the flight object referenced by the given object ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.flightobject.addmessage({
+     *     // The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "message": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "resource": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6443,6 +8370,84 @@ export namespace walletobjects_v1 {
 
     /**
      * Returns the flight object with the given object ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.flightobject.get({
+     *     // The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appLinkData": {},
+     *   //   "barcode": {},
+     *   //   "boardingAndSeatingInfo": {},
+     *   //   "classId": "my_classId",
+     *   //   "classReference": {},
+     *   //   "disableExpirationNotification": false,
+     *   //   "groupingInfo": {},
+     *   //   "hasLinkedDevice": false,
+     *   //   "hasUsers": false,
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "kind": "my_kind",
+     *   //   "linkedObjectIds": [],
+     *   //   "linksModuleData": {},
+     *   //   "locations": [],
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "passConstraints": {},
+     *   //   "passengerName": "my_passengerName",
+     *   //   "reservationInfo": {},
+     *   //   "rotatingBarcode": {},
+     *   //   "saveRestrictions": {},
+     *   //   "securityProgramLogo": {},
+     *   //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *   //   "state": "my_state",
+     *   //   "textModulesData": [],
+     *   //   "validTimeInterval": {},
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6533,6 +8538,121 @@ export namespace walletobjects_v1 {
 
     /**
      * Inserts an flight object with the given ID and properties.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.flightobject.insert({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "appLinkData": {},
+     *       //   "barcode": {},
+     *       //   "boardingAndSeatingInfo": {},
+     *       //   "classId": "my_classId",
+     *       //   "classReference": {},
+     *       //   "disableExpirationNotification": false,
+     *       //   "groupingInfo": {},
+     *       //   "hasLinkedDevice": false,
+     *       //   "hasUsers": false,
+     *       //   "heroImage": {},
+     *       //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "infoModuleData": {},
+     *       //   "kind": "my_kind",
+     *       //   "linkedObjectIds": [],
+     *       //   "linksModuleData": {},
+     *       //   "locations": [],
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "notifyPreference": "my_notifyPreference",
+     *       //   "passConstraints": {},
+     *       //   "passengerName": "my_passengerName",
+     *       //   "reservationInfo": {},
+     *       //   "rotatingBarcode": {},
+     *       //   "saveRestrictions": {},
+     *       //   "securityProgramLogo": {},
+     *       //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *       //   "state": "my_state",
+     *       //   "textModulesData": [],
+     *       //   "validTimeInterval": {},
+     *       //   "valueAddedModuleData": [],
+     *       //   "version": "my_version"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appLinkData": {},
+     *   //   "barcode": {},
+     *   //   "boardingAndSeatingInfo": {},
+     *   //   "classId": "my_classId",
+     *   //   "classReference": {},
+     *   //   "disableExpirationNotification": false,
+     *   //   "groupingInfo": {},
+     *   //   "hasLinkedDevice": false,
+     *   //   "hasUsers": false,
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "kind": "my_kind",
+     *   //   "linkedObjectIds": [],
+     *   //   "linksModuleData": {},
+     *   //   "locations": [],
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "passConstraints": {},
+     *   //   "passengerName": "my_passengerName",
+     *   //   "reservationInfo": {},
+     *   //   "rotatingBarcode": {},
+     *   //   "saveRestrictions": {},
+     *   //   "securityProgramLogo": {},
+     *   //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *   //   "state": "my_state",
+     *   //   "textModulesData": [],
+     *   //   "validTimeInterval": {},
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6625,6 +8745,57 @@ export namespace walletobjects_v1 {
 
     /**
      * Returns a list of all flight objects for a given issuer ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.flightobject.list({
+     *     // The ID of the class whose objects will be listed.
+     *     classId: 'placeholder-value',
+     *     // Identifies the max number of results returned by a list. All results are returned if `maxResults` isn't defined.
+     *     maxResults: 'placeholder-value',
+     *     // Used to get the next set of results if `maxResults` is specified, but more than `maxResults` objects are available in a list. For example, if you have a list of 200 objects and you call list with `maxResults` set to 20, list will return the first 20 objects and a token. Call list again with `maxResults` set to 20 and the token to get the next 20 objects.
+     *     token: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "pagination": {},
+     *   //   "resources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6719,6 +8890,124 @@ export namespace walletobjects_v1 {
 
     /**
      * Updates the flight object referenced by the given object ID. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.flightobject.patch({
+     *     // The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "appLinkData": {},
+     *       //   "barcode": {},
+     *       //   "boardingAndSeatingInfo": {},
+     *       //   "classId": "my_classId",
+     *       //   "classReference": {},
+     *       //   "disableExpirationNotification": false,
+     *       //   "groupingInfo": {},
+     *       //   "hasLinkedDevice": false,
+     *       //   "hasUsers": false,
+     *       //   "heroImage": {},
+     *       //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "infoModuleData": {},
+     *       //   "kind": "my_kind",
+     *       //   "linkedObjectIds": [],
+     *       //   "linksModuleData": {},
+     *       //   "locations": [],
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "notifyPreference": "my_notifyPreference",
+     *       //   "passConstraints": {},
+     *       //   "passengerName": "my_passengerName",
+     *       //   "reservationInfo": {},
+     *       //   "rotatingBarcode": {},
+     *       //   "saveRestrictions": {},
+     *       //   "securityProgramLogo": {},
+     *       //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *       //   "state": "my_state",
+     *       //   "textModulesData": [],
+     *       //   "validTimeInterval": {},
+     *       //   "valueAddedModuleData": [],
+     *       //   "version": "my_version"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appLinkData": {},
+     *   //   "barcode": {},
+     *   //   "boardingAndSeatingInfo": {},
+     *   //   "classId": "my_classId",
+     *   //   "classReference": {},
+     *   //   "disableExpirationNotification": false,
+     *   //   "groupingInfo": {},
+     *   //   "hasLinkedDevice": false,
+     *   //   "hasUsers": false,
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "kind": "my_kind",
+     *   //   "linkedObjectIds": [],
+     *   //   "linksModuleData": {},
+     *   //   "locations": [],
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "passConstraints": {},
+     *   //   "passengerName": "my_passengerName",
+     *   //   "reservationInfo": {},
+     *   //   "rotatingBarcode": {},
+     *   //   "saveRestrictions": {},
+     *   //   "securityProgramLogo": {},
+     *   //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *   //   "state": "my_state",
+     *   //   "textModulesData": [],
+     *   //   "validTimeInterval": {},
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6810,6 +9099,124 @@ export namespace walletobjects_v1 {
 
     /**
      * Updates the flight object referenced by the given object ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.flightobject.update({
+     *     // The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "appLinkData": {},
+     *       //   "barcode": {},
+     *       //   "boardingAndSeatingInfo": {},
+     *       //   "classId": "my_classId",
+     *       //   "classReference": {},
+     *       //   "disableExpirationNotification": false,
+     *       //   "groupingInfo": {},
+     *       //   "hasLinkedDevice": false,
+     *       //   "hasUsers": false,
+     *       //   "heroImage": {},
+     *       //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "infoModuleData": {},
+     *       //   "kind": "my_kind",
+     *       //   "linkedObjectIds": [],
+     *       //   "linksModuleData": {},
+     *       //   "locations": [],
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "notifyPreference": "my_notifyPreference",
+     *       //   "passConstraints": {},
+     *       //   "passengerName": "my_passengerName",
+     *       //   "reservationInfo": {},
+     *       //   "rotatingBarcode": {},
+     *       //   "saveRestrictions": {},
+     *       //   "securityProgramLogo": {},
+     *       //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *       //   "state": "my_state",
+     *       //   "textModulesData": [],
+     *       //   "validTimeInterval": {},
+     *       //   "valueAddedModuleData": [],
+     *       //   "version": "my_version"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appLinkData": {},
+     *   //   "barcode": {},
+     *   //   "boardingAndSeatingInfo": {},
+     *   //   "classId": "my_classId",
+     *   //   "classReference": {},
+     *   //   "disableExpirationNotification": false,
+     *   //   "groupingInfo": {},
+     *   //   "hasLinkedDevice": false,
+     *   //   "hasUsers": false,
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "kind": "my_kind",
+     *   //   "linkedObjectIds": [],
+     *   //   "linksModuleData": {},
+     *   //   "locations": [],
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "passConstraints": {},
+     *   //   "passengerName": "my_passengerName",
+     *   //   "reservationInfo": {},
+     *   //   "rotatingBarcode": {},
+     *   //   "saveRestrictions": {},
+     *   //   "securityProgramLogo": {},
+     *   //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *   //   "state": "my_state",
+     *   //   "textModulesData": [],
+     *   //   "validTimeInterval": {},
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6973,6 +9380,60 @@ export namespace walletobjects_v1 {
 
     /**
      * Adds a message to the generic class referenced by the given class ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.genericclass.addmessage({
+     *     // The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "message": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "resource": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7070,6 +9531,66 @@ export namespace walletobjects_v1 {
 
     /**
      * Returns the generic class with the given class ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.genericclass.get({
+     *     // The unique identifier for a class. This ID must be unique across all classes from an issuer. This value needs to follow the format `issuerID.identifier` where `issuerID` is issued by Google and `identifier` is chosen by you. The unique identifier can only include alphanumeric characters, `.`, `_`, or `-`.
+     *     resourceId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appLinkData": {},
+     *   //   "callbackOptions": {},
+     *   //   "classTemplateInfo": {},
+     *   //   "enableSmartTap": false,
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "linksModuleData": {},
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *   //   "redemptionIssuers": [],
+     *   //   "securityAnimation": {},
+     *   //   "textModulesData": [],
+     *   //   "valueAddedModuleData": [],
+     *   //   "viewUnlockRequirement": "my_viewUnlockRequirement"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7160,6 +9681,85 @@ export namespace walletobjects_v1 {
 
     /**
      * Inserts a generic class with the given ID and properties.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.genericclass.insert({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "appLinkData": {},
+     *       //   "callbackOptions": {},
+     *       //   "classTemplateInfo": {},
+     *       //   "enableSmartTap": false,
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "linksModuleData": {},
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *       //   "redemptionIssuers": [],
+     *       //   "securityAnimation": {},
+     *       //   "textModulesData": [],
+     *       //   "valueAddedModuleData": [],
+     *       //   "viewUnlockRequirement": "my_viewUnlockRequirement"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appLinkData": {},
+     *   //   "callbackOptions": {},
+     *   //   "classTemplateInfo": {},
+     *   //   "enableSmartTap": false,
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "linksModuleData": {},
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *   //   "redemptionIssuers": [],
+     *   //   "securityAnimation": {},
+     *   //   "textModulesData": [],
+     *   //   "valueAddedModuleData": [],
+     *   //   "viewUnlockRequirement": "my_viewUnlockRequirement"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7252,6 +9852,57 @@ export namespace walletobjects_v1 {
 
     /**
      * Returns a list of all generic classes for a given issuer ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.genericclass.list({
+     *     // The ID of the issuer authorized to list classes.
+     *     issuerId: 'placeholder-value',
+     *     // Identifies the max number of results returned by a list. All results are returned if `maxResults` isn't defined.
+     *     maxResults: 'placeholder-value',
+     *     // Used to get the next set of results if `maxResults` is specified, but more than `maxResults` classes are available in a list. For example, if you have a list of 200 classes and you call list with `maxResults` set to 20, list will return the first 20 classes and a token. Call list again with `maxResults` set to 20 and the token to get the next 20 classes.
+     *     token: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "pagination": {},
+     *   //   "resources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7346,6 +9997,88 @@ export namespace walletobjects_v1 {
 
     /**
      * Updates the generic class referenced by the given class ID. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.genericclass.patch({
+     *     // The unique identifier for a class. This ID must be unique across all classes from an issuer. This value needs to follow the format `issuerID.identifier` where `issuerID` is issued by Google and `identifier` is chosen by you. The unique identifier can only include alphanumeric characters, `.`, `_`, or `-`.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "appLinkData": {},
+     *       //   "callbackOptions": {},
+     *       //   "classTemplateInfo": {},
+     *       //   "enableSmartTap": false,
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "linksModuleData": {},
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *       //   "redemptionIssuers": [],
+     *       //   "securityAnimation": {},
+     *       //   "textModulesData": [],
+     *       //   "valueAddedModuleData": [],
+     *       //   "viewUnlockRequirement": "my_viewUnlockRequirement"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appLinkData": {},
+     *   //   "callbackOptions": {},
+     *   //   "classTemplateInfo": {},
+     *   //   "enableSmartTap": false,
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "linksModuleData": {},
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *   //   "redemptionIssuers": [],
+     *   //   "securityAnimation": {},
+     *   //   "textModulesData": [],
+     *   //   "valueAddedModuleData": [],
+     *   //   "viewUnlockRequirement": "my_viewUnlockRequirement"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7437,6 +10170,88 @@ export namespace walletobjects_v1 {
 
     /**
      * Updates the Generic class referenced by the given class ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.genericclass.update({
+     *     // The unique identifier for a class. This ID must be unique across all classes from an issuer. This value needs to follow the format `issuerID.identifier` where `issuerID` is issued by Google and `identifier` is chosen by you. The unique identifier can only include alphanumeric characters, `.`, `_`, or `-`.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "appLinkData": {},
+     *       //   "callbackOptions": {},
+     *       //   "classTemplateInfo": {},
+     *       //   "enableSmartTap": false,
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "linksModuleData": {},
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *       //   "redemptionIssuers": [],
+     *       //   "securityAnimation": {},
+     *       //   "textModulesData": [],
+     *       //   "valueAddedModuleData": [],
+     *       //   "viewUnlockRequirement": "my_viewUnlockRequirement"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appLinkData": {},
+     *   //   "callbackOptions": {},
+     *   //   "classTemplateInfo": {},
+     *   //   "enableSmartTap": false,
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "linksModuleData": {},
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *   //   "redemptionIssuers": [],
+     *   //   "securityAnimation": {},
+     *   //   "textModulesData": [],
+     *   //   "valueAddedModuleData": [],
+     *   //   "viewUnlockRequirement": "my_viewUnlockRequirement"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7600,6 +10415,60 @@ export namespace walletobjects_v1 {
 
     /**
      * Adds a message to the generic object referenced by the given object ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.genericobject.addmessage({
+     *     // The unique identifier for an object. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "message": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "resource": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7698,6 +10567,79 @@ export namespace walletobjects_v1 {
 
     /**
      * Returns the generic object with the given object ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.genericobject.get({
+     *     // The unique identifier for an object. This ID must be unique across all objects from an issuer. This value needs to follow the format `issuerID.identifier` where `issuerID` is issued by Google and `identifier` is chosen by you. The unique identifier can only include alphanumeric characters, `.`, `_`, or `-`.
+     *     resourceId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appLinkData": {},
+     *   //   "barcode": {},
+     *   //   "cardTitle": {},
+     *   //   "classId": "my_classId",
+     *   //   "genericType": "my_genericType",
+     *   //   "groupingInfo": {},
+     *   //   "hasUsers": false,
+     *   //   "header": {},
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "linkedObjectIds": [],
+     *   //   "linksModuleData": {},
+     *   //   "logo": {},
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "notifications": {},
+     *   //   "passConstraints": {},
+     *   //   "rotatingBarcode": {},
+     *   //   "saveRestrictions": {},
+     *   //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *   //   "state": "my_state",
+     *   //   "subheader": {},
+     *   //   "textModulesData": [],
+     *   //   "validTimeInterval": {},
+     *   //   "valueAddedModuleData": [],
+     *   //   "wideLogo": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7789,6 +10731,111 @@ export namespace walletobjects_v1 {
 
     /**
      * Inserts a generic object with the given ID and properties.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.genericobject.insert({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "appLinkData": {},
+     *       //   "barcode": {},
+     *       //   "cardTitle": {},
+     *       //   "classId": "my_classId",
+     *       //   "genericType": "my_genericType",
+     *       //   "groupingInfo": {},
+     *       //   "hasUsers": false,
+     *       //   "header": {},
+     *       //   "heroImage": {},
+     *       //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "linkedObjectIds": [],
+     *       //   "linksModuleData": {},
+     *       //   "logo": {},
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "notifications": {},
+     *       //   "passConstraints": {},
+     *       //   "rotatingBarcode": {},
+     *       //   "saveRestrictions": {},
+     *       //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *       //   "state": "my_state",
+     *       //   "subheader": {},
+     *       //   "textModulesData": [],
+     *       //   "validTimeInterval": {},
+     *       //   "valueAddedModuleData": [],
+     *       //   "wideLogo": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appLinkData": {},
+     *   //   "barcode": {},
+     *   //   "cardTitle": {},
+     *   //   "classId": "my_classId",
+     *   //   "genericType": "my_genericType",
+     *   //   "groupingInfo": {},
+     *   //   "hasUsers": false,
+     *   //   "header": {},
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "linkedObjectIds": [],
+     *   //   "linksModuleData": {},
+     *   //   "logo": {},
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "notifications": {},
+     *   //   "passConstraints": {},
+     *   //   "rotatingBarcode": {},
+     *   //   "saveRestrictions": {},
+     *   //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *   //   "state": "my_state",
+     *   //   "subheader": {},
+     *   //   "textModulesData": [],
+     *   //   "validTimeInterval": {},
+     *   //   "valueAddedModuleData": [],
+     *   //   "wideLogo": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7881,6 +10928,57 @@ export namespace walletobjects_v1 {
 
     /**
      * Returns a list of all generic objects for a given issuer ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.genericobject.list({
+     *     // The ID of the class whose objects will be listed.
+     *     classId: 'placeholder-value',
+     *     // Identifies the max number of results returned by a list. All results are returned if `maxResults` isn't defined.
+     *     maxResults: 'placeholder-value',
+     *     // Used to get the next set of results if `maxResults` is specified, but more than `maxResults` objects are available in a list. For example, if you have a list of 200 objects and you call list with `maxResults` set to 20, list will return the first 20 objects and a token. Call list again with `maxResults` set to 20 and the token to get the next 20 objects.
+     *     token: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "pagination": {},
+     *   //   "resources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7977,6 +11075,114 @@ export namespace walletobjects_v1 {
 
     /**
      * Updates the generic object referenced by the given object ID. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.genericobject.patch({
+     *     // The unique identifier for an object. This ID must be unique across all objects from an issuer. This value needs to follow the format `issuerID.identifier` where `issuerID` is issued by Google and `identifier` is chosen by you. The unique identifier can only include alphanumeric characters, `.`, `_`, or `-`.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "appLinkData": {},
+     *       //   "barcode": {},
+     *       //   "cardTitle": {},
+     *       //   "classId": "my_classId",
+     *       //   "genericType": "my_genericType",
+     *       //   "groupingInfo": {},
+     *       //   "hasUsers": false,
+     *       //   "header": {},
+     *       //   "heroImage": {},
+     *       //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "linkedObjectIds": [],
+     *       //   "linksModuleData": {},
+     *       //   "logo": {},
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "notifications": {},
+     *       //   "passConstraints": {},
+     *       //   "rotatingBarcode": {},
+     *       //   "saveRestrictions": {},
+     *       //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *       //   "state": "my_state",
+     *       //   "subheader": {},
+     *       //   "textModulesData": [],
+     *       //   "validTimeInterval": {},
+     *       //   "valueAddedModuleData": [],
+     *       //   "wideLogo": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appLinkData": {},
+     *   //   "barcode": {},
+     *   //   "cardTitle": {},
+     *   //   "classId": "my_classId",
+     *   //   "genericType": "my_genericType",
+     *   //   "groupingInfo": {},
+     *   //   "hasUsers": false,
+     *   //   "header": {},
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "linkedObjectIds": [],
+     *   //   "linksModuleData": {},
+     *   //   "logo": {},
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "notifications": {},
+     *   //   "passConstraints": {},
+     *   //   "rotatingBarcode": {},
+     *   //   "saveRestrictions": {},
+     *   //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *   //   "state": "my_state",
+     *   //   "subheader": {},
+     *   //   "textModulesData": [],
+     *   //   "validTimeInterval": {},
+     *   //   "valueAddedModuleData": [],
+     *   //   "wideLogo": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8068,6 +11274,114 @@ export namespace walletobjects_v1 {
 
     /**
      * Updates the generic object referenced by the given object ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.genericobject.update({
+     *     // The unique identifier for an object. This ID must be unique across all objects from an issuer. This value needs to follow the format `issuerID.identifier` where `issuerID` is issued by Google and `identifier` is chosen by you. The unique identifier can only include alphanumeric characters, `.`, `_`, or `-`.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "appLinkData": {},
+     *       //   "barcode": {},
+     *       //   "cardTitle": {},
+     *       //   "classId": "my_classId",
+     *       //   "genericType": "my_genericType",
+     *       //   "groupingInfo": {},
+     *       //   "hasUsers": false,
+     *       //   "header": {},
+     *       //   "heroImage": {},
+     *       //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "linkedObjectIds": [],
+     *       //   "linksModuleData": {},
+     *       //   "logo": {},
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "notifications": {},
+     *       //   "passConstraints": {},
+     *       //   "rotatingBarcode": {},
+     *       //   "saveRestrictions": {},
+     *       //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *       //   "state": "my_state",
+     *       //   "subheader": {},
+     *       //   "textModulesData": [],
+     *       //   "validTimeInterval": {},
+     *       //   "valueAddedModuleData": [],
+     *       //   "wideLogo": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appLinkData": {},
+     *   //   "barcode": {},
+     *   //   "cardTitle": {},
+     *   //   "classId": "my_classId",
+     *   //   "genericType": "my_genericType",
+     *   //   "groupingInfo": {},
+     *   //   "hasUsers": false,
+     *   //   "header": {},
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "linkedObjectIds": [],
+     *   //   "linksModuleData": {},
+     *   //   "logo": {},
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "notifications": {},
+     *   //   "passConstraints": {},
+     *   //   "rotatingBarcode": {},
+     *   //   "saveRestrictions": {},
+     *   //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *   //   "state": "my_state",
+     *   //   "subheader": {},
+     *   //   "textModulesData": [],
+     *   //   "validTimeInterval": {},
+     *   //   "valueAddedModuleData": [],
+     *   //   "wideLogo": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8232,6 +11546,60 @@ export namespace walletobjects_v1 {
 
     /**
      * Adds a message to the gift card class referenced by the given class ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.giftcardclass.addmessage({
+     *     // The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "message": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "resource": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8330,6 +11698,92 @@ export namespace walletobjects_v1 {
 
     /**
      * Returns the gift card class with the given class ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.giftcardclass.get({
+     *     // The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allowBarcodeRedemption": false,
+     *   //   "allowMultipleUsersPerObject": false,
+     *   //   "appLinkData": {},
+     *   //   "callbackOptions": {},
+     *   //   "cardNumberLabel": "my_cardNumberLabel",
+     *   //   "classTemplateInfo": {},
+     *   //   "countryCode": "my_countryCode",
+     *   //   "enableSmartTap": false,
+     *   //   "eventNumberLabel": "my_eventNumberLabel",
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "homepageUri": {},
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "issuerName": "my_issuerName",
+     *   //   "kind": "my_kind",
+     *   //   "linksModuleData": {},
+     *   //   "localizedCardNumberLabel": {},
+     *   //   "localizedEventNumberLabel": {},
+     *   //   "localizedIssuerName": {},
+     *   //   "localizedMerchantName": {},
+     *   //   "localizedPinLabel": {},
+     *   //   "locations": [],
+     *   //   "merchantLocations": [],
+     *   //   "merchantName": "my_merchantName",
+     *   //   "messages": [],
+     *   //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "pinLabel": "my_pinLabel",
+     *   //   "programLogo": {},
+     *   //   "redemptionIssuers": [],
+     *   //   "review": {},
+     *   //   "reviewStatus": "my_reviewStatus",
+     *   //   "securityAnimation": {},
+     *   //   "textModulesData": [],
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version",
+     *   //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *   //   "wideProgramLogo": {},
+     *   //   "wordMark": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8421,6 +11875,137 @@ export namespace walletobjects_v1 {
 
     /**
      * Inserts an gift card class with the given ID and properties.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.giftcardclass.insert({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "allowBarcodeRedemption": false,
+     *       //   "allowMultipleUsersPerObject": false,
+     *       //   "appLinkData": {},
+     *       //   "callbackOptions": {},
+     *       //   "cardNumberLabel": "my_cardNumberLabel",
+     *       //   "classTemplateInfo": {},
+     *       //   "countryCode": "my_countryCode",
+     *       //   "enableSmartTap": false,
+     *       //   "eventNumberLabel": "my_eventNumberLabel",
+     *       //   "heroImage": {},
+     *       //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *       //   "homepageUri": {},
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "infoModuleData": {},
+     *       //   "issuerName": "my_issuerName",
+     *       //   "kind": "my_kind",
+     *       //   "linksModuleData": {},
+     *       //   "localizedCardNumberLabel": {},
+     *       //   "localizedEventNumberLabel": {},
+     *       //   "localizedIssuerName": {},
+     *       //   "localizedMerchantName": {},
+     *       //   "localizedPinLabel": {},
+     *       //   "locations": [],
+     *       //   "merchantLocations": [],
+     *       //   "merchantName": "my_merchantName",
+     *       //   "messages": [],
+     *       //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *       //   "notifyPreference": "my_notifyPreference",
+     *       //   "pinLabel": "my_pinLabel",
+     *       //   "programLogo": {},
+     *       //   "redemptionIssuers": [],
+     *       //   "review": {},
+     *       //   "reviewStatus": "my_reviewStatus",
+     *       //   "securityAnimation": {},
+     *       //   "textModulesData": [],
+     *       //   "valueAddedModuleData": [],
+     *       //   "version": "my_version",
+     *       //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *       //   "wideProgramLogo": {},
+     *       //   "wordMark": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allowBarcodeRedemption": false,
+     *   //   "allowMultipleUsersPerObject": false,
+     *   //   "appLinkData": {},
+     *   //   "callbackOptions": {},
+     *   //   "cardNumberLabel": "my_cardNumberLabel",
+     *   //   "classTemplateInfo": {},
+     *   //   "countryCode": "my_countryCode",
+     *   //   "enableSmartTap": false,
+     *   //   "eventNumberLabel": "my_eventNumberLabel",
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "homepageUri": {},
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "issuerName": "my_issuerName",
+     *   //   "kind": "my_kind",
+     *   //   "linksModuleData": {},
+     *   //   "localizedCardNumberLabel": {},
+     *   //   "localizedEventNumberLabel": {},
+     *   //   "localizedIssuerName": {},
+     *   //   "localizedMerchantName": {},
+     *   //   "localizedPinLabel": {},
+     *   //   "locations": [],
+     *   //   "merchantLocations": [],
+     *   //   "merchantName": "my_merchantName",
+     *   //   "messages": [],
+     *   //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "pinLabel": "my_pinLabel",
+     *   //   "programLogo": {},
+     *   //   "redemptionIssuers": [],
+     *   //   "review": {},
+     *   //   "reviewStatus": "my_reviewStatus",
+     *   //   "securityAnimation": {},
+     *   //   "textModulesData": [],
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version",
+     *   //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *   //   "wideProgramLogo": {},
+     *   //   "wordMark": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8513,6 +12098,57 @@ export namespace walletobjects_v1 {
 
     /**
      * Returns a list of all gift card classes for a given issuer ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.giftcardclass.list({
+     *     // The ID of the issuer authorized to list classes.
+     *     issuerId: 'placeholder-value',
+     *     // Identifies the max number of results returned by a list. All results are returned if `maxResults` isn't defined.
+     *     maxResults: 'placeholder-value',
+     *     // Used to get the next set of results if `maxResults` is specified, but more than `maxResults` classes are available in a list. For example, if you have a list of 200 classes and you call list with `maxResults` set to 20, list will return the first 20 classes and a token. Call list again with `maxResults` set to 20 and the token to get the next 20 classes.
+     *     token: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "pagination": {},
+     *   //   "resources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8609,6 +12245,140 @@ export namespace walletobjects_v1 {
 
     /**
      * Updates the gift card class referenced by the given class ID. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.giftcardclass.patch({
+     *     // The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "allowBarcodeRedemption": false,
+     *       //   "allowMultipleUsersPerObject": false,
+     *       //   "appLinkData": {},
+     *       //   "callbackOptions": {},
+     *       //   "cardNumberLabel": "my_cardNumberLabel",
+     *       //   "classTemplateInfo": {},
+     *       //   "countryCode": "my_countryCode",
+     *       //   "enableSmartTap": false,
+     *       //   "eventNumberLabel": "my_eventNumberLabel",
+     *       //   "heroImage": {},
+     *       //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *       //   "homepageUri": {},
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "infoModuleData": {},
+     *       //   "issuerName": "my_issuerName",
+     *       //   "kind": "my_kind",
+     *       //   "linksModuleData": {},
+     *       //   "localizedCardNumberLabel": {},
+     *       //   "localizedEventNumberLabel": {},
+     *       //   "localizedIssuerName": {},
+     *       //   "localizedMerchantName": {},
+     *       //   "localizedPinLabel": {},
+     *       //   "locations": [],
+     *       //   "merchantLocations": [],
+     *       //   "merchantName": "my_merchantName",
+     *       //   "messages": [],
+     *       //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *       //   "notifyPreference": "my_notifyPreference",
+     *       //   "pinLabel": "my_pinLabel",
+     *       //   "programLogo": {},
+     *       //   "redemptionIssuers": [],
+     *       //   "review": {},
+     *       //   "reviewStatus": "my_reviewStatus",
+     *       //   "securityAnimation": {},
+     *       //   "textModulesData": [],
+     *       //   "valueAddedModuleData": [],
+     *       //   "version": "my_version",
+     *       //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *       //   "wideProgramLogo": {},
+     *       //   "wordMark": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allowBarcodeRedemption": false,
+     *   //   "allowMultipleUsersPerObject": false,
+     *   //   "appLinkData": {},
+     *   //   "callbackOptions": {},
+     *   //   "cardNumberLabel": "my_cardNumberLabel",
+     *   //   "classTemplateInfo": {},
+     *   //   "countryCode": "my_countryCode",
+     *   //   "enableSmartTap": false,
+     *   //   "eventNumberLabel": "my_eventNumberLabel",
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "homepageUri": {},
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "issuerName": "my_issuerName",
+     *   //   "kind": "my_kind",
+     *   //   "linksModuleData": {},
+     *   //   "localizedCardNumberLabel": {},
+     *   //   "localizedEventNumberLabel": {},
+     *   //   "localizedIssuerName": {},
+     *   //   "localizedMerchantName": {},
+     *   //   "localizedPinLabel": {},
+     *   //   "locations": [],
+     *   //   "merchantLocations": [],
+     *   //   "merchantName": "my_merchantName",
+     *   //   "messages": [],
+     *   //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "pinLabel": "my_pinLabel",
+     *   //   "programLogo": {},
+     *   //   "redemptionIssuers": [],
+     *   //   "review": {},
+     *   //   "reviewStatus": "my_reviewStatus",
+     *   //   "securityAnimation": {},
+     *   //   "textModulesData": [],
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version",
+     *   //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *   //   "wideProgramLogo": {},
+     *   //   "wordMark": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8700,6 +12470,140 @@ export namespace walletobjects_v1 {
 
     /**
      * Updates the gift card class referenced by the given class ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.giftcardclass.update({
+     *     // The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "allowBarcodeRedemption": false,
+     *       //   "allowMultipleUsersPerObject": false,
+     *       //   "appLinkData": {},
+     *       //   "callbackOptions": {},
+     *       //   "cardNumberLabel": "my_cardNumberLabel",
+     *       //   "classTemplateInfo": {},
+     *       //   "countryCode": "my_countryCode",
+     *       //   "enableSmartTap": false,
+     *       //   "eventNumberLabel": "my_eventNumberLabel",
+     *       //   "heroImage": {},
+     *       //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *       //   "homepageUri": {},
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "infoModuleData": {},
+     *       //   "issuerName": "my_issuerName",
+     *       //   "kind": "my_kind",
+     *       //   "linksModuleData": {},
+     *       //   "localizedCardNumberLabel": {},
+     *       //   "localizedEventNumberLabel": {},
+     *       //   "localizedIssuerName": {},
+     *       //   "localizedMerchantName": {},
+     *       //   "localizedPinLabel": {},
+     *       //   "locations": [],
+     *       //   "merchantLocations": [],
+     *       //   "merchantName": "my_merchantName",
+     *       //   "messages": [],
+     *       //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *       //   "notifyPreference": "my_notifyPreference",
+     *       //   "pinLabel": "my_pinLabel",
+     *       //   "programLogo": {},
+     *       //   "redemptionIssuers": [],
+     *       //   "review": {},
+     *       //   "reviewStatus": "my_reviewStatus",
+     *       //   "securityAnimation": {},
+     *       //   "textModulesData": [],
+     *       //   "valueAddedModuleData": [],
+     *       //   "version": "my_version",
+     *       //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *       //   "wideProgramLogo": {},
+     *       //   "wordMark": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allowBarcodeRedemption": false,
+     *   //   "allowMultipleUsersPerObject": false,
+     *   //   "appLinkData": {},
+     *   //   "callbackOptions": {},
+     *   //   "cardNumberLabel": "my_cardNumberLabel",
+     *   //   "classTemplateInfo": {},
+     *   //   "countryCode": "my_countryCode",
+     *   //   "enableSmartTap": false,
+     *   //   "eventNumberLabel": "my_eventNumberLabel",
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "homepageUri": {},
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "issuerName": "my_issuerName",
+     *   //   "kind": "my_kind",
+     *   //   "linksModuleData": {},
+     *   //   "localizedCardNumberLabel": {},
+     *   //   "localizedEventNumberLabel": {},
+     *   //   "localizedIssuerName": {},
+     *   //   "localizedMerchantName": {},
+     *   //   "localizedPinLabel": {},
+     *   //   "locations": [],
+     *   //   "merchantLocations": [],
+     *   //   "merchantName": "my_merchantName",
+     *   //   "messages": [],
+     *   //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "pinLabel": "my_pinLabel",
+     *   //   "programLogo": {},
+     *   //   "redemptionIssuers": [],
+     *   //   "review": {},
+     *   //   "reviewStatus": "my_reviewStatus",
+     *   //   "securityAnimation": {},
+     *   //   "textModulesData": [],
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version",
+     *   //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *   //   "wideProgramLogo": {},
+     *   //   "wordMark": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8864,6 +12768,60 @@ export namespace walletobjects_v1 {
 
     /**
      * Adds a message to the gift card object referenced by the given object ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.giftcardobject.addmessage({
+     *     // The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "message": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "resource": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8966,6 +12924,84 @@ export namespace walletobjects_v1 {
 
     /**
      * Returns the gift card object with the given object ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.giftcardobject.get({
+     *     // The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appLinkData": {},
+     *   //   "balance": {},
+     *   //   "balanceUpdateTime": {},
+     *   //   "barcode": {},
+     *   //   "cardNumber": "my_cardNumber",
+     *   //   "classId": "my_classId",
+     *   //   "classReference": {},
+     *   //   "disableExpirationNotification": false,
+     *   //   "eventNumber": "my_eventNumber",
+     *   //   "groupingInfo": {},
+     *   //   "hasLinkedDevice": false,
+     *   //   "hasUsers": false,
+     *   //   "heroImage": {},
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "kind": "my_kind",
+     *   //   "linkedObjectIds": [],
+     *   //   "linksModuleData": {},
+     *   //   "locations": [],
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "passConstraints": {},
+     *   //   "pin": "my_pin",
+     *   //   "rotatingBarcode": {},
+     *   //   "saveRestrictions": {},
+     *   //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *   //   "state": "my_state",
+     *   //   "textModulesData": [],
+     *   //   "validTimeInterval": {},
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9057,6 +13093,121 @@ export namespace walletobjects_v1 {
 
     /**
      * Inserts an gift card object with the given ID and properties.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.giftcardobject.insert({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "appLinkData": {},
+     *       //   "balance": {},
+     *       //   "balanceUpdateTime": {},
+     *       //   "barcode": {},
+     *       //   "cardNumber": "my_cardNumber",
+     *       //   "classId": "my_classId",
+     *       //   "classReference": {},
+     *       //   "disableExpirationNotification": false,
+     *       //   "eventNumber": "my_eventNumber",
+     *       //   "groupingInfo": {},
+     *       //   "hasLinkedDevice": false,
+     *       //   "hasUsers": false,
+     *       //   "heroImage": {},
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "infoModuleData": {},
+     *       //   "kind": "my_kind",
+     *       //   "linkedObjectIds": [],
+     *       //   "linksModuleData": {},
+     *       //   "locations": [],
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "notifyPreference": "my_notifyPreference",
+     *       //   "passConstraints": {},
+     *       //   "pin": "my_pin",
+     *       //   "rotatingBarcode": {},
+     *       //   "saveRestrictions": {},
+     *       //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *       //   "state": "my_state",
+     *       //   "textModulesData": [],
+     *       //   "validTimeInterval": {},
+     *       //   "valueAddedModuleData": [],
+     *       //   "version": "my_version"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appLinkData": {},
+     *   //   "balance": {},
+     *   //   "balanceUpdateTime": {},
+     *   //   "barcode": {},
+     *   //   "cardNumber": "my_cardNumber",
+     *   //   "classId": "my_classId",
+     *   //   "classReference": {},
+     *   //   "disableExpirationNotification": false,
+     *   //   "eventNumber": "my_eventNumber",
+     *   //   "groupingInfo": {},
+     *   //   "hasLinkedDevice": false,
+     *   //   "hasUsers": false,
+     *   //   "heroImage": {},
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "kind": "my_kind",
+     *   //   "linkedObjectIds": [],
+     *   //   "linksModuleData": {},
+     *   //   "locations": [],
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "passConstraints": {},
+     *   //   "pin": "my_pin",
+     *   //   "rotatingBarcode": {},
+     *   //   "saveRestrictions": {},
+     *   //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *   //   "state": "my_state",
+     *   //   "textModulesData": [],
+     *   //   "validTimeInterval": {},
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9149,6 +13300,57 @@ export namespace walletobjects_v1 {
 
     /**
      * Returns a list of all gift card objects for a given issuer ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.giftcardobject.list({
+     *     // The ID of the class whose objects will be listed.
+     *     classId: 'placeholder-value',
+     *     // Identifies the max number of results returned by a list. All results are returned if `maxResults` isn't defined.
+     *     maxResults: 'placeholder-value',
+     *     // Used to get the next set of results if `maxResults` is specified, but more than `maxResults` objects are available in a list. For example, if you have a list of 200 objects and you call list with `maxResults` set to 20, list will return the first 20 objects and a token. Call list again with `maxResults` set to 20 and the token to get the next 20 objects.
+     *     token: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "pagination": {},
+     *   //   "resources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9245,6 +13447,124 @@ export namespace walletobjects_v1 {
 
     /**
      * Updates the gift card object referenced by the given object ID. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.giftcardobject.patch({
+     *     // The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "appLinkData": {},
+     *       //   "balance": {},
+     *       //   "balanceUpdateTime": {},
+     *       //   "barcode": {},
+     *       //   "cardNumber": "my_cardNumber",
+     *       //   "classId": "my_classId",
+     *       //   "classReference": {},
+     *       //   "disableExpirationNotification": false,
+     *       //   "eventNumber": "my_eventNumber",
+     *       //   "groupingInfo": {},
+     *       //   "hasLinkedDevice": false,
+     *       //   "hasUsers": false,
+     *       //   "heroImage": {},
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "infoModuleData": {},
+     *       //   "kind": "my_kind",
+     *       //   "linkedObjectIds": [],
+     *       //   "linksModuleData": {},
+     *       //   "locations": [],
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "notifyPreference": "my_notifyPreference",
+     *       //   "passConstraints": {},
+     *       //   "pin": "my_pin",
+     *       //   "rotatingBarcode": {},
+     *       //   "saveRestrictions": {},
+     *       //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *       //   "state": "my_state",
+     *       //   "textModulesData": [],
+     *       //   "validTimeInterval": {},
+     *       //   "valueAddedModuleData": [],
+     *       //   "version": "my_version"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appLinkData": {},
+     *   //   "balance": {},
+     *   //   "balanceUpdateTime": {},
+     *   //   "barcode": {},
+     *   //   "cardNumber": "my_cardNumber",
+     *   //   "classId": "my_classId",
+     *   //   "classReference": {},
+     *   //   "disableExpirationNotification": false,
+     *   //   "eventNumber": "my_eventNumber",
+     *   //   "groupingInfo": {},
+     *   //   "hasLinkedDevice": false,
+     *   //   "hasUsers": false,
+     *   //   "heroImage": {},
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "kind": "my_kind",
+     *   //   "linkedObjectIds": [],
+     *   //   "linksModuleData": {},
+     *   //   "locations": [],
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "passConstraints": {},
+     *   //   "pin": "my_pin",
+     *   //   "rotatingBarcode": {},
+     *   //   "saveRestrictions": {},
+     *   //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *   //   "state": "my_state",
+     *   //   "textModulesData": [],
+     *   //   "validTimeInterval": {},
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9336,6 +13656,124 @@ export namespace walletobjects_v1 {
 
     /**
      * Updates the gift card object referenced by the given object ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.giftcardobject.update({
+     *     // The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "appLinkData": {},
+     *       //   "balance": {},
+     *       //   "balanceUpdateTime": {},
+     *       //   "barcode": {},
+     *       //   "cardNumber": "my_cardNumber",
+     *       //   "classId": "my_classId",
+     *       //   "classReference": {},
+     *       //   "disableExpirationNotification": false,
+     *       //   "eventNumber": "my_eventNumber",
+     *       //   "groupingInfo": {},
+     *       //   "hasLinkedDevice": false,
+     *       //   "hasUsers": false,
+     *       //   "heroImage": {},
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "infoModuleData": {},
+     *       //   "kind": "my_kind",
+     *       //   "linkedObjectIds": [],
+     *       //   "linksModuleData": {},
+     *       //   "locations": [],
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "notifyPreference": "my_notifyPreference",
+     *       //   "passConstraints": {},
+     *       //   "pin": "my_pin",
+     *       //   "rotatingBarcode": {},
+     *       //   "saveRestrictions": {},
+     *       //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *       //   "state": "my_state",
+     *       //   "textModulesData": [],
+     *       //   "validTimeInterval": {},
+     *       //   "valueAddedModuleData": [],
+     *       //   "version": "my_version"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appLinkData": {},
+     *   //   "balance": {},
+     *   //   "balanceUpdateTime": {},
+     *   //   "barcode": {},
+     *   //   "cardNumber": "my_cardNumber",
+     *   //   "classId": "my_classId",
+     *   //   "classReference": {},
+     *   //   "disableExpirationNotification": false,
+     *   //   "eventNumber": "my_eventNumber",
+     *   //   "groupingInfo": {},
+     *   //   "hasLinkedDevice": false,
+     *   //   "hasUsers": false,
+     *   //   "heroImage": {},
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "kind": "my_kind",
+     *   //   "linkedObjectIds": [],
+     *   //   "linksModuleData": {},
+     *   //   "locations": [],
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "passConstraints": {},
+     *   //   "pin": "my_pin",
+     *   //   "rotatingBarcode": {},
+     *   //   "saveRestrictions": {},
+     *   //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *   //   "state": "my_state",
+     *   //   "textModulesData": [],
+     *   //   "validTimeInterval": {},
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9500,6 +13938,57 @@ export namespace walletobjects_v1 {
 
     /**
      * Returns the issuer with the given issuer ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.issuer.get({
+     *     // The unique identifier for an issuer.
+     *     resourceId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "callbackOptions": {},
+     *   //   "contactInfo": {},
+     *   //   "homepageUrl": "my_homepageUrl",
+     *   //   "issuerId": "my_issuerId",
+     *   //   "name": "my_name",
+     *   //   "smartTapMerchantData": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9591,6 +14080,67 @@ export namespace walletobjects_v1 {
 
     /**
      * Inserts an issuer with the given ID and properties.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.issuer.insert({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "callbackOptions": {},
+     *       //   "contactInfo": {},
+     *       //   "homepageUrl": "my_homepageUrl",
+     *       //   "issuerId": "my_issuerId",
+     *       //   "name": "my_name",
+     *       //   "smartTapMerchantData": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "callbackOptions": {},
+     *   //   "contactInfo": {},
+     *   //   "homepageUrl": "my_homepageUrl",
+     *   //   "issuerId": "my_issuerId",
+     *   //   "name": "my_name",
+     *   //   "smartTapMerchantData": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9682,6 +14232,49 @@ export namespace walletobjects_v1 {
 
     /**
      * Returns a list of all issuers shared to the caller.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.issuer.list({});
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "resources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9773,6 +14366,70 @@ export namespace walletobjects_v1 {
 
     /**
      * Updates the issuer referenced by the given issuer ID. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.issuer.patch({
+     *     // The unique identifier for an issuer.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "callbackOptions": {},
+     *       //   "contactInfo": {},
+     *       //   "homepageUrl": "my_homepageUrl",
+     *       //   "issuerId": "my_issuerId",
+     *       //   "name": "my_name",
+     *       //   "smartTapMerchantData": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "callbackOptions": {},
+     *   //   "contactInfo": {},
+     *   //   "homepageUrl": "my_homepageUrl",
+     *   //   "issuerId": "my_issuerId",
+     *   //   "name": "my_name",
+     *   //   "smartTapMerchantData": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9864,6 +14521,70 @@ export namespace walletobjects_v1 {
 
     /**
      * Updates the issuer referenced by the given issuer ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.issuer.update({
+     *     // The unique identifier for an issuer.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "callbackOptions": {},
+     *       //   "contactInfo": {},
+     *       //   "homepageUrl": "my_homepageUrl",
+     *       //   "issuerId": "my_issuerId",
+     *       //   "name": "my_name",
+     *       //   "smartTapMerchantData": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "callbackOptions": {},
+     *   //   "contactInfo": {},
+     *   //   "homepageUrl": "my_homepageUrl",
+     *   //   "issuerId": "my_issuerId",
+     *   //   "name": "my_name",
+     *   //   "smartTapMerchantData": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9998,6 +14719,58 @@ export namespace walletobjects_v1 {
 
     /**
      * Inserts the resources in the JWT.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.jwt.insert({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "jwt": "my_jwt"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "resources": {},
+     *   //   "saveUri": "my_saveUri"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10103,6 +14876,60 @@ export namespace walletobjects_v1 {
 
     /**
      * Adds a message to the loyalty class referenced by the given class ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.loyaltyclass.addmessage({
+     *     // The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "message": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "resource": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10200,6 +15027,98 @@ export namespace walletobjects_v1 {
 
     /**
      * Returns the loyalty class with the given class ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.loyaltyclass.get({
+     *     // The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountIdLabel": "my_accountIdLabel",
+     *   //   "accountNameLabel": "my_accountNameLabel",
+     *   //   "allowMultipleUsersPerObject": false,
+     *   //   "appLinkData": {},
+     *   //   "callbackOptions": {},
+     *   //   "classTemplateInfo": {},
+     *   //   "countryCode": "my_countryCode",
+     *   //   "discoverableProgram": {},
+     *   //   "enableSmartTap": false,
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "homepageUri": {},
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "issuerName": "my_issuerName",
+     *   //   "kind": "my_kind",
+     *   //   "linksModuleData": {},
+     *   //   "localizedAccountIdLabel": {},
+     *   //   "localizedAccountNameLabel": {},
+     *   //   "localizedIssuerName": {},
+     *   //   "localizedProgramName": {},
+     *   //   "localizedRewardsTier": {},
+     *   //   "localizedRewardsTierLabel": {},
+     *   //   "localizedSecondaryRewardsTier": {},
+     *   //   "localizedSecondaryRewardsTierLabel": {},
+     *   //   "locations": [],
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "programLogo": {},
+     *   //   "programName": "my_programName",
+     *   //   "redemptionIssuers": [],
+     *   //   "review": {},
+     *   //   "reviewStatus": "my_reviewStatus",
+     *   //   "rewardsTier": "my_rewardsTier",
+     *   //   "rewardsTierLabel": "my_rewardsTierLabel",
+     *   //   "secondaryRewardsTier": "my_secondaryRewardsTier",
+     *   //   "secondaryRewardsTierLabel": "my_secondaryRewardsTierLabel",
+     *   //   "securityAnimation": {},
+     *   //   "textModulesData": [],
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version",
+     *   //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *   //   "wideProgramLogo": {},
+     *   //   "wordMark": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10290,6 +15209,149 @@ export namespace walletobjects_v1 {
 
     /**
      * Inserts an loyalty class with the given ID and properties.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.loyaltyclass.insert({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountIdLabel": "my_accountIdLabel",
+     *       //   "accountNameLabel": "my_accountNameLabel",
+     *       //   "allowMultipleUsersPerObject": false,
+     *       //   "appLinkData": {},
+     *       //   "callbackOptions": {},
+     *       //   "classTemplateInfo": {},
+     *       //   "countryCode": "my_countryCode",
+     *       //   "discoverableProgram": {},
+     *       //   "enableSmartTap": false,
+     *       //   "heroImage": {},
+     *       //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *       //   "homepageUri": {},
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "infoModuleData": {},
+     *       //   "issuerName": "my_issuerName",
+     *       //   "kind": "my_kind",
+     *       //   "linksModuleData": {},
+     *       //   "localizedAccountIdLabel": {},
+     *       //   "localizedAccountNameLabel": {},
+     *       //   "localizedIssuerName": {},
+     *       //   "localizedProgramName": {},
+     *       //   "localizedRewardsTier": {},
+     *       //   "localizedRewardsTierLabel": {},
+     *       //   "localizedSecondaryRewardsTier": {},
+     *       //   "localizedSecondaryRewardsTierLabel": {},
+     *       //   "locations": [],
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *       //   "notifyPreference": "my_notifyPreference",
+     *       //   "programLogo": {},
+     *       //   "programName": "my_programName",
+     *       //   "redemptionIssuers": [],
+     *       //   "review": {},
+     *       //   "reviewStatus": "my_reviewStatus",
+     *       //   "rewardsTier": "my_rewardsTier",
+     *       //   "rewardsTierLabel": "my_rewardsTierLabel",
+     *       //   "secondaryRewardsTier": "my_secondaryRewardsTier",
+     *       //   "secondaryRewardsTierLabel": "my_secondaryRewardsTierLabel",
+     *       //   "securityAnimation": {},
+     *       //   "textModulesData": [],
+     *       //   "valueAddedModuleData": [],
+     *       //   "version": "my_version",
+     *       //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *       //   "wideProgramLogo": {},
+     *       //   "wordMark": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountIdLabel": "my_accountIdLabel",
+     *   //   "accountNameLabel": "my_accountNameLabel",
+     *   //   "allowMultipleUsersPerObject": false,
+     *   //   "appLinkData": {},
+     *   //   "callbackOptions": {},
+     *   //   "classTemplateInfo": {},
+     *   //   "countryCode": "my_countryCode",
+     *   //   "discoverableProgram": {},
+     *   //   "enableSmartTap": false,
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "homepageUri": {},
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "issuerName": "my_issuerName",
+     *   //   "kind": "my_kind",
+     *   //   "linksModuleData": {},
+     *   //   "localizedAccountIdLabel": {},
+     *   //   "localizedAccountNameLabel": {},
+     *   //   "localizedIssuerName": {},
+     *   //   "localizedProgramName": {},
+     *   //   "localizedRewardsTier": {},
+     *   //   "localizedRewardsTierLabel": {},
+     *   //   "localizedSecondaryRewardsTier": {},
+     *   //   "localizedSecondaryRewardsTierLabel": {},
+     *   //   "locations": [],
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "programLogo": {},
+     *   //   "programName": "my_programName",
+     *   //   "redemptionIssuers": [],
+     *   //   "review": {},
+     *   //   "reviewStatus": "my_reviewStatus",
+     *   //   "rewardsTier": "my_rewardsTier",
+     *   //   "rewardsTierLabel": "my_rewardsTierLabel",
+     *   //   "secondaryRewardsTier": "my_secondaryRewardsTier",
+     *   //   "secondaryRewardsTierLabel": "my_secondaryRewardsTierLabel",
+     *   //   "securityAnimation": {},
+     *   //   "textModulesData": [],
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version",
+     *   //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *   //   "wideProgramLogo": {},
+     *   //   "wordMark": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10382,6 +15444,57 @@ export namespace walletobjects_v1 {
 
     /**
      * Returns a list of all loyalty classes for a given issuer ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.loyaltyclass.list({
+     *     // The ID of the issuer authorized to list classes.
+     *     issuerId: 'placeholder-value',
+     *     // Identifies the max number of results returned by a list. All results are returned if `maxResults` isn't defined.
+     *     maxResults: 'placeholder-value',
+     *     // Used to get the next set of results if `maxResults` is specified, but more than `maxResults` classes are available in a list. For example, if you have a list of 200 classes and you call list with `maxResults` set to 20, list will return the first 20 classes and a token. Call list again with `maxResults` set to 20 and the token to get the next 20 classes.
+     *     token: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "pagination": {},
+     *   //   "resources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10476,6 +15589,152 @@ export namespace walletobjects_v1 {
 
     /**
      * Updates the loyalty class referenced by the given class ID. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.loyaltyclass.patch({
+     *     // The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountIdLabel": "my_accountIdLabel",
+     *       //   "accountNameLabel": "my_accountNameLabel",
+     *       //   "allowMultipleUsersPerObject": false,
+     *       //   "appLinkData": {},
+     *       //   "callbackOptions": {},
+     *       //   "classTemplateInfo": {},
+     *       //   "countryCode": "my_countryCode",
+     *       //   "discoverableProgram": {},
+     *       //   "enableSmartTap": false,
+     *       //   "heroImage": {},
+     *       //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *       //   "homepageUri": {},
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "infoModuleData": {},
+     *       //   "issuerName": "my_issuerName",
+     *       //   "kind": "my_kind",
+     *       //   "linksModuleData": {},
+     *       //   "localizedAccountIdLabel": {},
+     *       //   "localizedAccountNameLabel": {},
+     *       //   "localizedIssuerName": {},
+     *       //   "localizedProgramName": {},
+     *       //   "localizedRewardsTier": {},
+     *       //   "localizedRewardsTierLabel": {},
+     *       //   "localizedSecondaryRewardsTier": {},
+     *       //   "localizedSecondaryRewardsTierLabel": {},
+     *       //   "locations": [],
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *       //   "notifyPreference": "my_notifyPreference",
+     *       //   "programLogo": {},
+     *       //   "programName": "my_programName",
+     *       //   "redemptionIssuers": [],
+     *       //   "review": {},
+     *       //   "reviewStatus": "my_reviewStatus",
+     *       //   "rewardsTier": "my_rewardsTier",
+     *       //   "rewardsTierLabel": "my_rewardsTierLabel",
+     *       //   "secondaryRewardsTier": "my_secondaryRewardsTier",
+     *       //   "secondaryRewardsTierLabel": "my_secondaryRewardsTierLabel",
+     *       //   "securityAnimation": {},
+     *       //   "textModulesData": [],
+     *       //   "valueAddedModuleData": [],
+     *       //   "version": "my_version",
+     *       //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *       //   "wideProgramLogo": {},
+     *       //   "wordMark": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountIdLabel": "my_accountIdLabel",
+     *   //   "accountNameLabel": "my_accountNameLabel",
+     *   //   "allowMultipleUsersPerObject": false,
+     *   //   "appLinkData": {},
+     *   //   "callbackOptions": {},
+     *   //   "classTemplateInfo": {},
+     *   //   "countryCode": "my_countryCode",
+     *   //   "discoverableProgram": {},
+     *   //   "enableSmartTap": false,
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "homepageUri": {},
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "issuerName": "my_issuerName",
+     *   //   "kind": "my_kind",
+     *   //   "linksModuleData": {},
+     *   //   "localizedAccountIdLabel": {},
+     *   //   "localizedAccountNameLabel": {},
+     *   //   "localizedIssuerName": {},
+     *   //   "localizedProgramName": {},
+     *   //   "localizedRewardsTier": {},
+     *   //   "localizedRewardsTierLabel": {},
+     *   //   "localizedSecondaryRewardsTier": {},
+     *   //   "localizedSecondaryRewardsTierLabel": {},
+     *   //   "locations": [],
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "programLogo": {},
+     *   //   "programName": "my_programName",
+     *   //   "redemptionIssuers": [],
+     *   //   "review": {},
+     *   //   "reviewStatus": "my_reviewStatus",
+     *   //   "rewardsTier": "my_rewardsTier",
+     *   //   "rewardsTierLabel": "my_rewardsTierLabel",
+     *   //   "secondaryRewardsTier": "my_secondaryRewardsTier",
+     *   //   "secondaryRewardsTierLabel": "my_secondaryRewardsTierLabel",
+     *   //   "securityAnimation": {},
+     *   //   "textModulesData": [],
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version",
+     *   //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *   //   "wideProgramLogo": {},
+     *   //   "wordMark": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10567,6 +15826,152 @@ export namespace walletobjects_v1 {
 
     /**
      * Updates the loyalty class referenced by the given class ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.loyaltyclass.update({
+     *     // The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountIdLabel": "my_accountIdLabel",
+     *       //   "accountNameLabel": "my_accountNameLabel",
+     *       //   "allowMultipleUsersPerObject": false,
+     *       //   "appLinkData": {},
+     *       //   "callbackOptions": {},
+     *       //   "classTemplateInfo": {},
+     *       //   "countryCode": "my_countryCode",
+     *       //   "discoverableProgram": {},
+     *       //   "enableSmartTap": false,
+     *       //   "heroImage": {},
+     *       //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *       //   "homepageUri": {},
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "infoModuleData": {},
+     *       //   "issuerName": "my_issuerName",
+     *       //   "kind": "my_kind",
+     *       //   "linksModuleData": {},
+     *       //   "localizedAccountIdLabel": {},
+     *       //   "localizedAccountNameLabel": {},
+     *       //   "localizedIssuerName": {},
+     *       //   "localizedProgramName": {},
+     *       //   "localizedRewardsTier": {},
+     *       //   "localizedRewardsTierLabel": {},
+     *       //   "localizedSecondaryRewardsTier": {},
+     *       //   "localizedSecondaryRewardsTierLabel": {},
+     *       //   "locations": [],
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *       //   "notifyPreference": "my_notifyPreference",
+     *       //   "programLogo": {},
+     *       //   "programName": "my_programName",
+     *       //   "redemptionIssuers": [],
+     *       //   "review": {},
+     *       //   "reviewStatus": "my_reviewStatus",
+     *       //   "rewardsTier": "my_rewardsTier",
+     *       //   "rewardsTierLabel": "my_rewardsTierLabel",
+     *       //   "secondaryRewardsTier": "my_secondaryRewardsTier",
+     *       //   "secondaryRewardsTierLabel": "my_secondaryRewardsTierLabel",
+     *       //   "securityAnimation": {},
+     *       //   "textModulesData": [],
+     *       //   "valueAddedModuleData": [],
+     *       //   "version": "my_version",
+     *       //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *       //   "wideProgramLogo": {},
+     *       //   "wordMark": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountIdLabel": "my_accountIdLabel",
+     *   //   "accountNameLabel": "my_accountNameLabel",
+     *   //   "allowMultipleUsersPerObject": false,
+     *   //   "appLinkData": {},
+     *   //   "callbackOptions": {},
+     *   //   "classTemplateInfo": {},
+     *   //   "countryCode": "my_countryCode",
+     *   //   "discoverableProgram": {},
+     *   //   "enableSmartTap": false,
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "homepageUri": {},
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "issuerName": "my_issuerName",
+     *   //   "kind": "my_kind",
+     *   //   "linksModuleData": {},
+     *   //   "localizedAccountIdLabel": {},
+     *   //   "localizedAccountNameLabel": {},
+     *   //   "localizedIssuerName": {},
+     *   //   "localizedProgramName": {},
+     *   //   "localizedRewardsTier": {},
+     *   //   "localizedRewardsTierLabel": {},
+     *   //   "localizedSecondaryRewardsTier": {},
+     *   //   "localizedSecondaryRewardsTierLabel": {},
+     *   //   "locations": [],
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "programLogo": {},
+     *   //   "programName": "my_programName",
+     *   //   "redemptionIssuers": [],
+     *   //   "review": {},
+     *   //   "reviewStatus": "my_reviewStatus",
+     *   //   "rewardsTier": "my_rewardsTier",
+     *   //   "rewardsTierLabel": "my_rewardsTierLabel",
+     *   //   "secondaryRewardsTier": "my_secondaryRewardsTier",
+     *   //   "secondaryRewardsTierLabel": "my_secondaryRewardsTierLabel",
+     *   //   "securityAnimation": {},
+     *   //   "textModulesData": [],
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version",
+     *   //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *   //   "wideProgramLogo": {},
+     *   //   "wordMark": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10730,6 +16135,60 @@ export namespace walletobjects_v1 {
 
     /**
      * Adds a message to the loyalty object referenced by the given object ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.loyaltyobject.addmessage({
+     *     // The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "message": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "resource": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10828,6 +16287,84 @@ export namespace walletobjects_v1 {
 
     /**
      * Returns the loyalty object with the given object ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.loyaltyobject.get({
+     *     // The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "accountName": "my_accountName",
+     *   //   "appLinkData": {},
+     *   //   "barcode": {},
+     *   //   "classId": "my_classId",
+     *   //   "classReference": {},
+     *   //   "disableExpirationNotification": false,
+     *   //   "groupingInfo": {},
+     *   //   "hasLinkedDevice": false,
+     *   //   "hasUsers": false,
+     *   //   "heroImage": {},
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "kind": "my_kind",
+     *   //   "linkedObjectIds": [],
+     *   //   "linkedOfferIds": [],
+     *   //   "linksModuleData": {},
+     *   //   "locations": [],
+     *   //   "loyaltyPoints": {},
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "passConstraints": {},
+     *   //   "rotatingBarcode": {},
+     *   //   "saveRestrictions": {},
+     *   //   "secondaryLoyaltyPoints": {},
+     *   //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *   //   "state": "my_state",
+     *   //   "textModulesData": [],
+     *   //   "validTimeInterval": {},
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10919,6 +16456,121 @@ export namespace walletobjects_v1 {
 
     /**
      * Inserts an loyalty object with the given ID and properties.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.loyaltyobject.insert({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "accountName": "my_accountName",
+     *       //   "appLinkData": {},
+     *       //   "barcode": {},
+     *       //   "classId": "my_classId",
+     *       //   "classReference": {},
+     *       //   "disableExpirationNotification": false,
+     *       //   "groupingInfo": {},
+     *       //   "hasLinkedDevice": false,
+     *       //   "hasUsers": false,
+     *       //   "heroImage": {},
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "infoModuleData": {},
+     *       //   "kind": "my_kind",
+     *       //   "linkedObjectIds": [],
+     *       //   "linkedOfferIds": [],
+     *       //   "linksModuleData": {},
+     *       //   "locations": [],
+     *       //   "loyaltyPoints": {},
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "notifyPreference": "my_notifyPreference",
+     *       //   "passConstraints": {},
+     *       //   "rotatingBarcode": {},
+     *       //   "saveRestrictions": {},
+     *       //   "secondaryLoyaltyPoints": {},
+     *       //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *       //   "state": "my_state",
+     *       //   "textModulesData": [],
+     *       //   "validTimeInterval": {},
+     *       //   "valueAddedModuleData": [],
+     *       //   "version": "my_version"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "accountName": "my_accountName",
+     *   //   "appLinkData": {},
+     *   //   "barcode": {},
+     *   //   "classId": "my_classId",
+     *   //   "classReference": {},
+     *   //   "disableExpirationNotification": false,
+     *   //   "groupingInfo": {},
+     *   //   "hasLinkedDevice": false,
+     *   //   "hasUsers": false,
+     *   //   "heroImage": {},
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "kind": "my_kind",
+     *   //   "linkedObjectIds": [],
+     *   //   "linkedOfferIds": [],
+     *   //   "linksModuleData": {},
+     *   //   "locations": [],
+     *   //   "loyaltyPoints": {},
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "passConstraints": {},
+     *   //   "rotatingBarcode": {},
+     *   //   "saveRestrictions": {},
+     *   //   "secondaryLoyaltyPoints": {},
+     *   //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *   //   "state": "my_state",
+     *   //   "textModulesData": [],
+     *   //   "validTimeInterval": {},
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11011,6 +16663,57 @@ export namespace walletobjects_v1 {
 
     /**
      * Returns a list of all loyalty objects for a given issuer ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.loyaltyobject.list({
+     *     // The ID of the class whose objects will be listed.
+     *     classId: 'placeholder-value',
+     *     // Identifies the max number of results returned by a list. All results are returned if `maxResults` isn't defined.
+     *     maxResults: 'placeholder-value',
+     *     // Used to get the next set of results if `maxResults` is specified, but more than `maxResults` objects are available in a list. For example, if you have a list of 200 objects and you call list with `maxResults` set to 20, list will return the first 20 objects and a token. Call list again with `maxResults` set to 20 and the token to get the next 20 objects.
+     *     token: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "pagination": {},
+     *   //   "resources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11107,6 +16810,92 @@ export namespace walletobjects_v1 {
 
     /**
      * Modifies linked offer objects for the loyalty object with the given ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.loyaltyobject.modifylinkedofferobjects({
+     *     // The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "linkedOfferObjectIds": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "accountName": "my_accountName",
+     *   //   "appLinkData": {},
+     *   //   "barcode": {},
+     *   //   "classId": "my_classId",
+     *   //   "classReference": {},
+     *   //   "disableExpirationNotification": false,
+     *   //   "groupingInfo": {},
+     *   //   "hasLinkedDevice": false,
+     *   //   "hasUsers": false,
+     *   //   "heroImage": {},
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "kind": "my_kind",
+     *   //   "linkedObjectIds": [],
+     *   //   "linkedOfferIds": [],
+     *   //   "linksModuleData": {},
+     *   //   "locations": [],
+     *   //   "loyaltyPoints": {},
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "passConstraints": {},
+     *   //   "rotatingBarcode": {},
+     *   //   "saveRestrictions": {},
+     *   //   "secondaryLoyaltyPoints": {},
+     *   //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *   //   "state": "my_state",
+     *   //   "textModulesData": [],
+     *   //   "validTimeInterval": {},
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11201,6 +16990,124 @@ export namespace walletobjects_v1 {
 
     /**
      * Updates the loyalty object referenced by the given object ID. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.loyaltyobject.patch({
+     *     // The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "accountName": "my_accountName",
+     *       //   "appLinkData": {},
+     *       //   "barcode": {},
+     *       //   "classId": "my_classId",
+     *       //   "classReference": {},
+     *       //   "disableExpirationNotification": false,
+     *       //   "groupingInfo": {},
+     *       //   "hasLinkedDevice": false,
+     *       //   "hasUsers": false,
+     *       //   "heroImage": {},
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "infoModuleData": {},
+     *       //   "kind": "my_kind",
+     *       //   "linkedObjectIds": [],
+     *       //   "linkedOfferIds": [],
+     *       //   "linksModuleData": {},
+     *       //   "locations": [],
+     *       //   "loyaltyPoints": {},
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "notifyPreference": "my_notifyPreference",
+     *       //   "passConstraints": {},
+     *       //   "rotatingBarcode": {},
+     *       //   "saveRestrictions": {},
+     *       //   "secondaryLoyaltyPoints": {},
+     *       //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *       //   "state": "my_state",
+     *       //   "textModulesData": [],
+     *       //   "validTimeInterval": {},
+     *       //   "valueAddedModuleData": [],
+     *       //   "version": "my_version"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "accountName": "my_accountName",
+     *   //   "appLinkData": {},
+     *   //   "barcode": {},
+     *   //   "classId": "my_classId",
+     *   //   "classReference": {},
+     *   //   "disableExpirationNotification": false,
+     *   //   "groupingInfo": {},
+     *   //   "hasLinkedDevice": false,
+     *   //   "hasUsers": false,
+     *   //   "heroImage": {},
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "kind": "my_kind",
+     *   //   "linkedObjectIds": [],
+     *   //   "linkedOfferIds": [],
+     *   //   "linksModuleData": {},
+     *   //   "locations": [],
+     *   //   "loyaltyPoints": {},
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "passConstraints": {},
+     *   //   "rotatingBarcode": {},
+     *   //   "saveRestrictions": {},
+     *   //   "secondaryLoyaltyPoints": {},
+     *   //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *   //   "state": "my_state",
+     *   //   "textModulesData": [],
+     *   //   "validTimeInterval": {},
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11292,6 +17199,124 @@ export namespace walletobjects_v1 {
 
     /**
      * Updates the loyalty object referenced by the given object ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.loyaltyobject.update({
+     *     // The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "accountName": "my_accountName",
+     *       //   "appLinkData": {},
+     *       //   "barcode": {},
+     *       //   "classId": "my_classId",
+     *       //   "classReference": {},
+     *       //   "disableExpirationNotification": false,
+     *       //   "groupingInfo": {},
+     *       //   "hasLinkedDevice": false,
+     *       //   "hasUsers": false,
+     *       //   "heroImage": {},
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "infoModuleData": {},
+     *       //   "kind": "my_kind",
+     *       //   "linkedObjectIds": [],
+     *       //   "linkedOfferIds": [],
+     *       //   "linksModuleData": {},
+     *       //   "locations": [],
+     *       //   "loyaltyPoints": {},
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "notifyPreference": "my_notifyPreference",
+     *       //   "passConstraints": {},
+     *       //   "rotatingBarcode": {},
+     *       //   "saveRestrictions": {},
+     *       //   "secondaryLoyaltyPoints": {},
+     *       //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *       //   "state": "my_state",
+     *       //   "textModulesData": [],
+     *       //   "validTimeInterval": {},
+     *       //   "valueAddedModuleData": [],
+     *       //   "version": "my_version"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "accountName": "my_accountName",
+     *   //   "appLinkData": {},
+     *   //   "barcode": {},
+     *   //   "classId": "my_classId",
+     *   //   "classReference": {},
+     *   //   "disableExpirationNotification": false,
+     *   //   "groupingInfo": {},
+     *   //   "hasLinkedDevice": false,
+     *   //   "hasUsers": false,
+     *   //   "heroImage": {},
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "kind": "my_kind",
+     *   //   "linkedObjectIds": [],
+     *   //   "linkedOfferIds": [],
+     *   //   "linksModuleData": {},
+     *   //   "locations": [],
+     *   //   "loyaltyPoints": {},
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "passConstraints": {},
+     *   //   "rotatingBarcode": {},
+     *   //   "saveRestrictions": {},
+     *   //   "secondaryLoyaltyPoints": {},
+     *   //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *   //   "state": "my_state",
+     *   //   "textModulesData": [],
+     *   //   "validTimeInterval": {},
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11468,6 +17493,81 @@ export namespace walletobjects_v1 {
 
     /**
      * Downloads rotating barcode values for the transit object referenced by the given object ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.media.download({
+     *     // The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "algorithm": "my_algorithm",
+     *   //   "bigstoreObjectRef": "my_bigstoreObjectRef",
+     *   //   "blobRef": "my_blobRef",
+     *   //   "blobstore2Info": {},
+     *   //   "compositeMedia": [],
+     *   //   "contentType": "my_contentType",
+     *   //   "contentTypeInfo": {},
+     *   //   "cosmoBinaryReference": "my_cosmoBinaryReference",
+     *   //   "crc32cHash": 0,
+     *   //   "diffChecksumsResponse": {},
+     *   //   "diffDownloadResponse": {},
+     *   //   "diffUploadRequest": {},
+     *   //   "diffUploadResponse": {},
+     *   //   "diffVersionResponse": {},
+     *   //   "downloadParameters": {},
+     *   //   "filename": "my_filename",
+     *   //   "hash": "my_hash",
+     *   //   "hashVerified": false,
+     *   //   "inline": "my_inline",
+     *   //   "isPotentialRetry": false,
+     *   //   "length": "my_length",
+     *   //   "md5Hash": "my_md5Hash",
+     *   //   "mediaId": "my_mediaId",
+     *   //   "objectId": {},
+     *   //   "path": "my_path",
+     *   //   "referenceType": "my_referenceType",
+     *   //   "sha1Hash": "my_sha1Hash",
+     *   //   "sha256Hash": "my_sha256Hash",
+     *   //   "timestamp": "my_timestamp",
+     *   //   "token": "my_token"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11559,6 +17659,63 @@ export namespace walletobjects_v1 {
 
     /**
      * Uploads rotating barcode values for the transit object referenced by the given object ID. Note the max upload size is specified in google3/production/config/cdd/apps-upload/customers/payments-consumer-passes/config.gcl and enforced by Scotty.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.media.upload({
+     *     // The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "blob": {},
+     *       //   "mediaRequestInfo": {}
+     *       // }
+     *     },
+     *     media: {
+     *       mimeType: 'placeholder-value',
+     *       body: 'placeholder-value',
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11704,6 +17861,60 @@ export namespace walletobjects_v1 {
 
     /**
      * Adds a message to the offer class referenced by the given class ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.offerclass.addmessage({
+     *     // The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "message": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "resource": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11801,6 +18012,95 @@ export namespace walletobjects_v1 {
 
     /**
      * Returns the offer class with the given class ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.offerclass.get({
+     *     // The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allowMultipleUsersPerObject": false,
+     *   //   "appLinkData": {},
+     *   //   "callbackOptions": {},
+     *   //   "classTemplateInfo": {},
+     *   //   "countryCode": "my_countryCode",
+     *   //   "details": "my_details",
+     *   //   "enableSmartTap": false,
+     *   //   "finePrint": "my_finePrint",
+     *   //   "helpUri": {},
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "homepageUri": {},
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "issuerName": "my_issuerName",
+     *   //   "kind": "my_kind",
+     *   //   "linksModuleData": {},
+     *   //   "localizedDetails": {},
+     *   //   "localizedFinePrint": {},
+     *   //   "localizedIssuerName": {},
+     *   //   "localizedProvider": {},
+     *   //   "localizedShortTitle": {},
+     *   //   "localizedTitle": {},
+     *   //   "locations": [],
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "provider": "my_provider",
+     *   //   "redemptionChannel": "my_redemptionChannel",
+     *   //   "redemptionIssuers": [],
+     *   //   "review": {},
+     *   //   "reviewStatus": "my_reviewStatus",
+     *   //   "securityAnimation": {},
+     *   //   "shortTitle": "my_shortTitle",
+     *   //   "textModulesData": [],
+     *   //   "title": "my_title",
+     *   //   "titleImage": {},
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version",
+     *   //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *   //   "wideTitleImage": {},
+     *   //   "wordMark": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11891,6 +18191,143 @@ export namespace walletobjects_v1 {
 
     /**
      * Inserts an offer class with the given ID and properties.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.offerclass.insert({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "allowMultipleUsersPerObject": false,
+     *       //   "appLinkData": {},
+     *       //   "callbackOptions": {},
+     *       //   "classTemplateInfo": {},
+     *       //   "countryCode": "my_countryCode",
+     *       //   "details": "my_details",
+     *       //   "enableSmartTap": false,
+     *       //   "finePrint": "my_finePrint",
+     *       //   "helpUri": {},
+     *       //   "heroImage": {},
+     *       //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *       //   "homepageUri": {},
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "infoModuleData": {},
+     *       //   "issuerName": "my_issuerName",
+     *       //   "kind": "my_kind",
+     *       //   "linksModuleData": {},
+     *       //   "localizedDetails": {},
+     *       //   "localizedFinePrint": {},
+     *       //   "localizedIssuerName": {},
+     *       //   "localizedProvider": {},
+     *       //   "localizedShortTitle": {},
+     *       //   "localizedTitle": {},
+     *       //   "locations": [],
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *       //   "notifyPreference": "my_notifyPreference",
+     *       //   "provider": "my_provider",
+     *       //   "redemptionChannel": "my_redemptionChannel",
+     *       //   "redemptionIssuers": [],
+     *       //   "review": {},
+     *       //   "reviewStatus": "my_reviewStatus",
+     *       //   "securityAnimation": {},
+     *       //   "shortTitle": "my_shortTitle",
+     *       //   "textModulesData": [],
+     *       //   "title": "my_title",
+     *       //   "titleImage": {},
+     *       //   "valueAddedModuleData": [],
+     *       //   "version": "my_version",
+     *       //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *       //   "wideTitleImage": {},
+     *       //   "wordMark": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allowMultipleUsersPerObject": false,
+     *   //   "appLinkData": {},
+     *   //   "callbackOptions": {},
+     *   //   "classTemplateInfo": {},
+     *   //   "countryCode": "my_countryCode",
+     *   //   "details": "my_details",
+     *   //   "enableSmartTap": false,
+     *   //   "finePrint": "my_finePrint",
+     *   //   "helpUri": {},
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "homepageUri": {},
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "issuerName": "my_issuerName",
+     *   //   "kind": "my_kind",
+     *   //   "linksModuleData": {},
+     *   //   "localizedDetails": {},
+     *   //   "localizedFinePrint": {},
+     *   //   "localizedIssuerName": {},
+     *   //   "localizedProvider": {},
+     *   //   "localizedShortTitle": {},
+     *   //   "localizedTitle": {},
+     *   //   "locations": [],
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "provider": "my_provider",
+     *   //   "redemptionChannel": "my_redemptionChannel",
+     *   //   "redemptionIssuers": [],
+     *   //   "review": {},
+     *   //   "reviewStatus": "my_reviewStatus",
+     *   //   "securityAnimation": {},
+     *   //   "shortTitle": "my_shortTitle",
+     *   //   "textModulesData": [],
+     *   //   "title": "my_title",
+     *   //   "titleImage": {},
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version",
+     *   //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *   //   "wideTitleImage": {},
+     *   //   "wordMark": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11983,6 +18420,57 @@ export namespace walletobjects_v1 {
 
     /**
      * Returns a list of all offer classes for a given issuer ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.offerclass.list({
+     *     // The ID of the issuer authorized to list classes.
+     *     issuerId: 'placeholder-value',
+     *     // Identifies the max number of results returned by a list. All results are returned if `maxResults` isn't defined.
+     *     maxResults: 'placeholder-value',
+     *     // Used to get the next set of results if `maxResults` is specified, but more than `maxResults` classes are available in a list. For example, if you have a list of 200 classes and you call list with `maxResults` set to 20, list will return the first 20 classes and a token. Call list again with `maxResults` set to 20 and the token to get the next 20 classes.
+     *     token: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "pagination": {},
+     *   //   "resources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12076,6 +18564,146 @@ export namespace walletobjects_v1 {
 
     /**
      * Updates the offer class referenced by the given class ID. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.offerclass.patch({
+     *     // The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "allowMultipleUsersPerObject": false,
+     *       //   "appLinkData": {},
+     *       //   "callbackOptions": {},
+     *       //   "classTemplateInfo": {},
+     *       //   "countryCode": "my_countryCode",
+     *       //   "details": "my_details",
+     *       //   "enableSmartTap": false,
+     *       //   "finePrint": "my_finePrint",
+     *       //   "helpUri": {},
+     *       //   "heroImage": {},
+     *       //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *       //   "homepageUri": {},
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "infoModuleData": {},
+     *       //   "issuerName": "my_issuerName",
+     *       //   "kind": "my_kind",
+     *       //   "linksModuleData": {},
+     *       //   "localizedDetails": {},
+     *       //   "localizedFinePrint": {},
+     *       //   "localizedIssuerName": {},
+     *       //   "localizedProvider": {},
+     *       //   "localizedShortTitle": {},
+     *       //   "localizedTitle": {},
+     *       //   "locations": [],
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *       //   "notifyPreference": "my_notifyPreference",
+     *       //   "provider": "my_provider",
+     *       //   "redemptionChannel": "my_redemptionChannel",
+     *       //   "redemptionIssuers": [],
+     *       //   "review": {},
+     *       //   "reviewStatus": "my_reviewStatus",
+     *       //   "securityAnimation": {},
+     *       //   "shortTitle": "my_shortTitle",
+     *       //   "textModulesData": [],
+     *       //   "title": "my_title",
+     *       //   "titleImage": {},
+     *       //   "valueAddedModuleData": [],
+     *       //   "version": "my_version",
+     *       //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *       //   "wideTitleImage": {},
+     *       //   "wordMark": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allowMultipleUsersPerObject": false,
+     *   //   "appLinkData": {},
+     *   //   "callbackOptions": {},
+     *   //   "classTemplateInfo": {},
+     *   //   "countryCode": "my_countryCode",
+     *   //   "details": "my_details",
+     *   //   "enableSmartTap": false,
+     *   //   "finePrint": "my_finePrint",
+     *   //   "helpUri": {},
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "homepageUri": {},
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "issuerName": "my_issuerName",
+     *   //   "kind": "my_kind",
+     *   //   "linksModuleData": {},
+     *   //   "localizedDetails": {},
+     *   //   "localizedFinePrint": {},
+     *   //   "localizedIssuerName": {},
+     *   //   "localizedProvider": {},
+     *   //   "localizedShortTitle": {},
+     *   //   "localizedTitle": {},
+     *   //   "locations": [],
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "provider": "my_provider",
+     *   //   "redemptionChannel": "my_redemptionChannel",
+     *   //   "redemptionIssuers": [],
+     *   //   "review": {},
+     *   //   "reviewStatus": "my_reviewStatus",
+     *   //   "securityAnimation": {},
+     *   //   "shortTitle": "my_shortTitle",
+     *   //   "textModulesData": [],
+     *   //   "title": "my_title",
+     *   //   "titleImage": {},
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version",
+     *   //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *   //   "wideTitleImage": {},
+     *   //   "wordMark": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12166,6 +18794,146 @@ export namespace walletobjects_v1 {
 
     /**
      * Updates the offer class referenced by the given class ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.offerclass.update({
+     *     // The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "allowMultipleUsersPerObject": false,
+     *       //   "appLinkData": {},
+     *       //   "callbackOptions": {},
+     *       //   "classTemplateInfo": {},
+     *       //   "countryCode": "my_countryCode",
+     *       //   "details": "my_details",
+     *       //   "enableSmartTap": false,
+     *       //   "finePrint": "my_finePrint",
+     *       //   "helpUri": {},
+     *       //   "heroImage": {},
+     *       //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *       //   "homepageUri": {},
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "infoModuleData": {},
+     *       //   "issuerName": "my_issuerName",
+     *       //   "kind": "my_kind",
+     *       //   "linksModuleData": {},
+     *       //   "localizedDetails": {},
+     *       //   "localizedFinePrint": {},
+     *       //   "localizedIssuerName": {},
+     *       //   "localizedProvider": {},
+     *       //   "localizedShortTitle": {},
+     *       //   "localizedTitle": {},
+     *       //   "locations": [],
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *       //   "notifyPreference": "my_notifyPreference",
+     *       //   "provider": "my_provider",
+     *       //   "redemptionChannel": "my_redemptionChannel",
+     *       //   "redemptionIssuers": [],
+     *       //   "review": {},
+     *       //   "reviewStatus": "my_reviewStatus",
+     *       //   "securityAnimation": {},
+     *       //   "shortTitle": "my_shortTitle",
+     *       //   "textModulesData": [],
+     *       //   "title": "my_title",
+     *       //   "titleImage": {},
+     *       //   "valueAddedModuleData": [],
+     *       //   "version": "my_version",
+     *       //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *       //   "wideTitleImage": {},
+     *       //   "wordMark": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allowMultipleUsersPerObject": false,
+     *   //   "appLinkData": {},
+     *   //   "callbackOptions": {},
+     *   //   "classTemplateInfo": {},
+     *   //   "countryCode": "my_countryCode",
+     *   //   "details": "my_details",
+     *   //   "enableSmartTap": false,
+     *   //   "finePrint": "my_finePrint",
+     *   //   "helpUri": {},
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "homepageUri": {},
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "issuerName": "my_issuerName",
+     *   //   "kind": "my_kind",
+     *   //   "linksModuleData": {},
+     *   //   "localizedDetails": {},
+     *   //   "localizedFinePrint": {},
+     *   //   "localizedIssuerName": {},
+     *   //   "localizedProvider": {},
+     *   //   "localizedShortTitle": {},
+     *   //   "localizedTitle": {},
+     *   //   "locations": [],
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "provider": "my_provider",
+     *   //   "redemptionChannel": "my_redemptionChannel",
+     *   //   "redemptionIssuers": [],
+     *   //   "review": {},
+     *   //   "reviewStatus": "my_reviewStatus",
+     *   //   "securityAnimation": {},
+     *   //   "shortTitle": "my_shortTitle",
+     *   //   "textModulesData": [],
+     *   //   "title": "my_title",
+     *   //   "titleImage": {},
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version",
+     *   //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *   //   "wideTitleImage": {},
+     *   //   "wordMark": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12327,6 +19095,60 @@ export namespace walletobjects_v1 {
 
     /**
      * Adds a message to the offer object referenced by the given object ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.offerobject.addmessage({
+     *     // The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "message": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "resource": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12424,6 +19246,79 @@ export namespace walletobjects_v1 {
 
     /**
      * Returns the offer object with the given object ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.offerobject.get({
+     *     // The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appLinkData": {},
+     *   //   "barcode": {},
+     *   //   "classId": "my_classId",
+     *   //   "classReference": {},
+     *   //   "disableExpirationNotification": false,
+     *   //   "groupingInfo": {},
+     *   //   "hasLinkedDevice": false,
+     *   //   "hasUsers": false,
+     *   //   "heroImage": {},
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "kind": "my_kind",
+     *   //   "linkedObjectIds": [],
+     *   //   "linksModuleData": {},
+     *   //   "locations": [],
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "passConstraints": {},
+     *   //   "rotatingBarcode": {},
+     *   //   "saveRestrictions": {},
+     *   //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *   //   "state": "my_state",
+     *   //   "textModulesData": [],
+     *   //   "validTimeInterval": {},
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12514,6 +19409,111 @@ export namespace walletobjects_v1 {
 
     /**
      * Inserts an offer object with the given ID and properties.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.offerobject.insert({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "appLinkData": {},
+     *       //   "barcode": {},
+     *       //   "classId": "my_classId",
+     *       //   "classReference": {},
+     *       //   "disableExpirationNotification": false,
+     *       //   "groupingInfo": {},
+     *       //   "hasLinkedDevice": false,
+     *       //   "hasUsers": false,
+     *       //   "heroImage": {},
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "infoModuleData": {},
+     *       //   "kind": "my_kind",
+     *       //   "linkedObjectIds": [],
+     *       //   "linksModuleData": {},
+     *       //   "locations": [],
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "notifyPreference": "my_notifyPreference",
+     *       //   "passConstraints": {},
+     *       //   "rotatingBarcode": {},
+     *       //   "saveRestrictions": {},
+     *       //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *       //   "state": "my_state",
+     *       //   "textModulesData": [],
+     *       //   "validTimeInterval": {},
+     *       //   "valueAddedModuleData": [],
+     *       //   "version": "my_version"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appLinkData": {},
+     *   //   "barcode": {},
+     *   //   "classId": "my_classId",
+     *   //   "classReference": {},
+     *   //   "disableExpirationNotification": false,
+     *   //   "groupingInfo": {},
+     *   //   "hasLinkedDevice": false,
+     *   //   "hasUsers": false,
+     *   //   "heroImage": {},
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "kind": "my_kind",
+     *   //   "linkedObjectIds": [],
+     *   //   "linksModuleData": {},
+     *   //   "locations": [],
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "passConstraints": {},
+     *   //   "rotatingBarcode": {},
+     *   //   "saveRestrictions": {},
+     *   //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *   //   "state": "my_state",
+     *   //   "textModulesData": [],
+     *   //   "validTimeInterval": {},
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12606,6 +19606,57 @@ export namespace walletobjects_v1 {
 
     /**
      * Returns a list of all offer objects for a given issuer ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.offerobject.list({
+     *     // The ID of the class whose objects will be listed.
+     *     classId: 'placeholder-value',
+     *     // Identifies the max number of results returned by a list. All results are returned if `maxResults` isn't defined.
+     *     maxResults: 'placeholder-value',
+     *     // Used to get the next set of results if `maxResults` is specified, but more than `maxResults` objects are available in a list. For example, if you have a list of 200 objects and you call list with `maxResults` set to 20, list will return the first 20 objects and a token. Call list again with `maxResults` set to 20 and the token to get the next 20 objects.
+     *     token: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "pagination": {},
+     *   //   "resources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12699,6 +19750,114 @@ export namespace walletobjects_v1 {
 
     /**
      * Updates the offer object referenced by the given object ID. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.offerobject.patch({
+     *     // The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "appLinkData": {},
+     *       //   "barcode": {},
+     *       //   "classId": "my_classId",
+     *       //   "classReference": {},
+     *       //   "disableExpirationNotification": false,
+     *       //   "groupingInfo": {},
+     *       //   "hasLinkedDevice": false,
+     *       //   "hasUsers": false,
+     *       //   "heroImage": {},
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "infoModuleData": {},
+     *       //   "kind": "my_kind",
+     *       //   "linkedObjectIds": [],
+     *       //   "linksModuleData": {},
+     *       //   "locations": [],
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "notifyPreference": "my_notifyPreference",
+     *       //   "passConstraints": {},
+     *       //   "rotatingBarcode": {},
+     *       //   "saveRestrictions": {},
+     *       //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *       //   "state": "my_state",
+     *       //   "textModulesData": [],
+     *       //   "validTimeInterval": {},
+     *       //   "valueAddedModuleData": [],
+     *       //   "version": "my_version"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appLinkData": {},
+     *   //   "barcode": {},
+     *   //   "classId": "my_classId",
+     *   //   "classReference": {},
+     *   //   "disableExpirationNotification": false,
+     *   //   "groupingInfo": {},
+     *   //   "hasLinkedDevice": false,
+     *   //   "hasUsers": false,
+     *   //   "heroImage": {},
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "kind": "my_kind",
+     *   //   "linkedObjectIds": [],
+     *   //   "linksModuleData": {},
+     *   //   "locations": [],
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "passConstraints": {},
+     *   //   "rotatingBarcode": {},
+     *   //   "saveRestrictions": {},
+     *   //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *   //   "state": "my_state",
+     *   //   "textModulesData": [],
+     *   //   "validTimeInterval": {},
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12790,6 +19949,114 @@ export namespace walletobjects_v1 {
 
     /**
      * Updates the offer object referenced by the given object ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.offerobject.update({
+     *     // The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "appLinkData": {},
+     *       //   "barcode": {},
+     *       //   "classId": "my_classId",
+     *       //   "classReference": {},
+     *       //   "disableExpirationNotification": false,
+     *       //   "groupingInfo": {},
+     *       //   "hasLinkedDevice": false,
+     *       //   "hasUsers": false,
+     *       //   "heroImage": {},
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "infoModuleData": {},
+     *       //   "kind": "my_kind",
+     *       //   "linkedObjectIds": [],
+     *       //   "linksModuleData": {},
+     *       //   "locations": [],
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "notifyPreference": "my_notifyPreference",
+     *       //   "passConstraints": {},
+     *       //   "rotatingBarcode": {},
+     *       //   "saveRestrictions": {},
+     *       //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *       //   "state": "my_state",
+     *       //   "textModulesData": [],
+     *       //   "validTimeInterval": {},
+     *       //   "valueAddedModuleData": [],
+     *       //   "version": "my_version"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appLinkData": {},
+     *   //   "barcode": {},
+     *   //   "classId": "my_classId",
+     *   //   "classReference": {},
+     *   //   "disableExpirationNotification": false,
+     *   //   "groupingInfo": {},
+     *   //   "hasLinkedDevice": false,
+     *   //   "hasUsers": false,
+     *   //   "heroImage": {},
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "kind": "my_kind",
+     *   //   "linkedObjectIds": [],
+     *   //   "linksModuleData": {},
+     *   //   "locations": [],
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "passConstraints": {},
+     *   //   "rotatingBarcode": {},
+     *   //   "saveRestrictions": {},
+     *   //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *   //   "state": "my_state",
+     *   //   "textModulesData": [],
+     *   //   "validTimeInterval": {},
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12952,6 +20219,53 @@ export namespace walletobjects_v1 {
 
     /**
      * Returns the permissions for the given issuer id.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.permissions.get({
+     *     // The unique identifier for an issuer. This ID must be unique across all issuers.
+     *     resourceId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "issuerId": "my_issuerId",
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13042,6 +20356,62 @@ export namespace walletobjects_v1 {
 
     /**
      * Updates the permissions for the given issuer.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.permissions.update({
+     *     // The unique identifier for an issuer. This ID must be unique across all issuers.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "issuerId": "my_issuerId",
+     *       //   "permissions": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "issuerId": "my_issuerId",
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13159,6 +20529,63 @@ export namespace walletobjects_v1 {
 
     /**
      * Inserts the smart tap.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.smarttap.insert({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "id": "my_id",
+     *       //   "infos": [],
+     *       //   "kind": "my_kind",
+     *       //   "merchantId": "my_merchantId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "id": "my_id",
+     *   //   "infos": [],
+     *   //   "kind": "my_kind",
+     *   //   "merchantId": "my_merchantId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13264,6 +20691,60 @@ export namespace walletobjects_v1 {
 
     /**
      * Adds a message to the transit class referenced by the given class ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.transitclass.addmessage({
+     *     // The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "message": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "resource": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13361,6 +20842,107 @@ export namespace walletobjects_v1 {
 
     /**
      * Returns the transit class with the given class ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.transitclass.get({
+     *     // The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activationOptions": {},
+     *   //   "allowMultipleUsersPerObject": false,
+     *   //   "appLinkData": {},
+     *   //   "callbackOptions": {},
+     *   //   "classTemplateInfo": {},
+     *   //   "countryCode": "my_countryCode",
+     *   //   "customCarriageLabel": {},
+     *   //   "customCoachLabel": {},
+     *   //   "customConcessionCategoryLabel": {},
+     *   //   "customConfirmationCodeLabel": {},
+     *   //   "customDiscountMessageLabel": {},
+     *   //   "customFareClassLabel": {},
+     *   //   "customFareNameLabel": {},
+     *   //   "customOtherRestrictionsLabel": {},
+     *   //   "customPlatformLabel": {},
+     *   //   "customPurchaseFaceValueLabel": {},
+     *   //   "customPurchasePriceLabel": {},
+     *   //   "customPurchaseReceiptNumberLabel": {},
+     *   //   "customRouteRestrictionsDetailsLabel": {},
+     *   //   "customRouteRestrictionsLabel": {},
+     *   //   "customSeatLabel": {},
+     *   //   "customTicketNumberLabel": {},
+     *   //   "customTimeRestrictionsLabel": {},
+     *   //   "customTransitTerminusNameLabel": {},
+     *   //   "customZoneLabel": {},
+     *   //   "enableSingleLegItinerary": false,
+     *   //   "enableSmartTap": false,
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "homepageUri": {},
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "issuerName": "my_issuerName",
+     *   //   "languageOverride": "my_languageOverride",
+     *   //   "linksModuleData": {},
+     *   //   "localizedIssuerName": {},
+     *   //   "locations": [],
+     *   //   "logo": {},
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "redemptionIssuers": [],
+     *   //   "review": {},
+     *   //   "reviewStatus": "my_reviewStatus",
+     *   //   "securityAnimation": {},
+     *   //   "textModulesData": [],
+     *   //   "transitOperatorName": {},
+     *   //   "transitType": "my_transitType",
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version",
+     *   //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *   //   "watermark": {},
+     *   //   "wideLogo": {},
+     *   //   "wordMark": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13451,6 +21033,167 @@ export namespace walletobjects_v1 {
 
     /**
      * Inserts a transit class with the given ID and properties.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.transitclass.insert({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "activationOptions": {},
+     *       //   "allowMultipleUsersPerObject": false,
+     *       //   "appLinkData": {},
+     *       //   "callbackOptions": {},
+     *       //   "classTemplateInfo": {},
+     *       //   "countryCode": "my_countryCode",
+     *       //   "customCarriageLabel": {},
+     *       //   "customCoachLabel": {},
+     *       //   "customConcessionCategoryLabel": {},
+     *       //   "customConfirmationCodeLabel": {},
+     *       //   "customDiscountMessageLabel": {},
+     *       //   "customFareClassLabel": {},
+     *       //   "customFareNameLabel": {},
+     *       //   "customOtherRestrictionsLabel": {},
+     *       //   "customPlatformLabel": {},
+     *       //   "customPurchaseFaceValueLabel": {},
+     *       //   "customPurchasePriceLabel": {},
+     *       //   "customPurchaseReceiptNumberLabel": {},
+     *       //   "customRouteRestrictionsDetailsLabel": {},
+     *       //   "customRouteRestrictionsLabel": {},
+     *       //   "customSeatLabel": {},
+     *       //   "customTicketNumberLabel": {},
+     *       //   "customTimeRestrictionsLabel": {},
+     *       //   "customTransitTerminusNameLabel": {},
+     *       //   "customZoneLabel": {},
+     *       //   "enableSingleLegItinerary": false,
+     *       //   "enableSmartTap": false,
+     *       //   "heroImage": {},
+     *       //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *       //   "homepageUri": {},
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "infoModuleData": {},
+     *       //   "issuerName": "my_issuerName",
+     *       //   "languageOverride": "my_languageOverride",
+     *       //   "linksModuleData": {},
+     *       //   "localizedIssuerName": {},
+     *       //   "locations": [],
+     *       //   "logo": {},
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *       //   "notifyPreference": "my_notifyPreference",
+     *       //   "redemptionIssuers": [],
+     *       //   "review": {},
+     *       //   "reviewStatus": "my_reviewStatus",
+     *       //   "securityAnimation": {},
+     *       //   "textModulesData": [],
+     *       //   "transitOperatorName": {},
+     *       //   "transitType": "my_transitType",
+     *       //   "valueAddedModuleData": [],
+     *       //   "version": "my_version",
+     *       //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *       //   "watermark": {},
+     *       //   "wideLogo": {},
+     *       //   "wordMark": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activationOptions": {},
+     *   //   "allowMultipleUsersPerObject": false,
+     *   //   "appLinkData": {},
+     *   //   "callbackOptions": {},
+     *   //   "classTemplateInfo": {},
+     *   //   "countryCode": "my_countryCode",
+     *   //   "customCarriageLabel": {},
+     *   //   "customCoachLabel": {},
+     *   //   "customConcessionCategoryLabel": {},
+     *   //   "customConfirmationCodeLabel": {},
+     *   //   "customDiscountMessageLabel": {},
+     *   //   "customFareClassLabel": {},
+     *   //   "customFareNameLabel": {},
+     *   //   "customOtherRestrictionsLabel": {},
+     *   //   "customPlatformLabel": {},
+     *   //   "customPurchaseFaceValueLabel": {},
+     *   //   "customPurchasePriceLabel": {},
+     *   //   "customPurchaseReceiptNumberLabel": {},
+     *   //   "customRouteRestrictionsDetailsLabel": {},
+     *   //   "customRouteRestrictionsLabel": {},
+     *   //   "customSeatLabel": {},
+     *   //   "customTicketNumberLabel": {},
+     *   //   "customTimeRestrictionsLabel": {},
+     *   //   "customTransitTerminusNameLabel": {},
+     *   //   "customZoneLabel": {},
+     *   //   "enableSingleLegItinerary": false,
+     *   //   "enableSmartTap": false,
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "homepageUri": {},
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "issuerName": "my_issuerName",
+     *   //   "languageOverride": "my_languageOverride",
+     *   //   "linksModuleData": {},
+     *   //   "localizedIssuerName": {},
+     *   //   "locations": [],
+     *   //   "logo": {},
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "redemptionIssuers": [],
+     *   //   "review": {},
+     *   //   "reviewStatus": "my_reviewStatus",
+     *   //   "securityAnimation": {},
+     *   //   "textModulesData": [],
+     *   //   "transitOperatorName": {},
+     *   //   "transitType": "my_transitType",
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version",
+     *   //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *   //   "watermark": {},
+     *   //   "wideLogo": {},
+     *   //   "wordMark": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13543,6 +21286,57 @@ export namespace walletobjects_v1 {
 
     /**
      * Returns a list of all transit classes for a given issuer ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.transitclass.list({
+     *     // The ID of the issuer authorized to list classes.
+     *     issuerId: 'placeholder-value',
+     *     // Identifies the max number of results returned by a list. All results are returned if `maxResults` isn't defined.
+     *     maxResults: 'placeholder-value',
+     *     // Used to get the next set of results if `maxResults` is specified, but more than `maxResults` classes are available in a list. For example, if you have a list of 200 classes and you call list with `maxResults` set to 20, list will return the first 20 classes and a token. Call list again with `maxResults` set to 20 and the token to get the next 20 classes.
+     *     token: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "pagination": {},
+     *   //   "resources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13637,6 +21431,170 @@ export namespace walletobjects_v1 {
 
     /**
      * Updates the transit class referenced by the given class ID. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.transitclass.patch({
+     *     // The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "activationOptions": {},
+     *       //   "allowMultipleUsersPerObject": false,
+     *       //   "appLinkData": {},
+     *       //   "callbackOptions": {},
+     *       //   "classTemplateInfo": {},
+     *       //   "countryCode": "my_countryCode",
+     *       //   "customCarriageLabel": {},
+     *       //   "customCoachLabel": {},
+     *       //   "customConcessionCategoryLabel": {},
+     *       //   "customConfirmationCodeLabel": {},
+     *       //   "customDiscountMessageLabel": {},
+     *       //   "customFareClassLabel": {},
+     *       //   "customFareNameLabel": {},
+     *       //   "customOtherRestrictionsLabel": {},
+     *       //   "customPlatformLabel": {},
+     *       //   "customPurchaseFaceValueLabel": {},
+     *       //   "customPurchasePriceLabel": {},
+     *       //   "customPurchaseReceiptNumberLabel": {},
+     *       //   "customRouteRestrictionsDetailsLabel": {},
+     *       //   "customRouteRestrictionsLabel": {},
+     *       //   "customSeatLabel": {},
+     *       //   "customTicketNumberLabel": {},
+     *       //   "customTimeRestrictionsLabel": {},
+     *       //   "customTransitTerminusNameLabel": {},
+     *       //   "customZoneLabel": {},
+     *       //   "enableSingleLegItinerary": false,
+     *       //   "enableSmartTap": false,
+     *       //   "heroImage": {},
+     *       //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *       //   "homepageUri": {},
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "infoModuleData": {},
+     *       //   "issuerName": "my_issuerName",
+     *       //   "languageOverride": "my_languageOverride",
+     *       //   "linksModuleData": {},
+     *       //   "localizedIssuerName": {},
+     *       //   "locations": [],
+     *       //   "logo": {},
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *       //   "notifyPreference": "my_notifyPreference",
+     *       //   "redemptionIssuers": [],
+     *       //   "review": {},
+     *       //   "reviewStatus": "my_reviewStatus",
+     *       //   "securityAnimation": {},
+     *       //   "textModulesData": [],
+     *       //   "transitOperatorName": {},
+     *       //   "transitType": "my_transitType",
+     *       //   "valueAddedModuleData": [],
+     *       //   "version": "my_version",
+     *       //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *       //   "watermark": {},
+     *       //   "wideLogo": {},
+     *       //   "wordMark": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activationOptions": {},
+     *   //   "allowMultipleUsersPerObject": false,
+     *   //   "appLinkData": {},
+     *   //   "callbackOptions": {},
+     *   //   "classTemplateInfo": {},
+     *   //   "countryCode": "my_countryCode",
+     *   //   "customCarriageLabel": {},
+     *   //   "customCoachLabel": {},
+     *   //   "customConcessionCategoryLabel": {},
+     *   //   "customConfirmationCodeLabel": {},
+     *   //   "customDiscountMessageLabel": {},
+     *   //   "customFareClassLabel": {},
+     *   //   "customFareNameLabel": {},
+     *   //   "customOtherRestrictionsLabel": {},
+     *   //   "customPlatformLabel": {},
+     *   //   "customPurchaseFaceValueLabel": {},
+     *   //   "customPurchasePriceLabel": {},
+     *   //   "customPurchaseReceiptNumberLabel": {},
+     *   //   "customRouteRestrictionsDetailsLabel": {},
+     *   //   "customRouteRestrictionsLabel": {},
+     *   //   "customSeatLabel": {},
+     *   //   "customTicketNumberLabel": {},
+     *   //   "customTimeRestrictionsLabel": {},
+     *   //   "customTransitTerminusNameLabel": {},
+     *   //   "customZoneLabel": {},
+     *   //   "enableSingleLegItinerary": false,
+     *   //   "enableSmartTap": false,
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "homepageUri": {},
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "issuerName": "my_issuerName",
+     *   //   "languageOverride": "my_languageOverride",
+     *   //   "linksModuleData": {},
+     *   //   "localizedIssuerName": {},
+     *   //   "locations": [],
+     *   //   "logo": {},
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "redemptionIssuers": [],
+     *   //   "review": {},
+     *   //   "reviewStatus": "my_reviewStatus",
+     *   //   "securityAnimation": {},
+     *   //   "textModulesData": [],
+     *   //   "transitOperatorName": {},
+     *   //   "transitType": "my_transitType",
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version",
+     *   //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *   //   "watermark": {},
+     *   //   "wideLogo": {},
+     *   //   "wordMark": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13728,6 +21686,170 @@ export namespace walletobjects_v1 {
 
     /**
      * Updates the transit class referenced by the given class ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.transitclass.update({
+     *     // The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "activationOptions": {},
+     *       //   "allowMultipleUsersPerObject": false,
+     *       //   "appLinkData": {},
+     *       //   "callbackOptions": {},
+     *       //   "classTemplateInfo": {},
+     *       //   "countryCode": "my_countryCode",
+     *       //   "customCarriageLabel": {},
+     *       //   "customCoachLabel": {},
+     *       //   "customConcessionCategoryLabel": {},
+     *       //   "customConfirmationCodeLabel": {},
+     *       //   "customDiscountMessageLabel": {},
+     *       //   "customFareClassLabel": {},
+     *       //   "customFareNameLabel": {},
+     *       //   "customOtherRestrictionsLabel": {},
+     *       //   "customPlatformLabel": {},
+     *       //   "customPurchaseFaceValueLabel": {},
+     *       //   "customPurchasePriceLabel": {},
+     *       //   "customPurchaseReceiptNumberLabel": {},
+     *       //   "customRouteRestrictionsDetailsLabel": {},
+     *       //   "customRouteRestrictionsLabel": {},
+     *       //   "customSeatLabel": {},
+     *       //   "customTicketNumberLabel": {},
+     *       //   "customTimeRestrictionsLabel": {},
+     *       //   "customTransitTerminusNameLabel": {},
+     *       //   "customZoneLabel": {},
+     *       //   "enableSingleLegItinerary": false,
+     *       //   "enableSmartTap": false,
+     *       //   "heroImage": {},
+     *       //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *       //   "homepageUri": {},
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "infoModuleData": {},
+     *       //   "issuerName": "my_issuerName",
+     *       //   "languageOverride": "my_languageOverride",
+     *       //   "linksModuleData": {},
+     *       //   "localizedIssuerName": {},
+     *       //   "locations": [],
+     *       //   "logo": {},
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *       //   "notifyPreference": "my_notifyPreference",
+     *       //   "redemptionIssuers": [],
+     *       //   "review": {},
+     *       //   "reviewStatus": "my_reviewStatus",
+     *       //   "securityAnimation": {},
+     *       //   "textModulesData": [],
+     *       //   "transitOperatorName": {},
+     *       //   "transitType": "my_transitType",
+     *       //   "valueAddedModuleData": [],
+     *       //   "version": "my_version",
+     *       //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *       //   "watermark": {},
+     *       //   "wideLogo": {},
+     *       //   "wordMark": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activationOptions": {},
+     *   //   "allowMultipleUsersPerObject": false,
+     *   //   "appLinkData": {},
+     *   //   "callbackOptions": {},
+     *   //   "classTemplateInfo": {},
+     *   //   "countryCode": "my_countryCode",
+     *   //   "customCarriageLabel": {},
+     *   //   "customCoachLabel": {},
+     *   //   "customConcessionCategoryLabel": {},
+     *   //   "customConfirmationCodeLabel": {},
+     *   //   "customDiscountMessageLabel": {},
+     *   //   "customFareClassLabel": {},
+     *   //   "customFareNameLabel": {},
+     *   //   "customOtherRestrictionsLabel": {},
+     *   //   "customPlatformLabel": {},
+     *   //   "customPurchaseFaceValueLabel": {},
+     *   //   "customPurchasePriceLabel": {},
+     *   //   "customPurchaseReceiptNumberLabel": {},
+     *   //   "customRouteRestrictionsDetailsLabel": {},
+     *   //   "customRouteRestrictionsLabel": {},
+     *   //   "customSeatLabel": {},
+     *   //   "customTicketNumberLabel": {},
+     *   //   "customTimeRestrictionsLabel": {},
+     *   //   "customTransitTerminusNameLabel": {},
+     *   //   "customZoneLabel": {},
+     *   //   "enableSingleLegItinerary": false,
+     *   //   "enableSmartTap": false,
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "homepageUri": {},
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "issuerName": "my_issuerName",
+     *   //   "languageOverride": "my_languageOverride",
+     *   //   "linksModuleData": {},
+     *   //   "localizedIssuerName": {},
+     *   //   "locations": [],
+     *   //   "logo": {},
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "redemptionIssuers": [],
+     *   //   "review": {},
+     *   //   "reviewStatus": "my_reviewStatus",
+     *   //   "securityAnimation": {},
+     *   //   "textModulesData": [],
+     *   //   "transitOperatorName": {},
+     *   //   "transitType": "my_transitType",
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version",
+     *   //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *   //   "watermark": {},
+     *   //   "wideLogo": {},
+     *   //   "wordMark": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13891,6 +22013,60 @@ export namespace walletobjects_v1 {
 
     /**
      * Adds a message to the transit object referenced by the given object ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.transitobject.addmessage({
+     *     // The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "message": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "resource": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13989,6 +22165,94 @@ export namespace walletobjects_v1 {
 
     /**
      * Returns the transit object with the given object ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.transitobject.get({
+     *     // The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activationStatus": {},
+     *   //   "appLinkData": {},
+     *   //   "barcode": {},
+     *   //   "classId": "my_classId",
+     *   //   "classReference": {},
+     *   //   "concessionCategory": "my_concessionCategory",
+     *   //   "customConcessionCategory": {},
+     *   //   "customTicketStatus": {},
+     *   //   "deviceContext": {},
+     *   //   "disableExpirationNotification": false,
+     *   //   "groupingInfo": {},
+     *   //   "hasLinkedDevice": false,
+     *   //   "hasUsers": false,
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "linkedObjectIds": [],
+     *   //   "linksModuleData": {},
+     *   //   "locations": [],
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "passConstraints": {},
+     *   //   "passengerNames": "my_passengerNames",
+     *   //   "passengerType": "my_passengerType",
+     *   //   "purchaseDetails": {},
+     *   //   "rotatingBarcode": {},
+     *   //   "saveRestrictions": {},
+     *   //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *   //   "state": "my_state",
+     *   //   "textModulesData": [],
+     *   //   "ticketLeg": {},
+     *   //   "ticketLegs": [],
+     *   //   "ticketNumber": "my_ticketNumber",
+     *   //   "ticketRestrictions": {},
+     *   //   "ticketStatus": "my_ticketStatus",
+     *   //   "tripId": "my_tripId",
+     *   //   "tripType": "my_tripType",
+     *   //   "validTimeInterval": {},
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14080,6 +22344,141 @@ export namespace walletobjects_v1 {
 
     /**
      * Inserts an transit object with the given ID and properties.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.transitobject.insert({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "activationStatus": {},
+     *       //   "appLinkData": {},
+     *       //   "barcode": {},
+     *       //   "classId": "my_classId",
+     *       //   "classReference": {},
+     *       //   "concessionCategory": "my_concessionCategory",
+     *       //   "customConcessionCategory": {},
+     *       //   "customTicketStatus": {},
+     *       //   "deviceContext": {},
+     *       //   "disableExpirationNotification": false,
+     *       //   "groupingInfo": {},
+     *       //   "hasLinkedDevice": false,
+     *       //   "hasUsers": false,
+     *       //   "heroImage": {},
+     *       //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "infoModuleData": {},
+     *       //   "linkedObjectIds": [],
+     *       //   "linksModuleData": {},
+     *       //   "locations": [],
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "notifyPreference": "my_notifyPreference",
+     *       //   "passConstraints": {},
+     *       //   "passengerNames": "my_passengerNames",
+     *       //   "passengerType": "my_passengerType",
+     *       //   "purchaseDetails": {},
+     *       //   "rotatingBarcode": {},
+     *       //   "saveRestrictions": {},
+     *       //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *       //   "state": "my_state",
+     *       //   "textModulesData": [],
+     *       //   "ticketLeg": {},
+     *       //   "ticketLegs": [],
+     *       //   "ticketNumber": "my_ticketNumber",
+     *       //   "ticketRestrictions": {},
+     *       //   "ticketStatus": "my_ticketStatus",
+     *       //   "tripId": "my_tripId",
+     *       //   "tripType": "my_tripType",
+     *       //   "validTimeInterval": {},
+     *       //   "valueAddedModuleData": [],
+     *       //   "version": "my_version"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activationStatus": {},
+     *   //   "appLinkData": {},
+     *   //   "barcode": {},
+     *   //   "classId": "my_classId",
+     *   //   "classReference": {},
+     *   //   "concessionCategory": "my_concessionCategory",
+     *   //   "customConcessionCategory": {},
+     *   //   "customTicketStatus": {},
+     *   //   "deviceContext": {},
+     *   //   "disableExpirationNotification": false,
+     *   //   "groupingInfo": {},
+     *   //   "hasLinkedDevice": false,
+     *   //   "hasUsers": false,
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "linkedObjectIds": [],
+     *   //   "linksModuleData": {},
+     *   //   "locations": [],
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "passConstraints": {},
+     *   //   "passengerNames": "my_passengerNames",
+     *   //   "passengerType": "my_passengerType",
+     *   //   "purchaseDetails": {},
+     *   //   "rotatingBarcode": {},
+     *   //   "saveRestrictions": {},
+     *   //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *   //   "state": "my_state",
+     *   //   "textModulesData": [],
+     *   //   "ticketLeg": {},
+     *   //   "ticketLegs": [],
+     *   //   "ticketNumber": "my_ticketNumber",
+     *   //   "ticketRestrictions": {},
+     *   //   "ticketStatus": "my_ticketStatus",
+     *   //   "tripId": "my_tripId",
+     *   //   "tripType": "my_tripType",
+     *   //   "validTimeInterval": {},
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14172,6 +22571,57 @@ export namespace walletobjects_v1 {
 
     /**
      * Returns a list of all transit objects for a given issuer ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.transitobject.list({
+     *     // The ID of the class whose objects will be listed.
+     *     classId: 'placeholder-value',
+     *     // Identifies the max number of results returned by a list. All results are returned if `maxResults` isn't defined.
+     *     maxResults: 'placeholder-value',
+     *     // Used to get the next set of results if `maxResults` is specified, but more than `maxResults` objects are available in a list. For example, if you have a list of 200 objects and you call list with `maxResults` set to 20, list will return the first 20 objects and a token. Call list again with `maxResults` set to 20 and the token to get the next 20 objects.
+     *     token: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "pagination": {},
+     *   //   "resources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14268,6 +22718,144 @@ export namespace walletobjects_v1 {
 
     /**
      * Updates the transit object referenced by the given object ID. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.transitobject.patch({
+     *     // The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "activationStatus": {},
+     *       //   "appLinkData": {},
+     *       //   "barcode": {},
+     *       //   "classId": "my_classId",
+     *       //   "classReference": {},
+     *       //   "concessionCategory": "my_concessionCategory",
+     *       //   "customConcessionCategory": {},
+     *       //   "customTicketStatus": {},
+     *       //   "deviceContext": {},
+     *       //   "disableExpirationNotification": false,
+     *       //   "groupingInfo": {},
+     *       //   "hasLinkedDevice": false,
+     *       //   "hasUsers": false,
+     *       //   "heroImage": {},
+     *       //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "infoModuleData": {},
+     *       //   "linkedObjectIds": [],
+     *       //   "linksModuleData": {},
+     *       //   "locations": [],
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "notifyPreference": "my_notifyPreference",
+     *       //   "passConstraints": {},
+     *       //   "passengerNames": "my_passengerNames",
+     *       //   "passengerType": "my_passengerType",
+     *       //   "purchaseDetails": {},
+     *       //   "rotatingBarcode": {},
+     *       //   "saveRestrictions": {},
+     *       //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *       //   "state": "my_state",
+     *       //   "textModulesData": [],
+     *       //   "ticketLeg": {},
+     *       //   "ticketLegs": [],
+     *       //   "ticketNumber": "my_ticketNumber",
+     *       //   "ticketRestrictions": {},
+     *       //   "ticketStatus": "my_ticketStatus",
+     *       //   "tripId": "my_tripId",
+     *       //   "tripType": "my_tripType",
+     *       //   "validTimeInterval": {},
+     *       //   "valueAddedModuleData": [],
+     *       //   "version": "my_version"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activationStatus": {},
+     *   //   "appLinkData": {},
+     *   //   "barcode": {},
+     *   //   "classId": "my_classId",
+     *   //   "classReference": {},
+     *   //   "concessionCategory": "my_concessionCategory",
+     *   //   "customConcessionCategory": {},
+     *   //   "customTicketStatus": {},
+     *   //   "deviceContext": {},
+     *   //   "disableExpirationNotification": false,
+     *   //   "groupingInfo": {},
+     *   //   "hasLinkedDevice": false,
+     *   //   "hasUsers": false,
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "linkedObjectIds": [],
+     *   //   "linksModuleData": {},
+     *   //   "locations": [],
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "passConstraints": {},
+     *   //   "passengerNames": "my_passengerNames",
+     *   //   "passengerType": "my_passengerType",
+     *   //   "purchaseDetails": {},
+     *   //   "rotatingBarcode": {},
+     *   //   "saveRestrictions": {},
+     *   //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *   //   "state": "my_state",
+     *   //   "textModulesData": [],
+     *   //   "ticketLeg": {},
+     *   //   "ticketLegs": [],
+     *   //   "ticketNumber": "my_ticketNumber",
+     *   //   "ticketRestrictions": {},
+     *   //   "ticketStatus": "my_ticketStatus",
+     *   //   "tripId": "my_tripId",
+     *   //   "tripType": "my_tripType",
+     *   //   "validTimeInterval": {},
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14359,6 +22947,144 @@ export namespace walletobjects_v1 {
 
     /**
      * Updates the transit object referenced by the given object ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.transitobject.update({
+     *     // The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "activationStatus": {},
+     *       //   "appLinkData": {},
+     *       //   "barcode": {},
+     *       //   "classId": "my_classId",
+     *       //   "classReference": {},
+     *       //   "concessionCategory": "my_concessionCategory",
+     *       //   "customConcessionCategory": {},
+     *       //   "customTicketStatus": {},
+     *       //   "deviceContext": {},
+     *       //   "disableExpirationNotification": false,
+     *       //   "groupingInfo": {},
+     *       //   "hasLinkedDevice": false,
+     *       //   "hasUsers": false,
+     *       //   "heroImage": {},
+     *       //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "infoModuleData": {},
+     *       //   "linkedObjectIds": [],
+     *       //   "linksModuleData": {},
+     *       //   "locations": [],
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "notifyPreference": "my_notifyPreference",
+     *       //   "passConstraints": {},
+     *       //   "passengerNames": "my_passengerNames",
+     *       //   "passengerType": "my_passengerType",
+     *       //   "purchaseDetails": {},
+     *       //   "rotatingBarcode": {},
+     *       //   "saveRestrictions": {},
+     *       //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *       //   "state": "my_state",
+     *       //   "textModulesData": [],
+     *       //   "ticketLeg": {},
+     *       //   "ticketLegs": [],
+     *       //   "ticketNumber": "my_ticketNumber",
+     *       //   "ticketRestrictions": {},
+     *       //   "ticketStatus": "my_ticketStatus",
+     *       //   "tripId": "my_tripId",
+     *       //   "tripType": "my_tripType",
+     *       //   "validTimeInterval": {},
+     *       //   "valueAddedModuleData": [],
+     *       //   "version": "my_version"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activationStatus": {},
+     *   //   "appLinkData": {},
+     *   //   "barcode": {},
+     *   //   "classId": "my_classId",
+     *   //   "classReference": {},
+     *   //   "concessionCategory": "my_concessionCategory",
+     *   //   "customConcessionCategory": {},
+     *   //   "customTicketStatus": {},
+     *   //   "deviceContext": {},
+     *   //   "disableExpirationNotification": false,
+     *   //   "groupingInfo": {},
+     *   //   "hasLinkedDevice": false,
+     *   //   "hasUsers": false,
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "linkedObjectIds": [],
+     *   //   "linksModuleData": {},
+     *   //   "locations": [],
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "passConstraints": {},
+     *   //   "passengerNames": "my_passengerNames",
+     *   //   "passengerType": "my_passengerType",
+     *   //   "purchaseDetails": {},
+     *   //   "rotatingBarcode": {},
+     *   //   "saveRestrictions": {},
+     *   //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *   //   "state": "my_state",
+     *   //   "textModulesData": [],
+     *   //   "ticketLeg": {},
+     *   //   "ticketLegs": [],
+     *   //   "ticketNumber": "my_ticketNumber",
+     *   //   "ticketRestrictions": {},
+     *   //   "ticketStatus": "my_ticketStatus",
+     *   //   "tripId": "my_tripId",
+     *   //   "tripType": "my_tripType",
+     *   //   "validTimeInterval": {},
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14543,6 +23269,58 @@ export namespace walletobjects_v1 {
 
     /**
      * Provide Google with information about awaiting private pass update. This will allow Google to provide the update notification to the device that currently holds this pass.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await walletobjects.walletobjects.v1.privateContent.setPassUpdateNotice({
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "externalPassId": "my_externalPassId",
+     *         //   "updateUri": "my_updateUri",
+     *         //   "updatedPassJwtSignature": "my_updatedPassJwtSignature"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
