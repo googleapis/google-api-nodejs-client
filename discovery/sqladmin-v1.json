@@ -2594,7 +2594,7 @@
       }
     }
   },
-  "revision": "20250502",
+  "revision": "20250613",
   "rootUrl": "https://sqladmin.googleapis.com/",
   "schemas": {
     "AclEntry": {
@@ -2764,6 +2764,10 @@
             "MYSQL_8_0_40",
             "MYSQL_8_0_41",
             "MYSQL_8_0_42",
+            "MYSQL_8_0_43",
+            "MYSQL_8_0_44",
+            "MYSQL_8_0_45",
+            "MYSQL_8_0_46",
             "MYSQL_8_4",
             "SQLSERVER_2017_STANDARD",
             "SQLSERVER_2017_ENTERPRISE",
@@ -2832,6 +2836,10 @@
             false,
             false,
             false,
+            false,
+            false,
+            false,
+            false,
             false
           ],
           "enumDescriptions": [
@@ -2858,6 +2866,10 @@
             "The database major version is MySQL 8.0 and the minor version is 40.",
             "The database major version is MySQL 8.0 and the minor version is 41.",
             "The database major version is MySQL 8.0 and the minor version is 42.",
+            "The database major version is MySQL 8.0 and the minor version is 43.",
+            "The database major version is MySQL 8.0 and the minor version is 44.",
+            "The database major version is MySQL 8.0 and the minor version is 45.",
+            "The database major version is MySQL 8.0 and the minor version is 46.",
             "The database version is MySQL 8.4.",
             "The database version is SQL Server 2017 Standard.",
             "The database version is SQL Server 2017 Enterprise.",
@@ -3211,6 +3223,10 @@
             "MYSQL_8_0_40",
             "MYSQL_8_0_41",
             "MYSQL_8_0_42",
+            "MYSQL_8_0_43",
+            "MYSQL_8_0_44",
+            "MYSQL_8_0_45",
+            "MYSQL_8_0_46",
             "MYSQL_8_4",
             "SQLSERVER_2017_STANDARD",
             "SQLSERVER_2017_ENTERPRISE",
@@ -3279,6 +3295,10 @@
             false,
             false,
             false,
+            false,
+            false,
+            false,
+            false,
             false
           ],
           "enumDescriptions": [
@@ -3305,6 +3325,10 @@
             "The database major version is MySQL 8.0 and the minor version is 40.",
             "The database major version is MySQL 8.0 and the minor version is 41.",
             "The database major version is MySQL 8.0 and the minor version is 42.",
+            "The database major version is MySQL 8.0 and the minor version is 43.",
+            "The database major version is MySQL 8.0 and the minor version is 44.",
+            "The database major version is MySQL 8.0 and the minor version is 45.",
+            "The database major version is MySQL 8.0 and the minor version is 46.",
             "The database version is MySQL 8.4.",
             "The database version is SQL Server 2017 Standard.",
             "The database version is SQL Server 2017 Enterprise.",
@@ -3625,6 +3649,10 @@
             "MYSQL_8_0_40",
             "MYSQL_8_0_41",
             "MYSQL_8_0_42",
+            "MYSQL_8_0_43",
+            "MYSQL_8_0_44",
+            "MYSQL_8_0_45",
+            "MYSQL_8_0_46",
             "MYSQL_8_4",
             "SQLSERVER_2017_STANDARD",
             "SQLSERVER_2017_ENTERPRISE",
@@ -3693,6 +3721,10 @@
             false,
             false,
             false,
+            false,
+            false,
+            false,
+            false,
             false
           ],
           "enumDescriptions": [
@@ -3719,6 +3751,10 @@
             "The database major version is MySQL 8.0 and the minor version is 40.",
             "The database major version is MySQL 8.0 and the minor version is 41.",
             "The database major version is MySQL 8.0 and the minor version is 42.",
+            "The database major version is MySQL 8.0 and the minor version is 43.",
+            "The database major version is MySQL 8.0 and the minor version is 44.",
+            "The database major version is MySQL 8.0 and the minor version is 45.",
+            "The database major version is MySQL 8.0 and the minor version is 46.",
             "The database version is MySQL 8.4.",
             "The database version is SQL Server 2017 Standard.",
             "The database version is SQL Server 2017 Enterprise.",
@@ -3820,7 +3856,7 @@
           "type": "boolean"
         },
         "flags": {
-          "description": "Optional. List of connection pool configuration flags",
+          "description": "Optional. List of connection pool configuration flags.",
           "items": {
             "$ref": "ConnectionPoolFlags"
           },
@@ -3946,6 +3982,10 @@
           ],
           "type": "string"
         },
+        "clearNetwork": {
+          "description": "Clears private network settings when the instance is restored.",
+          "type": "boolean"
+        },
         "connectionName": {
           "description": "Connection name of the Cloud SQL instance used in connection strings.",
           "type": "string"
@@ -3993,6 +4033,10 @@
             "MYSQL_8_0_40",
             "MYSQL_8_0_41",
             "MYSQL_8_0_42",
+            "MYSQL_8_0_43",
+            "MYSQL_8_0_44",
+            "MYSQL_8_0_45",
+            "MYSQL_8_0_46",
             "MYSQL_8_4",
             "SQLSERVER_2017_STANDARD",
             "SQLSERVER_2017_ENTERPRISE",
@@ -4061,6 +4105,10 @@
             false,
             false,
             false,
+            false,
+            false,
+            false,
+            false,
             false
           ],
           "enumDescriptions": [
@@ -4087,6 +4135,10 @@
             "The database major version is MySQL 8.0 and the minor version is 40.",
             "The database major version is MySQL 8.0 and the minor version is 41.",
             "The database major version is MySQL 8.0 and the minor version is 42.",
+            "The database major version is MySQL 8.0 and the minor version is 43.",
+            "The database major version is MySQL 8.0 and the minor version is 44.",
+            "The database major version is MySQL 8.0 and the minor version is 45.",
+            "The database major version is MySQL 8.0 and the minor version is 46.",
             "The database version is MySQL 8.4.",
             "The database version is SQL Server 2017 Standard.",
             "The database version is SQL Server 2017 Enterprise.",
@@ -4873,6 +4925,10 @@
               "MYSQL_8_0_40",
               "MYSQL_8_0_41",
               "MYSQL_8_0_42",
+              "MYSQL_8_0_43",
+              "MYSQL_8_0_44",
+              "MYSQL_8_0_45",
+              "MYSQL_8_0_46",
               "MYSQL_8_4",
               "SQLSERVER_2017_STANDARD",
               "SQLSERVER_2017_ENTERPRISE",
@@ -4941,6 +4997,10 @@
               false,
               false,
               false,
+              false,
+              false,
+              false,
+              false,
               false
             ],
             "enumDescriptions": [
@@ -4967,6 +5027,10 @@
               "The database major version is MySQL 8.0 and the minor version is 40.",
               "The database major version is MySQL 8.0 and the minor version is 41.",
               "The database major version is MySQL 8.0 and the minor version is 42.",
+              "The database major version is MySQL 8.0 and the minor version is 43.",
+              "The database major version is MySQL 8.0 and the minor version is 44.",
+              "The database major version is MySQL 8.0 and the minor version is 45.",
+              "The database major version is MySQL 8.0 and the minor version is 46.",
               "The database version is MySQL 8.4.",
               "The database version is SQL Server 2017 Standard.",
               "The database version is SQL Server 2017 Enterprise.",
@@ -5364,7 +5428,7 @@
           "type": "integer"
         },
         "queryStringLength": {
-          "description": "Maximum query length stored in bytes. Default value: 1024 bytes. Range: 256-4500 bytes. Query length more than this field value will be truncated to this value. When unset, query length will be the default value. Changing query length will restart the database.",
+          "description": "Maximum query length stored in bytes. Default value: 1024 bytes. Range: 256-4500 bytes. Query lengths greater than this field value will be truncated to this value. When unset, query length will be the default value. Changing query length will restart the database.",
           "format": "int32",
           "type": "integer"
         },
@@ -6072,8 +6136,7 @@
             "MANAGE_BACKUP",
             "ENHANCED_BACKUP",
             "REPAIR_READ_POOL",
-            "CREATE_READ_POOL",
-            "PRE_CHECK_MAJOR_VERSION_UPGRADE"
+            "CREATE_READ_POOL"
           ],
           "enumDeprecated": [
             false,
@@ -6124,7 +6187,6 @@
             false,
             false,
             true,
-            false,
             false,
             false,
             false,
@@ -6182,8 +6244,7 @@
             "Changes the BackupTier of a Cloud SQL instance.",
             "Creates a backup for an Enhanced BackupTier Cloud SQL instance.",
             "Repairs entire read pool or specified read pool nodes in the read pool.",
-            "Creates a Cloud SQL read pool instance.",
-            "Pre-checks the major version upgrade operation."
+            "Creates a Cloud SQL read pool instance."
           ],
           "type": "string"
         },
@@ -6529,7 +6590,7 @@
       "id": "PscAutoConnectionConfig",
       "properties": {
         "consumerNetwork": {
-          "description": "The consumer network of this consumer endpoint. This must be a resource path that includes both the host project and the network name. For example, `projects/project1/global/networks/network1`. The consumer host project of this network might be different from the consumer service project.",
+          "description": "Optional. The consumer network of this consumer endpoint. This must be a resource path that includes both the host project and the network name. For example, `projects/project1/global/networks/network1`. The consumer host project of this network might be different from the consumer service project.",
           "type": "string"
         },
         "consumerNetworkStatus": {
@@ -6537,7 +6598,7 @@
           "type": "string"
         },
         "consumerProject": {
-          "description": "This is the project ID of consumer service project of this consumer endpoint. Optional. This is only applicable if consumer_network is a shared vpc network.",
+          "description": "Optional. This is the project ID of consumer service project of this consumer endpoint. Optional. This is only applicable if consumer_network is a shared vpc network.",
           "type": "string"
         },
         "ipAddress": {
@@ -6561,6 +6622,10 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "networkAttachmentUri": {
+          "description": "Optional. The network attachment of the consumer network that the Private Service Connect enabled Cloud SQL instance is authorized to connect via PSC interface. format: projects/PROJECT/regions/REGION/networkAttachments/ID",
+          "type": "string"
         },
         "pscAutoConnections": {
           "description": "Optional. The list of settings for requested Private Service Connect consumer endpoints that can be used to connect to this Cloud SQL instance.",
@@ -7068,7 +7133,8 @@
             "USERS_NOT_CREATED_IN_REPLICA",
             "UNSUPPORTED_SYSTEM_OBJECTS",
             "UNSUPPORTED_TABLES_WITH_REPLICA_IDENTITY",
-            "SELECTED_OBJECTS_NOT_EXIST_ON_SOURCE"
+            "SELECTED_OBJECTS_NOT_EXIST_ON_SOURCE",
+            "PSC_ONLY_INSTANCE_WITH_NO_NETWORK_ATTACHMENT_URI"
           ],
           "enumDescriptions": [
             "",
@@ -7124,7 +7190,8 @@
             "The source database has users that aren't created in the replica. First, create all users, which are in the pg_user_mappings table of the source database, in the destination instance. Then, perform the migration.",
             "The selected objects include system objects that aren't supported for migration.",
             "The source database has tables with the FULL or NOTHING replica identity. Before starting your migration, either remove the identity or change it to DEFAULT. Note that this is an error and will block the migration.",
-            "The selected objects don't exist on the source instance."
+            "The selected objects don't exist on the source instance.",
+            "PSC only destination instance does not have a network attachment URI."
           ],
           "type": "string"
         }
