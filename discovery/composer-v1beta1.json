@@ -656,7 +656,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "The resource name of the environment to restart the web server for, in the form: \"projects/{projectId}/locations/{locationId}/environments/{environmentId}\"",
+                      "description": "Required. The resource name of the environment to restart the web server for, in the form: \"projects/{projectId}/locations/{locationId}/environments/{environmentId}\"",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/environments/[^/]+$",
                       "required": true,
@@ -1216,7 +1216,7 @@
       }
     }
   },
-  "revision": "20250303",
+  "revision": "20250513",
   "rootUrl": "https://composer.googleapis.com/",
   "schemas": {
     "AirflowMetadataRetentionPolicyConfig": {

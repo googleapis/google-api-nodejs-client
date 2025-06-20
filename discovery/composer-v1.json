@@ -646,6 +646,34 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "restartWebServer": {
+                  "description": "Restart Airflow web server.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/environments/{environmentsId}:restartWebServer",
+                  "httpMethod": "POST",
+                  "id": "composer.projects.locations.environments.restartWebServer",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the environment to restart the web server for, in the form: \"projects/{projectId}/locations/{locationId}/environments/{environmentId}\"",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/environments/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:restartWebServer",
+                  "request": {
+                    "$ref": "RestartWebServerRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "saveSnapshot": {
                   "description": "Creates a snapshots of a Cloud Composer environment. As a result of this operation, snapshot of environment's state is stored in a location specified in the SaveSnapshotRequest.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/environments/{environmentsId}:saveSnapshot",
@@ -1188,7 +1216,7 @@
       }
     }
   },
-  "revision": "20250303",
+  "revision": "20250513",
   "rootUrl": "https://composer.googleapis.com/",
   "schemas": {
     "AirflowMetadataRetentionPolicyConfig": {
@@ -2329,6 +2357,12 @@
           "description": "Optional. The configuration for scheduled snapshot creation mechanism."
         }
       },
+      "type": "object"
+    },
+    "RestartWebServerRequest": {
+      "description": "Restart Airflow web server.",
+      "id": "RestartWebServerRequest",
+      "properties": {},
       "type": "object"
     },
     "SaveSnapshotRequest": {
