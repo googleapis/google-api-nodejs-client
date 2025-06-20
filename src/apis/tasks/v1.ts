@@ -310,6 +310,47 @@ export namespace tasks_v1 {
 
     /**
      * Deletes the authenticated user's specified task list. If the list contains assigned tasks, both the assigned tasks and the original tasks in the assignment surface (Docs, Chat Spaces) are deleted.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tasks.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const tasks = google.tasks('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tasks'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tasks.tasklists.delete({
+     *     // Task list identifier.
+     *     tasklist: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -398,6 +439,60 @@ export namespace tasks_v1 {
 
     /**
      * Returns the authenticated user's specified task list.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tasks.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const tasks = google.tasks('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/tasks',
+     *       'https://www.googleapis.com/auth/tasks.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tasks.tasklists.get({
+     *     // Task list identifier.
+     *     tasklist: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "title": "my_title",
+     *   //   "updated": "my_updated"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -488,6 +583,67 @@ export namespace tasks_v1 {
 
     /**
      * Creates a new task list and adds it to the authenticated user's task lists. A user can have up to 2000 lists at a time.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tasks.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const tasks = google.tasks('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tasks'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tasks.tasklists.insert({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "title": "my_title",
+     *       //   "updated": "my_updated"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "title": "my_title",
+     *   //   "updated": "my_updated"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -578,6 +734,60 @@ export namespace tasks_v1 {
 
     /**
      * Returns all the authenticated user's task lists. A user can have up to 2000 lists at a time.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tasks.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const tasks = google.tasks('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/tasks',
+     *       'https://www.googleapis.com/auth/tasks.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tasks.tasklists.list({
+     *     // Maximum number of task lists returned on one page. Optional. The default is 1000 (max allowed: 1000).
+     *     maxResults: 'placeholder-value',
+     *     // Token specifying the result page to return. Optional.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -668,6 +878,70 @@ export namespace tasks_v1 {
 
     /**
      * Updates the authenticated user's specified task list. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tasks.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const tasks = google.tasks('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tasks'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tasks.tasklists.patch({
+     *     // Task list identifier.
+     *     tasklist: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "title": "my_title",
+     *       //   "updated": "my_updated"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "title": "my_title",
+     *   //   "updated": "my_updated"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -758,6 +1032,70 @@ export namespace tasks_v1 {
 
     /**
      * Updates the authenticated user's specified task list.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tasks.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const tasks = google.tasks('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tasks'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tasks.tasklists.update({
+     *     // Task list identifier.
+     *     tasklist: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "title": "my_title",
+     *       //   "updated": "my_updated"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "title": "my_title",
+     *   //   "updated": "my_updated"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -906,6 +1244,47 @@ export namespace tasks_v1 {
 
     /**
      * Clears all completed tasks from the specified task list. The affected tasks will be marked as 'hidden' and no longer be returned by default when retrieving all tasks for a task list.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tasks.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const tasks = google.tasks('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tasks'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tasks.tasks.clear({
+     *     // Task list identifier.
+     *     tasklist: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -994,6 +1373,49 @@ export namespace tasks_v1 {
 
     /**
      * Deletes the specified task from the task list. If the task is assigned, both the assigned task and the original task (in Docs, Chat Spaces) are deleted. To delete the assigned task only, navigate to the assignment surface and unassign the task from there.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tasks.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const tasks = google.tasks('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tasks'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tasks.tasks.delete({
+     *     // Task identifier.
+     *     task: 'placeholder-value',
+     *     // Task list identifier.
+     *     tasklist: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1082,6 +1504,73 @@ export namespace tasks_v1 {
 
     /**
      * Returns the specified task.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tasks.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const tasks = google.tasks('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/tasks',
+     *       'https://www.googleapis.com/auth/tasks.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tasks.tasks.get({
+     *     // Task identifier.
+     *     task: 'placeholder-value',
+     *     // Task list identifier.
+     *     tasklist: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assignmentInfo": {},
+     *   //   "completed": "my_completed",
+     *   //   "deleted": false,
+     *   //   "due": "my_due",
+     *   //   "etag": "my_etag",
+     *   //   "hidden": false,
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "links": [],
+     *   //   "notes": "my_notes",
+     *   //   "parent": "my_parent",
+     *   //   "position": "my_position",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "status": "my_status",
+     *   //   "title": "my_title",
+     *   //   "updated": "my_updated",
+     *   //   "webViewLink": "my_webViewLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1172,6 +1661,96 @@ export namespace tasks_v1 {
 
     /**
      * Creates a new task on the specified task list. Tasks assigned from Docs or Chat Spaces cannot be inserted from Tasks Public API; they can only be created by assigning them from Docs or Chat Spaces. A user can have up to 20,000 non-hidden tasks per list and up to 100,000 tasks in total at a time.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tasks.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const tasks = google.tasks('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tasks'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tasks.tasks.insert({
+     *     // Parent task identifier. If the task is created at the top level, this parameter is omitted. An assigned task cannot be a parent task, nor can it have a parent. Setting the parent to an assigned task results in failure of the request. Optional.
+     *     parent: 'placeholder-value',
+     *     // Previous sibling task identifier. If the task is created at the first position among its siblings, this parameter is omitted. Optional.
+     *     previous: 'placeholder-value',
+     *     // Task list identifier.
+     *     tasklist: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "assignmentInfo": {},
+     *       //   "completed": "my_completed",
+     *       //   "deleted": false,
+     *       //   "due": "my_due",
+     *       //   "etag": "my_etag",
+     *       //   "hidden": false,
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "links": [],
+     *       //   "notes": "my_notes",
+     *       //   "parent": "my_parent",
+     *       //   "position": "my_position",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "status": "my_status",
+     *       //   "title": "my_title",
+     *       //   "updated": "my_updated",
+     *       //   "webViewLink": "my_webViewLink"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assignmentInfo": {},
+     *   //   "completed": "my_completed",
+     *   //   "deleted": false,
+     *   //   "due": "my_due",
+     *   //   "etag": "my_etag",
+     *   //   "hidden": false,
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "links": [],
+     *   //   "notes": "my_notes",
+     *   //   "parent": "my_parent",
+     *   //   "position": "my_position",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "status": "my_status",
+     *   //   "title": "my_title",
+     *   //   "updated": "my_updated",
+     *   //   "webViewLink": "my_webViewLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1262,6 +1841,80 @@ export namespace tasks_v1 {
 
     /**
      * Returns all tasks in the specified task list. Doesn't return assigned tasks by default (from Docs, Chat Spaces). A user can have up to 20,000 non-hidden tasks per list and up to 100,000 tasks in total at a time.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tasks.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const tasks = google.tasks('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/tasks',
+     *       'https://www.googleapis.com/auth/tasks.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tasks.tasks.list({
+     *     // Upper bound for a task's completion date (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by completion date.
+     *     completedMax: 'placeholder-value',
+     *     // Lower bound for a task's completion date (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by completion date.
+     *     completedMin: 'placeholder-value',
+     *     // Upper bound for a task's due date (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by due date.
+     *     dueMax: 'placeholder-value',
+     *     // Lower bound for a task's due date (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by due date.
+     *     dueMin: 'placeholder-value',
+     *     // Maximum number of tasks returned on one page. Optional. The default is 20 (max allowed: 100).
+     *     maxResults: 'placeholder-value',
+     *     // Token specifying the result page to return. Optional.
+     *     pageToken: 'placeholder-value',
+     *     // Optional. Flag indicating whether tasks assigned to the current user are returned in the result. Optional. The default is False.
+     *     showAssigned: 'placeholder-value',
+     *     // Flag indicating whether completed tasks are returned in the result. Note that showHidden must also be True to show tasks completed in first party clients, such as the web UI and Google's mobile apps. Optional. The default is True.
+     *     showCompleted: 'placeholder-value',
+     *     // Flag indicating whether deleted tasks are returned in the result. Optional. The default is False.
+     *     showDeleted: 'placeholder-value',
+     *     // Flag indicating whether hidden tasks are returned in the result. Optional. The default is False.
+     *     showHidden: 'placeholder-value',
+     *     // Task list identifier.
+     *     tasklist: 'placeholder-value',
+     *     // Lower bound for a task's last modification time (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by last modification time.
+     *     updatedMin: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1352,6 +2005,76 @@ export namespace tasks_v1 {
 
     /**
      * Moves the specified task to another position in the destination task list. If the destination list is not specified, the task is moved within its current list. This can include putting it as a child task under a new parent and/or move it to a different position among its sibling tasks. A user can have up to 2,000 subtasks per task.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tasks.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const tasks = google.tasks('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tasks'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tasks.tasks.move({
+     *     // Optional. Destination task list identifier. If set, the task is moved from tasklist to the destinationTasklist list. Otherwise the task is moved within its current list. Recurrent tasks cannot currently be moved between lists.
+     *     destinationTasklist: 'placeholder-value',
+     *     // Optional. New parent task identifier. If the task is moved to the top level, this parameter is omitted. The task set as parent must exist in the task list and can not be hidden. Exceptions: 1. Assigned and repeating tasks cannot be set as parent tasks (have subtasks), or be moved under a parent task (become subtasks). 2. Tasks that are both completed and hidden cannot be nested, so the parent field must be empty.
+     *     parent: 'placeholder-value',
+     *     // Optional. New previous sibling task identifier. If the task is moved to the first position among its siblings, this parameter is omitted. The task set as previous must exist in the task list and can not be hidden. Exceptions: 1. Tasks that are both completed and hidden can only be moved to position 0, so the previous field must be empty.
+     *     previous: 'placeholder-value',
+     *     // Task identifier.
+     *     task: 'placeholder-value',
+     *     // Task list identifier.
+     *     tasklist: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assignmentInfo": {},
+     *   //   "completed": "my_completed",
+     *   //   "deleted": false,
+     *   //   "due": "my_due",
+     *   //   "etag": "my_etag",
+     *   //   "hidden": false,
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "links": [],
+     *   //   "notes": "my_notes",
+     *   //   "parent": "my_parent",
+     *   //   "position": "my_position",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "status": "my_status",
+     *   //   "title": "my_title",
+     *   //   "updated": "my_updated",
+     *   //   "webViewLink": "my_webViewLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1441,6 +2164,94 @@ export namespace tasks_v1 {
 
     /**
      * Updates the specified task. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tasks.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const tasks = google.tasks('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tasks'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tasks.tasks.patch({
+     *     // Task identifier.
+     *     task: 'placeholder-value',
+     *     // Task list identifier.
+     *     tasklist: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "assignmentInfo": {},
+     *       //   "completed": "my_completed",
+     *       //   "deleted": false,
+     *       //   "due": "my_due",
+     *       //   "etag": "my_etag",
+     *       //   "hidden": false,
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "links": [],
+     *       //   "notes": "my_notes",
+     *       //   "parent": "my_parent",
+     *       //   "position": "my_position",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "status": "my_status",
+     *       //   "title": "my_title",
+     *       //   "updated": "my_updated",
+     *       //   "webViewLink": "my_webViewLink"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assignmentInfo": {},
+     *   //   "completed": "my_completed",
+     *   //   "deleted": false,
+     *   //   "due": "my_due",
+     *   //   "etag": "my_etag",
+     *   //   "hidden": false,
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "links": [],
+     *   //   "notes": "my_notes",
+     *   //   "parent": "my_parent",
+     *   //   "position": "my_position",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "status": "my_status",
+     *   //   "title": "my_title",
+     *   //   "updated": "my_updated",
+     *   //   "webViewLink": "my_webViewLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1531,6 +2342,94 @@ export namespace tasks_v1 {
 
     /**
      * Updates the specified task.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tasks.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const tasks = google.tasks('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tasks'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tasks.tasks.update({
+     *     // Task identifier.
+     *     task: 'placeholder-value',
+     *     // Task list identifier.
+     *     tasklist: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "assignmentInfo": {},
+     *       //   "completed": "my_completed",
+     *       //   "deleted": false,
+     *       //   "due": "my_due",
+     *       //   "etag": "my_etag",
+     *       //   "hidden": false,
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "links": [],
+     *       //   "notes": "my_notes",
+     *       //   "parent": "my_parent",
+     *       //   "position": "my_position",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "status": "my_status",
+     *       //   "title": "my_title",
+     *       //   "updated": "my_updated",
+     *       //   "webViewLink": "my_webViewLink"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assignmentInfo": {},
+     *   //   "completed": "my_completed",
+     *   //   "deleted": false,
+     *   //   "due": "my_due",
+     *   //   "etag": "my_etag",
+     *   //   "hidden": false,
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "links": [],
+     *   //   "notes": "my_notes",
+     *   //   "parent": "my_parent",
+     *   //   "position": "my_position",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "status": "my_status",
+     *   //   "title": "my_title",
+     *   //   "updated": "my_updated",
+     *   //   "webViewLink": "my_webViewLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1721,7 +2620,7 @@ export namespace tasks_v1 {
      */
     destinationTasklist?: string;
     /**
-     * Optional. New parent task identifier. If the task is moved to the top level, this parameter is omitted. The task set as parent must exist in the task list and can not be hidden. Exceptions: 1. Assigned tasks can not be set as parent task (have subtasks) or be moved under a parent task (become subtasks). 2. Tasks that are both completed and hidden cannot be nested, so the parent field must be empty.
+     * Optional. New parent task identifier. If the task is moved to the top level, this parameter is omitted. The task set as parent must exist in the task list and can not be hidden. Exceptions: 1. Assigned and repeating tasks cannot be set as parent tasks (have subtasks), or be moved under a parent task (become subtasks). 2. Tasks that are both completed and hidden cannot be nested, so the parent field must be empty.
      */
     parent?: string;
     /**
