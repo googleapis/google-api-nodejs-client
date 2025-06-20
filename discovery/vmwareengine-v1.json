@@ -3368,7 +3368,7 @@
       }
     }
   },
-  "revision": "20250410",
+  "revision": "20250603",
   "rootUrl": "https://vmwareengine.googleapis.com/",
   "schemas": {
     "Announcement": {
@@ -4875,7 +4875,8 @@
             "NETAPP_CLOUD_VOLUMES",
             "THIRD_PARTY_SERVICE",
             "DELL_POWERSCALE",
-            "GOOGLE_CLOUD_NETAPP_VOLUMES"
+            "GOOGLE_CLOUD_NETAPP_VOLUMES",
+            "GOOGLE_CLOUD_FILESTORE_INSTANCES"
           ],
           "enumDescriptions": [
             "Unspecified",
@@ -4885,7 +4886,8 @@
             "Peering connection used for connecting to NetApp Cloud Volumes.",
             "Peering connection used for connecting to third-party services. Most third-party services require manual setup of reverse peering on the VPC network associated with the third-party service.",
             "Peering connection used for connecting to Dell PowerScale Filers",
-            "Peering connection used for connecting to Google Cloud NetApp Volumes."
+            "Peering connection used for connecting to Google Cloud NetApp Volumes.",
+            "Peering connection used for connecting to Google Cloud Filestore Instances."
           ],
           "type": "string"
         },
