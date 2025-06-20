@@ -753,7 +753,7 @@
       }
     }
   },
-  "revision": "20250501",
+  "revision": "20250529",
   "rootUrl": "https://monitoring.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -2868,6 +2868,52 @@
       },
       "type": "object"
     },
+    "Treemap": {
+      "description": "A widget that displays hierarchical data as a treemap.",
+      "id": "Treemap",
+      "properties": {
+        "dataSets": {
+          "description": "Required. The collection of datasets used to construct and populate the treemap. For the rendered treemap rectangles: Color is determined by the aggregated value for each grouping. Size is proportional to the count of time series aggregated within that rectangle's segment.",
+          "items": {
+            "$ref": "TreemapDataSet"
+          },
+          "type": "array"
+        },
+        "treemapHierarchy": {
+          "description": "Required. Ordered labels representing the hierarchical treemap structure.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "TreemapDataSet": {
+      "description": "The data represented by the treemap. Needs to include the data itself, plus rules on how to organize it hierarchically.",
+      "id": "TreemapDataSet",
+      "properties": {
+        "breakdowns": {
+          "description": "Optional. The collection of breakdowns to be applied to the dataset. A breakdown is a way to slice the data. For example, you can break down the data by region.",
+          "items": {
+            "$ref": "Breakdown"
+          },
+          "type": "array"
+        },
+        "measures": {
+          "description": "Optional. A collection of measures. A measure is a measured value of a property in your data. For example, rainfall in inches, number of units sold, revenue gained, etc.",
+          "items": {
+            "$ref": "Measure"
+          },
+          "type": "array"
+        },
+        "timeSeriesQuery": {
+          "$ref": "TimeSeriesQuery",
+          "description": "Required. The query that fetches the relevant data. See google.monitoring.dashboard.v1.TimeSeriesQuery"
+        }
+      },
+      "type": "object"
+    },
     "Type": {
       "description": "A protocol buffer message type.",
       "id": "Type",
@@ -2992,6 +3038,10 @@
         "title": {
           "description": "Optional. The title of the widget.",
           "type": "string"
+        },
+        "treemap": {
+          "$ref": "Treemap",
+          "description": "A widget that displays data as a treemap."
         },
         "visibilityCondition": {
           "$ref": "VisibilityCondition",
