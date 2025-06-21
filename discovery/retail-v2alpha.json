@@ -454,6 +454,31 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "getConversationalSearchCustomizationConfig": {
+                  "description": "Returns the conversational search customization config for a given catalog.",
+                  "flatPath": "v2alpha/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/conversationalSearchCustomizationConfig",
+                  "httpMethod": "GET",
+                  "id": "retail.projects.locations.catalogs.getConversationalSearchCustomizationConfig",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Resource name of the parent catalog. Format: projects/{project}/locations/{location}/catalogs/{catalog}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/catalogs/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2alpha/{+name}/conversationalSearchCustomizationConfig",
+                  "response": {
+                    "$ref": "GoogleCloudRetailV2alphaConversationalSearchCustomizationConfig"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "getDefaultBranch": {
                   "description": "Get which branch is currently default branch set by CatalogService.SetDefaultBranch method under a specified parent catalog.",
                   "flatPath": "v2alpha/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}:getDefaultBranch",
@@ -665,6 +690,40 @@
                   },
                   "response": {
                     "$ref": "GoogleCloudRetailV2alphaCompletionConfig"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "updateConversationalSearchCustomizationConfig": {
+                  "description": "Updates the conversational search customization config for a given catalog.",
+                  "flatPath": "v2alpha/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/conversationalSearchCustomizationConfig",
+                  "httpMethod": "PATCH",
+                  "id": "retail.projects.locations.catalogs.updateConversationalSearchCustomizationConfig",
+                  "parameterOrder": [
+                    "catalog"
+                  ],
+                  "parameters": {
+                    "catalog": {
+                      "description": "Required. Resource name of the catalog. Format: projects/{project}/locations/{location}/catalogs/{catalog}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/catalogs/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. Indicates which fields in the provided ConversationalSearchCustomizationConfig to update. If not set or empty, all supported fields are updated.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2alpha/{+catalog}/conversationalSearchCustomizationConfig",
+                  "request": {
+                    "$ref": "GoogleCloudRetailV2alphaConversationalSearchCustomizationConfig"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudRetailV2alphaConversationalSearchCustomizationConfig"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -2800,7 +2859,7 @@
       }
     }
   },
-  "revision": "20250508",
+  "revision": "20250613",
   "rootUrl": "https://retail.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -4557,6 +4616,25 @@
       },
       "type": "object"
     },
+    "GoogleCloudRetailV2alphaConversationalSearchCustomizationConfig": {
+      "description": "The public proto to represent the conversational search customization config. It will be converted to the internal proto in the backend.",
+      "id": "GoogleCloudRetailV2alphaConversationalSearchCustomizationConfig",
+      "properties": {
+        "catalog": {
+          "description": "Required. Resource name of the catalog. Format: projects/{project}/locations/{location}/catalogs/{catalog}",
+          "type": "string"
+        },
+        "intentClassificationConfig": {
+          "$ref": "GoogleCloudRetailV2alphaIntentClassificationConfig",
+          "description": "Optional. The configs for intent classification."
+        },
+        "retailerDisplayName": {
+          "description": "Optional. The retailer's display name that could be used in our LLM answers. Example - \"Google\"",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudRetailV2alphaConversationalSearchRequest": {
       "description": "Request message for ConversationalSearchService.ConversationalSearch method.",
       "id": "GoogleCloudRetailV2alphaConversationalSearchRequest",
@@ -4591,6 +4669,13 @@
         "userInfo": {
           "$ref": "GoogleCloudRetailV2alphaUserInfo",
           "description": "Optional. User information."
+        },
+        "userLabels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. The user labels applied to a resource must meet the following requirements: * Each resource can have multiple labels, up to a maximum of 64. * Each label must be a key-value pair. * Keys have a minimum length of 1 character and a maximum length of 63 characters and cannot be empty. Values can be empty and have a maximum length of 63 characters. * Keys and values can contain only lowercase letters, numeric characters, underscores, and dashes. All characters must use UTF-8 encoding, and international characters are allowed. * The key portion of a label must be unique. However, you can use the same key with multiple resources. * Keys must start with a lowercase letter or international character. See [Google Cloud Document](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements) for more details.",
+          "type": "object"
         },
         "visitorId": {
           "description": "Required. A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This should be the same identifier as UserEvent.visitor_id. The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is returned.",
@@ -4743,7 +4828,7 @@
       "type": "object"
     },
     "GoogleCloudRetailV2alphaConversationalSearchResponseFollowupQuestionSuggestedAnswer": {
-      "description": "Suggested answers to the follow-up question.",
+      "description": "Suggested answers to the follow-up question. If it's numerical attribute, only ProductAttributeInterval will be set. If it's textual attribute, only productAttributeValue will be set.",
       "id": "GoogleCloudRetailV2alphaConversationalSearchResponseFollowupQuestionSuggestedAnswer",
       "properties": {
         "productAttributeValue": {
@@ -4818,6 +4903,21 @@
           "description": "The textual values of this custom attribute. For example, `[\"yellow\", \"green\"]` when the key is \"color\". Empty string is not allowed. Otherwise, an INVALID_ARGUMENT error is returned. Exactly one of text or numbers should be set. Otherwise, an INVALID_ARGUMENT error is returned.",
           "items": {
             "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2alphaDoubleList": {
+      "description": "A message with a list of double values.",
+      "id": "GoogleCloudRetailV2alphaDoubleList",
+      "properties": {
+        "values": {
+          "description": "The list of double values.",
+          "items": {
+            "format": "double",
+            "type": "number"
           },
           "type": "array"
         }
@@ -5369,6 +5469,57 @@
         "importSummary": {
           "$ref": "GoogleCloudRetailV2alphaUserEventImportSummary",
           "description": "Aggregated statistics of user event import status."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2alphaIntentClassificationConfig": {
+      "description": "The public proto to represent the intent classification config. It will be converted to the internal proto in the backend.",
+      "id": "GoogleCloudRetailV2alphaIntentClassificationConfig",
+      "properties": {
+        "blocklistKeywords": {
+          "description": "Optional. A list of keywords that will be used to classify the query to the \"BLOCKLISTED\" intent type. The keywords are case insensitive.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "disabledIntentTypes": {
+          "description": "Optional. A list of intent types that will be disabled for this customer. The intent types must match one of the predefined intent types defined at https://cloud.google.com/retail/docs/reference/rpc/google.cloud.retail.v2alpha#querytype",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "example": {
+          "description": "Optional. A list of examples for intent classification.",
+          "items": {
+            "$ref": "GoogleCloudRetailV2alphaIntentClassificationConfigExample"
+          },
+          "type": "array"
+        },
+        "modelPreamble": {
+          "description": "Optional. Customers can use the preamble to specify any requirements for blocklisting intent classification. This preamble will be added to the blocklisting intent classification model prompt.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2alphaIntentClassificationConfigExample": {
+      "description": "An example for intent classification.",
+      "id": "GoogleCloudRetailV2alphaIntentClassificationConfigExample",
+      "properties": {
+        "intentType": {
+          "description": "Optional. The intent_type must match one of the predefined intent types defined at https://cloud.google.com/retail/docs/reference/rpc/google.cloud.retail.v2alpha#querytype",
+          "type": "string"
+        },
+        "query": {
+          "description": "Required. Example query.",
+          "type": "string"
+        },
+        "reason": {
+          "description": "Optional. The reason for the intent classification. This is used to explain the intent classification decision.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -7291,6 +7442,10 @@
           "description": "The entity for customers that may run multiple different entities, domains, sites or regions, for example, `Google US`, `Google Ads`, `Waymo`, `google.com`, `youtube.com`, etc. If this is set, it should be exactly matched with UserEvent.entity to get search results boosted by entity.",
           "type": "string"
         },
+        "experimentId": {
+          "description": "Optional. An ID for the experiment group this search belongs to.",
+          "type": "string"
+        },
         "facetSpecs": {
           "description": "Facet specifications for faceted search. If empty, no facets are returned. A maximum of 200 values are allowed. Otherwise, an INVALID_ARGUMENT error is returned.",
           "items": {
@@ -7397,6 +7552,13 @@
         "tileNavigationSpec": {
           "$ref": "GoogleCloudRetailV2alphaSearchRequestTileNavigationSpec",
           "description": "Optional. This field specifies tile navigation related parameters."
+        },
+        "userAttributes": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudRetailV2alphaStringList"
+          },
+          "description": "Optional. The user attributes that could be used for personalization of search results. * Populate at most 100 key-value pairs per query. * Only supports string keys and repeated string values. * Duplcate keys are not allowed within a single query. Example: user_attributes: [ { key: \"pets\" value { values: \"dog\" values: \"cat\" } }, { key: \"state\" value { values: \"CA\" } } ]",
+          "type": "object"
         },
         "userInfo": {
           "$ref": "GoogleCloudRetailV2alphaUserInfo",
@@ -7646,7 +7808,7 @@
           "type": "string"
         },
         "pinUnexpandedResults": {
-          "description": "Whether to pin unexpanded results. If this field is set to true, unexpanded products are always at the top of the search results, followed by the expanded results.",
+          "description": "Whether to pin unexpanded results. The default value is false. If this field is set to true, unexpanded products are always at the top of the search results, followed by the expanded results.",
           "type": "boolean"
         }
       },
@@ -7919,6 +8081,13 @@
           "description": "If a variant Product matches the search query, this map indicates which Product fields are matched. The key is the Product.name, the value is a field mask of the matched Product fields. If matched attributes cannot be determined, this map will be empty. For example, a key \"sku1\" with field mask \"products.color_info\" indicates there is a match between \"sku1\" ColorInfo and the query.",
           "type": "object"
         },
+        "modelScores": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudRetailV2alphaDoubleList"
+          },
+          "description": "Google provided available scores.",
+          "type": "object"
+        },
         "personalLabels": {
           "description": "Specifies previous events related to this product for this user based on UserEvent with same SearchRequest.visitor_id or UserInfo.user_id. This is set only when SearchRequest.PersonalizationSpec.mode is SearchRequest.PersonalizationSpec.Mode.AUTO. Possible values: * `purchased`: Indicates that this product has been purchased before.",
           "items": {
@@ -8147,6 +8316,20 @@
       "properties": {},
       "type": "object"
     },
+    "GoogleCloudRetailV2alphaStringList": {
+      "description": "A list of string values.",
+      "id": "GoogleCloudRetailV2alphaStringList",
+      "properties": {
+        "values": {
+          "description": "String values.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudRetailV2alphaTile": {
       "description": "This field specifies the tile information including an attribute key, attribute value. More fields will be added in the future, eg: product id or product counts, etc.",
       "id": "GoogleCloudRetailV2alphaTile",
@@ -8309,7 +8492,7 @@
           "type": "string"
         },
         "sessionId": {
-          "description": "A unique identifier for tracking a visitor session with a length limit of 128 bytes. A session is an aggregation of an end user behavior in a time span. A general guideline to populate the sesion_id: 1. If user has no activity for 30 min, a new session_id should be assigned. 2. The session_id should be unique across users, suggest use uuid or add visitor_id as prefix.",
+          "description": "A unique identifier for tracking a visitor session with a length limit of 128 bytes. A session is an aggregation of an end user behavior in a time span. A general guideline to populate the session_id: 1. If user has no activity for 30 min, a new session_id should be assigned. 2. The session_id should be unique across users, suggest use uuid or add visitor_id as prefix.",
           "type": "string"
         },
         "uri": {
