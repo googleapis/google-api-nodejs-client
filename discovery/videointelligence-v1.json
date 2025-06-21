@@ -350,7 +350,7 @@
       }
     }
   },
-  "revision": "20250130",
+  "revision": "20250521",
   "rootUrl": "https://videointelligence.googleapis.com/",
   "schemas": {
     "GoogleCloudVideointelligenceV1_AnnotateVideoProgress": {
@@ -556,6 +556,33 @@
           "description": "Time-offset, relative to the beginning of the video, corresponding to the video frame for this location.",
           "format": "google-duration",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudVideointelligenceV1_ExportToOutputUriStatus": {
+      "description": "Status of exporting annotation response to user specified `output_uri`.",
+      "id": "GoogleCloudVideointelligenceV1_ExportToOutputUriStatus",
+      "properties": {
+        "state": {
+          "description": "Output only. State of the `output_uri` export.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "SUCCEEDED",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Export succeeded.",
+            "Export failed."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "status": {
+          "$ref": "GoogleRpc_Status",
+          "description": "Output only. Only set if state is FAILED.",
+          "readOnly": true
         }
       },
       "type": "object"
@@ -1217,6 +1244,10 @@
       "description": "Annotation progress for a single video.",
       "id": "GoogleCloudVideointelligenceV1_VideoAnnotationProgress",
       "properties": {
+        "exportStatus": {
+          "$ref": "GoogleCloudVideointelligenceV1_ExportToOutputUriStatus",
+          "description": "Status of exporting annotation response to user specified `output_uri`. Only set if `output_uri` is set in the request."
+        },
         "feature": {
           "description": "Specifies which feature is being tracked if the request contains more than one feature.",
           "enum": [
@@ -1615,6 +1646,33 @@
           "description": "Time-offset, relative to the beginning of the video, corresponding to the video frame for this location.",
           "format": "google-duration",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudVideointelligenceV1beta2_ExportToOutputUriStatus": {
+      "description": "Status of exporting annotation response to user specified `output_uri`.",
+      "id": "GoogleCloudVideointelligenceV1beta2_ExportToOutputUriStatus",
+      "properties": {
+        "state": {
+          "description": "Output only. State of the `output_uri` export.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "SUCCEEDED",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Export succeeded.",
+            "Export failed."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "status": {
+          "$ref": "GoogleRpc_Status",
+          "description": "Output only. Only set if state is FAILED.",
+          "readOnly": true
         }
       },
       "type": "object"
@@ -2091,6 +2149,10 @@
       "description": "Annotation progress for a single video.",
       "id": "GoogleCloudVideointelligenceV1beta2_VideoAnnotationProgress",
       "properties": {
+        "exportStatus": {
+          "$ref": "GoogleCloudVideointelligenceV1beta2_ExportToOutputUriStatus",
+          "description": "Status of exporting annotation response to user specified `output_uri`. Only set if `output_uri` is set in the request."
+        },
         "feature": {
           "description": "Specifies which feature is being tracked if the request contains more than one feature.",
           "enum": [
@@ -2443,6 +2505,33 @@
           "description": "Time-offset, relative to the beginning of the video, corresponding to the video frame for this location.",
           "format": "google-duration",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudVideointelligenceV1p1beta1_ExportToOutputUriStatus": {
+      "description": "Status of exporting annotation response to user specified `output_uri`.",
+      "id": "GoogleCloudVideointelligenceV1p1beta1_ExportToOutputUriStatus",
+      "properties": {
+        "state": {
+          "description": "Output only. State of the `output_uri` export.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "SUCCEEDED",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Export succeeded.",
+            "Export failed."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "status": {
+          "$ref": "GoogleRpc_Status",
+          "description": "Output only. Only set if state is FAILED.",
+          "readOnly": true
         }
       },
       "type": "object"
@@ -2919,6 +3008,10 @@
       "description": "Annotation progress for a single video.",
       "id": "GoogleCloudVideointelligenceV1p1beta1_VideoAnnotationProgress",
       "properties": {
+        "exportStatus": {
+          "$ref": "GoogleCloudVideointelligenceV1p1beta1_ExportToOutputUriStatus",
+          "description": "Status of exporting annotation response to user specified `output_uri`. Only set if `output_uri` is set in the request."
+        },
         "feature": {
           "description": "Specifies which feature is being tracked if the request contains more than one feature.",
           "enum": [
@@ -3271,6 +3364,33 @@
           "description": "Time-offset, relative to the beginning of the video, corresponding to the video frame for this location.",
           "format": "google-duration",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudVideointelligenceV1p2beta1_ExportToOutputUriStatus": {
+      "description": "Status of exporting annotation response to user specified `output_uri`.",
+      "id": "GoogleCloudVideointelligenceV1p2beta1_ExportToOutputUriStatus",
+      "properties": {
+        "state": {
+          "description": "Output only. State of the `output_uri` export.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "SUCCEEDED",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Export succeeded.",
+            "Export failed."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "status": {
+          "$ref": "GoogleRpc_Status",
+          "description": "Output only. Only set if state is FAILED.",
+          "readOnly": true
         }
       },
       "type": "object"
@@ -3747,6 +3867,10 @@
       "description": "Annotation progress for a single video.",
       "id": "GoogleCloudVideointelligenceV1p2beta1_VideoAnnotationProgress",
       "properties": {
+        "exportStatus": {
+          "$ref": "GoogleCloudVideointelligenceV1p2beta1_ExportToOutputUriStatus",
+          "description": "Status of exporting annotation response to user specified `output_uri`. Only set if `output_uri` is set in the request."
+        },
         "feature": {
           "description": "Specifies which feature is being tracked if the request contains more than one feature.",
           "enum": [
@@ -4154,6 +4278,33 @@
           "description": "Time-offset, relative to the beginning of the video, corresponding to the video frame for this location.",
           "format": "google-duration",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudVideointelligenceV1p3beta1_ExportToOutputUriStatus": {
+      "description": "Status of exporting annotation response to user specified `output_uri`.",
+      "id": "GoogleCloudVideointelligenceV1p3beta1_ExportToOutputUriStatus",
+      "properties": {
+        "state": {
+          "description": "Output only. State of the `output_uri` export.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "SUCCEEDED",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Export succeeded.",
+            "Export failed."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "status": {
+          "$ref": "GoogleRpc_Status",
+          "description": "Output only. Only set if state is FAILED.",
+          "readOnly": true
         }
       },
       "type": "object"
@@ -4702,6 +4853,10 @@
       "description": "Annotation progress for a single video.",
       "id": "GoogleCloudVideointelligenceV1p3beta1_VideoAnnotationProgress",
       "properties": {
+        "exportStatus": {
+          "$ref": "GoogleCloudVideointelligenceV1p3beta1_ExportToOutputUriStatus",
+          "description": "Status of exporting annotation response to user specified `output_uri`. Only set if `output_uri` is set in the request."
+        },
         "feature": {
           "description": "Specifies which feature is being tracked if the request contains more than one feature.",
           "enum": [
