@@ -1,0 +1,8 @@
+version = 1
+
+[[analyzers]]
+name = "go"
+
+  [analyzers.meta]
+  import_root = "github.com/josmarketplace/google-api-nodejs-client"
+  dependencies_vendored = true
