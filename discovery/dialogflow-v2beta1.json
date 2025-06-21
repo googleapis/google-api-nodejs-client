@@ -8602,7 +8602,7 @@
       }
     }
   },
-  "revision": "20250508",
+  "revision": "20250617",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AdvancedSettings": {
@@ -9069,7 +9069,7 @@
       "id": "GoogleCloudDialogflowCxV3EnvironmentVersionConfig",
       "properties": {
         "version": {
-          "description": "Required. Both flow and playbook versions are supported. Format for flow version: projects//locations//agents//flows//versions/. Format for playbook version: projects//locations//agents//playbooks//versions/.",
+          "description": "Required. Flow, playbook and tool versions are supported. Format for flow version: projects//locations//agents//flows//versions/. Format for playbook version: projects//locations//agents//playbooks//versions/. Format for tool version: projects//locations//agents//tools//versions/.",
           "type": "string"
         }
       },
@@ -9322,6 +9322,13 @@
           "description": "If the flag is true, the agent will utilize LLM to generate a text response. If LLM generation fails, the defined responses in the fulfillment will be respected. This flag is only useful for fulfillments associated with no-match event handlers.",
           "type": "boolean"
         },
+        "generators": {
+          "description": "A list of Generators to be called during this fulfillment.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowCxV3FulfillmentGeneratorSettings"
+          },
+          "type": "array"
+        },
         "messages": {
           "description": "The list of rich message responses to present to the user.",
           "items": {
@@ -9394,6 +9401,28 @@
         "message": {
           "$ref": "GoogleCloudDialogflowCxV3ResponseMessage",
           "description": "Returned message."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3FulfillmentGeneratorSettings": {
+      "description": "Generator settings used by the LLM to generate a text response.",
+      "id": "GoogleCloudDialogflowCxV3FulfillmentGeneratorSettings",
+      "properties": {
+        "generator": {
+          "description": "Required. The generator to call. Format: `projects//locations//agents//generators/`.",
+          "type": "string"
+        },
+        "inputParameters": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Map from placeholder parameter in the Generator to corresponding session parameters. By default, Dialogflow uses the session parameter with the same name to fill in the generator template. e.g. If there is a placeholder parameter `city` in the Generator, Dialogflow default to fill in the `$city` with `$session.params.city`. However, you may choose to fill `$city` with `$session.params.desination-city`. - Map key: parameter ID - Map value: session parameter name",
+          "type": "object"
+        },
+        "outputParameter": {
+          "description": "Required. Output parameter which should contain the generator response.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -11486,7 +11515,7 @@
       "id": "GoogleCloudDialogflowCxV3beta1EnvironmentVersionConfig",
       "properties": {
         "version": {
-          "description": "Required. Both flow and playbook versions are supported. Format for flow version: projects//locations//agents//flows//versions/. Format for playbook version: projects//locations//agents//playbooks//versions/.",
+          "description": "Required. Flow, playbook and tool versions are supported. Format for flow version: projects//locations//agents//flows//versions/. Format for playbook version: projects//locations//agents//playbooks//versions/. Format for tool version: projects//locations//agents//tools//versions/.",
           "type": "string"
         }
       },
@@ -11739,6 +11768,13 @@
           "description": "If the flag is true, the agent will utilize LLM to generate a text response. If LLM generation fails, the defined responses in the fulfillment will be respected. This flag is only useful for fulfillments associated with no-match event handlers.",
           "type": "boolean"
         },
+        "generators": {
+          "description": "A list of Generators to be called during this fulfillment.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowCxV3beta1FulfillmentGeneratorSettings"
+          },
+          "type": "array"
+        },
         "messages": {
           "description": "The list of rich message responses to present to the user.",
           "items": {
@@ -11811,6 +11847,28 @@
         "message": {
           "$ref": "GoogleCloudDialogflowCxV3beta1ResponseMessage",
           "description": "Returned message."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1FulfillmentGeneratorSettings": {
+      "description": "Generator settings used by the LLM to generate a text response.",
+      "id": "GoogleCloudDialogflowCxV3beta1FulfillmentGeneratorSettings",
+      "properties": {
+        "generator": {
+          "description": "Required. The generator to call. Format: `projects//locations//agents//generators/`.",
+          "type": "string"
+        },
+        "inputParameters": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Map from placeholder parameter in the Generator to corresponding session parameters. By default, Dialogflow uses the session parameter with the same name to fill in the generator template. e.g. If there is a placeholder parameter `city` in the Generator, Dialogflow default to fill in the `$city` with `$session.params.city`. However, you may choose to fill `$city` with `$session.params.desination-city`. - Map key: parameter ID - Map value: session parameter name",
+          "type": "object"
+        },
+        "outputParameter": {
+          "description": "Required. Output parameter which should contain the generator response.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -13793,6 +13851,11 @@
           "format": "google-datetime",
           "type": "string"
         },
+        "doneTime": {
+          "description": "The time when the operation finished.",
+          "format": "google-datetime",
+          "type": "string"
+        },
         "state": {
           "description": "State of CreateConversationModel operation.",
           "enum": [
@@ -13836,6 +13899,11 @@
           "description": "Timestamp when delete conversation model request was created. The time is measured on server side.",
           "format": "google-datetime",
           "type": "string"
+        },
+        "doneTime": {
+          "description": "The time when the operation finished.",
+          "format": "google-datetime",
+          "type": "string"
         }
       },
       "type": "object"
@@ -13850,6 +13918,11 @@
         },
         "createTime": {
           "description": "Timestamp when request to deploy conversation model was submitted. The time is measured on server side.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "doneTime": {
+          "description": "The time when the operation finished.",
           "format": "google-datetime",
           "type": "string"
         }
@@ -15254,6 +15327,11 @@
       "description": "Metadata in google::longrunning::Operation for Knowledge operations.",
       "id": "GoogleCloudDialogflowV2KnowledgeOperationMetadata",
       "properties": {
+        "doneTime": {
+          "description": "The time when the operation finished.",
+          "format": "google-datetime",
+          "type": "string"
+        },
         "exportOperationMetadata": {
           "$ref": "GoogleCloudDialogflowV2ExportOperationMetadata",
           "description": "Metadata for the Export Data Operation such as the destination of export."
@@ -15863,7 +15941,7 @@
       "id": "GoogleCloudDialogflowV2ToolCall",
       "properties": {
         "action": {
-          "description": "Required. The name of the tool's action associated with this call.",
+          "description": "Optional. The name of the tool's action associated with this call.",
           "type": "string"
         },
         "createTime": {
@@ -15881,7 +15959,7 @@
           "type": "object"
         },
         "tool": {
-          "description": "Required. The tool associated with this call. Format: `projects//locations//tools/`.",
+          "description": "Optional. The tool associated with this call. Format: `projects//locations//tools/`.",
           "type": "string"
         }
       },
@@ -15892,7 +15970,7 @@
       "id": "GoogleCloudDialogflowV2ToolCallResult",
       "properties": {
         "action": {
-          "description": "Required. The name of the tool's action associated with this call.",
+          "description": "Optional. The name of the tool's action associated with this call.",
           "type": "string"
         },
         "content": {
@@ -15915,7 +15993,7 @@
           "type": "string"
         },
         "tool": {
-          "description": "Required. The tool associated with this call. Format: `projects//locations//tools/`.",
+          "description": "Optional. The tool associated with this call. Format: `projects//locations//tools/`.",
           "type": "string"
         }
       },
@@ -15942,6 +16020,11 @@
         },
         "createTime": {
           "description": "Timestamp when the request to undeploy conversation model was submitted. The time is measured on server side.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "doneTime": {
+          "description": "The time when the operation finished.",
           "format": "google-datetime",
           "type": "string"
         }
@@ -20549,6 +20632,11 @@
       "description": "Metadata in google::longrunning::Operation for Knowledge operations.",
       "id": "GoogleCloudDialogflowV2beta1KnowledgeOperationMetadata",
       "properties": {
+        "doneTime": {
+          "description": "The time when the operation finished.",
+          "format": "google-datetime",
+          "type": "string"
+        },
         "exportOperationMetadata": {
           "$ref": "GoogleCloudDialogflowV2beta1ExportOperationMetadata",
           "description": "Metadata for the Export Data Operation such as the destination of export."
@@ -22982,7 +23070,7 @@
       "id": "GoogleCloudDialogflowV2beta1ToolCall",
       "properties": {
         "action": {
-          "description": "Required. The name of the tool's action associated with this call.",
+          "description": "Optional. The name of the tool's action associated with this call.",
           "type": "string"
         },
         "createTime": {
@@ -23000,7 +23088,7 @@
           "type": "object"
         },
         "tool": {
-          "description": "Required. The tool associated with this call. Format: `projects//locations//tools/`.",
+          "description": "Optional. The tool associated with this call. Format: `projects//locations//tools/`.",
           "type": "string"
         }
       },
@@ -23011,7 +23099,7 @@
       "id": "GoogleCloudDialogflowV2beta1ToolCallResult",
       "properties": {
         "action": {
-          "description": "Required. The name of the tool's action associated with this call.",
+          "description": "Optional. The name of the tool's action associated with this call.",
           "type": "string"
         },
         "content": {
@@ -23034,7 +23122,7 @@
           "type": "string"
         },
         "tool": {
-          "description": "Required. The tool associated with this call. Format: `projects//locations//tools/`.",
+          "description": "Optional. The tool associated with this call. Format: `projects//locations//tools/`.",
           "type": "string"
         }
       },
