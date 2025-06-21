@@ -1,5 +1,35 @@
 # Changelog
 
+## [15.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/bigquery-v15.0.0...bigquery-v15.0.1) (2025-06-04)
+
+
+### Bug Fixes
+
+* **deps:** upgrade googleapis-common to 8.0.2-rc ([f4b0990](https://github.com/googleapis/google-api-nodejs-client/commit/f4b099071040cfbcfe4a2e7d487d45ee93b369e0))
+
+## [15.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/bigquery-v14.6.0...bigquery-v15.0.0) (2025-05-29)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to node 18
+
+### Features
+
+* upgrade to node 18 ([682fbb8](https://github.com/googleapis/google-api-nodejs-client/commit/682fbb869189ae92b3e9a194d37d0548af0c1f92))
+
+## [14.6.0](https://github.com/googleapis/google-api-nodejs-client/compare/bigquery-v14.5.0...bigquery-v14.6.0) (2025-05-05)
+
+
+### Features
+
+* **bigquery:** update the API ([dc4cf69](https://github.com/googleapis/google-api-nodejs-client/commit/dc4cf6998e44ceb1305f3a7b1ac88b107fd24573))
+
+
+### Bug Fixes
+
+* **bigquery:** update the API ([7be9878](https://github.com/googleapis/google-api-nodejs-client/commit/7be98787e87f867c2d08190f7775467d2a96496f))
+
 ## [14.5.0](https://github.com/googleapis/google-api-nodejs-client/compare/bigquery-v14.4.0...bigquery-v14.5.0) (2025-03-19)
 
 

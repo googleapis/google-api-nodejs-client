@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -306,6 +306,68 @@ export namespace workflowexecutions_v1beta {
 
     /**
      * Cancels an execution of the given name.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/workflowexecutions.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const workflowexecutions = google.workflowexecutions('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await workflowexecutions.projects.locations.workflows.executions.cancel({
+     *       // Required. Name of the execution to be cancelled. Format: projects/{project\}/locations/{location\}/workflows/{workflow\}/executions/{execution\}
+     *       name: 'projects/my-project/locations/my-location/workflows/my-workflow/executions/my-execution',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {}
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "argument": "my_argument",
+     *   //   "callLogLevel": "my_callLogLevel",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "name": "my_name",
+     *   //   "result": "my_result",
+     *   //   "startTime": "my_startTime",
+     *   //   "state": "my_state",
+     *   //   "status": {},
+     *   //   "workflowRevisionId": "my_workflowRevisionId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -315,11 +377,11 @@ export namespace workflowexecutions_v1beta {
     cancel(
       params: Params$Resource$Projects$Locations$Workflows$Executions$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     cancel(
       params?: Params$Resource$Projects$Locations$Workflows$Executions$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Execution>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Execution>>;
     cancel(
       params: Params$Resource$Projects$Locations$Workflows$Executions$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -348,7 +410,10 @@ export namespace workflowexecutions_v1beta {
       callback?:
         | BodyResponseCallback<Schema$Execution>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Execution> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Execution>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workflows$Executions$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -396,6 +461,79 @@ export namespace workflowexecutions_v1beta {
 
     /**
      * Creates a new execution using the latest revision of the given workflow.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/workflowexecutions.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const workflowexecutions = google.workflowexecutions('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await workflowexecutions.projects.locations.workflows.executions.create({
+     *       // Required. Name of the workflow for which an execution should be created. Format: projects/{project\}/locations/{location\}/workflows/{workflow\} The latest revision of the workflow will be used.
+     *       parent: 'projects/my-project/locations/my-location/workflows/my-workflow',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "argument": "my_argument",
+     *         //   "callLogLevel": "my_callLogLevel",
+     *         //   "endTime": "my_endTime",
+     *         //   "error": {},
+     *         //   "name": "my_name",
+     *         //   "result": "my_result",
+     *         //   "startTime": "my_startTime",
+     *         //   "state": "my_state",
+     *         //   "status": {},
+     *         //   "workflowRevisionId": "my_workflowRevisionId"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "argument": "my_argument",
+     *   //   "callLogLevel": "my_callLogLevel",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "name": "my_name",
+     *   //   "result": "my_result",
+     *   //   "startTime": "my_startTime",
+     *   //   "state": "my_state",
+     *   //   "status": {},
+     *   //   "workflowRevisionId": "my_workflowRevisionId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -405,11 +543,11 @@ export namespace workflowexecutions_v1beta {
     create(
       params: Params$Resource$Projects$Locations$Workflows$Executions$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Workflows$Executions$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Execution>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Execution>>;
     create(
       params: Params$Resource$Projects$Locations$Workflows$Executions$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -438,7 +576,10 @@ export namespace workflowexecutions_v1beta {
       callback?:
         | BodyResponseCallback<Schema$Execution>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Execution> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Execution>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workflows$Executions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -486,6 +627,64 @@ export namespace workflowexecutions_v1beta {
 
     /**
      * Returns an execution of the given name.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/workflowexecutions.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const workflowexecutions = google.workflowexecutions('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await workflowexecutions.projects.locations.workflows.executions.get({
+     *       // Required. Name of the execution to be retrieved. Format: projects/{project\}/locations/{location\}/workflows/{workflow\}/executions/{execution\}
+     *       name: 'projects/my-project/locations/my-location/workflows/my-workflow/executions/my-execution',
+     *       // Optional. A view defining which fields should be filled in the returned execution. The API will default to the FULL view.
+     *       view: 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "argument": "my_argument",
+     *   //   "callLogLevel": "my_callLogLevel",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "name": "my_name",
+     *   //   "result": "my_result",
+     *   //   "startTime": "my_startTime",
+     *   //   "state": "my_state",
+     *   //   "status": {},
+     *   //   "workflowRevisionId": "my_workflowRevisionId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -495,11 +694,11 @@ export namespace workflowexecutions_v1beta {
     get(
       params: Params$Resource$Projects$Locations$Workflows$Executions$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Workflows$Executions$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Execution>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Execution>>;
     get(
       params: Params$Resource$Projects$Locations$Workflows$Executions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -528,7 +727,10 @@ export namespace workflowexecutions_v1beta {
       callback?:
         | BodyResponseCallback<Schema$Execution>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Execution> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Execution>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workflows$Executions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -573,6 +775,60 @@ export namespace workflowexecutions_v1beta {
 
     /**
      * Returns a list of executions which belong to the workflow with the given name. The method returns executions of all workflow revisions. Returned executions are ordered by their start time (newest first).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/workflowexecutions.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const workflowexecutions = google.workflowexecutions('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await workflowexecutions.projects.locations.workflows.executions.list({
+     *       // Maximum number of executions to return per call. Max supported value depends on the selected Execution view: it's 10000 for BASIC and 100 for FULL. The default value used if the field is not specified is 100, regardless of the selected view. Values greater than the max value will be coerced down to it.
+     *       pageSize: 'placeholder-value',
+     *       // A page token, received from a previous `ListExecutions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListExecutions` must match the call that provided the page token.
+     *       pageToken: 'placeholder-value',
+     *       // Required. Name of the workflow for which the executions should be listed. Format: projects/{project\}/locations/{location\}/workflows/{workflow\}
+     *       parent: 'projects/my-project/locations/my-location/workflows/my-workflow',
+     *       // Optional. A view defining which fields should be filled in the returned executions. The API will default to the BASIC view.
+     *       view: 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "executions": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -582,11 +838,11 @@ export namespace workflowexecutions_v1beta {
     list(
       params: Params$Resource$Projects$Locations$Workflows$Executions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Workflows$Executions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListExecutionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListExecutionsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Workflows$Executions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -619,8 +875,8 @@ export namespace workflowexecutions_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListExecutionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListExecutionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workflows$Executions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

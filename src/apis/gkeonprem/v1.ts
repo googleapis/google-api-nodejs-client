@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -594,6 +594,10 @@ export namespace gkeonprem_v1 {
      * Output only. The object name of the bare metal user cluster custom resource on the associated admin cluster. This field is used to support conflicting names when enrolling existing clusters to the API. When used as a part of cluster enrollment, this field will differ from the name in the resource name. For new clusters, this field will match the user provided cluster name and be visible in the last component of the resource name. It is not modifiable. When the local name and cluster name differ, the local name is used in the admin cluster controller logs. You use the cluster name when accessing the cluster using bmctl and kubectl.
      */
     localName?: string | null;
+    /**
+     * Output only. The namespace of the cluster.
+     */
+    localNamespace?: string | null;
     /**
      * Maintenance configuration.
      */
@@ -1226,6 +1230,10 @@ export namespace gkeonprem_v1 {
      * Optional. The object name of the bare metal cluster custom resource on the associated admin cluster. This field is used to support conflicting resource names when enrolling existing clusters to the API. When not provided, this field will resolve to the bare_metal_cluster_id. Otherwise, it must match the object name of the bare metal cluster custom resource. It is not modifiable outside / beyond the enrollment operation.
      */
     localName?: string | null;
+    /**
+     * Optional. The namespace of the cluster.
+     */
+    localNamespace?: string | null;
   }
   /**
    * Message for enrolling an existing bare metal node pool to the GKE on-prem API.
@@ -1973,6 +1981,10 @@ export namespace gkeonprem_v1 {
      */
     preparedSecrets?: Schema$VmwareAdminPreparedSecretsConfig;
     /**
+     * Configuration for registry.
+     */
+    privateRegistryConfig?: Schema$VmwareAdminPrivateRegistryConfig;
+    /**
      * Output only. If set, there are currently changes in flight to the VMware admin cluster.
      */
     reconciling?: boolean | null;
@@ -2141,6 +2153,19 @@ export namespace gkeonprem_v1 {
      * Whether prepared secrets is enabled.
      */
     enabled?: boolean | null;
+  }
+  /**
+   * VmwareAdminPrivateRegistryConfig represents configuration for admin cluster registry.
+   */
+  export interface Schema$VmwareAdminPrivateRegistryConfig {
+    /**
+     * The registry address.
+     */
+    address?: string | null;
+    /**
+     * When the container runtime pulls an image from private registry, the registry must prove its identity by presenting a certificate. The registry's certificate is signed by a certificate authority (CA). The container runtime uses the CA's certificate to validate the registry's certificate.
+     */
+    caCert?: string | null;
   }
   /**
    * VmwareSeesawConfig represents configuration parameters for an already existing Seesaw load balancer. IMPORTANT: Please note that the Anthos On-Prem API will not generate or update Seesaw configurations it can only bind a pre-existing configuration to a new user cluster. IMPORTANT: When attempting to create a user cluster with a pre-existing Seesaw load balancer you will need to follow some preparation steps before calling the 'CreateVmwareCluster' API method. First you will need to create the user cluster's namespace via kubectl. The namespace will need to use the following naming convention : -gke-onprem-mgmt or -gke-onprem-mgmt depending on whether you used the 'VmwareCluster.local_name' to disambiguate collisions; for more context see the documentation of 'VmwareCluster.local_name'. Once the namespace is created you will need to create a secret resource via kubectl. This secret will contain copies of your Seesaw credentials. The Secret must be called 'user-cluster-creds' and contain Seesaw's SSH and Cert credentials. The credentials must be keyed with the following names: 'seesaw-ssh-private-key', 'seesaw-ssh-public-key', 'seesaw-ssh-ca-key', 'seesaw-ssh-ca-cert'.
@@ -2954,6 +2979,56 @@ export namespace gkeonprem_v1 {
 
     /**
      * Gets information about a location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gkeonprem.projects.locations.get({
+     *     // Resource name for the location.
+     *     name: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "labels": {},
+     *   //   "locationId": "my_locationId",
+     *   //   "metadata": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2963,11 +3038,11 @@ export namespace gkeonprem_v1 {
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Location>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Location>>;
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2996,7 +3071,10 @@ export namespace gkeonprem_v1 {
       callback?:
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Location> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3039,6 +3117,61 @@ export namespace gkeonprem_v1 {
 
     /**
      * Lists information about the supported locations for this service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gkeonprem.projects.locations.list({
+     *     // Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     *     extraLocationTypes: 'placeholder-value',
+     *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
+     *     filter: 'placeholder-value',
+     *     // The resource that owns the locations collection, if applicable.
+     *     name: 'projects/my-project',
+     *     // The maximum number of results to return. If not set, the service selects a default.
+     *     pageSize: 'placeholder-value',
+     *     // A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "locations": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3048,11 +3181,11 @@ export namespace gkeonprem_v1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListLocationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3085,8 +3218,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListLocationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3175,6 +3308,98 @@ export namespace gkeonprem_v1 {
 
     /**
      * Creates a new bare metal admin cluster in a given project and location. The API needs to be combined with creating a bootstrap cluster to work. See: https://cloud.google.com/anthos/clusters/docs/bare-metal/latest/installing/creating-clusters/create-admin-cluster-api#prepare_bootstrap_environment
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gkeonprem.projects.locations.bareMetalAdminClusters.create({
+     *     // Optional. If set to true, CLM will force CCFE to persist the cluster resource in RMS when the creation fails during standalone preflight checks. In that case the subsequent create call will fail with "cluster already exists" error and hence a update cluster is required to fix the cluster.
+     *     allowPreflightFailure: 'placeholder-value',
+     *     // Required. User provided identifier that is used as part of the resource name; must conform to RFC-1034 and additionally restrict to lower-cased letters. This comes out roughly to: /^a-z+[a-z0-9]$/
+     *     bareMetalAdminClusterId: 'placeholder-value',
+     *     // Required. The parent of the project and location where the cluster is created in. Format: "projects/{project\}/locations/{location\}"
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // Validate the request without actually doing any updates.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "annotations": {},
+     *       //   "bareMetalVersion": "my_bareMetalVersion",
+     *       //   "binaryAuthorization": {},
+     *       //   "clusterOperations": {},
+     *       //   "controlPlane": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "deleteTime": "my_deleteTime",
+     *       //   "description": "my_description",
+     *       //   "endpoint": "my_endpoint",
+     *       //   "etag": "my_etag",
+     *       //   "fleet": {},
+     *       //   "loadBalancer": {},
+     *       //   "localName": "my_localName",
+     *       //   "maintenanceConfig": {},
+     *       //   "maintenanceStatus": {},
+     *       //   "name": "my_name",
+     *       //   "networkConfig": {},
+     *       //   "nodeAccessConfig": {},
+     *       //   "nodeConfig": {},
+     *       //   "osEnvironmentConfig": {},
+     *       //   "proxy": {},
+     *       //   "reconciling": false,
+     *       //   "securityConfig": {},
+     *       //   "state": "my_state",
+     *       //   "status": {},
+     *       //   "storage": {},
+     *       //   "uid": "my_uid",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "validationCheck": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3184,11 +3409,11 @@ export namespace gkeonprem_v1 {
     create(
       params: Params$Resource$Projects$Locations$Baremetaladminclusters$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Baremetaladminclusters$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Baremetaladminclusters$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3217,7 +3442,10 @@ export namespace gkeonprem_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Baremetaladminclusters$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3264,6 +3492,65 @@ export namespace gkeonprem_v1 {
 
     /**
      * Enrolls an existing bare metal admin cluster to the Anthos On-Prem API within a given project and location. Through enrollment, an existing admin cluster will become Anthos On-Prem API managed. The corresponding GCP resources will be created and all future modifications to the cluster will be expected to be performed through the API.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gkeonprem.projects.locations.bareMetalAdminClusters.enroll({
+     *     // Required. The parent of the project and location where the cluster is enrolled in. Format: "projects/{project\}/locations/{location\}"
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bareMetalAdminClusterId": "my_bareMetalAdminClusterId",
+     *       //   "membership": "my_membership"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3273,11 +3560,11 @@ export namespace gkeonprem_v1 {
     enroll(
       params: Params$Resource$Projects$Locations$Baremetaladminclusters$Enroll,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     enroll(
       params?: Params$Resource$Projects$Locations$Baremetaladminclusters$Enroll,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     enroll(
       params: Params$Resource$Projects$Locations$Baremetaladminclusters$Enroll,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3306,7 +3593,10 @@ export namespace gkeonprem_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Baremetaladminclusters$Enroll;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3352,6 +3642,84 @@ export namespace gkeonprem_v1 {
 
     /**
      * Gets details of a single bare metal admin cluster.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gkeonprem.projects.locations.bareMetalAdminClusters.get({
+     *     // Optional. If true, return BareMetal Admin Cluster including the one that only exists in RMS.
+     *     allowMissing: 'placeholder-value',
+     *     // Required. Name of the bare metal admin cluster to get. Format: "projects/{project\}/locations/{location\}/bareMetalAdminClusters/{bare_metal_admin_cluster\}"
+     *     name: 'projects/my-project/locations/my-location/bareMetalAdminClusters/my-bareMetalAdminCluster',
+     *     // View for bare metal admin cluster. When `BASIC` is specified, only the cluster resource name and membership are returned. The default/unset value `CLUSTER_VIEW_UNSPECIFIED` is the same as `FULL', which returns the complete cluster configuration details.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "annotations": {},
+     *   //   "bareMetalVersion": "my_bareMetalVersion",
+     *   //   "binaryAuthorization": {},
+     *   //   "clusterOperations": {},
+     *   //   "controlPlane": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "deleteTime": "my_deleteTime",
+     *   //   "description": "my_description",
+     *   //   "endpoint": "my_endpoint",
+     *   //   "etag": "my_etag",
+     *   //   "fleet": {},
+     *   //   "loadBalancer": {},
+     *   //   "localName": "my_localName",
+     *   //   "maintenanceConfig": {},
+     *   //   "maintenanceStatus": {},
+     *   //   "name": "my_name",
+     *   //   "networkConfig": {},
+     *   //   "nodeAccessConfig": {},
+     *   //   "nodeConfig": {},
+     *   //   "osEnvironmentConfig": {},
+     *   //   "proxy": {},
+     *   //   "reconciling": false,
+     *   //   "securityConfig": {},
+     *   //   "state": "my_state",
+     *   //   "status": {},
+     *   //   "storage": {},
+     *   //   "uid": "my_uid",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "validationCheck": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3361,11 +3729,11 @@ export namespace gkeonprem_v1 {
     get(
       params: Params$Resource$Projects$Locations$Baremetaladminclusters$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Baremetaladminclusters$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BareMetalAdminCluster>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BareMetalAdminCluster>>;
     get(
       params: Params$Resource$Projects$Locations$Baremetaladminclusters$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3398,8 +3766,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BareMetalAdminCluster>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$BareMetalAdminCluster>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Baremetaladminclusters$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3443,6 +3811,58 @@ export namespace gkeonprem_v1 {
 
     /**
      * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await gkeonprem.projects.locations.bareMetalAdminClusters.getIamPolicy({
+     *       // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     *       'options.requestedPolicyVersion': 'placeholder-value',
+     *       // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/bareMetalAdminClusters/my-bareMetalAdminCluster',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3452,11 +3872,11 @@ export namespace gkeonprem_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Baremetaladminclusters$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Baremetaladminclusters$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Baremetaladminclusters$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3485,7 +3905,10 @@ export namespace gkeonprem_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Baremetaladminclusters$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3532,6 +3955,62 @@ export namespace gkeonprem_v1 {
 
     /**
      * Lists bare metal admin clusters in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gkeonprem.projects.locations.bareMetalAdminClusters.list({
+     *     // Optional. If true, return list of BareMetal Admin Clusters including the ones that only exists in RMS.
+     *     allowMissing: 'placeholder-value',
+     *     // Requested page size. Server may return fewer items than requested. If unspecified, at most 50 clusters will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results the server should return.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent of the project and location where the clusters are listed in. Format: "projects/{project\}/locations/{location\}"
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // View for bare metal admin clusters. When `BASIC` is specified, only the admin cluster resource name and membership are returned. The default/unset value `CLUSTER_VIEW_UNSPECIFIED` is the same as `FULL', which returns the complete admin cluster configuration details.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bareMetalAdminClusters": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3541,11 +4020,13 @@ export namespace gkeonprem_v1 {
     list(
       params: Params$Resource$Projects$Locations$Baremetaladminclusters$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Baremetaladminclusters$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListBareMetalAdminClustersResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListBareMetalAdminClustersResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Baremetaladminclusters$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3580,8 +4061,10 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListBareMetalAdminClustersResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListBareMetalAdminClustersResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Baremetaladminclusters$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3630,6 +4113,96 @@ export namespace gkeonprem_v1 {
 
     /**
      * Updates the parameters of a single bare metal admin cluster.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gkeonprem.projects.locations.bareMetalAdminClusters.patch({
+     *     // Immutable. The bare metal admin cluster resource name.
+     *     name: 'projects/my-project/locations/my-location/bareMetalAdminClusters/my-bareMetalAdminCluster',
+     *     // Required. Field mask is used to specify the fields to be overwritten in the BareMetalAdminCluster resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all populated fields in the BareMetalAdminCluster message will be updated. Empty fields will be ignored unless a field mask is used.
+     *     updateMask: 'placeholder-value',
+     *     // Validate the request without actually doing any updates.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "annotations": {},
+     *       //   "bareMetalVersion": "my_bareMetalVersion",
+     *       //   "binaryAuthorization": {},
+     *       //   "clusterOperations": {},
+     *       //   "controlPlane": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "deleteTime": "my_deleteTime",
+     *       //   "description": "my_description",
+     *       //   "endpoint": "my_endpoint",
+     *       //   "etag": "my_etag",
+     *       //   "fleet": {},
+     *       //   "loadBalancer": {},
+     *       //   "localName": "my_localName",
+     *       //   "maintenanceConfig": {},
+     *       //   "maintenanceStatus": {},
+     *       //   "name": "my_name",
+     *       //   "networkConfig": {},
+     *       //   "nodeAccessConfig": {},
+     *       //   "nodeConfig": {},
+     *       //   "osEnvironmentConfig": {},
+     *       //   "proxy": {},
+     *       //   "reconciling": false,
+     *       //   "securityConfig": {},
+     *       //   "state": "my_state",
+     *       //   "status": {},
+     *       //   "storage": {},
+     *       //   "uid": "my_uid",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "validationCheck": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3639,11 +4212,11 @@ export namespace gkeonprem_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Baremetaladminclusters$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Baremetaladminclusters$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Baremetaladminclusters$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3672,7 +4245,10 @@ export namespace gkeonprem_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Baremetaladminclusters$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3716,6 +4292,57 @@ export namespace gkeonprem_v1 {
 
     /**
      * Queries the bare metal admin cluster version config.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await gkeonprem.projects.locations.bareMetalAdminClusters.queryVersionConfig(
+     *       {
+     *         // Required. The parent of the project and location to query for version config. Format: "projects/{project\}/locations/{location\}"
+     *         parent: 'projects/my-project/locations/my-location',
+     *         // The admin cluster resource name. This is the full resource name of the admin cluster resource. Format: "projects/{project\}/locations/{location\}/bareMetalAdminClusters/{bare_metal_admin_cluster\}"
+     *         'upgradeConfig.clusterName': 'placeholder-value',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "versions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3725,11 +4352,13 @@ export namespace gkeonprem_v1 {
     queryVersionConfig(
       params: Params$Resource$Projects$Locations$Baremetaladminclusters$Queryversionconfig,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     queryVersionConfig(
       params?: Params$Resource$Projects$Locations$Baremetaladminclusters$Queryversionconfig,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$QueryBareMetalAdminVersionConfigResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$QueryBareMetalAdminVersionConfigResponse>
+    >;
     queryVersionConfig(
       params: Params$Resource$Projects$Locations$Baremetaladminclusters$Queryversionconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3764,8 +4393,10 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$QueryBareMetalAdminVersionConfigResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$QueryBareMetalAdminVersionConfigResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Baremetaladminclusters$Queryversionconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3814,6 +4445,64 @@ export namespace gkeonprem_v1 {
 
     /**
      * Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await gkeonprem.projects.locations.bareMetalAdminClusters.setIamPolicy({
+     *       // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/bareMetalAdminClusters/my-bareMetalAdminCluster',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "policy": {}
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3823,11 +4512,11 @@ export namespace gkeonprem_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Baremetaladminclusters$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Baremetaladminclusters$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Baremetaladminclusters$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3856,7 +4545,10 @@ export namespace gkeonprem_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Baremetaladminclusters$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3903,6 +4595,64 @@ export namespace gkeonprem_v1 {
 
     /**
      * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await gkeonprem.projects.locations.bareMetalAdminClusters.testIamPermissions(
+     *       {
+     *         // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *         resource:
+     *           'projects/my-project/locations/my-location/bareMetalAdminClusters/my-bareMetalAdminCluster',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "permissions": []
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3912,11 +4662,11 @@ export namespace gkeonprem_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Baremetaladminclusters$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Baremetaladminclusters$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Baremetaladminclusters$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3951,8 +4701,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Baremetaladminclusters$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3999,6 +4749,65 @@ export namespace gkeonprem_v1 {
 
     /**
      * Unenrolls an existing bare metal admin cluster from the Anthos On-Prem API within a given project and location. Unenrollment removes the Cloud reference to the cluster without modifying the underlying OnPrem Resources. Clusters will continue to run; however, they will no longer be accessible through the Anthos On-Prem API or its clients.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await gkeonprem.projects.locations.bareMetalAdminClusters.unenroll({
+     *       // If set to true, and the bare metal admin cluster is not found, the request will succeed but no action will be taken on the server and return a completed LRO.
+     *       allowMissing: 'placeholder-value',
+     *       // The current etag of the bare metal admin cluster. If an etag is provided and does not match the current etag of the cluster, deletion will be blocked and an ABORTED error will be returned.
+     *       etag: 'placeholder-value',
+     *       // If set to true, the unenrollment of a bare metal admin cluster resource will succeed even if errors occur during unenrollment. This parameter can be used when you want to unenroll admin cluster resource and the on-prem admin cluster is disconnected / unreachable. WARNING: Using this parameter when your admin cluster still exists may result in a deleted GCP admin cluster but existing resourcelink in on-prem admin cluster and membership.
+     *       ignoreErrors: 'placeholder-value',
+     *       // Required. Name of the bare metal admin cluster to be unenrolled. Format: "projects/{project\}/locations/{location\}/bareMetalAdminClusters/{cluster\}"
+     *       name: 'projects/my-project/locations/my-location/bareMetalAdminClusters/my-bareMetalAdminCluster',
+     *       // Validate the request without actually doing any updates.
+     *       validateOnly: 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4008,11 +4817,11 @@ export namespace gkeonprem_v1 {
     unenroll(
       params: Params$Resource$Projects$Locations$Baremetaladminclusters$Unenroll,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     unenroll(
       params?: Params$Resource$Projects$Locations$Baremetaladminclusters$Unenroll,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     unenroll(
       params: Params$Resource$Projects$Locations$Baremetaladminclusters$Unenroll,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4041,7 +4850,10 @@ export namespace gkeonprem_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Baremetaladminclusters$Unenroll;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4259,6 +5071,57 @@ export namespace gkeonprem_v1 {
 
     /**
      * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await gkeonprem.projects.locations.bareMetalAdminClusters.operations.get({
+     *       // The name of the operation resource.
+     *       name: 'projects/my-project/locations/my-location/bareMetalAdminClusters/my-bareMetalAdminCluster/operations/my-operation',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4268,11 +5131,11 @@ export namespace gkeonprem_v1 {
     get(
       params: Params$Resource$Projects$Locations$Baremetaladminclusters$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Baremetaladminclusters$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     get(
       params: Params$Resource$Projects$Locations$Baremetaladminclusters$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4301,7 +5164,10 @@ export namespace gkeonprem_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Baremetaladminclusters$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4345,6 +5211,60 @@ export namespace gkeonprem_v1 {
 
     /**
      * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await gkeonprem.projects.locations.bareMetalAdminClusters.operations.list({
+     *       // The standard list filter.
+     *       filter: 'placeholder-value',
+     *       // The name of the operation's parent resource.
+     *       name: 'projects/my-project/locations/my-location/bareMetalAdminClusters/my-bareMetalAdminCluster',
+     *       // The standard list page size.
+     *       pageSize: 'placeholder-value',
+     *       // The standard list page token.
+     *       pageToken: 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "operations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4354,11 +5274,11 @@ export namespace gkeonprem_v1 {
     list(
       params: Params$Resource$Projects$Locations$Baremetaladminclusters$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Baremetaladminclusters$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListOperationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Baremetaladminclusters$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4391,8 +5311,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListOperationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Baremetaladminclusters$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4483,6 +5403,102 @@ export namespace gkeonprem_v1 {
 
     /**
      * Creates a new bare metal cluster in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gkeonprem.projects.locations.bareMetalClusters.create({
+     *     // Optional. If set to true, CLM will force CCFE to persist the cluster resource in RMS when the creation fails during standalone preflight checks. In that case the subsequent create call will fail with "cluster already exists" error and hence a update cluster is required to fix the cluster.
+     *     allowPreflightFailure: 'placeholder-value',
+     *     // Required. User provided identifier that is used as part of the resource name; must conform to RFC-1034 and additionally restrict to lower-cased letters. This comes out roughly to: /^a-z+[a-z0-9]$/
+     *     bareMetalClusterId: 'placeholder-value',
+     *     // Required. The parent of the project and location where the cluster is created in. Format: "projects/{project\}/locations/{location\}"
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // Validate the request without actually doing any updates.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "adminClusterMembership": "my_adminClusterMembership",
+     *       //   "adminClusterName": "my_adminClusterName",
+     *       //   "annotations": {},
+     *       //   "bareMetalVersion": "my_bareMetalVersion",
+     *       //   "binaryAuthorization": {},
+     *       //   "clusterOperations": {},
+     *       //   "controlPlane": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "deleteTime": "my_deleteTime",
+     *       //   "description": "my_description",
+     *       //   "endpoint": "my_endpoint",
+     *       //   "etag": "my_etag",
+     *       //   "fleet": {},
+     *       //   "loadBalancer": {},
+     *       //   "localName": "my_localName",
+     *       //   "localNamespace": "my_localNamespace",
+     *       //   "maintenanceConfig": {},
+     *       //   "maintenanceStatus": {},
+     *       //   "name": "my_name",
+     *       //   "networkConfig": {},
+     *       //   "nodeAccessConfig": {},
+     *       //   "nodeConfig": {},
+     *       //   "osEnvironmentConfig": {},
+     *       //   "proxy": {},
+     *       //   "reconciling": false,
+     *       //   "securityConfig": {},
+     *       //   "state": "my_state",
+     *       //   "status": {},
+     *       //   "storage": {},
+     *       //   "uid": "my_uid",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "upgradePolicy": {},
+     *       //   "validationCheck": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4492,11 +5508,11 @@ export namespace gkeonprem_v1 {
     create(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Baremetalclusters$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4525,7 +5541,10 @@ export namespace gkeonprem_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Baremetalclusters$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4572,6 +5591,66 @@ export namespace gkeonprem_v1 {
 
     /**
      * Deletes a single bare metal Cluster.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gkeonprem.projects.locations.bareMetalClusters.delete({
+     *     // If set to true, and the bare metal cluster is not found, the request will succeed but no action will be taken on the server and return a completed LRO.
+     *     allowMissing: 'placeholder-value',
+     *     // The current etag of the bare metal Cluster. If an etag is provided and does not match the current etag of the cluster, deletion will be blocked and an ABORTED error will be returned.
+     *     etag: 'placeholder-value',
+     *     // If set to true, any node pools from the cluster will also be deleted.
+     *     force: 'placeholder-value',
+     *     // If set to true, the deletion of a bare metal user cluster resource will succeed even if errors occur during deletion. This parameter can be used when you want to delete GCP's cluster resource and the on-prem admin cluster that hosts your user cluster is disconnected / unreachable or deleted. WARNING: Using this parameter when your user cluster still exists may result in a deleted GCP user cluster but an existing on-prem user cluster.
+     *     ignoreErrors: 'placeholder-value',
+     *     // Required. Name of the bare metal user cluster to be deleted. Format: "projects/{project\}/locations/{location\}/bareMetalClusters/{bare_metal_cluster\}"
+     *     name: 'projects/my-project/locations/my-location/bareMetalClusters/my-bareMetalCluster',
+     *     // Validate the request without actually doing any updates.
+     *     validateOnly: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4581,11 +5660,11 @@ export namespace gkeonprem_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Baremetalclusters$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4614,7 +5693,10 @@ export namespace gkeonprem_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Baremetalclusters$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4658,6 +5740,67 @@ export namespace gkeonprem_v1 {
 
     /**
      * Enrolls an existing bare metal user cluster and its node pools to the Anthos On-Prem API within a given project and location. Through enrollment, an existing cluster will become Anthos On-Prem API managed. The corresponding GCP resources will be created and all future modifications to the cluster and/or its node pools will be expected to be performed through the API.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gkeonprem.projects.locations.bareMetalClusters.enroll({
+     *     // Required. The parent of the project and location where the cluster is enrolled in. Format: "projects/{project\}/locations/{location\}"
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "adminClusterMembership": "my_adminClusterMembership",
+     *       //   "bareMetalClusterId": "my_bareMetalClusterId",
+     *       //   "localName": "my_localName",
+     *       //   "localNamespace": "my_localNamespace"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4667,11 +5810,11 @@ export namespace gkeonprem_v1 {
     enroll(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Enroll,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     enroll(
       params?: Params$Resource$Projects$Locations$Baremetalclusters$Enroll,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     enroll(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Enroll,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4700,7 +5843,10 @@ export namespace gkeonprem_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Baremetalclusters$Enroll;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4747,6 +5893,88 @@ export namespace gkeonprem_v1 {
 
     /**
      * Gets details of a single bare metal Cluster.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gkeonprem.projects.locations.bareMetalClusters.get({
+     *     // Optional. If true, return BareMetal Cluster including the one that only exists in RMS.
+     *     allowMissing: 'placeholder-value',
+     *     // Required. Name of the bare metal user cluster to get. Format: "projects/{project\}/locations/{location\}/bareMetalClusters/{bare_metal_cluster\}"
+     *     name: 'projects/my-project/locations/my-location/bareMetalClusters/my-bareMetalCluster',
+     *     // View for bare metal user cluster. When `BASIC` is specified, only the cluster resource name and admin cluster membership are returned. The default/unset value `CLUSTER_VIEW_UNSPECIFIED` is the same as `FULL', which returns the complete cluster configuration details.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "adminClusterMembership": "my_adminClusterMembership",
+     *   //   "adminClusterName": "my_adminClusterName",
+     *   //   "annotations": {},
+     *   //   "bareMetalVersion": "my_bareMetalVersion",
+     *   //   "binaryAuthorization": {},
+     *   //   "clusterOperations": {},
+     *   //   "controlPlane": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "deleteTime": "my_deleteTime",
+     *   //   "description": "my_description",
+     *   //   "endpoint": "my_endpoint",
+     *   //   "etag": "my_etag",
+     *   //   "fleet": {},
+     *   //   "loadBalancer": {},
+     *   //   "localName": "my_localName",
+     *   //   "localNamespace": "my_localNamespace",
+     *   //   "maintenanceConfig": {},
+     *   //   "maintenanceStatus": {},
+     *   //   "name": "my_name",
+     *   //   "networkConfig": {},
+     *   //   "nodeAccessConfig": {},
+     *   //   "nodeConfig": {},
+     *   //   "osEnvironmentConfig": {},
+     *   //   "proxy": {},
+     *   //   "reconciling": false,
+     *   //   "securityConfig": {},
+     *   //   "state": "my_state",
+     *   //   "status": {},
+     *   //   "storage": {},
+     *   //   "uid": "my_uid",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "upgradePolicy": {},
+     *   //   "validationCheck": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4756,11 +5984,11 @@ export namespace gkeonprem_v1 {
     get(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Baremetalclusters$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BareMetalCluster>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BareMetalCluster>>;
     get(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4789,7 +6017,10 @@ export namespace gkeonprem_v1 {
       callback?:
         | BodyResponseCallback<Schema$BareMetalCluster>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$BareMetalCluster> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$BareMetalCluster>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Baremetalclusters$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4832,6 +6063,59 @@ export namespace gkeonprem_v1 {
 
     /**
      * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gkeonprem.projects.locations.bareMetalClusters.getIamPolicy(
+     *     {
+     *       // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     *       'options.requestedPolicyVersion': 'placeholder-value',
+     *       // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/bareMetalClusters/my-bareMetalCluster',
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4841,11 +6125,11 @@ export namespace gkeonprem_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Baremetalclusters$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4874,7 +6158,10 @@ export namespace gkeonprem_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Baremetalclusters$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4921,6 +6208,64 @@ export namespace gkeonprem_v1 {
 
     /**
      * Lists bare metal clusters in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gkeonprem.projects.locations.bareMetalClusters.list({
+     *     // Optional. If true, return list of BareMetal Clusters including the ones that only exists in RMS.
+     *     allowMissing: 'placeholder-value',
+     *     // A resource filtering expression following https://google.aip.dev/160. When non-empty, only resource's whose attributes field matches the filter are returned.
+     *     filter: 'placeholder-value',
+     *     // Requested page size. Server may return fewer items than requested. If unspecified, at most 50 clusters will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results the server should return.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent of the project and location where the clusters are listed in. Format: "projects/{project\}/locations/{location\}"
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // View for bare metal Clusters. When `BASIC` is specified, only the cluster resource name and admin cluster membership are returned. The default/unset value `CLUSTER_VIEW_UNSPECIFIED` is the same as `FULL', which returns the complete cluster configuration details.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bareMetalClusters": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4930,11 +6275,11 @@ export namespace gkeonprem_v1 {
     list(
       params: Params$Resource$Projects$Locations$Baremetalclusters$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Baremetalclusters$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListBareMetalClustersResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListBareMetalClustersResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Baremetalclusters$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4969,8 +6314,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListBareMetalClustersResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListBareMetalClustersResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Baremetalclusters$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5019,6 +6364,102 @@ export namespace gkeonprem_v1 {
 
     /**
      * Updates the parameters of a single bare metal Cluster.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gkeonprem.projects.locations.bareMetalClusters.patch({
+     *     // If set to true, and the bare metal cluster is not found, the request will create a new bare metal cluster with the provided configuration. The user must have both create and update permission to call Update with allow_missing set to true.
+     *     allowMissing: 'placeholder-value',
+     *     // Immutable. The bare metal user cluster resource name.
+     *     name: 'projects/my-project/locations/my-location/bareMetalClusters/my-bareMetalCluster',
+     *     // Required. Field mask is used to specify the fields to be overwritten in the BareMetalCluster resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all populated fields in the BareMetalCluster message will be updated. Empty fields will be ignored unless a field mask is used.
+     *     updateMask: 'placeholder-value',
+     *     // Validate the request without actually doing any updates.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "adminClusterMembership": "my_adminClusterMembership",
+     *       //   "adminClusterName": "my_adminClusterName",
+     *       //   "annotations": {},
+     *       //   "bareMetalVersion": "my_bareMetalVersion",
+     *       //   "binaryAuthorization": {},
+     *       //   "clusterOperations": {},
+     *       //   "controlPlane": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "deleteTime": "my_deleteTime",
+     *       //   "description": "my_description",
+     *       //   "endpoint": "my_endpoint",
+     *       //   "etag": "my_etag",
+     *       //   "fleet": {},
+     *       //   "loadBalancer": {},
+     *       //   "localName": "my_localName",
+     *       //   "localNamespace": "my_localNamespace",
+     *       //   "maintenanceConfig": {},
+     *       //   "maintenanceStatus": {},
+     *       //   "name": "my_name",
+     *       //   "networkConfig": {},
+     *       //   "nodeAccessConfig": {},
+     *       //   "nodeConfig": {},
+     *       //   "osEnvironmentConfig": {},
+     *       //   "proxy": {},
+     *       //   "reconciling": false,
+     *       //   "securityConfig": {},
+     *       //   "state": "my_state",
+     *       //   "status": {},
+     *       //   "storage": {},
+     *       //   "uid": "my_uid",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "upgradePolicy": {},
+     *       //   "validationCheck": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5028,11 +6469,11 @@ export namespace gkeonprem_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Baremetalclusters$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5061,7 +6502,10 @@ export namespace gkeonprem_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Baremetalclusters$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5105,6 +6549,59 @@ export namespace gkeonprem_v1 {
 
     /**
      * Queries the bare metal user cluster version config.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await gkeonprem.projects.locations.bareMetalClusters.queryVersionConfig({
+     *       // The admin cluster membership. This is the full resource name of the admin cluster's fleet membership. Format: "projects/{project\}/locations/{location\}/memberships/{membership\}"
+     *       'createConfig.adminClusterMembership': 'placeholder-value',
+     *       // The admin cluster resource name. This is the full resource name of the admin cluster resource. Format: "projects/{project\}/locations/{location\}/bareMetalAdminClusters/{bare_metal_admin_cluster\}"
+     *       'createConfig.adminClusterName': 'placeholder-value',
+     *       // Required. The parent of the project and location to query for version config. Format: "projects/{project\}/locations/{location\}"
+     *       parent: 'projects/my-project/locations/my-location',
+     *       // The user cluster resource name. This is the full resource name of the user cluster resource. Format: "projects/{project\}/locations/{location\}/bareMetalClusters/{bare_metal_cluster\}"
+     *       'upgradeConfig.clusterName': 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "versions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5114,11 +6611,13 @@ export namespace gkeonprem_v1 {
     queryVersionConfig(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Queryversionconfig,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     queryVersionConfig(
       params?: Params$Resource$Projects$Locations$Baremetalclusters$Queryversionconfig,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$QueryBareMetalVersionConfigResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$QueryBareMetalVersionConfigResponse>
+    >;
     queryVersionConfig(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Queryversionconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5153,8 +6652,10 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$QueryBareMetalVersionConfigResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$QueryBareMetalVersionConfigResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Baremetalclusters$Queryversionconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5202,6 +6703,65 @@ export namespace gkeonprem_v1 {
 
     /**
      * Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gkeonprem.projects.locations.bareMetalClusters.setIamPolicy(
+     *     {
+     *       // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/bareMetalClusters/my-bareMetalCluster',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "policy": {}
+     *         // }
+     *       },
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5211,11 +6771,11 @@ export namespace gkeonprem_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Baremetalclusters$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5244,7 +6804,10 @@ export namespace gkeonprem_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Baremetalclusters$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5291,6 +6854,62 @@ export namespace gkeonprem_v1 {
 
     /**
      * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await gkeonprem.projects.locations.bareMetalClusters.testIamPermissions({
+     *       // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/bareMetalClusters/my-bareMetalCluster',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "permissions": []
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5300,11 +6919,11 @@ export namespace gkeonprem_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Baremetalclusters$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5339,8 +6958,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Baremetalclusters$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5387,6 +7006,64 @@ export namespace gkeonprem_v1 {
 
     /**
      * Unenrolls an existing bare metal user cluster and its node pools from the Anthos On-Prem API within a given project and location. Unenrollment removes the Cloud reference to the cluster without modifying the underlying OnPrem Resources. Clusters and node pools will continue to run; however, they will no longer be accessible through the Anthos On-Prem API or its clients.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gkeonprem.projects.locations.bareMetalClusters.unenroll({
+     *     // If set to true, and the bare metal cluster is not found, the request will succeed but no action will be taken on the server and return a completed LRO.
+     *     allowMissing: 'placeholder-value',
+     *     // The current etag of the bare metal Cluster. If an etag is provided and does not match the current etag of the cluster, deletion will be blocked and an ABORTED error will be returned.
+     *     etag: 'placeholder-value',
+     *     // This is required if the cluster has any associated node pools. When set, any child node pools will also be unenrolled.
+     *     force: 'placeholder-value',
+     *     // Required. Name of the bare metal user cluster to be unenrolled. Format: "projects/{project\}/locations/{location\}/bareMetalClusters/{cluster\}"
+     *     name: 'projects/my-project/locations/my-location/bareMetalClusters/my-bareMetalCluster',
+     *     // Validate the request without actually doing any updates.
+     *     validateOnly: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5396,11 +7073,11 @@ export namespace gkeonprem_v1 {
     unenroll(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Unenroll,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     unenroll(
       params?: Params$Resource$Projects$Locations$Baremetalclusters$Unenroll,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     unenroll(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Unenroll,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5429,7 +7106,10 @@ export namespace gkeonprem_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Baremetalclusters$Unenroll;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5695,6 +7375,84 @@ export namespace gkeonprem_v1 {
 
     /**
      * Creates a new bare metal node pool in a given project, location and Bare Metal cluster.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await gkeonprem.projects.locations.bareMetalClusters.bareMetalNodePools.create(
+     *       {
+     *         // The ID to use for the node pool, which will become the final component of the node pool's resource name. This value must be up to 63 characters, and valid characters are /a-z-/. The value must not be permitted to be a UUID (or UUID-like: anything matching /^[0-9a-f]{8\}(-[0-9a-f]{4\}){3\}-[0-9a-f]{12\}$/i).
+     *         bareMetalNodePoolId: 'placeholder-value',
+     *         // Required. The parent resource where this node pool will be created. projects/{project\}/locations/{location\}/bareMetalClusters/{cluster\}
+     *         parent:
+     *           'projects/my-project/locations/my-location/bareMetalClusters/my-bareMetalCluster',
+     *         // If set, only validate the request, but do not actually create the node pool.
+     *         validateOnly: 'placeholder-value',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "annotations": {},
+     *           //   "createTime": "my_createTime",
+     *           //   "deleteTime": "my_deleteTime",
+     *           //   "displayName": "my_displayName",
+     *           //   "etag": "my_etag",
+     *           //   "name": "my_name",
+     *           //   "nodePoolConfig": {},
+     *           //   "reconciling": false,
+     *           //   "state": "my_state",
+     *           //   "status": {},
+     *           //   "uid": "my_uid",
+     *           //   "updateTime": "my_updateTime",
+     *           //   "upgradePolicy": {}
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5704,11 +7462,11 @@ export namespace gkeonprem_v1 {
     create(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5737,7 +7495,10 @@ export namespace gkeonprem_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5784,6 +7545,67 @@ export namespace gkeonprem_v1 {
 
     /**
      * Deletes a single bare metal node pool.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await gkeonprem.projects.locations.bareMetalClusters.bareMetalNodePools.delete(
+     *       {
+     *         // If set to true, and the bare metal node pool is not found, the request will succeed but no action will be taken on the server and return a completed LRO.
+     *         allowMissing: 'placeholder-value',
+     *         // The current etag of the BareMetalNodePool. If an etag is provided and does not match the current etag of the node pool, deletion will be blocked and an ABORTED error will be returned.
+     *         etag: 'placeholder-value',
+     *         // If set to true, the deletion of a bare metal node pool resource will succeed even if errors occur during deletion. This parameter can be used when you want to delete GCP's node pool resource and you've already deleted the on-prem admin cluster that hosted your node pool. WARNING: Using this parameter when your user cluster still exists may result in a deleted GCP node pool but an existing on-prem node pool.
+     *         ignoreErrors: 'placeholder-value',
+     *         // Required. The name of the node pool to delete. Format: projects/{project\}/locations/{location\}/bareMetalClusters/{cluster\}/bareMetalNodePools/{nodepool\}
+     *         name: 'projects/my-project/locations/my-location/bareMetalClusters/my-bareMetalCluster/bareMetalNodePools/my-bareMetalNodePool',
+     *         // If set, only validate the request, but do not actually delete the node pool.
+     *         validateOnly: 'placeholder-value',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5793,11 +7615,11 @@ export namespace gkeonprem_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5826,7 +7648,10 @@ export namespace gkeonprem_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5870,6 +7695,69 @@ export namespace gkeonprem_v1 {
 
     /**
      * Enrolls an existing bare metal node pool to the Anthos On-Prem API within a given project and location. Through enrollment, an existing node pool will become Anthos On-Prem API managed. The corresponding GCP resources will be created.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await gkeonprem.projects.locations.bareMetalClusters.bareMetalNodePools.enroll(
+     *       {
+     *         // Required. The parent resource where this node pool will be created. projects/{project\}/locations/{location\}/bareMetalClusters/{cluster\}
+     *         parent:
+     *           'projects/my-project/locations/my-location/bareMetalClusters/my-bareMetalCluster',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "bareMetalNodePoolId": "my_bareMetalNodePoolId",
+     *           //   "validateOnly": false
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5879,11 +7767,11 @@ export namespace gkeonprem_v1 {
     enroll(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Enroll,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     enroll(
       params?: Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Enroll,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     enroll(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Enroll,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5912,7 +7800,10 @@ export namespace gkeonprem_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Enroll;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5959,6 +7850,69 @@ export namespace gkeonprem_v1 {
 
     /**
      * Gets details of a single bare metal node pool.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await gkeonprem.projects.locations.bareMetalClusters.bareMetalNodePools.get(
+     *       {
+     *         // Required. The name of the node pool to retrieve. projects/{project\}/locations/{location\}/bareMetalClusters/{cluster\}/bareMetalNodePools/{nodepool\}
+     *         name: 'projects/my-project/locations/my-location/bareMetalClusters/my-bareMetalCluster/bareMetalNodePools/my-bareMetalNodePool',
+     *         // View for bare metal node pool. When `BASIC` is specified, only the node pool resource name is returned. The default/unset value `NODE_POOL_VIEW_UNSPECIFIED` is the same as `FULL', which returns the complete node pool configuration details.
+     *         view: 'placeholder-value',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "annotations": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "deleteTime": "my_deleteTime",
+     *   //   "displayName": "my_displayName",
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "nodePoolConfig": {},
+     *   //   "reconciling": false,
+     *   //   "state": "my_state",
+     *   //   "status": {},
+     *   //   "uid": "my_uid",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "upgradePolicy": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5968,11 +7922,11 @@ export namespace gkeonprem_v1 {
     get(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BareMetalNodePool>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BareMetalNodePool>>;
     get(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6003,8 +7957,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BareMetalNodePool>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$BareMetalNodePool>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6048,6 +8002,60 @@ export namespace gkeonprem_v1 {
 
     /**
      * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await gkeonprem.projects.locations.bareMetalClusters.bareMetalNodePools.getIamPolicy(
+     *       {
+     *         // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     *         'options.requestedPolicyVersion': 'placeholder-value',
+     *         // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *         resource:
+     *           'projects/my-project/locations/my-location/bareMetalClusters/my-bareMetalCluster/bareMetalNodePools/my-bareMetalNodePool',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6057,11 +8065,11 @@ export namespace gkeonprem_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6090,7 +8098,10 @@ export namespace gkeonprem_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6137,6 +8148,64 @@ export namespace gkeonprem_v1 {
 
     /**
      * Lists bare metal node pools in a given project, location and bare metal cluster.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await gkeonprem.projects.locations.bareMetalClusters.bareMetalNodePools.list(
+     *       {
+     *         // The maximum number of node pools to return. The service may return fewer than this value. If unspecified, at most 50 node pools will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *         pageSize: 'placeholder-value',
+     *         // A page token, received from a previous `ListBareMetalNodePools` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListBareMetalNodePools` must match the call that provided the page token.
+     *         pageToken: 'placeholder-value',
+     *         // Required. The parent, which owns this collection of node pools. Format: projects/{project\}/locations/{location\}/bareMetalClusters/{bareMetalCluster\}
+     *         parent:
+     *           'projects/my-project/locations/my-location/bareMetalClusters/my-bareMetalCluster',
+     *         // View for bare metal node pools. When `BASIC` is specified, only the node pool resource name is returned. The default/unset value `NODE_POOL_VIEW_UNSPECIFIED` is the same as `FULL', which returns the complete node pool configuration details.
+     *         view: 'placeholder-value',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bareMetalNodePools": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6146,11 +8215,11 @@ export namespace gkeonprem_v1 {
     list(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListBareMetalNodePoolsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListBareMetalNodePoolsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6185,8 +8254,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListBareMetalNodePoolsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListBareMetalNodePoolsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6235,6 +8304,85 @@ export namespace gkeonprem_v1 {
 
     /**
      * Updates the parameters of a single bare metal node pool.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await gkeonprem.projects.locations.bareMetalClusters.bareMetalNodePools.patch(
+     *       {
+     *         // If set to true, and the bare metal node pool is not found, the request will create a new bare metal node pool with the provided configuration. The user must have both create and update permission to call Update with allow_missing set to true.
+     *         allowMissing: 'placeholder-value',
+     *         // Immutable. The bare metal node pool resource name.
+     *         name: 'projects/my-project/locations/my-location/bareMetalClusters/my-bareMetalCluster/bareMetalNodePools/my-bareMetalNodePool',
+     *         // Required. Field mask is used to specify the fields to be overwritten in the BareMetalNodePool resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all populated fields in the BareMetalNodePool message will be updated. Empty fields will be ignored unless a field mask is used.
+     *         updateMask: 'placeholder-value',
+     *         // Validate the request without actually doing any updates.
+     *         validateOnly: 'placeholder-value',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "annotations": {},
+     *           //   "createTime": "my_createTime",
+     *           //   "deleteTime": "my_deleteTime",
+     *           //   "displayName": "my_displayName",
+     *           //   "etag": "my_etag",
+     *           //   "name": "my_name",
+     *           //   "nodePoolConfig": {},
+     *           //   "reconciling": false,
+     *           //   "state": "my_state",
+     *           //   "status": {},
+     *           //   "uid": "my_uid",
+     *           //   "updateTime": "my_updateTime",
+     *           //   "upgradePolicy": {}
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6244,11 +8392,11 @@ export namespace gkeonprem_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6277,7 +8425,10 @@ export namespace gkeonprem_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6321,6 +8472,66 @@ export namespace gkeonprem_v1 {
 
     /**
      * Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await gkeonprem.projects.locations.bareMetalClusters.bareMetalNodePools.setIamPolicy(
+     *       {
+     *         // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *         resource:
+     *           'projects/my-project/locations/my-location/bareMetalClusters/my-bareMetalCluster/bareMetalNodePools/my-bareMetalNodePool',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "policy": {}
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6330,11 +8541,11 @@ export namespace gkeonprem_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6363,7 +8574,10 @@ export namespace gkeonprem_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6410,6 +8624,64 @@ export namespace gkeonprem_v1 {
 
     /**
      * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await gkeonprem.projects.locations.bareMetalClusters.bareMetalNodePools.testIamPermissions(
+     *       {
+     *         // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *         resource:
+     *           'projects/my-project/locations/my-location/bareMetalClusters/my-bareMetalCluster/bareMetalNodePools/my-bareMetalNodePool',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "permissions": []
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6419,11 +8691,11 @@ export namespace gkeonprem_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6458,8 +8730,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6506,6 +8778,65 @@ export namespace gkeonprem_v1 {
 
     /**
      * Unenrolls a bare metal node pool from Anthos On-Prem API.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await gkeonprem.projects.locations.bareMetalClusters.bareMetalNodePools.unenroll(
+     *       {
+     *         // If set to true, and the bare metal node pool is not found, the request will succeed but no action will be taken on the server and return a completed LRO.
+     *         allowMissing: 'placeholder-value',
+     *         // The current etag of the bare metal node pool. If an etag is provided and does not match the current etag of node pool, deletion will be blocked and an ABORTED error will be returned.
+     *         etag: 'placeholder-value',
+     *         // Required. The name of the node pool to unenroll. Format: projects/{project\}/locations/{location\}/bareMetalClusters/{cluster\}/bareMetalNodePools/{nodepool\}
+     *         name: 'projects/my-project/locations/my-location/bareMetalClusters/my-bareMetalCluster/bareMetalNodePools/my-bareMetalNodePool',
+     *         // If set, only validate the request, but do not actually unenroll the node pool.
+     *         validateOnly: 'placeholder-value',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6515,11 +8846,11 @@ export namespace gkeonprem_v1 {
     unenroll(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Unenroll,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     unenroll(
       params?: Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Unenroll,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     unenroll(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Unenroll,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6548,7 +8879,10 @@ export namespace gkeonprem_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Unenroll;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6766,6 +9100,59 @@ export namespace gkeonprem_v1 {
 
     /**
      * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await gkeonprem.projects.locations.bareMetalClusters.bareMetalNodePools.operations.get(
+     *       {
+     *         // The name of the operation resource.
+     *         name: 'projects/my-project/locations/my-location/bareMetalClusters/my-bareMetalCluster/bareMetalNodePools/my-bareMetalNodePool/operations/my-operation',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6775,11 +9162,11 @@ export namespace gkeonprem_v1 {
     get(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     get(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6808,7 +9195,10 @@ export namespace gkeonprem_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6852,6 +9242,62 @@ export namespace gkeonprem_v1 {
 
     /**
      * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await gkeonprem.projects.locations.bareMetalClusters.bareMetalNodePools.operations.list(
+     *       {
+     *         // The standard list filter.
+     *         filter: 'placeholder-value',
+     *         // The name of the operation's parent resource.
+     *         name: 'projects/my-project/locations/my-location/bareMetalClusters/my-bareMetalCluster/bareMetalNodePools/my-bareMetalNodePool',
+     *         // The standard list page size.
+     *         pageSize: 'placeholder-value',
+     *         // The standard list page token.
+     *         pageToken: 'placeholder-value',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "operations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6861,11 +9307,11 @@ export namespace gkeonprem_v1 {
     list(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListOperationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6898,8 +9344,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListOperationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6980,6 +9426,57 @@ export namespace gkeonprem_v1 {
 
     /**
      * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await gkeonprem.projects.locations.bareMetalClusters.operations.get({
+     *       // The name of the operation resource.
+     *       name: 'projects/my-project/locations/my-location/bareMetalClusters/my-bareMetalCluster/operations/my-operation',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6989,11 +9486,11 @@ export namespace gkeonprem_v1 {
     get(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Baremetalclusters$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     get(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7022,7 +9519,10 @@ export namespace gkeonprem_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Baremetalclusters$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7066,6 +9566,60 @@ export namespace gkeonprem_v1 {
 
     /**
      * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await gkeonprem.projects.locations.bareMetalClusters.operations.list({
+     *       // The standard list filter.
+     *       filter: 'placeholder-value',
+     *       // The name of the operation's parent resource.
+     *       name: 'projects/my-project/locations/my-location/bareMetalClusters/my-bareMetalCluster',
+     *       // The standard list page size.
+     *       pageSize: 'placeholder-value',
+     *       // The standard list page token.
+     *       pageToken: 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "operations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7075,11 +9629,11 @@ export namespace gkeonprem_v1 {
     list(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Baremetalclusters$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListOperationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Baremetalclusters$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7112,8 +9666,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListOperationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Baremetalclusters$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7194,6 +9748,56 @@ export namespace gkeonprem_v1 {
 
     /**
      * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gkeonprem.projects.locations.operations.cancel({
+     *     // The name of the operation resource to be cancelled.
+     *     name: 'projects/my-project/locations/my-location/operations/my-operation',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7203,11 +9807,11 @@ export namespace gkeonprem_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     cancel(
       params?: Params$Resource$Projects$Locations$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7236,7 +9840,10 @@ export namespace gkeonprem_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7279,6 +9886,50 @@ export namespace gkeonprem_v1 {
 
     /**
      * Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gkeonprem.projects.locations.operations.delete({
+     *     // The name of the operation resource to be deleted.
+     *     name: 'projects/my-project/locations/my-location/operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7288,11 +9939,11 @@ export namespace gkeonprem_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7321,7 +9972,10 @@ export namespace gkeonprem_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7364,6 +10018,56 @@ export namespace gkeonprem_v1 {
 
     /**
      * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gkeonprem.projects.locations.operations.get({
+     *     // The name of the operation resource.
+     *     name: 'projects/my-project/locations/my-location/operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7373,11 +10077,11 @@ export namespace gkeonprem_v1 {
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7406,7 +10110,10 @@ export namespace gkeonprem_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7449,6 +10156,59 @@ export namespace gkeonprem_v1 {
 
     /**
      * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gkeonprem.projects.locations.operations.list({
+     *     // The standard list filter.
+     *     filter: 'placeholder-value',
+     *     // The name of the operation's parent resource.
+     *     name: 'projects/my-project/locations/my-location',
+     *     // The standard list page size.
+     *     pageSize: 'placeholder-value',
+     *     // The standard list page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "operations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7458,11 +10218,11 @@ export namespace gkeonprem_v1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListOperationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7495,8 +10255,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListOperationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7600,6 +10360,98 @@ export namespace gkeonprem_v1 {
 
     /**
      * Creates a new VMware admin cluster in a given project and location. The API needs to be combined with creating a bootstrap cluster to work.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gkeonprem.projects.locations.vmwareAdminClusters.create({
+     *     // Optional. If set to true, CLM will force CCFE to persist the cluster resource in RMS when the creation fails during standalone preflight checks. In that case the subsequent create call will fail with "cluster already exists" error and hence a update cluster is required to fix the cluster.
+     *     allowPreflightFailure: 'placeholder-value',
+     *     // Required. The parent of the project and location where the cluster is created in. Format: "projects/{project\}/locations/{location\}"
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // Validate the request without actually doing any updates.
+     *     validateOnly: 'placeholder-value',
+     *     // Required. User provided identifier that is used as part of the resource name; must conform to RFC-1034 and additionally restrict to lower-cased letters. This comes out roughly to: /^a-z+[a-z0-9]$/
+     *     vmwareAdminClusterId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "addonNode": {},
+     *       //   "annotations": {},
+     *       //   "antiAffinityGroups": {},
+     *       //   "authorization": {},
+     *       //   "autoRepairConfig": {},
+     *       //   "bootstrapClusterMembership": "my_bootstrapClusterMembership",
+     *       //   "controlPlaneNode": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "enableAdvancedCluster": false,
+     *       //   "endpoint": "my_endpoint",
+     *       //   "etag": "my_etag",
+     *       //   "fleet": {},
+     *       //   "imageType": "my_imageType",
+     *       //   "loadBalancer": {},
+     *       //   "localName": "my_localName",
+     *       //   "name": "my_name",
+     *       //   "networkConfig": {},
+     *       //   "onPremVersion": "my_onPremVersion",
+     *       //   "platformConfig": {},
+     *       //   "preparedSecrets": {},
+     *       //   "privateRegistryConfig": {},
+     *       //   "reconciling": false,
+     *       //   "state": "my_state",
+     *       //   "status": {},
+     *       //   "uid": "my_uid",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "validationCheck": {},
+     *       //   "vcenter": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7609,11 +10461,11 @@ export namespace gkeonprem_v1 {
     create(
       params: Params$Resource$Projects$Locations$Vmwareadminclusters$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Vmwareadminclusters$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Vmwareadminclusters$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7642,7 +10494,10 @@ export namespace gkeonprem_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareadminclusters$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7689,6 +10544,65 @@ export namespace gkeonprem_v1 {
 
     /**
      * Enrolls an existing VMware admin cluster to the Anthos On-Prem API within a given project and location. Through enrollment, an existing admin cluster will become Anthos On-Prem API managed. The corresponding GCP resources will be created and all future modifications to the cluster will be expected to be performed through the API.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gkeonprem.projects.locations.vmwareAdminClusters.enroll({
+     *     // Required. The parent of the project and location where the cluster is enrolled in. Format: "projects/{project\}/locations/{location\}"
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "membership": "my_membership",
+     *       //   "vmwareAdminClusterId": "my_vmwareAdminClusterId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7698,11 +10612,11 @@ export namespace gkeonprem_v1 {
     enroll(
       params: Params$Resource$Projects$Locations$Vmwareadminclusters$Enroll,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     enroll(
       params?: Params$Resource$Projects$Locations$Vmwareadminclusters$Enroll,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     enroll(
       params: Params$Resource$Projects$Locations$Vmwareadminclusters$Enroll,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7731,7 +10645,10 @@ export namespace gkeonprem_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareadminclusters$Enroll;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7778,6 +10695,84 @@ export namespace gkeonprem_v1 {
 
     /**
      * Gets details of a single VMware admin cluster.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gkeonprem.projects.locations.vmwareAdminClusters.get({
+     *     // Optional. If true, return Vmware Admin Cluster including the one that only exists in RMS.
+     *     allowMissing: 'placeholder-value',
+     *     // Required. Name of the VMware admin cluster to be returned. Format: "projects/{project\}/locations/{location\}/vmwareAdminClusters/{vmware_admin_cluster\}"
+     *     name: 'projects/my-project/locations/my-location/vmwareAdminClusters/my-vmwareAdminCluster',
+     *     // View for VMware admin cluster. When `BASIC` is specified, only the cluster resource name and membership are returned. The default/unset value `CLUSTER_VIEW_UNSPECIFIED` is the same as `FULL', which returns the complete cluster configuration details.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "addonNode": {},
+     *   //   "annotations": {},
+     *   //   "antiAffinityGroups": {},
+     *   //   "authorization": {},
+     *   //   "autoRepairConfig": {},
+     *   //   "bootstrapClusterMembership": "my_bootstrapClusterMembership",
+     *   //   "controlPlaneNode": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "enableAdvancedCluster": false,
+     *   //   "endpoint": "my_endpoint",
+     *   //   "etag": "my_etag",
+     *   //   "fleet": {},
+     *   //   "imageType": "my_imageType",
+     *   //   "loadBalancer": {},
+     *   //   "localName": "my_localName",
+     *   //   "name": "my_name",
+     *   //   "networkConfig": {},
+     *   //   "onPremVersion": "my_onPremVersion",
+     *   //   "platformConfig": {},
+     *   //   "preparedSecrets": {},
+     *   //   "privateRegistryConfig": {},
+     *   //   "reconciling": false,
+     *   //   "state": "my_state",
+     *   //   "status": {},
+     *   //   "uid": "my_uid",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "validationCheck": {},
+     *   //   "vcenter": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7787,11 +10782,11 @@ export namespace gkeonprem_v1 {
     get(
       params: Params$Resource$Projects$Locations$Vmwareadminclusters$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Vmwareadminclusters$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$VmwareAdminCluster>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$VmwareAdminCluster>>;
     get(
       params: Params$Resource$Projects$Locations$Vmwareadminclusters$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7822,8 +10817,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$VmwareAdminCluster>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$VmwareAdminCluster>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareadminclusters$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7867,6 +10862,58 @@ export namespace gkeonprem_v1 {
 
     /**
      * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await gkeonprem.projects.locations.vmwareAdminClusters.getIamPolicy({
+     *       // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     *       'options.requestedPolicyVersion': 'placeholder-value',
+     *       // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/vmwareAdminClusters/my-vmwareAdminCluster',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7876,11 +10923,11 @@ export namespace gkeonprem_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Vmwareadminclusters$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Vmwareadminclusters$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Vmwareadminclusters$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7909,7 +10956,10 @@ export namespace gkeonprem_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareadminclusters$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7956,6 +11006,62 @@ export namespace gkeonprem_v1 {
 
     /**
      * Lists VMware admin clusters in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gkeonprem.projects.locations.vmwareAdminClusters.list({
+     *     // Optional. If true, return list of Vmware Admin Clusters including the ones that only exists in RMS.
+     *     allowMissing: 'placeholder-value',
+     *     // Requested page size. Server may return fewer items than requested. If unspecified, at most 50 clusters will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results the server should return.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent of the project and location where the clusters are listed in. Format: "projects/{project\}/locations/{location\}"
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // View for VMware admin clusters. When `BASIC` is specified, only the admin cluster resource name and membership are returned. The default/unset value `CLUSTER_VIEW_UNSPECIFIED` is the same as `FULL', which returns the complete admin cluster configuration details.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": [],
+     *   //   "vmwareAdminClusters": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7965,11 +11071,11 @@ export namespace gkeonprem_v1 {
     list(
       params: Params$Resource$Projects$Locations$Vmwareadminclusters$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Vmwareadminclusters$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListVmwareAdminClustersResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListVmwareAdminClustersResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Vmwareadminclusters$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8004,8 +11110,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListVmwareAdminClustersResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListVmwareAdminClustersResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareadminclusters$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8054,6 +11160,96 @@ export namespace gkeonprem_v1 {
 
     /**
      * Updates the parameters of a single VMware admin cluster.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gkeonprem.projects.locations.vmwareAdminClusters.patch({
+     *     // Immutable. The VMware admin cluster resource name.
+     *     name: 'projects/my-project/locations/my-location/vmwareAdminClusters/my-vmwareAdminCluster',
+     *     // Required. Field mask is used to specify the fields to be overwritten in the VMwareAdminCluster resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all populated fields in the VmwareAdminCluster message will be updated. Empty fields will be ignored unless a field mask is used.
+     *     updateMask: 'placeholder-value',
+     *     // Validate the request without actually doing any updates.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "addonNode": {},
+     *       //   "annotations": {},
+     *       //   "antiAffinityGroups": {},
+     *       //   "authorization": {},
+     *       //   "autoRepairConfig": {},
+     *       //   "bootstrapClusterMembership": "my_bootstrapClusterMembership",
+     *       //   "controlPlaneNode": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "enableAdvancedCluster": false,
+     *       //   "endpoint": "my_endpoint",
+     *       //   "etag": "my_etag",
+     *       //   "fleet": {},
+     *       //   "imageType": "my_imageType",
+     *       //   "loadBalancer": {},
+     *       //   "localName": "my_localName",
+     *       //   "name": "my_name",
+     *       //   "networkConfig": {},
+     *       //   "onPremVersion": "my_onPremVersion",
+     *       //   "platformConfig": {},
+     *       //   "preparedSecrets": {},
+     *       //   "privateRegistryConfig": {},
+     *       //   "reconciling": false,
+     *       //   "state": "my_state",
+     *       //   "status": {},
+     *       //   "uid": "my_uid",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "validationCheck": {},
+     *       //   "vcenter": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8063,11 +11259,11 @@ export namespace gkeonprem_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Vmwareadminclusters$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Vmwareadminclusters$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Vmwareadminclusters$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8096,7 +11292,10 @@ export namespace gkeonprem_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareadminclusters$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8140,6 +11339,64 @@ export namespace gkeonprem_v1 {
 
     /**
      * Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await gkeonprem.projects.locations.vmwareAdminClusters.setIamPolicy({
+     *       // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/vmwareAdminClusters/my-vmwareAdminCluster',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "policy": {}
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8149,11 +11406,11 @@ export namespace gkeonprem_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Vmwareadminclusters$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Vmwareadminclusters$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Vmwareadminclusters$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8182,7 +11439,10 @@ export namespace gkeonprem_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareadminclusters$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8229,6 +11489,62 @@ export namespace gkeonprem_v1 {
 
     /**
      * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await gkeonprem.projects.locations.vmwareAdminClusters.testIamPermissions({
+     *       // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/vmwareAdminClusters/my-vmwareAdminCluster',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "permissions": []
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8238,11 +11554,11 @@ export namespace gkeonprem_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Vmwareadminclusters$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Vmwareadminclusters$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Vmwareadminclusters$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8277,8 +11593,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareadminclusters$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8325,6 +11641,64 @@ export namespace gkeonprem_v1 {
 
     /**
      * Unenrolls an existing VMware admin cluster from the Anthos On-Prem API within a given project and location. Unenrollment removes the Cloud reference to the cluster without modifying the underlying OnPrem Resources. Clusters will continue to run; however, they will no longer be accessible through the Anthos On-Prem API or its clients.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gkeonprem.projects.locations.vmwareAdminClusters.unenroll({
+     *     // If set to true, and the VMware admin cluster is not found, the request will succeed but no action will be taken on the server and return a completed LRO.
+     *     allowMissing: 'placeholder-value',
+     *     // The current etag of the VMware admin cluster. If an etag is provided and does not match the current etag of the cluster, deletion will be blocked and an ABORTED error will be returned.
+     *     etag: 'placeholder-value',
+     *     // Optional. If set to true, the unenrollment of a vmware admin cluster resource will succeed even if errors occur during unenrollment. This parameter can be used when you want to unenroll admin cluster resource and the on-prem admin cluster is disconnected / unreachable. WARNING: Using this parameter when your admin cluster still exists may result in a deleted GCP admin cluster but existing resourcelink in on-prem admin cluster and membership.
+     *     ignoreErrors: 'placeholder-value',
+     *     // Required. Name of the VMware admin cluster to be unenrolled. Format: "projects/{project\}/locations/{location\}/vmwareAdminClusters/{cluster\}"
+     *     name: 'projects/my-project/locations/my-location/vmwareAdminClusters/my-vmwareAdminCluster',
+     *     // Validate the request without actually doing any updates.
+     *     validateOnly: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8334,11 +11708,11 @@ export namespace gkeonprem_v1 {
     unenroll(
       params: Params$Resource$Projects$Locations$Vmwareadminclusters$Unenroll,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     unenroll(
       params?: Params$Resource$Projects$Locations$Vmwareadminclusters$Unenroll,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     unenroll(
       params: Params$Resource$Projects$Locations$Vmwareadminclusters$Unenroll,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8367,7 +11741,10 @@ export namespace gkeonprem_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareadminclusters$Unenroll;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8553,6 +11930,10 @@ export namespace gkeonprem_v1 {
      */
     etag?: string;
     /**
+     * Optional. If set to true, the unenrollment of a vmware admin cluster resource will succeed even if errors occur during unenrollment. This parameter can be used when you want to unenroll admin cluster resource and the on-prem admin cluster is disconnected / unreachable. WARNING: Using this parameter when your admin cluster still exists may result in a deleted GCP admin cluster but existing resourcelink in on-prem admin cluster and membership.
+     */
+    ignoreErrors?: boolean;
+    /**
      * Required. Name of the VMware admin cluster to be unenrolled. Format: "projects/{project\}/locations/{location\}/vmwareAdminClusters/{cluster\}"
      */
     name?: string;
@@ -8570,6 +11951,57 @@ export namespace gkeonprem_v1 {
 
     /**
      * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await gkeonprem.projects.locations.vmwareAdminClusters.operations.get({
+     *       // The name of the operation resource.
+     *       name: 'projects/my-project/locations/my-location/vmwareAdminClusters/my-vmwareAdminCluster/operations/my-operation',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8579,11 +12011,11 @@ export namespace gkeonprem_v1 {
     get(
       params: Params$Resource$Projects$Locations$Vmwareadminclusters$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Vmwareadminclusters$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     get(
       params: Params$Resource$Projects$Locations$Vmwareadminclusters$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8612,7 +12044,10 @@ export namespace gkeonprem_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareadminclusters$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8656,6 +12091,60 @@ export namespace gkeonprem_v1 {
 
     /**
      * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await gkeonprem.projects.locations.vmwareAdminClusters.operations.list({
+     *       // The standard list filter.
+     *       filter: 'placeholder-value',
+     *       // The name of the operation's parent resource.
+     *       name: 'projects/my-project/locations/my-location/vmwareAdminClusters/my-vmwareAdminCluster',
+     *       // The standard list page size.
+     *       pageSize: 'placeholder-value',
+     *       // The standard list page token.
+     *       pageToken: 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "operations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8665,11 +12154,11 @@ export namespace gkeonprem_v1 {
     list(
       params: Params$Resource$Projects$Locations$Vmwareadminclusters$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Vmwareadminclusters$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListOperationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Vmwareadminclusters$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8702,8 +12191,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListOperationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareadminclusters$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8792,6 +12281,102 @@ export namespace gkeonprem_v1 {
 
     /**
      * Creates a new VMware user cluster in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gkeonprem.projects.locations.vmwareClusters.create({
+     *     // Optional. If set to true, CLM will force CCFE to persist the cluster resource in RMS when the creation fails during standalone preflight checks. In that case the subsequent create call will fail with "cluster already exists" error and hence a update cluster is required to fix the cluster.
+     *     allowPreflightFailure: 'placeholder-value',
+     *     // Required. The parent of the project and location where this cluster is created in. Format: "projects/{project\}/locations/{location\}"
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // Validate the request without actually doing any updates.
+     *     validateOnly: 'placeholder-value',
+     *     // User provided identifier that is used as part of the resource name; This value must be up to 40 characters and follow RFC-1123 (https://tools.ietf.org/html/rfc1123) format.
+     *     vmwareClusterId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "adminClusterMembership": "my_adminClusterMembership",
+     *       //   "adminClusterName": "my_adminClusterName",
+     *       //   "annotations": {},
+     *       //   "antiAffinityGroups": {},
+     *       //   "authorization": {},
+     *       //   "autoRepairConfig": {},
+     *       //   "binaryAuthorization": {},
+     *       //   "controlPlaneNode": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "dataplaneV2": {},
+     *       //   "deleteTime": "my_deleteTime",
+     *       //   "description": "my_description",
+     *       //   "disableBundledIngress": false,
+     *       //   "enableAdvancedCluster": false,
+     *       //   "enableControlPlaneV2": false,
+     *       //   "endpoint": "my_endpoint",
+     *       //   "etag": "my_etag",
+     *       //   "fleet": {},
+     *       //   "loadBalancer": {},
+     *       //   "localName": "my_localName",
+     *       //   "name": "my_name",
+     *       //   "networkConfig": {},
+     *       //   "onPremVersion": "my_onPremVersion",
+     *       //   "reconciling": false,
+     *       //   "state": "my_state",
+     *       //   "status": {},
+     *       //   "storage": {},
+     *       //   "uid": "my_uid",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "upgradePolicy": {},
+     *       //   "validationCheck": {},
+     *       //   "vcenter": {},
+     *       //   "vmTrackingEnabled": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8801,11 +12386,11 @@ export namespace gkeonprem_v1 {
     create(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Vmwareclusters$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8834,7 +12419,10 @@ export namespace gkeonprem_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareclusters$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8880,6 +12468,66 @@ export namespace gkeonprem_v1 {
 
     /**
      * Deletes a single VMware Cluster.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gkeonprem.projects.locations.vmwareClusters.delete({
+     *     // If set to true, and the VMware cluster is not found, the request will succeed but no action will be taken on the server and return a completed LRO.
+     *     allowMissing: 'placeholder-value',
+     *     // The current etag of the VMware cluster. If an etag is provided and does not match the current etag of the cluster, deletion will be blocked and an ABORTED error will be returned.
+     *     etag: 'placeholder-value',
+     *     // If set to true, any node pools from the cluster will also be deleted.
+     *     force: 'placeholder-value',
+     *     // If set to true, the deletion of a VMware user cluster resource will succeed even if errors occur during deletion. This parameter can be used when you want to delete GCP's cluster resource and the on-prem admin cluster that hosts your user cluster is disconnected / unreachable or deleted. WARNING: Using this parameter when your user cluster still exists may result in a deleted GCP user cluster but an existing on-prem user cluster.
+     *     ignoreErrors: 'placeholder-value',
+     *     // Required. Name of the VMware user cluster to be deleted. Format: "projects/{project\}/locations/{location\}/vmwareClusters/{vmware_cluster\}"
+     *     name: 'projects/my-project/locations/my-location/vmwareClusters/my-vmwareCluster',
+     *     // Validate the request without actually doing any updates.
+     *     validateOnly: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8889,11 +12537,11 @@ export namespace gkeonprem_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Vmwareclusters$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8922,7 +12570,10 @@ export namespace gkeonprem_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareclusters$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8965,6 +12616,67 @@ export namespace gkeonprem_v1 {
 
     /**
      * Enrolls an existing VMware user cluster and its node pools to the Anthos On-Prem API within a given project and location. Through enrollment, an existing cluster will become Anthos On-Prem API managed. The corresponding GCP resources will be created and all future modifications to the cluster and/or its node pools will be expected to be performed through the API.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gkeonprem.projects.locations.vmwareClusters.enroll({
+     *     // Required. The parent of the project and location where the cluster is Enrolled in. Format: "projects/{project\}/locations/{location\}"
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "adminClusterMembership": "my_adminClusterMembership",
+     *       //   "localName": "my_localName",
+     *       //   "validateOnly": false,
+     *       //   "vmwareClusterId": "my_vmwareClusterId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8974,11 +12686,11 @@ export namespace gkeonprem_v1 {
     enroll(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Enroll,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     enroll(
       params?: Params$Resource$Projects$Locations$Vmwareclusters$Enroll,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     enroll(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Enroll,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9007,7 +12719,10 @@ export namespace gkeonprem_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareclusters$Enroll;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9053,6 +12768,88 @@ export namespace gkeonprem_v1 {
 
     /**
      * Gets details of a single VMware Cluster.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gkeonprem.projects.locations.vmwareClusters.get({
+     *     // Optional. If true, return Vmware Cluster including the one that only exists in RMS.
+     *     allowMissing: 'placeholder-value',
+     *     // Required. Name of the VMware user cluster to be returned. Format: "projects/{project\}/locations/{location\}/vmwareClusters/{vmware_cluster\}"
+     *     name: 'projects/my-project/locations/my-location/vmwareClusters/my-vmwareCluster',
+     *     // View for VMware user cluster. When `BASIC` is specified, only the cluster resource name and admin cluster membership are returned. The default/unset value `CLUSTER_VIEW_UNSPECIFIED` is the same as `FULL', which returns the complete cluster configuration details.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "adminClusterMembership": "my_adminClusterMembership",
+     *   //   "adminClusterName": "my_adminClusterName",
+     *   //   "annotations": {},
+     *   //   "antiAffinityGroups": {},
+     *   //   "authorization": {},
+     *   //   "autoRepairConfig": {},
+     *   //   "binaryAuthorization": {},
+     *   //   "controlPlaneNode": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "dataplaneV2": {},
+     *   //   "deleteTime": "my_deleteTime",
+     *   //   "description": "my_description",
+     *   //   "disableBundledIngress": false,
+     *   //   "enableAdvancedCluster": false,
+     *   //   "enableControlPlaneV2": false,
+     *   //   "endpoint": "my_endpoint",
+     *   //   "etag": "my_etag",
+     *   //   "fleet": {},
+     *   //   "loadBalancer": {},
+     *   //   "localName": "my_localName",
+     *   //   "name": "my_name",
+     *   //   "networkConfig": {},
+     *   //   "onPremVersion": "my_onPremVersion",
+     *   //   "reconciling": false,
+     *   //   "state": "my_state",
+     *   //   "status": {},
+     *   //   "storage": {},
+     *   //   "uid": "my_uid",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "upgradePolicy": {},
+     *   //   "validationCheck": {},
+     *   //   "vcenter": {},
+     *   //   "vmTrackingEnabled": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9062,11 +12859,11 @@ export namespace gkeonprem_v1 {
     get(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Vmwareclusters$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$VmwareCluster>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$VmwareCluster>>;
     get(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9095,7 +12892,10 @@ export namespace gkeonprem_v1 {
       callback?:
         | BodyResponseCallback<Schema$VmwareCluster>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$VmwareCluster> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$VmwareCluster>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareclusters$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9138,6 +12938,57 @@ export namespace gkeonprem_v1 {
 
     /**
      * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gkeonprem.projects.locations.vmwareClusters.getIamPolicy({
+     *     // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     *     'options.requestedPolicyVersion': 'placeholder-value',
+     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource:
+     *       'projects/my-project/locations/my-location/vmwareClusters/my-vmwareCluster',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9147,11 +12998,11 @@ export namespace gkeonprem_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Vmwareclusters$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9180,7 +13031,10 @@ export namespace gkeonprem_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareclusters$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9227,6 +13081,64 @@ export namespace gkeonprem_v1 {
 
     /**
      * Lists VMware Clusters in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gkeonprem.projects.locations.vmwareClusters.list({
+     *     // Optional. If true, return list of Vmware Clusters including the ones that only exists in RMS.
+     *     allowMissing: 'placeholder-value',
+     *     // A resource filtering expression following https://google.aip.dev/160. When non-empty, only resource's whose attributes field matches the filter are returned.
+     *     filter: 'placeholder-value',
+     *     // Requested page size. Server may return fewer items than requested. If unspecified, at most 50 clusters will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results the server should return.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent of the project and location where the clusters are listed in. Format: "projects/{project\}/locations/{location\}"
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // View for VMware clusters. When `BASIC` is specified, only the cluster resource name and admin cluster membership are returned. The default/unset value `CLUSTER_VIEW_UNSPECIFIED` is the same as `FULL', which returns the complete cluster configuration details.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": [],
+     *   //   "vmwareClusters": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9236,11 +13148,11 @@ export namespace gkeonprem_v1 {
     list(
       params: Params$Resource$Projects$Locations$Vmwareclusters$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Vmwareclusters$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListVmwareClustersResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListVmwareClustersResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Vmwareclusters$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9275,8 +13187,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListVmwareClustersResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListVmwareClustersResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareclusters$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9322,6 +13234,100 @@ export namespace gkeonprem_v1 {
 
     /**
      * Updates the parameters of a single VMware cluster.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gkeonprem.projects.locations.vmwareClusters.patch({
+     *     // Immutable. The VMware user cluster resource name.
+     *     name: 'projects/my-project/locations/my-location/vmwareClusters/my-vmwareCluster',
+     *     // Required. Field mask is used to specify the fields to be overwritten in the VMwareCluster resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all populated fields in the VmwareCluster message will be updated. Empty fields will be ignored unless a field mask is used.
+     *     updateMask: 'placeholder-value',
+     *     // Validate the request without actually doing any updates.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "adminClusterMembership": "my_adminClusterMembership",
+     *       //   "adminClusterName": "my_adminClusterName",
+     *       //   "annotations": {},
+     *       //   "antiAffinityGroups": {},
+     *       //   "authorization": {},
+     *       //   "autoRepairConfig": {},
+     *       //   "binaryAuthorization": {},
+     *       //   "controlPlaneNode": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "dataplaneV2": {},
+     *       //   "deleteTime": "my_deleteTime",
+     *       //   "description": "my_description",
+     *       //   "disableBundledIngress": false,
+     *       //   "enableAdvancedCluster": false,
+     *       //   "enableControlPlaneV2": false,
+     *       //   "endpoint": "my_endpoint",
+     *       //   "etag": "my_etag",
+     *       //   "fleet": {},
+     *       //   "loadBalancer": {},
+     *       //   "localName": "my_localName",
+     *       //   "name": "my_name",
+     *       //   "networkConfig": {},
+     *       //   "onPremVersion": "my_onPremVersion",
+     *       //   "reconciling": false,
+     *       //   "state": "my_state",
+     *       //   "status": {},
+     *       //   "storage": {},
+     *       //   "uid": "my_uid",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "upgradePolicy": {},
+     *       //   "validationCheck": {},
+     *       //   "vcenter": {},
+     *       //   "vmTrackingEnabled": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9331,11 +13337,11 @@ export namespace gkeonprem_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Vmwareclusters$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9364,7 +13370,10 @@ export namespace gkeonprem_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareclusters$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9407,6 +13416,59 @@ export namespace gkeonprem_v1 {
 
     /**
      * Queries the VMware user cluster version config.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await gkeonprem.projects.locations.vmwareClusters.queryVersionConfig({
+     *       // The admin cluster membership. This is the full resource name of the admin cluster's fleet membership. Format: "projects/{project\}/locations/{location\}/memberships/{membership\}"
+     *       'createConfig.adminClusterMembership': 'placeholder-value',
+     *       // The admin cluster resource name. This is the full resource name of the admin cluster resource. Format: "projects/{project\}/locations/{location\}/vmwareAdminClusters/{vmware_admin_cluster\}"
+     *       'createConfig.adminClusterName': 'placeholder-value',
+     *       // Required. The parent of the project and location to query for version config. Format: "projects/{project\}/locations/{location\}"
+     *       parent: 'projects/my-project/locations/my-location',
+     *       // The user cluster resource name. This is the full resource name of the user cluster resource. Format: "projects/{project\}/locations/{location\}/vmwareClusters/{vmware_cluster\}"
+     *       'upgradeConfig.clusterName': 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "versions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9416,11 +13478,13 @@ export namespace gkeonprem_v1 {
     queryVersionConfig(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Queryversionconfig,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     queryVersionConfig(
       params?: Params$Resource$Projects$Locations$Vmwareclusters$Queryversionconfig,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$QueryVmwareVersionConfigResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$QueryVmwareVersionConfigResponse>
+    >;
     queryVersionConfig(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Queryversionconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9455,8 +13519,10 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$QueryVmwareVersionConfigResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$QueryVmwareVersionConfigResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareclusters$Queryversionconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9504,6 +13570,63 @@ export namespace gkeonprem_v1 {
 
     /**
      * Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gkeonprem.projects.locations.vmwareClusters.setIamPolicy({
+     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource:
+     *       'projects/my-project/locations/my-location/vmwareClusters/my-vmwareCluster',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "policy": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9513,11 +13636,11 @@ export namespace gkeonprem_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Vmwareclusters$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9546,7 +13669,10 @@ export namespace gkeonprem_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareclusters$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9593,6 +13719,62 @@ export namespace gkeonprem_v1 {
 
     /**
      * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await gkeonprem.projects.locations.vmwareClusters.testIamPermissions({
+     *       // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/vmwareClusters/my-vmwareCluster',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "permissions": []
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9602,11 +13784,11 @@ export namespace gkeonprem_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Vmwareclusters$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9641,8 +13823,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareclusters$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9689,6 +13871,64 @@ export namespace gkeonprem_v1 {
 
     /**
      * Unenrolls an existing VMware user cluster and its node pools from the Anthos On-Prem API within a given project and location. Unenrollment removes the Cloud reference to the cluster without modifying the underlying OnPrem Resources. Clusters and node pools will continue to run; however, they will no longer be accessible through the Anthos On-Prem API or UI.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gkeonprem.projects.locations.vmwareClusters.unenroll({
+     *     // If set to true, and the VMware cluster is not found, the request will succeed but no action will be taken on the server and return a completed LRO.
+     *     allowMissing: 'placeholder-value',
+     *     // The current etag of the VMware Cluster. If an etag is provided and does not match the current etag of the cluster, deletion will be blocked and an ABORTED error will be returned.
+     *     etag: 'placeholder-value',
+     *     // This is required if the cluster has any associated node pools. When set, any child node pools will also be unenrolled.
+     *     force: 'placeholder-value',
+     *     // Required. Name of the VMware user cluster to be unenrolled. Format: "projects/{project\}/locations/{location\}/vmwareClusters/{vmware_cluster\}"
+     *     name: 'projects/my-project/locations/my-location/vmwareClusters/my-vmwareCluster',
+     *     // Validate the request without actually doing any updates.
+     *     validateOnly: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9698,11 +13938,11 @@ export namespace gkeonprem_v1 {
     unenroll(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Unenroll,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     unenroll(
       params?: Params$Resource$Projects$Locations$Vmwareclusters$Unenroll,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     unenroll(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Unenroll,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9731,7 +13971,10 @@ export namespace gkeonprem_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareclusters$Unenroll;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9988,6 +14231,56 @@ export namespace gkeonprem_v1 {
 
     /**
      * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gkeonprem.projects.locations.vmwareClusters.operations.get({
+     *     // The name of the operation resource.
+     *     name: 'projects/my-project/locations/my-location/vmwareClusters/my-vmwareCluster/operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9997,11 +14290,11 @@ export namespace gkeonprem_v1 {
     get(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Vmwareclusters$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     get(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10030,7 +14323,10 @@ export namespace gkeonprem_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareclusters$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10074,6 +14370,61 @@ export namespace gkeonprem_v1 {
 
     /**
      * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gkeonprem.projects.locations.vmwareClusters.operations.list(
+     *     {
+     *       // The standard list filter.
+     *       filter: 'placeholder-value',
+     *       // The name of the operation's parent resource.
+     *       name: 'projects/my-project/locations/my-location/vmwareClusters/my-vmwareCluster',
+     *       // The standard list page size.
+     *       pageSize: 'placeholder-value',
+     *       // The standard list page token.
+     *       pageToken: 'placeholder-value',
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "operations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10083,11 +14434,11 @@ export namespace gkeonprem_v1 {
     list(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Vmwareclusters$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListOperationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10120,8 +14471,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListOperationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareclusters$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10207,6 +14558,83 @@ export namespace gkeonprem_v1 {
 
     /**
      * Creates a new VMware node pool in a given project, location and VMWare cluster.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await gkeonprem.projects.locations.vmwareClusters.vmwareNodePools.create({
+     *       // Required. The parent resource where this node pool will be created. projects/{project\}/locations/{location\}/vmwareClusters/{cluster\}
+     *       parent:
+     *         'projects/my-project/locations/my-location/vmwareClusters/my-vmwareCluster',
+     *       // If set, only validate the request, but do not actually create the node pool.
+     *       validateOnly: 'placeholder-value',
+     *       // The ID to use for the node pool, which will become the final component of the node pool's resource name. This value must be up to 40 characters and follow RFC-1123 (https://tools.ietf.org/html/rfc1123) format. The value must not be permitted to be a UUID (or UUID-like: anything matching /^[0-9a-f]{8\}(-[0-9a-f]{4\}){3\}-[0-9a-f]{12\}$/i).
+     *       vmwareNodePoolId: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "annotations": {},
+     *         //   "config": {},
+     *         //   "createTime": "my_createTime",
+     *         //   "deleteTime": "my_deleteTime",
+     *         //   "displayName": "my_displayName",
+     *         //   "etag": "my_etag",
+     *         //   "name": "my_name",
+     *         //   "nodePoolAutoscaling": {},
+     *         //   "onPremVersion": "my_onPremVersion",
+     *         //   "reconciling": false,
+     *         //   "state": "my_state",
+     *         //   "status": {},
+     *         //   "uid": "my_uid",
+     *         //   "updateTime": "my_updateTime"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10216,11 +14644,11 @@ export namespace gkeonprem_v1 {
     create(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10249,7 +14677,10 @@ export namespace gkeonprem_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10296,6 +14727,65 @@ export namespace gkeonprem_v1 {
 
     /**
      * Deletes a single VMware node pool.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await gkeonprem.projects.locations.vmwareClusters.vmwareNodePools.delete({
+     *       // If set to true, and the VMware node pool is not found, the request will succeed but no action will be taken on the server and return a completed LRO.
+     *       allowMissing: 'placeholder-value',
+     *       // The current etag of the VmwareNodePool. If an etag is provided and does not match the current etag of the node pool, deletion will be blocked and an ABORTED error will be returned.
+     *       etag: 'placeholder-value',
+     *       // If set to true, the deletion of a VMware node pool resource will succeed even if errors occur during deletion. This parameter can be used when you want to delete GCP's node pool resource and you've already deleted the on-prem admin cluster that hosted your node pool. WARNING: Using this parameter when your user cluster still exists may result in a deleted GCP node pool but an existing on-prem node pool.
+     *       ignoreErrors: 'placeholder-value',
+     *       // Required. The name of the node pool to delete. Format: projects/{project\}/locations/{location\}/vmwareClusters/{cluster\}/vmwareNodePools/{nodepool\}
+     *       name: 'projects/my-project/locations/my-location/vmwareClusters/my-vmwareCluster/vmwareNodePools/my-vmwareNodePool',
+     *       // If set, only validate the request, but do not actually delete the node pool.
+     *       validateOnly: 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10305,11 +14795,11 @@ export namespace gkeonprem_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10338,7 +14828,10 @@ export namespace gkeonprem_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10382,6 +14875,66 @@ export namespace gkeonprem_v1 {
 
     /**
      * Enrolls a VMware node pool to Anthos On-Prem API
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await gkeonprem.projects.locations.vmwareClusters.vmwareNodePools.enroll({
+     *       // Required. The parent resource where the node pool is enrolled in.
+     *       parent:
+     *         'projects/my-project/locations/my-location/vmwareClusters/my-vmwareCluster',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "vmwareNodePoolId": "my_vmwareNodePoolId"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10391,11 +14944,11 @@ export namespace gkeonprem_v1 {
     enroll(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Enroll,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     enroll(
       params?: Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Enroll,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     enroll(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Enroll,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10424,7 +14977,10 @@ export namespace gkeonprem_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Enroll;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10471,6 +15027,68 @@ export namespace gkeonprem_v1 {
 
     /**
      * Gets details of a single VMware node pool.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await gkeonprem.projects.locations.vmwareClusters.vmwareNodePools.get({
+     *       // Required. The name of the node pool to retrieve. projects/{project\}/locations/{location\}/vmwareClusters/{cluster\}/vmwareNodePools/{nodepool\}
+     *       name: 'projects/my-project/locations/my-location/vmwareClusters/my-vmwareCluster/vmwareNodePools/my-vmwareNodePool',
+     *       // View for VMware node pool. When `BASIC` is specified, only the node pool resource name is returned. The default/unset value `NODE_POOL_VIEW_UNSPECIFIED` is the same as `FULL', which returns the complete node pool configuration details.
+     *       view: 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "annotations": {},
+     *   //   "config": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "deleteTime": "my_deleteTime",
+     *   //   "displayName": "my_displayName",
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "nodePoolAutoscaling": {},
+     *   //   "onPremVersion": "my_onPremVersion",
+     *   //   "reconciling": false,
+     *   //   "state": "my_state",
+     *   //   "status": {},
+     *   //   "uid": "my_uid",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10480,11 +15098,11 @@ export namespace gkeonprem_v1 {
     get(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$VmwareNodePool>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$VmwareNodePool>>;
     get(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10513,7 +15131,10 @@ export namespace gkeonprem_v1 {
       callback?:
         | BodyResponseCallback<Schema$VmwareNodePool>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$VmwareNodePool> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$VmwareNodePool>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10557,6 +15178,60 @@ export namespace gkeonprem_v1 {
 
     /**
      * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await gkeonprem.projects.locations.vmwareClusters.vmwareNodePools.getIamPolicy(
+     *       {
+     *         // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     *         'options.requestedPolicyVersion': 'placeholder-value',
+     *         // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *         resource:
+     *           'projects/my-project/locations/my-location/vmwareClusters/my-vmwareCluster/vmwareNodePools/my-vmwareNodePool',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10566,11 +15241,11 @@ export namespace gkeonprem_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10599,7 +15274,10 @@ export namespace gkeonprem_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10646,6 +15324,62 @@ export namespace gkeonprem_v1 {
 
     /**
      * Lists VMware node pools in a given project, location and VMWare cluster.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await gkeonprem.projects.locations.vmwareClusters.vmwareNodePools.list({
+     *       // The maximum number of node pools to return. The service may return fewer than this value. If unspecified, at most 50 node pools will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *       pageSize: 'placeholder-value',
+     *       // A page token, received from a previous `ListVmwareNodePools` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListVmwareNodePools` must match the call that provided the page token.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The parent, which owns this collection of node pools. Format: projects/{project\}/locations/{location\}/vmwareClusters/{vmwareCluster\}
+     *       parent:
+     *         'projects/my-project/locations/my-location/vmwareClusters/my-vmwareCluster',
+     *       // View for VMware node pools. When `BASIC` is specified, only the node pool resource name is returned. The default/unset value `NODE_POOL_VIEW_UNSPECIFIED` is the same as `FULL', which returns the complete node pool configuration details.
+     *       view: 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": [],
+     *   //   "vmwareNodePools": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10655,11 +15389,11 @@ export namespace gkeonprem_v1 {
     list(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListVmwareNodePoolsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListVmwareNodePoolsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10694,8 +15428,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListVmwareNodePoolsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListVmwareNodePoolsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10742,6 +15476,82 @@ export namespace gkeonprem_v1 {
 
     /**
      * Updates the parameters of a single VMware node pool.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await gkeonprem.projects.locations.vmwareClusters.vmwareNodePools.patch({
+     *       // Immutable. The resource name of this node pool.
+     *       name: 'projects/my-project/locations/my-location/vmwareClusters/my-vmwareCluster/vmwareNodePools/my-vmwareNodePool',
+     *       // Required. Field mask is used to specify the fields to be overwritten in the VMwareNodePool resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all populated fields in the VMwareNodePool message will be updated. Empty fields will be ignored unless a field mask is used.
+     *       updateMask: 'placeholder-value',
+     *       // Validate the request without actually doing any updates.
+     *       validateOnly: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "annotations": {},
+     *         //   "config": {},
+     *         //   "createTime": "my_createTime",
+     *         //   "deleteTime": "my_deleteTime",
+     *         //   "displayName": "my_displayName",
+     *         //   "etag": "my_etag",
+     *         //   "name": "my_name",
+     *         //   "nodePoolAutoscaling": {},
+     *         //   "onPremVersion": "my_onPremVersion",
+     *         //   "reconciling": false,
+     *         //   "state": "my_state",
+     *         //   "status": {},
+     *         //   "uid": "my_uid",
+     *         //   "updateTime": "my_updateTime"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10751,11 +15561,11 @@ export namespace gkeonprem_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10784,7 +15594,10 @@ export namespace gkeonprem_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10828,6 +15641,66 @@ export namespace gkeonprem_v1 {
 
     /**
      * Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await gkeonprem.projects.locations.vmwareClusters.vmwareNodePools.setIamPolicy(
+     *       {
+     *         // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *         resource:
+     *           'projects/my-project/locations/my-location/vmwareClusters/my-vmwareCluster/vmwareNodePools/my-vmwareNodePool',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "policy": {}
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10837,11 +15710,11 @@ export namespace gkeonprem_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10870,7 +15743,10 @@ export namespace gkeonprem_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10917,6 +15793,64 @@ export namespace gkeonprem_v1 {
 
     /**
      * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await gkeonprem.projects.locations.vmwareClusters.vmwareNodePools.testIamPermissions(
+     *       {
+     *         // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *         resource:
+     *           'projects/my-project/locations/my-location/vmwareClusters/my-vmwareCluster/vmwareNodePools/my-vmwareNodePool',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "permissions": []
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10926,11 +15860,11 @@ export namespace gkeonprem_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10965,8 +15899,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11013,6 +15947,63 @@ export namespace gkeonprem_v1 {
 
     /**
      * Unenrolls a VMware node pool to Anthos On-Prem API
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await gkeonprem.projects.locations.vmwareClusters.vmwareNodePools.unenroll({
+     *       // If set to true, and the VMware node pool is not found, the request will succeed but no action will be taken on the server and return a completed LRO.
+     *       allowMissing: 'placeholder-value',
+     *       // The current etag of the VMware node pool. If an etag is provided and does not match the current etag of node pool, deletion will be blocked and an ABORTED error will be returned.
+     *       etag: 'placeholder-value',
+     *       // Required. The name of the node pool to unenroll. Format: projects/{project\}/locations/{location\}/vmwareClusters/{cluster\}/vmwareNodePools/{nodepool\}
+     *       name: 'projects/my-project/locations/my-location/vmwareClusters/my-vmwareCluster/vmwareNodePools/my-vmwareNodePool',
+     *       // If set, only validate the request, but do not actually unenroll the node pool.
+     *       validateOnly: 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11022,11 +16013,11 @@ export namespace gkeonprem_v1 {
     unenroll(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Unenroll,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     unenroll(
       params?: Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Unenroll,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     unenroll(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Unenroll,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11055,7 +16046,10 @@ export namespace gkeonprem_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Unenroll;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11269,6 +16263,59 @@ export namespace gkeonprem_v1 {
 
     /**
      * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await gkeonprem.projects.locations.vmwareClusters.vmwareNodePools.operations.get(
+     *       {
+     *         // The name of the operation resource.
+     *         name: 'projects/my-project/locations/my-location/vmwareClusters/my-vmwareCluster/vmwareNodePools/my-vmwareNodePool/operations/my-operation',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11278,11 +16325,11 @@ export namespace gkeonprem_v1 {
     get(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     get(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11311,7 +16358,10 @@ export namespace gkeonprem_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11355,6 +16405,62 @@ export namespace gkeonprem_v1 {
 
     /**
      * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkeonprem.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkeonprem = google.gkeonprem('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await gkeonprem.projects.locations.vmwareClusters.vmwareNodePools.operations.list(
+     *       {
+     *         // The standard list filter.
+     *         filter: 'placeholder-value',
+     *         // The name of the operation's parent resource.
+     *         name: 'projects/my-project/locations/my-location/vmwareClusters/my-vmwareCluster/vmwareNodePools/my-vmwareNodePool',
+     *         // The standard list page size.
+     *         pageSize: 'placeholder-value',
+     *         // The standard list page token.
+     *         pageToken: 'placeholder-value',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "operations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11364,11 +16470,11 @@ export namespace gkeonprem_v1 {
     list(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListOperationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11401,8 +16507,8 @@ export namespace gkeonprem_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListOperationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

@@ -31,5 +31,5 @@ blogger.blogs.get(
       throw err;
     }
     console.log(res.data);
-  }
+  },
 );

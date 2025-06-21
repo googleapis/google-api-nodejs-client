@@ -1,5 +1,30 @@
 # Changelog
 
+## [26.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/youtube-v26.0.0...youtube-v26.0.1) (2025-06-04)
+
+
+### Bug Fixes
+
+* **deps:** upgrade googleapis-common to 8.0.2-rc ([f4b0990](https://github.com/googleapis/google-api-nodejs-client/commit/f4b099071040cfbcfe4a2e7d487d45ee93b369e0))
+
+## [26.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/youtube-v25.1.0...youtube-v26.0.0) (2025-05-29)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to node 18
+
+### Features
+
+* upgrade to node 18 ([682fbb8](https://github.com/googleapis/google-api-nodejs-client/commit/682fbb869189ae92b3e9a194d37d0548af0c1f92))
+
+## [25.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/youtube-v25.0.0...youtube-v25.1.0) (2025-05-05)
+
+
+### Features
+
+* **youtube:** update the API ([79e01b0](https://github.com/googleapis/google-api-nodejs-client/commit/79e01b0d42ede06645032e67b18048e009514db7))
+
 ## [25.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/youtube-v24.0.0...youtube-v25.0.0) (2025-04-18)
 
 

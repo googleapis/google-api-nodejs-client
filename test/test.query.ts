@@ -47,10 +47,10 @@ describe('Query params', () => {
   it('should not append ? with no query parameters', async () => {
     nock(Utils.baseUrl).get('/drive/v2/files/ID').reply(200);
     const res = await localDrive.files.get({fileId: 'ID'});
-    assert.strictEqual(-1, res.config.url.indexOf('?'));
+    assert.strictEqual(-1, res.config.url.toString().indexOf('?'));
     nock(Utils.baseUrl).get('/drive/v2/files/ID').reply(200);
     const res2 = await remoteDrive.files.get({fileId: 'ID'});
-    assert.strictEqual(-1, res2.config.url.indexOf('?'));
+    assert.strictEqual(-1, res2.config.url.toString().indexOf('?'));
   });
 
   it('should be null if no object passed', async () => {
@@ -121,7 +121,7 @@ describe('Query params', () => {
     const computeRemoteUrl = 'https://compute.googleapis.com';
     const r1 = nock(computeRemoteUrl)
       .post(
-        '/compute/v1/projects//zones//instances//setDiskAutoDelete?autoDelete=false&deviceName='
+        '/compute/v1/projects//zones//instances//setDiskAutoDelete?autoDelete=false&deviceName=',
       )
       .reply(200);
       console.log('local compute')
@@ -136,7 +136,7 @@ describe('Query params', () => {
     assert.strictEqual(Utils.getQs(res), 'autoDelete=false&deviceName=');
     const r2 = nock(computeRemoteUrl)
       .post(
-        '/compute/v1/projects//zones//instances//setDiskAutoDelete?autoDelete=false&deviceName='
+        '/compute/v1/projects//zones//instances//setDiskAutoDelete?autoDelete=false&deviceName=',
       )
       .reply(200);
       console.log('remote compute')
@@ -205,7 +205,7 @@ describe('Query params', () => {
     const oauth2client = new google.auth.OAuth2(
       'CLIENT_ID',
       'CLIENT_SECRET',
-      'REDIRECT_URI'
+      'REDIRECT_URI',
     );
     oauth2client.credentials = {access_token: 'abc123'};
 
@@ -224,7 +224,7 @@ describe('Query params', () => {
   it('should handle multi-value query params properly', async () => {
     nock(Utils.gmailUrl)
       .get(
-        '/gmail/v1/users/me/messages/abc123?metadataHeaders=To&metadataHeaders=Date'
+        '/gmail/v1/users/me/messages/abc123?metadataHeaders=To&metadataHeaders=Date',
       )
       .reply(200);
     const res = await localGmail.users.messages.get({
@@ -234,12 +234,12 @@ describe('Query params', () => {
     });
     assert.strictEqual(
       Utils.getQs(res),
-      'metadataHeaders=To&metadataHeaders=Date'
+      'metadataHeaders=To&metadataHeaders=Date',
     );
 
     nock(Utils.gmailUrl)
       .get(
-        '/gmail/v1/users/me/messages/abc123?metadataHeaders=To&metadataHeaders=Date'
+        '/gmail/v1/users/me/messages/abc123?metadataHeaders=To&metadataHeaders=Date',
       )
       .reply(200);
     const res2 = await remoteGmail.users.messages.get({
@@ -249,7 +249,7 @@ describe('Query params', () => {
     });
     assert.strictEqual(
       Utils.getQs(res2),
-      'metadataHeaders=To&metadataHeaders=Date'
+      'metadataHeaders=To&metadataHeaders=Date',
     );
   });
 

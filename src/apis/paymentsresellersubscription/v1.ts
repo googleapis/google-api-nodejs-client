@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -915,6 +915,59 @@ export namespace paymentsresellersubscription_v1 {
 
     /**
      * Currently, it doesn't support **YouTube** products. Retrieves the products that can be resold by the partner. It should be autenticated with a service account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/paymentsresellersubscription.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const paymentsresellersubscription = google.paymentsresellersubscription('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/sdm.service'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await paymentsresellersubscription.partners.products.list({
+     *     // Optional. Specifies the filters for the product results. The syntax is defined in https://google.aip.dev/160 with the following caveats: 1. Only the following features are supported: - Logical operator `AND` - Comparison operator `=` (no wildcards `*`) - Traversal operator `.` - Has operator `:` (no wildcards `*`) 2. Only the following fields are supported: - `regionCodes` - `youtubePayload.partnerEligibilityId` - `youtubePayload.postalCode` 3. Unless explicitly mentioned above, other features are not supported. Example: `regionCodes:US AND youtubePayload.postalCode=94043 AND youtubePayload.partnerEligibilityId=eligibility-id`
+     *     filter: 'placeholder-value',
+     *     // Optional. The maximum number of products to return. The service may return fewer than this value. If unspecified, at most 50 products will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous `ListProducts` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListProducts` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent, the partner that can resell. Format: partners/{partner\}
+     *     parent: 'partners/my-partner',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "products": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -924,11 +977,13 @@ export namespace paymentsresellersubscription_v1 {
     list(
       params: Params$Resource$Partners$Products$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Partners$Products$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudPaymentsResellerSubscriptionV1ListProductsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1ListProductsResponse>
+    >;
     list(
       params: Params$Resource$Partners$Products$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -963,8 +1018,10 @@ export namespace paymentsresellersubscription_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudPaymentsResellerSubscriptionV1ListProductsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1ListProductsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Products$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1041,6 +1098,64 @@ export namespace paymentsresellersubscription_v1 {
 
     /**
      * Currently, it is only enabeld for **YouTube**. Finds eligible promotions for the current user. The API requires user authorization via OAuth. The bare minimum oauth scope `openid` is sufficient, which will skip the consent screen.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/paymentsresellersubscription.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const paymentsresellersubscription = google.paymentsresellersubscription('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/sdm.service'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await paymentsresellersubscription.partners.promotions.findEligible({
+     *       // Required. The parent, the partner that can resell. Format: partners/{partner\}
+     *       parent: 'partners/my-partner',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "filter": "my_filter",
+     *         //   "pageSize": 0,
+     *         //   "pageToken": "my_pageToken"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "promotions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1050,11 +1165,13 @@ export namespace paymentsresellersubscription_v1 {
     findEligible(
       params: Params$Resource$Partners$Promotions$Findeligible,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     findEligible(
       params?: Params$Resource$Partners$Promotions$Findeligible,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudPaymentsResellerSubscriptionV1FindEligiblePromotionsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1FindEligiblePromotionsResponse>
+    >;
     findEligible(
       params: Params$Resource$Partners$Promotions$Findeligible,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1089,8 +1206,10 @@ export namespace paymentsresellersubscription_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudPaymentsResellerSubscriptionV1FindEligiblePromotionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1FindEligiblePromotionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Promotions$Findeligible;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1140,6 +1259,59 @@ export namespace paymentsresellersubscription_v1 {
 
     /**
      * Currently, it doesn't support **YouTube** promotions. Retrieves the promotions, such as free trial, that can be used by the partner. It should be autenticated with a service account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/paymentsresellersubscription.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const paymentsresellersubscription = google.paymentsresellersubscription('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/sdm.service'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await paymentsresellersubscription.partners.promotions.list({
+     *     // Optional. Specifies the filters for the promotion results. The syntax is defined in https://google.aip.dev/160 with the following caveats: 1. Only the following features are supported: - Logical operator `AND` - Comparison operator `=` (no wildcards `*`) - Traversal operator `.` - Has operator `:` (no wildcards `*`) 2. Only the following fields are supported: - `applicableProducts` - `regionCodes` - `youtubePayload.partnerEligibilityId` - `youtubePayload.postalCode` 3. Unless explicitly mentioned above, other features are not supported. Example: `applicableProducts:partners/partner1/products/product1 AND regionCodes:US AND youtubePayload.postalCode=94043 AND youtubePayload.partnerEligibilityId=eligibility-id`
+     *     filter: 'placeholder-value',
+     *     // Optional. The maximum number of promotions to return. The service may return fewer than this value. If unspecified, at most 50 products will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous `ListPromotions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListPromotions` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent, the partner that can resell. Format: partners/{partner\}
+     *     parent: 'partners/my-partner',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "promotions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1149,11 +1321,13 @@ export namespace paymentsresellersubscription_v1 {
     list(
       params: Params$Resource$Partners$Promotions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Partners$Promotions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudPaymentsResellerSubscriptionV1ListPromotionsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1ListPromotionsResponse>
+    >;
     list(
       params: Params$Resource$Partners$Promotions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1188,8 +1362,10 @@ export namespace paymentsresellersubscription_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudPaymentsResellerSubscriptionV1ListPromotionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1ListPromotionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Promotions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1278,6 +1454,61 @@ export namespace paymentsresellersubscription_v1 {
 
     /**
      * Cancels a subscription service either immediately or by the end of the current billing cycle for their customers. It should be called directly by the partner using service accounts.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/paymentsresellersubscription.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const paymentsresellersubscription = google.paymentsresellersubscription('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/sdm.service'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await paymentsresellersubscription.partners.subscriptions.cancel({
+     *     // Required. The name of the subscription resource to be cancelled. It will have the format of "partners/{partner_id\}/subscriptions/{subscription_id\}"
+     *     name: 'partners/my-partner/subscriptions/my-subscription',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "cancelImmediately": false,
+     *       //   "cancellationReason": "my_cancellationReason"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "subscription": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1287,11 +1518,13 @@ export namespace paymentsresellersubscription_v1 {
     cancel(
       params: Params$Resource$Partners$Subscriptions$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     cancel(
       params?: Params$Resource$Partners$Subscriptions$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudPaymentsResellerSubscriptionV1CancelSubscriptionResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1CancelSubscriptionResponse>
+    >;
     cancel(
       params: Params$Resource$Partners$Subscriptions$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1326,8 +1559,10 @@ export namespace paymentsresellersubscription_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudPaymentsResellerSubscriptionV1CancelSubscriptionResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1CancelSubscriptionResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Subscriptions$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1374,6 +1609,100 @@ export namespace paymentsresellersubscription_v1 {
 
     /**
      * Used by partners to create a subscription for their customers. The created subscription is associated with the end user inferred from the end user credentials. This API must be authorized by the end user using OAuth.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/paymentsresellersubscription.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const paymentsresellersubscription = google.paymentsresellersubscription('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/sdm.service'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await paymentsresellersubscription.partners.subscriptions.create({
+     *     // Required. The parent resource name, which is the identifier of the partner. It will have the format of "partners/{partner_id\}".
+     *     parent: 'partners/my-partner',
+     *     // Required. Identifies the subscription resource on the Partner side. The value is restricted to 63 ASCII characters at the maximum. If a subscription was previously created with the same subscription_id, we will directly return that one.
+     *     subscriptionId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "cancellationDetails": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "cycleEndTime": "my_cycleEndTime",
+     *       //   "endUserEntitled": false,
+     *       //   "freeTrialEndTime": "my_freeTrialEndTime",
+     *       //   "lineItems": [],
+     *       //   "migrationDetails": {},
+     *       //   "name": "my_name",
+     *       //   "partnerUserToken": "my_partnerUserToken",
+     *       //   "processingState": "my_processingState",
+     *       //   "products": [],
+     *       //   "promotionSpecs": [],
+     *       //   "promotions": [],
+     *       //   "purchaseTime": "my_purchaseTime",
+     *       //   "redirectUri": "my_redirectUri",
+     *       //   "renewalTime": "my_renewalTime",
+     *       //   "serviceLocation": {},
+     *       //   "state": "my_state",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "upgradeDowngradeDetails": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cancellationDetails": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "cycleEndTime": "my_cycleEndTime",
+     *   //   "endUserEntitled": false,
+     *   //   "freeTrialEndTime": "my_freeTrialEndTime",
+     *   //   "lineItems": [],
+     *   //   "migrationDetails": {},
+     *   //   "name": "my_name",
+     *   //   "partnerUserToken": "my_partnerUserToken",
+     *   //   "processingState": "my_processingState",
+     *   //   "products": [],
+     *   //   "promotionSpecs": [],
+     *   //   "promotions": [],
+     *   //   "purchaseTime": "my_purchaseTime",
+     *   //   "redirectUri": "my_redirectUri",
+     *   //   "renewalTime": "my_renewalTime",
+     *   //   "serviceLocation": {},
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "upgradeDowngradeDetails": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1383,11 +1712,13 @@ export namespace paymentsresellersubscription_v1 {
     create(
       params: Params$Resource$Partners$Subscriptions$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Partners$Subscriptions$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription>
+    >;
     create(
       params: Params$Resource$Partners$Subscriptions$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1422,8 +1753,10 @@ export namespace paymentsresellersubscription_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Subscriptions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1473,6 +1806,62 @@ export namespace paymentsresellersubscription_v1 {
 
     /**
      * Entitles a previously provisioned subscription to the current end user. The end user identity is inferred from the authorized credential of the request. This API must be authorized by the end user using OAuth.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/paymentsresellersubscription.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const paymentsresellersubscription = google.paymentsresellersubscription('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/sdm.service'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await paymentsresellersubscription.partners.subscriptions.entitle(
+     *     {
+     *       // Required. The name of the subscription resource that is entitled to the current end user. It will have the format of "partners/{partner_id\}/subscriptions/{subscription_id\}"
+     *       name: 'partners/my-partner/subscriptions/my-subscription',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "lineItemEntitlementDetails": []
+     *         // }
+     *       },
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "subscription": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1482,11 +1871,13 @@ export namespace paymentsresellersubscription_v1 {
     entitle(
       params: Params$Resource$Partners$Subscriptions$Entitle,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     entitle(
       params?: Params$Resource$Partners$Subscriptions$Entitle,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudPaymentsResellerSubscriptionV1EntitleSubscriptionResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1EntitleSubscriptionResponse>
+    >;
     entitle(
       params: Params$Resource$Partners$Subscriptions$Entitle,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1521,8 +1912,10 @@ export namespace paymentsresellersubscription_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudPaymentsResellerSubscriptionV1EntitleSubscriptionResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1EntitleSubscriptionResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Subscriptions$Entitle;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1572,6 +1965,63 @@ export namespace paymentsresellersubscription_v1 {
 
     /**
      * [Opt-in only] Most partners should be on auto-extend by default. Extends a subscription service for their customers on an ongoing basis for the subscription to remain active and renewable. It should be called directly by the partner using service accounts.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/paymentsresellersubscription.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const paymentsresellersubscription = google.paymentsresellersubscription('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/sdm.service'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await paymentsresellersubscription.partners.subscriptions.extend({
+     *     // Required. The name of the subscription resource to be extended. It will have the format of "partners/{partner_id\}/subscriptions/{subscription_id\}".
+     *     name: 'partners/my-partner/subscriptions/my-subscription',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "extension": {},
+     *       //   "requestId": "my_requestId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cycleEndTime": "my_cycleEndTime",
+     *   //   "freeTrialEndTime": "my_freeTrialEndTime",
+     *   //   "renewalTime": "my_renewalTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1581,11 +2031,13 @@ export namespace paymentsresellersubscription_v1 {
     extend(
       params: Params$Resource$Partners$Subscriptions$Extend,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     extend(
       params?: Params$Resource$Partners$Subscriptions$Extend,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudPaymentsResellerSubscriptionV1ExtendSubscriptionResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1ExtendSubscriptionResponse>
+    >;
     extend(
       params: Params$Resource$Partners$Subscriptions$Extend,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1620,8 +2072,10 @@ export namespace paymentsresellersubscription_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudPaymentsResellerSubscriptionV1ExtendSubscriptionResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1ExtendSubscriptionResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Subscriptions$Extend;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1668,6 +2122,71 @@ export namespace paymentsresellersubscription_v1 {
 
     /**
      * Gets a subscription by id. It should be called directly by the partner using service accounts.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/paymentsresellersubscription.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const paymentsresellersubscription = google.paymentsresellersubscription('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/sdm.service'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await paymentsresellersubscription.partners.subscriptions.get({
+     *     // Required. The name of the subscription resource to retrieve. It will have the format of "partners/{partner_id\}/subscriptions/{subscription_id\}"
+     *     name: 'partners/my-partner/subscriptions/my-subscription',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cancellationDetails": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "cycleEndTime": "my_cycleEndTime",
+     *   //   "endUserEntitled": false,
+     *   //   "freeTrialEndTime": "my_freeTrialEndTime",
+     *   //   "lineItems": [],
+     *   //   "migrationDetails": {},
+     *   //   "name": "my_name",
+     *   //   "partnerUserToken": "my_partnerUserToken",
+     *   //   "processingState": "my_processingState",
+     *   //   "products": [],
+     *   //   "promotionSpecs": [],
+     *   //   "promotions": [],
+     *   //   "purchaseTime": "my_purchaseTime",
+     *   //   "redirectUri": "my_redirectUri",
+     *   //   "renewalTime": "my_renewalTime",
+     *   //   "serviceLocation": {},
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "upgradeDowngradeDetails": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1677,11 +2196,13 @@ export namespace paymentsresellersubscription_v1 {
     get(
       params: Params$Resource$Partners$Subscriptions$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Partners$Subscriptions$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription>
+    >;
     get(
       params: Params$Resource$Partners$Subscriptions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1716,8 +2237,10 @@ export namespace paymentsresellersubscription_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Subscriptions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1764,6 +2287,101 @@ export namespace paymentsresellersubscription_v1 {
 
     /**
      * Used by partners to provision a subscription for their customers. This creates a subscription without associating it with the end user account. EntitleSubscription must be called separately using OAuth in order for the end user account to be associated with the subscription. It should be called directly by the partner using service accounts.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/paymentsresellersubscription.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const paymentsresellersubscription = google.paymentsresellersubscription('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/sdm.service'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await paymentsresellersubscription.partners.subscriptions.provision({
+     *       // Required. The parent resource name, which is the identifier of the partner. It will have the format of "partners/{partner_id\}".
+     *       parent: 'partners/my-partner',
+     *       // Required. Identifies the subscription resource on the Partner side. The value is restricted to 63 ASCII characters at the maximum. If a subscription was previously created with the same subscription_id, we will directly return that one.
+     *       subscriptionId: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "cancellationDetails": {},
+     *         //   "createTime": "my_createTime",
+     *         //   "cycleEndTime": "my_cycleEndTime",
+     *         //   "endUserEntitled": false,
+     *         //   "freeTrialEndTime": "my_freeTrialEndTime",
+     *         //   "lineItems": [],
+     *         //   "migrationDetails": {},
+     *         //   "name": "my_name",
+     *         //   "partnerUserToken": "my_partnerUserToken",
+     *         //   "processingState": "my_processingState",
+     *         //   "products": [],
+     *         //   "promotionSpecs": [],
+     *         //   "promotions": [],
+     *         //   "purchaseTime": "my_purchaseTime",
+     *         //   "redirectUri": "my_redirectUri",
+     *         //   "renewalTime": "my_renewalTime",
+     *         //   "serviceLocation": {},
+     *         //   "state": "my_state",
+     *         //   "updateTime": "my_updateTime",
+     *         //   "upgradeDowngradeDetails": {}
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cancellationDetails": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "cycleEndTime": "my_cycleEndTime",
+     *   //   "endUserEntitled": false,
+     *   //   "freeTrialEndTime": "my_freeTrialEndTime",
+     *   //   "lineItems": [],
+     *   //   "migrationDetails": {},
+     *   //   "name": "my_name",
+     *   //   "partnerUserToken": "my_partnerUserToken",
+     *   //   "processingState": "my_processingState",
+     *   //   "products": [],
+     *   //   "promotionSpecs": [],
+     *   //   "promotions": [],
+     *   //   "purchaseTime": "my_purchaseTime",
+     *   //   "redirectUri": "my_redirectUri",
+     *   //   "renewalTime": "my_renewalTime",
+     *   //   "serviceLocation": {},
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "upgradeDowngradeDetails": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1773,11 +2391,13 @@ export namespace paymentsresellersubscription_v1 {
     provision(
       params: Params$Resource$Partners$Subscriptions$Provision,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     provision(
       params?: Params$Resource$Partners$Subscriptions$Provision,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription>
+    >;
     provision(
       params: Params$Resource$Partners$Subscriptions$Provision,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1812,8 +2432,10 @@ export namespace paymentsresellersubscription_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Subscriptions$Provision;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1863,6 +2485,58 @@ export namespace paymentsresellersubscription_v1 {
 
     /**
      * Resumes a suspended subscription. The new billing cycle will start at the time of the request. It should be called directly by the partner using service accounts.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/paymentsresellersubscription.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const paymentsresellersubscription = google.paymentsresellersubscription('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/sdm.service'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await paymentsresellersubscription.partners.subscriptions.resume({
+     *     // Required. The name of the subscription resource to be resumed. It will have the format of "partners/{partner_id\}/subscriptions/{subscription_id\}"
+     *     name: 'partners/my-partner/subscriptions/my-subscription',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "subscription": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1872,11 +2546,13 @@ export namespace paymentsresellersubscription_v1 {
     resume(
       params: Params$Resource$Partners$Subscriptions$Resume,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     resume(
       params?: Params$Resource$Partners$Subscriptions$Resume,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudPaymentsResellerSubscriptionV1ResumeSubscriptionResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1ResumeSubscriptionResponse>
+    >;
     resume(
       params: Params$Resource$Partners$Subscriptions$Resume,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1911,8 +2587,10 @@ export namespace paymentsresellersubscription_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudPaymentsResellerSubscriptionV1ResumeSubscriptionResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1ResumeSubscriptionResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Subscriptions$Resume;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1959,6 +2637,60 @@ export namespace paymentsresellersubscription_v1 {
 
     /**
      * Suspends a subscription. Contract terms may dictate if a prorated refund will be issued upon suspension. It should be called directly by the partner using service accounts.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/paymentsresellersubscription.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const paymentsresellersubscription = google.paymentsresellersubscription('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/sdm.service'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await paymentsresellersubscription.partners.subscriptions.suspend(
+     *     {
+     *       // Required. The name of the subscription resource to be suspended. It will have the format of "partners/{partner_id\}/subscriptions/{subscription_id\}"
+     *       name: 'partners/my-partner/subscriptions/my-subscription',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {}
+     *       },
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "subscription": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1968,11 +2700,13 @@ export namespace paymentsresellersubscription_v1 {
     suspend(
       params: Params$Resource$Partners$Subscriptions$Suspend,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     suspend(
       params?: Params$Resource$Partners$Subscriptions$Suspend,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudPaymentsResellerSubscriptionV1SuspendSubscriptionResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1SuspendSubscriptionResponse>
+    >;
     suspend(
       params: Params$Resource$Partners$Subscriptions$Suspend,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2007,8 +2741,10 @@ export namespace paymentsresellersubscription_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudPaymentsResellerSubscriptionV1SuspendSubscriptionResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1SuspendSubscriptionResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Subscriptions$Suspend;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2058,6 +2794,59 @@ export namespace paymentsresellersubscription_v1 {
 
     /**
      * Currently, it is used by **Google One, Play Pass** partners. Revokes the pending cancellation of a subscription, which is currently in `STATE_CANCEL_AT_END_OF_CYCLE` state. If the subscription is already cancelled, the request will fail. It should be called directly by the partner using service accounts.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/paymentsresellersubscription.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const paymentsresellersubscription = google.paymentsresellersubscription('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/sdm.service'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await paymentsresellersubscription.partners.subscriptions.undoCancel({
+     *       // Required. The name of the subscription resource whose pending cancellation needs to be undone. It will have the format of "partners/{partner_id\}/subscriptions/{subscription_id\}"
+     *       name: 'partners/my-partner/subscriptions/my-subscription',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {}
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "subscription": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2067,11 +2856,13 @@ export namespace paymentsresellersubscription_v1 {
     undoCancel(
       params: Params$Resource$Partners$Subscriptions$Undocancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     undoCancel(
       params?: Params$Resource$Partners$Subscriptions$Undocancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudPaymentsResellerSubscriptionV1UndoCancelSubscriptionResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1UndoCancelSubscriptionResponse>
+    >;
     undoCancel(
       params: Params$Resource$Partners$Subscriptions$Undocancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2106,8 +2897,10 @@ export namespace paymentsresellersubscription_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudPaymentsResellerSubscriptionV1UndoCancelSubscriptionResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1UndoCancelSubscriptionResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Subscriptions$Undocancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2275,7 +3068,63 @@ export namespace paymentsresellersubscription_v1 {
     }
 
     /**
-     * This API replaces user authorized OAuth consent based APIs (Create, Entitle). Issues a timed session token for the given user intent. You can use the session token to redirect the user to Google to finish the signup flow. You can re-generate new session token repeatedly for the same request if necessary, regardless of the previous tokens being expired or not.
+     * This API replaces user authorized OAuth consent based APIs (Create, Entitle). Issues a timed session token for the given user intent. You can use the session token to redirect the user to Google to finish the signup flow. You can re-generate new session token repeatedly for the same request if necessary, regardless of the previous tokens being expired or not. By default, the session token is valid for 1 hour.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/paymentsresellersubscription.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const paymentsresellersubscription = google.paymentsresellersubscription('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/sdm.service'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await paymentsresellersubscription.partners.userSessions.generate(
+     *     {
+     *       // Required. The parent, the partner that can resell. Format: partners/{partner\}
+     *       parent: 'partners/my-partner',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "intentPayload": {}
+     *         // }
+     *       },
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "userSession": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2285,11 +3134,13 @@ export namespace paymentsresellersubscription_v1 {
     generate(
       params: Params$Resource$Partners$Usersessions$Generate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     generate(
       params?: Params$Resource$Partners$Usersessions$Generate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudPaymentsResellerSubscriptionV1GenerateUserSessionResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1GenerateUserSessionResponse>
+    >;
     generate(
       params: Params$Resource$Partners$Usersessions$Generate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2324,8 +3175,10 @@ export namespace paymentsresellersubscription_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudPaymentsResellerSubscriptionV1GenerateUserSessionResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1GenerateUserSessionResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Usersessions$Generate;
       let options = (optionsOrCallback || {}) as MethodOptions;

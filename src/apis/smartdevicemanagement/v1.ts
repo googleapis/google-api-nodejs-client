@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -253,6 +253,61 @@ export namespace smartdevicemanagement_v1 {
 
     /**
      * Executes a command to device managed by the enterprise.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/smartdevicemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const smartdevicemanagement = google.smartdevicemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/sdm.service'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await smartdevicemanagement.enterprises.devices.executeCommand({
+     *     // The name of the device requested. For example: "enterprises/XYZ/devices/123"
+     *     name: 'enterprises/my-enterprise/devices/my-device',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "command": "my_command",
+     *       //   "params": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "results": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -262,11 +317,13 @@ export namespace smartdevicemanagement_v1 {
     executeCommand(
       params: Params$Resource$Enterprises$Devices$Executecommand,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     executeCommand(
       params?: Params$Resource$Enterprises$Devices$Executecommand,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleHomeEnterpriseSdmV1ExecuteDeviceCommandResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleHomeEnterpriseSdmV1ExecuteDeviceCommandResponse>
+    >;
     executeCommand(
       params: Params$Resource$Enterprises$Devices$Executecommand,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -301,8 +358,10 @@ export namespace smartdevicemanagement_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleHomeEnterpriseSdmV1ExecuteDeviceCommandResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleHomeEnterpriseSdmV1ExecuteDeviceCommandResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Enterprises$Devices$Executecommand;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -351,6 +410,55 @@ export namespace smartdevicemanagement_v1 {
 
     /**
      * Gets a device managed by the enterprise.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/smartdevicemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const smartdevicemanagement = google.smartdevicemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/sdm.service'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await smartdevicemanagement.enterprises.devices.get({
+     *     // The name of the device requested. For example: "enterprises/XYZ/devices/123"
+     *     name: 'enterprises/my-enterprise/devices/my-device',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "parentRelations": [],
+     *   //   "traits": {},
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -360,11 +468,11 @@ export namespace smartdevicemanagement_v1 {
     get(
       params: Params$Resource$Enterprises$Devices$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Enterprises$Devices$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleHomeEnterpriseSdmV1Device>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleHomeEnterpriseSdmV1Device>>;
     get(
       params: Params$Resource$Enterprises$Devices$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -399,8 +507,8 @@ export namespace smartdevicemanagement_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleHomeEnterpriseSdmV1Device>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleHomeEnterpriseSdmV1Device>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Enterprises$Devices$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -446,6 +554,54 @@ export namespace smartdevicemanagement_v1 {
 
     /**
      * Lists devices managed by the enterprise.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/smartdevicemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const smartdevicemanagement = google.smartdevicemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/sdm.service'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await smartdevicemanagement.enterprises.devices.list({
+     *     // Optional filter to list devices. Filters can be done on: Device custom name (substring match): 'customName=wing'
+     *     filter: 'placeholder-value',
+     *     // The parent enterprise to list devices under. E.g. "enterprises/XYZ".
+     *     parent: 'enterprises/my-enterprise',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "devices": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -455,11 +611,13 @@ export namespace smartdevicemanagement_v1 {
     list(
       params: Params$Resource$Enterprises$Devices$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Enterprises$Devices$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleHomeEnterpriseSdmV1ListDevicesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleHomeEnterpriseSdmV1ListDevicesResponse>
+    >;
     list(
       params: Params$Resource$Enterprises$Devices$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -494,8 +652,10 @@ export namespace smartdevicemanagement_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleHomeEnterpriseSdmV1ListDevicesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleHomeEnterpriseSdmV1ListDevicesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Enterprises$Devices$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -584,6 +744,53 @@ export namespace smartdevicemanagement_v1 {
 
     /**
      * Gets a structure managed by the enterprise.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/smartdevicemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const smartdevicemanagement = google.smartdevicemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/sdm.service'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await smartdevicemanagement.enterprises.structures.get({
+     *     // The name of the structure requested. For example: "enterprises/XYZ/structures/ABC".
+     *     name: 'enterprises/my-enterprise/structures/my-structure',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "traits": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -593,11 +800,13 @@ export namespace smartdevicemanagement_v1 {
     get(
       params: Params$Resource$Enterprises$Structures$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Enterprises$Structures$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleHomeEnterpriseSdmV1Structure>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleHomeEnterpriseSdmV1Structure>
+    >;
     get(
       params: Params$Resource$Enterprises$Structures$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -632,8 +841,10 @@ export namespace smartdevicemanagement_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleHomeEnterpriseSdmV1Structure>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleHomeEnterpriseSdmV1Structure>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Enterprises$Structures$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -679,6 +890,54 @@ export namespace smartdevicemanagement_v1 {
 
     /**
      * Lists structures managed by the enterprise.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/smartdevicemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const smartdevicemanagement = google.smartdevicemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/sdm.service'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await smartdevicemanagement.enterprises.structures.list({
+     *     // Optional filter to list structures.
+     *     filter: 'placeholder-value',
+     *     // The parent enterprise to list structures under. E.g. "enterprises/XYZ".
+     *     parent: 'enterprises/my-enterprise',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "structures": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -688,11 +947,13 @@ export namespace smartdevicemanagement_v1 {
     list(
       params: Params$Resource$Enterprises$Structures$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Enterprises$Structures$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleHomeEnterpriseSdmV1ListStructuresResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleHomeEnterpriseSdmV1ListStructuresResponse>
+    >;
     list(
       params: Params$Resource$Enterprises$Structures$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -727,8 +988,10 @@ export namespace smartdevicemanagement_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleHomeEnterpriseSdmV1ListStructuresResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleHomeEnterpriseSdmV1ListStructuresResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Enterprises$Structures$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -803,6 +1066,53 @@ export namespace smartdevicemanagement_v1 {
 
     /**
      * Gets a room managed by the enterprise.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/smartdevicemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const smartdevicemanagement = google.smartdevicemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/sdm.service'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await smartdevicemanagement.enterprises.structures.rooms.get({
+     *     // The name of the room requested. For example: "enterprises/XYZ/structures/ABC/rooms/123".
+     *     name: 'enterprises/my-enterprise/structures/my-structure/rooms/my-room',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "traits": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -812,11 +1122,11 @@ export namespace smartdevicemanagement_v1 {
     get(
       params: Params$Resource$Enterprises$Structures$Rooms$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Enterprises$Structures$Rooms$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleHomeEnterpriseSdmV1Room>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleHomeEnterpriseSdmV1Room>>;
     get(
       params: Params$Resource$Enterprises$Structures$Rooms$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -851,8 +1161,8 @@ export namespace smartdevicemanagement_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleHomeEnterpriseSdmV1Room>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleHomeEnterpriseSdmV1Room>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Enterprises$Structures$Rooms$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -898,6 +1208,52 @@ export namespace smartdevicemanagement_v1 {
 
     /**
      * Lists rooms managed by the enterprise.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/smartdevicemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const smartdevicemanagement = google.smartdevicemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/sdm.service'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await smartdevicemanagement.enterprises.structures.rooms.list({
+     *     // The parent resource name of the rooms requested. For example: "enterprises/XYZ/structures/ABC".
+     *     parent: 'enterprises/my-enterprise/structures/my-structure',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "rooms": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -907,11 +1263,13 @@ export namespace smartdevicemanagement_v1 {
     list(
       params: Params$Resource$Enterprises$Structures$Rooms$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Enterprises$Structures$Rooms$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleHomeEnterpriseSdmV1ListRoomsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleHomeEnterpriseSdmV1ListRoomsResponse>
+    >;
     list(
       params: Params$Resource$Enterprises$Structures$Rooms$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -946,8 +1304,10 @@ export namespace smartdevicemanagement_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleHomeEnterpriseSdmV1ListRoomsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleHomeEnterpriseSdmV1ListRoomsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Enterprises$Structures$Rooms$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

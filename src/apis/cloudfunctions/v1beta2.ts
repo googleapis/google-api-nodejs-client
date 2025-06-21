@@ -23,7 +23,7 @@ import {
   JWT,
   Compute,
   UserRefreshClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -577,11 +577,11 @@ export namespace cloudfunctions_v1beta2 {
     get(
       params: Params$Resource$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     get(
       params: Params$Resource$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -610,7 +610,7 @@ export namespace cloudfunctions_v1beta2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Operation>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -715,11 +715,11 @@ export namespace cloudfunctions_v1beta2 {
     list(
       params: Params$Resource$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListOperationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>;
     list(
       params: Params$Resource$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -752,8 +752,8 @@ export namespace cloudfunctions_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListOperationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -904,11 +904,11 @@ export namespace cloudfunctions_v1beta2 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListLocationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -941,8 +941,8 @@ export namespace cloudfunctions_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListLocationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1079,11 +1079,11 @@ export namespace cloudfunctions_v1beta2 {
     call(
       params: Params$Resource$Projects$Locations$Functions$Call,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     call(
       params?: Params$Resource$Projects$Locations$Functions$Call,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CallFunctionResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CallFunctionResponse>>;
     call(
       params: Params$Resource$Projects$Locations$Functions$Call,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1116,8 +1116,8 @@ export namespace cloudfunctions_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CallFunctionResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CallFunctionResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Functions$Call;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1250,11 +1250,11 @@ export namespace cloudfunctions_v1beta2 {
     create(
       params: Params$Resource$Projects$Locations$Functions$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Functions$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Functions$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1283,7 +1283,7 @@ export namespace cloudfunctions_v1beta2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Operation>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Functions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1386,11 +1386,11 @@ export namespace cloudfunctions_v1beta2 {
     delete(
       params: Params$Resource$Projects$Locations$Functions$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Functions$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Functions$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1419,7 +1419,7 @@ export namespace cloudfunctions_v1beta2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Operation>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Functions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1527,11 +1527,11 @@ export namespace cloudfunctions_v1beta2 {
     generateDownloadUrl(
       params: Params$Resource$Projects$Locations$Functions$Generatedownloadurl,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     generateDownloadUrl(
       params?: Params$Resource$Projects$Locations$Functions$Generatedownloadurl,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GenerateDownloadUrlResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GenerateDownloadUrlResponse>>;
     generateDownloadUrl(
       params: Params$Resource$Projects$Locations$Functions$Generatedownloadurl,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1566,8 +1566,8 @@ export namespace cloudfunctions_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GenerateDownloadUrlResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GenerateDownloadUrlResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Functions$Generatedownloadurl;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1676,11 +1676,11 @@ export namespace cloudfunctions_v1beta2 {
     generateUploadUrl(
       params: Params$Resource$Projects$Locations$Functions$Generateuploadurl,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     generateUploadUrl(
       params?: Params$Resource$Projects$Locations$Functions$Generateuploadurl,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GenerateUploadUrlResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GenerateUploadUrlResponse>>;
     generateUploadUrl(
       params: Params$Resource$Projects$Locations$Functions$Generateuploadurl,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1715,8 +1715,8 @@ export namespace cloudfunctions_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GenerateUploadUrlResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GenerateUploadUrlResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Functions$Generateuploadurl;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1834,11 +1834,11 @@ export namespace cloudfunctions_v1beta2 {
     get(
       params: Params$Resource$Projects$Locations$Functions$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Functions$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CloudFunction>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CloudFunction>>;
     get(
       params: Params$Resource$Projects$Locations$Functions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1867,7 +1867,7 @@ export namespace cloudfunctions_v1beta2 {
       callback?:
         | BodyResponseCallback<Schema$CloudFunction>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CloudFunction> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$CloudFunction>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Functions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1979,11 +1979,11 @@ export namespace cloudfunctions_v1beta2 {
     list(
       params: Params$Resource$Projects$Locations$Functions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Functions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListFunctionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListFunctionsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Functions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2016,8 +2016,8 @@ export namespace cloudfunctions_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListFunctionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListFunctionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Functions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2149,11 +2149,11 @@ export namespace cloudfunctions_v1beta2 {
     update(
       params: Params$Resource$Projects$Locations$Functions$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Projects$Locations$Functions$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     update(
       params: Params$Resource$Projects$Locations$Functions$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2182,7 +2182,7 @@ export namespace cloudfunctions_v1beta2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Operation>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Functions$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;

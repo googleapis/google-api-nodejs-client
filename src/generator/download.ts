@@ -17,7 +17,7 @@ import * as path from 'path';
 import * as fs from 'fs';
 const {mkdir} = require('fs').promises;
 import Q from 'p-queue';
-import {request, Headers} from 'gaxios';
+import {request} from 'gaxios';
 import * as gapi from 'googleapis-common';
 
 export type Schema = {[index: string]: {}};
@@ -56,15 +56,16 @@ export const gfs = {
  * @param options
  */
 export async function downloadDiscoveryDocs(
-  options: DownloadOptions
+  options: DownloadOptions,
 ): Promise<ChangeSet[]> {
   await gfs.mkdir(options.downloadPath);
   const headers: Headers = options.includePrivate
-    ? {}
-    : {'X-User-Ip': '0.0.0.0'};
-  headers['Content-Type'] = headers['Content-Type']
-    ? headers['Content-Type']
-    : 'application/json';
+    ? new Headers()
+    : new Headers({'X-User-Ip': '0.0.0.0'});
+  headers.append(
+    'Content-Type',
+    headers.get('Content-Type') ?? 'application/json',
+  );
   console.log(`sending request to ${options.discoveryUrl}`);
   const res = await request({
     url: `${options.discoveryUrl}/index.json`,
@@ -81,7 +82,7 @@ export async function downloadDiscoveryDocs(
       console.log(`Downloading ${api.id}...`);
       const apiPath = path.join(
         options.downloadPath,
-        api.id.replace(':', '-') + '.json'
+        api.id.replace(':', '-') + '.json',
       );
       const url = `${options.discoveryUrl}/${api.name}.${api.version}.json`;
       const changeSet: ChangeSet = {api, changes: []};
@@ -106,9 +107,38 @@ export async function downloadDiscoveryDocs(
         console.error(`Error downloading: ${url}`);
       }
       return changeSet;
-    })
+    }),
   );
+  cleanupLibrariesNotInIndexJSON(apis, options);
   return changes;
+}
+
+// These are libraries we should no longer support because
+// they are not present in the index.json
+// example: b/148605368
+function cleanupLibrariesNotInIndexJSON(
+  apis: gapi.Schema[],
+  options: DownloadOptions,
+): void {
+  const srcPath = path.join(__dirname, '../../../src', 'apis');
+  const discoveryDirectory = fs.readdirSync(options.downloadPath);
+  const apisReplaced = apis.map(
+    x => x.id.toString().replace(':', '-') + '.json',
+  );
+  // So that we don't delete index.json
+  apisReplaced.push('index.json');
+  const discoveryDocsToDelete = discoveryDirectory.filter(
+    x => !apisReplaced.includes(x),
+  );
+  const clientFilesToDelete = discoveryDocsToDelete.map(x => {
+    const apiName = x.split('-')[0];
+    const versionName = apiName[1].split('.')[0];
+    return path.join(srcPath, apiName, `${versionName}.ts`);
+  });
+  discoveryDocsToDelete.forEach(x =>
+    fs.unlinkSync(path.join(options.downloadPath, x)),
+  );
+  clientFilesToDelete.forEach(x => fs.unlinkSync(x));
 }
 
 const ignoreLines = /^\s+"(?:etag|revision)": ".+"/;
@@ -123,7 +153,7 @@ export function shouldUpdate(newDoc: {}, oldDoc: {}) {
     JSON.stringify(doc, null, 2)
       .split('\n')
       .filter(l => !ignoreLines.test(l))
-      .join('\n')
+      .join('\n'),
   );
   return newLines !== oldLines;
 }
@@ -149,8 +179,12 @@ export function sortKeys(obj: Schema): Schema {
   keys = keys.sort();
   for (const key of keys) {
     // typeof [] === 'object', which is maddening
-    if (!Array.isArray(obj[key]) && typeof obj[key] === 'object') {
-      sorted[key] = sortKeys(obj[key]);
+    if (
+      !Array.isArray(obj[key]) &&
+      typeof obj[key] === 'object' &&
+      typeof key === 'string'
+    ) {
+      sorted[key] = sortKeys(obj[key] as Schema);
     } else {
       sorted[key] = obj[key];
     }
@@ -246,5 +280,7 @@ if (require.main === module) {
   const discoveryUrl = argv['discovery-url'] || DISCOVERY_URL;
   const downloadPath =
     argv['download-path'] || path.join(__dirname, '../../../discovery');
-  downloadDiscoveryDocs({discoveryUrl, downloadPath});
+  downloadDiscoveryDocs({discoveryUrl, downloadPath}).catch(err => {
+    throw err;
+  });
 }

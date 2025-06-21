@@ -1,5 +1,30 @@
 # Changelog
 
+## [9.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/firebase-v9.0.0...firebase-v9.0.1) (2025-06-04)
+
+
+### Bug Fixes
+
+* **deps:** upgrade googleapis-common to 8.0.2-rc ([f4b0990](https://github.com/googleapis/google-api-nodejs-client/commit/f4b099071040cfbcfe4a2e7d487d45ee93b369e0))
+
+## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebase-v8.1.0...firebase-v9.0.0) (2025-05-29)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to node 18
+
+### Features
+
+* upgrade to node 18 ([682fbb8](https://github.com/googleapis/google-api-nodejs-client/commit/682fbb869189ae92b3e9a194d37d0548af0c1f92))
+
+## [8.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebase-v8.0.0...firebase-v8.1.0) (2025-05-05)
+
+
+### Features
+
+* **firebase:** update the API ([d7892db](https://github.com/googleapis/google-api-nodejs-client/commit/d7892db63e7ecbcfc21d43da1c43d3bb33227ad0))
+
 ## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebase-v7.0.0...firebase-v8.0.0) (2025-04-18)
 
 

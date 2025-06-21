@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -5731,11 +5731,11 @@ export namespace displayvideo_v2 {
      */
     biddingStrategy?: Schema$YoutubeAndPartnersBiddingStrategy;
     /**
-     * The kind of content on which the YouTube and Partners ads will be shown.
+     * The kind of content on which the YouTube and Partners ads will be shown. *Warning*: Starting **June 12, 2025**, this setting will no longer be editable. This field will eventually be removed. [Read more about this announced change](/display-video/api/deprecations#features.li_yt_content_category)
      */
     contentCategory?: string | null;
     /**
-     * Output only. The content category which takes effect when serving the line item. When content category is set in both line item and advertiser, the stricter one will take effect when serving the line item.
+     * Output only. The content category which takes effect when serving the line item. When content category is set in both line item and advertiser, the stricter one will take effect when serving the line item. *Warning*: Starting **June 12, 2025**, this field will only reflect the advertiser level setting for new line items. [Read more about this announced change](/display-video/api/deprecations#features.li_yt_content_category)
      */
     effectiveContentCategory?: string | null;
     /**
@@ -5878,6 +5878,61 @@ export namespace displayvideo_v2 {
 
     /**
      * Audits an advertiser. Returns the counts of used entities per resource type under the advertiser provided. Used entities count towards their respective resource limit. See https://support.google.com/displayvideo/answer/6071450.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.audit({
+     *     // Required. The ID of the advertiser to audit.
+     *     advertiserId: '[^/]+',
+     *     // Optional. The specific fields to return. If no mask is specified, all fields in the response proto will be filled. Valid values are: * usedLineItemsCount * usedInsertionOrdersCount * usedCampaignsCount * channelsCount * negativelyTargetedChannelsCount * negativeKeywordListsCount * adGroupCriteriaCount * campaignCriteriaCount
+     *     readMask: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "adGroupCriteriaCount": "my_adGroupCriteriaCount",
+     *   //   "campaignCriteriaCount": "my_campaignCriteriaCount",
+     *   //   "channelsCount": "my_channelsCount",
+     *   //   "negativeKeywordListsCount": "my_negativeKeywordListsCount",
+     *   //   "negativelyTargetedChannelsCount": "my_negativelyTargetedChannelsCount",
+     *   //   "usedCampaignsCount": "my_usedCampaignsCount",
+     *   //   "usedInsertionOrdersCount": "my_usedInsertionOrdersCount",
+     *   //   "usedLineItemsCount": "my_usedLineItemsCount"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5887,11 +5942,11 @@ export namespace displayvideo_v2 {
     audit(
       params: Params$Resource$Advertisers$Audit,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     audit(
       params?: Params$Resource$Advertisers$Audit,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AuditAdvertiserResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AuditAdvertiserResponse>>;
     audit(
       params: Params$Resource$Advertisers$Audit,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5924,8 +5979,8 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AuditAdvertiserResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AuditAdvertiserResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Audit;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5971,6 +6026,81 @@ export namespace displayvideo_v2 {
 
     /**
      * Creates a new advertiser. Returns the newly created advertiser if successful. **This method regularly experiences high latency.** We recommend [increasing your default timeout](/display-video/api/guides/best-practices/timeouts#client_library_timeout) to avoid errors.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.create({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "adServerConfig": {},
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "creativeConfig": {},
+     *       //   "dataAccessConfig": {},
+     *       //   "displayName": "my_displayName",
+     *       //   "entityStatus": "my_entityStatus",
+     *       //   "generalConfig": {},
+     *       //   "integrationDetails": {},
+     *       //   "name": "my_name",
+     *       //   "partnerId": "my_partnerId",
+     *       //   "prismaEnabled": false,
+     *       //   "servingConfig": {},
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "adServerConfig": {},
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "creativeConfig": {},
+     *   //   "dataAccessConfig": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "entityStatus": "my_entityStatus",
+     *   //   "generalConfig": {},
+     *   //   "integrationDetails": {},
+     *   //   "name": "my_name",
+     *   //   "partnerId": "my_partnerId",
+     *   //   "prismaEnabled": false,
+     *   //   "servingConfig": {},
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5980,11 +6110,11 @@ export namespace displayvideo_v2 {
     create(
       params: Params$Resource$Advertisers$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Advertisers$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Advertiser>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Advertiser>>;
     create(
       params: Params$Resource$Advertisers$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6013,7 +6143,10 @@ export namespace displayvideo_v2 {
       callback?:
         | BodyResponseCallback<Schema$Advertiser>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Advertiser> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Advertiser>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6056,6 +6189,50 @@ export namespace displayvideo_v2 {
 
     /**
      * Deletes an advertiser. Deleting an advertiser will delete all of its child resources, for example, campaigns, insertion orders and line items. A deleted advertiser cannot be recovered.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.delete({
+     *     // The ID of the advertiser we need to delete.
+     *     advertiserId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6065,11 +6242,11 @@ export namespace displayvideo_v2 {
     delete(
       params: Params$Resource$Advertisers$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Advertisers$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Advertisers$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6098,7 +6275,10 @@ export namespace displayvideo_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6144,6 +6324,61 @@ export namespace displayvideo_v2 {
 
     /**
      * Edits targeting options under a single advertiser. The operation will delete the assigned targeting options provided in BulkEditAdvertiserAssignedTargetingOptionsRequest.delete_requests and then create the assigned targeting options provided in BulkEditAdvertiserAssignedTargetingOptionsRequest.create_requests .
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.editAssignedTargetingOptions({
+     *     // Required. The ID of the advertiser.
+     *     advertiserId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createRequests": [],
+     *       //   "deleteRequests": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createdAssignedTargetingOptions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6153,11 +6388,13 @@ export namespace displayvideo_v2 {
     editAssignedTargetingOptions(
       params: Params$Resource$Advertisers$Editassignedtargetingoptions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     editAssignedTargetingOptions(
       params?: Params$Resource$Advertisers$Editassignedtargetingoptions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BulkEditAdvertiserAssignedTargetingOptionsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$BulkEditAdvertiserAssignedTargetingOptionsResponse>
+    >;
     editAssignedTargetingOptions(
       params: Params$Resource$Advertisers$Editassignedtargetingoptions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6192,8 +6429,10 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BulkEditAdvertiserAssignedTargetingOptionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$BulkEditAdvertiserAssignedTargetingOptionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Editassignedtargetingoptions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6241,6 +6480,64 @@ export namespace displayvideo_v2 {
 
     /**
      * Gets an advertiser.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.get({
+     *     // Required. The ID of the advertiser to fetch.
+     *     advertiserId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "adServerConfig": {},
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "creativeConfig": {},
+     *   //   "dataAccessConfig": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "entityStatus": "my_entityStatus",
+     *   //   "generalConfig": {},
+     *   //   "integrationDetails": {},
+     *   //   "name": "my_name",
+     *   //   "partnerId": "my_partnerId",
+     *   //   "prismaEnabled": false,
+     *   //   "servingConfig": {},
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6250,11 +6547,11 @@ export namespace displayvideo_v2 {
     get(
       params: Params$Resource$Advertisers$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Advertisers$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Advertiser>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Advertiser>>;
     get(
       params: Params$Resource$Advertisers$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6283,7 +6580,10 @@ export namespace displayvideo_v2 {
       callback?:
         | BodyResponseCallback<Schema$Advertiser>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Advertiser> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Advertiser>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Advertisers$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6328,6 +6628,61 @@ export namespace displayvideo_v2 {
 
     /**
      * Lists advertisers that are accessible to the current user. The order is defined by the order_by parameter. A single partner_id is required. Cross-partner listing is not supported.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.list({
+     *     // Allows filtering by advertiser fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. * A restriction has the form of `{field\} {operator\} {value\}`. * The `updateTime` field must use the `GREATER THAN OR EQUAL TO (\>=)` or `LESS THAN OR EQUAL TO (<=)` operators. * All other fields must use the `EQUALS (=)` operator. Supported fields: * `advertiserId` * `displayName` * `entityStatus` * `updateTime` (input in ISO 8601 format, or `YYYY-MM-DDTHH:MM:SSZ`) Examples: * All active advertisers under a partner: `entityStatus="ENTITY_STATUS_ACTIVE"` * All advertisers with an update time less than or equal to 2020-11-04T18:54:47Z (format of ISO 8601): `updateTime<="2020-11-04T18:54:47Z"` * All advertisers with an update time greater than or equal to 2020-11-04T18:54:47Z (format of ISO 8601): `updateTime\>="2020-11-04T18:54:47Z"` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
+     *     filter: 'placeholder-value',
+     *     // Field by which to sort the list. Acceptable values are: * `advertiserId` (default) * `displayName` * `entityStatus` * `updateTime` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. For example, `displayName desc`.
+     *     orderBy: 'placeholder-value',
+     *     // Requested page size. Must be between `1` and `200`. If unspecified will default to `100`.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListAdvertisers` method. If not specified, the first page of results will be returned.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The ID of the partner that the fetched advertisers should all belong to. The system only supports listing advertisers for one partner at a time.
+     *     partnerId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "advertisers": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6337,11 +6692,11 @@ export namespace displayvideo_v2 {
     list(
       params: Params$Resource$Advertisers$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Advertisers$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAdvertisersResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListAdvertisersResponse>>;
     list(
       params: Params$Resource$Advertisers$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6374,8 +6729,8 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListAdvertisersResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListAdvertisersResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Advertisers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6417,6 +6772,61 @@ export namespace displayvideo_v2 {
 
     /**
      * Lists assigned targeting options of an advertiser across targeting types.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.listAssignedTargetingOptions({
+     *     // Required. The ID of the advertiser the line item belongs to.
+     *     advertiserId: '[^/]+',
+     *     // Allows filtering by assigned targeting option fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the `OR` logical operator. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `EQUALS (=) operator`. Supported fields: * `targetingType` Examples: * targetingType with value TARGETING_TYPE_CHANNEL `targetingType="TARGETING_TYPE_CHANNEL"` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
+     *     filter: 'placeholder-value',
+     *     // Field by which to sort the list. Acceptable values are: * `targetingType` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `targetingType desc`.
+     *     orderBy: 'placeholder-value',
+     *     // Requested page size. The size must be an integer between `1` and `5000`. If unspecified, the default is '5000'. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     *     pageSize: 'placeholder-value',
+     *     // A token that lets the client fetch the next page of results. Typically, this is the value of next_page_token returned from the previous call to `BulkListAdvertiserAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assignedTargetingOptions": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6426,11 +6836,13 @@ export namespace displayvideo_v2 {
     listAssignedTargetingOptions(
       params: Params$Resource$Advertisers$Listassignedtargetingoptions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     listAssignedTargetingOptions(
       params?: Params$Resource$Advertisers$Listassignedtargetingoptions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BulkListAdvertiserAssignedTargetingOptionsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$BulkListAdvertiserAssignedTargetingOptionsResponse>
+    >;
     listAssignedTargetingOptions(
       params: Params$Resource$Advertisers$Listassignedtargetingoptions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6465,8 +6877,10 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BulkListAdvertiserAssignedTargetingOptionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$BulkListAdvertiserAssignedTargetingOptionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Listassignedtargetingoptions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6514,6 +6928,86 @@ export namespace displayvideo_v2 {
 
     /**
      * Updates an existing advertiser. Returns the updated advertiser if successful.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.patch({
+     *     // Output only. The unique ID of the advertiser. Assigned by the system.
+     *     advertiserId: '[^/]+',
+     *     // Required. The mask to control which fields to update.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "adServerConfig": {},
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "creativeConfig": {},
+     *       //   "dataAccessConfig": {},
+     *       //   "displayName": "my_displayName",
+     *       //   "entityStatus": "my_entityStatus",
+     *       //   "generalConfig": {},
+     *       //   "integrationDetails": {},
+     *       //   "name": "my_name",
+     *       //   "partnerId": "my_partnerId",
+     *       //   "prismaEnabled": false,
+     *       //   "servingConfig": {},
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "adServerConfig": {},
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "creativeConfig": {},
+     *   //   "dataAccessConfig": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "entityStatus": "my_entityStatus",
+     *   //   "generalConfig": {},
+     *   //   "integrationDetails": {},
+     *   //   "name": "my_name",
+     *   //   "partnerId": "my_partnerId",
+     *   //   "prismaEnabled": false,
+     *   //   "servingConfig": {},
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6523,11 +7017,11 @@ export namespace displayvideo_v2 {
     patch(
       params: Params$Resource$Advertisers$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Advertisers$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Advertiser>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Advertiser>>;
     patch(
       params: Params$Resource$Advertisers$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6556,7 +7050,10 @@ export namespace displayvideo_v2 {
       callback?:
         | BodyResponseCallback<Schema$Advertiser>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Advertiser> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Advertiser>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6714,6 +7211,64 @@ export namespace displayvideo_v2 {
 
     /**
      * Uploads an asset. Returns the ID of the newly uploaded asset if successful. The asset file size should be no more than 10 MB for images, 200 MB for ZIP files, and 1 GB for videos. Must be used within the [multipart media upload process](/display-video/api/guides/how-tos/upload#multipart). Examples using provided client libraries can be found in our [Creating Creatives guide](/display-video/api/guides/creating-creatives/overview#upload_an_asset).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.assets.upload({
+     *     // Required. The ID of the advertiser this asset belongs to.
+     *     advertiserId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "filename": "my_filename"
+     *       // }
+     *     },
+     *     media: {
+     *       mimeType: 'placeholder-value',
+     *       body: 'placeholder-value',
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "asset": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6723,11 +7278,11 @@ export namespace displayvideo_v2 {
     upload(
       params: Params$Resource$Advertisers$Assets$Upload,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     upload(
       params?: Params$Resource$Advertisers$Assets$Upload,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CreateAssetResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CreateAssetResponse>>;
     upload(
       params: Params$Resource$Advertisers$Assets$Upload,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6758,8 +7313,8 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CreateAssetResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CreateAssetResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Assets$Upload;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6843,6 +7398,81 @@ export namespace displayvideo_v2 {
 
     /**
      * Creates a new campaign. Returns the newly created campaign if successful.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/display-video',
+     *       'https://www.googleapis.com/auth/display-video-mediaplanning',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.campaigns.create({
+     *     // Output only. The unique ID of the advertiser the campaign belongs to.
+     *     advertiserId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "campaignBudgets": [],
+     *       //   "campaignFlight": {},
+     *       //   "campaignGoal": {},
+     *       //   "campaignId": "my_campaignId",
+     *       //   "displayName": "my_displayName",
+     *       //   "entityStatus": "my_entityStatus",
+     *       //   "frequencyCap": {},
+     *       //   "name": "my_name",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "campaignBudgets": [],
+     *   //   "campaignFlight": {},
+     *   //   "campaignGoal": {},
+     *   //   "campaignId": "my_campaignId",
+     *   //   "displayName": "my_displayName",
+     *   //   "entityStatus": "my_entityStatus",
+     *   //   "frequencyCap": {},
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6852,11 +7482,11 @@ export namespace displayvideo_v2 {
     create(
       params: Params$Resource$Advertisers$Campaigns$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Advertisers$Campaigns$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Campaign>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Campaign>>;
     create(
       params: Params$Resource$Advertisers$Campaigns$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6885,7 +7515,10 @@ export namespace displayvideo_v2 {
       callback?:
         | BodyResponseCallback<Schema$Campaign>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Campaign> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Campaign>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Campaigns$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6930,6 +7563,55 @@ export namespace displayvideo_v2 {
 
     /**
      * Permanently deletes a campaign. A deleted campaign cannot be recovered. The campaign should be archived first, i.e. set entity_status to `ENTITY_STATUS_ARCHIVED`, to be able to delete it. **This method regularly experiences high latency.** We recommend [increasing your default timeout](/display-video/api/guides/best-practices/timeouts#client_library_timeout) to avoid errors.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/display-video',
+     *       'https://www.googleapis.com/auth/display-video-mediaplanning',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.campaigns.delete({
+     *     // The ID of the advertiser this campaign belongs to.
+     *     advertiserId: '[^/]+',
+     *     // The ID of the campaign we need to delete.
+     *     campaignId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6939,11 +7621,11 @@ export namespace displayvideo_v2 {
     delete(
       params: Params$Resource$Advertisers$Campaigns$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Advertisers$Campaigns$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Advertisers$Campaigns$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6972,7 +7654,10 @@ export namespace displayvideo_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Campaigns$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7018,6 +7703,66 @@ export namespace displayvideo_v2 {
 
     /**
      * Gets a campaign.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/display-video',
+     *       'https://www.googleapis.com/auth/display-video-mediaplanning',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.campaigns.get({
+     *     // Required. The ID of the advertiser this campaign belongs to.
+     *     advertiserId: '[^/]+',
+     *     // Required. The ID of the campaign to fetch.
+     *     campaignId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "campaignBudgets": [],
+     *   //   "campaignFlight": {},
+     *   //   "campaignGoal": {},
+     *   //   "campaignId": "my_campaignId",
+     *   //   "displayName": "my_displayName",
+     *   //   "entityStatus": "my_entityStatus",
+     *   //   "frequencyCap": {},
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7027,11 +7772,11 @@ export namespace displayvideo_v2 {
     get(
       params: Params$Resource$Advertisers$Campaigns$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Advertisers$Campaigns$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Campaign>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Campaign>>;
     get(
       params: Params$Resource$Advertisers$Campaigns$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7060,7 +7805,10 @@ export namespace displayvideo_v2 {
       callback?:
         | BodyResponseCallback<Schema$Campaign>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Campaign> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Campaign>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Campaigns$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7106,6 +7854,64 @@ export namespace displayvideo_v2 {
 
     /**
      * Lists campaigns in an advertiser. The order is defined by the order_by parameter. If a filter by entity_status is not specified, campaigns with `ENTITY_STATUS_ARCHIVED` will not be included in the results.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/display-video',
+     *       'https://www.googleapis.com/auth/display-video-mediaplanning',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.campaigns.list({
+     *     // The ID of the advertiser to list campaigns for.
+     *     advertiserId: '[^/]+',
+     *     // Allows filtering by campaign fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The `updateTime` field must use the `GREATER THAN OR EQUAL TO (\>=)` or `LESS THAN OR EQUAL TO (<=)` operators. * All other fields must use the `EQUALS (=)` operator. Supported fields: * `campaignId` * `displayName` * `entityStatus` * `updateTime` (input in ISO 8601 format, or `YYYY-MM-DDTHH:MM:SSZ`) Examples: * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` campaigns under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED")` * All campaigns with an update time less than or equal to 2020-11-04T18:54:47Z (format of ISO 8601): `updateTime<="2020-11-04T18:54:47Z"` * All campaigns with an update time greater than or equal to 2020-11-04T18:54:47Z (format of ISO 8601): `updateTime\>="2020-11-04T18:54:47Z"` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
+     *     filter: 'placeholder-value',
+     *     // Field by which to sort the list. Acceptable values are: * `displayName` (default) * `entityStatus` * `updateTime` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
+     *     orderBy: 'placeholder-value',
+     *     // Requested page size. Must be between `1` and `200`. If unspecified will default to `100`.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListCampaigns` method. If not specified, the first page of results will be returned.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "campaigns": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7115,11 +7921,11 @@ export namespace displayvideo_v2 {
     list(
       params: Params$Resource$Advertisers$Campaigns$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Advertisers$Campaigns$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListCampaignsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListCampaignsResponse>>;
     list(
       params: Params$Resource$Advertisers$Campaigns$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7152,8 +7958,8 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListCampaignsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListCampaignsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Campaigns$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7198,6 +8004,85 @@ export namespace displayvideo_v2 {
 
     /**
      * Updates an existing campaign. Returns the updated campaign if successful.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/display-video',
+     *       'https://www.googleapis.com/auth/display-video-mediaplanning',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.campaigns.patch({
+     *     // Output only. The unique ID of the advertiser the campaign belongs to.
+     *     advertiserId: '[^/]+',
+     *     // Output only. The unique ID of the campaign. Assigned by the system.
+     *     campaignId: '[^/]+',
+     *     // Required. The mask to control which fields to update.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "campaignBudgets": [],
+     *       //   "campaignFlight": {},
+     *       //   "campaignGoal": {},
+     *       //   "campaignId": "my_campaignId",
+     *       //   "displayName": "my_displayName",
+     *       //   "entityStatus": "my_entityStatus",
+     *       //   "frequencyCap": {},
+     *       //   "name": "my_name",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "campaignBudgets": [],
+     *   //   "campaignFlight": {},
+     *   //   "campaignGoal": {},
+     *   //   "campaignId": "my_campaignId",
+     *   //   "displayName": "my_displayName",
+     *   //   "entityStatus": "my_entityStatus",
+     *   //   "frequencyCap": {},
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7207,11 +8092,11 @@ export namespace displayvideo_v2 {
     patch(
       params: Params$Resource$Advertisers$Campaigns$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Advertisers$Campaigns$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Campaign>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Campaign>>;
     patch(
       params: Params$Resource$Advertisers$Campaigns$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7240,7 +8125,10 @@ export namespace displayvideo_v2 {
       callback?:
         | BodyResponseCallback<Schema$Campaign>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Campaign> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Campaign>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Campaigns$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7373,6 +8261,74 @@ export namespace displayvideo_v2 {
 
     /**
      * Creates a new channel. Returns the newly created channel if successful.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.channels.create({
+     *     // The ID of the advertiser that owns the created channel.
+     *     advertiserId: '[^/]+',
+     *     // The ID of the partner that owns the created channel.
+     *     partnerId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "channelId": "my_channelId",
+     *       //   "displayName": "my_displayName",
+     *       //   "name": "my_name",
+     *       //   "negativelyTargetedLineItemCount": "my_negativelyTargetedLineItemCount",
+     *       //   "partnerId": "my_partnerId",
+     *       //   "positivelyTargetedLineItemCount": "my_positivelyTargetedLineItemCount"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "channelId": "my_channelId",
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "negativelyTargetedLineItemCount": "my_negativelyTargetedLineItemCount",
+     *   //   "partnerId": "my_partnerId",
+     *   //   "positivelyTargetedLineItemCount": "my_positivelyTargetedLineItemCount"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7382,11 +8338,11 @@ export namespace displayvideo_v2 {
     create(
       params: Params$Resource$Advertisers$Channels$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Advertisers$Channels$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Channel>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Channel>>;
     create(
       params: Params$Resource$Advertisers$Channels$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7415,7 +8371,10 @@ export namespace displayvideo_v2 {
       callback?:
         | BodyResponseCallback<Schema$Channel>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Channel> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Channel>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Channels$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7461,6 +8420,62 @@ export namespace displayvideo_v2 {
 
     /**
      * Gets a channel for a partner or advertiser.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.channels.get({
+     *     // The ID of the advertiser that owns the fetched channel.
+     *     advertiserId: '[^/]+',
+     *     // Required. The ID of the channel to fetch.
+     *     channelId: '[^/]+',
+     *     // The ID of the partner that owns the fetched channel.
+     *     partnerId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "channelId": "my_channelId",
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "negativelyTargetedLineItemCount": "my_negativelyTargetedLineItemCount",
+     *   //   "partnerId": "my_partnerId",
+     *   //   "positivelyTargetedLineItemCount": "my_positivelyTargetedLineItemCount"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7470,11 +8485,11 @@ export namespace displayvideo_v2 {
     get(
       params: Params$Resource$Advertisers$Channels$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Advertisers$Channels$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Channel>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Channel>>;
     get(
       params: Params$Resource$Advertisers$Channels$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7503,7 +8518,10 @@ export namespace displayvideo_v2 {
       callback?:
         | BodyResponseCallback<Schema$Channel>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Channel> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Channel>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Channels$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7548,6 +8566,63 @@ export namespace displayvideo_v2 {
 
     /**
      * Lists channels for a partner or advertiser.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.channels.list({
+     *     // The ID of the advertiser that owns the channels.
+     *     advertiserId: '[^/]+',
+     *     // Allows filtering by channel fields. Supported syntax: * Filter expressions for channel can only contain at most one restriction. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `HAS (:)` operator. Supported fields: * `displayName` Examples: * All channels for which the display name contains "google": `displayName : "google"`. The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
+     *     filter: 'placeholder-value',
+     *     // Field by which to sort the list. Acceptable values are: * `displayName` (default) * `channelId` The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `displayName desc`.
+     *     orderBy: 'placeholder-value',
+     *     // Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListChannels` method. If not specified, the first page of results will be returned.
+     *     pageToken: 'placeholder-value',
+     *     // The ID of the partner that owns the channels.
+     *     partnerId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "channels": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7557,11 +8632,11 @@ export namespace displayvideo_v2 {
     list(
       params: Params$Resource$Advertisers$Channels$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Advertisers$Channels$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListChannelsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListChannelsResponse>>;
     list(
       params: Params$Resource$Advertisers$Channels$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7594,8 +8669,8 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListChannelsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListChannelsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Channels$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7641,6 +8716,78 @@ export namespace displayvideo_v2 {
 
     /**
      * Updates a channel. Returns the updated channel if successful.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.channels.patch({
+     *     // The ID of the advertiser that owns the created channel.
+     *     advertiserId: '[^/]+',
+     *     // Output only. The unique ID of the channel. Assigned by the system.
+     *     channelId: 'placeholder-value',
+     *     // The ID of the partner that owns the created channel.
+     *     partnerId: 'placeholder-value',
+     *     // Required. The mask to control which fields to update.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "channelId": "my_channelId",
+     *       //   "displayName": "my_displayName",
+     *       //   "name": "my_name",
+     *       //   "negativelyTargetedLineItemCount": "my_negativelyTargetedLineItemCount",
+     *       //   "partnerId": "my_partnerId",
+     *       //   "positivelyTargetedLineItemCount": "my_positivelyTargetedLineItemCount"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "channelId": "my_channelId",
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "negativelyTargetedLineItemCount": "my_negativelyTargetedLineItemCount",
+     *   //   "partnerId": "my_partnerId",
+     *   //   "positivelyTargetedLineItemCount": "my_positivelyTargetedLineItemCount"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7650,11 +8797,11 @@ export namespace displayvideo_v2 {
     patch(
       params: Params$Resource$Advertisers$Channels$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Advertisers$Channels$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Channel>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Channel>>;
     patch(
       params: Params$Resource$Advertisers$Channels$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7683,7 +8830,10 @@ export namespace displayvideo_v2 {
       callback?:
         | BodyResponseCallback<Schema$Channel>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Channel> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Channel>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Channels$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7818,6 +8968,65 @@ export namespace displayvideo_v2 {
 
     /**
      * Bulk edits sites under a single channel. The operation will delete the sites provided in BulkEditSitesRequest.deleted_sites and then create the sites provided in BulkEditSitesRequest.created_sites.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.channels.sites.bulkEdit({
+     *     // The ID of the advertiser that owns the parent channel.
+     *     advertiserId: 'placeholder-value',
+     *     // Required. The ID of the parent channel to which the sites belong.
+     *     channelId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "createdSites": [],
+     *       //   "deletedSites": [],
+     *       //   "partnerId": "my_partnerId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "sites": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7827,11 +9036,11 @@ export namespace displayvideo_v2 {
     bulkEdit(
       params: Params$Resource$Advertisers$Channels$Sites$Bulkedit,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     bulkEdit(
       params?: Params$Resource$Advertisers$Channels$Sites$Bulkedit,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BulkEditSitesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BulkEditSitesResponse>>;
     bulkEdit(
       params: Params$Resource$Advertisers$Channels$Sites$Bulkedit,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7866,8 +9075,8 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BulkEditSitesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$BulkEditSitesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Channels$Sites$Bulkedit;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7913,6 +9122,66 @@ export namespace displayvideo_v2 {
 
     /**
      * Creates a site in a channel.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.channels.sites.create({
+     *     // The ID of the advertiser that owns the parent channel.
+     *     advertiserId: 'placeholder-value',
+     *     // Required. The ID of the parent channel in which the site will be created.
+     *     channelId: '[^/]+',
+     *     // The ID of the partner that owns the parent channel.
+     *     partnerId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "name": "my_name",
+     *       //   "urlOrAppId": "my_urlOrAppId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "urlOrAppId": "my_urlOrAppId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7922,11 +9191,11 @@ export namespace displayvideo_v2 {
     create(
       params: Params$Resource$Advertisers$Channels$Sites$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Advertisers$Channels$Sites$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Site>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Site>>;
     create(
       params: Params$Resource$Advertisers$Channels$Sites$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7955,7 +9224,10 @@ export namespace displayvideo_v2 {
       callback?:
         | BodyResponseCallback<Schema$Site>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Site> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Site>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Channels$Sites$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8001,6 +9273,56 @@ export namespace displayvideo_v2 {
 
     /**
      * Deletes a site from a channel.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.channels.sites.delete({
+     *     // The ID of the advertiser that owns the parent channel.
+     *     advertiserId: 'placeholder-value',
+     *     // Required. The ID of the parent channel to which the site belongs.
+     *     channelId: '[^/]+',
+     *     // The ID of the partner that owns the parent channel.
+     *     partnerId: 'placeholder-value',
+     *     // Required. The URL or app ID of the site to delete.
+     *     urlOrAppId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8010,11 +9332,11 @@ export namespace displayvideo_v2 {
     delete(
       params: Params$Resource$Advertisers$Channels$Sites$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Advertisers$Channels$Sites$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Advertisers$Channels$Sites$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8043,7 +9365,10 @@ export namespace displayvideo_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Channels$Sites$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8089,6 +9414,65 @@ export namespace displayvideo_v2 {
 
     /**
      * Lists sites in a channel.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.channels.sites.list({
+     *     // The ID of the advertiser that owns the parent channel.
+     *     advertiserId: '[^/]+',
+     *     // Required. The ID of the parent channel to which the requested sites belong.
+     *     channelId: '[^/]+',
+     *     // Allows filtering by site fields. Supported syntax: * Filter expressions for site retrieval can only contain at most one restriction. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `HAS (:)` operator. Supported fields: * `urlOrAppId` Examples: * All sites for which the URL or app ID contains "google": `urlOrAppId : "google"` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
+     *     filter: 'placeholder-value',
+     *     // Field by which to sort the list. Acceptable values are: * `urlOrAppId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `urlOrAppId desc`.
+     *     orderBy: 'placeholder-value',
+     *     // Requested page size. Must be between `1` and `10000`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListSites` method. If not specified, the first page of results will be returned.
+     *     pageToken: 'placeholder-value',
+     *     // The ID of the partner that owns the parent channel.
+     *     partnerId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "sites": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8098,11 +9482,11 @@ export namespace displayvideo_v2 {
     list(
       params: Params$Resource$Advertisers$Channels$Sites$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Advertisers$Channels$Sites$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListSitesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListSitesResponse>>;
     list(
       params: Params$Resource$Advertisers$Channels$Sites$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8133,8 +9517,8 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListSitesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListSitesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Channels$Sites$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8180,6 +9564,64 @@ export namespace displayvideo_v2 {
 
     /**
      * Replaces all of the sites under a single channel. The operation will replace the sites under a channel with the sites provided in ReplaceSitesRequest.new_sites. **This method regularly experiences high latency.** We recommend [increasing your default timeout](/display-video/api/guides/best-practices/timeouts#client_library_timeout) to avoid errors.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.channels.sites.replace({
+     *     // The ID of the advertiser that owns the parent channel.
+     *     advertiserId: 'placeholder-value',
+     *     // Required. The ID of the parent channel whose sites will be replaced.
+     *     channelId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "newSites": [],
+     *       //   "partnerId": "my_partnerId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "sites": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8189,11 +9631,11 @@ export namespace displayvideo_v2 {
     replace(
       params: Params$Resource$Advertisers$Channels$Sites$Replace,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     replace(
       params?: Params$Resource$Advertisers$Channels$Sites$Replace,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ReplaceSitesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ReplaceSitesResponse>>;
     replace(
       params: Params$Resource$Advertisers$Channels$Sites$Replace,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8226,8 +9668,8 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ReplaceSitesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ReplaceSitesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Channels$Sites$Replace;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8383,6 +9825,152 @@ export namespace displayvideo_v2 {
 
     /**
      * Creates a new creative. Returns the newly created creative if successful. A ["Standard" user role](//support.google.com/displayvideo/answer/2723011) or greater for the parent advertiser or partner is required to make this request.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.creatives.create({
+     *     // Output only. The unique ID of the advertiser the creative belongs to.
+     *     advertiserId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "additionalDimensions": [],
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "appendedTag": "my_appendedTag",
+     *       //   "assets": [],
+     *       //   "cmPlacementId": "my_cmPlacementId",
+     *       //   "cmTrackingAd": {},
+     *       //   "companionCreativeIds": [],
+     *       //   "counterEvents": [],
+     *       //   "createTime": "my_createTime",
+     *       //   "creativeAttributes": [],
+     *       //   "creativeId": "my_creativeId",
+     *       //   "creativeType": "my_creativeType",
+     *       //   "dimensions": {},
+     *       //   "displayName": "my_displayName",
+     *       //   "dynamic": false,
+     *       //   "entityStatus": "my_entityStatus",
+     *       //   "exitEvents": [],
+     *       //   "expandOnHover": false,
+     *       //   "expandingDirection": "my_expandingDirection",
+     *       //   "hostingSource": "my_hostingSource",
+     *       //   "html5Video": false,
+     *       //   "iasCampaignMonitoring": false,
+     *       //   "integrationCode": "my_integrationCode",
+     *       //   "jsTrackerUrl": "my_jsTrackerUrl",
+     *       //   "lineItemIds": [],
+     *       //   "mediaDuration": "my_mediaDuration",
+     *       //   "mp3Audio": false,
+     *       //   "name": "my_name",
+     *       //   "notes": "my_notes",
+     *       //   "obaIcon": {},
+     *       //   "oggAudio": false,
+     *       //   "progressOffset": {},
+     *       //   "requireHtml5": false,
+     *       //   "requireMraid": false,
+     *       //   "requirePingForAttribution": false,
+     *       //   "reviewStatus": {},
+     *       //   "skipOffset": {},
+     *       //   "skippable": false,
+     *       //   "thirdPartyTag": "my_thirdPartyTag",
+     *       //   "thirdPartyUrls": [],
+     *       //   "timerEvents": [],
+     *       //   "trackerUrls": [],
+     *       //   "transcodes": [],
+     *       //   "universalAdId": {},
+     *       //   "updateTime": "my_updateTime",
+     *       //   "vastTagUrl": "my_vastTagUrl",
+     *       //   "vpaid": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "additionalDimensions": [],
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "appendedTag": "my_appendedTag",
+     *   //   "assets": [],
+     *   //   "cmPlacementId": "my_cmPlacementId",
+     *   //   "cmTrackingAd": {},
+     *   //   "companionCreativeIds": [],
+     *   //   "counterEvents": [],
+     *   //   "createTime": "my_createTime",
+     *   //   "creativeAttributes": [],
+     *   //   "creativeId": "my_creativeId",
+     *   //   "creativeType": "my_creativeType",
+     *   //   "dimensions": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "dynamic": false,
+     *   //   "entityStatus": "my_entityStatus",
+     *   //   "exitEvents": [],
+     *   //   "expandOnHover": false,
+     *   //   "expandingDirection": "my_expandingDirection",
+     *   //   "hostingSource": "my_hostingSource",
+     *   //   "html5Video": false,
+     *   //   "iasCampaignMonitoring": false,
+     *   //   "integrationCode": "my_integrationCode",
+     *   //   "jsTrackerUrl": "my_jsTrackerUrl",
+     *   //   "lineItemIds": [],
+     *   //   "mediaDuration": "my_mediaDuration",
+     *   //   "mp3Audio": false,
+     *   //   "name": "my_name",
+     *   //   "notes": "my_notes",
+     *   //   "obaIcon": {},
+     *   //   "oggAudio": false,
+     *   //   "progressOffset": {},
+     *   //   "requireHtml5": false,
+     *   //   "requireMraid": false,
+     *   //   "requirePingForAttribution": false,
+     *   //   "reviewStatus": {},
+     *   //   "skipOffset": {},
+     *   //   "skippable": false,
+     *   //   "thirdPartyTag": "my_thirdPartyTag",
+     *   //   "thirdPartyUrls": [],
+     *   //   "timerEvents": [],
+     *   //   "trackerUrls": [],
+     *   //   "transcodes": [],
+     *   //   "universalAdId": {},
+     *   //   "updateTime": "my_updateTime",
+     *   //   "vastTagUrl": "my_vastTagUrl",
+     *   //   "vpaid": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8392,11 +9980,11 @@ export namespace displayvideo_v2 {
     create(
       params: Params$Resource$Advertisers$Creatives$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Advertisers$Creatives$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Creative>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Creative>>;
     create(
       params: Params$Resource$Advertisers$Creatives$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8425,7 +10013,10 @@ export namespace displayvideo_v2 {
       callback?:
         | BodyResponseCallback<Schema$Creative>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Creative> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Creative>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Creatives$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8470,6 +10061,52 @@ export namespace displayvideo_v2 {
 
     /**
      * Deletes a creative. Returns error code `NOT_FOUND` if the creative does not exist. The creative should be archived first, i.e. set entity_status to `ENTITY_STATUS_ARCHIVED`, before it can be deleted. A ["Standard" user role](//support.google.com/displayvideo/answer/2723011) or greater for the parent advertiser or partner is required to make this request.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.creatives.delete({
+     *     // The ID of the advertiser this creative belongs to.
+     *     advertiserId: '[^/]+',
+     *     // The ID of the creative to be deleted.
+     *     creativeId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8479,11 +10116,11 @@ export namespace displayvideo_v2 {
     delete(
       params: Params$Resource$Advertisers$Creatives$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Advertisers$Creatives$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Advertisers$Creatives$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8512,7 +10149,10 @@ export namespace displayvideo_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Creatives$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8558,6 +10198,100 @@ export namespace displayvideo_v2 {
 
     /**
      * Gets a creative.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.creatives.get({
+     *     // Required. The ID of the advertiser this creative belongs to.
+     *     advertiserId: '[^/]+',
+     *     // Required. The ID of the creative to fetch.
+     *     creativeId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "additionalDimensions": [],
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "appendedTag": "my_appendedTag",
+     *   //   "assets": [],
+     *   //   "cmPlacementId": "my_cmPlacementId",
+     *   //   "cmTrackingAd": {},
+     *   //   "companionCreativeIds": [],
+     *   //   "counterEvents": [],
+     *   //   "createTime": "my_createTime",
+     *   //   "creativeAttributes": [],
+     *   //   "creativeId": "my_creativeId",
+     *   //   "creativeType": "my_creativeType",
+     *   //   "dimensions": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "dynamic": false,
+     *   //   "entityStatus": "my_entityStatus",
+     *   //   "exitEvents": [],
+     *   //   "expandOnHover": false,
+     *   //   "expandingDirection": "my_expandingDirection",
+     *   //   "hostingSource": "my_hostingSource",
+     *   //   "html5Video": false,
+     *   //   "iasCampaignMonitoring": false,
+     *   //   "integrationCode": "my_integrationCode",
+     *   //   "jsTrackerUrl": "my_jsTrackerUrl",
+     *   //   "lineItemIds": [],
+     *   //   "mediaDuration": "my_mediaDuration",
+     *   //   "mp3Audio": false,
+     *   //   "name": "my_name",
+     *   //   "notes": "my_notes",
+     *   //   "obaIcon": {},
+     *   //   "oggAudio": false,
+     *   //   "progressOffset": {},
+     *   //   "requireHtml5": false,
+     *   //   "requireMraid": false,
+     *   //   "requirePingForAttribution": false,
+     *   //   "reviewStatus": {},
+     *   //   "skipOffset": {},
+     *   //   "skippable": false,
+     *   //   "thirdPartyTag": "my_thirdPartyTag",
+     *   //   "thirdPartyUrls": [],
+     *   //   "timerEvents": [],
+     *   //   "trackerUrls": [],
+     *   //   "transcodes": [],
+     *   //   "universalAdId": {},
+     *   //   "updateTime": "my_updateTime",
+     *   //   "vastTagUrl": "my_vastTagUrl",
+     *   //   "vpaid": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8567,11 +10301,11 @@ export namespace displayvideo_v2 {
     get(
       params: Params$Resource$Advertisers$Creatives$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Advertisers$Creatives$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Creative>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Creative>>;
     get(
       params: Params$Resource$Advertisers$Creatives$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8600,7 +10334,10 @@ export namespace displayvideo_v2 {
       callback?:
         | BodyResponseCallback<Schema$Creative>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Creative> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Creative>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Creatives$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8646,6 +10383,61 @@ export namespace displayvideo_v2 {
 
     /**
      * Lists creatives in an advertiser. The order is defined by the order_by parameter. If a filter by entity_status is not specified, creatives with `ENTITY_STATUS_ARCHIVED` will not be included in the results.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.creatives.list({
+     *     // Required. The ID of the advertiser to list creatives for.
+     *     advertiserId: '[^/]+',
+     *     // Allows filtering by creative fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The `lineItemIds` field must use the `HAS (:)` operator. * The `updateTime` field must use the `GREATER THAN OR EQUAL TO (\>=)` or `LESS THAN OR EQUAL TO (<=)` operators. * All other fields must use the `EQUALS (=)` operator. * For `entityStatus`, `minDuration`, `maxDuration`, `updateTime`, and `dynamic` fields, there may be at most one restriction. Supported Fields: * `approvalStatus` * `creativeId` * `creativeType` * `dimensions` (input in the form of `{width\}x{height\}`) * `dynamic` * `entityStatus` * `exchangeReviewStatus` (input in the form of `{exchange\}-{reviewStatus\}`) * `lineItemIds` * `maxDuration` (input in the form of `{duration\}s`. Only seconds are supported) * `minDuration` (input in the form of `{duration\}s`. Only seconds are supported) * `updateTime` (input in ISO 8601 format, or `YYYY-MM-DDTHH:MM:SSZ`) Notes: * For `updateTime`, a creative resource's field value reflects the last time that a creative has been updated, which includes updates made by the system (e.g. creative review updates). Examples: * All native creatives: `creativeType="CREATIVE_TYPE_NATIVE"` * All active creatives with 300x400 or 50x100 dimensions: `entityStatus="ENTITY_STATUS_ACTIVE" AND (dimensions="300x400" OR dimensions="50x100")` * All dynamic creatives that are approved by AdX or AppNexus, with a minimum duration of 5 seconds and 200ms: `dynamic="true" AND minDuration="5.2s" AND (exchangeReviewStatus="EXCHANGE_GOOGLE_AD_MANAGER-REVIEW_STATUS_APPROVED" OR exchangeReviewStatus="EXCHANGE_APPNEXUS-REVIEW_STATUS_APPROVED")` * All video creatives that are associated with line item ID 1 or 2: `creativeType="CREATIVE_TYPE_VIDEO" AND (lineItemIds:1 OR lineItemIds:2)` * Find creatives by multiple creative IDs: `creativeId=1 OR creativeId=2` * All creatives with an update time greater than or equal to 2020-11-04T18:54:47Z (format of ISO 8601): `updateTime\>="2020-11-04T18:54:47Z"` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
+     *     filter: 'placeholder-value',
+     *     // Field by which to sort the list. Acceptable values are: * `creativeId` (default) * `createTime` * `mediaDuration` * `dimensions` (sorts by width first, then by height) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `createTime desc`.
+     *     orderBy: 'placeholder-value',
+     *     // Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListCreatives` method. If not specified, the first page of results will be returned.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "creatives": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8655,11 +10447,11 @@ export namespace displayvideo_v2 {
     list(
       params: Params$Resource$Advertisers$Creatives$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Advertisers$Creatives$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListCreativesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListCreativesResponse>>;
     list(
       params: Params$Resource$Advertisers$Creatives$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8692,8 +10484,8 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListCreativesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListCreativesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Creatives$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8738,6 +10530,156 @@ export namespace displayvideo_v2 {
 
     /**
      * Updates an existing creative. Returns the updated creative if successful. A ["Standard" user role](//support.google.com/displayvideo/answer/2723011) or greater for the parent advertiser or partner is required to make this request.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.creatives.patch({
+     *     // Output only. The unique ID of the advertiser the creative belongs to.
+     *     advertiserId: '[^/]+',
+     *     // Output only. The unique ID of the creative. Assigned by the system.
+     *     creativeId: '[^/]+',
+     *     // Required. The mask to control which fields to update.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "additionalDimensions": [],
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "appendedTag": "my_appendedTag",
+     *       //   "assets": [],
+     *       //   "cmPlacementId": "my_cmPlacementId",
+     *       //   "cmTrackingAd": {},
+     *       //   "companionCreativeIds": [],
+     *       //   "counterEvents": [],
+     *       //   "createTime": "my_createTime",
+     *       //   "creativeAttributes": [],
+     *       //   "creativeId": "my_creativeId",
+     *       //   "creativeType": "my_creativeType",
+     *       //   "dimensions": {},
+     *       //   "displayName": "my_displayName",
+     *       //   "dynamic": false,
+     *       //   "entityStatus": "my_entityStatus",
+     *       //   "exitEvents": [],
+     *       //   "expandOnHover": false,
+     *       //   "expandingDirection": "my_expandingDirection",
+     *       //   "hostingSource": "my_hostingSource",
+     *       //   "html5Video": false,
+     *       //   "iasCampaignMonitoring": false,
+     *       //   "integrationCode": "my_integrationCode",
+     *       //   "jsTrackerUrl": "my_jsTrackerUrl",
+     *       //   "lineItemIds": [],
+     *       //   "mediaDuration": "my_mediaDuration",
+     *       //   "mp3Audio": false,
+     *       //   "name": "my_name",
+     *       //   "notes": "my_notes",
+     *       //   "obaIcon": {},
+     *       //   "oggAudio": false,
+     *       //   "progressOffset": {},
+     *       //   "requireHtml5": false,
+     *       //   "requireMraid": false,
+     *       //   "requirePingForAttribution": false,
+     *       //   "reviewStatus": {},
+     *       //   "skipOffset": {},
+     *       //   "skippable": false,
+     *       //   "thirdPartyTag": "my_thirdPartyTag",
+     *       //   "thirdPartyUrls": [],
+     *       //   "timerEvents": [],
+     *       //   "trackerUrls": [],
+     *       //   "transcodes": [],
+     *       //   "universalAdId": {},
+     *       //   "updateTime": "my_updateTime",
+     *       //   "vastTagUrl": "my_vastTagUrl",
+     *       //   "vpaid": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "additionalDimensions": [],
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "appendedTag": "my_appendedTag",
+     *   //   "assets": [],
+     *   //   "cmPlacementId": "my_cmPlacementId",
+     *   //   "cmTrackingAd": {},
+     *   //   "companionCreativeIds": [],
+     *   //   "counterEvents": [],
+     *   //   "createTime": "my_createTime",
+     *   //   "creativeAttributes": [],
+     *   //   "creativeId": "my_creativeId",
+     *   //   "creativeType": "my_creativeType",
+     *   //   "dimensions": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "dynamic": false,
+     *   //   "entityStatus": "my_entityStatus",
+     *   //   "exitEvents": [],
+     *   //   "expandOnHover": false,
+     *   //   "expandingDirection": "my_expandingDirection",
+     *   //   "hostingSource": "my_hostingSource",
+     *   //   "html5Video": false,
+     *   //   "iasCampaignMonitoring": false,
+     *   //   "integrationCode": "my_integrationCode",
+     *   //   "jsTrackerUrl": "my_jsTrackerUrl",
+     *   //   "lineItemIds": [],
+     *   //   "mediaDuration": "my_mediaDuration",
+     *   //   "mp3Audio": false,
+     *   //   "name": "my_name",
+     *   //   "notes": "my_notes",
+     *   //   "obaIcon": {},
+     *   //   "oggAudio": false,
+     *   //   "progressOffset": {},
+     *   //   "requireHtml5": false,
+     *   //   "requireMraid": false,
+     *   //   "requirePingForAttribution": false,
+     *   //   "reviewStatus": {},
+     *   //   "skipOffset": {},
+     *   //   "skippable": false,
+     *   //   "thirdPartyTag": "my_thirdPartyTag",
+     *   //   "thirdPartyUrls": [],
+     *   //   "timerEvents": [],
+     *   //   "trackerUrls": [],
+     *   //   "transcodes": [],
+     *   //   "universalAdId": {},
+     *   //   "updateTime": "my_updateTime",
+     *   //   "vastTagUrl": "my_vastTagUrl",
+     *   //   "vpaid": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8747,11 +10689,11 @@ export namespace displayvideo_v2 {
     patch(
       params: Params$Resource$Advertisers$Creatives$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Advertisers$Creatives$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Creative>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Creative>>;
     patch(
       params: Params$Resource$Advertisers$Creatives$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8780,7 +10722,10 @@ export namespace displayvideo_v2 {
       callback?:
         | BodyResponseCallback<Schema$Creative>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Creative> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Creative>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Creatives$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8911,6 +10856,92 @@ export namespace displayvideo_v2 {
 
     /**
      * Creates a new insertion order. Returns the newly created insertion order if successful.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.insertionOrders.create({
+     *     // Output only. The unique ID of the advertiser the insertion order belongs to.
+     *     advertiserId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "bidStrategy": {},
+     *       //   "billableOutcome": "my_billableOutcome",
+     *       //   "budget": {},
+     *       //   "campaignId": "my_campaignId",
+     *       //   "displayName": "my_displayName",
+     *       //   "entityStatus": "my_entityStatus",
+     *       //   "frequencyCap": {},
+     *       //   "insertionOrderId": "my_insertionOrderId",
+     *       //   "insertionOrderType": "my_insertionOrderType",
+     *       //   "integrationDetails": {},
+     *       //   "name": "my_name",
+     *       //   "pacing": {},
+     *       //   "partnerCosts": [],
+     *       //   "performanceGoal": {},
+     *       //   "reservationType": "my_reservationType",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "bidStrategy": {},
+     *   //   "billableOutcome": "my_billableOutcome",
+     *   //   "budget": {},
+     *   //   "campaignId": "my_campaignId",
+     *   //   "displayName": "my_displayName",
+     *   //   "entityStatus": "my_entityStatus",
+     *   //   "frequencyCap": {},
+     *   //   "insertionOrderId": "my_insertionOrderId",
+     *   //   "insertionOrderType": "my_insertionOrderType",
+     *   //   "integrationDetails": {},
+     *   //   "name": "my_name",
+     *   //   "pacing": {},
+     *   //   "partnerCosts": [],
+     *   //   "performanceGoal": {},
+     *   //   "reservationType": "my_reservationType",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8920,11 +10951,11 @@ export namespace displayvideo_v2 {
     create(
       params: Params$Resource$Advertisers$Insertionorders$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Advertisers$Insertionorders$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$InsertionOrder>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$InsertionOrder>>;
     create(
       params: Params$Resource$Advertisers$Insertionorders$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8953,7 +10984,10 @@ export namespace displayvideo_v2 {
       callback?:
         | BodyResponseCallback<Schema$InsertionOrder>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$InsertionOrder> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$InsertionOrder>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Insertionorders$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8998,6 +11032,52 @@ export namespace displayvideo_v2 {
 
     /**
      * Deletes an insertion order. Returns error code `NOT_FOUND` if the insertion order does not exist. The insertion order should be archived first, i.e. set entity_status to `ENTITY_STATUS_ARCHIVED`, to be able to delete it.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.insertionOrders.delete({
+     *     // The ID of the advertiser this insertion order belongs to.
+     *     advertiserId: '[^/]+',
+     *     // The ID of the insertion order to delete.
+     *     insertionOrderId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9007,11 +11087,11 @@ export namespace displayvideo_v2 {
     delete(
       params: Params$Resource$Advertisers$Insertionorders$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Advertisers$Insertionorders$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Advertisers$Insertionorders$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9040,7 +11120,10 @@ export namespace displayvideo_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Insertionorders$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9086,6 +11169,70 @@ export namespace displayvideo_v2 {
 
     /**
      * Gets an insertion order. Returns error code `NOT_FOUND` if the insertion order does not exist.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.insertionOrders.get({
+     *     // Required. The ID of the advertiser this insertion order belongs to.
+     *     advertiserId: '[^/]+',
+     *     // Required. The ID of the insertion order to fetch.
+     *     insertionOrderId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "bidStrategy": {},
+     *   //   "billableOutcome": "my_billableOutcome",
+     *   //   "budget": {},
+     *   //   "campaignId": "my_campaignId",
+     *   //   "displayName": "my_displayName",
+     *   //   "entityStatus": "my_entityStatus",
+     *   //   "frequencyCap": {},
+     *   //   "insertionOrderId": "my_insertionOrderId",
+     *   //   "insertionOrderType": "my_insertionOrderType",
+     *   //   "integrationDetails": {},
+     *   //   "name": "my_name",
+     *   //   "pacing": {},
+     *   //   "partnerCosts": [],
+     *   //   "performanceGoal": {},
+     *   //   "reservationType": "my_reservationType",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9095,11 +11242,11 @@ export namespace displayvideo_v2 {
     get(
       params: Params$Resource$Advertisers$Insertionorders$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Advertisers$Insertionorders$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$InsertionOrder>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$InsertionOrder>>;
     get(
       params: Params$Resource$Advertisers$Insertionorders$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9128,7 +11275,10 @@ export namespace displayvideo_v2 {
       callback?:
         | BodyResponseCallback<Schema$InsertionOrder>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$InsertionOrder> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$InsertionOrder>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Insertionorders$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9174,6 +11324,61 @@ export namespace displayvideo_v2 {
 
     /**
      * Lists insertion orders in an advertiser. The order is defined by the order_by parameter. If a filter by entity_status is not specified, insertion orders with `ENTITY_STATUS_ARCHIVED` will not be included in the results.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.insertionOrders.list({
+     *     // Required. The ID of the advertiser to list insertion orders for.
+     *     advertiserId: '[^/]+',
+     *     // Allows filtering by insertion order fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The `updateTime` field must use the `GREATER THAN OR EQUAL TO (\>=)` or `LESS THAN OR EQUAL TO (<=)` operators. * All other fields must use the `EQUALS (=)` operator. Supported fields: * `campaignId` * `displayName` * `entityStatus` * `updateTime` (input in ISO 8601 format, or `YYYY-MM-DDTHH:MM:SSZ`) Examples: * All insertion orders under a campaign: `campaignId="1234"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` insertion orders under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED")` * All insertion orders with an update time less than or equal to 2020-11-04T18:54:47Z (format of ISO 8601): `updateTime<="2020-11-04T18:54:47Z"` * All insertion orders with an update time greater than or equal to 2020-11-04T18:54:47Z (format of ISO 8601): `updateTime\>="2020-11-04T18:54:47Z"` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
+     *     filter: 'placeholder-value',
+     *     // Field by which to sort the list. Acceptable values are: * "displayName" (default) * "entityStatus" * "updateTime" The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
+     *     orderBy: 'placeholder-value',
+     *     // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListInsertionOrders` method. If not specified, the first page of results will be returned.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "insertionOrders": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9183,11 +11388,11 @@ export namespace displayvideo_v2 {
     list(
       params: Params$Resource$Advertisers$Insertionorders$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Advertisers$Insertionorders$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListInsertionOrdersResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListInsertionOrdersResponse>>;
     list(
       params: Params$Resource$Advertisers$Insertionorders$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9222,8 +11427,8 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListInsertionOrdersResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListInsertionOrdersResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Insertionorders$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9268,6 +11473,96 @@ export namespace displayvideo_v2 {
 
     /**
      * Updates an existing insertion order. Returns the updated insertion order if successful.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.insertionOrders.patch({
+     *     // Output only. The unique ID of the advertiser the insertion order belongs to.
+     *     advertiserId: '[^/]+',
+     *     // Output only. The unique ID of the insertion order. Assigned by the system.
+     *     insertionOrderId: '[^/]+',
+     *     // Required. The mask to control which fields to update.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "bidStrategy": {},
+     *       //   "billableOutcome": "my_billableOutcome",
+     *       //   "budget": {},
+     *       //   "campaignId": "my_campaignId",
+     *       //   "displayName": "my_displayName",
+     *       //   "entityStatus": "my_entityStatus",
+     *       //   "frequencyCap": {},
+     *       //   "insertionOrderId": "my_insertionOrderId",
+     *       //   "insertionOrderType": "my_insertionOrderType",
+     *       //   "integrationDetails": {},
+     *       //   "name": "my_name",
+     *       //   "pacing": {},
+     *       //   "partnerCosts": [],
+     *       //   "performanceGoal": {},
+     *       //   "reservationType": "my_reservationType",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "bidStrategy": {},
+     *   //   "billableOutcome": "my_billableOutcome",
+     *   //   "budget": {},
+     *   //   "campaignId": "my_campaignId",
+     *   //   "displayName": "my_displayName",
+     *   //   "entityStatus": "my_entityStatus",
+     *   //   "frequencyCap": {},
+     *   //   "insertionOrderId": "my_insertionOrderId",
+     *   //   "insertionOrderType": "my_insertionOrderType",
+     *   //   "integrationDetails": {},
+     *   //   "name": "my_name",
+     *   //   "pacing": {},
+     *   //   "partnerCosts": [],
+     *   //   "performanceGoal": {},
+     *   //   "reservationType": "my_reservationType",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9277,11 +11572,11 @@ export namespace displayvideo_v2 {
     patch(
       params: Params$Resource$Advertisers$Insertionorders$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Advertisers$Insertionorders$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$InsertionOrder>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$InsertionOrder>>;
     patch(
       params: Params$Resource$Advertisers$Insertionorders$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9310,7 +11605,10 @@ export namespace displayvideo_v2 {
       callback?:
         | BodyResponseCallback<Schema$InsertionOrder>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$InsertionOrder> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$InsertionOrder>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Insertionorders$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9441,6 +11739,64 @@ export namespace displayvideo_v2 {
 
     /**
      * Lists invoices posted for an advertiser in a given month. Invoices generated by billing profiles with a "Partner" invoice level are not retrievable through this method.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/display-video',
+     *       'https://www.googleapis.com/auth/display-video-mediaplanning',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.invoices.list({
+     *     // Required. The ID of the advertiser to list invoices for.
+     *     advertiserId: '[^/]+',
+     *     // The month to list the invoices for. If not set, the request will retrieve invoices for the previous month. Must be in the format YYYYMM.
+     *     issueMonth: 'placeholder-value',
+     *     // Select type of invoice to retrieve for Loi Sapin advertisers. Only applicable to Loi Sapin advertisers. Will be ignored otherwise.
+     *     loiSapinInvoiceType: 'placeholder-value',
+     *     // Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListInvoices` method. If not specified, the first page of results will be returned.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "invoices": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9450,11 +11806,11 @@ export namespace displayvideo_v2 {
     list(
       params: Params$Resource$Advertisers$Invoices$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Advertisers$Invoices$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListInvoicesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListInvoicesResponse>>;
     list(
       params: Params$Resource$Advertisers$Invoices$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9487,8 +11843,8 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListInvoicesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListInvoicesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Invoices$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9534,6 +11890,57 @@ export namespace displayvideo_v2 {
 
     /**
      * Retrieves the invoice currency used by an advertiser in a given month.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/display-video',
+     *       'https://www.googleapis.com/auth/display-video-mediaplanning',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.invoices.lookupInvoiceCurrency({
+     *     // Required. The ID of the advertiser to lookup currency for.
+     *     advertiserId: '[^/]+',
+     *     // Month for which the currency is needed. If not set, the request will return existing currency settings for the advertiser. Must be in the format YYYYMM.
+     *     invoiceMonth: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "currencyCode": "my_currencyCode"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9543,11 +11950,11 @@ export namespace displayvideo_v2 {
     lookupInvoiceCurrency(
       params: Params$Resource$Advertisers$Invoices$Lookupinvoicecurrency,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     lookupInvoiceCurrency(
       params?: Params$Resource$Advertisers$Invoices$Lookupinvoicecurrency,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LookupInvoiceCurrencyResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LookupInvoiceCurrencyResponse>>;
     lookupInvoiceCurrency(
       params: Params$Resource$Advertisers$Invoices$Lookupinvoicecurrency,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9582,8 +11989,8 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$LookupInvoiceCurrencyResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$LookupInvoiceCurrencyResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Invoices$Lookupinvoicecurrency;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9678,6 +12085,65 @@ export namespace displayvideo_v2 {
 
     /**
      * Bulk edits targeting options under multiple line items. The operation will delete the assigned targeting options provided in BulkEditAssignedTargetingOptionsRequest.delete_requests and then create the assigned targeting options provided in BulkEditAssignedTargetingOptionsRequest.create_requests. Requests to this endpoint cannot be made concurrently with the following requests updating the same line item: * lineItems.bulkUpdate * lineItems.patch * assignedTargetingOptions.create * assignedTargetingOptions.delete YouTube & Partners line items cannot be created or updated using the API.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await displayvideo.advertisers.lineItems.bulkEditAssignedTargetingOptions({
+     *       // Required. The ID of the advertiser the line items belong to.
+     *       advertiserId: '[^/]+',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "createRequests": [],
+     *         //   "deleteRequests": [],
+     *         //   "lineItemIds": []
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "errors": [],
+     *   //   "failedLineItemIds": [],
+     *   //   "updatedLineItemIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9687,11 +12153,13 @@ export namespace displayvideo_v2 {
     bulkEditAssignedTargetingOptions(
       params: Params$Resource$Advertisers$Lineitems$Bulkeditassignedtargetingoptions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     bulkEditAssignedTargetingOptions(
       params?: Params$Resource$Advertisers$Lineitems$Bulkeditassignedtargetingoptions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BulkEditAssignedTargetingOptionsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$BulkEditAssignedTargetingOptionsResponse>
+    >;
     bulkEditAssignedTargetingOptions(
       params: Params$Resource$Advertisers$Lineitems$Bulkeditassignedtargetingoptions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9726,8 +12194,10 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BulkEditAssignedTargetingOptionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$BulkEditAssignedTargetingOptionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Lineitems$Bulkeditassignedtargetingoptions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9776,6 +12246,64 @@ export namespace displayvideo_v2 {
 
     /**
      * Lists assigned targeting options for multiple line items across targeting types.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await displayvideo.advertisers.lineItems.bulkListAssignedTargetingOptions({
+     *       // Required. The ID of the advertiser the line items belongs to.
+     *       advertiserId: '[^/]+',
+     *       // Allows filtering by assigned targeting option fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR` on the same field. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `EQUALS (=)` operator. Supported fields: * `targetingType` * `inheritance` Examples: * `AssignedTargetingOption` resources of targeting type `TARGETING_TYPE_PROXIMITY_LOCATION_LIST` or `TARGETING_TYPE_CHANNEL`: `targetingType="TARGETING_TYPE_PROXIMITY_LOCATION_LIST" OR targetingType="TARGETING_TYPE_CHANNEL"` * `AssignedTargetingOption` resources with inheritance status of `NOT_INHERITED` or `INHERITED_FROM_PARTNER`: `inheritance="NOT_INHERITED" OR inheritance="INHERITED_FROM_PARTNER"` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
+     *       filter: 'placeholder-value',
+     *       // Required. The IDs of the line items to list assigned targeting options for.
+     *       lineItemIds: 'placeholder-value',
+     *       // Field by which to sort the list. Acceptable values are: * `lineItemId` (default) * `assignedTargetingOption.targetingType` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `targetingType desc`.
+     *       orderBy: 'placeholder-value',
+     *       // Requested page size. The size must be an integer between `1` and `5000`. If unspecified, the default is `5000`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     *       pageSize: 'placeholder-value',
+     *       // A token that lets the client fetch the next page of results. Typically, this is the value of next_page_token returned from the previous call to the `BulkListAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
+     *       pageToken: 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "lineItemAssignedTargetingOptions": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9785,11 +12313,13 @@ export namespace displayvideo_v2 {
     bulkListAssignedTargetingOptions(
       params: Params$Resource$Advertisers$Lineitems$Bulklistassignedtargetingoptions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     bulkListAssignedTargetingOptions(
       params?: Params$Resource$Advertisers$Lineitems$Bulklistassignedtargetingoptions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BulkListAssignedTargetingOptionsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$BulkListAssignedTargetingOptionsResponse>
+    >;
     bulkListAssignedTargetingOptions(
       params: Params$Resource$Advertisers$Lineitems$Bulklistassignedtargetingoptions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9824,8 +12354,10 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BulkListAssignedTargetingOptionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$BulkListAssignedTargetingOptionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Lineitems$Bulklistassignedtargetingoptions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9874,6 +12406,65 @@ export namespace displayvideo_v2 {
 
     /**
      * Updates multiple line items. Requests to this endpoint cannot be made concurrently with the following requests updating the same line item: * BulkEditAssignedTargetingOptions * UpdateLineItem * assignedTargetingOptions.create * assignedTargetingOptions.delete YouTube & Partners line items cannot be created or updated using the API.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.lineItems.bulkUpdate({
+     *     // Required. The ID of the advertiser this line item belongs to.
+     *     advertiserId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "lineItemIds": [],
+     *       //   "targetLineItem": {},
+     *       //   "updateMask": "my_updateMask"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "errors": [],
+     *   //   "failedLineItemIds": [],
+     *   //   "skippedLineItemIds": [],
+     *   //   "updatedLineItemIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9883,11 +12474,11 @@ export namespace displayvideo_v2 {
     bulkUpdate(
       params: Params$Resource$Advertisers$Lineitems$Bulkupdate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     bulkUpdate(
       params?: Params$Resource$Advertisers$Lineitems$Bulkupdate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BulkUpdateLineItemsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BulkUpdateLineItemsResponse>>;
     bulkUpdate(
       params: Params$Resource$Advertisers$Lineitems$Bulkupdate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9922,8 +12513,8 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BulkUpdateLineItemsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$BulkUpdateLineItemsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Lineitems$Bulkupdate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9968,6 +12559,108 @@ export namespace displayvideo_v2 {
 
     /**
      * Creates a new line item. Returns the newly created line item if successful. YouTube & Partners line items cannot be created or updated using the API.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.lineItems.create({
+     *     // Output only. The unique ID of the advertiser the line item belongs to.
+     *     advertiserId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "bidStrategy": {},
+     *       //   "budget": {},
+     *       //   "campaignId": "my_campaignId",
+     *       //   "conversionCounting": {},
+     *       //   "creativeIds": [],
+     *       //   "displayName": "my_displayName",
+     *       //   "entityStatus": "my_entityStatus",
+     *       //   "excludeNewExchanges": false,
+     *       //   "flight": {},
+     *       //   "frequencyCap": {},
+     *       //   "insertionOrderId": "my_insertionOrderId",
+     *       //   "integrationDetails": {},
+     *       //   "lineItemId": "my_lineItemId",
+     *       //   "lineItemType": "my_lineItemType",
+     *       //   "mobileApp": {},
+     *       //   "name": "my_name",
+     *       //   "pacing": {},
+     *       //   "partnerCosts": [],
+     *       //   "partnerRevenueModel": {},
+     *       //   "reservationType": "my_reservationType",
+     *       //   "targetingExpansion": {},
+     *       //   "updateTime": "my_updateTime",
+     *       //   "warningMessages": [],
+     *       //   "youtubeAndPartnersSettings": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "bidStrategy": {},
+     *   //   "budget": {},
+     *   //   "campaignId": "my_campaignId",
+     *   //   "conversionCounting": {},
+     *   //   "creativeIds": [],
+     *   //   "displayName": "my_displayName",
+     *   //   "entityStatus": "my_entityStatus",
+     *   //   "excludeNewExchanges": false,
+     *   //   "flight": {},
+     *   //   "frequencyCap": {},
+     *   //   "insertionOrderId": "my_insertionOrderId",
+     *   //   "integrationDetails": {},
+     *   //   "lineItemId": "my_lineItemId",
+     *   //   "lineItemType": "my_lineItemType",
+     *   //   "mobileApp": {},
+     *   //   "name": "my_name",
+     *   //   "pacing": {},
+     *   //   "partnerCosts": [],
+     *   //   "partnerRevenueModel": {},
+     *   //   "reservationType": "my_reservationType",
+     *   //   "targetingExpansion": {},
+     *   //   "updateTime": "my_updateTime",
+     *   //   "warningMessages": [],
+     *   //   "youtubeAndPartnersSettings": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9977,11 +12670,11 @@ export namespace displayvideo_v2 {
     create(
       params: Params$Resource$Advertisers$Lineitems$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Advertisers$Lineitems$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LineItem>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LineItem>>;
     create(
       params: Params$Resource$Advertisers$Lineitems$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10010,7 +12703,10 @@ export namespace displayvideo_v2 {
       callback?:
         | BodyResponseCallback<Schema$LineItem>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LineItem> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$LineItem>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Lineitems$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10055,6 +12751,52 @@ export namespace displayvideo_v2 {
 
     /**
      * Deletes a line item. Returns error code `NOT_FOUND` if the line item does not exist. The line item should be archived first, i.e. set entity_status to `ENTITY_STATUS_ARCHIVED`, to be able to delete it. YouTube & Partners line items cannot be created or updated using the API.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.lineItems.delete({
+     *     // The ID of the advertiser this line item belongs to.
+     *     advertiserId: '[^/]+',
+     *     // The ID of the line item to delete.
+     *     lineItemId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10064,11 +12806,11 @@ export namespace displayvideo_v2 {
     delete(
       params: Params$Resource$Advertisers$Lineitems$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Advertisers$Lineitems$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Advertisers$Lineitems$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10097,7 +12839,10 @@ export namespace displayvideo_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Lineitems$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10143,6 +12888,62 @@ export namespace displayvideo_v2 {
 
     /**
      * Duplicates a line item. Returns the ID of the created line item if successful. YouTube & Partners line items cannot be created or updated using the API. **This method regularly experiences high latency.** We recommend [increasing your default timeout](/display-video/api/guides/best-practices/timeouts#client_library_timeout) to avoid errors.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.lineItems.duplicate({
+     *     // Required. The ID of the advertiser this line item belongs to.
+     *     advertiserId: '[^/]+',
+     *     // Required. The ID of the line item to duplicate.
+     *     lineItemId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "targetDisplayName": "my_targetDisplayName"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "duplicateLineItemId": "my_duplicateLineItemId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10152,11 +12953,11 @@ export namespace displayvideo_v2 {
     duplicate(
       params: Params$Resource$Advertisers$Lineitems$Duplicate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     duplicate(
       params?: Params$Resource$Advertisers$Lineitems$Duplicate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DuplicateLineItemResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DuplicateLineItemResponse>>;
     duplicate(
       params: Params$Resource$Advertisers$Lineitems$Duplicate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10191,8 +12992,8 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$DuplicateLineItemResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$DuplicateLineItemResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Lineitems$Duplicate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10238,6 +13039,87 @@ export namespace displayvideo_v2 {
 
     /**
      * Creates a new line item with settings (including targeting) inherited from the insertion order and an `ENTITY_STATUS_DRAFT` entity_status. Returns the newly created line item if successful. There are default values based on the three fields: * The insertion order's insertion_order_type * The insertion order's automation_type * The given line_item_type YouTube & Partners line items cannot be created or updated using the API.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.lineItems.generateDefault({
+     *     // Required. The ID of the advertiser this line item belongs to.
+     *     advertiserId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "displayName": "my_displayName",
+     *       //   "insertionOrderId": "my_insertionOrderId",
+     *       //   "lineItemType": "my_lineItemType",
+     *       //   "mobileApp": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "bidStrategy": {},
+     *   //   "budget": {},
+     *   //   "campaignId": "my_campaignId",
+     *   //   "conversionCounting": {},
+     *   //   "creativeIds": [],
+     *   //   "displayName": "my_displayName",
+     *   //   "entityStatus": "my_entityStatus",
+     *   //   "excludeNewExchanges": false,
+     *   //   "flight": {},
+     *   //   "frequencyCap": {},
+     *   //   "insertionOrderId": "my_insertionOrderId",
+     *   //   "integrationDetails": {},
+     *   //   "lineItemId": "my_lineItemId",
+     *   //   "lineItemType": "my_lineItemType",
+     *   //   "mobileApp": {},
+     *   //   "name": "my_name",
+     *   //   "pacing": {},
+     *   //   "partnerCosts": [],
+     *   //   "partnerRevenueModel": {},
+     *   //   "reservationType": "my_reservationType",
+     *   //   "targetingExpansion": {},
+     *   //   "updateTime": "my_updateTime",
+     *   //   "warningMessages": [],
+     *   //   "youtubeAndPartnersSettings": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10247,11 +13129,11 @@ export namespace displayvideo_v2 {
     generateDefault(
       params: Params$Resource$Advertisers$Lineitems$Generatedefault,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     generateDefault(
       params?: Params$Resource$Advertisers$Lineitems$Generatedefault,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LineItem>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LineItem>>;
     generateDefault(
       params: Params$Resource$Advertisers$Lineitems$Generatedefault,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10280,7 +13162,10 @@ export namespace displayvideo_v2 {
       callback?:
         | BodyResponseCallback<Schema$LineItem>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LineItem> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$LineItem>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Lineitems$Generatedefault;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10326,6 +13211,78 @@ export namespace displayvideo_v2 {
 
     /**
      * Gets a line item.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.lineItems.get({
+     *     // Required. The ID of the advertiser this line item belongs to.
+     *     advertiserId: '[^/]+',
+     *     // Required. The ID of the line item to fetch.
+     *     lineItemId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "bidStrategy": {},
+     *   //   "budget": {},
+     *   //   "campaignId": "my_campaignId",
+     *   //   "conversionCounting": {},
+     *   //   "creativeIds": [],
+     *   //   "displayName": "my_displayName",
+     *   //   "entityStatus": "my_entityStatus",
+     *   //   "excludeNewExchanges": false,
+     *   //   "flight": {},
+     *   //   "frequencyCap": {},
+     *   //   "insertionOrderId": "my_insertionOrderId",
+     *   //   "integrationDetails": {},
+     *   //   "lineItemId": "my_lineItemId",
+     *   //   "lineItemType": "my_lineItemType",
+     *   //   "mobileApp": {},
+     *   //   "name": "my_name",
+     *   //   "pacing": {},
+     *   //   "partnerCosts": [],
+     *   //   "partnerRevenueModel": {},
+     *   //   "reservationType": "my_reservationType",
+     *   //   "targetingExpansion": {},
+     *   //   "updateTime": "my_updateTime",
+     *   //   "warningMessages": [],
+     *   //   "youtubeAndPartnersSettings": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10335,11 +13292,11 @@ export namespace displayvideo_v2 {
     get(
       params: Params$Resource$Advertisers$Lineitems$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Advertisers$Lineitems$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LineItem>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LineItem>>;
     get(
       params: Params$Resource$Advertisers$Lineitems$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10368,7 +13325,10 @@ export namespace displayvideo_v2 {
       callback?:
         | BodyResponseCallback<Schema$LineItem>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LineItem> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$LineItem>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Lineitems$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10414,6 +13374,61 @@ export namespace displayvideo_v2 {
 
     /**
      * Lists line items in an advertiser. The order is defined by the order_by parameter. If a filter by entity_status is not specified, line items with `ENTITY_STATUS_ARCHIVED` will not be included in the results.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.lineItems.list({
+     *     // Required. The ID of the advertiser to list line items for.
+     *     advertiserId: '[^/]+',
+     *     // Allows filtering by line item fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The `updateTime` field must use the `GREATER THAN OR EQUAL TO (\>=)` or `LESS THAN OR EQUAL TO (<=)` operators. * All other fields must use the `EQUALS (=)` operator. Supported fields: * `campaignId` * `displayName` * `entityStatus` * `insertionOrderId` * `lineItemId` * `lineItemType` * `updateTime` (input in ISO 8601 format, or `YYYY-MM-DDTHH:MM:SSZ`) Examples: * All line items under an insertion order: `insertionOrderId="1234"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` and `LINE_ITEM_TYPE_DISPLAY_DEFAULT` line items under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED") AND lineItemType="LINE_ITEM_TYPE_DISPLAY_DEFAULT"` * All line items with an update time less than or equal to 2020-11-04T18:54:47Z (format of ISO 8601): `updateTime<="2020-11-04T18:54:47Z"` * All line items with an update time greater than or equal to 2020-11-04T18:54:47Z (format of ISO 8601): `updateTime\>="2020-11-04T18:54:47Z"` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
+     *     filter: 'placeholder-value',
+     *     // Field by which to sort the list. Acceptable values are: * `displayName` (default) * `entityStatus` * `updateTime` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
+     *     orderBy: 'placeholder-value',
+     *     // Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListLineItems` method. If not specified, the first page of results will be returned.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "lineItems": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10423,11 +13438,11 @@ export namespace displayvideo_v2 {
     list(
       params: Params$Resource$Advertisers$Lineitems$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Advertisers$Lineitems$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListLineItemsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListLineItemsResponse>>;
     list(
       params: Params$Resource$Advertisers$Lineitems$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10460,8 +13475,8 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListLineItemsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListLineItemsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Lineitems$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10506,6 +13521,112 @@ export namespace displayvideo_v2 {
 
     /**
      * Updates an existing line item. Returns the updated line item if successful. Requests to this endpoint cannot be made concurrently with the following requests updating the same line item: * BulkEditAssignedTargetingOptions * BulkUpdateLineItems * assignedTargetingOptions.create * assignedTargetingOptions.delete YouTube & Partners line items cannot be created or updated using the API. **This method regularly experiences high latency.** We recommend [increasing your default timeout](/display-video/api/guides/best-practices/timeouts#client_library_timeout) to avoid errors.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.lineItems.patch({
+     *     // Output only. The unique ID of the advertiser the line item belongs to.
+     *     advertiserId: '[^/]+',
+     *     // Output only. The unique ID of the line item. Assigned by the system.
+     *     lineItemId: '[^/]+',
+     *     // Required. The mask to control which fields to update.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "bidStrategy": {},
+     *       //   "budget": {},
+     *       //   "campaignId": "my_campaignId",
+     *       //   "conversionCounting": {},
+     *       //   "creativeIds": [],
+     *       //   "displayName": "my_displayName",
+     *       //   "entityStatus": "my_entityStatus",
+     *       //   "excludeNewExchanges": false,
+     *       //   "flight": {},
+     *       //   "frequencyCap": {},
+     *       //   "insertionOrderId": "my_insertionOrderId",
+     *       //   "integrationDetails": {},
+     *       //   "lineItemId": "my_lineItemId",
+     *       //   "lineItemType": "my_lineItemType",
+     *       //   "mobileApp": {},
+     *       //   "name": "my_name",
+     *       //   "pacing": {},
+     *       //   "partnerCosts": [],
+     *       //   "partnerRevenueModel": {},
+     *       //   "reservationType": "my_reservationType",
+     *       //   "targetingExpansion": {},
+     *       //   "updateTime": "my_updateTime",
+     *       //   "warningMessages": [],
+     *       //   "youtubeAndPartnersSettings": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "bidStrategy": {},
+     *   //   "budget": {},
+     *   //   "campaignId": "my_campaignId",
+     *   //   "conversionCounting": {},
+     *   //   "creativeIds": [],
+     *   //   "displayName": "my_displayName",
+     *   //   "entityStatus": "my_entityStatus",
+     *   //   "excludeNewExchanges": false,
+     *   //   "flight": {},
+     *   //   "frequencyCap": {},
+     *   //   "insertionOrderId": "my_insertionOrderId",
+     *   //   "integrationDetails": {},
+     *   //   "lineItemId": "my_lineItemId",
+     *   //   "lineItemType": "my_lineItemType",
+     *   //   "mobileApp": {},
+     *   //   "name": "my_name",
+     *   //   "pacing": {},
+     *   //   "partnerCosts": [],
+     *   //   "partnerRevenueModel": {},
+     *   //   "reservationType": "my_reservationType",
+     *   //   "targetingExpansion": {},
+     *   //   "updateTime": "my_updateTime",
+     *   //   "warningMessages": [],
+     *   //   "youtubeAndPartnersSettings": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10515,11 +13636,11 @@ export namespace displayvideo_v2 {
     patch(
       params: Params$Resource$Advertisers$Lineitems$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Advertisers$Lineitems$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LineItem>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LineItem>>;
     patch(
       params: Params$Resource$Advertisers$Lineitems$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10548,7 +13669,10 @@ export namespace displayvideo_v2 {
       callback?:
         | BodyResponseCallback<Schema$LineItem>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LineItem> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$LineItem>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Lineitems$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10770,6 +13894,171 @@ export namespace displayvideo_v2 {
 
     /**
      * Assigns a targeting option to a line item. Returns the assigned targeting option if successful. Requests to this endpoint cannot be made concurrently with the following requests updating the same line item: * lineItems.bulkEditAssignedTargetingOptions * lineItems.bulkUpdate * lineItems.patch * DeleteLineItemAssignedTargetingOption YouTube & Partners line items cannot be created or updated using the API.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await displayvideo.advertisers.lineItems.targetingTypes.assignedTargetingOptions.create(
+     *       {
+     *         // Required. The ID of the advertiser the line item belongs to.
+     *         advertiserId: '[^/]+',
+     *         // Required. The ID of the line item the assigned targeting option will belong to.
+     *         lineItemId: '[^/]+',
+     *         // Required. Identifies the type of this assigned targeting option. Supported targeting types include: * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_APP` * `TARGETING_TYPE_APP_CATEGORY` * `TARGETING_TYPE_AUDIENCE_GROUP` * `TARGETING_TYPE_AUDIO_CONTENT_TYPE` * `TARGETING_TYPE_AUTHORIZED_SELLER_STATUS` * `TARGETING_TYPE_BROWSER` * `TARGETING_TYPE_BUSINESS_CHAIN` * `TARGETING_TYPE_CARRIER_AND_ISP` * `TARGETING_TYPE_CATEGORY` * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_CONTENT_DURATION` * `TARGETING_TYPE_CONTENT_GENRE` * `TARGETING_TYPE_CONTENT_INSTREAM_POSITION` * `TARGETING_TYPE_CONTENT_OUTSTREAM_POSITION` * `TARGETING_TYPE_CONTENT_STREAM_TYPE` * `TARGETING_TYPE_DAY_AND_TIME` * `TARGETING_TYPE_DEVICE_MAKE_MODEL` * `TARGETING_TYPE_DEVICE_TYPE` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_ENVIRONMENT` * `TARGETING_TYPE_EXCHANGE` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_GEO_REGION` * `TARGETING_TYPE_HOUSEHOLD_INCOME` * `TARGETING_TYPE_INVENTORY_SOURCE` * `TARGETING_TYPE_INVENTORY_SOURCE_GROUP` * `TARGETING_TYPE_KEYWORD` * `TARGETING_TYPE_LANGUAGE` * `TARGETING_TYPE_NATIVE_CONTENT_POSITION` * `TARGETING_TYPE_NEGATIVE_KEYWORD_LIST` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_ON_SCREEN_POSITION` * `TARGETING_TYPE_OPERATING_SYSTEM` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_POI` * `TARGETING_TYPE_PROXIMITY_LOCATION_LIST` * `TARGETING_TYPE_REGIONAL_LOCATION_LIST` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_SUB_EXCHANGE` * `TARGETING_TYPE_THIRD_PARTY_VERIFIER` * `TARGETING_TYPE_URL` * `TARGETING_TYPE_USER_REWARDED_CONTENT` * `TARGETING_TYPE_VIDEO_PLAYER_SIZE` * `TARGETING_TYPE_VIEWABILITY`
+     *         targetingType: '[^/]+',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "ageRangeDetails": {},
+     *           //   "appCategoryDetails": {},
+     *           //   "appDetails": {},
+     *           //   "assignedTargetingOptionId": "my_assignedTargetingOptionId",
+     *           //   "assignedTargetingOptionIdAlias": "my_assignedTargetingOptionIdAlias",
+     *           //   "audienceGroupDetails": {},
+     *           //   "audioContentTypeDetails": {},
+     *           //   "authorizedSellerStatusDetails": {},
+     *           //   "browserDetails": {},
+     *           //   "businessChainDetails": {},
+     *           //   "carrierAndIspDetails": {},
+     *           //   "categoryDetails": {},
+     *           //   "channelDetails": {},
+     *           //   "contentDurationDetails": {},
+     *           //   "contentGenreDetails": {},
+     *           //   "contentInstreamPositionDetails": {},
+     *           //   "contentOutstreamPositionDetails": {},
+     *           //   "contentStreamTypeDetails": {},
+     *           //   "dayAndTimeDetails": {},
+     *           //   "deviceMakeModelDetails": {},
+     *           //   "deviceTypeDetails": {},
+     *           //   "digitalContentLabelExclusionDetails": {},
+     *           //   "environmentDetails": {},
+     *           //   "exchangeDetails": {},
+     *           //   "genderDetails": {},
+     *           //   "geoRegionDetails": {},
+     *           //   "householdIncomeDetails": {},
+     *           //   "inheritance": "my_inheritance",
+     *           //   "inventorySourceDetails": {},
+     *           //   "inventorySourceGroupDetails": {},
+     *           //   "keywordDetails": {},
+     *           //   "languageDetails": {},
+     *           //   "name": "my_name",
+     *           //   "nativeContentPositionDetails": {},
+     *           //   "negativeKeywordListDetails": {},
+     *           //   "omidDetails": {},
+     *           //   "onScreenPositionDetails": {},
+     *           //   "operatingSystemDetails": {},
+     *           //   "parentalStatusDetails": {},
+     *           //   "poiDetails": {},
+     *           //   "proximityLocationListDetails": {},
+     *           //   "regionalLocationListDetails": {},
+     *           //   "sensitiveCategoryExclusionDetails": {},
+     *           //   "sessionPositionDetails": {},
+     *           //   "subExchangeDetails": {},
+     *           //   "targetingType": "my_targetingType",
+     *           //   "thirdPartyVerifierDetails": {},
+     *           //   "urlDetails": {},
+     *           //   "userRewardedContentDetails": {},
+     *           //   "videoPlayerSizeDetails": {},
+     *           //   "viewabilityDetails": {},
+     *           //   "youtubeChannelDetails": {},
+     *           //   "youtubeVideoDetails": {}
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "ageRangeDetails": {},
+     *   //   "appCategoryDetails": {},
+     *   //   "appDetails": {},
+     *   //   "assignedTargetingOptionId": "my_assignedTargetingOptionId",
+     *   //   "assignedTargetingOptionIdAlias": "my_assignedTargetingOptionIdAlias",
+     *   //   "audienceGroupDetails": {},
+     *   //   "audioContentTypeDetails": {},
+     *   //   "authorizedSellerStatusDetails": {},
+     *   //   "browserDetails": {},
+     *   //   "businessChainDetails": {},
+     *   //   "carrierAndIspDetails": {},
+     *   //   "categoryDetails": {},
+     *   //   "channelDetails": {},
+     *   //   "contentDurationDetails": {},
+     *   //   "contentGenreDetails": {},
+     *   //   "contentInstreamPositionDetails": {},
+     *   //   "contentOutstreamPositionDetails": {},
+     *   //   "contentStreamTypeDetails": {},
+     *   //   "dayAndTimeDetails": {},
+     *   //   "deviceMakeModelDetails": {},
+     *   //   "deviceTypeDetails": {},
+     *   //   "digitalContentLabelExclusionDetails": {},
+     *   //   "environmentDetails": {},
+     *   //   "exchangeDetails": {},
+     *   //   "genderDetails": {},
+     *   //   "geoRegionDetails": {},
+     *   //   "householdIncomeDetails": {},
+     *   //   "inheritance": "my_inheritance",
+     *   //   "inventorySourceDetails": {},
+     *   //   "inventorySourceGroupDetails": {},
+     *   //   "keywordDetails": {},
+     *   //   "languageDetails": {},
+     *   //   "name": "my_name",
+     *   //   "nativeContentPositionDetails": {},
+     *   //   "negativeKeywordListDetails": {},
+     *   //   "omidDetails": {},
+     *   //   "onScreenPositionDetails": {},
+     *   //   "operatingSystemDetails": {},
+     *   //   "parentalStatusDetails": {},
+     *   //   "poiDetails": {},
+     *   //   "proximityLocationListDetails": {},
+     *   //   "regionalLocationListDetails": {},
+     *   //   "sensitiveCategoryExclusionDetails": {},
+     *   //   "sessionPositionDetails": {},
+     *   //   "subExchangeDetails": {},
+     *   //   "targetingType": "my_targetingType",
+     *   //   "thirdPartyVerifierDetails": {},
+     *   //   "urlDetails": {},
+     *   //   "userRewardedContentDetails": {},
+     *   //   "videoPlayerSizeDetails": {},
+     *   //   "viewabilityDetails": {},
+     *   //   "youtubeChannelDetails": {},
+     *   //   "youtubeVideoDetails": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10779,11 +14068,11 @@ export namespace displayvideo_v2 {
     create(
       params: Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AssignedTargetingOption>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AssignedTargetingOption>>;
     create(
       params: Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10818,8 +14107,8 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AssignedTargetingOption>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AssignedTargetingOption>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10866,6 +14155,59 @@ export namespace displayvideo_v2 {
 
     /**
      * Deletes an assigned targeting option from a line item. Requests to this endpoint cannot be made concurrently with the following requests updating the same line item: * lineItems.bulkEditAssignedTargetingOptions * lineItems.bulkUpdate * lineItems.patch * CreateLineItemAssignedTargetingOption YouTube & Partners line items cannot be created or updated using the API.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await displayvideo.advertisers.lineItems.targetingTypes.assignedTargetingOptions.delete(
+     *       {
+     *         // Required. The ID of the advertiser the line item belongs to.
+     *         advertiserId: '[^/]+',
+     *         // Required. The ID of the assigned targeting option to delete.
+     *         assignedTargetingOptionId: '[^/]+',
+     *         // Required. The ID of the line item the assigned targeting option belongs to.
+     *         lineItemId: '[^/]+',
+     *         // Required. Identifies the type of this assigned targeting option. Supported targeting types include: * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_APP` * `TARGETING_TYPE_APP_CATEGORY` * `TARGETING_TYPE_AUDIENCE_GROUP` * `TARGETING_TYPE_AUDIO_CONTENT_TYPE` * `TARGETING_TYPE_AUTHORIZED_SELLER_STATUS` * `TARGETING_TYPE_BROWSER` * `TARGETING_TYPE_BUSINESS_CHAIN` * `TARGETING_TYPE_CARRIER_AND_ISP` * `TARGETING_TYPE_CATEGORY` * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_CONTENT_DURATION` * `TARGETING_TYPE_CONTENT_GENRE` * `TARGETING_TYPE_CONTENT_INSTREAM_POSITION` * `TARGETING_TYPE_CONTENT_OUTSTREAM_POSITION` * `TARGETING_TYPE_CONTENT_STREAM_TYPE` * `TARGETING_TYPE_DAY_AND_TIME` * `TARGETING_TYPE_DEVICE_MAKE_MODEL` * `TARGETING_TYPE_DEVICE_TYPE` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_ENVIRONMENT` * `TARGETING_TYPE_EXCHANGE` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_GEO_REGION` * `TARGETING_TYPE_HOUSEHOLD_INCOME` * `TARGETING_TYPE_INVENTORY_SOURCE` * `TARGETING_TYPE_INVENTORY_SOURCE_GROUP` * `TARGETING_TYPE_KEYWORD` * `TARGETING_TYPE_LANGUAGE` * `TARGETING_TYPE_NATIVE_CONTENT_POSITION` * `TARGETING_TYPE_NEGATIVE_KEYWORD_LIST` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_ON_SCREEN_POSITION` * `TARGETING_TYPE_OPERATING_SYSTEM` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_POI` * `TARGETING_TYPE_PROXIMITY_LOCATION_LIST` * `TARGETING_TYPE_REGIONAL_LOCATION_LIST` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_SUB_EXCHANGE` * `TARGETING_TYPE_THIRD_PARTY_VERIFIER` * `TARGETING_TYPE_URL` * `TARGETING_TYPE_USER_REWARDED_CONTENT` * `TARGETING_TYPE_VIDEO_PLAYER_SIZE` * `TARGETING_TYPE_VIEWABILITY`
+     *         targetingType: '[^/]+',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10875,11 +14217,11 @@ export namespace displayvideo_v2 {
     delete(
       params: Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10908,7 +14250,10 @@ export namespace displayvideo_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10965,6 +14310,113 @@ export namespace displayvideo_v2 {
 
     /**
      * Gets a single targeting option assigned to a line item.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await displayvideo.advertisers.lineItems.targetingTypes.assignedTargetingOptions.get(
+     *       {
+     *         // Required. The ID of the advertiser the line item belongs to.
+     *         advertiserId: '[^/]+',
+     *         // Required. An identifier unique to the targeting type in this line item that identifies the assigned targeting option being requested.
+     *         assignedTargetingOptionId: '[^/]+',
+     *         // Required. The ID of the line item the assigned targeting option belongs to.
+     *         lineItemId: '[^/]+',
+     *         // Required. Identifies the type of this assigned targeting option. Supported targeting types include: * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_APP` * `TARGETING_TYPE_APP_CATEGORY` * `TARGETING_TYPE_AUDIENCE_GROUP` * `TARGETING_TYPE_AUDIO_CONTENT_TYPE` * `TARGETING_TYPE_AUTHORIZED_SELLER_STATUS` * `TARGETING_TYPE_BROWSER` * `TARGETING_TYPE_BUSINESS_CHAIN` * `TARGETING_TYPE_CARRIER_AND_ISP` * `TARGETING_TYPE_CATEGORY` * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_CONTENT_DURATION` * `TARGETING_TYPE_CONTENT_GENRE` * `TARGETING_TYPE_CONTENT_INSTREAM_POSITION` * `TARGETING_TYPE_CONTENT_OUTSTREAM_POSITION` * `TARGETING_TYPE_CONTENT_STREAM_TYPE` * `TARGETING_TYPE_DAY_AND_TIME` * `TARGETING_TYPE_DEVICE_MAKE_MODEL` * `TARGETING_TYPE_DEVICE_TYPE` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_ENVIRONMENT` * `TARGETING_TYPE_EXCHANGE` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_GEO_REGION` * `TARGETING_TYPE_HOUSEHOLD_INCOME` * `TARGETING_TYPE_INVENTORY_SOURCE` * `TARGETING_TYPE_INVENTORY_SOURCE_GROUP` * `TARGETING_TYPE_KEYWORD` * `TARGETING_TYPE_LANGUAGE` * `TARGETING_TYPE_NATIVE_CONTENT_POSITION` * `TARGETING_TYPE_NEGATIVE_KEYWORD_LIST` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_ON_SCREEN_POSITION` * `TARGETING_TYPE_OPERATING_SYSTEM` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_POI` * `TARGETING_TYPE_PROXIMITY_LOCATION_LIST` * `TARGETING_TYPE_REGIONAL_LOCATION_LIST` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_SUB_EXCHANGE` * `TARGETING_TYPE_THIRD_PARTY_VERIFIER` * `TARGETING_TYPE_URL` * `TARGETING_TYPE_USER_REWARDED_CONTENT` * `TARGETING_TYPE_VIDEO_PLAYER_SIZE` * `TARGETING_TYPE_VIEWABILITY` * `TARGETING_TYPE_YOUTUBE_CHANNEL` (only for `LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_VIDEO_SEQUENCE` line items) * `TARGETING_TYPE_YOUTUBE_VIDEO` (only for `LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_VIDEO_SEQUENCE` line items)
+     *         targetingType: '[^/]+',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "ageRangeDetails": {},
+     *   //   "appCategoryDetails": {},
+     *   //   "appDetails": {},
+     *   //   "assignedTargetingOptionId": "my_assignedTargetingOptionId",
+     *   //   "assignedTargetingOptionIdAlias": "my_assignedTargetingOptionIdAlias",
+     *   //   "audienceGroupDetails": {},
+     *   //   "audioContentTypeDetails": {},
+     *   //   "authorizedSellerStatusDetails": {},
+     *   //   "browserDetails": {},
+     *   //   "businessChainDetails": {},
+     *   //   "carrierAndIspDetails": {},
+     *   //   "categoryDetails": {},
+     *   //   "channelDetails": {},
+     *   //   "contentDurationDetails": {},
+     *   //   "contentGenreDetails": {},
+     *   //   "contentInstreamPositionDetails": {},
+     *   //   "contentOutstreamPositionDetails": {},
+     *   //   "contentStreamTypeDetails": {},
+     *   //   "dayAndTimeDetails": {},
+     *   //   "deviceMakeModelDetails": {},
+     *   //   "deviceTypeDetails": {},
+     *   //   "digitalContentLabelExclusionDetails": {},
+     *   //   "environmentDetails": {},
+     *   //   "exchangeDetails": {},
+     *   //   "genderDetails": {},
+     *   //   "geoRegionDetails": {},
+     *   //   "householdIncomeDetails": {},
+     *   //   "inheritance": "my_inheritance",
+     *   //   "inventorySourceDetails": {},
+     *   //   "inventorySourceGroupDetails": {},
+     *   //   "keywordDetails": {},
+     *   //   "languageDetails": {},
+     *   //   "name": "my_name",
+     *   //   "nativeContentPositionDetails": {},
+     *   //   "negativeKeywordListDetails": {},
+     *   //   "omidDetails": {},
+     *   //   "onScreenPositionDetails": {},
+     *   //   "operatingSystemDetails": {},
+     *   //   "parentalStatusDetails": {},
+     *   //   "poiDetails": {},
+     *   //   "proximityLocationListDetails": {},
+     *   //   "regionalLocationListDetails": {},
+     *   //   "sensitiveCategoryExclusionDetails": {},
+     *   //   "sessionPositionDetails": {},
+     *   //   "subExchangeDetails": {},
+     *   //   "targetingType": "my_targetingType",
+     *   //   "thirdPartyVerifierDetails": {},
+     *   //   "urlDetails": {},
+     *   //   "userRewardedContentDetails": {},
+     *   //   "videoPlayerSizeDetails": {},
+     *   //   "viewabilityDetails": {},
+     *   //   "youtubeChannelDetails": {},
+     *   //   "youtubeVideoDetails": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10974,11 +14426,11 @@ export namespace displayvideo_v2 {
     get(
       params: Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AssignedTargetingOption>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AssignedTargetingOption>>;
     get(
       params: Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11011,8 +14463,8 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AssignedTargetingOption>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AssignedTargetingOption>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11069,6 +14521,68 @@ export namespace displayvideo_v2 {
 
     /**
      * Lists the targeting options assigned to a line item.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await displayvideo.advertisers.lineItems.targetingTypes.assignedTargetingOptions.list(
+     *       {
+     *         // Required. The ID of the advertiser the line item belongs to.
+     *         advertiserId: '[^/]+',
+     *         // Allows filtering by assigned targeting option fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `EQUALS (=)` operator. Supported fields: * `assignedTargetingOptionId` * `inheritance` Examples: * `AssignedTargetingOption` resources with ID 1 or 2: `assignedTargetingOptionId="1" OR assignedTargetingOptionId="2"` * `AssignedTargetingOption` resources with inheritance status of `NOT_INHERITED` or `INHERITED_FROM_PARTNER`: `inheritance="NOT_INHERITED" OR inheritance="INHERITED_FROM_PARTNER"` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
+     *         filter: 'placeholder-value',
+     *         // Required. The ID of the line item to list assigned targeting options for.
+     *         lineItemId: '[^/]+',
+     *         // Field by which to sort the list. Acceptable values are: * `assignedTargetingOptionId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `assignedTargetingOptionId desc`.
+     *         orderBy: 'placeholder-value',
+     *         // Requested page size. Must be between `1` and `5000`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     *         pageSize: 'placeholder-value',
+     *         // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListLineItemAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
+     *         pageToken: 'placeholder-value',
+     *         // Required. Identifies the type of assigned targeting options to list. Supported targeting types include: * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_APP` * `TARGETING_TYPE_APP_CATEGORY` * `TARGETING_TYPE_AUDIENCE_GROUP` * `TARGETING_TYPE_AUDIO_CONTENT_TYPE` * `TARGETING_TYPE_AUTHORIZED_SELLER_STATUS` * `TARGETING_TYPE_BROWSER` * `TARGETING_TYPE_BUSINESS_CHAIN` * `TARGETING_TYPE_CARRIER_AND_ISP` * `TARGETING_TYPE_CATEGORY` * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_CONTENT_DURATION` * `TARGETING_TYPE_CONTENT_GENRE` * `TARGETING_TYPE_CONTENT_INSTREAM_POSITION` * `TARGETING_TYPE_CONTENT_OUTSTREAM_POSITION` * `TARGETING_TYPE_CONTENT_STREAM_TYPE` * `TARGETING_TYPE_DAY_AND_TIME` * `TARGETING_TYPE_DEVICE_MAKE_MODEL` * `TARGETING_TYPE_DEVICE_TYPE` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_ENVIRONMENT` * `TARGETING_TYPE_EXCHANGE` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_GEO_REGION` * `TARGETING_TYPE_HOUSEHOLD_INCOME` * `TARGETING_TYPE_INVENTORY_SOURCE` * `TARGETING_TYPE_INVENTORY_SOURCE_GROUP` * `TARGETING_TYPE_KEYWORD` * `TARGETING_TYPE_LANGUAGE` * `TARGETING_TYPE_NATIVE_CONTENT_POSITION` * `TARGETING_TYPE_NEGATIVE_KEYWORD_LIST` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_ON_SCREEN_POSITION` * `TARGETING_TYPE_OPERATING_SYSTEM` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_POI` * `TARGETING_TYPE_PROXIMITY_LOCATION_LIST` * `TARGETING_TYPE_REGIONAL_LOCATION_LIST` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_SUB_EXCHANGE` * `TARGETING_TYPE_THIRD_PARTY_VERIFIER` * `TARGETING_TYPE_URL` * `TARGETING_TYPE_USER_REWARDED_CONTENT` * `TARGETING_TYPE_VIDEO_PLAYER_SIZE` * `TARGETING_TYPE_VIEWABILITY` * `TARGETING_TYPE_YOUTUBE_CHANNEL` (only for `LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_VIDEO_SEQUENCE` line items) * `TARGETING_TYPE_YOUTUBE_VIDEO` (only for `LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_VIDEO_SEQUENCE` line items)
+     *         targetingType: '[^/]+',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assignedTargetingOptions": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11078,11 +14592,13 @@ export namespace displayvideo_v2 {
     list(
       params: Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListLineItemAssignedTargetingOptionsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListLineItemAssignedTargetingOptionsResponse>
+    >;
     list(
       params: Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11117,8 +14633,10 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListLineItemAssignedTargetingOptionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListLineItemAssignedTargetingOptionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11267,6 +14785,68 @@ export namespace displayvideo_v2 {
 
     /**
      * Creates a new location list. Returns the newly created location list if successful.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.locationLists.create({
+     *     // Required. The ID of the DV360 advertiser to which the location list belongs.
+     *     advertiserId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "displayName": "my_displayName",
+     *       //   "locationListId": "my_locationListId",
+     *       //   "locationType": "my_locationType",
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "displayName": "my_displayName",
+     *   //   "locationListId": "my_locationListId",
+     *   //   "locationType": "my_locationType",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11276,11 +14856,11 @@ export namespace displayvideo_v2 {
     create(
       params: Params$Resource$Advertisers$Locationlists$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Advertisers$Locationlists$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LocationList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LocationList>>;
     create(
       params: Params$Resource$Advertisers$Locationlists$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11309,7 +14889,10 @@ export namespace displayvideo_v2 {
       callback?:
         | BodyResponseCallback<Schema$LocationList>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LocationList> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$LocationList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Locationlists$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11354,6 +14937,58 @@ export namespace displayvideo_v2 {
 
     /**
      * Gets a location list.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.locationLists.get({
+     *     // Required. The ID of the DV360 advertiser to which the fetched location list belongs.
+     *     advertiserId: '[^/]+',
+     *     // Required. The ID of the location list to fetch.
+     *     locationListId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "displayName": "my_displayName",
+     *   //   "locationListId": "my_locationListId",
+     *   //   "locationType": "my_locationType",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11363,11 +14998,11 @@ export namespace displayvideo_v2 {
     get(
       params: Params$Resource$Advertisers$Locationlists$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Advertisers$Locationlists$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LocationList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LocationList>>;
     get(
       params: Params$Resource$Advertisers$Locationlists$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11396,7 +15031,10 @@ export namespace displayvideo_v2 {
       callback?:
         | BodyResponseCallback<Schema$LocationList>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LocationList> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$LocationList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Locationlists$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11442,6 +15080,61 @@ export namespace displayvideo_v2 {
 
     /**
      * Lists location lists based on a given advertiser id.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.locationLists.list({
+     *     // Required. The ID of the DV360 advertiser to which the fetched location lists belong.
+     *     advertiserId: '[^/]+',
+     *     // Allows filtering by location list fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `EQUALS (=)` operator. Supported fields: * `locationType` Examples: * All regional location list: `locationType="TARGETING_LOCATION_TYPE_REGIONAL"` * All proximity location list: `locationType="TARGETING_LOCATION_TYPE_PROXIMITY"` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
+     *     filter: 'placeholder-value',
+     *     // Field by which to sort the list. Acceptable values are: * `locationListId` (default) * `displayName` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
+     *     orderBy: 'placeholder-value',
+     *     // Requested page size. Must be between `1` and `200`. Defaults to `100` if not set. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListLocationLists` method. If not specified, the first page of results will be returned.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "locationLists": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11451,11 +15144,11 @@ export namespace displayvideo_v2 {
     list(
       params: Params$Resource$Advertisers$Locationlists$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Advertisers$Locationlists$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListLocationListsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListLocationListsResponse>>;
     list(
       params: Params$Resource$Advertisers$Locationlists$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11490,8 +15183,8 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListLocationListsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListLocationListsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Locationlists$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11536,6 +15229,72 @@ export namespace displayvideo_v2 {
 
     /**
      * Updates a location list. Returns the updated location list if successful.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.locationLists.patch({
+     *     // Required. The ID of the DV360 advertiser to which the location lists belongs.
+     *     advertiserId: '[^/]+',
+     *     // Output only. The unique ID of the location list. Assigned by the system.
+     *     locationListId: 'placeholder-value',
+     *     // Required. The mask to control which fields to update.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "displayName": "my_displayName",
+     *       //   "locationListId": "my_locationListId",
+     *       //   "locationType": "my_locationType",
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "displayName": "my_displayName",
+     *   //   "locationListId": "my_locationListId",
+     *   //   "locationType": "my_locationType",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11545,11 +15304,11 @@ export namespace displayvideo_v2 {
     patch(
       params: Params$Resource$Advertisers$Locationlists$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Advertisers$Locationlists$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LocationList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LocationList>>;
     patch(
       params: Params$Resource$Advertisers$Locationlists$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11578,7 +15337,10 @@ export namespace displayvideo_v2 {
       callback?:
         | BodyResponseCallback<Schema$LocationList>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LocationList> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$LocationList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Locationlists$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11698,6 +15460,64 @@ export namespace displayvideo_v2 {
 
     /**
      * Bulk edits multiple assignments between locations and a single location list. The operation will delete the assigned locations provided in deletedAssignedLocations and then create the assigned locations provided in createdAssignedLocations.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await displayvideo.advertisers.locationLists.assignedLocations.bulkEdit({
+     *       // Required. The ID of the DV360 advertiser to which the location list belongs.
+     *       advertiserId: 'placeholder-value',
+     *       // Required. The ID of the location list to which these assignments are assigned.
+     *       locationListId: '[^/]+',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "createdAssignedLocations": [],
+     *         //   "deletedAssignedLocations": []
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assignedLocations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11707,11 +15527,13 @@ export namespace displayvideo_v2 {
     bulkEdit(
       params: Params$Resource$Advertisers$Locationlists$Assignedlocations$Bulkedit,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     bulkEdit(
       params?: Params$Resource$Advertisers$Locationlists$Assignedlocations$Bulkedit,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BulkEditAssignedLocationsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$BulkEditAssignedLocationsResponse>
+    >;
     bulkEdit(
       params: Params$Resource$Advertisers$Locationlists$Assignedlocations$Bulkedit,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11746,8 +15568,10 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BulkEditAssignedLocationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$BulkEditAssignedLocationsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Locationlists$Assignedlocations$Bulkedit;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11796,6 +15620,67 @@ export namespace displayvideo_v2 {
 
     /**
      * Creates an assignment between a location and a location list.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await displayvideo.advertisers.locationLists.assignedLocations.create({
+     *       // Required. The ID of the DV360 advertiser to which the location list belongs.
+     *       advertiserId: 'placeholder-value',
+     *       // Required. The ID of the location list for which the assignment will be created.
+     *       locationListId: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "assignedLocationId": "my_assignedLocationId",
+     *         //   "name": "my_name",
+     *         //   "targetingOptionId": "my_targetingOptionId"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assignedLocationId": "my_assignedLocationId",
+     *   //   "name": "my_name",
+     *   //   "targetingOptionId": "my_targetingOptionId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11805,11 +15690,11 @@ export namespace displayvideo_v2 {
     create(
       params: Params$Resource$Advertisers$Locationlists$Assignedlocations$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Advertisers$Locationlists$Assignedlocations$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AssignedLocation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AssignedLocation>>;
     create(
       params: Params$Resource$Advertisers$Locationlists$Assignedlocations$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11838,7 +15723,10 @@ export namespace displayvideo_v2 {
       callback?:
         | BodyResponseCallback<Schema$AssignedLocation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AssignedLocation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$AssignedLocation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Locationlists$Assignedlocations$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11885,6 +15773,55 @@ export namespace displayvideo_v2 {
 
     /**
      * Deletes the assignment between a location and a location list.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await displayvideo.advertisers.locationLists.assignedLocations.delete({
+     *       // Required. The ID of the DV360 advertiser to which the location list belongs.
+     *       advertiserId: 'placeholder-value',
+     *       // Required. The ID of the assigned location to delete.
+     *       assignedLocationId: '[^/]+',
+     *       // Required. The ID of the location list to which this assignment is assigned.
+     *       locationListId: 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11894,11 +15831,11 @@ export namespace displayvideo_v2 {
     delete(
       params: Params$Resource$Advertisers$Locationlists$Assignedlocations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Advertisers$Locationlists$Assignedlocations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Advertisers$Locationlists$Assignedlocations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11927,7 +15864,10 @@ export namespace displayvideo_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Locationlists$Assignedlocations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11978,6 +15918,64 @@ export namespace displayvideo_v2 {
 
     /**
      * Lists locations assigned to a location list.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await displayvideo.advertisers.locationLists.assignedLocations.list({
+     *       // Required. The ID of the DV360 advertiser to which the location list belongs.
+     *       advertiserId: 'placeholder-value',
+     *       // Allows filtering by location list assignment fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the `OR` logical operator. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `EQUALS (=)` operator. Supported fields: * `assignedLocationId` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
+     *       filter: 'placeholder-value',
+     *       // Required. The ID of the location list to which these assignments are assigned.
+     *       locationListId: 'placeholder-value',
+     *       // Field by which to sort the list. Acceptable values are: * `assignedLocationId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `assignedLocationId desc`.
+     *       orderBy: 'placeholder-value',
+     *       // Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     *       pageSize: 'placeholder-value',
+     *       // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListAssignedLocations` method. If not specified, the first page of results will be returned.
+     *       pageToken: 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assignedLocations": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11987,11 +15985,11 @@ export namespace displayvideo_v2 {
     list(
       params: Params$Resource$Advertisers$Locationlists$Assignedlocations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Advertisers$Locationlists$Assignedlocations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAssignedLocationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListAssignedLocationsResponse>>;
     list(
       params: Params$Resource$Advertisers$Locationlists$Assignedlocations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12026,8 +16024,8 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListAssignedLocationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListAssignedLocationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Locationlists$Assignedlocations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12158,6 +16156,66 @@ export namespace displayvideo_v2 {
 
     /**
      * Activates a manual trigger. Each activation of the manual trigger must be at least 5 minutes apart, otherwise an error will be returned. **Warning:** Line Items using manual triggers no longer serve in Display & Video 360. This method will sunset on August 1, 2023. Read our [feature deprecation announcement](/display-video/api/deprecations#features.manual_triggers) for more information.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.manualTriggers.activate({
+     *     // Required. The ID of the advertiser that the manual trigger belongs.
+     *     advertiserId: '[^/]+',
+     *     // Required. The ID of the manual trigger to activate.
+     *     triggerId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activationDurationMinutes": "my_activationDurationMinutes",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "displayName": "my_displayName",
+     *   //   "latestActivationTime": "my_latestActivationTime",
+     *   //   "name": "my_name",
+     *   //   "state": "my_state",
+     *   //   "triggerId": "my_triggerId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12167,11 +16225,11 @@ export namespace displayvideo_v2 {
     activate(
       params: Params$Resource$Advertisers$Manualtriggers$Activate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     activate(
       params?: Params$Resource$Advertisers$Manualtriggers$Activate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ManualTrigger>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ManualTrigger>>;
     activate(
       params: Params$Resource$Advertisers$Manualtriggers$Activate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12200,7 +16258,10 @@ export namespace displayvideo_v2 {
       callback?:
         | BodyResponseCallback<Schema$ManualTrigger>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ManualTrigger> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ManualTrigger>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Manualtriggers$Activate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12246,6 +16307,72 @@ export namespace displayvideo_v2 {
 
     /**
      * Creates a new manual trigger. Returns the newly created manual trigger if successful. **Warning:** Line Items using manual triggers no longer serve in Display & Video 360. This method will sunset on August 1, 2023. Read our [feature deprecation announcement](/display-video/api/deprecations#features.manual_triggers) for more information.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.manualTriggers.create({
+     *     // Required. Immutable. The unique ID of the advertiser that the manual trigger belongs to.
+     *     advertiserId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "activationDurationMinutes": "my_activationDurationMinutes",
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "displayName": "my_displayName",
+     *       //   "latestActivationTime": "my_latestActivationTime",
+     *       //   "name": "my_name",
+     *       //   "state": "my_state",
+     *       //   "triggerId": "my_triggerId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activationDurationMinutes": "my_activationDurationMinutes",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "displayName": "my_displayName",
+     *   //   "latestActivationTime": "my_latestActivationTime",
+     *   //   "name": "my_name",
+     *   //   "state": "my_state",
+     *   //   "triggerId": "my_triggerId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12255,11 +16382,11 @@ export namespace displayvideo_v2 {
     create(
       params: Params$Resource$Advertisers$Manualtriggers$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Advertisers$Manualtriggers$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ManualTrigger>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ManualTrigger>>;
     create(
       params: Params$Resource$Advertisers$Manualtriggers$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12288,7 +16415,10 @@ export namespace displayvideo_v2 {
       callback?:
         | BodyResponseCallback<Schema$ManualTrigger>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ManualTrigger> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ManualTrigger>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Manualtriggers$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12333,6 +16463,66 @@ export namespace displayvideo_v2 {
 
     /**
      * Deactivates a manual trigger. **Warning:** Line Items using manual triggers no longer serve in Display & Video 360. This method will sunset on August 1, 2023. Read our [feature deprecation announcement](/display-video/api/deprecations#features.manual_triggers) for more information.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.manualTriggers.deactivate({
+     *     // Required. The ID of the advertiser that the manual trigger belongs.
+     *     advertiserId: '[^/]+',
+     *     // Required. The ID of the manual trigger to deactivate.
+     *     triggerId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activationDurationMinutes": "my_activationDurationMinutes",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "displayName": "my_displayName",
+     *   //   "latestActivationTime": "my_latestActivationTime",
+     *   //   "name": "my_name",
+     *   //   "state": "my_state",
+     *   //   "triggerId": "my_triggerId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12342,11 +16532,11 @@ export namespace displayvideo_v2 {
     deactivate(
       params: Params$Resource$Advertisers$Manualtriggers$Deactivate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     deactivate(
       params?: Params$Resource$Advertisers$Manualtriggers$Deactivate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ManualTrigger>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ManualTrigger>>;
     deactivate(
       params: Params$Resource$Advertisers$Manualtriggers$Deactivate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12375,7 +16565,10 @@ export namespace displayvideo_v2 {
       callback?:
         | BodyResponseCallback<Schema$ManualTrigger>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ManualTrigger> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ManualTrigger>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Manualtriggers$Deactivate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12421,6 +16614,60 @@ export namespace displayvideo_v2 {
 
     /**
      * Gets a manual trigger. **Warning:** Line Items using manual triggers no longer serve in Display & Video 360. This method will sunset on August 1, 2023. Read our [feature deprecation announcement](/display-video/api/deprecations#features.manual_triggers) for more information.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.manualTriggers.get({
+     *     // Required. The ID of the advertiser this manual trigger belongs to.
+     *     advertiserId: '[^/]+',
+     *     // Required. The ID of the manual trigger to fetch.
+     *     triggerId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activationDurationMinutes": "my_activationDurationMinutes",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "displayName": "my_displayName",
+     *   //   "latestActivationTime": "my_latestActivationTime",
+     *   //   "name": "my_name",
+     *   //   "state": "my_state",
+     *   //   "triggerId": "my_triggerId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12430,11 +16677,11 @@ export namespace displayvideo_v2 {
     get(
       params: Params$Resource$Advertisers$Manualtriggers$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Advertisers$Manualtriggers$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ManualTrigger>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ManualTrigger>>;
     get(
       params: Params$Resource$Advertisers$Manualtriggers$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12463,7 +16710,10 @@ export namespace displayvideo_v2 {
       callback?:
         | BodyResponseCallback<Schema$ManualTrigger>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ManualTrigger> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ManualTrigger>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Manualtriggers$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12509,6 +16759,61 @@ export namespace displayvideo_v2 {
 
     /**
      * Lists manual triggers that are accessible to the current user for a given advertiser ID. The order is defined by the order_by parameter. A single advertiser_id is required. **Warning:** Line Items using manual triggers no longer serve in Display & Video 360. This method will sunset on August 1, 2023. Read our [feature deprecation announcement](/display-video/api/deprecations#features.manual_triggers) for more information.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.manualTriggers.list({
+     *     // Required. The ID of the advertiser that the fetched manual triggers belong to.
+     *     advertiserId: '[^/]+',
+     *     // Allows filtering by manual trigger fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `EQUALS (=)` operator. Supported fields: * `displayName` * `state` Examples: * All active manual triggers under an advertiser: `state="ACTIVE"` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
+     *     filter: 'placeholder-value',
+     *     // Field by which to sort the list. Acceptable values are: * `displayName` (default) * `state` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. For example, `displayName desc`.
+     *     orderBy: 'placeholder-value',
+     *     // Requested page size. Must be between `1` and `200`. If unspecified will default to `100`.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListManualTriggers` method. If not specified, the first page of results will be returned.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "manualTriggers": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12518,11 +16823,11 @@ export namespace displayvideo_v2 {
     list(
       params: Params$Resource$Advertisers$Manualtriggers$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Advertisers$Manualtriggers$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListManualTriggersResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListManualTriggersResponse>>;
     list(
       params: Params$Resource$Advertisers$Manualtriggers$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12557,8 +16862,8 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListManualTriggersResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListManualTriggersResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Manualtriggers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12603,6 +16908,76 @@ export namespace displayvideo_v2 {
 
     /**
      * Updates a manual trigger. Returns the updated manual trigger if successful. **Warning:** Line Items using manual triggers no longer serve in Display & Video 360. This method will sunset on August 1, 2023. Read our [feature deprecation announcement](/display-video/api/deprecations#features.manual_triggers) for more information.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.manualTriggers.patch({
+     *     // Required. Immutable. The unique ID of the advertiser that the manual trigger belongs to.
+     *     advertiserId: '[^/]+',
+     *     // Output only. The unique ID of the manual trigger.
+     *     triggerId: '[^/]+',
+     *     // Required. The mask to control which fields to update.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "activationDurationMinutes": "my_activationDurationMinutes",
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "displayName": "my_displayName",
+     *       //   "latestActivationTime": "my_latestActivationTime",
+     *       //   "name": "my_name",
+     *       //   "state": "my_state",
+     *       //   "triggerId": "my_triggerId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activationDurationMinutes": "my_activationDurationMinutes",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "displayName": "my_displayName",
+     *   //   "latestActivationTime": "my_latestActivationTime",
+     *   //   "name": "my_name",
+     *   //   "state": "my_state",
+     *   //   "triggerId": "my_triggerId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12612,11 +16987,11 @@ export namespace displayvideo_v2 {
     patch(
       params: Params$Resource$Advertisers$Manualtriggers$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Advertisers$Manualtriggers$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ManualTrigger>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ManualTrigger>>;
     patch(
       params: Params$Resource$Advertisers$Manualtriggers$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12645,7 +17020,10 @@ export namespace displayvideo_v2 {
       callback?:
         | BodyResponseCallback<Schema$ManualTrigger>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ManualTrigger> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ManualTrigger>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Manualtriggers$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12802,6 +17180,68 @@ export namespace displayvideo_v2 {
 
     /**
      * Creates a new negative keyword list. Returns the newly created negative keyword list if successful.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.negativeKeywordLists.create({
+     *     // Required. The ID of the DV360 advertiser to which the negative keyword list will belong.
+     *     advertiserId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "displayName": "my_displayName",
+     *       //   "name": "my_name",
+     *       //   "negativeKeywordListId": "my_negativeKeywordListId",
+     *       //   "targetedLineItemCount": "my_targetedLineItemCount"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "negativeKeywordListId": "my_negativeKeywordListId",
+     *   //   "targetedLineItemCount": "my_targetedLineItemCount"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12811,11 +17251,11 @@ export namespace displayvideo_v2 {
     create(
       params: Params$Resource$Advertisers$Negativekeywordlists$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Advertisers$Negativekeywordlists$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$NegativeKeywordList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$NegativeKeywordList>>;
     create(
       params: Params$Resource$Advertisers$Negativekeywordlists$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12846,8 +17286,8 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$NegativeKeywordList>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$NegativeKeywordList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Negativekeywordlists$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12892,6 +17332,52 @@ export namespace displayvideo_v2 {
 
     /**
      * Deletes a negative keyword list given an advertiser ID and a negative keyword list ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.negativeKeywordLists.delete({
+     *     // Required. The ID of the DV360 advertiser to which the negative keyword list belongs.
+     *     advertiserId: '[^/]+',
+     *     // Required. The ID of the negative keyword list to delete.
+     *     negativeKeywordListId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12901,11 +17387,11 @@ export namespace displayvideo_v2 {
     delete(
       params: Params$Resource$Advertisers$Negativekeywordlists$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Advertisers$Negativekeywordlists$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Advertisers$Negativekeywordlists$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12934,7 +17420,10 @@ export namespace displayvideo_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Negativekeywordlists$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12980,6 +17469,58 @@ export namespace displayvideo_v2 {
 
     /**
      * Gets a negative keyword list given an advertiser ID and a negative keyword list ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.negativeKeywordLists.get({
+     *     // Required. The ID of the DV360 advertiser to which the fetched negative keyword list belongs.
+     *     advertiserId: '[^/]+',
+     *     // Required. The ID of the negative keyword list to fetch.
+     *     negativeKeywordListId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "negativeKeywordListId": "my_negativeKeywordListId",
+     *   //   "targetedLineItemCount": "my_targetedLineItemCount"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12989,11 +17530,11 @@ export namespace displayvideo_v2 {
     get(
       params: Params$Resource$Advertisers$Negativekeywordlists$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Advertisers$Negativekeywordlists$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$NegativeKeywordList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$NegativeKeywordList>>;
     get(
       params: Params$Resource$Advertisers$Negativekeywordlists$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13024,8 +17565,8 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$NegativeKeywordList>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$NegativeKeywordList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Negativekeywordlists$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13071,6 +17612,57 @@ export namespace displayvideo_v2 {
 
     /**
      * Lists negative keyword lists based on a given advertiser id.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.negativeKeywordLists.list({
+     *     // Required. The ID of the DV360 advertiser to which the fetched negative keyword lists belong.
+     *     advertiserId: '[^/]+',
+     *     // Requested page size. Must be between `1` and `200`. Defaults to `100` if not set. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListNegativeKeywordLists` method. If not specified, the first page of results will be returned.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "negativeKeywordLists": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13080,11 +17672,13 @@ export namespace displayvideo_v2 {
     list(
       params: Params$Resource$Advertisers$Negativekeywordlists$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Advertisers$Negativekeywordlists$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListNegativeKeywordListsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListNegativeKeywordListsResponse>
+    >;
     list(
       params: Params$Resource$Advertisers$Negativekeywordlists$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13119,8 +17713,10 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListNegativeKeywordListsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListNegativeKeywordListsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Negativekeywordlists$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13167,6 +17763,72 @@ export namespace displayvideo_v2 {
 
     /**
      * Updates a negative keyword list. Returns the updated negative keyword list if successful.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.negativeKeywordLists.patch({
+     *     // Required. The ID of the DV360 advertiser to which the negative keyword list belongs.
+     *     advertiserId: '[^/]+',
+     *     // Output only. The unique ID of the negative keyword list. Assigned by the system.
+     *     negativeKeywordListId: 'placeholder-value',
+     *     // Required. The mask to control which fields to update.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "displayName": "my_displayName",
+     *       //   "name": "my_name",
+     *       //   "negativeKeywordListId": "my_negativeKeywordListId",
+     *       //   "targetedLineItemCount": "my_targetedLineItemCount"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "negativeKeywordListId": "my_negativeKeywordListId",
+     *   //   "targetedLineItemCount": "my_targetedLineItemCount"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13176,11 +17838,11 @@ export namespace displayvideo_v2 {
     patch(
       params: Params$Resource$Advertisers$Negativekeywordlists$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Advertisers$Negativekeywordlists$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$NegativeKeywordList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$NegativeKeywordList>>;
     patch(
       params: Params$Resource$Advertisers$Negativekeywordlists$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13211,8 +17873,8 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$NegativeKeywordList>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$NegativeKeywordList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Negativekeywordlists$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13335,6 +17997,66 @@ export namespace displayvideo_v2 {
 
     /**
      * Bulk edits negative keywords in a single negative keyword list. The operation will delete the negative keywords provided in BulkEditNegativeKeywordsRequest.deleted_negative_keywords and then create the negative keywords provided in BulkEditNegativeKeywordsRequest.created_negative_keywords. This operation is guaranteed to be atomic and will never result in a partial success or partial failure.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await displayvideo.advertisers.negativeKeywordLists.negativeKeywords.bulkEdit(
+     *       {
+     *         // Required. The ID of the DV360 advertiser to which the parent negative keyword list belongs.
+     *         advertiserId: 'placeholder-value',
+     *         // Required. The ID of the parent negative keyword list to which the negative keywords belong.
+     *         negativeKeywordListId: '[^/]+',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "createdNegativeKeywords": [],
+     *           //   "deletedNegativeKeywords": []
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "negativeKeywords": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13344,11 +18066,13 @@ export namespace displayvideo_v2 {
     bulkEdit(
       params: Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Bulkedit,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     bulkEdit(
       params?: Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Bulkedit,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BulkEditNegativeKeywordsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$BulkEditNegativeKeywordsResponse>
+    >;
     bulkEdit(
       params: Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Bulkedit,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13383,8 +18107,10 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BulkEditNegativeKeywordsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$BulkEditNegativeKeywordsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Bulkedit;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13433,6 +18159,67 @@ export namespace displayvideo_v2 {
 
     /**
      * Creates a negative keyword in a negative keyword list.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await displayvideo.advertisers.negativeKeywordLists.negativeKeywords.create(
+     *       {
+     *         // Required. The ID of the DV360 advertiser to which the parent negative keyword list belongs.
+     *         advertiserId: 'placeholder-value',
+     *         // Required. The ID of the parent negative keyword list in which the negative keyword will be created.
+     *         negativeKeywordListId: '[^/]+',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "keywordValue": "my_keywordValue",
+     *           //   "name": "my_name"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "keywordValue": "my_keywordValue",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13442,11 +18229,11 @@ export namespace displayvideo_v2 {
     create(
       params: Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$NegativeKeyword>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$NegativeKeyword>>;
     create(
       params: Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13475,7 +18262,10 @@ export namespace displayvideo_v2 {
       callback?:
         | BodyResponseCallback<Schema$NegativeKeyword>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$NegativeKeyword> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$NegativeKeyword>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13522,6 +18312,57 @@ export namespace displayvideo_v2 {
 
     /**
      * Deletes a negative keyword from a negative keyword list.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await displayvideo.advertisers.negativeKeywordLists.negativeKeywords.delete(
+     *       {
+     *         // Required. The ID of the DV360 advertiser to which the parent negative keyword list belongs.
+     *         advertiserId: 'placeholder-value',
+     *         // Required. The keyword value of the negative keyword to delete.
+     *         keywordValue: '[^/]+',
+     *         // Required. The ID of the parent negative keyword list to which the negative keyword belongs.
+     *         negativeKeywordListId: '[^/]+',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13531,11 +18372,11 @@ export namespace displayvideo_v2 {
     delete(
       params: Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13564,7 +18405,10 @@ export namespace displayvideo_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13615,6 +18459,64 @@ export namespace displayvideo_v2 {
 
     /**
      * Lists negative keywords in a negative keyword list.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await displayvideo.advertisers.negativeKeywordLists.negativeKeywords.list({
+     *       // Required. The ID of the DV360 advertiser to which the parent negative keyword list belongs.
+     *       advertiserId: '[^/]+',
+     *       // Allows filtering by negative keyword fields. Supported syntax: * Filter expressions for negative keywords can only contain at most one restriction. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `HAS (:)` operator. Supported fields: * `keywordValue` Examples: * All negative keywords for which the keyword value contains "google": `keywordValue : "google"` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
+     *       filter: 'placeholder-value',
+     *       // Required. The ID of the parent negative keyword list to which the requested negative keywords belong.
+     *       negativeKeywordListId: '[^/]+',
+     *       // Field by which to sort the list. Acceptable values are: * `keywordValue` (default) The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `keywordValue desc`.
+     *       orderBy: 'placeholder-value',
+     *       // Requested page size. Must be between `1` and `1000`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     *       pageSize: 'placeholder-value',
+     *       // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListNegativeKeywords` method. If not specified, the first page of results will be returned.
+     *       pageToken: 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "negativeKeywords": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13624,11 +18526,11 @@ export namespace displayvideo_v2 {
     list(
       params: Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListNegativeKeywordsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListNegativeKeywordsResponse>>;
     list(
       params: Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13663,8 +18565,8 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListNegativeKeywordsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListNegativeKeywordsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13713,6 +18615,65 @@ export namespace displayvideo_v2 {
 
     /**
      * Replaces all negative keywords in a single negative keyword list. The operation will replace the keywords in a negative keyword list with keywords provided in ReplaceNegativeKeywordsRequest.new_negative_keywords.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await displayvideo.advertisers.negativeKeywordLists.negativeKeywords.replace(
+     *       {
+     *         // Required. The ID of the DV360 advertiser to which the parent negative keyword list belongs.
+     *         advertiserId: 'placeholder-value',
+     *         // Required. The ID of the parent negative keyword list to which the negative keywords belong.
+     *         negativeKeywordListId: '[^/]+',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "newNegativeKeywords": []
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "negativeKeywords": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13722,11 +18683,11 @@ export namespace displayvideo_v2 {
     replace(
       params: Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Replace,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     replace(
       params?: Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Replace,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ReplaceNegativeKeywordsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ReplaceNegativeKeywordsResponse>>;
     replace(
       params: Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Replace,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13761,8 +18722,8 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ReplaceNegativeKeywordsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ReplaceNegativeKeywordsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Replace;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13921,6 +18882,169 @@ export namespace displayvideo_v2 {
 
     /**
      * Assigns a targeting option to an advertiser. Returns the assigned targeting option if successful.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await displayvideo.advertisers.targetingTypes.assignedTargetingOptions.create(
+     *       {
+     *         // Required. The ID of the advertiser.
+     *         advertiserId: '[^/]+',
+     *         // Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_KEYWORD`
+     *         targetingType: '[^/]+',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "ageRangeDetails": {},
+     *           //   "appCategoryDetails": {},
+     *           //   "appDetails": {},
+     *           //   "assignedTargetingOptionId": "my_assignedTargetingOptionId",
+     *           //   "assignedTargetingOptionIdAlias": "my_assignedTargetingOptionIdAlias",
+     *           //   "audienceGroupDetails": {},
+     *           //   "audioContentTypeDetails": {},
+     *           //   "authorizedSellerStatusDetails": {},
+     *           //   "browserDetails": {},
+     *           //   "businessChainDetails": {},
+     *           //   "carrierAndIspDetails": {},
+     *           //   "categoryDetails": {},
+     *           //   "channelDetails": {},
+     *           //   "contentDurationDetails": {},
+     *           //   "contentGenreDetails": {},
+     *           //   "contentInstreamPositionDetails": {},
+     *           //   "contentOutstreamPositionDetails": {},
+     *           //   "contentStreamTypeDetails": {},
+     *           //   "dayAndTimeDetails": {},
+     *           //   "deviceMakeModelDetails": {},
+     *           //   "deviceTypeDetails": {},
+     *           //   "digitalContentLabelExclusionDetails": {},
+     *           //   "environmentDetails": {},
+     *           //   "exchangeDetails": {},
+     *           //   "genderDetails": {},
+     *           //   "geoRegionDetails": {},
+     *           //   "householdIncomeDetails": {},
+     *           //   "inheritance": "my_inheritance",
+     *           //   "inventorySourceDetails": {},
+     *           //   "inventorySourceGroupDetails": {},
+     *           //   "keywordDetails": {},
+     *           //   "languageDetails": {},
+     *           //   "name": "my_name",
+     *           //   "nativeContentPositionDetails": {},
+     *           //   "negativeKeywordListDetails": {},
+     *           //   "omidDetails": {},
+     *           //   "onScreenPositionDetails": {},
+     *           //   "operatingSystemDetails": {},
+     *           //   "parentalStatusDetails": {},
+     *           //   "poiDetails": {},
+     *           //   "proximityLocationListDetails": {},
+     *           //   "regionalLocationListDetails": {},
+     *           //   "sensitiveCategoryExclusionDetails": {},
+     *           //   "sessionPositionDetails": {},
+     *           //   "subExchangeDetails": {},
+     *           //   "targetingType": "my_targetingType",
+     *           //   "thirdPartyVerifierDetails": {},
+     *           //   "urlDetails": {},
+     *           //   "userRewardedContentDetails": {},
+     *           //   "videoPlayerSizeDetails": {},
+     *           //   "viewabilityDetails": {},
+     *           //   "youtubeChannelDetails": {},
+     *           //   "youtubeVideoDetails": {}
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "ageRangeDetails": {},
+     *   //   "appCategoryDetails": {},
+     *   //   "appDetails": {},
+     *   //   "assignedTargetingOptionId": "my_assignedTargetingOptionId",
+     *   //   "assignedTargetingOptionIdAlias": "my_assignedTargetingOptionIdAlias",
+     *   //   "audienceGroupDetails": {},
+     *   //   "audioContentTypeDetails": {},
+     *   //   "authorizedSellerStatusDetails": {},
+     *   //   "browserDetails": {},
+     *   //   "businessChainDetails": {},
+     *   //   "carrierAndIspDetails": {},
+     *   //   "categoryDetails": {},
+     *   //   "channelDetails": {},
+     *   //   "contentDurationDetails": {},
+     *   //   "contentGenreDetails": {},
+     *   //   "contentInstreamPositionDetails": {},
+     *   //   "contentOutstreamPositionDetails": {},
+     *   //   "contentStreamTypeDetails": {},
+     *   //   "dayAndTimeDetails": {},
+     *   //   "deviceMakeModelDetails": {},
+     *   //   "deviceTypeDetails": {},
+     *   //   "digitalContentLabelExclusionDetails": {},
+     *   //   "environmentDetails": {},
+     *   //   "exchangeDetails": {},
+     *   //   "genderDetails": {},
+     *   //   "geoRegionDetails": {},
+     *   //   "householdIncomeDetails": {},
+     *   //   "inheritance": "my_inheritance",
+     *   //   "inventorySourceDetails": {},
+     *   //   "inventorySourceGroupDetails": {},
+     *   //   "keywordDetails": {},
+     *   //   "languageDetails": {},
+     *   //   "name": "my_name",
+     *   //   "nativeContentPositionDetails": {},
+     *   //   "negativeKeywordListDetails": {},
+     *   //   "omidDetails": {},
+     *   //   "onScreenPositionDetails": {},
+     *   //   "operatingSystemDetails": {},
+     *   //   "parentalStatusDetails": {},
+     *   //   "poiDetails": {},
+     *   //   "proximityLocationListDetails": {},
+     *   //   "regionalLocationListDetails": {},
+     *   //   "sensitiveCategoryExclusionDetails": {},
+     *   //   "sessionPositionDetails": {},
+     *   //   "subExchangeDetails": {},
+     *   //   "targetingType": "my_targetingType",
+     *   //   "thirdPartyVerifierDetails": {},
+     *   //   "urlDetails": {},
+     *   //   "userRewardedContentDetails": {},
+     *   //   "videoPlayerSizeDetails": {},
+     *   //   "viewabilityDetails": {},
+     *   //   "youtubeChannelDetails": {},
+     *   //   "youtubeVideoDetails": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13930,11 +19054,11 @@ export namespace displayvideo_v2 {
     create(
       params: Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AssignedTargetingOption>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AssignedTargetingOption>>;
     create(
       params: Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13969,8 +19093,8 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AssignedTargetingOption>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AssignedTargetingOption>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14017,6 +19141,57 @@ export namespace displayvideo_v2 {
 
     /**
      * Deletes an assigned targeting option from an advertiser.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await displayvideo.advertisers.targetingTypes.assignedTargetingOptions.delete(
+     *       {
+     *         // Required. The ID of the advertiser.
+     *         advertiserId: '[^/]+',
+     *         // Required. The ID of the assigned targeting option to delete.
+     *         assignedTargetingOptionId: '[^/]+',
+     *         // Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_KEYWORD`
+     *         targetingType: '[^/]+',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14026,11 +19201,11 @@ export namespace displayvideo_v2 {
     delete(
       params: Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14059,7 +19234,10 @@ export namespace displayvideo_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14114,6 +19292,109 @@ export namespace displayvideo_v2 {
 
     /**
      * Gets a single targeting option assigned to an advertiser.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await displayvideo.advertisers.targetingTypes.assignedTargetingOptions.get({
+     *       // Required. The ID of the advertiser.
+     *       advertiserId: '[^/]+',
+     *       // Required. An identifier unique to the targeting type in this advertiser that identifies the assigned targeting option being requested.
+     *       assignedTargetingOptionId: '[^/]+',
+     *       // Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_YOUTUBE_VIDEO` * `TARGETING_TYPE_YOUTUBE_CHANNEL` * `TARGETING_TYPE_KEYWORD` * `TARGETING_TYPE_CONTENT_THEME_EXCLUSION`
+     *       targetingType: '[^/]+',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "ageRangeDetails": {},
+     *   //   "appCategoryDetails": {},
+     *   //   "appDetails": {},
+     *   //   "assignedTargetingOptionId": "my_assignedTargetingOptionId",
+     *   //   "assignedTargetingOptionIdAlias": "my_assignedTargetingOptionIdAlias",
+     *   //   "audienceGroupDetails": {},
+     *   //   "audioContentTypeDetails": {},
+     *   //   "authorizedSellerStatusDetails": {},
+     *   //   "browserDetails": {},
+     *   //   "businessChainDetails": {},
+     *   //   "carrierAndIspDetails": {},
+     *   //   "categoryDetails": {},
+     *   //   "channelDetails": {},
+     *   //   "contentDurationDetails": {},
+     *   //   "contentGenreDetails": {},
+     *   //   "contentInstreamPositionDetails": {},
+     *   //   "contentOutstreamPositionDetails": {},
+     *   //   "contentStreamTypeDetails": {},
+     *   //   "dayAndTimeDetails": {},
+     *   //   "deviceMakeModelDetails": {},
+     *   //   "deviceTypeDetails": {},
+     *   //   "digitalContentLabelExclusionDetails": {},
+     *   //   "environmentDetails": {},
+     *   //   "exchangeDetails": {},
+     *   //   "genderDetails": {},
+     *   //   "geoRegionDetails": {},
+     *   //   "householdIncomeDetails": {},
+     *   //   "inheritance": "my_inheritance",
+     *   //   "inventorySourceDetails": {},
+     *   //   "inventorySourceGroupDetails": {},
+     *   //   "keywordDetails": {},
+     *   //   "languageDetails": {},
+     *   //   "name": "my_name",
+     *   //   "nativeContentPositionDetails": {},
+     *   //   "negativeKeywordListDetails": {},
+     *   //   "omidDetails": {},
+     *   //   "onScreenPositionDetails": {},
+     *   //   "operatingSystemDetails": {},
+     *   //   "parentalStatusDetails": {},
+     *   //   "poiDetails": {},
+     *   //   "proximityLocationListDetails": {},
+     *   //   "regionalLocationListDetails": {},
+     *   //   "sensitiveCategoryExclusionDetails": {},
+     *   //   "sessionPositionDetails": {},
+     *   //   "subExchangeDetails": {},
+     *   //   "targetingType": "my_targetingType",
+     *   //   "thirdPartyVerifierDetails": {},
+     *   //   "urlDetails": {},
+     *   //   "userRewardedContentDetails": {},
+     *   //   "videoPlayerSizeDetails": {},
+     *   //   "viewabilityDetails": {},
+     *   //   "youtubeChannelDetails": {},
+     *   //   "youtubeVideoDetails": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14123,11 +19404,11 @@ export namespace displayvideo_v2 {
     get(
       params: Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AssignedTargetingOption>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AssignedTargetingOption>>;
     get(
       params: Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14160,8 +19441,8 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AssignedTargetingOption>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AssignedTargetingOption>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14216,6 +19497,66 @@ export namespace displayvideo_v2 {
 
     /**
      * Lists the targeting options assigned to an advertiser.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await displayvideo.advertisers.targetingTypes.assignedTargetingOptions.list(
+     *       {
+     *         // Required. The ID of the advertiser.
+     *         advertiserId: '[^/]+',
+     *         // Allows filtering by assigned targeting option fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the `OR` logical operator. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `EQUALS (=)` operator. Supported fields: * `assignedTargetingOptionId` Examples: * `AssignedTargetingOption` with ID 123456: `assignedTargetingOptionId="123456"` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
+     *         filter: 'placeholder-value',
+     *         // Field by which to sort the list. Acceptable values are: * `assignedTargetingOptionId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `assignedTargetingOptionId desc`.
+     *         orderBy: 'placeholder-value',
+     *         // Requested page size. Must be between `1` and `5000`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     *         pageSize: 'placeholder-value',
+     *         // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListAdvertiserAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
+     *         pageToken: 'placeholder-value',
+     *         // Required. Identifies the type of assigned targeting options to list. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_YOUTUBE_VIDEO` * `TARGETING_TYPE_YOUTUBE_CHANNEL` * `TARGETING_TYPE_KEYWORD` * `TARGETING_TYPE_CONTENT_THEME_EXCLUSION`
+     *         targetingType: '[^/]+',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assignedTargetingOptions": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14225,11 +19566,13 @@ export namespace displayvideo_v2 {
     list(
       params: Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAdvertiserAssignedTargetingOptionsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListAdvertiserAssignedTargetingOptionsResponse>
+    >;
     list(
       params: Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14264,8 +19607,10 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListAdvertiserAssignedTargetingOptionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListAdvertiserAssignedTargetingOptionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14395,6 +19740,68 @@ export namespace displayvideo_v2 {
 
     /**
      * Gets a YouTube ad group ad.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.youtubeAdGroupAds.get({
+     *     // Required. The ID of the advertiser this ad group ad belongs to.
+     *     advertiserId: '[^/]+',
+     *     // Required. The ID of the ad group ad to fetch.
+     *     youtubeAdGroupAdId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "adGroupAdId": "my_adGroupAdId",
+     *   //   "adGroupId": "my_adGroupId",
+     *   //   "adUrls": [],
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "audioAd": {},
+     *   //   "bumperAd": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "displayVideoSourceAd": {},
+     *   //   "entityStatus": "my_entityStatus",
+     *   //   "inStreamAd": {},
+     *   //   "mastheadAd": {},
+     *   //   "name": "my_name",
+     *   //   "nonSkippableAd": {},
+     *   //   "videoDiscoverAd": {},
+     *   //   "videoPerformanceAd": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14404,11 +19811,11 @@ export namespace displayvideo_v2 {
     get(
       params: Params$Resource$Advertisers$Youtubeadgroupads$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Advertisers$Youtubeadgroupads$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$YoutubeAdGroupAd>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$YoutubeAdGroupAd>>;
     get(
       params: Params$Resource$Advertisers$Youtubeadgroupads$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14437,7 +19844,10 @@ export namespace displayvideo_v2 {
       callback?:
         | BodyResponseCallback<Schema$YoutubeAdGroupAd>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$YoutubeAdGroupAd> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$YoutubeAdGroupAd>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Youtubeadgroupads$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14483,6 +19893,61 @@ export namespace displayvideo_v2 {
 
     /**
      * Lists YouTube ad group ads.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.youtubeAdGroupAds.list({
+     *     // Required. The ID of the advertiser the ad groups belongs to.
+     *     advertiserId: '[^/]+',
+     *     // Allows filtering by custom YouTube ad group ad fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` and `OR`. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `EQUALS (=)` operator. Supported fields: * `adGroupId` * `displayName` * `entityStatus` * `adGroupAdId` Examples: * All ad group ads under an ad group: `adGroupId="1234"` * All ad group ads under an ad group with an entityStatus of `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED`: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED") AND adGroupId="12345"` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
+     *     filter: 'placeholder-value',
+     *     // Field by which to sort the list. Acceptable values are: * `displayName` (default) * `entityStatus` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
+     *     orderBy: 'placeholder-value',
+     *     // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListYoutubeAdGroupAds` method. If not specified, the first page of results will be returned.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "youtubeAdGroupAds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14492,11 +19957,11 @@ export namespace displayvideo_v2 {
     list(
       params: Params$Resource$Advertisers$Youtubeadgroupads$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Advertisers$Youtubeadgroupads$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListYoutubeAdGroupAdsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListYoutubeAdGroupAdsResponse>>;
     list(
       params: Params$Resource$Advertisers$Youtubeadgroupads$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14531,8 +19996,8 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListYoutubeAdGroupAdsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListYoutubeAdGroupAdsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Youtubeadgroupads$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14624,6 +20089,66 @@ export namespace displayvideo_v2 {
 
     /**
      * Lists assigned targeting options for multiple YouTube ad groups across targeting types. Inherited assigned targeting options are not included.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await displayvideo.advertisers.youtubeAdGroups.bulkListAdGroupAssignedTargetingOptions(
+     *       {
+     *         // Required. The ID of the advertiser the line items belongs to.
+     *         advertiserId: '[^/]+',
+     *         // Optional. Allows filtering by assigned targeting option fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `EQUALS (=)` operator. Supported fields: * `targetingType` Examples: * `AssignedTargetingOption` resources of targeting type `TARGETING_TYPE_YOUTUBE_VIDEO` or `TARGETING_TYPE_YOUTUBE_CHANNEL`: `targetingType="TARGETING_TYPE_YOUTUBE_VIDEO" OR targetingType="TARGETING_TYPE_YOUTUBE_CHANNEL"` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
+     *         filter: 'placeholder-value',
+     *         // Optional. Field by which to sort the list. Acceptable values are: * `adGroupId` (default) * `assignedTargetingOption.targetingType` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `targetingType desc`.
+     *         orderBy: 'placeholder-value',
+     *         // Optional. Requested page size. The size must be an integer between `1` and `5000`. If unspecified, the default is `5000`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     *         pageSize: 'placeholder-value',
+     *         // Optional. A token that lets the client fetch the next page of results. Typically, this is the value of next_page_token returned from the previous call to the `BulkListAdGroupAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
+     *         pageToken: 'placeholder-value',
+     *         // Required. The IDs of the youtube ad groups to list assigned targeting options for.
+     *         youtubeAdGroupIds: 'placeholder-value',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "youtubeAdGroupAssignedTargetingOptions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14633,11 +20158,13 @@ export namespace displayvideo_v2 {
     bulkListAdGroupAssignedTargetingOptions(
       params: Params$Resource$Advertisers$Youtubeadgroups$Bulklistadgroupassignedtargetingoptions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     bulkListAdGroupAssignedTargetingOptions(
       params?: Params$Resource$Advertisers$Youtubeadgroups$Bulklistadgroupassignedtargetingoptions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BulkListAdGroupAssignedTargetingOptionsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$BulkListAdGroupAssignedTargetingOptionsResponse>
+    >;
     bulkListAdGroupAssignedTargetingOptions(
       params: Params$Resource$Advertisers$Youtubeadgroups$Bulklistadgroupassignedtargetingoptions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14672,8 +20199,10 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BulkListAdGroupAssignedTargetingOptionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$BulkListAdGroupAssignedTargetingOptionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Youtubeadgroups$Bulklistadgroupassignedtargetingoptions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14722,6 +20251,64 @@ export namespace displayvideo_v2 {
 
     /**
      * Gets a YouTube ad group.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.youtubeAdGroups.get({
+     *     // Required. The ID of the advertiser this ad group belongs to.
+     *     advertiserId: '[^/]+',
+     *     // Required. The ID of the ad group to fetch.
+     *     youtubeAdGroupId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "adGroupFormat": "my_adGroupFormat",
+     *   //   "adGroupId": "my_adGroupId",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "biddingStrategy": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "entityStatus": "my_entityStatus",
+     *   //   "lineItemId": "my_lineItemId",
+     *   //   "name": "my_name",
+     *   //   "productFeedData": {},
+     *   //   "targetingExpansion": {},
+     *   //   "youtubeAdIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14731,11 +20318,11 @@ export namespace displayvideo_v2 {
     get(
       params: Params$Resource$Advertisers$Youtubeadgroups$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Advertisers$Youtubeadgroups$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$YoutubeAdGroup>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$YoutubeAdGroup>>;
     get(
       params: Params$Resource$Advertisers$Youtubeadgroups$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14764,7 +20351,10 @@ export namespace displayvideo_v2 {
       callback?:
         | BodyResponseCallback<Schema$YoutubeAdGroup>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$YoutubeAdGroup> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$YoutubeAdGroup>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Youtubeadgroups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14810,6 +20400,61 @@ export namespace displayvideo_v2 {
 
     /**
      * Lists YouTube ad groups.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.youtubeAdGroups.list({
+     *     // Required. The ID of the advertiser the ad groups belongs to.
+     *     advertiserId: '[^/]+',
+     *     // Allows filtering by custom YouTube ad group fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` and `OR`. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `EQUALS (=)` operator. Supported properties: * `adGroupId` * `displayName` * `entityStatus` * `lineItemId` * `adGroupFormat` Examples: * All ad groups under an line item: `lineItemId="1234"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` `YOUTUBE_AND_PARTNERS_AD_GROUP_FORMAT_IN_STREAM` ad groups under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED") AND adGroupFormat="YOUTUBE_AND_PARTNERS_AD_GROUP_FORMAT_IN_STREAM"` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
+     *     filter: 'placeholder-value',
+     *     // Field by which to sort the list. Acceptable values are: * `displayName` (default) * `entityStatus` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
+     *     orderBy: 'placeholder-value',
+     *     // Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListYoutubeAdGroups` method. If not specified, the first page of results will be returned.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "youtubeAdGroups": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14819,11 +20464,11 @@ export namespace displayvideo_v2 {
     list(
       params: Params$Resource$Advertisers$Youtubeadgroups$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Advertisers$Youtubeadgroups$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListYoutubeAdGroupsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListYoutubeAdGroupsResponse>>;
     list(
       params: Params$Resource$Advertisers$Youtubeadgroups$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14858,8 +20503,8 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListYoutubeAdGroupsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListYoutubeAdGroupsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Youtubeadgroups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14985,6 +20630,113 @@ export namespace displayvideo_v2 {
 
     /**
      * Gets a single targeting option assigned to a YouTube ad group. Inherited assigned targeting options are not included.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await displayvideo.advertisers.youtubeAdGroups.targetingTypes.assignedTargetingOptions.get(
+     *       {
+     *         // Required. The ID of the advertiser the ad group belongs to.
+     *         advertiserId: '[^/]+',
+     *         // Required. An identifier unique to the targeting type in this line item that identifies the assigned targeting option being requested.
+     *         assignedTargetingOptionId: '[^/]+',
+     *         // Required. Identifies the type of this assigned targeting option. Supported targeting types include: * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_APP` * `TARGETING_TYPE_APP_CATEGORY` * `TARGETING_TYPE_AUDIENCE_GROUP` * `TARGETING_TYPE_CATEGORY` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_HOUSEHOLD_INCOME` * `TARGETING_TYPE_KEYWORD` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_SESSION_POSITION` * `TARGETING_TYPE_URL` * `TARGETING_TYPE_YOUTUBE_CHANNEL` * `TARGETING_TYPE_YOUTUBE_VIDEO`
+     *         targetingType: '[^/]+',
+     *         // Required. The ID of the ad group the assigned targeting option belongs to.
+     *         youtubeAdGroupId: '[^/]+',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "ageRangeDetails": {},
+     *   //   "appCategoryDetails": {},
+     *   //   "appDetails": {},
+     *   //   "assignedTargetingOptionId": "my_assignedTargetingOptionId",
+     *   //   "assignedTargetingOptionIdAlias": "my_assignedTargetingOptionIdAlias",
+     *   //   "audienceGroupDetails": {},
+     *   //   "audioContentTypeDetails": {},
+     *   //   "authorizedSellerStatusDetails": {},
+     *   //   "browserDetails": {},
+     *   //   "businessChainDetails": {},
+     *   //   "carrierAndIspDetails": {},
+     *   //   "categoryDetails": {},
+     *   //   "channelDetails": {},
+     *   //   "contentDurationDetails": {},
+     *   //   "contentGenreDetails": {},
+     *   //   "contentInstreamPositionDetails": {},
+     *   //   "contentOutstreamPositionDetails": {},
+     *   //   "contentStreamTypeDetails": {},
+     *   //   "dayAndTimeDetails": {},
+     *   //   "deviceMakeModelDetails": {},
+     *   //   "deviceTypeDetails": {},
+     *   //   "digitalContentLabelExclusionDetails": {},
+     *   //   "environmentDetails": {},
+     *   //   "exchangeDetails": {},
+     *   //   "genderDetails": {},
+     *   //   "geoRegionDetails": {},
+     *   //   "householdIncomeDetails": {},
+     *   //   "inheritance": "my_inheritance",
+     *   //   "inventorySourceDetails": {},
+     *   //   "inventorySourceGroupDetails": {},
+     *   //   "keywordDetails": {},
+     *   //   "languageDetails": {},
+     *   //   "name": "my_name",
+     *   //   "nativeContentPositionDetails": {},
+     *   //   "negativeKeywordListDetails": {},
+     *   //   "omidDetails": {},
+     *   //   "onScreenPositionDetails": {},
+     *   //   "operatingSystemDetails": {},
+     *   //   "parentalStatusDetails": {},
+     *   //   "poiDetails": {},
+     *   //   "proximityLocationListDetails": {},
+     *   //   "regionalLocationListDetails": {},
+     *   //   "sensitiveCategoryExclusionDetails": {},
+     *   //   "sessionPositionDetails": {},
+     *   //   "subExchangeDetails": {},
+     *   //   "targetingType": "my_targetingType",
+     *   //   "thirdPartyVerifierDetails": {},
+     *   //   "urlDetails": {},
+     *   //   "userRewardedContentDetails": {},
+     *   //   "videoPlayerSizeDetails": {},
+     *   //   "viewabilityDetails": {},
+     *   //   "youtubeChannelDetails": {},
+     *   //   "youtubeVideoDetails": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14994,11 +20746,11 @@ export namespace displayvideo_v2 {
     get(
       params: Params$Resource$Advertisers$Youtubeadgroups$Targetingtypes$Assignedtargetingoptions$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Advertisers$Youtubeadgroups$Targetingtypes$Assignedtargetingoptions$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AssignedTargetingOption>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AssignedTargetingOption>>;
     get(
       params: Params$Resource$Advertisers$Youtubeadgroups$Targetingtypes$Assignedtargetingoptions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15031,8 +20783,8 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AssignedTargetingOption>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AssignedTargetingOption>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Youtubeadgroups$Targetingtypes$Assignedtargetingoptions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15089,6 +20841,68 @@ export namespace displayvideo_v2 {
 
     /**
      * Lists the targeting options assigned to a YouTube ad group. Inherited assigned targeting options are not included.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await displayvideo.advertisers.youtubeAdGroups.targetingTypes.assignedTargetingOptions.list(
+     *       {
+     *         // Required. The ID of the advertiser the ad group belongs to.
+     *         advertiserId: '[^/]+',
+     *         // Allows filtering by assigned targeting option fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `EQUALS (=)` operator. Supported fields: * `assignedTargetingOptionId` Examples: * `AssignedTargetingOption` resources with ID 1 or 2: `assignedTargetingOptionId="1" OR assignedTargetingOptionId="2"` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
+     *         filter: 'placeholder-value',
+     *         // Field by which to sort the list. Acceptable values are: * `assignedTargetingOptionId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `assignedTargetingOptionId desc`.
+     *         orderBy: 'placeholder-value',
+     *         // Requested page size. Must be between `1` and `5000`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     *         pageSize: 'placeholder-value',
+     *         // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListYoutubeAdGroupAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
+     *         pageToken: 'placeholder-value',
+     *         // Required. Identifies the type of assigned targeting options to list. Supported targeting types include: * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_APP` * `TARGETING_TYPE_APP_CATEGORY` * `TARGETING_TYPE_AUDIENCE_GROUP` * `TARGETING_TYPE_CATEGORY` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_HOUSEHOLD_INCOME` * `TARGETING_TYPE_KEYWORD` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_SESSION_POSITION` * `TARGETING_TYPE_URL` * `TARGETING_TYPE_YOUTUBE_CHANNEL` * `TARGETING_TYPE_YOUTUBE_VIDEO`
+     *         targetingType: '[^/]+',
+     *         // Required. The ID of the ad group to list assigned targeting options for.
+     *         youtubeAdGroupId: '[^/]+',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assignedTargetingOptions": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15098,11 +20912,13 @@ export namespace displayvideo_v2 {
     list(
       params: Params$Resource$Advertisers$Youtubeadgroups$Targetingtypes$Assignedtargetingoptions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Advertisers$Youtubeadgroups$Targetingtypes$Assignedtargetingoptions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListYoutubeAdGroupAssignedTargetingOptionsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListYoutubeAdGroupAssignedTargetingOptionsResponse>
+    >;
     list(
       params: Params$Resource$Advertisers$Youtubeadgroups$Targetingtypes$Assignedtargetingoptions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15137,8 +20953,10 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListYoutubeAdGroupAssignedTargetingOptionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListYoutubeAdGroupAssignedTargetingOptionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Youtubeadgroups$Targetingtypes$Assignedtargetingoptions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15245,6 +21063,58 @@ export namespace displayvideo_v2 {
 
     /**
      * Gets a combined audience.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.combinedAudiences.get({
+     *     // The ID of the advertiser that has access to the fetched combined audience.
+     *     advertiserId: 'placeholder-value',
+     *     // Required. The ID of the combined audience to fetch.
+     *     combinedAudienceId: '[^/]+',
+     *     // The ID of the partner that has access to the fetched combined audience.
+     *     partnerId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "combinedAudienceId": "my_combinedAudienceId",
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15254,11 +21124,11 @@ export namespace displayvideo_v2 {
     get(
       params: Params$Resource$Combinedaudiences$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Combinedaudiences$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CombinedAudience>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CombinedAudience>>;
     get(
       params: Params$Resource$Combinedaudiences$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15287,7 +21157,10 @@ export namespace displayvideo_v2 {
       callback?:
         | BodyResponseCallback<Schema$CombinedAudience>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CombinedAudience> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$CombinedAudience>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Combinedaudiences$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15332,6 +21205,63 @@ export namespace displayvideo_v2 {
 
     /**
      * Lists combined audiences. The order is defined by the order_by parameter.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.combinedAudiences.list({
+     *     // The ID of the advertiser that has access to the fetched combined audiences.
+     *     advertiserId: 'placeholder-value',
+     *     // Allows filtering by combined audience fields. Supported syntax: * Filter expressions for combined audiences can only contain at most one restriction. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `HAS (:)` operator. Supported fields: * `displayName` Examples: * All combined audiences for which the display name contains "Google": `displayName : "Google"`. The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
+     *     filter: 'placeholder-value',
+     *     // Field by which to sort the list. Acceptable values are: * `combinedAudienceId` (default) * `displayName` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
+     *     orderBy: 'placeholder-value',
+     *     // Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListCombinedAudiences` method. If not specified, the first page of results will be returned.
+     *     pageToken: 'placeholder-value',
+     *     // The ID of the partner that has access to the fetched combined audiences.
+     *     partnerId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "combinedAudiences": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15341,11 +21271,11 @@ export namespace displayvideo_v2 {
     list(
       params: Params$Resource$Combinedaudiences$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Combinedaudiences$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListCombinedAudiencesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListCombinedAudiencesResponse>>;
     list(
       params: Params$Resource$Combinedaudiences$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15380,8 +21310,8 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListCombinedAudiencesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListCombinedAudiencesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Combinedaudiences$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15481,6 +21411,73 @@ export namespace displayvideo_v2 {
 
     /**
      * Creates a new custom bidding algorithm. Returns the newly created custom bidding algorithm if successful.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.customBiddingAlgorithms.create({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "customBiddingAlgorithmId": "my_customBiddingAlgorithmId",
+     *       //   "customBiddingAlgorithmType": "my_customBiddingAlgorithmType",
+     *       //   "displayName": "my_displayName",
+     *       //   "entityStatus": "my_entityStatus",
+     *       //   "modelDetails": [],
+     *       //   "name": "my_name",
+     *       //   "partnerId": "my_partnerId",
+     *       //   "sharedAdvertiserIds": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "customBiddingAlgorithmId": "my_customBiddingAlgorithmId",
+     *   //   "customBiddingAlgorithmType": "my_customBiddingAlgorithmType",
+     *   //   "displayName": "my_displayName",
+     *   //   "entityStatus": "my_entityStatus",
+     *   //   "modelDetails": [],
+     *   //   "name": "my_name",
+     *   //   "partnerId": "my_partnerId",
+     *   //   "sharedAdvertiserIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15490,11 +21487,11 @@ export namespace displayvideo_v2 {
     create(
       params: Params$Resource$Custombiddingalgorithms$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Custombiddingalgorithms$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CustomBiddingAlgorithm>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CustomBiddingAlgorithm>>;
     create(
       params: Params$Resource$Custombiddingalgorithms$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15527,8 +21524,8 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CustomBiddingAlgorithm>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CustomBiddingAlgorithm>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Custombiddingalgorithms$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15574,6 +21571,64 @@ export namespace displayvideo_v2 {
 
     /**
      * Gets a custom bidding algorithm.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.customBiddingAlgorithms.get({
+     *     // The ID of the DV360 partner that has access to the custom bidding algorithm.
+     *     advertiserId: 'placeholder-value',
+     *     // Required. The ID of the custom bidding algorithm to fetch.
+     *     customBiddingAlgorithmId: '[^/]+',
+     *     // The ID of the DV360 partner that has access to the custom bidding algorithm.
+     *     partnerId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "customBiddingAlgorithmId": "my_customBiddingAlgorithmId",
+     *   //   "customBiddingAlgorithmType": "my_customBiddingAlgorithmType",
+     *   //   "displayName": "my_displayName",
+     *   //   "entityStatus": "my_entityStatus",
+     *   //   "modelDetails": [],
+     *   //   "name": "my_name",
+     *   //   "partnerId": "my_partnerId",
+     *   //   "sharedAdvertiserIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15583,11 +21638,11 @@ export namespace displayvideo_v2 {
     get(
       params: Params$Resource$Custombiddingalgorithms$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Custombiddingalgorithms$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CustomBiddingAlgorithm>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CustomBiddingAlgorithm>>;
     get(
       params: Params$Resource$Custombiddingalgorithms$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15620,8 +21675,8 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CustomBiddingAlgorithm>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CustomBiddingAlgorithm>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Custombiddingalgorithms$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15667,6 +21722,63 @@ export namespace displayvideo_v2 {
 
     /**
      * Lists custom bidding algorithms that are accessible to the current user and can be used in bidding stratgies. The order is defined by the order_by parameter.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.customBiddingAlgorithms.list({
+     *     // The ID of the DV360 advertiser that has access to the custom bidding algorithm.
+     *     advertiserId: 'placeholder-value',
+     *     // Allows filtering by custom bidding algorithm fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND`. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The `customBiddingAlgorithmType` field must use the `EQUALS (=)` operator. * The `displayName` field must use the `HAS (:)` operator. Supported fields: * `customBiddingAlgorithmType` * `displayName` Examples: * All custom bidding algorithms for which the display name contains "politics": `displayName:"politics"`. * All custom bidding algorithms for which the type is "SCRIPT_BASED": `customBiddingAlgorithmType=SCRIPT_BASED` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
+     *     filter: 'placeholder-value',
+     *     // Field by which to sort the list. Acceptable values are: * `displayName` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
+     *     orderBy: 'placeholder-value',
+     *     // Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListCustomBiddingAlgorithms` method. If not specified, the first page of results will be returned.
+     *     pageToken: 'placeholder-value',
+     *     // The ID of the DV360 partner that has access to the custom bidding algorithm.
+     *     partnerId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "customBiddingAlgorithms": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15676,11 +21788,13 @@ export namespace displayvideo_v2 {
     list(
       params: Params$Resource$Custombiddingalgorithms$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Custombiddingalgorithms$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListCustomBiddingAlgorithmsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListCustomBiddingAlgorithmsResponse>
+    >;
     list(
       params: Params$Resource$Custombiddingalgorithms$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15715,8 +21829,10 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListCustomBiddingAlgorithmsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListCustomBiddingAlgorithmsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Custombiddingalgorithms$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15764,6 +21880,78 @@ export namespace displayvideo_v2 {
 
     /**
      * Updates an existing custom bidding algorithm. Returns the updated custom bidding algorithm if successful. Requests updating a custom bidding algorithm assigned to a line item will return an error.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.customBiddingAlgorithms.patch({
+     *     // Output only. The unique ID of the custom bidding algorithm. Assigned by the system.
+     *     customBiddingAlgorithmId: '[^/]+',
+     *     // Required. The mask to control which fields to update.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "customBiddingAlgorithmId": "my_customBiddingAlgorithmId",
+     *       //   "customBiddingAlgorithmType": "my_customBiddingAlgorithmType",
+     *       //   "displayName": "my_displayName",
+     *       //   "entityStatus": "my_entityStatus",
+     *       //   "modelDetails": [],
+     *       //   "name": "my_name",
+     *       //   "partnerId": "my_partnerId",
+     *       //   "sharedAdvertiserIds": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "customBiddingAlgorithmId": "my_customBiddingAlgorithmId",
+     *   //   "customBiddingAlgorithmType": "my_customBiddingAlgorithmType",
+     *   //   "displayName": "my_displayName",
+     *   //   "entityStatus": "my_entityStatus",
+     *   //   "modelDetails": [],
+     *   //   "name": "my_name",
+     *   //   "partnerId": "my_partnerId",
+     *   //   "sharedAdvertiserIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15773,11 +21961,11 @@ export namespace displayvideo_v2 {
     patch(
       params: Params$Resource$Custombiddingalgorithms$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Custombiddingalgorithms$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CustomBiddingAlgorithm>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CustomBiddingAlgorithm>>;
     patch(
       params: Params$Resource$Custombiddingalgorithms$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15810,8 +21998,8 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CustomBiddingAlgorithm>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CustomBiddingAlgorithm>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Custombiddingalgorithms$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15857,6 +22045,56 @@ export namespace displayvideo_v2 {
 
     /**
      * Creates a custom bidding script reference object for a script file. The resulting reference object provides a resource path to which the script file should be uploaded. This reference object should be included in when creating a new custom bidding script object.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.customBiddingAlgorithms.uploadScript({
+     *     // The ID of the advertiser that owns the parent custom bidding algorithm.
+     *     advertiserId: 'placeholder-value',
+     *     // Required. The ID of the custom bidding algorithm owns the script.
+     *     customBiddingAlgorithmId: '[^/]+',
+     *     // The ID of the partner that owns the parent custom bidding algorithm. Only this partner will have write access to this custom bidding script.
+     *     partnerId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "resourceName": "my_resourceName"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15866,11 +22104,11 @@ export namespace displayvideo_v2 {
     uploadScript(
       params: Params$Resource$Custombiddingalgorithms$Uploadscript,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     uploadScript(
       params?: Params$Resource$Custombiddingalgorithms$Uploadscript,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CustomBiddingScriptRef>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CustomBiddingScriptRef>>;
     uploadScript(
       params: Params$Resource$Custombiddingalgorithms$Uploadscript,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15905,8 +22143,8 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CustomBiddingScriptRef>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CustomBiddingScriptRef>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Custombiddingalgorithms$Uploadscript;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16040,6 +22278,78 @@ export namespace displayvideo_v2 {
 
     /**
      * Creates a new custom bidding script. Returns the newly created script if successful. Requests creating a custom bidding script under an algorithm assigned to a line item will return an error.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.customBiddingAlgorithms.scripts.create({
+     *     // The ID of the advertiser that owns the parent custom bidding algorithm.
+     *     advertiserId: 'placeholder-value',
+     *     // Required. The ID of the custom bidding algorithm that owns the script.
+     *     customBiddingAlgorithmId: '[^/]+',
+     *     // The ID of the partner that owns the parent custom bidding algorithm. Only this partner will have write access to this custom bidding script.
+     *     partnerId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "active": false,
+     *       //   "createTime": "my_createTime",
+     *       //   "customBiddingAlgorithmId": "my_customBiddingAlgorithmId",
+     *       //   "customBiddingScriptId": "my_customBiddingScriptId",
+     *       //   "errors": [],
+     *       //   "name": "my_name",
+     *       //   "script": {},
+     *       //   "state": "my_state"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "active": false,
+     *   //   "createTime": "my_createTime",
+     *   //   "customBiddingAlgorithmId": "my_customBiddingAlgorithmId",
+     *   //   "customBiddingScriptId": "my_customBiddingScriptId",
+     *   //   "errors": [],
+     *   //   "name": "my_name",
+     *   //   "script": {},
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16049,11 +22359,11 @@ export namespace displayvideo_v2 {
     create(
       params: Params$Resource$Custombiddingalgorithms$Scripts$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Custombiddingalgorithms$Scripts$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CustomBiddingScript>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CustomBiddingScript>>;
     create(
       params: Params$Resource$Custombiddingalgorithms$Scripts$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16084,8 +22394,8 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CustomBiddingScript>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CustomBiddingScript>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Custombiddingalgorithms$Scripts$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16131,6 +22441,65 @@ export namespace displayvideo_v2 {
 
     /**
      * Gets a custom bidding script.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.customBiddingAlgorithms.scripts.get({
+     *     // The ID of the advertiser that owns the parent custom bidding algorithm.
+     *     advertiserId: 'placeholder-value',
+     *     // Required. The ID of the custom bidding algorithm owns the script.
+     *     customBiddingAlgorithmId: '[^/]+',
+     *     // Required. The ID of the custom bidding script to fetch.
+     *     customBiddingScriptId: '[^/]+',
+     *     // The ID of the partner that owns the parent custom bidding algorithm. Only this partner will have write access to this custom bidding script.
+     *     partnerId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "active": false,
+     *   //   "createTime": "my_createTime",
+     *   //   "customBiddingAlgorithmId": "my_customBiddingAlgorithmId",
+     *   //   "customBiddingScriptId": "my_customBiddingScriptId",
+     *   //   "errors": [],
+     *   //   "name": "my_name",
+     *   //   "script": {},
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16140,11 +22509,11 @@ export namespace displayvideo_v2 {
     get(
       params: Params$Resource$Custombiddingalgorithms$Scripts$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Custombiddingalgorithms$Scripts$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CustomBiddingScript>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CustomBiddingScript>>;
     get(
       params: Params$Resource$Custombiddingalgorithms$Scripts$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16175,8 +22544,8 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CustomBiddingScript>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CustomBiddingScript>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Custombiddingalgorithms$Scripts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16222,6 +22591,63 @@ export namespace displayvideo_v2 {
 
     /**
      * Lists custom bidding scripts that belong to the given algorithm. The order is defined by the order_by parameter.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.customBiddingAlgorithms.scripts.list({
+     *     // The ID of the advertiser that owns the parent custom bidding algorithm.
+     *     advertiserId: 'placeholder-value',
+     *     // Required. The ID of the custom bidding algorithm owns the script.
+     *     customBiddingAlgorithmId: '[^/]+',
+     *     // Field by which to sort the list. Acceptable values are: * `createTime desc` (default) The default sorting order is descending. To specify ascending order for a field, the suffix "desc" should be removed. Example: `createTime`.
+     *     orderBy: 'placeholder-value',
+     *     // Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListCustomBiddingScripts` method. If not specified, the first page of results will be returned.
+     *     pageToken: 'placeholder-value',
+     *     // The ID of the partner that owns the parent custom bidding algorithm. Only this partner will have write access to this custom bidding script.
+     *     partnerId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "customBiddingScripts": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16231,11 +22657,13 @@ export namespace displayvideo_v2 {
     list(
       params: Params$Resource$Custombiddingalgorithms$Scripts$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Custombiddingalgorithms$Scripts$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListCustomBiddingScriptsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListCustomBiddingScriptsResponse>
+    >;
     list(
       params: Params$Resource$Custombiddingalgorithms$Scripts$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16270,8 +22698,10 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListCustomBiddingScriptsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListCustomBiddingScriptsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Custombiddingalgorithms$Scripts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16393,6 +22823,56 @@ export namespace displayvideo_v2 {
 
     /**
      * Gets a custom list.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.customLists.get({
+     *     // The ID of the DV360 advertiser that has access to the fetched custom lists.
+     *     advertiserId: 'placeholder-value',
+     *     // Required. The ID of the custom list to fetch.
+     *     customListId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "customListId": "my_customListId",
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16402,11 +22882,11 @@ export namespace displayvideo_v2 {
     get(
       params: Params$Resource$Customlists$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Customlists$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CustomList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CustomList>>;
     get(
       params: Params$Resource$Customlists$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16435,7 +22915,10 @@ export namespace displayvideo_v2 {
       callback?:
         | BodyResponseCallback<Schema$CustomList>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CustomList> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$CustomList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Customlists$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -16480,6 +22963,61 @@ export namespace displayvideo_v2 {
 
     /**
      * Lists custom lists. The order is defined by the order_by parameter.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.customLists.list({
+     *     // The ID of the DV360 advertiser that has access to the fetched custom lists.
+     *     advertiserId: 'placeholder-value',
+     *     // Allows filtering by custom list fields. Supported syntax: * Filter expressions for custom lists can only contain at most one restriction. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `HAS (:)` operator. Supported fields: * `displayName` Examples: * All custom lists for which the display name contains "Google": `displayName:"Google"`. The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
+     *     filter: 'placeholder-value',
+     *     // Field by which to sort the list. Acceptable values are: * `customListId` (default) * `displayName` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
+     *     orderBy: 'placeholder-value',
+     *     // Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListCustomLists` method. If not specified, the first page of results will be returned.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "customLists": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16489,11 +23027,11 @@ export namespace displayvideo_v2 {
     list(
       params: Params$Resource$Customlists$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Customlists$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListCustomListsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListCustomListsResponse>>;
     list(
       params: Params$Resource$Customlists$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16526,8 +23064,8 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListCustomListsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListCustomListsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Customlists$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -16612,6 +23150,60 @@ export namespace displayvideo_v2 {
 
     /**
      * Gets a Floodlight group.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.floodlightGroups.get({
+     *     // Required. The ID of the Floodlight group to fetch.
+     *     floodlightGroupId: '[^/]+',
+     *     // Required. The partner context by which the Floodlight group is being accessed.
+     *     partnerId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activeViewConfig": {},
+     *   //   "customVariables": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "floodlightGroupId": "my_floodlightGroupId",
+     *   //   "lookbackWindow": {},
+     *   //   "name": "my_name",
+     *   //   "webTagType": "my_webTagType"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16621,11 +23213,11 @@ export namespace displayvideo_v2 {
     get(
       params: Params$Resource$Floodlightgroups$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Floodlightgroups$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FloodlightGroup>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FloodlightGroup>>;
     get(
       params: Params$Resource$Floodlightgroups$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16654,7 +23246,10 @@ export namespace displayvideo_v2 {
       callback?:
         | BodyResponseCallback<Schema$FloodlightGroup>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$FloodlightGroup> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$FloodlightGroup>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Floodlightgroups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16699,6 +23294,76 @@ export namespace displayvideo_v2 {
 
     /**
      * Updates an existing Floodlight group. Returns the updated Floodlight group if successful.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.floodlightGroups.patch({
+     *     // Output only. The unique ID of the Floodlight group. Assigned by the system.
+     *     floodlightGroupId: 'placeholder-value',
+     *     // Required. The partner context by which the Floodlight group is being accessed.
+     *     partnerId: 'placeholder-value',
+     *     // Required. The mask to control which fields to update.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "activeViewConfig": {},
+     *       //   "customVariables": {},
+     *       //   "displayName": "my_displayName",
+     *       //   "floodlightGroupId": "my_floodlightGroupId",
+     *       //   "lookbackWindow": {},
+     *       //   "name": "my_name",
+     *       //   "webTagType": "my_webTagType"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activeViewConfig": {},
+     *   //   "customVariables": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "floodlightGroupId": "my_floodlightGroupId",
+     *   //   "lookbackWindow": {},
+     *   //   "name": "my_name",
+     *   //   "webTagType": "my_webTagType"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16708,11 +23373,11 @@ export namespace displayvideo_v2 {
     patch(
       params: Params$Resource$Floodlightgroups$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Floodlightgroups$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FloodlightGroup>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FloodlightGroup>>;
     patch(
       params: Params$Resource$Floodlightgroups$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16741,7 +23406,10 @@ export namespace displayvideo_v2 {
       callback?:
         | BodyResponseCallback<Schema$FloodlightGroup>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$FloodlightGroup> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$FloodlightGroup>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Floodlightgroups$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16826,6 +23494,63 @@ export namespace displayvideo_v2 {
 
     /**
      * Gets a Floodlight activity.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.floodlightGroups.floodlightActivities.get({
+     *     // Required. The ID of the Floodlight activity to fetch.
+     *     floodlightActivityId: '[^/]+',
+     *     // Required. The ID of the parent Floodlight group to which the requested Floodlight activity belongs.
+     *     floodlightGroupId: '[^/]+',
+     *     // Required. The ID of the partner through which the Floodlight activity is being accessed.
+     *     partnerId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "advertiserIds": [],
+     *   //   "displayName": "my_displayName",
+     *   //   "floodlightActivityId": "my_floodlightActivityId",
+     *   //   "floodlightGroupId": "my_floodlightGroupId",
+     *   //   "name": "my_name",
+     *   //   "remarketingConfigs": [],
+     *   //   "servingStatus": "my_servingStatus",
+     *   //   "sslRequired": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16835,11 +23560,11 @@ export namespace displayvideo_v2 {
     get(
       params: Params$Resource$Floodlightgroups$Floodlightactivities$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Floodlightgroups$Floodlightactivities$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FloodlightActivity>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FloodlightActivity>>;
     get(
       params: Params$Resource$Floodlightgroups$Floodlightactivities$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16870,8 +23595,8 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$FloodlightActivity>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$FloodlightActivity>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Floodlightgroups$Floodlightactivities$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16918,6 +23643,61 @@ export namespace displayvideo_v2 {
 
     /**
      * Lists Floodlight activities in a Floodlight group.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.floodlightGroups.floodlightActivities.list({
+     *     // Required. The ID of the parent Floodlight group to which the requested Floodlight activities belong.
+     *     floodlightGroupId: '[^/]+',
+     *     // Optional. Field by which to sort the list. Acceptable values are: * `displayName` (default) * `floodlightActivityId` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
+     *     orderBy: 'placeholder-value',
+     *     // Optional. Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListFloodlightActivities` method. If not specified, the first page of results will be returned.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The ID of the partner through which the Floodlight activities are being accessed.
+     *     partnerId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "floodlightActivities": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16927,11 +23707,13 @@ export namespace displayvideo_v2 {
     list(
       params: Params$Resource$Floodlightgroups$Floodlightactivities$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Floodlightgroups$Floodlightactivities$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListFloodlightActivitiesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListFloodlightActivitiesResponse>
+    >;
     list(
       params: Params$Resource$Floodlightgroups$Floodlightactivities$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16966,8 +23748,10 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListFloodlightActivitiesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListFloodlightActivitiesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Floodlightgroups$Floodlightactivities$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17062,6 +23846,59 @@ export namespace displayvideo_v2 {
 
     /**
      * Gets a Google audience.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.googleAudiences.get({
+     *     // The ID of the advertiser that has access to the fetched Google audience.
+     *     advertiserId: 'placeholder-value',
+     *     // Required. The ID of the Google audience to fetch.
+     *     googleAudienceId: '[^/]+',
+     *     // The ID of the partner that has access to the fetched Google audience.
+     *     partnerId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "googleAudienceId": "my_googleAudienceId",
+     *   //   "googleAudienceType": "my_googleAudienceType",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17071,11 +23908,11 @@ export namespace displayvideo_v2 {
     get(
       params: Params$Resource$Googleaudiences$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Googleaudiences$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAudience>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleAudience>>;
     get(
       params: Params$Resource$Googleaudiences$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17104,7 +23941,10 @@ export namespace displayvideo_v2 {
       callback?:
         | BodyResponseCallback<Schema$GoogleAudience>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$GoogleAudience> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleAudience>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Googleaudiences$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17150,6 +23990,63 @@ export namespace displayvideo_v2 {
 
     /**
      * Lists Google audiences. The order is defined by the order_by parameter.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.googleAudiences.list({
+     *     // The ID of the advertiser that has access to the fetched Google audiences.
+     *     advertiserId: 'placeholder-value',
+     *     // Allows filtering by Google audience fields. Supported syntax: * Filter expressions for Google audiences can only contain at most one restriction. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `HAS (:)` operator. Supported fields: * `displayName` Examples: * All Google audiences for which the display name contains "Google": `displayName:"Google"`. The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
+     *     filter: 'placeholder-value',
+     *     // Field by which to sort the list. Acceptable values are: * `googleAudienceId` (default) * `displayName` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
+     *     orderBy: 'placeholder-value',
+     *     // Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListGoogleAudiences` method. If not specified, the first page of results will be returned.
+     *     pageToken: 'placeholder-value',
+     *     // The ID of the partner that has access to the fetched Google audiences.
+     *     partnerId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "googleAudiences": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17159,11 +24056,11 @@ export namespace displayvideo_v2 {
     list(
       params: Params$Resource$Googleaudiences$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Googleaudiences$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListGoogleAudiencesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListGoogleAudiencesResponse>>;
     list(
       params: Params$Resource$Googleaudiences$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17198,8 +24095,8 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListGoogleAudiencesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListGoogleAudiencesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Googleaudiences$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17295,6 +24192,88 @@ export namespace displayvideo_v2 {
 
     /**
      * Creates a new guaranteed order. Returns the newly created guaranteed order if successful.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.guaranteedOrders.create({
+     *     // The ID of the advertiser that the request is being made within.
+     *     advertiserId: 'placeholder-value',
+     *     // The ID of the partner that the request is being made within.
+     *     partnerId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "defaultAdvertiserId": "my_defaultAdvertiserId",
+     *       //   "defaultCampaignId": "my_defaultCampaignId",
+     *       //   "displayName": "my_displayName",
+     *       //   "exchange": "my_exchange",
+     *       //   "guaranteedOrderId": "my_guaranteedOrderId",
+     *       //   "legacyGuaranteedOrderId": "my_legacyGuaranteedOrderId",
+     *       //   "name": "my_name",
+     *       //   "publisherName": "my_publisherName",
+     *       //   "readAccessInherited": false,
+     *       //   "readAdvertiserIds": [],
+     *       //   "readWriteAdvertiserId": "my_readWriteAdvertiserId",
+     *       //   "readWritePartnerId": "my_readWritePartnerId",
+     *       //   "status": {},
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "defaultAdvertiserId": "my_defaultAdvertiserId",
+     *   //   "defaultCampaignId": "my_defaultCampaignId",
+     *   //   "displayName": "my_displayName",
+     *   //   "exchange": "my_exchange",
+     *   //   "guaranteedOrderId": "my_guaranteedOrderId",
+     *   //   "legacyGuaranteedOrderId": "my_legacyGuaranteedOrderId",
+     *   //   "name": "my_name",
+     *   //   "publisherName": "my_publisherName",
+     *   //   "readAccessInherited": false,
+     *   //   "readAdvertiserIds": [],
+     *   //   "readWriteAdvertiserId": "my_readWriteAdvertiserId",
+     *   //   "readWritePartnerId": "my_readWritePartnerId",
+     *   //   "status": {},
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17304,11 +24283,11 @@ export namespace displayvideo_v2 {
     create(
       params: Params$Resource$Guaranteedorders$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Guaranteedorders$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GuaranteedOrder>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GuaranteedOrder>>;
     create(
       params: Params$Resource$Guaranteedorders$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17337,7 +24316,10 @@ export namespace displayvideo_v2 {
       callback?:
         | BodyResponseCallback<Schema$GuaranteedOrder>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$GuaranteedOrder> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GuaranteedOrder>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Guaranteedorders$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17383,6 +24365,65 @@ export namespace displayvideo_v2 {
 
     /**
      * Edits read advertisers of a guaranteed order.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await displayvideo.guaranteedOrders.editGuaranteedOrderReadAccessors({
+     *       // Required. The ID of the guaranteed order to edit. The ID is of the format `{exchange\}-{legacy_guaranteed_order_id\}`
+     *       guaranteedOrderId: '[^/]+',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "addedAdvertisers": [],
+     *         //   "partnerId": "my_partnerId",
+     *         //   "readAccessInherited": false,
+     *         //   "removedAdvertisers": []
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "readAccessInherited": false,
+     *   //   "readAdvertiserIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17392,11 +24433,13 @@ export namespace displayvideo_v2 {
     editGuaranteedOrderReadAccessors(
       params: Params$Resource$Guaranteedorders$Editguaranteedorderreadaccessors,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     editGuaranteedOrderReadAccessors(
       params?: Params$Resource$Guaranteedorders$Editguaranteedorderreadaccessors,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$EditGuaranteedOrderReadAccessorsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$EditGuaranteedOrderReadAccessorsResponse>
+    >;
     editGuaranteedOrderReadAccessors(
       params: Params$Resource$Guaranteedorders$Editguaranteedorderreadaccessors,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17431,8 +24474,10 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$EditGuaranteedOrderReadAccessorsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$EditGuaranteedOrderReadAccessorsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Guaranteedorders$Editguaranteedorderreadaccessors;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17481,6 +24526,69 @@ export namespace displayvideo_v2 {
 
     /**
      * Gets a guaranteed order.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.guaranteedOrders.get({
+     *     // The ID of the advertiser that has access to the guaranteed order.
+     *     advertiserId: 'placeholder-value',
+     *     // Required. The ID of the guaranteed order to fetch. The ID is of the format `{exchange\}-{legacy_guaranteed_order_id\}`
+     *     guaranteedOrderId: '[^/]+',
+     *     // The ID of the partner that has access to the guaranteed order.
+     *     partnerId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "defaultAdvertiserId": "my_defaultAdvertiserId",
+     *   //   "defaultCampaignId": "my_defaultCampaignId",
+     *   //   "displayName": "my_displayName",
+     *   //   "exchange": "my_exchange",
+     *   //   "guaranteedOrderId": "my_guaranteedOrderId",
+     *   //   "legacyGuaranteedOrderId": "my_legacyGuaranteedOrderId",
+     *   //   "name": "my_name",
+     *   //   "publisherName": "my_publisherName",
+     *   //   "readAccessInherited": false,
+     *   //   "readAdvertiserIds": [],
+     *   //   "readWriteAdvertiserId": "my_readWriteAdvertiserId",
+     *   //   "readWritePartnerId": "my_readWritePartnerId",
+     *   //   "status": {},
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17490,11 +24598,11 @@ export namespace displayvideo_v2 {
     get(
       params: Params$Resource$Guaranteedorders$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Guaranteedorders$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GuaranteedOrder>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GuaranteedOrder>>;
     get(
       params: Params$Resource$Guaranteedorders$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17523,7 +24631,10 @@ export namespace displayvideo_v2 {
       callback?:
         | BodyResponseCallback<Schema$GuaranteedOrder>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$GuaranteedOrder> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GuaranteedOrder>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Guaranteedorders$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17568,6 +24679,63 @@ export namespace displayvideo_v2 {
 
     /**
      * Lists guaranteed orders that are accessible to the current user. The order is defined by the order_by parameter. If a filter by entity_status is not specified, guaranteed orders with entity status `ENTITY_STATUS_ARCHIVED` will not be included in the results.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.guaranteedOrders.list({
+     *     // The ID of the advertiser that has access to the guaranteed order.
+     *     advertiserId: 'placeholder-value',
+     *     // Allows filtering by guaranteed order fields. * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `EQUALS (=)` operator. Supported fields: * `guaranteed_order_id` * `exchange` * `display_name` * `status.entityStatus` Examples: * All active guaranteed orders: `status.entityStatus="ENTITY_STATUS_ACTIVE"` * Guaranteed orders belonging to Google Ad Manager or Rubicon exchanges: `exchange="EXCHANGE_GOOGLE_AD_MANAGER" OR exchange="EXCHANGE_RUBICON"` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
+     *     filter: 'placeholder-value',
+     *     // Field by which to sort the list. Acceptable values are: * `displayName` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. For example, `displayName desc`.
+     *     orderBy: 'placeholder-value',
+     *     // Requested page size. Must be between `1` and `200`. If unspecified will default to `100`.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListGuaranteedOrders` method. If not specified, the first page of results will be returned.
+     *     pageToken: 'placeholder-value',
+     *     // The ID of the partner that has access to the guaranteed order.
+     *     partnerId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "guaranteedOrders": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17577,11 +24745,11 @@ export namespace displayvideo_v2 {
     list(
       params: Params$Resource$Guaranteedorders$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Guaranteedorders$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListGuaranteedOrdersResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListGuaranteedOrdersResponse>>;
     list(
       params: Params$Resource$Guaranteedorders$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17616,8 +24784,8 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListGuaranteedOrdersResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListGuaranteedOrdersResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Guaranteedorders$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17665,6 +24833,92 @@ export namespace displayvideo_v2 {
 
     /**
      * Updates an existing guaranteed order. Returns the updated guaranteed order if successful.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.guaranteedOrders.patch({
+     *     // The ID of the advertiser that the request is being made within.
+     *     advertiserId: 'placeholder-value',
+     *     // Output only. The unique identifier of the guaranteed order. The guaranteed order IDs have the format `{exchange\}-{legacy_guaranteed_order_id\}`.
+     *     guaranteedOrderId: '[^/]+',
+     *     // The ID of the partner that the request is being made within.
+     *     partnerId: 'placeholder-value',
+     *     // Required. The mask to control which fields to update.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "defaultAdvertiserId": "my_defaultAdvertiserId",
+     *       //   "defaultCampaignId": "my_defaultCampaignId",
+     *       //   "displayName": "my_displayName",
+     *       //   "exchange": "my_exchange",
+     *       //   "guaranteedOrderId": "my_guaranteedOrderId",
+     *       //   "legacyGuaranteedOrderId": "my_legacyGuaranteedOrderId",
+     *       //   "name": "my_name",
+     *       //   "publisherName": "my_publisherName",
+     *       //   "readAccessInherited": false,
+     *       //   "readAdvertiserIds": [],
+     *       //   "readWriteAdvertiserId": "my_readWriteAdvertiserId",
+     *       //   "readWritePartnerId": "my_readWritePartnerId",
+     *       //   "status": {},
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "defaultAdvertiserId": "my_defaultAdvertiserId",
+     *   //   "defaultCampaignId": "my_defaultCampaignId",
+     *   //   "displayName": "my_displayName",
+     *   //   "exchange": "my_exchange",
+     *   //   "guaranteedOrderId": "my_guaranteedOrderId",
+     *   //   "legacyGuaranteedOrderId": "my_legacyGuaranteedOrderId",
+     *   //   "name": "my_name",
+     *   //   "publisherName": "my_publisherName",
+     *   //   "readAccessInherited": false,
+     *   //   "readAdvertiserIds": [],
+     *   //   "readWriteAdvertiserId": "my_readWriteAdvertiserId",
+     *   //   "readWritePartnerId": "my_readWritePartnerId",
+     *   //   "status": {},
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17674,11 +24928,11 @@ export namespace displayvideo_v2 {
     patch(
       params: Params$Resource$Guaranteedorders$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Guaranteedorders$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GuaranteedOrder>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GuaranteedOrder>>;
     patch(
       params: Params$Resource$Guaranteedorders$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17707,7 +24961,10 @@ export namespace displayvideo_v2 {
       callback?:
         | BodyResponseCallback<Schema$GuaranteedOrder>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$GuaranteedOrder> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GuaranteedOrder>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Guaranteedorders$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17859,6 +25116,66 @@ export namespace displayvideo_v2 {
 
     /**
      * Creates a new inventory source group. Returns the newly created inventory source group if successful.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.inventorySourceGroups.create({
+     *     // The ID of the advertiser that owns the inventory source group. The parent partner will not have access to this group.
+     *     advertiserId: 'placeholder-value',
+     *     // The ID of the partner that owns the inventory source group. Only this partner will have write access to this group. Only advertisers to which this group is explicitly shared will have read access to this group.
+     *     partnerId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "displayName": "my_displayName",
+     *       //   "inventorySourceGroupId": "my_inventorySourceGroupId",
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "inventorySourceGroupId": "my_inventorySourceGroupId",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17868,11 +25185,11 @@ export namespace displayvideo_v2 {
     create(
       params: Params$Resource$Inventorysourcegroups$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Inventorysourcegroups$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$InventorySourceGroup>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$InventorySourceGroup>>;
     create(
       params: Params$Resource$Inventorysourcegroups$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17905,8 +25222,8 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$InventorySourceGroup>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$InventorySourceGroup>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Inventorysourcegroups$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17952,6 +25269,54 @@ export namespace displayvideo_v2 {
 
     /**
      * Deletes an inventory source group.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.inventorySourceGroups.delete({
+     *     // The ID of the advertiser that owns the inventory source group. The parent partner does not have access to this group.
+     *     advertiserId: 'placeholder-value',
+     *     // Required. The ID of the inventory source group to delete.
+     *     inventorySourceGroupId: '[^/]+',
+     *     // The ID of the partner that owns the inventory source group. Only this partner has write access to this group.
+     *     partnerId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17961,11 +25326,11 @@ export namespace displayvideo_v2 {
     delete(
       params: Params$Resource$Inventorysourcegroups$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Inventorysourcegroups$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Inventorysourcegroups$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17994,7 +25359,10 @@ export namespace displayvideo_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Inventorysourcegroups$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18039,6 +25407,58 @@ export namespace displayvideo_v2 {
 
     /**
      * Gets an inventory source group.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.inventorySourceGroups.get({
+     *     // The ID of the advertiser that has access to the inventory source group. If an inventory source group is partner-owned, only advertisers to which the group is explicitly shared can access the group.
+     *     advertiserId: 'placeholder-value',
+     *     // Required. The ID of the inventory source group to fetch.
+     *     inventorySourceGroupId: '[^/]+',
+     *     // The ID of the partner that has access to the inventory source group. A partner cannot access an advertiser-owned inventory source group.
+     *     partnerId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "inventorySourceGroupId": "my_inventorySourceGroupId",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -18048,11 +25468,11 @@ export namespace displayvideo_v2 {
     get(
       params: Params$Resource$Inventorysourcegroups$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Inventorysourcegroups$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$InventorySourceGroup>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$InventorySourceGroup>>;
     get(
       params: Params$Resource$Inventorysourcegroups$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18085,8 +25505,8 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$InventorySourceGroup>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$InventorySourceGroup>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Inventorysourcegroups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18131,6 +25551,63 @@ export namespace displayvideo_v2 {
 
     /**
      * Lists inventory source groups that are accessible to the current user. The order is defined by the order_by parameter.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.inventorySourceGroups.list({
+     *     // The ID of the advertiser that has access to the inventory source group. If an inventory source group is partner-owned, only advertisers to which the group is explicitly shared can access the group.
+     *     advertiserId: 'placeholder-value',
+     *     // Allows filtering by inventory source group fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `EQUALS (=)` operator. Supported fields: * `inventorySourceGroupId` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
+     *     filter: 'placeholder-value',
+     *     // Field by which to sort the list. Acceptable values are: * `displayName` (default) * `inventorySourceGroupId` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. For example, `displayName desc`.
+     *     orderBy: 'placeholder-value',
+     *     // Requested page size. Must be between `1` and `200`. If unspecified will default to `100`.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListInventorySources` method. If not specified, the first page of results will be returned.
+     *     pageToken: 'placeholder-value',
+     *     // The ID of the partner that has access to the inventory source group. A partner cannot access advertiser-owned inventory source groups.
+     *     partnerId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "inventorySourceGroups": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -18140,11 +25617,13 @@ export namespace displayvideo_v2 {
     list(
       params: Params$Resource$Inventorysourcegroups$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Inventorysourcegroups$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListInventorySourceGroupsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListInventorySourceGroupsResponse>
+    >;
     list(
       params: Params$Resource$Inventorysourcegroups$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18179,8 +25658,10 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListInventorySourceGroupsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListInventorySourceGroupsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Inventorysourcegroups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18228,6 +25709,70 @@ export namespace displayvideo_v2 {
 
     /**
      * Updates an inventory source group. Returns the updated inventory source group if successful.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.inventorySourceGroups.patch({
+     *     // The ID of the advertiser that owns the inventory source group. The parent partner does not have access to this group.
+     *     advertiserId: 'placeholder-value',
+     *     // Output only. The unique ID of the inventory source group. Assigned by the system.
+     *     inventorySourceGroupId: 'placeholder-value',
+     *     // The ID of the partner that owns the inventory source group. Only this partner has write access to this group.
+     *     partnerId: 'placeholder-value',
+     *     // Required. The mask to control which fields to update.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "displayName": "my_displayName",
+     *       //   "inventorySourceGroupId": "my_inventorySourceGroupId",
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "inventorySourceGroupId": "my_inventorySourceGroupId",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -18237,11 +25782,11 @@ export namespace displayvideo_v2 {
     patch(
       params: Params$Resource$Inventorysourcegroups$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Inventorysourcegroups$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$InventorySourceGroup>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$InventorySourceGroup>>;
     patch(
       params: Params$Resource$Inventorysourcegroups$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18274,8 +25819,8 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$InventorySourceGroup>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$InventorySourceGroup>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Inventorysourcegroups$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18425,6 +25970,64 @@ export namespace displayvideo_v2 {
 
     /**
      * Bulk edits multiple assignments between inventory sources and a single inventory source group. The operation will delete the assigned inventory sources provided in BulkEditAssignedInventorySourcesRequest.deleted_assigned_inventory_sources and then create the assigned inventory sources provided in BulkEditAssignedInventorySourcesRequest.created_assigned_inventory_sources.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await displayvideo.inventorySourceGroups.assignedInventorySources.bulkEdit({
+     *       // Required. The ID of the inventory source group to which the assignments are assigned.
+     *       inventorySourceGroupId: '[^/]+',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "advertiserId": "my_advertiserId",
+     *         //   "createdAssignedInventorySources": [],
+     *         //   "deletedAssignedInventorySources": [],
+     *         //   "partnerId": "my_partnerId"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assignedInventorySources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -18434,11 +26037,13 @@ export namespace displayvideo_v2 {
     bulkEdit(
       params: Params$Resource$Inventorysourcegroups$Assignedinventorysources$Bulkedit,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     bulkEdit(
       params?: Params$Resource$Inventorysourcegroups$Assignedinventorysources$Bulkedit,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BulkEditAssignedInventorySourcesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$BulkEditAssignedInventorySourcesResponse>
+    >;
     bulkEdit(
       params: Params$Resource$Inventorysourcegroups$Assignedinventorysources$Bulkedit,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18473,8 +26078,10 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BulkEditAssignedInventorySourcesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$BulkEditAssignedInventorySourcesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Inventorysourcegroups$Assignedinventorysources$Bulkedit;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18523,6 +26130,69 @@ export namespace displayvideo_v2 {
 
     /**
      * Creates an assignment between an inventory source and an inventory source group.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await displayvideo.inventorySourceGroups.assignedInventorySources.create({
+     *       // The ID of the advertiser that owns the parent inventory source group. The parent partner will not have access to this assigned inventory source.
+     *       advertiserId: 'placeholder-value',
+     *       // Required. The ID of the inventory source group to which the assignment will be assigned.
+     *       inventorySourceGroupId: '[^/]+',
+     *       // The ID of the partner that owns the parent inventory source group. Only this partner will have write access to this assigned inventory source.
+     *       partnerId: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "assignedInventorySourceId": "my_assignedInventorySourceId",
+     *         //   "inventorySourceId": "my_inventorySourceId",
+     *         //   "name": "my_name"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assignedInventorySourceId": "my_assignedInventorySourceId",
+     *   //   "inventorySourceId": "my_inventorySourceId",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -18532,11 +26202,11 @@ export namespace displayvideo_v2 {
     create(
       params: Params$Resource$Inventorysourcegroups$Assignedinventorysources$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Inventorysourcegroups$Assignedinventorysources$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AssignedInventorySource>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AssignedInventorySource>>;
     create(
       params: Params$Resource$Inventorysourcegroups$Assignedinventorysources$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18571,8 +26241,8 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AssignedInventorySource>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AssignedInventorySource>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Inventorysourcegroups$Assignedinventorysources$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18619,6 +26289,57 @@ export namespace displayvideo_v2 {
 
     /**
      * Deletes the assignment between an inventory source and an inventory source group.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await displayvideo.inventorySourceGroups.assignedInventorySources.delete({
+     *       // The ID of the advertiser that owns the parent inventory source group. The parent partner does not have access to this assigned inventory source.
+     *       advertiserId: 'placeholder-value',
+     *       // Required. The ID of the assigned inventory source to delete.
+     *       assignedInventorySourceId: '[^/]+',
+     *       // Required. The ID of the inventory source group to which this assignment is assigned.
+     *       inventorySourceGroupId: '[^/]+',
+     *       // The ID of the partner that owns the parent inventory source group. Only this partner has write access to this assigned inventory source.
+     *       partnerId: 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -18628,11 +26349,11 @@ export namespace displayvideo_v2 {
     delete(
       params: Params$Resource$Inventorysourcegroups$Assignedinventorysources$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Inventorysourcegroups$Assignedinventorysources$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Inventorysourcegroups$Assignedinventorysources$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18661,7 +26382,10 @@ export namespace displayvideo_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Inventorysourcegroups$Assignedinventorysources$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18708,6 +26432,66 @@ export namespace displayvideo_v2 {
 
     /**
      * Lists inventory sources assigned to an inventory source group.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await displayvideo.inventorySourceGroups.assignedInventorySources.list({
+     *       // The ID of the advertiser that has access to the assignment. If the parent inventory source group is partner-owned, only advertisers to which the parent group is explicitly shared can access the assigned inventory source.
+     *       advertiserId: 'placeholder-value',
+     *       // Allows filtering by assigned inventory source fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the `OR` logical operator. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `EQUALS (=)` operator. Supported fields: * `assignedInventorySourceId` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
+     *       filter: 'placeholder-value',
+     *       // Required. The ID of the inventory source group to which these assignments are assigned.
+     *       inventorySourceGroupId: '[^/]+',
+     *       // Field by which to sort the list. Acceptable values are: * `assignedInventorySourceId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `assignedInventorySourceId desc`.
+     *       orderBy: 'placeholder-value',
+     *       // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     *       pageSize: 'placeholder-value',
+     *       // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListAssignedInventorySources` method. If not specified, the first page of results will be returned.
+     *       pageToken: 'placeholder-value',
+     *       // The ID of the partner that has access to the assignment. If the parent inventory source group is advertiser-owned, the assignment cannot be accessed via a partner.
+     *       partnerId: 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assignedInventorySources": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -18717,11 +26501,13 @@ export namespace displayvideo_v2 {
     list(
       params: Params$Resource$Inventorysourcegroups$Assignedinventorysources$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Inventorysourcegroups$Assignedinventorysources$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAssignedInventorySourcesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListAssignedInventorySourcesResponse>
+    >;
     list(
       params: Params$Resource$Inventorysourcegroups$Assignedinventorysources$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18756,8 +26542,10 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListAssignedInventorySourcesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListAssignedInventorySourcesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Inventorysourcegroups$Assignedinventorysources$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18896,6 +26684,98 @@ export namespace displayvideo_v2 {
 
     /**
      * Creates a new inventory source. Returns the newly created inventory source if successful.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.inventorySources.create({
+     *     // The ID of the advertiser that the request is being made within.
+     *     advertiserId: 'placeholder-value',
+     *     // The ID of the partner that the request is being made within.
+     *     partnerId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "commitment": "my_commitment",
+     *       //   "creativeConfigs": [],
+     *       //   "dealId": "my_dealId",
+     *       //   "deliveryMethod": "my_deliveryMethod",
+     *       //   "displayName": "my_displayName",
+     *       //   "exchange": "my_exchange",
+     *       //   "guaranteedOrderId": "my_guaranteedOrderId",
+     *       //   "inventorySourceId": "my_inventorySourceId",
+     *       //   "inventorySourceProductType": "my_inventorySourceProductType",
+     *       //   "inventorySourceType": "my_inventorySourceType",
+     *       //   "name": "my_name",
+     *       //   "publisherName": "my_publisherName",
+     *       //   "rateDetails": {},
+     *       //   "readAdvertiserIds": [],
+     *       //   "readPartnerIds": [],
+     *       //   "readWriteAccessors": {},
+     *       //   "status": {},
+     *       //   "timeRange": {},
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "commitment": "my_commitment",
+     *   //   "creativeConfigs": [],
+     *   //   "dealId": "my_dealId",
+     *   //   "deliveryMethod": "my_deliveryMethod",
+     *   //   "displayName": "my_displayName",
+     *   //   "exchange": "my_exchange",
+     *   //   "guaranteedOrderId": "my_guaranteedOrderId",
+     *   //   "inventorySourceId": "my_inventorySourceId",
+     *   //   "inventorySourceProductType": "my_inventorySourceProductType",
+     *   //   "inventorySourceType": "my_inventorySourceType",
+     *   //   "name": "my_name",
+     *   //   "publisherName": "my_publisherName",
+     *   //   "rateDetails": {},
+     *   //   "readAdvertiserIds": [],
+     *   //   "readPartnerIds": [],
+     *   //   "readWriteAccessors": {},
+     *   //   "status": {},
+     *   //   "timeRange": {},
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -18905,11 +26785,11 @@ export namespace displayvideo_v2 {
     create(
       params: Params$Resource$Inventorysources$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Inventorysources$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$InventorySource>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$InventorySource>>;
     create(
       params: Params$Resource$Inventorysources$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18938,7 +26818,10 @@ export namespace displayvideo_v2 {
       callback?:
         | BodyResponseCallback<Schema$InventorySource>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$InventorySource> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$InventorySource>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Inventorysources$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18984,6 +26867,64 @@ export namespace displayvideo_v2 {
 
     /**
      * Edits read/write accessors of an inventory source. Returns the updated read_write_accessors for the inventory source.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await displayvideo.inventorySources.editInventorySourceReadWriteAccessors({
+     *       // Required. The ID of inventory source to update.
+     *       inventorySourceId: '[^/]+',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "advertisersUpdate": {},
+     *         //   "assignPartner": false,
+     *         //   "partnerId": "my_partnerId"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "advertisers": {},
+     *   //   "partner": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -18993,11 +26934,11 @@ export namespace displayvideo_v2 {
     editInventorySourceReadWriteAccessors(
       params: Params$Resource$Inventorysources$Editinventorysourcereadwriteaccessors,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     editInventorySourceReadWriteAccessors(
       params?: Params$Resource$Inventorysources$Editinventorysourcereadwriteaccessors,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$InventorySourceAccessors>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$InventorySourceAccessors>>;
     editInventorySourceReadWriteAccessors(
       params: Params$Resource$Inventorysources$Editinventorysourcereadwriteaccessors,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -19032,8 +26973,8 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$InventorySourceAccessors>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$InventorySourceAccessors>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Inventorysources$Editinventorysourcereadwriteaccessors;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19080,6 +27021,72 @@ export namespace displayvideo_v2 {
 
     /**
      * Gets an inventory source.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.inventorySources.get({
+     *     // Required. The ID of the inventory source to fetch.
+     *     inventorySourceId: '[^/]+',
+     *     // Required. The ID of the DV360 partner to which the fetched inventory source is permissioned.
+     *     partnerId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "commitment": "my_commitment",
+     *   //   "creativeConfigs": [],
+     *   //   "dealId": "my_dealId",
+     *   //   "deliveryMethod": "my_deliveryMethod",
+     *   //   "displayName": "my_displayName",
+     *   //   "exchange": "my_exchange",
+     *   //   "guaranteedOrderId": "my_guaranteedOrderId",
+     *   //   "inventorySourceId": "my_inventorySourceId",
+     *   //   "inventorySourceProductType": "my_inventorySourceProductType",
+     *   //   "inventorySourceType": "my_inventorySourceType",
+     *   //   "name": "my_name",
+     *   //   "publisherName": "my_publisherName",
+     *   //   "rateDetails": {},
+     *   //   "readAdvertiserIds": [],
+     *   //   "readPartnerIds": [],
+     *   //   "readWriteAccessors": {},
+     *   //   "status": {},
+     *   //   "timeRange": {},
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -19089,11 +27096,11 @@ export namespace displayvideo_v2 {
     get(
       params: Params$Resource$Inventorysources$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Inventorysources$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$InventorySource>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$InventorySource>>;
     get(
       params: Params$Resource$Inventorysources$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -19122,7 +27129,10 @@ export namespace displayvideo_v2 {
       callback?:
         | BodyResponseCallback<Schema$InventorySource>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$InventorySource> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$InventorySource>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Inventorysources$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19167,6 +27177,63 @@ export namespace displayvideo_v2 {
 
     /**
      * Lists inventory sources that are accessible to the current user. The order is defined by the order_by parameter. If a filter by entity_status is not specified, inventory sources with entity status `ENTITY_STATUS_ARCHIVED` will not be included in the results.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.inventorySources.list({
+     *     // The ID of the advertiser that has access to the inventory source.
+     *     advertiserId: 'placeholder-value',
+     *     // Allows filtering by inventory source fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `EQUALS (=)` operator. Supported fields: * `status.entityStatus` * `commitment` * `deliveryMethod` * `rateDetails.rateType` * `exchange` Examples: * All active inventory sources: `status.entityStatus="ENTITY_STATUS_ACTIVE"` * Inventory sources belonging to Google Ad Manager or Rubicon exchanges: `exchange="EXCHANGE_GOOGLE_AD_MANAGER" OR exchange="EXCHANGE_RUBICON"` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
+     *     filter: 'placeholder-value',
+     *     // Field by which to sort the list. Acceptable values are: * `displayName` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. For example, `displayName desc`.
+     *     orderBy: 'placeholder-value',
+     *     // Requested page size. Must be between `1` and `200`. If unspecified will default to `100`.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListInventorySources` method. If not specified, the first page of results will be returned.
+     *     pageToken: 'placeholder-value',
+     *     // The ID of the partner that has access to the inventory source.
+     *     partnerId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "inventorySources": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -19176,11 +27243,11 @@ export namespace displayvideo_v2 {
     list(
       params: Params$Resource$Inventorysources$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Inventorysources$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListInventorySourcesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListInventorySourcesResponse>>;
     list(
       params: Params$Resource$Inventorysources$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -19215,8 +27282,8 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListInventorySourcesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListInventorySourcesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Inventorysources$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19264,6 +27331,102 @@ export namespace displayvideo_v2 {
 
     /**
      * Updates an existing inventory source. Returns the updated inventory source if successful.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.inventorySources.patch({
+     *     // The ID of the advertiser that the request is being made within.
+     *     advertiserId: 'placeholder-value',
+     *     // Output only. The unique ID of the inventory source. Assigned by the system.
+     *     inventorySourceId: '[^/]+',
+     *     // The ID of the partner that the request is being made within.
+     *     partnerId: 'placeholder-value',
+     *     // Required. The mask to control which fields to update.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "commitment": "my_commitment",
+     *       //   "creativeConfigs": [],
+     *       //   "dealId": "my_dealId",
+     *       //   "deliveryMethod": "my_deliveryMethod",
+     *       //   "displayName": "my_displayName",
+     *       //   "exchange": "my_exchange",
+     *       //   "guaranteedOrderId": "my_guaranteedOrderId",
+     *       //   "inventorySourceId": "my_inventorySourceId",
+     *       //   "inventorySourceProductType": "my_inventorySourceProductType",
+     *       //   "inventorySourceType": "my_inventorySourceType",
+     *       //   "name": "my_name",
+     *       //   "publisherName": "my_publisherName",
+     *       //   "rateDetails": {},
+     *       //   "readAdvertiserIds": [],
+     *       //   "readPartnerIds": [],
+     *       //   "readWriteAccessors": {},
+     *       //   "status": {},
+     *       //   "timeRange": {},
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "commitment": "my_commitment",
+     *   //   "creativeConfigs": [],
+     *   //   "dealId": "my_dealId",
+     *   //   "deliveryMethod": "my_deliveryMethod",
+     *   //   "displayName": "my_displayName",
+     *   //   "exchange": "my_exchange",
+     *   //   "guaranteedOrderId": "my_guaranteedOrderId",
+     *   //   "inventorySourceId": "my_inventorySourceId",
+     *   //   "inventorySourceProductType": "my_inventorySourceProductType",
+     *   //   "inventorySourceType": "my_inventorySourceType",
+     *   //   "name": "my_name",
+     *   //   "publisherName": "my_publisherName",
+     *   //   "rateDetails": {},
+     *   //   "readAdvertiserIds": [],
+     *   //   "readPartnerIds": [],
+     *   //   "readWriteAccessors": {},
+     *   //   "status": {},
+     *   //   "timeRange": {},
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -19273,11 +27436,11 @@ export namespace displayvideo_v2 {
     patch(
       params: Params$Resource$Inventorysources$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Inventorysources$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$InventorySource>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$InventorySource>>;
     patch(
       params: Params$Resource$Inventorysources$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -19306,7 +27469,10 @@ export namespace displayvideo_v2 {
       callback?:
         | BodyResponseCallback<Schema$InventorySource>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$InventorySource> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$InventorySource>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Inventorysources$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19449,6 +27615,55 @@ export namespace displayvideo_v2 {
 
     /**
      * Downloads media. Download is supported on the URI `/download/{resource_name=**\}?alt=media.` **Note**: Download requests will not be successful without including `alt=media` query string.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/display-video',
+     *       'https://www.googleapis.com/auth/doubleclickbidmanager',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.media.download({
+     *     // Name of the media that is being downloaded. See ReadRequest.resource_name.
+     *     resourceName: '.*',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "resourceName": "my_resourceName"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -19458,11 +27673,11 @@ export namespace displayvideo_v2 {
     download(
       params: Params$Resource$Media$Download,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     download(
       params?: Params$Resource$Media$Download,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleBytestreamMedia>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleBytestreamMedia>>;
     download(
       params: Params$Resource$Media$Download,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -19497,8 +27712,8 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleBytestreamMedia>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleBytestreamMedia>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Media$Download;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -19543,6 +27758,67 @@ export namespace displayvideo_v2 {
 
     /**
      * Uploads media. Upload is supported on the URI `/upload/media/{resource_name=**\}?upload_type=media.` **Note**: Upload requests will not be successful without including `upload_type=media` query string.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/display-video',
+     *       'https://www.googleapis.com/auth/doubleclickbidmanager',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.media.upload({
+     *     // Name of the media that is being downloaded. See ReadRequest.resource_name.
+     *     resourceName: '.*',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "resourceName": "my_resourceName"
+     *       // }
+     *     },
+     *     media: {
+     *       mimeType: 'placeholder-value',
+     *       body: 'placeholder-value',
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "resourceName": "my_resourceName"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -19552,11 +27828,11 @@ export namespace displayvideo_v2 {
     upload(
       params: Params$Resource$Media$Upload,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     upload(
       params?: Params$Resource$Media$Upload,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleBytestreamMedia>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleBytestreamMedia>>;
     upload(
       params: Params$Resource$Media$Upload,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -19589,8 +27865,8 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleBytestreamMedia>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleBytestreamMedia>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Media$Upload;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -19683,6 +27959,61 @@ export namespace displayvideo_v2 {
 
     /**
      * Edits targeting options under a single partner. The operation will delete the assigned targeting options provided in BulkEditPartnerAssignedTargetingOptionsRequest.deleteRequests and then create the assigned targeting options provided in BulkEditPartnerAssignedTargetingOptionsRequest.createRequests .
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.partners.editAssignedTargetingOptions({
+     *     // Required. The ID of the partner.
+     *     partnerId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createRequests": [],
+     *       //   "deleteRequests": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createdAssignedTargetingOptions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -19692,11 +28023,13 @@ export namespace displayvideo_v2 {
     editAssignedTargetingOptions(
       params: Params$Resource$Partners$Editassignedtargetingoptions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     editAssignedTargetingOptions(
       params?: Params$Resource$Partners$Editassignedtargetingoptions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BulkEditPartnerAssignedTargetingOptionsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$BulkEditPartnerAssignedTargetingOptionsResponse>
+    >;
     editAssignedTargetingOptions(
       params: Params$Resource$Partners$Editassignedtargetingoptions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -19731,8 +28064,10 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BulkEditPartnerAssignedTargetingOptionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$BulkEditPartnerAssignedTargetingOptionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Editassignedtargetingoptions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19779,6 +28114,60 @@ export namespace displayvideo_v2 {
 
     /**
      * Gets a partner.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.partners.get({
+     *     // Required. The ID of the partner to fetch.
+     *     partnerId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "adServerConfig": {},
+     *   //   "dataAccessConfig": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "entityStatus": "my_entityStatus",
+     *   //   "exchangeConfig": {},
+     *   //   "generalConfig": {},
+     *   //   "name": "my_name",
+     *   //   "partnerId": "my_partnerId",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -19788,11 +28177,11 @@ export namespace displayvideo_v2 {
     get(
       params: Params$Resource$Partners$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Partners$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Partner>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Partner>>;
     get(
       params: Params$Resource$Partners$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -19821,7 +28210,10 @@ export namespace displayvideo_v2 {
       callback?:
         | BodyResponseCallback<Schema$Partner>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Partner> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Partner>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Partners$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -19866,6 +28258,59 @@ export namespace displayvideo_v2 {
 
     /**
      * Lists partners that are accessible to the current user. The order is defined by the order_by parameter.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.partners.list({
+     *     // Allows filtering by partner fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `EQUALS (=)` operator. Supported fields: * `entityStatus` Examples: * All active partners: `entityStatus="ENTITY_STATUS_ACTIVE"` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
+     *     filter: 'placeholder-value',
+     *     // Field by which to sort the list. Acceptable values are: * `displayName` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. For example, `displayName desc`.
+     *     orderBy: 'placeholder-value',
+     *     // Requested page size. Must be between `1` and `200`. If unspecified will default to `100`.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListPartners` method. If not specified, the first page of results will be returned.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "partners": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -19875,11 +28320,11 @@ export namespace displayvideo_v2 {
     list(
       params: Params$Resource$Partners$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Partners$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListPartnersResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListPartnersResponse>>;
     list(
       params: Params$Resource$Partners$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -19912,8 +28357,8 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListPartnersResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListPartnersResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Partners$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -20001,6 +28446,74 @@ export namespace displayvideo_v2 {
 
     /**
      * Creates a new channel. Returns the newly created channel if successful.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.partners.channels.create({
+     *     // The ID of the advertiser that owns the created channel.
+     *     advertiserId: 'placeholder-value',
+     *     // The ID of the partner that owns the created channel.
+     *     partnerId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "channelId": "my_channelId",
+     *       //   "displayName": "my_displayName",
+     *       //   "name": "my_name",
+     *       //   "negativelyTargetedLineItemCount": "my_negativelyTargetedLineItemCount",
+     *       //   "partnerId": "my_partnerId",
+     *       //   "positivelyTargetedLineItemCount": "my_positivelyTargetedLineItemCount"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "channelId": "my_channelId",
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "negativelyTargetedLineItemCount": "my_negativelyTargetedLineItemCount",
+     *   //   "partnerId": "my_partnerId",
+     *   //   "positivelyTargetedLineItemCount": "my_positivelyTargetedLineItemCount"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -20010,11 +28523,11 @@ export namespace displayvideo_v2 {
     create(
       params: Params$Resource$Partners$Channels$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Partners$Channels$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Channel>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Channel>>;
     create(
       params: Params$Resource$Partners$Channels$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -20043,7 +28556,10 @@ export namespace displayvideo_v2 {
       callback?:
         | BodyResponseCallback<Schema$Channel>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Channel> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Channel>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Channels$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20089,6 +28605,62 @@ export namespace displayvideo_v2 {
 
     /**
      * Gets a channel for a partner or advertiser.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.partners.channels.get({
+     *     // The ID of the advertiser that owns the fetched channel.
+     *     advertiserId: 'placeholder-value',
+     *     // Required. The ID of the channel to fetch.
+     *     channelId: '[^/]+',
+     *     // The ID of the partner that owns the fetched channel.
+     *     partnerId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "channelId": "my_channelId",
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "negativelyTargetedLineItemCount": "my_negativelyTargetedLineItemCount",
+     *   //   "partnerId": "my_partnerId",
+     *   //   "positivelyTargetedLineItemCount": "my_positivelyTargetedLineItemCount"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -20098,11 +28670,11 @@ export namespace displayvideo_v2 {
     get(
       params: Params$Resource$Partners$Channels$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Partners$Channels$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Channel>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Channel>>;
     get(
       params: Params$Resource$Partners$Channels$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -20131,7 +28703,10 @@ export namespace displayvideo_v2 {
       callback?:
         | BodyResponseCallback<Schema$Channel>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Channel> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Channel>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Channels$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20176,6 +28751,63 @@ export namespace displayvideo_v2 {
 
     /**
      * Lists channels for a partner or advertiser.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.partners.channels.list({
+     *     // The ID of the advertiser that owns the channels.
+     *     advertiserId: 'placeholder-value',
+     *     // Allows filtering by channel fields. Supported syntax: * Filter expressions for channel can only contain at most one restriction. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `HAS (:)` operator. Supported fields: * `displayName` Examples: * All channels for which the display name contains "google": `displayName : "google"`. The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
+     *     filter: 'placeholder-value',
+     *     // Field by which to sort the list. Acceptable values are: * `displayName` (default) * `channelId` The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `displayName desc`.
+     *     orderBy: 'placeholder-value',
+     *     // Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListChannels` method. If not specified, the first page of results will be returned.
+     *     pageToken: 'placeholder-value',
+     *     // The ID of the partner that owns the channels.
+     *     partnerId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "channels": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -20185,11 +28817,11 @@ export namespace displayvideo_v2 {
     list(
       params: Params$Resource$Partners$Channels$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Partners$Channels$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListChannelsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListChannelsResponse>>;
     list(
       params: Params$Resource$Partners$Channels$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -20222,8 +28854,8 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListChannelsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListChannelsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Channels$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20269,6 +28901,78 @@ export namespace displayvideo_v2 {
 
     /**
      * Updates a channel. Returns the updated channel if successful.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.partners.channels.patch({
+     *     // The ID of the advertiser that owns the created channel.
+     *     advertiserId: 'placeholder-value',
+     *     // Output only. The unique ID of the channel. Assigned by the system.
+     *     channelId: 'placeholder-value',
+     *     // The ID of the partner that owns the created channel.
+     *     partnerId: '[^/]+',
+     *     // Required. The mask to control which fields to update.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "channelId": "my_channelId",
+     *       //   "displayName": "my_displayName",
+     *       //   "name": "my_name",
+     *       //   "negativelyTargetedLineItemCount": "my_negativelyTargetedLineItemCount",
+     *       //   "partnerId": "my_partnerId",
+     *       //   "positivelyTargetedLineItemCount": "my_positivelyTargetedLineItemCount"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "channelId": "my_channelId",
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "negativelyTargetedLineItemCount": "my_negativelyTargetedLineItemCount",
+     *   //   "partnerId": "my_partnerId",
+     *   //   "positivelyTargetedLineItemCount": "my_positivelyTargetedLineItemCount"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -20278,11 +28982,11 @@ export namespace displayvideo_v2 {
     patch(
       params: Params$Resource$Partners$Channels$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Partners$Channels$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Channel>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Channel>>;
     patch(
       params: Params$Resource$Partners$Channels$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -20311,7 +29015,10 @@ export namespace displayvideo_v2 {
       callback?:
         | BodyResponseCallback<Schema$Channel>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Channel> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Channel>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Channels$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20446,6 +29153,65 @@ export namespace displayvideo_v2 {
 
     /**
      * Bulk edits sites under a single channel. The operation will delete the sites provided in BulkEditSitesRequest.deleted_sites and then create the sites provided in BulkEditSitesRequest.created_sites.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.partners.channels.sites.bulkEdit({
+     *     // Required. The ID of the parent channel to which the sites belong.
+     *     channelId: '[^/]+',
+     *     // The ID of the partner that owns the parent channel.
+     *     partnerId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "createdSites": [],
+     *       //   "deletedSites": [],
+     *       //   "partnerId": "my_partnerId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "sites": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -20455,11 +29221,11 @@ export namespace displayvideo_v2 {
     bulkEdit(
       params: Params$Resource$Partners$Channels$Sites$Bulkedit,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     bulkEdit(
       params?: Params$Resource$Partners$Channels$Sites$Bulkedit,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BulkEditSitesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BulkEditSitesResponse>>;
     bulkEdit(
       params: Params$Resource$Partners$Channels$Sites$Bulkedit,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -20494,8 +29260,8 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BulkEditSitesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$BulkEditSitesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Channels$Sites$Bulkedit;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20541,6 +29307,66 @@ export namespace displayvideo_v2 {
 
     /**
      * Creates a site in a channel.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.partners.channels.sites.create({
+     *     // The ID of the advertiser that owns the parent channel.
+     *     advertiserId: 'placeholder-value',
+     *     // Required. The ID of the parent channel in which the site will be created.
+     *     channelId: '[^/]+',
+     *     // The ID of the partner that owns the parent channel.
+     *     partnerId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "name": "my_name",
+     *       //   "urlOrAppId": "my_urlOrAppId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "urlOrAppId": "my_urlOrAppId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -20550,11 +29376,11 @@ export namespace displayvideo_v2 {
     create(
       params: Params$Resource$Partners$Channels$Sites$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Partners$Channels$Sites$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Site>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Site>>;
     create(
       params: Params$Resource$Partners$Channels$Sites$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -20583,7 +29409,10 @@ export namespace displayvideo_v2 {
       callback?:
         | BodyResponseCallback<Schema$Site>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Site> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Site>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Channels$Sites$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20628,6 +29457,56 @@ export namespace displayvideo_v2 {
 
     /**
      * Deletes a site from a channel.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.partners.channels.sites.delete({
+     *     // The ID of the advertiser that owns the parent channel.
+     *     advertiserId: 'placeholder-value',
+     *     // Required. The ID of the parent channel to which the site belongs.
+     *     channelId: '[^/]+',
+     *     // The ID of the partner that owns the parent channel.
+     *     partnerId: 'placeholder-value',
+     *     // Required. The URL or app ID of the site to delete.
+     *     urlOrAppId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -20637,11 +29516,11 @@ export namespace displayvideo_v2 {
     delete(
       params: Params$Resource$Partners$Channels$Sites$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Partners$Channels$Sites$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Partners$Channels$Sites$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -20670,7 +29549,10 @@ export namespace displayvideo_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Channels$Sites$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20716,6 +29598,65 @@ export namespace displayvideo_v2 {
 
     /**
      * Lists sites in a channel.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.partners.channels.sites.list({
+     *     // The ID of the advertiser that owns the parent channel.
+     *     advertiserId: 'placeholder-value',
+     *     // Required. The ID of the parent channel to which the requested sites belong.
+     *     channelId: '[^/]+',
+     *     // Allows filtering by site fields. Supported syntax: * Filter expressions for site retrieval can only contain at most one restriction. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `HAS (:)` operator. Supported fields: * `urlOrAppId` Examples: * All sites for which the URL or app ID contains "google": `urlOrAppId : "google"` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
+     *     filter: 'placeholder-value',
+     *     // Field by which to sort the list. Acceptable values are: * `urlOrAppId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `urlOrAppId desc`.
+     *     orderBy: 'placeholder-value',
+     *     // Requested page size. Must be between `1` and `10000`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListSites` method. If not specified, the first page of results will be returned.
+     *     pageToken: 'placeholder-value',
+     *     // The ID of the partner that owns the parent channel.
+     *     partnerId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "sites": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -20725,11 +29666,11 @@ export namespace displayvideo_v2 {
     list(
       params: Params$Resource$Partners$Channels$Sites$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Partners$Channels$Sites$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListSitesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListSitesResponse>>;
     list(
       params: Params$Resource$Partners$Channels$Sites$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -20760,8 +29701,8 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListSitesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListSitesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Channels$Sites$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20806,6 +29747,64 @@ export namespace displayvideo_v2 {
 
     /**
      * Replaces all of the sites under a single channel. The operation will replace the sites under a channel with the sites provided in ReplaceSitesRequest.new_sites. **This method regularly experiences high latency.** We recommend [increasing your default timeout](/display-video/api/guides/best-practices/timeouts#client_library_timeout) to avoid errors.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.partners.channels.sites.replace({
+     *     // Required. The ID of the parent channel whose sites will be replaced.
+     *     channelId: '[^/]+',
+     *     // The ID of the partner that owns the parent channel.
+     *     partnerId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "newSites": [],
+     *       //   "partnerId": "my_partnerId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "sites": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -20815,11 +29814,11 @@ export namespace displayvideo_v2 {
     replace(
       params: Params$Resource$Partners$Channels$Sites$Replace,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     replace(
       params?: Params$Resource$Partners$Channels$Sites$Replace,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ReplaceSitesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ReplaceSitesResponse>>;
     replace(
       params: Params$Resource$Partners$Channels$Sites$Replace,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -20852,8 +29851,8 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ReplaceSitesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ReplaceSitesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Channels$Sites$Replace;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21021,6 +30020,167 @@ export namespace displayvideo_v2 {
 
     /**
      * Assigns a targeting option to a partner. Returns the assigned targeting option if successful.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await displayvideo.partners.targetingTypes.assignedTargetingOptions.create({
+     *       // Required. The ID of the partner.
+     *       partnerId: '[^/]+',
+     *       // Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL`
+     *       targetingType: '[^/]+',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "ageRangeDetails": {},
+     *         //   "appCategoryDetails": {},
+     *         //   "appDetails": {},
+     *         //   "assignedTargetingOptionId": "my_assignedTargetingOptionId",
+     *         //   "assignedTargetingOptionIdAlias": "my_assignedTargetingOptionIdAlias",
+     *         //   "audienceGroupDetails": {},
+     *         //   "audioContentTypeDetails": {},
+     *         //   "authorizedSellerStatusDetails": {},
+     *         //   "browserDetails": {},
+     *         //   "businessChainDetails": {},
+     *         //   "carrierAndIspDetails": {},
+     *         //   "categoryDetails": {},
+     *         //   "channelDetails": {},
+     *         //   "contentDurationDetails": {},
+     *         //   "contentGenreDetails": {},
+     *         //   "contentInstreamPositionDetails": {},
+     *         //   "contentOutstreamPositionDetails": {},
+     *         //   "contentStreamTypeDetails": {},
+     *         //   "dayAndTimeDetails": {},
+     *         //   "deviceMakeModelDetails": {},
+     *         //   "deviceTypeDetails": {},
+     *         //   "digitalContentLabelExclusionDetails": {},
+     *         //   "environmentDetails": {},
+     *         //   "exchangeDetails": {},
+     *         //   "genderDetails": {},
+     *         //   "geoRegionDetails": {},
+     *         //   "householdIncomeDetails": {},
+     *         //   "inheritance": "my_inheritance",
+     *         //   "inventorySourceDetails": {},
+     *         //   "inventorySourceGroupDetails": {},
+     *         //   "keywordDetails": {},
+     *         //   "languageDetails": {},
+     *         //   "name": "my_name",
+     *         //   "nativeContentPositionDetails": {},
+     *         //   "negativeKeywordListDetails": {},
+     *         //   "omidDetails": {},
+     *         //   "onScreenPositionDetails": {},
+     *         //   "operatingSystemDetails": {},
+     *         //   "parentalStatusDetails": {},
+     *         //   "poiDetails": {},
+     *         //   "proximityLocationListDetails": {},
+     *         //   "regionalLocationListDetails": {},
+     *         //   "sensitiveCategoryExclusionDetails": {},
+     *         //   "sessionPositionDetails": {},
+     *         //   "subExchangeDetails": {},
+     *         //   "targetingType": "my_targetingType",
+     *         //   "thirdPartyVerifierDetails": {},
+     *         //   "urlDetails": {},
+     *         //   "userRewardedContentDetails": {},
+     *         //   "videoPlayerSizeDetails": {},
+     *         //   "viewabilityDetails": {},
+     *         //   "youtubeChannelDetails": {},
+     *         //   "youtubeVideoDetails": {}
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "ageRangeDetails": {},
+     *   //   "appCategoryDetails": {},
+     *   //   "appDetails": {},
+     *   //   "assignedTargetingOptionId": "my_assignedTargetingOptionId",
+     *   //   "assignedTargetingOptionIdAlias": "my_assignedTargetingOptionIdAlias",
+     *   //   "audienceGroupDetails": {},
+     *   //   "audioContentTypeDetails": {},
+     *   //   "authorizedSellerStatusDetails": {},
+     *   //   "browserDetails": {},
+     *   //   "businessChainDetails": {},
+     *   //   "carrierAndIspDetails": {},
+     *   //   "categoryDetails": {},
+     *   //   "channelDetails": {},
+     *   //   "contentDurationDetails": {},
+     *   //   "contentGenreDetails": {},
+     *   //   "contentInstreamPositionDetails": {},
+     *   //   "contentOutstreamPositionDetails": {},
+     *   //   "contentStreamTypeDetails": {},
+     *   //   "dayAndTimeDetails": {},
+     *   //   "deviceMakeModelDetails": {},
+     *   //   "deviceTypeDetails": {},
+     *   //   "digitalContentLabelExclusionDetails": {},
+     *   //   "environmentDetails": {},
+     *   //   "exchangeDetails": {},
+     *   //   "genderDetails": {},
+     *   //   "geoRegionDetails": {},
+     *   //   "householdIncomeDetails": {},
+     *   //   "inheritance": "my_inheritance",
+     *   //   "inventorySourceDetails": {},
+     *   //   "inventorySourceGroupDetails": {},
+     *   //   "keywordDetails": {},
+     *   //   "languageDetails": {},
+     *   //   "name": "my_name",
+     *   //   "nativeContentPositionDetails": {},
+     *   //   "negativeKeywordListDetails": {},
+     *   //   "omidDetails": {},
+     *   //   "onScreenPositionDetails": {},
+     *   //   "operatingSystemDetails": {},
+     *   //   "parentalStatusDetails": {},
+     *   //   "poiDetails": {},
+     *   //   "proximityLocationListDetails": {},
+     *   //   "regionalLocationListDetails": {},
+     *   //   "sensitiveCategoryExclusionDetails": {},
+     *   //   "sessionPositionDetails": {},
+     *   //   "subExchangeDetails": {},
+     *   //   "targetingType": "my_targetingType",
+     *   //   "thirdPartyVerifierDetails": {},
+     *   //   "urlDetails": {},
+     *   //   "userRewardedContentDetails": {},
+     *   //   "videoPlayerSizeDetails": {},
+     *   //   "viewabilityDetails": {},
+     *   //   "youtubeChannelDetails": {},
+     *   //   "youtubeVideoDetails": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -21030,11 +30190,11 @@ export namespace displayvideo_v2 {
     create(
       params: Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AssignedTargetingOption>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AssignedTargetingOption>>;
     create(
       params: Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -21069,8 +30229,8 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AssignedTargetingOption>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AssignedTargetingOption>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21117,6 +30277,55 @@ export namespace displayvideo_v2 {
 
     /**
      * Deletes an assigned targeting option from a partner.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await displayvideo.partners.targetingTypes.assignedTargetingOptions.delete({
+     *       // Required. The ID of the assigned targeting option to delete.
+     *       assignedTargetingOptionId: '[^/]+',
+     *       // Required. The ID of the partner.
+     *       partnerId: '[^/]+',
+     *       // Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL`
+     *       targetingType: '[^/]+',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -21126,11 +30335,11 @@ export namespace displayvideo_v2 {
     delete(
       params: Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -21159,7 +30368,10 @@ export namespace displayvideo_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21210,6 +30422,109 @@ export namespace displayvideo_v2 {
 
     /**
      * Gets a single targeting option assigned to a partner.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await displayvideo.partners.targetingTypes.assignedTargetingOptions.get({
+     *       // Required. An identifier unique to the targeting type in this partner that identifies the assigned targeting option being requested.
+     *       assignedTargetingOptionId: '[^/]+',
+     *       // Required. The ID of the partner.
+     *       partnerId: '[^/]+',
+     *       // Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL`
+     *       targetingType: '[^/]+',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "ageRangeDetails": {},
+     *   //   "appCategoryDetails": {},
+     *   //   "appDetails": {},
+     *   //   "assignedTargetingOptionId": "my_assignedTargetingOptionId",
+     *   //   "assignedTargetingOptionIdAlias": "my_assignedTargetingOptionIdAlias",
+     *   //   "audienceGroupDetails": {},
+     *   //   "audioContentTypeDetails": {},
+     *   //   "authorizedSellerStatusDetails": {},
+     *   //   "browserDetails": {},
+     *   //   "businessChainDetails": {},
+     *   //   "carrierAndIspDetails": {},
+     *   //   "categoryDetails": {},
+     *   //   "channelDetails": {},
+     *   //   "contentDurationDetails": {},
+     *   //   "contentGenreDetails": {},
+     *   //   "contentInstreamPositionDetails": {},
+     *   //   "contentOutstreamPositionDetails": {},
+     *   //   "contentStreamTypeDetails": {},
+     *   //   "dayAndTimeDetails": {},
+     *   //   "deviceMakeModelDetails": {},
+     *   //   "deviceTypeDetails": {},
+     *   //   "digitalContentLabelExclusionDetails": {},
+     *   //   "environmentDetails": {},
+     *   //   "exchangeDetails": {},
+     *   //   "genderDetails": {},
+     *   //   "geoRegionDetails": {},
+     *   //   "householdIncomeDetails": {},
+     *   //   "inheritance": "my_inheritance",
+     *   //   "inventorySourceDetails": {},
+     *   //   "inventorySourceGroupDetails": {},
+     *   //   "keywordDetails": {},
+     *   //   "languageDetails": {},
+     *   //   "name": "my_name",
+     *   //   "nativeContentPositionDetails": {},
+     *   //   "negativeKeywordListDetails": {},
+     *   //   "omidDetails": {},
+     *   //   "onScreenPositionDetails": {},
+     *   //   "operatingSystemDetails": {},
+     *   //   "parentalStatusDetails": {},
+     *   //   "poiDetails": {},
+     *   //   "proximityLocationListDetails": {},
+     *   //   "regionalLocationListDetails": {},
+     *   //   "sensitiveCategoryExclusionDetails": {},
+     *   //   "sessionPositionDetails": {},
+     *   //   "subExchangeDetails": {},
+     *   //   "targetingType": "my_targetingType",
+     *   //   "thirdPartyVerifierDetails": {},
+     *   //   "urlDetails": {},
+     *   //   "userRewardedContentDetails": {},
+     *   //   "videoPlayerSizeDetails": {},
+     *   //   "viewabilityDetails": {},
+     *   //   "youtubeChannelDetails": {},
+     *   //   "youtubeVideoDetails": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -21219,11 +30534,11 @@ export namespace displayvideo_v2 {
     get(
       params: Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AssignedTargetingOption>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AssignedTargetingOption>>;
     get(
       params: Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -21256,8 +30571,8 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AssignedTargetingOption>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AssignedTargetingOption>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21308,6 +30623,64 @@ export namespace displayvideo_v2 {
 
     /**
      * Lists the targeting options assigned to a partner.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await displayvideo.partners.targetingTypes.assignedTargetingOptions.list({
+     *       // Allows filtering by assigned targeting option fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `EQUALS (=)` operator. Supported fields: * `assignedTargetingOptionId` Examples: * `AssignedTargetingOption` resource with ID 123456: `assignedTargetingOptionId="123456"` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
+     *       filter: 'placeholder-value',
+     *       // Field by which to sort the list. Acceptable values are: * `assignedTargetingOptionId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `assignedTargetingOptionId desc`.
+     *       orderBy: 'placeholder-value',
+     *       // Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     *       pageSize: 'placeholder-value',
+     *       // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListPartnerAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The ID of the partner.
+     *       partnerId: '[^/]+',
+     *       // Required. Identifies the type of assigned targeting options to list. Supported targeting types: * `TARGETING_TYPE_CHANNEL`
+     *       targetingType: '[^/]+',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assignedTargetingOptions": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -21317,11 +30690,13 @@ export namespace displayvideo_v2 {
     list(
       params: Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListPartnerAssignedTargetingOptionsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListPartnerAssignedTargetingOptionsResponse>
+    >;
     list(
       params: Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -21356,8 +30731,10 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListPartnerAssignedTargetingOptionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListPartnerAssignedTargetingOptionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21489,6 +30866,66 @@ export namespace displayvideo_v2 {
 
     /**
      * Creates an SDF Download Task. Returns an Operation. An SDF Download Task is a long-running, asynchronous operation. The metadata type of this operation is SdfDownloadTaskMetadata. If the request is successful, the response type of the operation is SdfDownloadTask. The response will not include the download files, which must be retrieved with media.download. The state of operation can be retrieved with `sdfdownloadtasks.operations.get`. Any errors can be found in the error.message. Note that error.details is expected to be empty.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.sdfdownloadtasks.create({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "idFilter": {},
+     *       //   "inventorySourceFilter": {},
+     *       //   "parentEntityFilter": {},
+     *       //   "partnerId": "my_partnerId",
+     *       //   "version": "my_version"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -21498,11 +30935,11 @@ export namespace displayvideo_v2 {
     create(
       params: Params$Resource$Sdfdownloadtasks$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Sdfdownloadtasks$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Sdfdownloadtasks$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -21531,7 +30968,10 @@ export namespace displayvideo_v2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Sdfdownloadtasks$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21592,6 +31032,59 @@ export namespace displayvideo_v2 {
 
     /**
      * Gets the latest state of an asynchronous SDF download task operation. Clients should poll this method at intervals of 30 seconds.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/display-video',
+     *       'https://www.googleapis.com/auth/doubleclickbidmanager',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.sdfdownloadtasks.operations.get({
+     *     // The name of the operation resource.
+     *     name: 'sdfdownloadtasks/operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -21601,11 +31094,11 @@ export namespace displayvideo_v2 {
     get(
       params: Params$Resource$Sdfdownloadtasks$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Sdfdownloadtasks$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     get(
       params: Params$Resource$Sdfdownloadtasks$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -21634,7 +31127,10 @@ export namespace displayvideo_v2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Sdfdownloadtasks$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21703,6 +31199,91 @@ export namespace displayvideo_v2 {
 
     /**
      * Gets a single targeting option.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.targetingTypes.targetingOptions.get({
+     *     // Required. The Advertiser this request is being made in the context of.
+     *     advertiserId: 'placeholder-value',
+     *     // Required. The ID of the of targeting option to retrieve.
+     *     targetingOptionId: '[^/]+',
+     *     // Required. The type of targeting option to retrieve. Accepted values are: * `TARGETING_TYPE_APP_CATEGORY` * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_VIDEO_PLAYER_SIZE` * `TARGETING_TYPE_USER_REWARDED_CONTENT` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_CONTENT_INSTREAM_POSITION` * `TARGETING_TYPE_CONTENT_OUTSTREAM_POSITION` * `TARGETING_TYPE_DEVICE_TYPE` * `TARGETING_TYPE_BROWSER` * `TARGETING_TYPE_HOUSEHOLD_INCOME` * `TARGETING_TYPE_ON_SCREEN_POSITION` * `TARGETING_TYPE_CARRIER_AND_ISP` * `TARGETING_TYPE_OPERATING_SYSTEM` * `TARGETING_TYPE_DEVICE_MAKE_MODEL` * `TARGETING_TYPE_ENVIRONMENT` * `TARGETING_TYPE_CATEGORY` * `TARGETING_TYPE_VIEWABILITY` * `TARGETING_TYPE_AUTHORIZED_SELLER_STATUS` * `TARGETING_TYPE_LANGUAGE` * `TARGETING_TYPE_GEO_REGION` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_EXCHANGE` * `TARGETING_TYPE_SUB_EXCHANGE` * `TARGETING_TYPE_NATIVE_CONTENT_POSITION` * `TARGETING_TYPE_OMID`
+     *     targetingType: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "ageRangeDetails": {},
+     *   //   "appCategoryDetails": {},
+     *   //   "audioContentTypeDetails": {},
+     *   //   "authorizedSellerStatusDetails": {},
+     *   //   "browserDetails": {},
+     *   //   "businessChainDetails": {},
+     *   //   "carrierAndIspDetails": {},
+     *   //   "categoryDetails": {},
+     *   //   "contentDurationDetails": {},
+     *   //   "contentGenreDetails": {},
+     *   //   "contentInstreamPositionDetails": {},
+     *   //   "contentOutstreamPositionDetails": {},
+     *   //   "contentStreamTypeDetails": {},
+     *   //   "deviceMakeModelDetails": {},
+     *   //   "deviceTypeDetails": {},
+     *   //   "digitalContentLabelDetails": {},
+     *   //   "environmentDetails": {},
+     *   //   "exchangeDetails": {},
+     *   //   "genderDetails": {},
+     *   //   "geoRegionDetails": {},
+     *   //   "householdIncomeDetails": {},
+     *   //   "languageDetails": {},
+     *   //   "name": "my_name",
+     *   //   "nativeContentPositionDetails": {},
+     *   //   "omidDetails": {},
+     *   //   "onScreenPositionDetails": {},
+     *   //   "operatingSystemDetails": {},
+     *   //   "parentalStatusDetails": {},
+     *   //   "poiDetails": {},
+     *   //   "sensitiveCategoryDetails": {},
+     *   //   "subExchangeDetails": {},
+     *   //   "targetingOptionId": "my_targetingOptionId",
+     *   //   "targetingType": "my_targetingType",
+     *   //   "userRewardedContentDetails": {},
+     *   //   "videoPlayerSizeDetails": {},
+     *   //   "viewabilityDetails": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -21712,11 +31293,11 @@ export namespace displayvideo_v2 {
     get(
       params: Params$Resource$Targetingtypes$Targetingoptions$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Targetingtypes$Targetingoptions$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TargetingOption>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TargetingOption>>;
     get(
       params: Params$Resource$Targetingtypes$Targetingoptions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -21745,7 +31326,10 @@ export namespace displayvideo_v2 {
       callback?:
         | BodyResponseCallback<Schema$TargetingOption>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$TargetingOption> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$TargetingOption>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Targetingtypes$Targetingoptions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21791,6 +31375,63 @@ export namespace displayvideo_v2 {
 
     /**
      * Lists targeting options of a given type.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.targetingTypes.targetingOptions.list({
+     *     // Required. The Advertiser this request is being made in the context of.
+     *     advertiserId: 'placeholder-value',
+     *     // Allows filtering by targeting option fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `OR` logical operators. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `EQUALS (=)` operator. Supported fields: * `carrierAndIspDetails.type` * `geoRegionDetails.geoRegionType` * `targetingOptionId` Examples: * All `GEO REGION` targeting options that belong to sub type `GEO_REGION_TYPE_COUNTRY` or `GEO_REGION_TYPE_STATE`: `geoRegionDetails.geoRegionType="GEO_REGION_TYPE_COUNTRY" OR geoRegionDetails.geoRegionType="GEO_REGION_TYPE_STATE"` * All `CARRIER AND ISP` targeting options that belong to sub type `CARRIER_AND_ISP_TYPE_CARRIER`: `carrierAndIspDetails.type="CARRIER_AND_ISP_TYPE_CARRIER"` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
+     *     filter: 'placeholder-value',
+     *     // Field by which to sort the list. Acceptable values are: * `targetingOptionId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `targetingOptionId desc`.
+     *     orderBy: 'placeholder-value',
+     *     // Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListTargetingOptions` method. If not specified, the first page of results will be returned.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The type of targeting option to be listed. Accepted values are: * `TARGETING_TYPE_APP_CATEGORY` * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_VIDEO_PLAYER_SIZE` * `TARGETING_TYPE_USER_REWARDED_CONTENT` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_CONTENT_INSTREAM_POSITION` * `TARGETING_TYPE_CONTENT_OUTSTREAM_POSITION` * `TARGETING_TYPE_DEVICE_TYPE` * `TARGETING_TYPE_BROWSER` * `TARGETING_TYPE_HOUSEHOLD_INCOME` * `TARGETING_TYPE_ON_SCREEN_POSITION` * `TARGETING_TYPE_CARRIER_AND_ISP` * `TARGETING_TYPE_OPERATING_SYSTEM` * `TARGETING_TYPE_DEVICE_MAKE_MODEL` * `TARGETING_TYPE_ENVIRONMENT` * `TARGETING_TYPE_CATEGORY` * `TARGETING_TYPE_VIEWABILITY` * `TARGETING_TYPE_AUTHORIZED_SELLER_STATUS` * `TARGETING_TYPE_LANGUAGE` * `TARGETING_TYPE_GEO_REGION` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_EXCHANGE` * `TARGETING_TYPE_SUB_EXCHANGE` * `TARGETING_TYPE_NATIVE_CONTENT_POSITION` * `TARGETING_TYPE_OMID`
+     *     targetingType: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "targetingOptions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -21800,11 +31441,11 @@ export namespace displayvideo_v2 {
     list(
       params: Params$Resource$Targetingtypes$Targetingoptions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Targetingtypes$Targetingoptions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListTargetingOptionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListTargetingOptionsResponse>>;
     list(
       params: Params$Resource$Targetingtypes$Targetingoptions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -21839,8 +31480,8 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListTargetingOptionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListTargetingOptionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Targetingtypes$Targetingoptions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21887,6 +31528,66 @@ export namespace displayvideo_v2 {
 
     /**
      * Searches for targeting options of a given type based on the given search terms.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.targetingTypes.targetingOptions.search({
+     *     // Required. The type of targeting options to retrieve. Accepted values are: * `TARGETING_TYPE_GEO_REGION` * `TARGETING_TYPE_POI` * `TARGETING_TYPE_BUSINESS_CHAIN`
+     *     targetingType: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "businessChainSearchTerms": {},
+     *       //   "geoRegionSearchTerms": {},
+     *       //   "pageSize": 0,
+     *       //   "pageToken": "my_pageToken",
+     *       //   "poiSearchTerms": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "targetingOptions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -21896,11 +31597,11 @@ export namespace displayvideo_v2 {
     search(
       params: Params$Resource$Targetingtypes$Targetingoptions$Search,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     search(
       params?: Params$Resource$Targetingtypes$Targetingoptions$Search,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SearchTargetingOptionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SearchTargetingOptionsResponse>>;
     search(
       params: Params$Resource$Targetingtypes$Targetingoptions$Search,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -21935,8 +31636,8 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SearchTargetingOptionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SearchTargetingOptionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Targetingtypes$Targetingoptions$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -22046,6 +31747,61 @@ export namespace displayvideo_v2 {
 
     /**
      * Bulk edits user roles for a user. The operation will delete the assigned user roles provided in BulkEditAssignedUserRolesRequest.deletedAssignedUserRoles and then assign the user roles provided in BulkEditAssignedUserRolesRequest.createdAssignedUserRoles. This method has unique authentication requirements. Read the prerequisites in our [Managing Users guide](/display-video/api/guides/users/overview#prerequisites) before using this method. The "Try this method" feature does not work for this method.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video-user-management'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.users.bulkEditAssignedUserRoles({
+     *     // Required. The ID of the user to which the assigned user roles belong.
+     *     userId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createdAssignedUserRoles": [],
+     *       //   "deletedAssignedUserRoles": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createdAssignedUserRoles": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -22055,11 +31811,13 @@ export namespace displayvideo_v2 {
     bulkEditAssignedUserRoles(
       params: Params$Resource$Users$Bulkeditassigneduserroles,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     bulkEditAssignedUserRoles(
       params?: Params$Resource$Users$Bulkeditassigneduserroles,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BulkEditAssignedUserRolesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$BulkEditAssignedUserRolesResponse>
+    >;
     bulkEditAssignedUserRoles(
       params: Params$Resource$Users$Bulkeditassigneduserroles,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -22094,8 +31852,10 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BulkEditAssignedUserRolesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$BulkEditAssignedUserRolesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Bulkeditassigneduserroles;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -22142,6 +31902,67 @@ export namespace displayvideo_v2 {
 
     /**
      * Creates a new user. Returns the newly created user if successful. This method has unique authentication requirements. Read the prerequisites in our [Managing Users guide](/display-video/api/guides/users/overview#prerequisites) before using this method. The "Try this method" feature does not work for this method.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video-user-management'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.users.create({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "assignedUserRoles": [],
+     *       //   "displayName": "my_displayName",
+     *       //   "email": "my_email",
+     *       //   "lastLoginTime": "my_lastLoginTime",
+     *       //   "name": "my_name",
+     *       //   "userId": "my_userId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assignedUserRoles": [],
+     *   //   "displayName": "my_displayName",
+     *   //   "email": "my_email",
+     *   //   "lastLoginTime": "my_lastLoginTime",
+     *   //   "name": "my_name",
+     *   //   "userId": "my_userId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -22151,11 +31972,11 @@ export namespace displayvideo_v2 {
     create(
       params: Params$Resource$Users$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Users$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$User>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$User>>;
     create(
       params: Params$Resource$Users$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -22184,7 +32005,10 @@ export namespace displayvideo_v2 {
       callback?:
         | BodyResponseCallback<Schema$User>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$User> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$User>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -22226,6 +32050,50 @@ export namespace displayvideo_v2 {
 
     /**
      * Deletes a user. This method has unique authentication requirements. Read the prerequisites in our [Managing Users guide](/display-video/api/guides/users/overview#prerequisites) before using this method. The "Try this method" feature does not work for this method.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video-user-management'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.users.delete({
+     *     // Required. The ID of the user to delete.
+     *     userId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -22235,11 +32103,11 @@ export namespace displayvideo_v2 {
     delete(
       params: Params$Resource$Users$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Users$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Users$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -22268,7 +32136,10 @@ export namespace displayvideo_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -22313,6 +32184,57 @@ export namespace displayvideo_v2 {
 
     /**
      * Gets a user. This method has unique authentication requirements. Read the prerequisites in our [Managing Users guide](/display-video/api/guides/users/overview#prerequisites) before using this method. The "Try this method" feature does not work for this method.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video-user-management'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.users.get({
+     *     // Required. The ID of the user to fetch.
+     *     userId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assignedUserRoles": [],
+     *   //   "displayName": "my_displayName",
+     *   //   "email": "my_email",
+     *   //   "lastLoginTime": "my_lastLoginTime",
+     *   //   "name": "my_name",
+     *   //   "userId": "my_userId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -22322,11 +32244,11 @@ export namespace displayvideo_v2 {
     get(
       params: Params$Resource$Users$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Users$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$User>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$User>>;
     get(
       params: Params$Resource$Users$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -22355,7 +32277,10 @@ export namespace displayvideo_v2 {
       callback?:
         | BodyResponseCallback<Schema$User>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$User> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$User>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -22400,6 +32325,59 @@ export namespace displayvideo_v2 {
 
     /**
      * Lists users that are accessible to the current user. If two users have user roles on the same partner or advertiser, they can access each other. This method has unique authentication requirements. Read the prerequisites in our [Managing Users guide](/display-video/api/guides/users/overview#prerequisites) before using this method. The "Try this method" feature does not work for this method.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video-user-management'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.users.list({
+     *     // Allows filtering by user fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The `displayName` and `email` fields must use the `HAS (:)` operator. * The `lastLoginTime` field must use either the `LESS THAN OR EQUAL TO (<=)` or `GREATER THAN OR EQUAL TO (\>=)` operator. * All other fields must use the `EQUALS (=)` operator. Supported fields: * `assignedUserRole.advertiserId` * `assignedUserRole.entityType`: This is synthetic field of `AssignedUserRole` used for filtering. Identifies the type of entity to which the user role is assigned. Valid values are `Partner` and `Advertiser`. * `assignedUserRole.parentPartnerId`: This is a synthetic field of `AssignedUserRole` used for filtering. Identifies the parent partner of the entity to which the user role is assigned. * `assignedUserRole.partnerId` * `assignedUserRole.userRole` * `displayName` * `email` * `lastLoginTime` (input in ISO 8601 format, or `YYYY-MM-DDTHH:MM:SSZ`) Examples: * The user with `displayName` containing "foo": `displayName:"foo"` * The user with `email` containing "bar": `email:"bar"` * All users with standard user roles: `assignedUserRole.userRole="STANDARD"` * All users with user roles for partner 123: `assignedUserRole.partnerId="123"` * All users with user roles for advertiser 123: `assignedUserRole.advertiserId="123"` * All users with partner level user roles: `entityType="PARTNER"` * All users with user roles for partner 123 and advertisers under partner 123: `parentPartnerId="123"` * All users that last logged in on or after 2023-01-01T00:00:00Z (format of ISO 8601): `lastLoginTime\>="2023-01-01T00:00:00Z"` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
+     *     filter: 'placeholder-value',
+     *     // Field by which to sort the list. Acceptable values are: * `displayName` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. For example, `displayName desc`.
+     *     orderBy: 'placeholder-value',
+     *     // Requested page size. Must be between `1` and `200`. If unspecified will default to `100`.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListUsers` method. If not specified, the first page of results will be returned.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "users": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -22409,11 +32387,11 @@ export namespace displayvideo_v2 {
     list(
       params: Params$Resource$Users$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Users$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListUsersResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListUsersResponse>>;
     list(
       params: Params$Resource$Users$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -22444,8 +32422,8 @@ export namespace displayvideo_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListUsersResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListUsersResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -22487,6 +32465,72 @@ export namespace displayvideo_v2 {
 
     /**
      * Updates an existing user. Returns the updated user if successful. This method has unique authentication requirements. Read the prerequisites in our [Managing Users guide](/display-video/api/guides/users/overview#prerequisites) before using this method. The "Try this method" feature does not work for this method.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video-user-management'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.users.patch({
+     *     // Required. The mask to control which fields to update.
+     *     updateMask: 'placeholder-value',
+     *     // Output only. The unique ID of the user. Assigned by the system.
+     *     userId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "assignedUserRoles": [],
+     *       //   "displayName": "my_displayName",
+     *       //   "email": "my_email",
+     *       //   "lastLoginTime": "my_lastLoginTime",
+     *       //   "name": "my_name",
+     *       //   "userId": "my_userId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assignedUserRoles": [],
+     *   //   "displayName": "my_displayName",
+     *   //   "email": "my_email",
+     *   //   "lastLoginTime": "my_lastLoginTime",
+     *   //   "name": "my_name",
+     *   //   "userId": "my_userId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -22496,11 +32540,11 @@ export namespace displayvideo_v2 {
     patch(
       params: Params$Resource$Users$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Users$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$User>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$User>>;
     patch(
       params: Params$Resource$Users$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -22529,7 +32573,10 @@ export namespace displayvideo_v2 {
       callback?:
         | BodyResponseCallback<Schema$User>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$User> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$User>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

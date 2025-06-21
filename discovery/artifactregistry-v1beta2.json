@@ -91,6 +91,11 @@
     },
     {
       "description": "Regional Endpoint",
+      "endpointUrl": "https://artifactregistry.europe-north2.rep.googleapis.com/",
+      "location": "europe-north2"
+    },
+    {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://artifactregistry.europe-southwest1.rep.googleapis.com/",
       "location": "europe-southwest1"
     },
@@ -158,6 +163,11 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://artifactregistry.northamerica-northeast2.rep.googleapis.com/",
       "location": "northamerica-northeast2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://artifactregistry.northamerica-south1.rep.googleapis.com/",
+      "location": "northamerica-south1"
     },
     {
       "description": "Regional Endpoint",
@@ -1440,7 +1450,7 @@
       }
     }
   },
-  "revision": "20250415",
+  "revision": "20250502",
   "rootUrl": "https://artifactregistry.googleapis.com/",
   "schemas": {
     "AptArtifact": {
@@ -2121,12 +2131,12 @@
           "type": "string"
         },
         "satisfiesPzi": {
-          "description": "Output only. If set, the repository satisfies physical zone isolation.",
+          "description": "Output only. Whether or not this repository satisfies PZI.",
           "readOnly": true,
           "type": "boolean"
         },
         "satisfiesPzs": {
-          "description": "Output only. If set, the repository satisfies physical zone separation.",
+          "description": "Output only. Whether or not this repository satisfies PZS.",
           "readOnly": true,
           "type": "boolean"
         },

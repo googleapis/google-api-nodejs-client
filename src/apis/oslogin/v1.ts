@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -241,6 +241,63 @@ export namespace oslogin_v1 {
 
     /**
      * Retrieves the profile information used for logging in to a virtual machine on Google Compute Engine.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oslogin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oslogin = google.oslogin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await oslogin.users.getLoginProfile({
+     *     // Required. The unique ID for the user in format `users/{user\}`.
+     *     name: 'users/my-user',
+     *     // Required. The project ID of the Google Cloud Platform project.
+     *     projectId: 'placeholder-value',
+     *     // Optional. A system ID for filtering the results of the request.
+     *     systemId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "posixAccounts": [],
+     *   //   "sshPublicKeys": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -250,11 +307,11 @@ export namespace oslogin_v1 {
     getLoginProfile(
       params: Params$Resource$Users$Getloginprofile,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getLoginProfile(
       params?: Params$Resource$Users$Getloginprofile,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LoginProfile>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LoginProfile>>;
     getLoginProfile(
       params: Params$Resource$Users$Getloginprofile,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -283,7 +340,10 @@ export namespace oslogin_v1 {
       callback?:
         | BodyResponseCallback<Schema$LoginProfile>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LoginProfile> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$LoginProfile>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Getloginprofile;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -329,6 +389,71 @@ export namespace oslogin_v1 {
 
     /**
      * Adds an SSH public key and returns the profile information. Default POSIX account information is set when no username and UID exist as part of the login profile.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oslogin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oslogin = google.oslogin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await oslogin.users.importSshPublicKey({
+     *     // Required. The unique ID for the user in format `users/{user\}`.
+     *     parent: 'users/my-user',
+     *     // The project ID of the Google Cloud Platform project.
+     *     projectId: 'placeholder-value',
+     *     // Optional. The regions to which to assert that the key was written. If unspecified, defaults to all regions. Regions are listed at https://cloud.google.com/about/locations#region.
+     *     regions: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "expirationTimeUsec": "my_expirationTimeUsec",
+     *       //   "fingerprint": "my_fingerprint",
+     *       //   "key": "my_key",
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "details": "my_details",
+     *   //   "loginProfile": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -338,11 +463,11 @@ export namespace oslogin_v1 {
     importSshPublicKey(
       params: Params$Resource$Users$Importsshpublickey,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     importSshPublicKey(
       params?: Params$Resource$Users$Importsshpublickey,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ImportSshPublicKeyResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ImportSshPublicKeyResponse>>;
     importSshPublicKey(
       params: Params$Resource$Users$Importsshpublickey,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -377,8 +502,8 @@ export namespace oslogin_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ImportSshPublicKeyResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ImportSshPublicKeyResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Importsshpublickey;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -430,11 +555,11 @@ export namespace oslogin_v1 {
      */
     name?: string;
     /**
-     * The project ID of the Google Cloud Platform project.
+     * Required. The project ID of the Google Cloud Platform project.
      */
     projectId?: string;
     /**
-     * A system ID for filtering the results of the request.
+     * Optional. A system ID for filtering the results of the request.
      */
     systemId?: string;
   }
@@ -467,6 +592,53 @@ export namespace oslogin_v1 {
 
     /**
      * Deletes a POSIX account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oslogin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oslogin = google.oslogin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await oslogin.users.projects.delete({
+     *     // Required. A reference to the POSIX account to update. POSIX accounts are identified by the project ID they are associated with. A reference to the POSIX account is in format `users/{user\}/projects/{project\}`.
+     *     name: 'users/my-user/projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -476,11 +648,11 @@ export namespace oslogin_v1 {
     delete(
       params: Params$Resource$Users$Projects$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Users$Projects$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Users$Projects$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -509,7 +681,10 @@ export namespace oslogin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Projects$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -567,6 +742,69 @@ export namespace oslogin_v1 {
 
     /**
      * Create an SSH public key
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oslogin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oslogin = google.oslogin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await oslogin.users.sshPublicKeys.create({
+     *     // Required. The unique ID for the user in format `users/{user\}`.
+     *     parent: 'users/my-user',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "expirationTimeUsec": "my_expirationTimeUsec",
+     *       //   "fingerprint": "my_fingerprint",
+     *       //   "key": "my_key",
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "expirationTimeUsec": "my_expirationTimeUsec",
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "key": "my_key",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -576,11 +814,11 @@ export namespace oslogin_v1 {
     create(
       params: Params$Resource$Users$Sshpublickeys$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Users$Sshpublickeys$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SshPublicKey>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SshPublicKey>>;
     create(
       params: Params$Resource$Users$Sshpublickeys$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -609,7 +847,10 @@ export namespace oslogin_v1 {
       callback?:
         | BodyResponseCallback<Schema$SshPublicKey>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SshPublicKey> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SshPublicKey>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Sshpublickeys$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -655,6 +896,53 @@ export namespace oslogin_v1 {
 
     /**
      * Deletes an SSH public key.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oslogin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oslogin = google.oslogin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await oslogin.users.sshPublicKeys.delete({
+     *     // Required. The fingerprint of the public key to update. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user\}/sshPublicKeys/{fingerprint\}`.
+     *     name: 'users/my-user/sshPublicKeys/my-sshPublicKey',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -664,11 +952,11 @@ export namespace oslogin_v1 {
     delete(
       params: Params$Resource$Users$Sshpublickeys$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Users$Sshpublickeys$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Users$Sshpublickeys$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -697,7 +985,10 @@ export namespace oslogin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Sshpublickeys$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -740,6 +1031,58 @@ export namespace oslogin_v1 {
 
     /**
      * Retrieves an SSH public key.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oslogin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oslogin = google.oslogin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await oslogin.users.sshPublicKeys.get({
+     *     // Required. The fingerprint of the public key to retrieve. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user\}/sshPublicKeys/{fingerprint\}`.
+     *     name: 'users/my-user/sshPublicKeys/my-sshPublicKey',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "expirationTimeUsec": "my_expirationTimeUsec",
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "key": "my_key",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -749,11 +1092,11 @@ export namespace oslogin_v1 {
     get(
       params: Params$Resource$Users$Sshpublickeys$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Users$Sshpublickeys$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SshPublicKey>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SshPublicKey>>;
     get(
       params: Params$Resource$Users$Sshpublickeys$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -782,7 +1125,10 @@ export namespace oslogin_v1 {
       callback?:
         | BodyResponseCallback<Schema$SshPublicKey>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SshPublicKey> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SshPublicKey>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Sshpublickeys$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -825,6 +1171,71 @@ export namespace oslogin_v1 {
 
     /**
      * Updates an SSH public key and returns the profile information. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oslogin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oslogin = google.oslogin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await oslogin.users.sshPublicKeys.patch({
+     *     // Required. The fingerprint of the public key to update. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user\}/sshPublicKeys/{fingerprint\}`.
+     *     name: 'users/my-user/sshPublicKeys/my-sshPublicKey',
+     *     // Optional. Mask to control which fields get updated. Updates all if not present.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "expirationTimeUsec": "my_expirationTimeUsec",
+     *       //   "fingerprint": "my_fingerprint",
+     *       //   "key": "my_key",
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "expirationTimeUsec": "my_expirationTimeUsec",
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "key": "my_key",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -834,11 +1245,11 @@ export namespace oslogin_v1 {
     patch(
       params: Params$Resource$Users$Sshpublickeys$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Users$Sshpublickeys$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SshPublicKey>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SshPublicKey>>;
     patch(
       params: Params$Resource$Users$Sshpublickeys$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -867,7 +1278,10 @@ export namespace oslogin_v1 {
       callback?:
         | BodyResponseCallback<Schema$SshPublicKey>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SshPublicKey> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SshPublicKey>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Sshpublickeys$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -942,7 +1356,7 @@ export namespace oslogin_v1 {
      */
     name?: string;
     /**
-     * Mask to control which fields get updated. Updates all if not present.
+     * Optional. Mask to control which fields get updated. Updates all if not present.
      */
     updateMask?: string;
 

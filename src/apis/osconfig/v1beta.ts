@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -596,6 +596,10 @@ export namespace osconfig_v1beta {
      */
     osVersion?: string | null;
   }
+  /**
+   * This is proto2's version of MessageSet. DEPRECATED: DO NOT USE FOR NEW FIELDS. If you are using editions or proto2, please make your own extendable messages for your use case. If you are using proto3, please use `Any` instead. MessageSet was the implementation of extensions for proto1. When proto2 was introduced, extensions were implemented as a first-class feature. This schema for MessageSet was meant to be a "bridge" solution to migrate MessageSet-bearing messages from proto1 to proto2. This schema has been open-sourced only to facilitate the migration of Google products with MessageSet-bearing messages to open-source environments.
+   */
+  export interface Schema$MessageSet {}
   /**
    * Represents a monthly schedule. An example of a valid monthly schedule is "on the third Tuesday of the month" or "on the 15th of the month".
    */
@@ -1251,6 +1255,31 @@ export namespace osconfig_v1beta {
     script?: string | null;
   }
   /**
+   * Wire-format for a Status object
+   */
+  export interface Schema$StatusProto {
+    /**
+     * copybara:strip_begin(b/383363683) copybara:strip_end_and_replace optional int32 canonical_code = 6;
+     */
+    canonicalCode?: number | null;
+    /**
+     * Numeric code drawn from the space specified below. Often, this is the canonical error space, and code is drawn from google3/util/task/codes.proto copybara:strip_begin(b/383363683) copybara:strip_end_and_replace optional int32 code = 1;
+     */
+    code?: number | null;
+    /**
+     * Detail message copybara:strip_begin(b/383363683) copybara:strip_end_and_replace optional string message = 3;
+     */
+    message?: string | null;
+    /**
+     * message_set associates an arbitrary proto message with the status. copybara:strip_begin(b/383363683) copybara:strip_end_and_replace optional proto2.bridge.MessageSet message_set = 5;
+     */
+    messageSet?: Schema$MessageSet;
+    /**
+     * copybara:strip_begin(b/383363683) Space to which this status belongs copybara:strip_end_and_replace optional string space = 2; // Space to which this status belongs
+     */
+    space?: string | null;
+  }
+  /**
    * Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and `google.protobuf.Timestamp`.
    */
   export interface Schema$TimeOfDay {
@@ -1445,6 +1474,78 @@ export namespace osconfig_v1beta {
 
     /**
      * Create an OS Config guest policy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/osconfig.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const osconfig = google.osconfig('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await osconfig.projects.guestPolicies.create({
+     *     // Required. The logical name of the guest policy in the project with the following restrictions: * Must contain only lowercase letters, numbers, and hyphens. * Must start with a letter. * Must be between 1-63 characters. * Must end with a number or a letter. * Must be unique within the project.
+     *     guestPolicyId: 'placeholder-value',
+     *     // Required. The resource name of the parent using one of the following forms: `projects/{project_number\}`.
+     *     parent: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "assignment": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "etag": "my_etag",
+     *       //   "name": "my_name",
+     *       //   "packageRepositories": [],
+     *       //   "packages": [],
+     *       //   "recipes": [],
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assignment": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "packageRepositories": [],
+     *   //   "packages": [],
+     *   //   "recipes": [],
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1454,11 +1555,11 @@ export namespace osconfig_v1beta {
     create(
       params: Params$Resource$Projects$Guestpolicies$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Guestpolicies$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GuestPolicy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GuestPolicy>>;
     create(
       params: Params$Resource$Projects$Guestpolicies$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1487,7 +1588,10 @@ export namespace osconfig_v1beta {
       callback?:
         | BodyResponseCallback<Schema$GuestPolicy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$GuestPolicy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GuestPolicy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Guestpolicies$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1533,6 +1637,50 @@ export namespace osconfig_v1beta {
 
     /**
      * Delete an OS Config guest policy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/osconfig.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const osconfig = google.osconfig('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await osconfig.projects.guestPolicies.delete({
+     *     // Required. The resource name of the guest policy using one of the following forms: `projects/{project_number\}/guestPolicies/{guest_policy_id\}`.
+     *     name: 'projects/my-project/guestPolicies/my-guestPolicie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1542,11 +1690,11 @@ export namespace osconfig_v1beta {
     delete(
       params: Params$Resource$Projects$Guestpolicies$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Guestpolicies$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Guestpolicies$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1575,7 +1723,10 @@ export namespace osconfig_v1beta {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Guestpolicies$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1618,6 +1769,60 @@ export namespace osconfig_v1beta {
 
     /**
      * Get an OS Config guest policy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/osconfig.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const osconfig = google.osconfig('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await osconfig.projects.guestPolicies.get({
+     *     // Required. The resource name of the guest policy using one of the following forms: `projects/{project_number\}/guestPolicies/{guest_policy_id\}`.
+     *     name: 'projects/my-project/guestPolicies/my-guestPolicie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assignment": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "packageRepositories": [],
+     *   //   "packages": [],
+     *   //   "recipes": [],
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1627,11 +1832,11 @@ export namespace osconfig_v1beta {
     get(
       params: Params$Resource$Projects$Guestpolicies$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Guestpolicies$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GuestPolicy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GuestPolicy>>;
     get(
       params: Params$Resource$Projects$Guestpolicies$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1660,7 +1865,10 @@ export namespace osconfig_v1beta {
       callback?:
         | BodyResponseCallback<Schema$GuestPolicy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$GuestPolicy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GuestPolicy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Guestpolicies$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1703,6 +1911,57 @@ export namespace osconfig_v1beta {
 
     /**
      * Get a page of OS Config guest policies.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/osconfig.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const osconfig = google.osconfig('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await osconfig.projects.guestPolicies.list({
+     *     // The maximum number of guest policies to return.
+     *     pageSize: 'placeholder-value',
+     *     // A pagination token returned from a previous call to `ListGuestPolicies` that indicates where this listing should continue from.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name of the parent using one of the following forms: `projects/{project_number\}`.
+     *     parent: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "guestPolicies": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1712,11 +1971,11 @@ export namespace osconfig_v1beta {
     list(
       params: Params$Resource$Projects$Guestpolicies$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Guestpolicies$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListGuestPoliciesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListGuestPoliciesResponse>>;
     list(
       params: Params$Resource$Projects$Guestpolicies$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1751,8 +2010,8 @@ export namespace osconfig_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListGuestPoliciesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListGuestPoliciesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Guestpolicies$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1798,6 +2057,78 @@ export namespace osconfig_v1beta {
 
     /**
      * Update an OS Config guest policy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/osconfig.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const osconfig = google.osconfig('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await osconfig.projects.guestPolicies.patch({
+     *     // Required. Unique name of the resource in this project using one of the following forms: `projects/{project_number\}/guestPolicies/{guest_policy_id\}`.
+     *     name: 'projects/my-project/guestPolicies/my-guestPolicie',
+     *     // Field mask that controls which fields of the guest policy should be updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "assignment": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "etag": "my_etag",
+     *       //   "name": "my_name",
+     *       //   "packageRepositories": [],
+     *       //   "packages": [],
+     *       //   "recipes": [],
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assignment": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "packageRepositories": [],
+     *   //   "packages": [],
+     *   //   "recipes": [],
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1807,11 +2138,11 @@ export namespace osconfig_v1beta {
     patch(
       params: Params$Resource$Projects$Guestpolicies$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Guestpolicies$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GuestPolicy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GuestPolicy>>;
     patch(
       params: Params$Resource$Projects$Guestpolicies$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1840,7 +2171,10 @@ export namespace osconfig_v1beta {
       callback?:
         | BodyResponseCallback<Schema$GuestPolicy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$GuestPolicy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GuestPolicy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Guestpolicies$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1952,6 +2286,84 @@ export namespace osconfig_v1beta {
 
     /**
      * Create an OS Config patch deployment.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/osconfig.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const osconfig = google.osconfig('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await osconfig.projects.patchDeployments.create({
+     *     // Required. The project to apply this patch deployment to in the form `projects/x`.
+     *     parent: 'projects/my-project',
+     *     // Required. A name for the patch deployment in the project. When creating a name the following rules apply: * Must contain only lowercase letters, numbers, and hyphens. * Must start with a letter. * Must be between 1-63 characters. * Must end with a number or a letter. * Must be unique within the project.
+     *     patchDeploymentId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "duration": "my_duration",
+     *       //   "instanceFilter": {},
+     *       //   "lastExecuteTime": "my_lastExecuteTime",
+     *       //   "name": "my_name",
+     *       //   "oneTimeSchedule": {},
+     *       //   "patchConfig": {},
+     *       //   "recurringSchedule": {},
+     *       //   "rollout": {},
+     *       //   "state": "my_state",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "duration": "my_duration",
+     *   //   "instanceFilter": {},
+     *   //   "lastExecuteTime": "my_lastExecuteTime",
+     *   //   "name": "my_name",
+     *   //   "oneTimeSchedule": {},
+     *   //   "patchConfig": {},
+     *   //   "recurringSchedule": {},
+     *   //   "rollout": {},
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1961,11 +2373,11 @@ export namespace osconfig_v1beta {
     create(
       params: Params$Resource$Projects$Patchdeployments$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Patchdeployments$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PatchDeployment>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PatchDeployment>>;
     create(
       params: Params$Resource$Projects$Patchdeployments$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1994,7 +2406,10 @@ export namespace osconfig_v1beta {
       callback?:
         | BodyResponseCallback<Schema$PatchDeployment>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$PatchDeployment> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$PatchDeployment>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Patchdeployments$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2040,6 +2455,50 @@ export namespace osconfig_v1beta {
 
     /**
      * Delete an OS Config patch deployment.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/osconfig.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const osconfig = google.osconfig('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await osconfig.projects.patchDeployments.delete({
+     *     // Required. The resource name of the patch deployment in the form `projects/x/patchDeployments/x`.
+     *     name: 'projects/my-project/patchDeployments/my-patchDeployment',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2049,11 +2508,11 @@ export namespace osconfig_v1beta {
     delete(
       params: Params$Resource$Projects$Patchdeployments$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Patchdeployments$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Patchdeployments$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2082,7 +2541,10 @@ export namespace osconfig_v1beta {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Patchdeployments$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2125,6 +2587,63 @@ export namespace osconfig_v1beta {
 
     /**
      * Get an OS Config patch deployment.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/osconfig.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const osconfig = google.osconfig('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await osconfig.projects.patchDeployments.get({
+     *     // Required. The resource name of the patch deployment in the form `projects/x/patchDeployments/x`.
+     *     name: 'projects/my-project/patchDeployments/my-patchDeployment',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "duration": "my_duration",
+     *   //   "instanceFilter": {},
+     *   //   "lastExecuteTime": "my_lastExecuteTime",
+     *   //   "name": "my_name",
+     *   //   "oneTimeSchedule": {},
+     *   //   "patchConfig": {},
+     *   //   "recurringSchedule": {},
+     *   //   "rollout": {},
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2134,11 +2653,11 @@ export namespace osconfig_v1beta {
     get(
       params: Params$Resource$Projects$Patchdeployments$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Patchdeployments$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PatchDeployment>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PatchDeployment>>;
     get(
       params: Params$Resource$Projects$Patchdeployments$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2167,7 +2686,10 @@ export namespace osconfig_v1beta {
       callback?:
         | BodyResponseCallback<Schema$PatchDeployment>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$PatchDeployment> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$PatchDeployment>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Patchdeployments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2210,6 +2732,57 @@ export namespace osconfig_v1beta {
 
     /**
      * Get a page of OS Config patch deployments.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/osconfig.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const osconfig = google.osconfig('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await osconfig.projects.patchDeployments.list({
+     *     // Optional. The maximum number of patch deployments to return. Default is 100.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A pagination token returned from a previous call to ListPatchDeployments that indicates where this listing should continue from.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name of the parent in the form `projects/x`.
+     *     parent: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "patchDeployments": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2219,11 +2792,11 @@ export namespace osconfig_v1beta {
     list(
       params: Params$Resource$Projects$Patchdeployments$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Patchdeployments$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListPatchDeploymentsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListPatchDeploymentsResponse>>;
     list(
       params: Params$Resource$Projects$Patchdeployments$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2258,8 +2831,8 @@ export namespace osconfig_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListPatchDeploymentsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListPatchDeploymentsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Patchdeployments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2307,6 +2880,84 @@ export namespace osconfig_v1beta {
 
     /**
      * Update an OS Config patch deployment.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/osconfig.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const osconfig = google.osconfig('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await osconfig.projects.patchDeployments.patch({
+     *     // Unique name for the patch deployment resource in a project. The patch deployment name is in the form: `projects/{project_id\}/patchDeployments/{patch_deployment_id\}`. This field is ignored when you create a new patch deployment.
+     *     name: 'projects/my-project/patchDeployments/my-patchDeployment',
+     *     // Optional. Field mask that controls which fields of the patch deployment should be updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "duration": "my_duration",
+     *       //   "instanceFilter": {},
+     *       //   "lastExecuteTime": "my_lastExecuteTime",
+     *       //   "name": "my_name",
+     *       //   "oneTimeSchedule": {},
+     *       //   "patchConfig": {},
+     *       //   "recurringSchedule": {},
+     *       //   "rollout": {},
+     *       //   "state": "my_state",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "duration": "my_duration",
+     *   //   "instanceFilter": {},
+     *   //   "lastExecuteTime": "my_lastExecuteTime",
+     *   //   "name": "my_name",
+     *   //   "oneTimeSchedule": {},
+     *   //   "patchConfig": {},
+     *   //   "recurringSchedule": {},
+     *   //   "rollout": {},
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2316,11 +2967,11 @@ export namespace osconfig_v1beta {
     patch(
       params: Params$Resource$Projects$Patchdeployments$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Patchdeployments$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PatchDeployment>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PatchDeployment>>;
     patch(
       params: Params$Resource$Projects$Patchdeployments$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2349,7 +3000,10 @@ export namespace osconfig_v1beta {
       callback?:
         | BodyResponseCallback<Schema$PatchDeployment>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$PatchDeployment> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$PatchDeployment>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Patchdeployments$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2392,6 +3046,69 @@ export namespace osconfig_v1beta {
 
     /**
      * Change state of patch deployment to "PAUSED". Patch deployment in paused state doesn't generate patch jobs.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/osconfig.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const osconfig = google.osconfig('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await osconfig.projects.patchDeployments.pause({
+     *     // Required. The resource name of the patch deployment in the form `projects/x/patchDeployments/x`.
+     *     name: 'projects/my-project/patchDeployments/my-patchDeployment',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "duration": "my_duration",
+     *   //   "instanceFilter": {},
+     *   //   "lastExecuteTime": "my_lastExecuteTime",
+     *   //   "name": "my_name",
+     *   //   "oneTimeSchedule": {},
+     *   //   "patchConfig": {},
+     *   //   "recurringSchedule": {},
+     *   //   "rollout": {},
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2401,11 +3118,11 @@ export namespace osconfig_v1beta {
     pause(
       params: Params$Resource$Projects$Patchdeployments$Pause,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     pause(
       params?: Params$Resource$Projects$Patchdeployments$Pause,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PatchDeployment>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PatchDeployment>>;
     pause(
       params: Params$Resource$Projects$Patchdeployments$Pause,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2434,7 +3151,10 @@ export namespace osconfig_v1beta {
       callback?:
         | BodyResponseCallback<Schema$PatchDeployment>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$PatchDeployment> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$PatchDeployment>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Patchdeployments$Pause;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2480,6 +3200,69 @@ export namespace osconfig_v1beta {
 
     /**
      * Change state of patch deployment back to "ACTIVE". Patch deployment in active state continues to generate patch jobs.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/osconfig.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const osconfig = google.osconfig('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await osconfig.projects.patchDeployments.resume({
+     *     // Required. The resource name of the patch deployment in the form `projects/x/patchDeployments/x`.
+     *     name: 'projects/my-project/patchDeployments/my-patchDeployment',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "duration": "my_duration",
+     *   //   "instanceFilter": {},
+     *   //   "lastExecuteTime": "my_lastExecuteTime",
+     *   //   "name": "my_name",
+     *   //   "oneTimeSchedule": {},
+     *   //   "patchConfig": {},
+     *   //   "recurringSchedule": {},
+     *   //   "rollout": {},
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2489,11 +3272,11 @@ export namespace osconfig_v1beta {
     resume(
       params: Params$Resource$Projects$Patchdeployments$Resume,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     resume(
       params?: Params$Resource$Projects$Patchdeployments$Resume,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PatchDeployment>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PatchDeployment>>;
     resume(
       params: Params$Resource$Projects$Patchdeployments$Resume,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2522,7 +3305,10 @@ export namespace osconfig_v1beta {
       callback?:
         | BodyResponseCallback<Schema$PatchDeployment>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$PatchDeployment> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$PatchDeployment>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Patchdeployments$Resume;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2665,6 +3451,72 @@ export namespace osconfig_v1beta {
 
     /**
      * Cancel a patch job. The patch job must be active. Canceled patch jobs cannot be restarted.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/osconfig.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const osconfig = google.osconfig('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await osconfig.projects.patchJobs.cancel({
+     *     // Required. Name of the patch in the form `projects/x/patchJobs/x`
+     *     name: 'projects/my-project/patchJobs/my-patchJob',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "dryRun": false,
+     *   //   "duration": "my_duration",
+     *   //   "errorMessage": "my_errorMessage",
+     *   //   "instanceDetailsSummary": {},
+     *   //   "instanceFilter": {},
+     *   //   "name": "my_name",
+     *   //   "patchConfig": {},
+     *   //   "patchDeployment": "my_patchDeployment",
+     *   //   "percentComplete": {},
+     *   //   "rollout": {},
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2674,11 +3526,11 @@ export namespace osconfig_v1beta {
     cancel(
       params: Params$Resource$Projects$Patchjobs$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     cancel(
       params?: Params$Resource$Projects$Patchjobs$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PatchJob>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PatchJob>>;
     cancel(
       params: Params$Resource$Projects$Patchjobs$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2707,7 +3559,10 @@ export namespace osconfig_v1beta {
       callback?:
         | BodyResponseCallback<Schema$PatchJob>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$PatchJob> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$PatchJob>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Patchjobs$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2753,6 +3608,80 @@ export namespace osconfig_v1beta {
 
     /**
      * Patch VM instances by creating and running a patch job.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/osconfig.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const osconfig = google.osconfig('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await osconfig.projects.patchJobs.execute({
+     *     // Required. The project in which to run this patch in the form `projects/x`
+     *     parent: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "description": "my_description",
+     *       //   "displayName": "my_displayName",
+     *       //   "dryRun": false,
+     *       //   "duration": "my_duration",
+     *       //   "instanceFilter": {},
+     *       //   "patchConfig": {},
+     *       //   "rollout": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "dryRun": false,
+     *   //   "duration": "my_duration",
+     *   //   "errorMessage": "my_errorMessage",
+     *   //   "instanceDetailsSummary": {},
+     *   //   "instanceFilter": {},
+     *   //   "name": "my_name",
+     *   //   "patchConfig": {},
+     *   //   "patchDeployment": "my_patchDeployment",
+     *   //   "percentComplete": {},
+     *   //   "rollout": {},
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2762,11 +3691,11 @@ export namespace osconfig_v1beta {
     execute(
       params: Params$Resource$Projects$Patchjobs$Execute,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     execute(
       params?: Params$Resource$Projects$Patchjobs$Execute,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PatchJob>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PatchJob>>;
     execute(
       params: Params$Resource$Projects$Patchjobs$Execute,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2795,7 +3724,10 @@ export namespace osconfig_v1beta {
       callback?:
         | BodyResponseCallback<Schema$PatchJob>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$PatchJob> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$PatchJob>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Patchjobs$Execute;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2841,6 +3773,66 @@ export namespace osconfig_v1beta {
 
     /**
      * Get the patch job. This can be used to track the progress of an ongoing patch job or review the details of completed jobs.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/osconfig.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const osconfig = google.osconfig('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await osconfig.projects.patchJobs.get({
+     *     // Required. Name of the patch in the form `projects/x/patchJobs/x`
+     *     name: 'projects/my-project/patchJobs/my-patchJob',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "dryRun": false,
+     *   //   "duration": "my_duration",
+     *   //   "errorMessage": "my_errorMessage",
+     *   //   "instanceDetailsSummary": {},
+     *   //   "instanceFilter": {},
+     *   //   "name": "my_name",
+     *   //   "patchConfig": {},
+     *   //   "patchDeployment": "my_patchDeployment",
+     *   //   "percentComplete": {},
+     *   //   "rollout": {},
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2850,11 +3842,11 @@ export namespace osconfig_v1beta {
     get(
       params: Params$Resource$Projects$Patchjobs$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Patchjobs$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PatchJob>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PatchJob>>;
     get(
       params: Params$Resource$Projects$Patchjobs$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2883,7 +3875,10 @@ export namespace osconfig_v1beta {
       callback?:
         | BodyResponseCallback<Schema$PatchJob>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$PatchJob> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$PatchJob>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Patchjobs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2926,6 +3921,59 @@ export namespace osconfig_v1beta {
 
     /**
      * Get a list of patch jobs.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/osconfig.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const osconfig = google.osconfig('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await osconfig.projects.patchJobs.list({
+     *     // If provided, this field specifies the criteria that must be met by patch jobs to be included in the response. Currently, filtering is only available on the patch_deployment field.
+     *     filter: 'placeholder-value',
+     *     // The maximum number of instance status to return.
+     *     pageSize: 'placeholder-value',
+     *     // A pagination token returned from a previous call that indicates where this listing should continue from.
+     *     pageToken: 'placeholder-value',
+     *     // Required. In the form of `projects/x`
+     *     parent: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "patchJobs": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2935,11 +3983,11 @@ export namespace osconfig_v1beta {
     list(
       params: Params$Resource$Projects$Patchjobs$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Patchjobs$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListPatchJobsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListPatchJobsResponse>>;
     list(
       params: Params$Resource$Projects$Patchjobs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2972,8 +4020,8 @@ export namespace osconfig_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListPatchJobsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListPatchJobsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Patchjobs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3077,6 +4125,59 @@ export namespace osconfig_v1beta {
 
     /**
      * Get a list of instance details for a given patch job.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/osconfig.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const osconfig = google.osconfig('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await osconfig.projects.patchJobs.instanceDetails.list({
+     *     // A filter expression that filters results listed in the response. This field supports filtering results by instance zone, name, state, or `failure_reason`.
+     *     filter: 'placeholder-value',
+     *     // The maximum number of instance details records to return. Default is 100.
+     *     pageSize: 'placeholder-value',
+     *     // A pagination token returned from a previous call that indicates where this listing should continue from.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent for the instances are in the form of `projects/x/patchJobs/x`.
+     *     parent: 'projects/my-project/patchJobs/my-patchJob',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "patchJobInstanceDetails": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3086,11 +4187,13 @@ export namespace osconfig_v1beta {
     list(
       params: Params$Resource$Projects$Patchjobs$Instancedetails$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Patchjobs$Instancedetails$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListPatchJobInstanceDetailsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListPatchJobInstanceDetailsResponse>
+    >;
     list(
       params: Params$Resource$Projects$Patchjobs$Instancedetails$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3125,8 +4228,10 @@ export namespace osconfig_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListPatchJobInstanceDetailsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListPatchJobInstanceDetailsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Patchjobs$Instancedetails$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3210,6 +4315,65 @@ export namespace osconfig_v1beta {
 
     /**
      * Lookup the effective guest policy that applies to a VM instance. This lookup merges all policies that are assigned to the instance ancestry.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/osconfig.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const osconfig = google.osconfig('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await osconfig.projects.zones.instances.lookupEffectiveGuestPolicy({
+     *       // Required. The VM instance whose policies are being looked up.
+     *       instance: 'projects/my-project/zones/my-zone/instances/my-instance',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "osArchitecture": "my_osArchitecture",
+     *         //   "osShortName": "my_osShortName",
+     *         //   "osVersion": "my_osVersion"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "packageRepositories": [],
+     *   //   "packages": [],
+     *   //   "softwareRecipes": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3219,11 +4383,11 @@ export namespace osconfig_v1beta {
     lookupEffectiveGuestPolicy(
       params: Params$Resource$Projects$Zones$Instances$Lookupeffectiveguestpolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     lookupEffectiveGuestPolicy(
       params?: Params$Resource$Projects$Zones$Instances$Lookupeffectiveguestpolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$EffectiveGuestPolicy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$EffectiveGuestPolicy>>;
     lookupEffectiveGuestPolicy(
       params: Params$Resource$Projects$Zones$Instances$Lookupeffectiveguestpolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3258,8 +4422,8 @@ export namespace osconfig_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$EffectiveGuestPolicy>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$EffectiveGuestPolicy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Zones$Instances$Lookupeffectiveguestpolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;

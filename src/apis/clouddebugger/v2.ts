@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -689,11 +689,11 @@ export namespace clouddebugger_v2 {
     register(
       params: Params$Resource$Controller$Debuggees$Register,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     register(
       params?: Params$Resource$Controller$Debuggees$Register,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RegisterDebuggeeResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$RegisterDebuggeeResponse>>;
     register(
       params: Params$Resource$Controller$Debuggees$Register,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -728,8 +728,8 @@ export namespace clouddebugger_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$RegisterDebuggeeResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$RegisterDebuggeeResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Controller$Debuggees$Register;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -852,11 +852,11 @@ export namespace clouddebugger_v2 {
     list(
       params: Params$Resource$Controller$Debuggees$Breakpoints$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Controller$Debuggees$Breakpoints$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListActiveBreakpointsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListActiveBreakpointsResponse>>;
     list(
       params: Params$Resource$Controller$Debuggees$Breakpoints$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -891,8 +891,8 @@ export namespace clouddebugger_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListActiveBreakpointsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListActiveBreakpointsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Controller$Debuggees$Breakpoints$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1001,11 +1001,11 @@ export namespace clouddebugger_v2 {
     update(
       params: Params$Resource$Controller$Debuggees$Breakpoints$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Controller$Debuggees$Breakpoints$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$UpdateActiveBreakpointResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$UpdateActiveBreakpointResponse>>;
     update(
       params: Params$Resource$Controller$Debuggees$Breakpoints$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1040,8 +1040,8 @@ export namespace clouddebugger_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$UpdateActiveBreakpointResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$UpdateActiveBreakpointResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Controller$Debuggees$Breakpoints$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1202,11 +1202,11 @@ export namespace clouddebugger_v2 {
     list(
       params: Params$Resource$Debugger$Debuggees$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Debugger$Debuggees$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListDebuggeesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListDebuggeesResponse>>;
     list(
       params: Params$Resource$Debugger$Debuggees$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1239,8 +1239,8 @@ export namespace clouddebugger_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListDebuggeesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListDebuggeesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Debugger$Debuggees$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1365,11 +1365,11 @@ export namespace clouddebugger_v2 {
     delete(
       params: Params$Resource$Debugger$Debuggees$Breakpoints$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Debugger$Debuggees$Breakpoints$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Debugger$Debuggees$Breakpoints$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1398,7 +1398,7 @@ export namespace clouddebugger_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Empty>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Debugger$Debuggees$Breakpoints$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1502,11 +1502,11 @@ export namespace clouddebugger_v2 {
     get(
       params: Params$Resource$Debugger$Debuggees$Breakpoints$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Debugger$Debuggees$Breakpoints$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GetBreakpointResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GetBreakpointResponse>>;
     get(
       params: Params$Resource$Debugger$Debuggees$Breakpoints$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1539,8 +1539,8 @@ export namespace clouddebugger_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GetBreakpointResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GetBreakpointResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Debugger$Debuggees$Breakpoints$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1653,11 +1653,11 @@ export namespace clouddebugger_v2 {
     list(
       params: Params$Resource$Debugger$Debuggees$Breakpoints$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Debugger$Debuggees$Breakpoints$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListBreakpointsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListBreakpointsResponse>>;
     list(
       params: Params$Resource$Debugger$Debuggees$Breakpoints$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1690,8 +1690,8 @@ export namespace clouddebugger_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListBreakpointsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListBreakpointsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Debugger$Debuggees$Breakpoints$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1819,11 +1819,11 @@ export namespace clouddebugger_v2 {
     set(
       params: Params$Resource$Debugger$Debuggees$Breakpoints$Set,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     set(
       params?: Params$Resource$Debugger$Debuggees$Breakpoints$Set,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SetBreakpointResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SetBreakpointResponse>>;
     set(
       params: Params$Resource$Debugger$Debuggees$Breakpoints$Set,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1856,8 +1856,8 @@ export namespace clouddebugger_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SetBreakpointResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SetBreakpointResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Debugger$Debuggees$Breakpoints$Set;
       let options = (optionsOrCallback || {}) as MethodOptions;

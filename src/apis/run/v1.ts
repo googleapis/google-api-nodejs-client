@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -1276,7 +1276,7 @@ export namespace run_v1 {
    */
   export interface Schema$GoogleDevtoolsCloudbuildV1GitSourceRepository {
     /**
-     * The Developer Connect Git repository link or the url that matches a repository link in the current project, formatted as `projects/x/locations/x/connections/x/gitRepositoryLink/x`
+     * The Developer Connect Git repository link formatted as `projects/x/locations/x/connections/x/gitRepositoryLink/x`
      */
     developerConnect?: string | null;
     /**
@@ -2898,13 +2898,17 @@ export namespace run_v1 {
    */
   export interface Schema$TaskAttemptResult {
     /**
-     * Optional. The exit code of this attempt. This may be unset if the container was unable to exit cleanly with a code due to some other failure. See status field for possible failure details.
+     * Optional. The exit code of this attempt. This may be unset if the container was unable to exit cleanly with a code due to some other failure. See status field for possible failure details. At most one of exit_code or term_signal will be set.
      */
     exitCode?: number | null;
     /**
      * Optional. The status of this attempt. If the status code is OK, then the attempt succeeded.
      */
     status?: Schema$GoogleRpcStatus;
+    /**
+     * Optional. Termination signal of the container. This is set to non-zero if the container is terminated by the system. At most one of exit_code or term_signal will be set.
+     */
+    termSignal?: number | null;
   }
   /**
    * TaskSpec is a description of a task.
@@ -3193,6 +3197,57 @@ export namespace run_v1 {
 
     /**
      * List authorized domains.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.authorizeddomains.list({
+     *     // Maximum results to return per page.
+     *     pageSize: 'placeholder-value',
+     *     // Continuation token for fetching the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // Name of the parent Project resource. Example: `projects/myproject`.
+     *     parent: 'namespaces/my-namespace',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "domains": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3202,11 +3257,11 @@ export namespace run_v1 {
     list(
       params: Params$Resource$Namespaces$Authorizeddomains$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Namespaces$Authorizeddomains$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAuthorizedDomainsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListAuthorizedDomainsResponse>>;
     list(
       params: Params$Resource$Namespaces$Authorizeddomains$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3241,8 +3296,8 @@ export namespace run_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListAuthorizedDomainsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListAuthorizedDomainsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Namespaces$Authorizeddomains$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3313,6 +3368,56 @@ export namespace run_v1 {
 
     /**
      * Get information about a configuration.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.configurations.get({
+     *     // The name of the configuration to retrieve. For Cloud Run, replace {namespace_id\} with the project ID or number.
+     *     name: 'namespaces/my-namespace/configurations/my-configuration',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "spec": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3322,11 +3427,11 @@ export namespace run_v1 {
     get(
       params: Params$Resource$Namespaces$Configurations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Namespaces$Configurations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Configuration>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Configuration>>;
     get(
       params: Params$Resource$Namespaces$Configurations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3355,7 +3460,10 @@ export namespace run_v1 {
       callback?:
         | BodyResponseCallback<Schema$Configuration>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Configuration> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Configuration>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Namespaces$Configurations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3401,6 +3509,70 @@ export namespace run_v1 {
 
     /**
      * List configurations. Results are sorted by creation time, descending.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.configurations.list({
+     *     // Optional. Encoded string to continue paging.
+     *     continue: 'placeholder-value',
+     *     // Not supported by Cloud Run.
+     *     fieldSelector: 'placeholder-value',
+     *     // Not supported by Cloud Run.
+     *     includeUninitialized: 'placeholder-value',
+     *     // Allows to filter resources based on a label. Supported operations are =, !=, exists, in, and notIn.
+     *     labelSelector: 'placeholder-value',
+     *     // Optional. The maximum number of the records that should be returned.
+     *     limit: 'placeholder-value',
+     *     // The namespace from which the configurations should be listed. For Cloud Run, replace {namespace_id\} with the project ID or number.
+     *     parent: 'namespaces/my-namespace',
+     *     // Not supported by Cloud Run.
+     *     resourceVersion: 'placeholder-value',
+     *     // Not supported by Cloud Run.
+     *     watch: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3410,11 +3582,11 @@ export namespace run_v1 {
     list(
       params: Params$Resource$Namespaces$Configurations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Namespaces$Configurations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListConfigurationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListConfigurationsResponse>>;
     list(
       params: Params$Resource$Namespaces$Configurations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3449,8 +3621,8 @@ export namespace run_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListConfigurationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListConfigurationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Namespaces$Configurations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3545,6 +3717,70 @@ export namespace run_v1 {
 
     /**
      * Create a new domain mapping.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.domainmappings.create({
+     *     // Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
+     *     dryRun: 'placeholder-value',
+     *     // Required. The namespace in which the domain mapping should be created. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
+     *     parent: 'namespaces/my-namespace',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "apiVersion": "my_apiVersion",
+     *       //   "kind": "my_kind",
+     *       //   "metadata": {},
+     *       //   "spec": {},
+     *       //   "status": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "spec": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3554,11 +3790,11 @@ export namespace run_v1 {
     create(
       params: Params$Resource$Namespaces$Domainmappings$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Namespaces$Domainmappings$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DomainMapping>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DomainMapping>>;
     create(
       params: Params$Resource$Namespaces$Domainmappings$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3587,7 +3823,10 @@ export namespace run_v1 {
       callback?:
         | BodyResponseCallback<Schema$DomainMapping>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$DomainMapping> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$DomainMapping>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Namespaces$Domainmappings$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3632,6 +3871,65 @@ export namespace run_v1 {
 
     /**
      * Delete a domain mapping.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.domainmappings.delete({
+     *     // Cloud Run currently ignores this parameter.
+     *     apiVersion: 'placeholder-value',
+     *     // Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
+     *     dryRun: 'placeholder-value',
+     *     // Cloud Run currently ignores this parameter.
+     *     kind: 'placeholder-value',
+     *     // Required. The name of the domain mapping to delete. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
+     *     name: 'namespaces/my-namespace/domainmappings/my-domainmapping',
+     *     // Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background. Please see kubernetes.io/docs/concepts/architecture/garbage-collection/ for more information.
+     *     propagationPolicy: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "code": 0,
+     *   //   "details": {},
+     *   //   "message": "my_message",
+     *   //   "metadata": {},
+     *   //   "reason": "my_reason",
+     *   //   "status": "my_status"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3641,11 +3939,11 @@ export namespace run_v1 {
     delete(
       params: Params$Resource$Namespaces$Domainmappings$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Namespaces$Domainmappings$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Status>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Status>>;
     delete(
       params: Params$Resource$Namespaces$Domainmappings$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3674,7 +3972,10 @@ export namespace run_v1 {
       callback?:
         | BodyResponseCallback<Schema$Status>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Status> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Status>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Namespaces$Domainmappings$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3720,6 +4021,56 @@ export namespace run_v1 {
 
     /**
      * Get information about a domain mapping.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.domainmappings.get({
+     *     // Required. The name of the domain mapping to retrieve. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
+     *     name: 'namespaces/my-namespace/domainmappings/my-domainmapping',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "spec": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3729,11 +4080,11 @@ export namespace run_v1 {
     get(
       params: Params$Resource$Namespaces$Domainmappings$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Namespaces$Domainmappings$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DomainMapping>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DomainMapping>>;
     get(
       params: Params$Resource$Namespaces$Domainmappings$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3762,7 +4113,10 @@ export namespace run_v1 {
       callback?:
         | BodyResponseCallback<Schema$DomainMapping>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$DomainMapping> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$DomainMapping>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Namespaces$Domainmappings$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3808,6 +4162,70 @@ export namespace run_v1 {
 
     /**
      * List all domain mappings.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.domainmappings.list({
+     *     // Optional. Encoded string to continue paging.
+     *     continue: 'placeholder-value',
+     *     // Allows to filter resources based on a specific value for a field name. Send this in a query string format. i.e. 'metadata.name%3Dlorem'. Not currently used by Cloud Run.
+     *     fieldSelector: 'placeholder-value',
+     *     // Not currently used by Cloud Run.
+     *     includeUninitialized: 'placeholder-value',
+     *     // Allows to filter resources based on a label. Supported operations are =, !=, exists, in, and notIn.
+     *     labelSelector: 'placeholder-value',
+     *     // Optional. The maximum number of records that should be returned.
+     *     limit: 'placeholder-value',
+     *     // Required. The namespace from which the domain mappings should be listed. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
+     *     parent: 'namespaces/my-namespace',
+     *     // The baseline resource version from which the list or watch operation should start. Not currently used by Cloud Run.
+     *     resourceVersion: 'placeholder-value',
+     *     // Flag that indicates that the client expects to watch this resource as well. Not currently used by Cloud Run.
+     *     watch: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3817,11 +4235,11 @@ export namespace run_v1 {
     list(
       params: Params$Resource$Namespaces$Domainmappings$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Namespaces$Domainmappings$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListDomainMappingsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListDomainMappingsResponse>>;
     list(
       params: Params$Resource$Namespaces$Domainmappings$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3856,8 +4274,8 @@ export namespace run_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListDomainMappingsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListDomainMappingsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Namespaces$Domainmappings$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3991,6 +4409,62 @@ export namespace run_v1 {
 
     /**
      * Cancel an execution.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.executions.cancel({
+     *     // Required. The name of the execution to cancel. Replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
+     *     name: 'namespaces/my-namespace/executions/my-execution',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "spec": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4000,11 +4474,11 @@ export namespace run_v1 {
     cancel(
       params: Params$Resource$Namespaces$Executions$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     cancel(
       params?: Params$Resource$Namespaces$Executions$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Execution>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Execution>>;
     cancel(
       params: Params$Resource$Namespaces$Executions$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4033,7 +4507,10 @@ export namespace run_v1 {
       callback?:
         | BodyResponseCallback<Schema$Execution>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Execution> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Execution>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Namespaces$Executions$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4078,6 +4555,63 @@ export namespace run_v1 {
 
     /**
      * Delete an execution.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.executions.delete({
+     *     // Optional. Cloud Run currently ignores this parameter.
+     *     apiVersion: 'placeholder-value',
+     *     // Optional. Cloud Run currently ignores this parameter.
+     *     kind: 'placeholder-value',
+     *     // Required. The name of the execution to delete. Replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
+     *     name: 'namespaces/my-namespace/executions/my-execution',
+     *     // Optional. Specifies the propagation policy of delete. Cloud Run currently ignores this setting.
+     *     propagationPolicy: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "code": 0,
+     *   //   "details": {},
+     *   //   "message": "my_message",
+     *   //   "metadata": {},
+     *   //   "reason": "my_reason",
+     *   //   "status": "my_status"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4087,11 +4621,11 @@ export namespace run_v1 {
     delete(
       params: Params$Resource$Namespaces$Executions$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Namespaces$Executions$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Status>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Status>>;
     delete(
       params: Params$Resource$Namespaces$Executions$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4120,7 +4654,10 @@ export namespace run_v1 {
       callback?:
         | BodyResponseCallback<Schema$Status>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Status> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Status>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Namespaces$Executions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4166,6 +4703,56 @@ export namespace run_v1 {
 
     /**
      * Get information about an execution.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.executions.get({
+     *     // Required. The name of the execution to retrieve. Replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
+     *     name: 'namespaces/my-namespace/executions/my-execution',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "spec": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4175,11 +4762,11 @@ export namespace run_v1 {
     get(
       params: Params$Resource$Namespaces$Executions$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Namespaces$Executions$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Execution>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Execution>>;
     get(
       params: Params$Resource$Namespaces$Executions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4208,7 +4795,10 @@ export namespace run_v1 {
       callback?:
         | BodyResponseCallback<Schema$Execution>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Execution> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Execution>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Namespaces$Executions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4254,6 +4844,70 @@ export namespace run_v1 {
 
     /**
      * List executions. Results are sorted by creation time, descending.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.executions.list({
+     *     // Optional. Optional encoded string to continue paging.
+     *     continue: 'placeholder-value',
+     *     // Optional. Not supported by Cloud Run.
+     *     fieldSelector: 'placeholder-value',
+     *     // Optional. Not supported by Cloud Run.
+     *     includeUninitialized: 'placeholder-value',
+     *     // Optional. Allows to filter resources based on a label. Supported operations are =, !=, exists, in, and notIn.
+     *     labelSelector: 'placeholder-value',
+     *     // Optional. The maximum number of the records that should be returned.
+     *     limit: 'placeholder-value',
+     *     // Required. The namespace from which the executions should be listed. Replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
+     *     parent: 'namespaces/my-namespace',
+     *     // Optional. Not supported by Cloud Run.
+     *     resourceVersion: 'placeholder-value',
+     *     // Optional. Not supported by Cloud Run.
+     *     watch: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4263,11 +4917,11 @@ export namespace run_v1 {
     list(
       params: Params$Resource$Namespaces$Executions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Namespaces$Executions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListExecutionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListExecutionsResponse>>;
     list(
       params: Params$Resource$Namespaces$Executions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4300,8 +4954,8 @@ export namespace run_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListExecutionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListExecutionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Namespaces$Executions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4427,6 +5081,68 @@ export namespace run_v1 {
 
     /**
      * Create a job.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.jobs.create({
+     *     // Required. The namespace in which the job should be created. Replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
+     *     parent: 'namespaces/my-namespace',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "apiVersion": "my_apiVersion",
+     *       //   "kind": "my_kind",
+     *       //   "metadata": {},
+     *       //   "spec": {},
+     *       //   "status": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "spec": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4436,11 +5152,11 @@ export namespace run_v1 {
     create(
       params: Params$Resource$Namespaces$Jobs$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Namespaces$Jobs$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Job>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Job>>;
     create(
       params: Params$Resource$Namespaces$Jobs$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4469,7 +5185,10 @@ export namespace run_v1 {
       callback?:
         | BodyResponseCallback<Schema$Job>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Job> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Job>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Namespaces$Jobs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4514,6 +5233,63 @@ export namespace run_v1 {
 
     /**
      * Delete a job.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.jobs.delete({
+     *     // Optional. Cloud Run currently ignores this parameter.
+     *     apiVersion: 'placeholder-value',
+     *     // Optional. Cloud Run currently ignores this parameter.
+     *     kind: 'placeholder-value',
+     *     // Required. The name of the job to delete. Replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
+     *     name: 'namespaces/my-namespace/jobs/my-job',
+     *     // Optional. Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background. Please see kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/ for more information.
+     *     propagationPolicy: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "code": 0,
+     *   //   "details": {},
+     *   //   "message": "my_message",
+     *   //   "metadata": {},
+     *   //   "reason": "my_reason",
+     *   //   "status": "my_status"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4523,11 +5299,11 @@ export namespace run_v1 {
     delete(
       params: Params$Resource$Namespaces$Jobs$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Namespaces$Jobs$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Status>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Status>>;
     delete(
       params: Params$Resource$Namespaces$Jobs$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4556,7 +5332,10 @@ export namespace run_v1 {
       callback?:
         | BodyResponseCallback<Schema$Status>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Status> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Status>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Namespaces$Jobs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4602,6 +5381,56 @@ export namespace run_v1 {
 
     /**
      * Get information about a job.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.jobs.get({
+     *     // Required. The name of the job to retrieve. Replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
+     *     name: 'namespaces/my-namespace/jobs/my-job',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "spec": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4611,11 +5440,11 @@ export namespace run_v1 {
     get(
       params: Params$Resource$Namespaces$Jobs$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Namespaces$Jobs$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Job>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Job>>;
     get(
       params: Params$Resource$Namespaces$Jobs$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4644,7 +5473,10 @@ export namespace run_v1 {
       callback?:
         | BodyResponseCallback<Schema$Job>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Job> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Job>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Namespaces$Jobs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4690,6 +5522,70 @@ export namespace run_v1 {
 
     /**
      * List jobs. Results are sorted by creation time, descending.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.jobs.list({
+     *     // Optional. Optional encoded string to continue paging.
+     *     continue: 'placeholder-value',
+     *     // Optional. Not supported by Cloud Run.
+     *     fieldSelector: 'placeholder-value',
+     *     // Optional. Not supported by Cloud Run.
+     *     includeUninitialized: 'placeholder-value',
+     *     // Optional. Allows to filter resources based on a label. Supported operations are =, !=, exists, in, and notIn.
+     *     labelSelector: 'placeholder-value',
+     *     // Optional. The maximum number of records that should be returned.
+     *     limit: 'placeholder-value',
+     *     // Required. The namespace from which the jobs should be listed. Replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
+     *     parent: 'namespaces/my-namespace',
+     *     // Optional. Not supported by Cloud Run.
+     *     resourceVersion: 'placeholder-value',
+     *     // Optional. Not supported by Cloud Run.
+     *     watch: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4699,11 +5595,11 @@ export namespace run_v1 {
     list(
       params: Params$Resource$Namespaces$Jobs$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Namespaces$Jobs$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListJobsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListJobsResponse>>;
     list(
       params: Params$Resource$Namespaces$Jobs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4732,7 +5628,10 @@ export namespace run_v1 {
       callback?:
         | BodyResponseCallback<Schema$ListJobsResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ListJobsResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListJobsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Namespaces$Jobs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4777,6 +5676,68 @@ export namespace run_v1 {
 
     /**
      * Replace a job. Only the spec and metadata labels and annotations are modifiable. After the Replace request, Cloud Run will work to make the 'status' match the requested 'spec'. May provide metadata.resourceVersion to enforce update from last read for optimistic concurrency control.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.jobs.replaceJob({
+     *     // Required. The name of the job being replaced. Replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
+     *     name: 'namespaces/my-namespace/jobs/my-job',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "apiVersion": "my_apiVersion",
+     *       //   "kind": "my_kind",
+     *       //   "metadata": {},
+     *       //   "spec": {},
+     *       //   "status": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "spec": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4786,11 +5747,11 @@ export namespace run_v1 {
     replaceJob(
       params: Params$Resource$Namespaces$Jobs$Replacejob,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     replaceJob(
       params?: Params$Resource$Namespaces$Jobs$Replacejob,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Job>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Job>>;
     replaceJob(
       params: Params$Resource$Namespaces$Jobs$Replacejob,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4819,7 +5780,10 @@ export namespace run_v1 {
       callback?:
         | BodyResponseCallback<Schema$Job>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Job> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Job>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Namespaces$Jobs$Replacejob;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4865,6 +5829,64 @@ export namespace run_v1 {
 
     /**
      * Trigger creation of a new execution of this job.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.jobs.run({
+     *     // Required. The name of the job to run. Replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
+     *     name: 'namespaces/my-namespace/jobs/my-job',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "overrides": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "spec": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4874,11 +5896,11 @@ export namespace run_v1 {
     run(
       params: Params$Resource$Namespaces$Jobs$Run,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     run(
       params?: Params$Resource$Namespaces$Jobs$Run,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Execution>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Execution>>;
     run(
       params: Params$Resource$Namespaces$Jobs$Run,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4907,7 +5929,10 @@ export namespace run_v1 {
       callback?:
         | BodyResponseCallback<Schema$Execution>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Execution> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Execution>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Namespaces$Jobs$Run;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5058,6 +6083,65 @@ export namespace run_v1 {
 
     /**
      * Delete a revision.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.revisions.delete({
+     *     // Cloud Run currently ignores this parameter.
+     *     apiVersion: 'placeholder-value',
+     *     // Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
+     *     dryRun: 'placeholder-value',
+     *     // Cloud Run currently ignores this parameter.
+     *     kind: 'placeholder-value',
+     *     // The name of the revision to delete. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
+     *     name: 'namespaces/my-namespace/revisions/my-revision',
+     *     // Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background.
+     *     propagationPolicy: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "code": 0,
+     *   //   "details": {},
+     *   //   "message": "my_message",
+     *   //   "metadata": {},
+     *   //   "reason": "my_reason",
+     *   //   "status": "my_status"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5067,11 +6151,11 @@ export namespace run_v1 {
     delete(
       params: Params$Resource$Namespaces$Revisions$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Namespaces$Revisions$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Status>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Status>>;
     delete(
       params: Params$Resource$Namespaces$Revisions$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5100,7 +6184,10 @@ export namespace run_v1 {
       callback?:
         | BodyResponseCallback<Schema$Status>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Status> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Status>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Namespaces$Revisions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5146,6 +6233,56 @@ export namespace run_v1 {
 
     /**
      * Get information about a revision.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.revisions.get({
+     *     // The name of the revision to retrieve. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
+     *     name: 'namespaces/my-namespace/revisions/my-revision',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "spec": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5155,11 +6292,11 @@ export namespace run_v1 {
     get(
       params: Params$Resource$Namespaces$Revisions$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Namespaces$Revisions$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Revision>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Revision>>;
     get(
       params: Params$Resource$Namespaces$Revisions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5188,7 +6325,10 @@ export namespace run_v1 {
       callback?:
         | BodyResponseCallback<Schema$Revision>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Revision> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Revision>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Namespaces$Revisions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5234,6 +6374,70 @@ export namespace run_v1 {
 
     /**
      * List revisions. Results are sorted by creation time, descending.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.revisions.list({
+     *     // Optional. Encoded string to continue paging.
+     *     continue: 'placeholder-value',
+     *     // Allows to filter resources based on a specific value for a field name. Send this in a query string format. i.e. 'metadata.name%3Dlorem'. Not currently used by Cloud Run.
+     *     fieldSelector: 'placeholder-value',
+     *     // Not currently used by Cloud Run.
+     *     includeUninitialized: 'placeholder-value',
+     *     // Allows to filter resources based on a label. Supported operations are =, !=, exists, in, and notIn.
+     *     labelSelector: 'placeholder-value',
+     *     // Optional. The maximum number of records that should be returned.
+     *     limit: 'placeholder-value',
+     *     // The namespace from which the revisions should be listed. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
+     *     parent: 'namespaces/my-namespace',
+     *     // The baseline resource version from which the list or watch operation should start. Not currently used by Cloud Run.
+     *     resourceVersion: 'placeholder-value',
+     *     // Flag that indicates that the client expects to watch this resource as well. Not currently used by Cloud Run.
+     *     watch: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5243,11 +6447,11 @@ export namespace run_v1 {
     list(
       params: Params$Resource$Namespaces$Revisions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Namespaces$Revisions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListRevisionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListRevisionsResponse>>;
     list(
       params: Params$Resource$Namespaces$Revisions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5280,8 +6484,8 @@ export namespace run_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListRevisionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListRevisionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Namespaces$Revisions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5399,6 +6603,56 @@ export namespace run_v1 {
 
     /**
      * Get information about a route.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.routes.get({
+     *     // The name of the route to retrieve. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
+     *     name: 'namespaces/my-namespace/routes/my-route',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "spec": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5408,11 +6662,11 @@ export namespace run_v1 {
     get(
       params: Params$Resource$Namespaces$Routes$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Namespaces$Routes$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Route>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Route>>;
     get(
       params: Params$Resource$Namespaces$Routes$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5441,7 +6695,10 @@ export namespace run_v1 {
       callback?:
         | BodyResponseCallback<Schema$Route>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Route> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Route>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Namespaces$Routes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5487,6 +6744,70 @@ export namespace run_v1 {
 
     /**
      * List routes. Results are sorted by creation time, descending.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.routes.list({
+     *     // Optional. Encoded string to continue paging.
+     *     continue: 'placeholder-value',
+     *     // Allows to filter resources based on a specific value for a field name. Send this in a query string format. i.e. 'metadata.name%3Dlorem'. Not currently used by Cloud Run.
+     *     fieldSelector: 'placeholder-value',
+     *     // Not currently used by Cloud Run.
+     *     includeUninitialized: 'placeholder-value',
+     *     // Allows to filter resources based on a label. Supported operations are =, !=, exists, in, and notIn.
+     *     labelSelector: 'placeholder-value',
+     *     // Optional. The maximum number of records that should be returned.
+     *     limit: 'placeholder-value',
+     *     // The namespace from which the routes should be listed. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
+     *     parent: 'namespaces/my-namespace',
+     *     // The baseline resource version from which the list or watch operation should start. Not currently used by Cloud Run.
+     *     resourceVersion: 'placeholder-value',
+     *     // Flag that indicates that the client expects to watch this resource as well. Not currently used by Cloud Run.
+     *     watch: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5496,11 +6817,11 @@ export namespace run_v1 {
     list(
       params: Params$Resource$Namespaces$Routes$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Namespaces$Routes$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListRoutesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListRoutesResponse>>;
     list(
       params: Params$Resource$Namespaces$Routes$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5531,8 +6852,8 @@ export namespace run_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListRoutesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListRoutesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Namespaces$Routes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5627,6 +6948,70 @@ export namespace run_v1 {
 
     /**
      * Creates a new Service. Service creation will trigger a new deployment. Use GetService, and check service.status to determine if the Service is ready.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.services.create({
+     *     // Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
+     *     dryRun: 'placeholder-value',
+     *     // Required. The resource's parent. In Cloud Run, it may be one of the following: * `{project_id_or_number\}` * `namespaces/{project_id_or_number\}` * `namespaces/{project_id_or_number\}/services` * `projects/{project_id_or_number\}/locations/{region\}` * `projects/{project_id_or_number\}/regions/{region\}`
+     *     parent: 'namespaces/my-namespace',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "apiVersion": "my_apiVersion",
+     *       //   "kind": "my_kind",
+     *       //   "metadata": {},
+     *       //   "spec": {},
+     *       //   "status": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "spec": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5636,11 +7021,11 @@ export namespace run_v1 {
     create(
       params: Params$Resource$Namespaces$Services$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Namespaces$Services$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Service>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Service>>;
     create(
       params: Params$Resource$Namespaces$Services$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5669,7 +7054,10 @@ export namespace run_v1 {
       callback?:
         | BodyResponseCallback<Schema$Service>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Service> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Service>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Namespaces$Services$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5714,6 +7102,65 @@ export namespace run_v1 {
 
     /**
      * Deletes the provided service. This will cause the Service to stop serving traffic and will delete all associated Revisions.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.services.delete({
+     *     // Not supported, and ignored by Cloud Run.
+     *     apiVersion: 'placeholder-value',
+     *     // Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
+     *     dryRun: 'placeholder-value',
+     *     // Not supported, and ignored by Cloud Run.
+     *     kind: 'placeholder-value',
+     *     // Required. The fully qualified name of the service to delete. It can be any of the following forms: * `namespaces/{project_id_or_number\}/services/{service_name\}` (only when the `endpoint` is regional) * `projects/{project_id_or_number\}/locations/{region\}/services/{service_name\}` * `projects/{project_id_or_number\}/regions/{region\}/services/{service_name\}`
+     *     name: 'namespaces/my-namespace/services/my-service',
+     *     // Not supported, and ignored by Cloud Run.
+     *     propagationPolicy: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "code": 0,
+     *   //   "details": {},
+     *   //   "message": "my_message",
+     *   //   "metadata": {},
+     *   //   "reason": "my_reason",
+     *   //   "status": "my_status"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5723,11 +7170,11 @@ export namespace run_v1 {
     delete(
       params: Params$Resource$Namespaces$Services$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Namespaces$Services$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Status>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Status>>;
     delete(
       params: Params$Resource$Namespaces$Services$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5756,7 +7203,10 @@ export namespace run_v1 {
       callback?:
         | BodyResponseCallback<Schema$Status>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Status> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Status>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Namespaces$Services$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5802,6 +7252,56 @@ export namespace run_v1 {
 
     /**
      * Gets information about a service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.services.get({
+     *     // Required. The fully qualified name of the service to retrieve. It can be any of the following forms: * `namespaces/{project_id_or_number\}/services/{service_name\}` (only when the `endpoint` is regional) * `projects/{project_id_or_number\}/locations/{region\}/services/{service_name\}` * `projects/{project_id_or_number\}/regions/{region\}/services/{service_name\}`
+     *     name: 'namespaces/my-namespace/services/my-service',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "spec": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5811,11 +7311,11 @@ export namespace run_v1 {
     get(
       params: Params$Resource$Namespaces$Services$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Namespaces$Services$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Service>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Service>>;
     get(
       params: Params$Resource$Namespaces$Services$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5844,7 +7344,10 @@ export namespace run_v1 {
       callback?:
         | BodyResponseCallback<Schema$Service>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Service> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Service>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Namespaces$Services$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5890,6 +7393,70 @@ export namespace run_v1 {
 
     /**
      * Lists services for the given project and region. Results are sorted by creation time, descending.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.services.list({
+     *     // Encoded string to continue paging.
+     *     continue: 'placeholder-value',
+     *     // Not supported, and ignored by Cloud Run.
+     *     fieldSelector: 'placeholder-value',
+     *     // Not supported, and ignored by Cloud Run.
+     *     includeUninitialized: 'placeholder-value',
+     *     // Allows to filter resources based on a label. Supported operations are =, !=, exists, in, and notIn.
+     *     labelSelector: 'placeholder-value',
+     *     // The maximum number of records that should be returned.
+     *     limit: 'placeholder-value',
+     *     // Required. The parent from where the resources should be listed. In Cloud Run, it may be one of the following: * `{project_id_or_number\}` * `namespaces/{project_id_or_number\}` * `namespaces/{project_id_or_number\}/services` * `projects/{project_id_or_number\}/locations/{region\}` * `projects/{project_id_or_number\}/regions/{region\}`
+     *     parent: 'namespaces/my-namespace',
+     *     // Not supported, and ignored by Cloud Run.
+     *     resourceVersion: 'placeholder-value',
+     *     // Not supported, and ignored by Cloud Run.
+     *     watch: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5899,11 +7466,11 @@ export namespace run_v1 {
     list(
       params: Params$Resource$Namespaces$Services$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Namespaces$Services$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListServicesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListServicesResponse>>;
     list(
       params: Params$Resource$Namespaces$Services$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5936,8 +7503,8 @@ export namespace run_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListServicesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListServicesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Namespaces$Services$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5982,6 +7549,70 @@ export namespace run_v1 {
 
     /**
      * Replaces a service. Only the spec and metadata labels and annotations are modifiable. After the Update request, Cloud Run will work to make the 'status' match the requested 'spec'. May provide metadata.resourceVersion to enforce update from last read for optimistic concurrency control.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.services.replaceService({
+     *     // Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
+     *     dryRun: 'placeholder-value',
+     *     // Required. The fully qualified name of the service to replace. It can be any of the following forms: * `namespaces/{project_id_or_number\}/services/{service_name\}` (only when the `endpoint` is regional) * `projects/{project_id_or_number\}/locations/{region\}/services/{service_name\}` * `projects/{project_id_or_number\}/regions/{region\}/services/{service_name\}`
+     *     name: 'namespaces/my-namespace/services/my-service',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "apiVersion": "my_apiVersion",
+     *       //   "kind": "my_kind",
+     *       //   "metadata": {},
+     *       //   "spec": {},
+     *       //   "status": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "spec": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5991,11 +7622,11 @@ export namespace run_v1 {
     replaceService(
       params: Params$Resource$Namespaces$Services$Replaceservice,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     replaceService(
       params?: Params$Resource$Namespaces$Services$Replaceservice,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Service>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Service>>;
     replaceService(
       params: Params$Resource$Namespaces$Services$Replaceservice,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6024,7 +7655,10 @@ export namespace run_v1 {
       callback?:
         | BodyResponseCallback<Schema$Service>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Service> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Service>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Namespaces$Services$Replaceservice;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6175,6 +7809,56 @@ export namespace run_v1 {
 
     /**
      * Get information about a task.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.tasks.get({
+     *     // Required. The name of the task to retrieve. Replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
+     *     name: 'namespaces/my-namespace/tasks/my-task',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "spec": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6184,11 +7868,11 @@ export namespace run_v1 {
     get(
       params: Params$Resource$Namespaces$Tasks$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Namespaces$Tasks$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Task>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Task>>;
     get(
       params: Params$Resource$Namespaces$Tasks$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6217,7 +7901,10 @@ export namespace run_v1 {
       callback?:
         | BodyResponseCallback<Schema$Task>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Task> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Task>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Namespaces$Tasks$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6263,6 +7950,70 @@ export namespace run_v1 {
 
     /**
      * List tasks.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.tasks.list({
+     *     // Optional. Optional encoded string to continue paging.
+     *     continue: 'placeholder-value',
+     *     // Optional. Not supported by Cloud Run.
+     *     fieldSelector: 'placeholder-value',
+     *     // Optional. Not supported by Cloud Run.
+     *     includeUninitialized: 'placeholder-value',
+     *     // Optional. Allows to filter resources based on a label. Supported operations are =, !=, exists, in, and notIn. For example, to list all tasks of execution "foo" in succeeded state: `run.googleapis.com/execution=foo,run.googleapis.com/runningState=Succeeded`. Supported states are: * `Pending`: Initial state of all tasks. The task has not yet started but eventually will. * `Running`: Container instances for this task are running or will be running shortly. * `Succeeded`: No more container instances to run for the task, and the last attempt succeeded. * `Failed`: No more container instances to run for the task, and the last attempt failed. This task has run out of retry attempts. * `Cancelled`: Task was running but got stopped because its parent execution has been aborted. * `Abandoned`: The task has not yet started and never will because its parent execution has been aborted.
+     *     labelSelector: 'placeholder-value',
+     *     // Optional. The maximum number of records that should be returned.
+     *     limit: 'placeholder-value',
+     *     // Required. The namespace from which the tasks should be listed. Replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
+     *     parent: 'namespaces/my-namespace',
+     *     // Optional. Not supported by Cloud Run.
+     *     resourceVersion: 'placeholder-value',
+     *     // Optional. Not supported by Cloud Run.
+     *     watch: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6272,11 +8023,11 @@ export namespace run_v1 {
     list(
       params: Params$Resource$Namespaces$Tasks$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Namespaces$Tasks$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListTasksResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListTasksResponse>>;
     list(
       params: Params$Resource$Namespaces$Tasks$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6307,8 +8058,8 @@ export namespace run_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListTasksResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListTasksResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Namespaces$Tasks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6403,6 +8154,70 @@ export namespace run_v1 {
 
     /**
      * Creates a new WorkerPool. WorkerPool creation will trigger a new deployment. Use GetWorkerPool, and check worker_pool.status to determine if the WorkerPool is ready.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.workerpools.create({
+     *     // Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
+     *     dryRun: 'placeholder-value',
+     *     // Required. The resource's parent. In Cloud Run, it may be one of the following: * `{project_id_or_number\}` * `namespaces/{project_id_or_number\}` * `namespaces/{project_id_or_number\}/workerpools` * `projects/{project_id_or_number\}/locations/{region\}` * `projects/{project_id_or_number\}/regions/{region\}`
+     *     parent: 'namespaces/my-namespace',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "apiVersion": "my_apiVersion",
+     *       //   "kind": "my_kind",
+     *       //   "metadata": {},
+     *       //   "spec": {},
+     *       //   "status": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "spec": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6412,11 +8227,11 @@ export namespace run_v1 {
     create(
       params: Params$Resource$Namespaces$Workerpools$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Namespaces$Workerpools$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$WorkerPool>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$WorkerPool>>;
     create(
       params: Params$Resource$Namespaces$Workerpools$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6445,7 +8260,10 @@ export namespace run_v1 {
       callback?:
         | BodyResponseCallback<Schema$WorkerPool>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$WorkerPool> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$WorkerPool>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Namespaces$Workerpools$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6490,6 +8308,59 @@ export namespace run_v1 {
 
     /**
      * Deletes the provided worker pool. This will cause the WorkerPool to stop all instances and will delete all associated WorkerPoolRevisions.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.workerpools.delete({
+     *     // Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
+     *     dryRun: 'placeholder-value',
+     *     // Required. The fully qualified name of the worker pool to delete. It can be any of the following forms: * `namespaces/{project_id_or_number\}/workerpools/{worker_pool_name\}` (only when the `endpoint` is regional) * `projects/{project_id_or_number\}/locations/{region\}/workerpools/{worker_pool_name\}` * `projects/{project_id_or_number\}/regions/{region\}/workerpools/{worker_pool_name\}`
+     *     name: 'namespaces/my-namespace/workerpools/my-workerpool',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "code": 0,
+     *   //   "details": {},
+     *   //   "message": "my_message",
+     *   //   "metadata": {},
+     *   //   "reason": "my_reason",
+     *   //   "status": "my_status"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6499,11 +8370,11 @@ export namespace run_v1 {
     delete(
       params: Params$Resource$Namespaces$Workerpools$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Namespaces$Workerpools$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Status>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Status>>;
     delete(
       params: Params$Resource$Namespaces$Workerpools$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6532,7 +8403,10 @@ export namespace run_v1 {
       callback?:
         | BodyResponseCallback<Schema$Status>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Status> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Status>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Namespaces$Workerpools$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6578,6 +8452,56 @@ export namespace run_v1 {
 
     /**
      * Gets information about a worker pool.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.workerpools.get({
+     *     // Required. The fully qualified name of the worker pool to retrieve. It can be any of the following forms: * `namespaces/{project_id_or_number\}/workerpools/{worker_pool_name\}` (only when the `endpoint` is regional) * `projects/{project_id_or_number\}/locations/{region\}/workerpools/{worker_pool_name\}` * `projects/{project_id_or_number\}/regions/{region\}/workerpools/{worker_pool_name\}`
+     *     name: 'namespaces/my-namespace/workerpools/my-workerpool',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "spec": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6587,11 +8511,11 @@ export namespace run_v1 {
     get(
       params: Params$Resource$Namespaces$Workerpools$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Namespaces$Workerpools$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$WorkerPool>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$WorkerPool>>;
     get(
       params: Params$Resource$Namespaces$Workerpools$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6620,7 +8544,10 @@ export namespace run_v1 {
       callback?:
         | BodyResponseCallback<Schema$WorkerPool>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$WorkerPool> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$WorkerPool>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Namespaces$Workerpools$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6666,6 +8593,62 @@ export namespace run_v1 {
 
     /**
      * Lists worker pools for the given project and region. Results are sorted by creation time, descending.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.workerpools.list({
+     *     // Encoded string to continue paging.
+     *     continue: 'placeholder-value',
+     *     // =, !=, exists, in, and notIn.
+     *     labelSelector: 'placeholder-value',
+     *     // The maximum number of records that should be returned.
+     *     limit: 'placeholder-value',
+     *     // Required. The parent from where the resources should be listed. In Cloud Run, it may be one of the following: * `{project_id_or_number\}` * `namespaces/{project_id_or_number\}` * `namespaces/{project_id_or_number\}/workerpools` * `projects/{project_id_or_number\}/locations/{region\}` * `projects/{project_id_or_number\}/regions/{region\}`
+     *     parent: 'namespaces/my-namespace',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6675,11 +8658,11 @@ export namespace run_v1 {
     list(
       params: Params$Resource$Namespaces$Workerpools$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Namespaces$Workerpools$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListWorkerPoolsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListWorkerPoolsResponse>>;
     list(
       params: Params$Resource$Namespaces$Workerpools$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6712,8 +8695,8 @@ export namespace run_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListWorkerPoolsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListWorkerPoolsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Namespaces$Workerpools$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6758,6 +8741,70 @@ export namespace run_v1 {
 
     /**
      * Replaces a worker pool. Only the spec and metadata labels and annotations are modifiable. After the Update request, Cloud Run will work to make the 'status' match the requested 'spec'. May provide metadata.resourceVersion to enforce update from last read for optimistic concurrency control.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.workerpools.replaceWorkerPool({
+     *     // Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
+     *     dryRun: 'placeholder-value',
+     *     // Required. The fully qualified name of the worker pool to replace. It can be any of the following forms: * `namespaces/{project_id_or_number\}/workerpools/{worker_pool_name\}` (only when the `endpoint` is regional) * `projects/{project_id_or_number\}/locations/{region\}/workerpools/{worker_pool_name\}` * `projects/{project_id_or_number\}/regions/{region\}/workerpools/{worker_pool_name\}`
+     *     name: 'namespaces/my-namespace/workerpools/my-workerpool',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "apiVersion": "my_apiVersion",
+     *       //   "kind": "my_kind",
+     *       //   "metadata": {},
+     *       //   "spec": {},
+     *       //   "status": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "spec": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6767,11 +8814,11 @@ export namespace run_v1 {
     replaceWorkerPool(
       params: Params$Resource$Namespaces$Workerpools$Replaceworkerpool,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     replaceWorkerPool(
       params?: Params$Resource$Namespaces$Workerpools$Replaceworkerpool,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$WorkerPool>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$WorkerPool>>;
     replaceWorkerPool(
       params: Params$Resource$Namespaces$Workerpools$Replaceworkerpool,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6800,7 +8847,10 @@ export namespace run_v1 {
       callback?:
         | BodyResponseCallback<Schema$WorkerPool>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$WorkerPool> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$WorkerPool>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Namespaces$Workerpools$Replaceworkerpool;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6936,6 +8986,57 @@ export namespace run_v1 {
 
     /**
      * List authorized domains.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.projects.authorizeddomains.list({
+     *     // Maximum results to return per page.
+     *     pageSize: 'placeholder-value',
+     *     // Continuation token for fetching the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // Name of the parent Project resource. Example: `projects/myproject`.
+     *     parent: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "domains": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6945,11 +9046,11 @@ export namespace run_v1 {
     list(
       params: Params$Resource$Projects$Authorizeddomains$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Authorizeddomains$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAuthorizedDomainsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListAuthorizedDomainsResponse>>;
     list(
       params: Params$Resource$Projects$Authorizeddomains$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6984,8 +9085,8 @@ export namespace run_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListAuthorizedDomainsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListAuthorizedDomainsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Authorizeddomains$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7058,6 +9159,7 @@ export namespace run_v1 {
     revisions: Resource$Projects$Locations$Revisions;
     routes: Resource$Projects$Locations$Routes;
     services: Resource$Projects$Locations$Services;
+    workerpools: Resource$Projects$Locations$Workerpools;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.authorizeddomains =
@@ -7075,10 +9177,68 @@ export namespace run_v1 {
       this.revisions = new Resource$Projects$Locations$Revisions(this.context);
       this.routes = new Resource$Projects$Locations$Routes(this.context);
       this.services = new Resource$Projects$Locations$Services(this.context);
+      this.workerpools = new Resource$Projects$Locations$Workerpools(
+        this.context
+      );
     }
 
     /**
      * Lists information about the supported locations for this service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.list({
+     *     // Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     *     extraLocationTypes: 'placeholder-value',
+     *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
+     *     filter: 'placeholder-value',
+     *     // The resource that owns the locations collection, if applicable.
+     *     name: 'projects/my-project',
+     *     // The maximum number of results to return. If not set, the service selects a default.
+     *     pageSize: 'placeholder-value',
+     *     // A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "locations": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7088,11 +9248,11 @@ export namespace run_v1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListLocationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7125,8 +9285,8 @@ export namespace run_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListLocationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7203,6 +9363,57 @@ export namespace run_v1 {
 
     /**
      * List authorized domains.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.authorizeddomains.list({
+     *     // Maximum results to return per page.
+     *     pageSize: 'placeholder-value',
+     *     // Continuation token for fetching the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // Name of the parent Project resource. Example: `projects/myproject`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "domains": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7212,11 +9423,11 @@ export namespace run_v1 {
     list(
       params: Params$Resource$Projects$Locations$Authorizeddomains$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Authorizeddomains$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAuthorizedDomainsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListAuthorizedDomainsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Authorizeddomains$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7251,8 +9462,8 @@ export namespace run_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListAuthorizedDomainsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListAuthorizedDomainsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Authorizeddomains$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7324,6 +9535,56 @@ export namespace run_v1 {
 
     /**
      * Get information about a configuration.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.configurations.get({
+     *     // The name of the configuration to retrieve. For Cloud Run, replace {namespace_id\} with the project ID or number.
+     *     name: 'projects/my-project/locations/my-location/configurations/my-configuration',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "spec": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7333,11 +9594,11 @@ export namespace run_v1 {
     get(
       params: Params$Resource$Projects$Locations$Configurations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Configurations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Configuration>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Configuration>>;
     get(
       params: Params$Resource$Projects$Locations$Configurations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7366,7 +9627,10 @@ export namespace run_v1 {
       callback?:
         | BodyResponseCallback<Schema$Configuration>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Configuration> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Configuration>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Configurations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7409,6 +9673,70 @@ export namespace run_v1 {
 
     /**
      * List configurations. Results are sorted by creation time, descending.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.configurations.list({
+     *     // Optional. Encoded string to continue paging.
+     *     continue: 'placeholder-value',
+     *     // Not supported by Cloud Run.
+     *     fieldSelector: 'placeholder-value',
+     *     // Not supported by Cloud Run.
+     *     includeUninitialized: 'placeholder-value',
+     *     // Allows to filter resources based on a label. Supported operations are =, !=, exists, in, and notIn.
+     *     labelSelector: 'placeholder-value',
+     *     // Optional. The maximum number of the records that should be returned.
+     *     limit: 'placeholder-value',
+     *     // The namespace from which the configurations should be listed. For Cloud Run, replace {namespace_id\} with the project ID or number.
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // Not supported by Cloud Run.
+     *     resourceVersion: 'placeholder-value',
+     *     // Not supported by Cloud Run.
+     *     watch: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7418,11 +9746,11 @@ export namespace run_v1 {
     list(
       params: Params$Resource$Projects$Locations$Configurations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Configurations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListConfigurationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListConfigurationsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Configurations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7457,8 +9785,8 @@ export namespace run_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListConfigurationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListConfigurationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Configurations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7554,6 +9882,70 @@ export namespace run_v1 {
 
     /**
      * Create a new domain mapping.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.domainmappings.create({
+     *     // Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
+     *     dryRun: 'placeholder-value',
+     *     // Required. The namespace in which the domain mapping should be created. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "apiVersion": "my_apiVersion",
+     *       //   "kind": "my_kind",
+     *       //   "metadata": {},
+     *       //   "spec": {},
+     *       //   "status": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "spec": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7563,11 +9955,11 @@ export namespace run_v1 {
     create(
       params: Params$Resource$Projects$Locations$Domainmappings$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Domainmappings$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DomainMapping>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DomainMapping>>;
     create(
       params: Params$Resource$Projects$Locations$Domainmappings$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7596,7 +9988,10 @@ export namespace run_v1 {
       callback?:
         | BodyResponseCallback<Schema$DomainMapping>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$DomainMapping> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$DomainMapping>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Domainmappings$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7642,6 +10037,65 @@ export namespace run_v1 {
 
     /**
      * Delete a domain mapping.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.domainmappings.delete({
+     *     // Cloud Run currently ignores this parameter.
+     *     apiVersion: 'placeholder-value',
+     *     // Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
+     *     dryRun: 'placeholder-value',
+     *     // Cloud Run currently ignores this parameter.
+     *     kind: 'placeholder-value',
+     *     // Required. The name of the domain mapping to delete. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
+     *     name: 'projects/my-project/locations/my-location/domainmappings/my-domainmapping',
+     *     // Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background. Please see kubernetes.io/docs/concepts/architecture/garbage-collection/ for more information.
+     *     propagationPolicy: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "code": 0,
+     *   //   "details": {},
+     *   //   "message": "my_message",
+     *   //   "metadata": {},
+     *   //   "reason": "my_reason",
+     *   //   "status": "my_status"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7651,11 +10105,11 @@ export namespace run_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Domainmappings$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Domainmappings$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Status>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Status>>;
     delete(
       params: Params$Resource$Projects$Locations$Domainmappings$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7684,7 +10138,10 @@ export namespace run_v1 {
       callback?:
         | BodyResponseCallback<Schema$Status>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Status> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Status>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Domainmappings$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7727,6 +10184,56 @@ export namespace run_v1 {
 
     /**
      * Get information about a domain mapping.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.domainmappings.get({
+     *     // Required. The name of the domain mapping to retrieve. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
+     *     name: 'projects/my-project/locations/my-location/domainmappings/my-domainmapping',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "spec": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7736,11 +10243,11 @@ export namespace run_v1 {
     get(
       params: Params$Resource$Projects$Locations$Domainmappings$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Domainmappings$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DomainMapping>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DomainMapping>>;
     get(
       params: Params$Resource$Projects$Locations$Domainmappings$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7769,7 +10276,10 @@ export namespace run_v1 {
       callback?:
         | BodyResponseCallback<Schema$DomainMapping>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$DomainMapping> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$DomainMapping>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Domainmappings$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7812,6 +10322,70 @@ export namespace run_v1 {
 
     /**
      * List all domain mappings.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.domainmappings.list({
+     *     // Optional. Encoded string to continue paging.
+     *     continue: 'placeholder-value',
+     *     // Allows to filter resources based on a specific value for a field name. Send this in a query string format. i.e. 'metadata.name%3Dlorem'. Not currently used by Cloud Run.
+     *     fieldSelector: 'placeholder-value',
+     *     // Not currently used by Cloud Run.
+     *     includeUninitialized: 'placeholder-value',
+     *     // Allows to filter resources based on a label. Supported operations are =, !=, exists, in, and notIn.
+     *     labelSelector: 'placeholder-value',
+     *     // Optional. The maximum number of records that should be returned.
+     *     limit: 'placeholder-value',
+     *     // Required. The namespace from which the domain mappings should be listed. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // The baseline resource version from which the list or watch operation should start. Not currently used by Cloud Run.
+     *     resourceVersion: 'placeholder-value',
+     *     // Flag that indicates that the client expects to watch this resource as well. Not currently used by Cloud Run.
+     *     watch: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7821,11 +10395,11 @@ export namespace run_v1 {
     list(
       params: Params$Resource$Projects$Locations$Domainmappings$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Domainmappings$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListDomainMappingsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListDomainMappingsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Domainmappings$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7860,8 +10434,8 @@ export namespace run_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListDomainMappingsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListDomainMappingsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Domainmappings$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7996,6 +10570,57 @@ export namespace run_v1 {
 
     /**
      * Get the IAM Access Control policy currently in effect for the given job. This result does not include any inherited policies.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.jobs.getIamPolicy({
+     *     // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     *     'options.requestedPolicyVersion': 'placeholder-value',
+     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource: 'projects/my-project/locations/my-location/jobs/my-job',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8005,11 +10630,11 @@ export namespace run_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Jobs$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Jobs$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Jobs$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8038,7 +10663,10 @@ export namespace run_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Jobs$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8084,6 +10712,64 @@ export namespace run_v1 {
 
     /**
      * Sets the IAM Access control policy for the specified job. Overwrites any existing policy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.jobs.setIamPolicy({
+     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource: 'projects/my-project/locations/my-location/jobs/my-job',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "policy": {},
+     *       //   "updateMask": "my_updateMask"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8093,11 +10779,11 @@ export namespace run_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Jobs$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Jobs$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Jobs$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8126,7 +10812,10 @@ export namespace run_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Jobs$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8172,6 +10861,60 @@ export namespace run_v1 {
 
     /**
      * Returns permissions that a caller has on the specified job. There are no permissions required for making this API call.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.jobs.testIamPermissions({
+     *     // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource: 'projects/my-project/locations/my-location/jobs/my-job',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "permissions": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8181,11 +10924,11 @@ export namespace run_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Jobs$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Jobs$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Jobs$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8220,8 +10963,8 @@ export namespace run_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Jobs$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8311,6 +11054,50 @@ export namespace run_v1 {
 
     /**
      * Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.operations.delete({
+     *     // The name of the operation resource to be deleted.
+     *     name: 'projects/my-project/locations/my-location/operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8320,11 +11107,11 @@ export namespace run_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8353,7 +11140,10 @@ export namespace run_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8396,6 +11186,56 @@ export namespace run_v1 {
 
     /**
      * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.operations.get({
+     *     // The name of the operation resource.
+     *     name: 'projects/my-project/locations/my-location/operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8405,11 +11245,11 @@ export namespace run_v1 {
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8444,8 +11284,8 @@ export namespace run_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8488,6 +11328,59 @@ export namespace run_v1 {
 
     /**
      * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.operations.list({
+     *     // Optional. A filter for matching the completed or in-progress operations. The supported formats of *filter* are: To query for only completed operations: done:true To query for only ongoing operations: done:false Must be empty to query for all of the latest operations for the given parent project.
+     *     filter: 'placeholder-value',
+     *     // Required. To query for all of the operations for a project.
+     *     name: 'projects/my-project/locations/my-location',
+     *     // The maximum number of records that should be returned. Requested page size cannot exceed 100. If not set or set to less than or equal to 0, the default page size is 100. .
+     *     pageSize: 'placeholder-value',
+     *     // Token identifying which result to start with, which is returned by a previous list call.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "operations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8497,11 +11390,13 @@ export namespace run_v1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8536,8 +11431,10 @@ export namespace run_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8585,6 +11482,64 @@ export namespace run_v1 {
 
     /**
      * Waits until the specified long-running operation is done or reaches at most a specified timeout, returning the latest state. If the operation is already done, the latest state is immediately returned. If the timeout specified is greater than the default HTTP/RPC timeout, the HTTP/RPC timeout is used. If the server does not support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Note that this method is on a best-effort basis. It may return the latest state before the specified timeout (including immediately), meaning even an immediate response is no guarantee that the operation is done.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.operations.wait({
+     *     // The name of the operation resource to wait on.
+     *     name: 'projects/my-project/locations/my-location/operations/my-operation',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "timeout": "my_timeout"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8594,11 +11549,11 @@ export namespace run_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Operations$Wait,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     wait(
       params?: Params$Resource$Projects$Locations$Operations$Wait,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     wait(
       params: Params$Resource$Projects$Locations$Operations$Wait,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8633,8 +11588,8 @@ export namespace run_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Wait;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8730,6 +11685,65 @@ export namespace run_v1 {
 
     /**
      * Delete a revision.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.revisions.delete({
+     *     // Cloud Run currently ignores this parameter.
+     *     apiVersion: 'placeholder-value',
+     *     // Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
+     *     dryRun: 'placeholder-value',
+     *     // Cloud Run currently ignores this parameter.
+     *     kind: 'placeholder-value',
+     *     // The name of the revision to delete. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
+     *     name: 'projects/my-project/locations/my-location/revisions/my-revision',
+     *     // Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background.
+     *     propagationPolicy: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "code": 0,
+     *   //   "details": {},
+     *   //   "message": "my_message",
+     *   //   "metadata": {},
+     *   //   "reason": "my_reason",
+     *   //   "status": "my_status"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8739,11 +11753,11 @@ export namespace run_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Revisions$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Revisions$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Status>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Status>>;
     delete(
       params: Params$Resource$Projects$Locations$Revisions$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8772,7 +11786,10 @@ export namespace run_v1 {
       callback?:
         | BodyResponseCallback<Schema$Status>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Status> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Status>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Revisions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8815,6 +11832,56 @@ export namespace run_v1 {
 
     /**
      * Get information about a revision.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.revisions.get({
+     *     // The name of the revision to retrieve. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
+     *     name: 'projects/my-project/locations/my-location/revisions/my-revision',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "spec": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8824,11 +11891,11 @@ export namespace run_v1 {
     get(
       params: Params$Resource$Projects$Locations$Revisions$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Revisions$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Revision>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Revision>>;
     get(
       params: Params$Resource$Projects$Locations$Revisions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8857,7 +11924,10 @@ export namespace run_v1 {
       callback?:
         | BodyResponseCallback<Schema$Revision>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Revision> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Revision>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Revisions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8900,6 +11970,70 @@ export namespace run_v1 {
 
     /**
      * List revisions. Results are sorted by creation time, descending.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.revisions.list({
+     *     // Optional. Encoded string to continue paging.
+     *     continue: 'placeholder-value',
+     *     // Allows to filter resources based on a specific value for a field name. Send this in a query string format. i.e. 'metadata.name%3Dlorem'. Not currently used by Cloud Run.
+     *     fieldSelector: 'placeholder-value',
+     *     // Not currently used by Cloud Run.
+     *     includeUninitialized: 'placeholder-value',
+     *     // Allows to filter resources based on a label. Supported operations are =, !=, exists, in, and notIn.
+     *     labelSelector: 'placeholder-value',
+     *     // Optional. The maximum number of records that should be returned.
+     *     limit: 'placeholder-value',
+     *     // The namespace from which the revisions should be listed. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // The baseline resource version from which the list or watch operation should start. Not currently used by Cloud Run.
+     *     resourceVersion: 'placeholder-value',
+     *     // Flag that indicates that the client expects to watch this resource as well. Not currently used by Cloud Run.
+     *     watch: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8909,11 +12043,11 @@ export namespace run_v1 {
     list(
       params: Params$Resource$Projects$Locations$Revisions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Revisions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListRevisionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListRevisionsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Revisions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8946,8 +12080,8 @@ export namespace run_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListRevisionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListRevisionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Revisions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9066,6 +12200,56 @@ export namespace run_v1 {
 
     /**
      * Get information about a route.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.routes.get({
+     *     // The name of the route to retrieve. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
+     *     name: 'projects/my-project/locations/my-location/routes/my-route',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "spec": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9075,11 +12259,11 @@ export namespace run_v1 {
     get(
       params: Params$Resource$Projects$Locations$Routes$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Routes$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Route>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Route>>;
     get(
       params: Params$Resource$Projects$Locations$Routes$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9108,7 +12292,10 @@ export namespace run_v1 {
       callback?:
         | BodyResponseCallback<Schema$Route>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Route> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Route>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Routes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9151,6 +12338,70 @@ export namespace run_v1 {
 
     /**
      * List routes. Results are sorted by creation time, descending.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.routes.list({
+     *     // Optional. Encoded string to continue paging.
+     *     continue: 'placeholder-value',
+     *     // Allows to filter resources based on a specific value for a field name. Send this in a query string format. i.e. 'metadata.name%3Dlorem'. Not currently used by Cloud Run.
+     *     fieldSelector: 'placeholder-value',
+     *     // Not currently used by Cloud Run.
+     *     includeUninitialized: 'placeholder-value',
+     *     // Allows to filter resources based on a label. Supported operations are =, !=, exists, in, and notIn.
+     *     labelSelector: 'placeholder-value',
+     *     // Optional. The maximum number of records that should be returned.
+     *     limit: 'placeholder-value',
+     *     // The namespace from which the routes should be listed. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // The baseline resource version from which the list or watch operation should start. Not currently used by Cloud Run.
+     *     resourceVersion: 'placeholder-value',
+     *     // Flag that indicates that the client expects to watch this resource as well. Not currently used by Cloud Run.
+     *     watch: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9160,11 +12411,11 @@ export namespace run_v1 {
     list(
       params: Params$Resource$Projects$Locations$Routes$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Routes$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListRoutesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListRoutesResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Routes$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9195,8 +12446,8 @@ export namespace run_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListRoutesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListRoutesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Routes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9292,6 +12543,70 @@ export namespace run_v1 {
 
     /**
      * Creates a new Service. Service creation will trigger a new deployment. Use GetService, and check service.status to determine if the Service is ready.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.services.create({
+     *     // Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
+     *     dryRun: 'placeholder-value',
+     *     // Required. The resource's parent. In Cloud Run, it may be one of the following: * `{project_id_or_number\}` * `namespaces/{project_id_or_number\}` * `namespaces/{project_id_or_number\}/services` * `projects/{project_id_or_number\}/locations/{region\}` * `projects/{project_id_or_number\}/regions/{region\}`
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "apiVersion": "my_apiVersion",
+     *       //   "kind": "my_kind",
+     *       //   "metadata": {},
+     *       //   "spec": {},
+     *       //   "status": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "spec": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9301,11 +12616,11 @@ export namespace run_v1 {
     create(
       params: Params$Resource$Projects$Locations$Services$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Services$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Service>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Service>>;
     create(
       params: Params$Resource$Projects$Locations$Services$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9334,7 +12649,10 @@ export namespace run_v1 {
       callback?:
         | BodyResponseCallback<Schema$Service>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Service> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Service>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Services$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9380,6 +12698,65 @@ export namespace run_v1 {
 
     /**
      * Deletes the provided service. This will cause the Service to stop serving traffic and will delete all associated Revisions.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.services.delete({
+     *     // Not supported, and ignored by Cloud Run.
+     *     apiVersion: 'placeholder-value',
+     *     // Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
+     *     dryRun: 'placeholder-value',
+     *     // Not supported, and ignored by Cloud Run.
+     *     kind: 'placeholder-value',
+     *     // Required. The fully qualified name of the service to delete. It can be any of the following forms: * `namespaces/{project_id_or_number\}/services/{service_name\}` (only when the `endpoint` is regional) * `projects/{project_id_or_number\}/locations/{region\}/services/{service_name\}` * `projects/{project_id_or_number\}/regions/{region\}/services/{service_name\}`
+     *     name: 'projects/my-project/locations/my-location/services/my-service',
+     *     // Not supported, and ignored by Cloud Run.
+     *     propagationPolicy: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "code": 0,
+     *   //   "details": {},
+     *   //   "message": "my_message",
+     *   //   "metadata": {},
+     *   //   "reason": "my_reason",
+     *   //   "status": "my_status"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9389,11 +12766,11 @@ export namespace run_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Services$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Services$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Status>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Status>>;
     delete(
       params: Params$Resource$Projects$Locations$Services$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9422,7 +12799,10 @@ export namespace run_v1 {
       callback?:
         | BodyResponseCallback<Schema$Status>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Status> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Status>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Services$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9465,6 +12845,56 @@ export namespace run_v1 {
 
     /**
      * Gets information about a service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.services.get({
+     *     // Required. The fully qualified name of the service to retrieve. It can be any of the following forms: * `namespaces/{project_id_or_number\}/services/{service_name\}` (only when the `endpoint` is regional) * `projects/{project_id_or_number\}/locations/{region\}/services/{service_name\}` * `projects/{project_id_or_number\}/regions/{region\}/services/{service_name\}`
+     *     name: 'projects/my-project/locations/my-location/services/my-service',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "spec": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9474,11 +12904,11 @@ export namespace run_v1 {
     get(
       params: Params$Resource$Projects$Locations$Services$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Services$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Service>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Service>>;
     get(
       params: Params$Resource$Projects$Locations$Services$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9507,7 +12937,10 @@ export namespace run_v1 {
       callback?:
         | BodyResponseCallback<Schema$Service>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Service> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Service>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Services$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9550,6 +12983,57 @@ export namespace run_v1 {
 
     /**
      * Gets the IAM Access Control policy currently in effect for the given Cloud Run service. This result does not include any inherited policies.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.services.getIamPolicy({
+     *     // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     *     'options.requestedPolicyVersion': 'placeholder-value',
+     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource: 'projects/my-project/locations/my-location/services/my-service',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9559,11 +13043,11 @@ export namespace run_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Services$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Services$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Services$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9592,7 +13076,10 @@ export namespace run_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Services$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9638,6 +13125,70 @@ export namespace run_v1 {
 
     /**
      * Lists services for the given project and region. Results are sorted by creation time, descending.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.services.list({
+     *     // Encoded string to continue paging.
+     *     continue: 'placeholder-value',
+     *     // Not supported, and ignored by Cloud Run.
+     *     fieldSelector: 'placeholder-value',
+     *     // Not supported, and ignored by Cloud Run.
+     *     includeUninitialized: 'placeholder-value',
+     *     // Allows to filter resources based on a label. Supported operations are =, !=, exists, in, and notIn.
+     *     labelSelector: 'placeholder-value',
+     *     // The maximum number of records that should be returned.
+     *     limit: 'placeholder-value',
+     *     // Required. The parent from where the resources should be listed. In Cloud Run, it may be one of the following: * `{project_id_or_number\}` * `namespaces/{project_id_or_number\}` * `namespaces/{project_id_or_number\}/services` * `projects/{project_id_or_number\}/locations/{region\}` * `projects/{project_id_or_number\}/regions/{region\}`
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // Not supported, and ignored by Cloud Run.
+     *     resourceVersion: 'placeholder-value',
+     *     // Not supported, and ignored by Cloud Run.
+     *     watch: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9647,11 +13198,11 @@ export namespace run_v1 {
     list(
       params: Params$Resource$Projects$Locations$Services$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Services$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListServicesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListServicesResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Services$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9684,8 +13235,8 @@ export namespace run_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListServicesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListServicesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Services$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9731,6 +13282,70 @@ export namespace run_v1 {
 
     /**
      * Replaces a service. Only the spec and metadata labels and annotations are modifiable. After the Update request, Cloud Run will work to make the 'status' match the requested 'spec'. May provide metadata.resourceVersion to enforce update from last read for optimistic concurrency control.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.services.replaceService({
+     *     // Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
+     *     dryRun: 'placeholder-value',
+     *     // Required. The fully qualified name of the service to replace. It can be any of the following forms: * `namespaces/{project_id_or_number\}/services/{service_name\}` (only when the `endpoint` is regional) * `projects/{project_id_or_number\}/locations/{region\}/services/{service_name\}` * `projects/{project_id_or_number\}/regions/{region\}/services/{service_name\}`
+     *     name: 'projects/my-project/locations/my-location/services/my-service',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "apiVersion": "my_apiVersion",
+     *       //   "kind": "my_kind",
+     *       //   "metadata": {},
+     *       //   "spec": {},
+     *       //   "status": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "spec": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9740,11 +13355,11 @@ export namespace run_v1 {
     replaceService(
       params: Params$Resource$Projects$Locations$Services$Replaceservice,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     replaceService(
       params?: Params$Resource$Projects$Locations$Services$Replaceservice,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Service>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Service>>;
     replaceService(
       params: Params$Resource$Projects$Locations$Services$Replaceservice,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9773,7 +13388,10 @@ export namespace run_v1 {
       callback?:
         | BodyResponseCallback<Schema$Service>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Service> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Service>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Services$Replaceservice;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9817,6 +13435,64 @@ export namespace run_v1 {
 
     /**
      * Sets the IAM Access control policy for the specified Service. Overwrites any existing policy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.services.setIamPolicy({
+     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource: 'projects/my-project/locations/my-location/services/my-service',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "policy": {},
+     *       //   "updateMask": "my_updateMask"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9826,11 +13502,11 @@ export namespace run_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Services$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Services$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Services$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9859,7 +13535,10 @@ export namespace run_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Services$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9905,6 +13584,60 @@ export namespace run_v1 {
 
     /**
      * Returns permissions that a caller has on the specified Project. There are no permissions required for making this API call.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.services.testIamPermissions({
+     *     // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource: 'projects/my-project/locations/my-location/services/my-service',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "permissions": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9914,11 +13647,11 @@ export namespace run_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Services$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Services$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Services$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9953,8 +13686,8 @@ export namespace run_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Services$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10121,6 +13854,495 @@ export namespace run_v1 {
     requestBody?: Schema$SetIamPolicyRequest;
   }
   export interface Params$Resource$Projects$Locations$Services$Testiampermissions
+    extends StandardParameters {
+    /**
+     * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TestIamPermissionsRequest;
+  }
+
+  export class Resource$Projects$Locations$Workerpools {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Get the IAM Access Control policy currently in effect for the given worker pool. This result does not include any inherited policies.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.workerpools.getIamPolicy({
+     *     // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     *     'options.requestedPolicyVersion': 'placeholder-value',
+     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource:
+     *       'projects/my-project/locations/my-location/workerpools/my-workerpool',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Workerpools$Getiampolicy,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    getIamPolicy(
+      params?: Params$Resource$Projects$Locations$Workerpools$Getiampolicy,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Workerpools$Getiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Workerpools$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Workerpools$Getiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Workerpools$Getiampolicy
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Workerpools$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Workerpools$Getiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+resource}:getIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+    /**
+     * Sets the IAM Access control policy for the specified worker pool. Overwrites any existing policy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.workerpools.setIamPolicy({
+     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource:
+     *       'projects/my-project/locations/my-location/workerpools/my-workerpool',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "policy": {},
+     *       //   "updateMask": "my_updateMask"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Workerpools$Setiampolicy,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    setIamPolicy(
+      params?: Params$Resource$Projects$Locations$Workerpools$Setiampolicy,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Workerpools$Setiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Workerpools$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Workerpools$Setiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Workerpools$Setiampolicy
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Workerpools$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Workerpools$Setiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+resource}:setIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+    /**
+     * Returns permissions that a caller has on the specified worker pool. There are no permissions required for making this API call.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.workerpools.testIamPermissions({
+     *     // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource:
+     *       'projects/my-project/locations/my-location/workerpools/my-workerpool',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "permissions": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    testIamPermissions(
+      params: Params$Resource$Projects$Locations$Workerpools$Testiampermissions,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    testIamPermissions(
+      params?: Params$Resource$Projects$Locations$Workerpools$Testiampermissions,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
+    testIamPermissions(
+      params: Params$Resource$Projects$Locations$Workerpools$Testiampermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    testIamPermissions(
+      params: Params$Resource$Projects$Locations$Workerpools$Testiampermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      params: Params$Resource$Projects$Locations$Workerpools$Testiampermissions,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Workerpools$Testiampermissions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Workerpools$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Workerpools$Testiampermissions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+resource}:testIamPermissions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$TestIamPermissionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Workerpools$Getiampolicy
+    extends StandardParameters {
+    /**
+     * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     */
+    'options.requestedPolicyVersion'?: number;
+    /**
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     */
+    resource?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Workerpools$Setiampolicy
+    extends StandardParameters {
+    /**
+     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SetIamPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Workerpools$Testiampermissions
     extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.

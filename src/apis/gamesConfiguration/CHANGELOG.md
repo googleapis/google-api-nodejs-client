@@ -1,5 +1,30 @@
 # Changelog
 
+## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/gamesconfiguration-v3.0.0...gamesconfiguration-v3.0.1) (2025-06-04)
+
+
+### Bug Fixes
+
+* **deps:** upgrade googleapis-common to 8.0.2-rc ([f4b0990](https://github.com/googleapis/google-api-nodejs-client/commit/f4b099071040cfbcfe4a2e7d487d45ee93b369e0))
+
+## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/gamesconfiguration-v2.0.8...gamesconfiguration-v3.0.0) (2025-05-29)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to node 18
+
+### Features
+
+* upgrade to node 18 ([682fbb8](https://github.com/googleapis/google-api-nodejs-client/commit/682fbb869189ae92b3e9a194d37d0548af0c1f92))
+
+## [2.0.8](https://github.com/googleapis/google-api-nodejs-client/compare/gamesconfiguration-v2.0.7...gamesconfiguration-v2.0.8) (2025-05-05)
+
+
+### Bug Fixes
+
+* **gamesConfiguration:** update the API ([8533406](https://github.com/googleapis/google-api-nodejs-client/commit/8533406a7511cbef6bc03edf3163fafa511bff8a))
+
 ## [2.0.7](https://github.com/googleapis/google-api-nodejs-client/compare/gamesconfiguration-v2.0.6...gamesconfiguration-v2.0.7) (2024-05-02)
 
 

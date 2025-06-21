@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -378,6 +378,47 @@ export namespace gamesConfiguration_v1configuration {
 
     /**
      * Delete the achievement configuration with the given ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gamesConfiguration.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gamesConfiguration = google.gamesConfiguration('v1configuration');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gamesConfiguration.achievementConfigurations.delete({
+     *     // The ID of the achievement used by this method.
+     *     achievementId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -387,11 +428,11 @@ export namespace gamesConfiguration_v1configuration {
     delete(
       params: Params$Resource$Achievementconfigurations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Achievementconfigurations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Achievementconfigurations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -418,7 +459,10 @@ export namespace gamesConfiguration_v1configuration {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Achievementconfigurations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -464,6 +508,59 @@ export namespace gamesConfiguration_v1configuration {
 
     /**
      * Retrieves the metadata of the achievement configuration with the given ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gamesConfiguration.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gamesConfiguration = google.gamesConfiguration('v1configuration');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gamesConfiguration.achievementConfigurations.get({
+     *     // The ID of the achievement used by this method.
+     *     achievementId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "achievementType": "my_achievementType",
+     *   //   "draft": {},
+     *   //   "id": "my_id",
+     *   //   "initialState": "my_initialState",
+     *   //   "kind": "my_kind",
+     *   //   "published": {},
+     *   //   "stepsToUnlock": 0,
+     *   //   "token": "my_token"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -473,11 +570,11 @@ export namespace gamesConfiguration_v1configuration {
     get(
       params: Params$Resource$Achievementconfigurations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Achievementconfigurations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AchievementConfiguration>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AchievementConfiguration>>;
     get(
       params: Params$Resource$Achievementconfigurations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -510,8 +607,8 @@ export namespace gamesConfiguration_v1configuration {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AchievementConfiguration>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AchievementConfiguration>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Achievementconfigurations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -557,6 +654,74 @@ export namespace gamesConfiguration_v1configuration {
 
     /**
      * Insert a new achievement configuration in this application.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gamesConfiguration.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gamesConfiguration = google.gamesConfiguration('v1configuration');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gamesConfiguration.achievementConfigurations.insert({
+     *     // The application ID from the Google Play developer console.
+     *     applicationId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "achievementType": "my_achievementType",
+     *       //   "draft": {},
+     *       //   "id": "my_id",
+     *       //   "initialState": "my_initialState",
+     *       //   "kind": "my_kind",
+     *       //   "published": {},
+     *       //   "stepsToUnlock": 0,
+     *       //   "token": "my_token"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "achievementType": "my_achievementType",
+     *   //   "draft": {},
+     *   //   "id": "my_id",
+     *   //   "initialState": "my_initialState",
+     *   //   "kind": "my_kind",
+     *   //   "published": {},
+     *   //   "stepsToUnlock": 0,
+     *   //   "token": "my_token"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -566,11 +731,11 @@ export namespace gamesConfiguration_v1configuration {
     insert(
       params: Params$Resource$Achievementconfigurations$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Achievementconfigurations$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AchievementConfiguration>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AchievementConfiguration>>;
     insert(
       params: Params$Resource$Achievementconfigurations$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -605,8 +770,8 @@ export namespace gamesConfiguration_v1configuration {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AchievementConfiguration>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AchievementConfiguration>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Achievementconfigurations$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -653,6 +818,58 @@ export namespace gamesConfiguration_v1configuration {
 
     /**
      * Returns a list of the achievement configurations in this application.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gamesConfiguration.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gamesConfiguration = google.gamesConfiguration('v1configuration');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gamesConfiguration.achievementConfigurations.list({
+     *     // The application ID from the Google Play developer console.
+     *     applicationId: 'placeholder-value',
+     *     // The maximum number of resource configurations to return in the response, used for paging. For any response, the actual number of resources returned may be less than the specified `maxResults`.
+     *     maxResults: 'placeholder-value',
+     *     // The token returned by the previous request.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -662,11 +879,13 @@ export namespace gamesConfiguration_v1configuration {
     list(
       params: Params$Resource$Achievementconfigurations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Achievementconfigurations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AchievementConfigurationListResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$AchievementConfigurationListResponse>
+    >;
     list(
       params: Params$Resource$Achievementconfigurations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -701,8 +920,10 @@ export namespace gamesConfiguration_v1configuration {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AchievementConfigurationListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$AchievementConfigurationListResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Achievementconfigurations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -751,6 +972,74 @@ export namespace gamesConfiguration_v1configuration {
 
     /**
      * Update the metadata of the achievement configuration with the given ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gamesConfiguration.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gamesConfiguration = google.gamesConfiguration('v1configuration');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gamesConfiguration.achievementConfigurations.update({
+     *     // The ID of the achievement used by this method.
+     *     achievementId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "achievementType": "my_achievementType",
+     *       //   "draft": {},
+     *       //   "id": "my_id",
+     *       //   "initialState": "my_initialState",
+     *       //   "kind": "my_kind",
+     *       //   "published": {},
+     *       //   "stepsToUnlock": 0,
+     *       //   "token": "my_token"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "achievementType": "my_achievementType",
+     *   //   "draft": {},
+     *   //   "id": "my_id",
+     *   //   "initialState": "my_initialState",
+     *   //   "kind": "my_kind",
+     *   //   "published": {},
+     *   //   "stepsToUnlock": 0,
+     *   //   "token": "my_token"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -760,11 +1049,11 @@ export namespace gamesConfiguration_v1configuration {
     update(
       params: Params$Resource$Achievementconfigurations$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Achievementconfigurations$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AchievementConfiguration>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AchievementConfiguration>>;
     update(
       params: Params$Resource$Achievementconfigurations$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -799,8 +1088,8 @@ export namespace gamesConfiguration_v1configuration {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AchievementConfiguration>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AchievementConfiguration>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Achievementconfigurations$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -907,6 +1196,47 @@ export namespace gamesConfiguration_v1configuration {
 
     /**
      * Delete the leaderboard configuration with the given ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gamesConfiguration.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gamesConfiguration = google.gamesConfiguration('v1configuration');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gamesConfiguration.leaderboardConfigurations.delete({
+     *     // The ID of the leaderboard.
+     *     leaderboardId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -916,11 +1246,11 @@ export namespace gamesConfiguration_v1configuration {
     delete(
       params: Params$Resource$Leaderboardconfigurations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Leaderboardconfigurations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Leaderboardconfigurations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -947,7 +1277,10 @@ export namespace gamesConfiguration_v1configuration {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Leaderboardconfigurations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -993,6 +1326,59 @@ export namespace gamesConfiguration_v1configuration {
 
     /**
      * Retrieves the metadata of the leaderboard configuration with the given ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gamesConfiguration.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gamesConfiguration = google.gamesConfiguration('v1configuration');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gamesConfiguration.leaderboardConfigurations.get({
+     *     // The ID of the leaderboard.
+     *     leaderboardId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "draft": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "published": {},
+     *   //   "scoreMax": "my_scoreMax",
+     *   //   "scoreMin": "my_scoreMin",
+     *   //   "scoreOrder": "my_scoreOrder",
+     *   //   "token": "my_token"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1002,11 +1388,11 @@ export namespace gamesConfiguration_v1configuration {
     get(
       params: Params$Resource$Leaderboardconfigurations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Leaderboardconfigurations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LeaderboardConfiguration>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LeaderboardConfiguration>>;
     get(
       params: Params$Resource$Leaderboardconfigurations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1039,8 +1425,8 @@ export namespace gamesConfiguration_v1configuration {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$LeaderboardConfiguration>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$LeaderboardConfiguration>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Leaderboardconfigurations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1086,6 +1472,74 @@ export namespace gamesConfiguration_v1configuration {
 
     /**
      * Insert a new leaderboard configuration in this application.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gamesConfiguration.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gamesConfiguration = google.gamesConfiguration('v1configuration');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gamesConfiguration.leaderboardConfigurations.insert({
+     *     // The application ID from the Google Play developer console.
+     *     applicationId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "draft": {},
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "published": {},
+     *       //   "scoreMax": "my_scoreMax",
+     *       //   "scoreMin": "my_scoreMin",
+     *       //   "scoreOrder": "my_scoreOrder",
+     *       //   "token": "my_token"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "draft": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "published": {},
+     *   //   "scoreMax": "my_scoreMax",
+     *   //   "scoreMin": "my_scoreMin",
+     *   //   "scoreOrder": "my_scoreOrder",
+     *   //   "token": "my_token"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1095,11 +1549,11 @@ export namespace gamesConfiguration_v1configuration {
     insert(
       params: Params$Resource$Leaderboardconfigurations$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Leaderboardconfigurations$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LeaderboardConfiguration>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LeaderboardConfiguration>>;
     insert(
       params: Params$Resource$Leaderboardconfigurations$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1134,8 +1588,8 @@ export namespace gamesConfiguration_v1configuration {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$LeaderboardConfiguration>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$LeaderboardConfiguration>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Leaderboardconfigurations$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1182,6 +1636,58 @@ export namespace gamesConfiguration_v1configuration {
 
     /**
      * Returns a list of the leaderboard configurations in this application.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gamesConfiguration.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gamesConfiguration = google.gamesConfiguration('v1configuration');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gamesConfiguration.leaderboardConfigurations.list({
+     *     // The application ID from the Google Play developer console.
+     *     applicationId: 'placeholder-value',
+     *     // The maximum number of resource configurations to return in the response, used for paging. For any response, the actual number of resources returned may be less than the specified `maxResults`.
+     *     maxResults: 'placeholder-value',
+     *     // The token returned by the previous request.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1191,11 +1697,13 @@ export namespace gamesConfiguration_v1configuration {
     list(
       params: Params$Resource$Leaderboardconfigurations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Leaderboardconfigurations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LeaderboardConfigurationListResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$LeaderboardConfigurationListResponse>
+    >;
     list(
       params: Params$Resource$Leaderboardconfigurations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1230,8 +1738,10 @@ export namespace gamesConfiguration_v1configuration {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$LeaderboardConfigurationListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$LeaderboardConfigurationListResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Leaderboardconfigurations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1280,6 +1790,74 @@ export namespace gamesConfiguration_v1configuration {
 
     /**
      * Update the metadata of the leaderboard configuration with the given ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gamesConfiguration.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gamesConfiguration = google.gamesConfiguration('v1configuration');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gamesConfiguration.leaderboardConfigurations.update({
+     *     // The ID of the leaderboard.
+     *     leaderboardId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "draft": {},
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "published": {},
+     *       //   "scoreMax": "my_scoreMax",
+     *       //   "scoreMin": "my_scoreMin",
+     *       //   "scoreOrder": "my_scoreOrder",
+     *       //   "token": "my_token"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "draft": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "published": {},
+     *   //   "scoreMax": "my_scoreMax",
+     *   //   "scoreMin": "my_scoreMin",
+     *   //   "scoreOrder": "my_scoreOrder",
+     *   //   "token": "my_token"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1289,11 +1867,11 @@ export namespace gamesConfiguration_v1configuration {
     update(
       params: Params$Resource$Leaderboardconfigurations$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Leaderboardconfigurations$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LeaderboardConfiguration>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LeaderboardConfiguration>>;
     update(
       params: Params$Resource$Leaderboardconfigurations$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1328,8 +1906,8 @@ export namespace gamesConfiguration_v1configuration {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$LeaderboardConfiguration>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$LeaderboardConfiguration>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Leaderboardconfigurations$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;

@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -351,6 +351,71 @@ export namespace bigquerydatapolicy_v1 {
 
     /**
      * Creates a new data policy under a project with the given `dataPolicyId` (used as the display name), policy tag, and data policy type.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquerydatapolicy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigquerydatapolicy = google.bigquerydatapolicy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquerydatapolicy.projects.locations.dataPolicies.create({
+     *     // Required. Resource name of the project that the data policy will belong to. The format is `projects/{project_number\}/locations/{location_id\}`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "dataMaskingPolicy": {},
+     *       //   "dataPolicyId": "my_dataPolicyId",
+     *       //   "dataPolicyType": "my_dataPolicyType",
+     *       //   "name": "my_name",
+     *       //   "policyTag": "my_policyTag"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dataMaskingPolicy": {},
+     *   //   "dataPolicyId": "my_dataPolicyId",
+     *   //   "dataPolicyType": "my_dataPolicyType",
+     *   //   "name": "my_name",
+     *   //   "policyTag": "my_policyTag"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -360,11 +425,11 @@ export namespace bigquerydatapolicy_v1 {
     create(
       params: Params$Resource$Projects$Locations$Datapolicies$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Datapolicies$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DataPolicy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DataPolicy>>;
     create(
       params: Params$Resource$Projects$Locations$Datapolicies$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -393,7 +458,10 @@ export namespace bigquerydatapolicy_v1 {
       callback?:
         | BodyResponseCallback<Schema$DataPolicy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$DataPolicy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$DataPolicy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datapolicies$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -440,6 +508,55 @@ export namespace bigquerydatapolicy_v1 {
 
     /**
      * Deletes the data policy specified by its resource name.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquerydatapolicy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigquerydatapolicy = google.bigquerydatapolicy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquerydatapolicy.projects.locations.dataPolicies.delete({
+     *     // Optional. If true, the data policy will be deleted even when it is referenced by one or more table columns.
+     *     force: 'placeholder-value',
+     *     // Required. Resource name of the data policy to delete. Format is `projects/{project_number\}/locations/{location_id\}/dataPolicies/{data_policy_id\}`.
+     *     name: 'projects/my-project/locations/my-location/dataPolicies/my-dataPolicie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -449,11 +566,11 @@ export namespace bigquerydatapolicy_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Datapolicies$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Datapolicies$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Locations$Datapolicies$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -482,7 +599,10 @@ export namespace bigquerydatapolicy_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datapolicies$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -526,6 +646,59 @@ export namespace bigquerydatapolicy_v1 {
 
     /**
      * Gets the data policy specified by its resource name.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquerydatapolicy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigquerydatapolicy = google.bigquerydatapolicy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquerydatapolicy.projects.locations.dataPolicies.get({
+     *     // Required. Resource name of the requested data policy. Format is `projects/{project_number\}/locations/{location_id\}/dataPolicies/{data_policy_id\}`.
+     *     name: 'projects/my-project/locations/my-location/dataPolicies/my-dataPolicie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dataMaskingPolicy": {},
+     *   //   "dataPolicyId": "my_dataPolicyId",
+     *   //   "dataPolicyType": "my_dataPolicyType",
+     *   //   "name": "my_name",
+     *   //   "policyTag": "my_policyTag"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -535,11 +708,11 @@ export namespace bigquerydatapolicy_v1 {
     get(
       params: Params$Resource$Projects$Locations$Datapolicies$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Datapolicies$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DataPolicy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DataPolicy>>;
     get(
       params: Params$Resource$Projects$Locations$Datapolicies$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -568,7 +741,10 @@ export namespace bigquerydatapolicy_v1 {
       callback?:
         | BodyResponseCallback<Schema$DataPolicy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$DataPolicy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$DataPolicy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datapolicies$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -612,6 +788,68 @@ export namespace bigquerydatapolicy_v1 {
 
     /**
      * Gets the IAM policy for the specified data policy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquerydatapolicy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigquerydatapolicy = google.bigquerydatapolicy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await bigquerydatapolicy.projects.locations.dataPolicies.getIamPolicy({
+     *       // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/dataPolicies/my-dataPolicie',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "options": {}
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -621,11 +859,11 @@ export namespace bigquerydatapolicy_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Datapolicies$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Datapolicies$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Datapolicies$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -654,7 +892,10 @@ export namespace bigquerydatapolicy_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datapolicies$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -702,6 +943,62 @@ export namespace bigquerydatapolicy_v1 {
 
     /**
      * List all of the data policies in the specified parent project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquerydatapolicy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigquerydatapolicy = google.bigquerydatapolicy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquerydatapolicy.projects.locations.dataPolicies.list({
+     *     // Filters the data policies by policy tags that they are associated with. Currently filter only supports "policy_tag" based filtering and OR based predicates. Sample filter can be "policy_tag: projects/1/locations/us/taxonomies/2/policyTags/3". You may also use wildcard such as "policy_tag: projects/1/locations/us/taxonomies/2*". Please note that OR predicates cannot be used with wildcard filters.
+     *     filter: 'placeholder-value',
+     *     // The maximum number of data policies to return. Must be a value between 1 and 1000. If not set, defaults to 50.
+     *     pageSize: 'placeholder-value',
+     *     // The `nextPageToken` value returned from a previous list request, if any. If not set, defaults to an empty string.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Resource name of the project for which to list data policies. Format is `projects/{project_number\}/locations/{location_id\}`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dataPolicies": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -711,11 +1008,11 @@ export namespace bigquerydatapolicy_v1 {
     list(
       params: Params$Resource$Projects$Locations$Datapolicies$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Datapolicies$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListDataPoliciesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListDataPoliciesResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Datapolicies$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -748,8 +1045,8 @@ export namespace bigquerydatapolicy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListDataPoliciesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListDataPoliciesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datapolicies$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -796,6 +1093,75 @@ export namespace bigquerydatapolicy_v1 {
 
     /**
      * Updates the metadata for an existing data policy. The target data policy can be specified by the resource name.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquerydatapolicy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigquerydatapolicy = google.bigquerydatapolicy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquerydatapolicy.projects.locations.dataPolicies.patch({
+     *     // Optional. If set to true, and the data policy is not found, a new data policy will be created. In this situation, update_mask is ignored.
+     *     allowMissing: 'placeholder-value',
+     *     // Output only. Resource name of this data policy, in the format of `projects/{project_number\}/locations/{location_id\}/dataPolicies/{data_policy_id\}`.
+     *     name: 'projects/my-project/locations/my-location/dataPolicies/my-dataPolicie',
+     *     // The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask If not set, defaults to all of the fields that are allowed to update. Updates to the `name` and `dataPolicyId` fields are not allowed.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "dataMaskingPolicy": {},
+     *       //   "dataPolicyId": "my_dataPolicyId",
+     *       //   "dataPolicyType": "my_dataPolicyType",
+     *       //   "name": "my_name",
+     *       //   "policyTag": "my_policyTag"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dataMaskingPolicy": {},
+     *   //   "dataPolicyId": "my_dataPolicyId",
+     *   //   "dataPolicyType": "my_dataPolicyType",
+     *   //   "name": "my_name",
+     *   //   "policyTag": "my_policyTag"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -805,11 +1171,11 @@ export namespace bigquerydatapolicy_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Datapolicies$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Datapolicies$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DataPolicy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DataPolicy>>;
     patch(
       params: Params$Resource$Projects$Locations$Datapolicies$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -838,7 +1204,10 @@ export namespace bigquerydatapolicy_v1 {
       callback?:
         | BodyResponseCallback<Schema$DataPolicy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$DataPolicy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$DataPolicy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datapolicies$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -882,6 +1251,67 @@ export namespace bigquerydatapolicy_v1 {
 
     /**
      * Renames the id (display name) of the specified data policy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquerydatapolicy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigquerydatapolicy = google.bigquerydatapolicy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquerydatapolicy.projects.locations.dataPolicies.rename({
+     *     // Required. Resource name of the data policy to rename. The format is `projects/{project_number\}/locations/{location_id\}/dataPolicies/{data_policy_id\}`
+     *     name: 'projects/my-project/locations/my-location/dataPolicies/my-dataPolicie',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "newDataPolicyId": "my_newDataPolicyId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dataMaskingPolicy": {},
+     *   //   "dataPolicyId": "my_dataPolicyId",
+     *   //   "dataPolicyType": "my_dataPolicyType",
+     *   //   "name": "my_name",
+     *   //   "policyTag": "my_policyTag"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -891,11 +1321,11 @@ export namespace bigquerydatapolicy_v1 {
     rename(
       params: Params$Resource$Projects$Locations$Datapolicies$Rename,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     rename(
       params?: Params$Resource$Projects$Locations$Datapolicies$Rename,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DataPolicy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DataPolicy>>;
     rename(
       params: Params$Resource$Projects$Locations$Datapolicies$Rename,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -924,7 +1354,10 @@ export namespace bigquerydatapolicy_v1 {
       callback?:
         | BodyResponseCallback<Schema$DataPolicy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$DataPolicy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$DataPolicy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datapolicies$Rename;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -968,6 +1401,69 @@ export namespace bigquerydatapolicy_v1 {
 
     /**
      * Sets the IAM policy for the specified data policy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquerydatapolicy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigquerydatapolicy = google.bigquerydatapolicy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await bigquerydatapolicy.projects.locations.dataPolicies.setIamPolicy({
+     *       // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/dataPolicies/my-dataPolicie',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "policy": {},
+     *         //   "updateMask": "my_updateMask"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -977,11 +1473,11 @@ export namespace bigquerydatapolicy_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Datapolicies$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Datapolicies$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Datapolicies$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1010,7 +1506,10 @@ export namespace bigquerydatapolicy_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datapolicies$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1058,6 +1557,67 @@ export namespace bigquerydatapolicy_v1 {
 
     /**
      * Returns the caller's permission on the specified data policy resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquerydatapolicy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigquerydatapolicy = google.bigquerydatapolicy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await bigquerydatapolicy.projects.locations.dataPolicies.testIamPermissions(
+     *       {
+     *         // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *         resource:
+     *           'projects/my-project/locations/my-location/dataPolicies/my-dataPolicie',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "permissions": []
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1067,11 +1627,11 @@ export namespace bigquerydatapolicy_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Datapolicies$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Datapolicies$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Datapolicies$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1106,8 +1666,8 @@ export namespace bigquerydatapolicy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Datapolicies$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;

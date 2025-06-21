@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -1304,11 +1304,11 @@ export namespace artifactregistry_v1 {
      */
     remoteRepositoryConfig?: Schema$RemoteRepositoryConfig;
     /**
-     * Output only. If set, the repository satisfies physical zone isolation.
+     * Output only. Whether or not this repository satisfies PZI.
      */
     satisfiesPzi?: boolean | null;
     /**
-     * Output only. If set, the repository satisfies physical zone separation.
+     * Output only. Whether or not this repository satisfies PZS.
      */
     satisfiesPzs?: boolean | null;
     /**
@@ -1455,7 +1455,7 @@ export namespace artifactregistry_v1 {
      */
     packageId?: string | null;
     /**
-     * The ID of the version of the generic artifact. If the version does not exist, a new version will be created. The version_id must start and end with a letter or number, can only contain lowercase letters, numbers, hyphens and periods, i.e. [a-z0-9-.] and cannot exceed a total of 128 characters. Creating a version called `latest` is not allowed.
+     * The ID of the version of the generic artifact. If the version does not exist, a new version will be created. The version_id must start and end with a letter or number, can only contain lowercase letters, numbers, the following characters [-.+~:], i.e.[a-z0-9-.+~:] and cannot exceed a total of 128 characters. Creating a version called `latest` is not allowed.
      */
     versionId?: string | null;
   }
@@ -1714,6 +1714,57 @@ export namespace artifactregistry_v1 {
 
     /**
      * Retrieves the Settings for the Project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await artifactregistry.projects.getProjectSettings({
+     *     // Required. The name of the projectSettings resource.
+     *     name: 'projects/my-project/projectSettings',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "legacyRedirectionState": "my_legacyRedirectionState",
+     *   //   "name": "my_name",
+     *   //   "pullPercent": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1723,11 +1774,11 @@ export namespace artifactregistry_v1 {
     getProjectSettings(
       params: Params$Resource$Projects$Getprojectsettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getProjectSettings(
       params?: Params$Resource$Projects$Getprojectsettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ProjectSettings>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ProjectSettings>>;
     getProjectSettings(
       params: Params$Resource$Projects$Getprojectsettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1758,7 +1809,10 @@ export namespace artifactregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$ProjectSettings>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ProjectSettings> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ProjectSettings>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Getprojectsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1802,6 +1856,66 @@ export namespace artifactregistry_v1 {
 
     /**
      * Updates the Settings for the Project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await artifactregistry.projects.updateProjectSettings({
+     *     // The name of the project's settings. Always of the form: projects/{project-id\}/projectSettings In update request: never set In response: always set
+     *     name: 'projects/my-project/projectSettings',
+     *     // Field mask to support partial updates.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "legacyRedirectionState": "my_legacyRedirectionState",
+     *       //   "name": "my_name",
+     *       //   "pullPercent": 0
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "legacyRedirectionState": "my_legacyRedirectionState",
+     *   //   "name": "my_name",
+     *   //   "pullPercent": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1811,11 +1925,11 @@ export namespace artifactregistry_v1 {
     updateProjectSettings(
       params: Params$Resource$Projects$Updateprojectsettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     updateProjectSettings(
       params?: Params$Resource$Projects$Updateprojectsettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ProjectSettings>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ProjectSettings>>;
     updateProjectSettings(
       params: Params$Resource$Projects$Updateprojectsettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1846,7 +1960,10 @@ export namespace artifactregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$ProjectSettings>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ProjectSettings> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ProjectSettings>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Updateprojectsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1929,6 +2046,59 @@ export namespace artifactregistry_v1 {
 
     /**
      * Gets information about a location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await artifactregistry.projects.locations.get({
+     *     // Resource name for the location.
+     *     name: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "labels": {},
+     *   //   "locationId": "my_locationId",
+     *   //   "metadata": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1938,11 +2108,11 @@ export namespace artifactregistry_v1 {
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Location>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Location>>;
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1971,7 +2141,10 @@ export namespace artifactregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Location> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2015,6 +2188,56 @@ export namespace artifactregistry_v1 {
 
     /**
      * Retrieves the VPCSC Config for the Project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await artifactregistry.projects.locations.getVpcscConfig({
+     *     // Required. The name of the VPCSCConfig resource.
+     *     name: 'projects/my-project/locations/my-location/vpcscConfig',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "vpcscPolicy": "my_vpcscPolicy"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2024,11 +2247,11 @@ export namespace artifactregistry_v1 {
     getVpcscConfig(
       params: Params$Resource$Projects$Locations$Getvpcscconfig,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getVpcscConfig(
       params?: Params$Resource$Projects$Locations$Getvpcscconfig,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$VPCSCConfig>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$VPCSCConfig>>;
     getVpcscConfig(
       params: Params$Resource$Projects$Locations$Getvpcscconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2057,7 +2280,10 @@ export namespace artifactregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$VPCSCConfig>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$VPCSCConfig> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$VPCSCConfig>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Getvpcscconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2101,6 +2327,64 @@ export namespace artifactregistry_v1 {
 
     /**
      * Lists information about the supported locations for this service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await artifactregistry.projects.locations.list({
+     *     // Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     *     extraLocationTypes: 'placeholder-value',
+     *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
+     *     filter: 'placeholder-value',
+     *     // The resource that owns the locations collection, if applicable.
+     *     name: 'projects/my-project',
+     *     // The maximum number of results to return. If not set, the service selects a default.
+     *     pageSize: 'placeholder-value',
+     *     // A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "locations": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2110,11 +2394,11 @@ export namespace artifactregistry_v1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListLocationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2147,8 +2431,8 @@ export namespace artifactregistry_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListLocationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2195,6 +2479,64 @@ export namespace artifactregistry_v1 {
 
     /**
      * Updates the VPCSC Config for the Project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await artifactregistry.projects.locations.updateVpcscConfig({
+     *     // The name of the project's VPC SC Config. Always of the form: projects/{projectID\}/locations/{location\}/vpcscConfig In update request: never set In response: always set
+     *     name: 'projects/my-project/locations/my-location/vpcscConfig',
+     *     // Field mask to support partial updates.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "name": "my_name",
+     *       //   "vpcscPolicy": "my_vpcscPolicy"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "vpcscPolicy": "my_vpcscPolicy"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2204,11 +2546,11 @@ export namespace artifactregistry_v1 {
     updateVpcscConfig(
       params: Params$Resource$Projects$Locations$Updatevpcscconfig,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     updateVpcscConfig(
       params?: Params$Resource$Projects$Locations$Updatevpcscconfig,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$VPCSCConfig>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$VPCSCConfig>>;
     updateVpcscConfig(
       params: Params$Resource$Projects$Locations$Updatevpcscconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2237,7 +2579,10 @@ export namespace artifactregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$VPCSCConfig>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$VPCSCConfig> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$VPCSCConfig>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Updatevpcscconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2342,6 +2687,59 @@ export namespace artifactregistry_v1 {
 
     /**
      * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await artifactregistry.projects.locations.operations.get({
+     *     // The name of the operation resource.
+     *     name: 'projects/my-project/locations/my-location/operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2351,11 +2749,11 @@ export namespace artifactregistry_v1 {
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2384,7 +2782,10 @@ export namespace artifactregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2497,6 +2898,85 @@ export namespace artifactregistry_v1 {
 
     /**
      * Creates a repository. The returned Operation will finish once the repository has been created. Its response will be the created Repository.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await artifactregistry.projects.locations.repositories.create({
+     *     // Required. The name of the parent resource where the repository will be created.
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // Required. The repository id to use for this repository.
+     *     repositoryId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "cleanupPolicies": {},
+     *       //   "cleanupPolicyDryRun": false,
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "disallowUnspecifiedMode": false,
+     *       //   "dockerConfig": {},
+     *       //   "format": "my_format",
+     *       //   "kmsKeyName": "my_kmsKeyName",
+     *       //   "labels": {},
+     *       //   "mavenConfig": {},
+     *       //   "mode": "my_mode",
+     *       //   "name": "my_name",
+     *       //   "registryUri": "my_registryUri",
+     *       //   "remoteRepositoryConfig": {},
+     *       //   "satisfiesPzi": false,
+     *       //   "satisfiesPzs": false,
+     *       //   "sizeBytes": "my_sizeBytes",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "virtualRepositoryConfig": {},
+     *       //   "vulnerabilityScanningConfig": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2506,11 +2986,11 @@ export namespace artifactregistry_v1 {
     create(
       params: Params$Resource$Projects$Locations$Repositories$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Repositories$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Repositories$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2539,7 +3019,10 @@ export namespace artifactregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2586,6 +3069,56 @@ export namespace artifactregistry_v1 {
 
     /**
      * Deletes a repository and all of its contents. The returned Operation will finish once the repository has been deleted. It will not have any Operation metadata and will return a google.protobuf.Empty response.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await artifactregistry.projects.locations.repositories.delete({
+     *     // Required. The name of the repository to delete.
+     *     name: 'projects/my-project/locations/my-location/repositories/my-repositorie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2595,11 +3128,11 @@ export namespace artifactregistry_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Repositories$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Repositories$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Repositories$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2628,7 +3161,10 @@ export namespace artifactregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2672,6 +3208,74 @@ export namespace artifactregistry_v1 {
 
     /**
      * Gets a repository.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await artifactregistry.projects.locations.repositories.get({
+     *     // Required. The name of the repository to retrieve.
+     *     name: 'projects/my-project/locations/my-location/repositories/my-repositorie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cleanupPolicies": {},
+     *   //   "cleanupPolicyDryRun": false,
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "disallowUnspecifiedMode": false,
+     *   //   "dockerConfig": {},
+     *   //   "format": "my_format",
+     *   //   "kmsKeyName": "my_kmsKeyName",
+     *   //   "labels": {},
+     *   //   "mavenConfig": {},
+     *   //   "mode": "my_mode",
+     *   //   "name": "my_name",
+     *   //   "registryUri": "my_registryUri",
+     *   //   "remoteRepositoryConfig": {},
+     *   //   "satisfiesPzi": false,
+     *   //   "satisfiesPzs": false,
+     *   //   "sizeBytes": "my_sizeBytes",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "virtualRepositoryConfig": {},
+     *   //   "vulnerabilityScanningConfig": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2681,11 +3285,11 @@ export namespace artifactregistry_v1 {
     get(
       params: Params$Resource$Projects$Locations$Repositories$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Repositories$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Repository>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Repository>>;
     get(
       params: Params$Resource$Projects$Locations$Repositories$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2714,7 +3318,10 @@ export namespace artifactregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Repository>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Repository> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Repository>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2758,6 +3365,61 @@ export namespace artifactregistry_v1 {
 
     /**
      * Gets the IAM policy for a given resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.getIamPolicy({
+     *       // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     *       'options.requestedPolicyVersion': 'placeholder-value',
+     *       // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/repositories/my-repositorie',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2767,11 +3429,11 @@ export namespace artifactregistry_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Repositories$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Repositories$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Repositories$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2800,7 +3462,10 @@ export namespace artifactregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2848,6 +3513,64 @@ export namespace artifactregistry_v1 {
 
     /**
      * Lists repositories.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await artifactregistry.projects.locations.repositories.list({
+     *     // Optional. An expression for filtering the results of the request. Filter rules are case insensitive. The fields eligible for filtering are: * `name` Examples of using a filter: To filter the results of your request to repositories with the name `my-repo` in project `my-project` in the `us-central` region, append the following filter expression to your request: * `name="projects/my-project/locations/us-central1/repositories/my-repo"` You can also use wildcards to match any number of characters before or after the value: * `name="projects/my-project/locations/us-central1/repositories/my-*"` * `name="projects/my-project/locations/us-central1/repositories/xrepo"` * `name="projects/my-project/locations/us-central1/repositories/xrepo*"`
+     *     filter: 'placeholder-value',
+     *     // Optional. The field to order the results by.
+     *     orderBy: 'placeholder-value',
+     *     // The maximum number of repositories to return. Maximum page size is 1,000.
+     *     pageSize: 'placeholder-value',
+     *     // The next_page_token value returned from a previous list request, if any.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The name of the parent resource whose repositories will be listed.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "repositories": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2857,11 +3580,11 @@ export namespace artifactregistry_v1 {
     list(
       params: Params$Resource$Projects$Locations$Repositories$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Repositories$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListRepositoriesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListRepositoriesResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Repositories$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2894,8 +3617,8 @@ export namespace artifactregistry_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListRepositoriesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListRepositoriesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2942,6 +3665,100 @@ export namespace artifactregistry_v1 {
 
     /**
      * Updates a repository.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await artifactregistry.projects.locations.repositories.patch({
+     *     // The name of the repository, for example: `projects/p1/locations/us-central1/repositories/repo1`. For each location in a project, repository names must be unique.
+     *     name: 'projects/my-project/locations/my-location/repositories/my-repositorie',
+     *     // The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "cleanupPolicies": {},
+     *       //   "cleanupPolicyDryRun": false,
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "disallowUnspecifiedMode": false,
+     *       //   "dockerConfig": {},
+     *       //   "format": "my_format",
+     *       //   "kmsKeyName": "my_kmsKeyName",
+     *       //   "labels": {},
+     *       //   "mavenConfig": {},
+     *       //   "mode": "my_mode",
+     *       //   "name": "my_name",
+     *       //   "registryUri": "my_registryUri",
+     *       //   "remoteRepositoryConfig": {},
+     *       //   "satisfiesPzi": false,
+     *       //   "satisfiesPzs": false,
+     *       //   "sizeBytes": "my_sizeBytes",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "virtualRepositoryConfig": {},
+     *       //   "vulnerabilityScanningConfig": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cleanupPolicies": {},
+     *   //   "cleanupPolicyDryRun": false,
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "disallowUnspecifiedMode": false,
+     *   //   "dockerConfig": {},
+     *   //   "format": "my_format",
+     *   //   "kmsKeyName": "my_kmsKeyName",
+     *   //   "labels": {},
+     *   //   "mavenConfig": {},
+     *   //   "mode": "my_mode",
+     *   //   "name": "my_name",
+     *   //   "registryUri": "my_registryUri",
+     *   //   "remoteRepositoryConfig": {},
+     *   //   "satisfiesPzi": false,
+     *   //   "satisfiesPzs": false,
+     *   //   "sizeBytes": "my_sizeBytes",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "virtualRepositoryConfig": {},
+     *   //   "vulnerabilityScanningConfig": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2951,11 +3768,11 @@ export namespace artifactregistry_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Repositories$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Repositories$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Repository>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Repository>>;
     patch(
       params: Params$Resource$Projects$Locations$Repositories$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2984,7 +3801,10 @@ export namespace artifactregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Repository>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Repository> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Repository>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3028,6 +3848,64 @@ export namespace artifactregistry_v1 {
 
     /**
      * Updates the IAM policy for a given resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.setIamPolicy({
+     *       // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/repositories/my-repositorie',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "policy": {}
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3037,11 +3915,11 @@ export namespace artifactregistry_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Repositories$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Repositories$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Repositories$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3070,7 +3948,10 @@ export namespace artifactregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3118,6 +3999,65 @@ export namespace artifactregistry_v1 {
 
     /**
      * Tests if the caller has a list of permissions on a resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.testIamPermissions({
+     *       // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/repositories/my-repositorie',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "permissions": []
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3127,11 +4067,11 @@ export namespace artifactregistry_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Repositories$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Repositories$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Repositories$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3166,8 +4106,8 @@ export namespace artifactregistry_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3327,6 +4267,66 @@ export namespace artifactregistry_v1 {
 
     /**
      * Imports Apt artifacts. The returned Operation will complete once the resources are imported. Package, Version, and File resources are created based on the imported artifacts. Imported artifacts that conflict with existing resources are ignored.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.aptArtifacts.import({
+     *       // The name of the parent resource where the artifacts will be imported.
+     *       parent:
+     *         'projects/my-project/locations/my-location/repositories/my-repositorie',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "gcsSource": {}
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3336,11 +4336,11 @@ export namespace artifactregistry_v1 {
     import(
       params: Params$Resource$Projects$Locations$Repositories$Aptartifacts$Import,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     import(
       params?: Params$Resource$Projects$Locations$Repositories$Aptartifacts$Import,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     import(
       params: Params$Resource$Projects$Locations$Repositories$Aptartifacts$Import,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3369,7 +4369,10 @@ export namespace artifactregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Aptartifacts$Import;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3417,6 +4420,64 @@ export namespace artifactregistry_v1 {
 
     /**
      * Directly uploads an Apt artifact. The returned Operation will complete once the resources are uploaded. Package, Version, and File resources are created based on the imported artifact. Imported artifacts that conflict with existing resources are ignored.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.aptArtifacts.upload({
+     *       // The name of the parent resource where the artifacts will be uploaded.
+     *       parent:
+     *         'projects/my-project/locations/my-location/repositories/my-repositorie',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {}
+     *       },
+     *       media: {
+     *         mimeType: 'placeholder-value',
+     *         body: 'placeholder-value',
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "operation": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3426,11 +4487,11 @@ export namespace artifactregistry_v1 {
     upload(
       params: Params$Resource$Projects$Locations$Repositories$Aptartifacts$Upload,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     upload(
       params?: Params$Resource$Projects$Locations$Repositories$Aptartifacts$Upload,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$UploadAptArtifactMediaResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$UploadAptArtifactMediaResponse>>;
     upload(
       params: Params$Resource$Projects$Locations$Repositories$Aptartifacts$Upload,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3465,8 +4526,8 @@ export namespace artifactregistry_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$UploadAptArtifactMediaResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$UploadAptArtifactMediaResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Aptartifacts$Upload;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3566,6 +4627,76 @@ export namespace artifactregistry_v1 {
 
     /**
      * Creates an attachment. The returned Operation will finish once the attachment has been created. Its response will be the created attachment.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.attachments.create({
+     *       // Required. The attachment id to use for this attachment.
+     *       attachmentId: 'placeholder-value',
+     *       // Required. The name of the parent resource where the attachment will be created.
+     *       parent:
+     *         'projects/my-project/locations/my-location/repositories/my-repositorie',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "annotations": {},
+     *         //   "attachmentNamespace": "my_attachmentNamespace",
+     *         //   "createTime": "my_createTime",
+     *         //   "files": [],
+     *         //   "name": "my_name",
+     *         //   "ociVersionName": "my_ociVersionName",
+     *         //   "target": "my_target",
+     *         //   "type": "my_type",
+     *         //   "updateTime": "my_updateTime"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3575,11 +4706,11 @@ export namespace artifactregistry_v1 {
     create(
       params: Params$Resource$Projects$Locations$Repositories$Attachments$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Repositories$Attachments$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Repositories$Attachments$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3608,7 +4739,10 @@ export namespace artifactregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Attachments$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3656,6 +4790,57 @@ export namespace artifactregistry_v1 {
 
     /**
      * Deletes an attachment. The returned Operation will finish once the attachments has been deleted. It will not have any Operation metadata and will return a `google.protobuf.Empty` response.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.attachments.delete({
+     *       // Required. The name of the attachment to delete.
+     *       name: 'projects/my-project/locations/my-location/repositories/my-repositorie/attachments/my-attachment',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3665,11 +4850,11 @@ export namespace artifactregistry_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Repositories$Attachments$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Repositories$Attachments$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Repositories$Attachments$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3698,7 +4883,10 @@ export namespace artifactregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Attachments$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3743,6 +4931,64 @@ export namespace artifactregistry_v1 {
 
     /**
      * Gets an attachment.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.attachments.get({
+     *       // Required. The name of the attachment to retrieve.
+     *       name: 'projects/my-project/locations/my-location/repositories/my-repositorie/attachments/my-attachment',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "annotations": {},
+     *   //   "attachmentNamespace": "my_attachmentNamespace",
+     *   //   "createTime": "my_createTime",
+     *   //   "files": [],
+     *   //   "name": "my_name",
+     *   //   "ociVersionName": "my_ociVersionName",
+     *   //   "target": "my_target",
+     *   //   "type": "my_type",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3752,11 +4998,11 @@ export namespace artifactregistry_v1 {
     get(
       params: Params$Resource$Projects$Locations$Repositories$Attachments$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Repositories$Attachments$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Attachment>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Attachment>>;
     get(
       params: Params$Resource$Projects$Locations$Repositories$Attachments$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3785,7 +5031,10 @@ export namespace artifactregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Attachment>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Attachment> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Attachment>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Attachments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3830,6 +5079,64 @@ export namespace artifactregistry_v1 {
 
     /**
      * Lists attachments.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.attachments.list({
+     *       // Optional. An expression for filtering the results of the request. Filter rules are case insensitive. The fields eligible for filtering are: * `target` * `type` * `attachment_namespace`
+     *       filter: 'placeholder-value',
+     *       // The maximum number of attachments to return. Maximum page size is 1,000.
+     *       pageSize: 'placeholder-value',
+     *       // The next_page_token value returned from a previous list request, if any.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The name of the parent resource whose attachments will be listed.
+     *       parent:
+     *         'projects/my-project/locations/my-location/repositories/my-repositorie',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attachments": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3839,11 +5146,11 @@ export namespace artifactregistry_v1 {
     list(
       params: Params$Resource$Projects$Locations$Repositories$Attachments$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Repositories$Attachments$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAttachmentsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListAttachmentsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Repositories$Attachments$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3876,8 +5183,8 @@ export namespace artifactregistry_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListAttachmentsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListAttachmentsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Attachments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3982,6 +5289,63 @@ export namespace artifactregistry_v1 {
 
     /**
      * Gets a docker image.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.dockerImages.get({
+     *       // Required. The name of the docker images.
+     *       name: 'projects/my-project/locations/my-location/repositories/my-repositorie/dockerImages/my-dockerImage',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "buildTime": "my_buildTime",
+     *   //   "imageSizeBytes": "my_imageSizeBytes",
+     *   //   "mediaType": "my_mediaType",
+     *   //   "name": "my_name",
+     *   //   "tags": [],
+     *   //   "updateTime": "my_updateTime",
+     *   //   "uploadTime": "my_uploadTime",
+     *   //   "uri": "my_uri"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3991,11 +5355,11 @@ export namespace artifactregistry_v1 {
     get(
       params: Params$Resource$Projects$Locations$Repositories$Dockerimages$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Repositories$Dockerimages$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DockerImage>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DockerImage>>;
     get(
       params: Params$Resource$Projects$Locations$Repositories$Dockerimages$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4024,7 +5388,10 @@ export namespace artifactregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$DockerImage>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$DockerImage> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$DockerImage>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Dockerimages$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4069,6 +5436,64 @@ export namespace artifactregistry_v1 {
 
     /**
      * Lists docker images.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.dockerImages.list({
+     *       // The field to order the results by.
+     *       orderBy: 'placeholder-value',
+     *       // The maximum number of artifacts to return. Maximum page size is 1,000.
+     *       pageSize: 'placeholder-value',
+     *       // The next_page_token value returned from a previous list request, if any.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The name of the parent resource whose docker images will be listed.
+     *       parent:
+     *         'projects/my-project/locations/my-location/repositories/my-repositorie',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dockerImages": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4078,11 +5503,11 @@ export namespace artifactregistry_v1 {
     list(
       params: Params$Resource$Projects$Locations$Repositories$Dockerimages$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Repositories$Dockerimages$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListDockerImagesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListDockerImagesResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Repositories$Dockerimages$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4115,8 +5540,8 @@ export namespace artifactregistry_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListDockerImagesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListDockerImagesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Dockerimages$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4198,6 +5623,57 @@ export namespace artifactregistry_v1 {
 
     /**
      * Deletes a file and all of its content. It is only allowed on generic repositories. The returned operation will complete once the file has been deleted.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.files.delete({
+     *       // Required. The name of the file to delete.
+     *       name: 'projects/my-project/locations/my-location/repositories/my-repositorie/files/my-file',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4207,11 +5683,11 @@ export namespace artifactregistry_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Repositories$Files$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Repositories$Files$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Repositories$Files$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4240,7 +5716,10 @@ export namespace artifactregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Files$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4285,6 +5764,54 @@ export namespace artifactregistry_v1 {
 
     /**
      * Download a file.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.files.download({
+     *       // Required. The name of the file to download.
+     *       name: 'projects/my-project/locations/my-location/repositories/my-repositorie/files/my-file',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4294,11 +5821,11 @@ export namespace artifactregistry_v1 {
     download(
       params: Params$Resource$Projects$Locations$Repositories$Files$Download,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     download(
       params?: Params$Resource$Projects$Locations$Repositories$Files$Download,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DownloadFileResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DownloadFileResponse>>;
     download(
       params: Params$Resource$Projects$Locations$Repositories$Files$Download,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4331,8 +5858,8 @@ export namespace artifactregistry_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$DownloadFileResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$DownloadFileResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Files$Download;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4380,6 +5907,62 @@ export namespace artifactregistry_v1 {
 
     /**
      * Gets a file.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await artifactregistry.projects.locations.repositories.files.get({
+     *     // Required. The name of the file to retrieve.
+     *     name: 'projects/my-project/locations/my-location/repositories/my-repositorie/files/.*',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "annotations": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "fetchTime": "my_fetchTime",
+     *   //   "hashes": [],
+     *   //   "name": "my_name",
+     *   //   "owner": "my_owner",
+     *   //   "sizeBytes": "my_sizeBytes",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4389,11 +5972,13 @@ export namespace artifactregistry_v1 {
     get(
       params: Params$Resource$Projects$Locations$Repositories$Files$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Repositories$Files$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleDevtoolsArtifactregistryV1File>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleDevtoolsArtifactregistryV1File>
+    >;
     get(
       params: Params$Resource$Projects$Locations$Repositories$Files$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4428,8 +6013,10 @@ export namespace artifactregistry_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleDevtoolsArtifactregistryV1File>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleDevtoolsArtifactregistryV1File>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Files$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4476,6 +6063,67 @@ export namespace artifactregistry_v1 {
 
     /**
      * Lists files.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await artifactregistry.projects.locations.repositories.files.list(
+     *     {
+     *       // An expression for filtering the results of the request. Filter rules are case insensitive. The fields eligible for filtering are: * `name` * `owner` * `annotations` Examples of using a filter: To filter the results of your request to files with the name `my_file.txt` in project `my-project` in the `us-central` region, in repository `my-repo`, append the following filter expression to your request: * `name="projects/my-project/locations/us-central1/repositories/my-repo/files/my-file.txt"` You can also use wildcards to match any number of characters before or after the value: * `name="projects/my-project/locations/us-central1/repositories/my-repo/files/my-*"` * `name="projects/my-project/locations/us-central1/repositories/my-repo/files/xfile.txt"` * `name="projects/my-project/locations/us-central1/repositories/my-repo/files/xfile*"` To filter the results of your request to files owned by the version `1.0` in package `pkg1`, append the following filter expression to your request: * `owner="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/versions/1.0"` To filter the results of your request to files with the annotation key-value pair [`external_link`: `external_link_value`], append the following filter expression to your request: * `"annotations.external_link:external_link_value"` To filter just for a specific annotation key `external_link`, append the following filter expression to your request: * `"annotations.external_link"` If the annotation key or value contains special characters, you can escape them by surrounding the value with backticks. For example, to filter the results of your request to files with the annotation key-value pair [`external.link`:`https://example.com/my-file`], append the following filter expression to your request: * `` "annotations.`external.link`:`https://example.com/my-file`" `` You can also filter with annotations with a wildcard to match any number of characters before or after the value: * `` "annotations.*_link:`*example.com*`" ``
+     *       filter: 'placeholder-value',
+     *       // The field to order the results by.
+     *       orderBy: 'placeholder-value',
+     *       // The maximum number of files to return. Maximum page size is 1,000.
+     *       pageSize: 'placeholder-value',
+     *       // The next_page_token value returned from a previous list request, if any.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The name of the repository whose files will be listed. For example: "projects/p1/locations/us-central1/repositories/repo1
+     *       parent:
+     *         'projects/my-project/locations/my-location/repositories/my-repositorie',
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "files": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4485,11 +6133,11 @@ export namespace artifactregistry_v1 {
     list(
       params: Params$Resource$Projects$Locations$Repositories$Files$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Repositories$Files$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListFilesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListFilesResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Repositories$Files$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4520,8 +6168,8 @@ export namespace artifactregistry_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListFilesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListFilesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Files$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4569,6 +6217,77 @@ export namespace artifactregistry_v1 {
 
     /**
      * Updates a file.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.files.patch({
+     *       // The name of the file, for example: `projects/p1/locations/us-central1/repositories/repo1/files/a%2Fb%2Fc.txt`. If the file ID part contains slashes, they are escaped.
+     *       name: 'projects/my-project/locations/my-location/repositories/my-repositorie/files/my-file',
+     *       // Required. The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "annotations": {},
+     *         //   "createTime": "my_createTime",
+     *         //   "fetchTime": "my_fetchTime",
+     *         //   "hashes": [],
+     *         //   "name": "my_name",
+     *         //   "owner": "my_owner",
+     *         //   "sizeBytes": "my_sizeBytes",
+     *         //   "updateTime": "my_updateTime"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "annotations": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "fetchTime": "my_fetchTime",
+     *   //   "hashes": [],
+     *   //   "name": "my_name",
+     *   //   "owner": "my_owner",
+     *   //   "sizeBytes": "my_sizeBytes",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4578,11 +6297,13 @@ export namespace artifactregistry_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Repositories$Files$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Repositories$Files$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleDevtoolsArtifactregistryV1File>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleDevtoolsArtifactregistryV1File>
+    >;
     patch(
       params: Params$Resource$Projects$Locations$Repositories$Files$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4617,8 +6338,10 @@ export namespace artifactregistry_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleDevtoolsArtifactregistryV1File>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleDevtoolsArtifactregistryV1File>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Files$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4665,6 +6388,66 @@ export namespace artifactregistry_v1 {
 
     /**
      * Directly uploads a file to a repository. The returned Operation will complete once the resources are uploaded.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.files.upload({
+     *       // Required. The resource name of the repository where the file will be uploaded.
+     *       parent:
+     *         'projects/my-project/locations/my-location/repositories/my-repositorie',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "fileId": "my_fileId"
+     *         // }
+     *       },
+     *       media: {
+     *         mimeType: 'placeholder-value',
+     *         body: 'placeholder-value',
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "operation": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4674,11 +6457,11 @@ export namespace artifactregistry_v1 {
     upload(
       params: Params$Resource$Projects$Locations$Repositories$Files$Upload,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     upload(
       params?: Params$Resource$Projects$Locations$Repositories$Files$Upload,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$UploadFileMediaResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$UploadFileMediaResponse>>;
     upload(
       params: Params$Resource$Projects$Locations$Repositories$Files$Upload,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4713,8 +6496,8 @@ export namespace artifactregistry_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$UploadFileMediaResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$UploadFileMediaResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Files$Upload;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4861,6 +6644,70 @@ export namespace artifactregistry_v1 {
 
     /**
      * Directly uploads a Generic artifact. The returned operation will complete once the resources are uploaded. Package, version, and file resources are created based on the uploaded artifact. Uploaded artifacts that conflict with existing resources will raise an `ALREADY_EXISTS` error.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.genericArtifacts.upload(
+     *       {
+     *         // The resource name of the repository where the generic artifact will be uploaded.
+     *         parent:
+     *           'projects/my-project/locations/my-location/repositories/my-repositorie',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "filename": "my_filename",
+     *           //   "packageId": "my_packageId",
+     *           //   "versionId": "my_versionId"
+     *           // }
+     *         },
+     *         media: {
+     *           mimeType: 'placeholder-value',
+     *           body: 'placeholder-value',
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "operation": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4870,11 +6717,13 @@ export namespace artifactregistry_v1 {
     upload(
       params: Params$Resource$Projects$Locations$Repositories$Genericartifacts$Upload,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     upload(
       params?: Params$Resource$Projects$Locations$Repositories$Genericartifacts$Upload,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$UploadGenericArtifactMediaResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$UploadGenericArtifactMediaResponse>
+    >;
     upload(
       params: Params$Resource$Projects$Locations$Repositories$Genericartifacts$Upload,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4909,8 +6758,10 @@ export namespace artifactregistry_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$UploadGenericArtifactMediaResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$UploadGenericArtifactMediaResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Genericartifacts$Upload;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4998,6 +6849,64 @@ export namespace artifactregistry_v1 {
 
     /**
      * Directly uploads a Go module. The returned Operation will complete once the Go module is uploaded. Package, Version, and File resources are created based on the uploaded Go module.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.goModules.upload({
+     *       // The resource name of the repository where the Go module will be uploaded.
+     *       parent:
+     *         'projects/my-project/locations/my-location/repositories/my-repositorie',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {}
+     *       },
+     *       media: {
+     *         mimeType: 'placeholder-value',
+     *         body: 'placeholder-value',
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "operation": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5007,11 +6916,11 @@ export namespace artifactregistry_v1 {
     upload(
       params: Params$Resource$Projects$Locations$Repositories$Gomodules$Upload,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     upload(
       params?: Params$Resource$Projects$Locations$Repositories$Gomodules$Upload,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$UploadGoModuleMediaResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$UploadGoModuleMediaResponse>>;
     upload(
       params: Params$Resource$Projects$Locations$Repositories$Gomodules$Upload,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5046,8 +6955,8 @@ export namespace artifactregistry_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$UploadGoModuleMediaResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$UploadGoModuleMediaResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Gomodules$Upload;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5134,6 +7043,68 @@ export namespace artifactregistry_v1 {
 
     /**
      * Imports GooGet artifacts. The returned Operation will complete once the resources are imported. Package, Version, and File resources are created based on the imported artifacts. Imported artifacts that conflict with existing resources are ignored.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.googetArtifacts.import(
+     *       {
+     *         // The name of the parent resource where the artifacts will be imported.
+     *         parent:
+     *           'projects/my-project/locations/my-location/repositories/my-repositorie',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "gcsSource": {}
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5143,11 +7114,11 @@ export namespace artifactregistry_v1 {
     import(
       params: Params$Resource$Projects$Locations$Repositories$Googetartifacts$Import,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     import(
       params?: Params$Resource$Projects$Locations$Repositories$Googetartifacts$Import,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     import(
       params: Params$Resource$Projects$Locations$Repositories$Googetartifacts$Import,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5176,7 +7147,10 @@ export namespace artifactregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Googetartifacts$Import;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5224,6 +7198,66 @@ export namespace artifactregistry_v1 {
 
     /**
      * Directly uploads a GooGet artifact. The returned Operation will complete once the resources are uploaded. Package, Version, and File resources are created based on the imported artifact. Imported artifacts that conflict with existing resources are ignored.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.googetArtifacts.upload(
+     *       {
+     *         // The name of the parent resource where the artifacts will be uploaded.
+     *         parent:
+     *           'projects/my-project/locations/my-location/repositories/my-repositorie',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {}
+     *         },
+     *         media: {
+     *           mimeType: 'placeholder-value',
+     *           body: 'placeholder-value',
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "operation": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5233,11 +7267,13 @@ export namespace artifactregistry_v1 {
     upload(
       params: Params$Resource$Projects$Locations$Repositories$Googetartifacts$Upload,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     upload(
       params?: Params$Resource$Projects$Locations$Repositories$Googetartifacts$Upload,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$UploadGoogetArtifactMediaResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$UploadGoogetArtifactMediaResponse>
+    >;
     upload(
       params: Params$Resource$Projects$Locations$Repositories$Googetartifacts$Upload,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5272,8 +7308,10 @@ export namespace artifactregistry_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$UploadGoogetArtifactMediaResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$UploadGoogetArtifactMediaResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Googetartifacts$Upload;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5373,6 +7411,67 @@ export namespace artifactregistry_v1 {
 
     /**
      * Directly uploads a KFP artifact. The returned Operation will complete once the resource is uploaded. Package, Version, and File resources will be created based on the uploaded artifact. Uploaded artifacts that conflict with existing resources will be overwritten.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.kfpArtifacts.upload({
+     *       // The resource name of the repository where the KFP artifact will be uploaded.
+     *       parent:
+     *         'projects/my-project/locations/my-location/repositories/my-repositorie',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "description": "my_description",
+     *         //   "tags": []
+     *         // }
+     *       },
+     *       media: {
+     *         mimeType: 'placeholder-value',
+     *         body: 'placeholder-value',
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "operation": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5382,11 +7481,11 @@ export namespace artifactregistry_v1 {
     upload(
       params: Params$Resource$Projects$Locations$Repositories$Kfpartifacts$Upload,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     upload(
       params?: Params$Resource$Projects$Locations$Repositories$Kfpartifacts$Upload,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$UploadKfpArtifactMediaResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$UploadKfpArtifactMediaResponse>>;
     upload(
       params: Params$Resource$Projects$Locations$Repositories$Kfpartifacts$Upload,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5421,8 +7520,8 @@ export namespace artifactregistry_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$UploadKfpArtifactMediaResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$UploadKfpArtifactMediaResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Kfpartifacts$Upload;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5510,6 +7609,62 @@ export namespace artifactregistry_v1 {
 
     /**
      * Gets a maven artifact.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.mavenArtifacts.get({
+     *       // Required. The name of the maven artifact.
+     *       name: 'projects/my-project/locations/my-location/repositories/my-repositorie/mavenArtifacts/my-mavenArtifact',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "artifactId": "my_artifactId",
+     *   //   "createTime": "my_createTime",
+     *   //   "groupId": "my_groupId",
+     *   //   "name": "my_name",
+     *   //   "pomUri": "my_pomUri",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5519,11 +7674,11 @@ export namespace artifactregistry_v1 {
     get(
       params: Params$Resource$Projects$Locations$Repositories$Mavenartifacts$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Repositories$Mavenartifacts$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$MavenArtifact>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$MavenArtifact>>;
     get(
       params: Params$Resource$Projects$Locations$Repositories$Mavenartifacts$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5552,7 +7707,10 @@ export namespace artifactregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$MavenArtifact>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$MavenArtifact> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$MavenArtifact>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Mavenartifacts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5597,6 +7755,62 @@ export namespace artifactregistry_v1 {
 
     /**
      * Lists maven artifacts.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.mavenArtifacts.list({
+     *       // The maximum number of artifacts to return. Maximum page size is 1,000.
+     *       pageSize: 'placeholder-value',
+     *       // The next_page_token value returned from a previous list request, if any.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The name of the parent resource whose maven artifacts will be listed.
+     *       parent:
+     *         'projects/my-project/locations/my-location/repositories/my-repositorie',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "mavenArtifacts": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5606,11 +7820,11 @@ export namespace artifactregistry_v1 {
     list(
       params: Params$Resource$Projects$Locations$Repositories$Mavenartifacts$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Repositories$Mavenartifacts$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListMavenArtifactsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListMavenArtifactsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Repositories$Mavenartifacts$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5645,8 +7859,8 @@ export namespace artifactregistry_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListMavenArtifactsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListMavenArtifactsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Mavenartifacts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5724,6 +7938,61 @@ export namespace artifactregistry_v1 {
 
     /**
      * Gets a npm package.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.npmPackages.get({
+     *       // Required. The name of the npm package.
+     *       name: 'projects/my-project/locations/my-location/repositories/my-repositorie/npmPackages/my-npmPackage',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "name": "my_name",
+     *   //   "packageName": "my_packageName",
+     *   //   "tags": [],
+     *   //   "updateTime": "my_updateTime",
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5733,11 +8002,11 @@ export namespace artifactregistry_v1 {
     get(
       params: Params$Resource$Projects$Locations$Repositories$Npmpackages$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Repositories$Npmpackages$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$NpmPackage>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$NpmPackage>>;
     get(
       params: Params$Resource$Projects$Locations$Repositories$Npmpackages$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5766,7 +8035,10 @@ export namespace artifactregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$NpmPackage>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$NpmPackage> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$NpmPackage>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Npmpackages$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5811,6 +8083,62 @@ export namespace artifactregistry_v1 {
 
     /**
      * Lists npm packages.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.npmPackages.list({
+     *       // The maximum number of artifacts to return. Maximum page size is 1,000.
+     *       pageSize: 'placeholder-value',
+     *       // The next_page_token value returned from a previous list request, if any.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The name of the parent resource whose npm packages will be listed.
+     *       parent:
+     *         'projects/my-project/locations/my-location/repositories/my-repositorie',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "npmPackages": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5820,11 +8148,11 @@ export namespace artifactregistry_v1 {
     list(
       params: Params$Resource$Projects$Locations$Repositories$Npmpackages$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Repositories$Npmpackages$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListNpmPackagesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListNpmPackagesResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Repositories$Npmpackages$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5857,8 +8185,8 @@ export namespace artifactregistry_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListNpmPackagesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListNpmPackagesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Npmpackages$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5945,6 +8273,57 @@ export namespace artifactregistry_v1 {
 
     /**
      * Deletes a package and all of its versions and tags. The returned operation will complete once the package has been deleted.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.packages.delete({
+     *       // Required. The name of the package to delete.
+     *       name: 'projects/my-project/locations/my-location/repositories/my-repositorie/packages/my-package',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5954,11 +8333,11 @@ export namespace artifactregistry_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Repositories$Packages$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5987,7 +8366,10 @@ export namespace artifactregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Packages$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6032,6 +8414,60 @@ export namespace artifactregistry_v1 {
 
     /**
      * Gets a package.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.packages.get({
+     *       // Required. The name of the package to retrieve.
+     *       name: 'projects/my-project/locations/my-location/repositories/my-repositorie/packages/my-package',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "annotations": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6041,11 +8477,11 @@ export namespace artifactregistry_v1 {
     get(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Repositories$Packages$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Package>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Package>>;
     get(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6074,7 +8510,10 @@ export namespace artifactregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Package>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Package> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Package>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Packages$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6119,6 +8558,66 @@ export namespace artifactregistry_v1 {
 
     /**
      * Lists packages.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.packages.list({
+     *       // Optional. An expression for filtering the results of the request. Filter rules are case insensitive. The fields eligible for filtering are: * `name` * `annotations` Examples of using a filter: To filter the results of your request to packages with the name `my-package` in project `my-project` in the `us-central` region, in repository `my-repo`, append the following filter expression to your request: * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package"` You can also use wildcards to match any number of characters before or after the value: * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-*"` * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/xpackage"` * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/xpack*"` To filter the results of your request to packages with the annotation key-value pair [`external_link`: `external_link_value`], append the following filter expression to your request": * `"annotations.external_link:external_link_value"` To filter the results just for a specific annotation key `external_link`, append the following filter expression to your request: * `"annotations.external_link"` If the annotation key or value contains special characters, you can escape them by surrounding the value with backticks. For example, to filter the results of your request to packages with the annotation key-value pair [`external.link`:`https://example.com/my-package`], append the following filter expression to your request: * `` "annotations.`external.link`:`https://example.com/my-package`" `` You can also filter with annotations with a wildcard to match any number of characters before or after the value: * `` "annotations.*_link:`*example.com*`" ``
+     *       filter: 'placeholder-value',
+     *       // Optional. The field to order the results by.
+     *       orderBy: 'placeholder-value',
+     *       // The maximum number of packages to return. Maximum page size is 1,000.
+     *       pageSize: 'placeholder-value',
+     *       // The next_page_token value returned from a previous list request, if any.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The name of the parent resource whose packages will be listed.
+     *       parent:
+     *         'projects/my-project/locations/my-location/repositories/my-repositorie',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "packages": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6128,11 +8627,11 @@ export namespace artifactregistry_v1 {
     list(
       params: Params$Resource$Projects$Locations$Repositories$Packages$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Repositories$Packages$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListPackagesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListPackagesResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Repositories$Packages$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6165,8 +8664,8 @@ export namespace artifactregistry_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListPackagesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListPackagesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Packages$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6214,6 +8713,71 @@ export namespace artifactregistry_v1 {
 
     /**
      * Updates a package.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.packages.patch({
+     *       // The name of the package, for example: `projects/p1/locations/us-central1/repositories/repo1/packages/pkg1`. If the package ID part contains slashes, the slashes are escaped.
+     *       name: 'projects/my-project/locations/my-location/repositories/my-repositorie/packages/my-package',
+     *       // The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "annotations": {},
+     *         //   "createTime": "my_createTime",
+     *         //   "displayName": "my_displayName",
+     *         //   "name": "my_name",
+     *         //   "updateTime": "my_updateTime"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "annotations": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6223,11 +8787,11 @@ export namespace artifactregistry_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Repositories$Packages$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Package>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Package>>;
     patch(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6256,7 +8820,10 @@ export namespace artifactregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Package>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Package> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Package>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Packages$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6362,6 +8929,68 @@ export namespace artifactregistry_v1 {
 
     /**
      * Creates a tag.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.packages.tags.create(
+     *       {
+     *         // The name of the parent resource where the tag will be created.
+     *         parent:
+     *           'projects/my-project/locations/my-location/repositories/my-repositorie/packages/my-package',
+     *         // The tag id to use for this repository.
+     *         tagId: 'placeholder-value',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "name": "my_name",
+     *           //   "version": "my_version"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6371,11 +9000,11 @@ export namespace artifactregistry_v1 {
     create(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Tags$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Repositories$Packages$Tags$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Tag>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Tag>>;
     create(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Tags$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6404,7 +9033,10 @@ export namespace artifactregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Tag>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Tag> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Tag>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Packages$Tags$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6449,6 +9081,53 @@ export namespace artifactregistry_v1 {
 
     /**
      * Deletes a tag.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.packages.tags.delete(
+     *       {
+     *         // The name of the tag to delete.
+     *         name: 'projects/my-project/locations/my-location/repositories/my-repositorie/packages/my-package/tags/my-tag',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6458,11 +9137,11 @@ export namespace artifactregistry_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Tags$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Repositories$Packages$Tags$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Tags$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6491,7 +9170,10 @@ export namespace artifactregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Packages$Tags$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6536,6 +9218,57 @@ export namespace artifactregistry_v1 {
 
     /**
      * Gets a tag.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.packages.tags.get({
+     *       // The name of the tag to retrieve.
+     *       name: 'projects/my-project/locations/my-location/repositories/my-repositorie/packages/my-package/tags/my-tag',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6545,11 +9278,11 @@ export namespace artifactregistry_v1 {
     get(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Tags$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Repositories$Packages$Tags$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Tag>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Tag>>;
     get(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Tags$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6578,7 +9311,10 @@ export namespace artifactregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Tag>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Tag> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Tag>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Packages$Tags$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6623,6 +9359,64 @@ export namespace artifactregistry_v1 {
 
     /**
      * Lists tags.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.packages.tags.list({
+     *       // An expression for filtering the results of the request. Filter rules are case insensitive. The fields eligible for filtering are: * `name` * `version` Examples of using a filter: To filter the results of your request to tags with the name `my-tag` in package `my-package` in repository `my-repo` in project "`y-project` in the us-central region, append the following filter expression to your request: * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/tags/my-tag"` You can also use wildcards to match any number of characters before or after the value: * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/tags/my*"` * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/tags/xtag"` * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/tags/xtag*"` To filter the results of your request to tags applied to the version `1.0` in package `my-package`, append the following filter expression to your request: * `version="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/versions/1.0"`
+     *       filter: 'placeholder-value',
+     *       // The maximum number of tags to return. Maximum page size is 1,000.
+     *       pageSize: 'placeholder-value',
+     *       // The next_page_token value returned from a previous list request, if any.
+     *       pageToken: 'placeholder-value',
+     *       // The name of the parent package whose tags will be listed. For example: `projects/p1/locations/us-central1/repositories/repo1/packages/pkg1`.
+     *       parent:
+     *         'projects/my-project/locations/my-location/repositories/my-repositorie/packages/my-package',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "tags": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6632,11 +9426,11 @@ export namespace artifactregistry_v1 {
     list(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Tags$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Repositories$Packages$Tags$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListTagsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListTagsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Tags$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6665,7 +9459,10 @@ export namespace artifactregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$ListTagsResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ListTagsResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListTagsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Packages$Tags$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6710,6 +9507,65 @@ export namespace artifactregistry_v1 {
 
     /**
      * Updates a tag.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.packages.tags.patch({
+     *       // The name of the tag, for example: "projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/tags/tag1". If the package part contains slashes, the slashes are escaped. The tag part can only have characters in [a-zA-Z0-9\-._~:@], anything else must be URL encoded.
+     *       name: 'projects/my-project/locations/my-location/repositories/my-repositorie/packages/my-package/tags/my-tag',
+     *       // The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "name": "my_name",
+     *         //   "version": "my_version"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6719,11 +9575,11 @@ export namespace artifactregistry_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Tags$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Repositories$Packages$Tags$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Tag>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Tag>>;
     patch(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Tags$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6752,7 +9608,10 @@ export namespace artifactregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Tag>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Tag> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Tag>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Packages$Tags$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6870,6 +9729,69 @@ export namespace artifactregistry_v1 {
 
     /**
      * Deletes multiple versions across a repository. The returned operation will complete once the versions have been deleted.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.packages.versions.batchDelete(
+     *       {
+     *         // The name of the repository holding all requested versions.
+     *         parent:
+     *           'projects/my-project/locations/my-location/repositories/my-repositorie/packages/my-package',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "names": [],
+     *           //   "validateOnly": false
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6879,11 +9801,11 @@ export namespace artifactregistry_v1 {
     batchDelete(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Versions$Batchdelete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     batchDelete(
       params?: Params$Resource$Projects$Locations$Repositories$Packages$Versions$Batchdelete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     batchDelete(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Versions$Batchdelete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6912,7 +9834,10 @@ export namespace artifactregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Packages$Versions$Batchdelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6960,6 +9885,61 @@ export namespace artifactregistry_v1 {
 
     /**
      * Deletes a version and all of its content. The returned operation will complete once the version has been deleted.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.packages.versions.delete(
+     *       {
+     *         // By default, a version that is tagged may not be deleted. If force=true, the version and any tags pointing to the version are deleted.
+     *         force: 'placeholder-value',
+     *         // The name of the version to delete.
+     *         name: 'projects/my-project/locations/my-location/repositories/my-repositorie/packages/my-package/versions/my-version',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6969,11 +9949,11 @@ export namespace artifactregistry_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Versions$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Repositories$Packages$Versions$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Versions$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7002,7 +9982,10 @@ export namespace artifactregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Packages$Versions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7047,6 +10030,66 @@ export namespace artifactregistry_v1 {
 
     /**
      * Gets a version
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.packages.versions.get(
+     *       {
+     *         // The name of the version to retrieve.
+     *         name: 'projects/my-project/locations/my-location/repositories/my-repositorie/packages/my-package/versions/my-version',
+     *         // The view that should be returned in the response.
+     *         view: 'placeholder-value',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "annotations": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "relatedTags": [],
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7056,11 +10099,11 @@ export namespace artifactregistry_v1 {
     get(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Versions$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Repositories$Packages$Versions$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Version>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Version>>;
     get(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Versions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7089,7 +10132,10 @@ export namespace artifactregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Version>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Version> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Version>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Packages$Versions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7134,6 +10180,70 @@ export namespace artifactregistry_v1 {
 
     /**
      * Lists versions.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.packages.versions.list(
+     *       {
+     *         // Optional. An expression for filtering the results of the request. Filter rules are case insensitive. The fields eligible for filtering are: * `name` * `annotations` Examples of using a filter: To filter the results of your request to versions with the name `my-version` in project `my-project` in the `us-central` region, in repository `my-repo`, append the following filter expression to your request: * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/versions/my-version"` You can also use wildcards to match any number of characters before or after the value: * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/versions/xversion"` * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/versions/my*"` * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/versions/xversion*"` To filter the results of your request to versions with the annotation key-value pair [`external_link`: `external_link_value`], append the following filter expression to your request: * `"annotations.external_link:external_link_value"` To filter just for a specific annotation key `external_link`, append the following filter expression to your request: * `"annotations.external_link"` If the annotation key or value contains special characters, you can escape them by surrounding the value with backticks. For example, to filter the results of your request to versions with the annotation key-value pair [`external.link`:`https://example.com/my-version`], append the following filter expression to your request: * `` "annotations.`external.link`:`https://example.com/my-version`" `` You can also filter with annotations with a wildcard to match any number of characters before or after the value: * `` "annotations.*_link:`*example.com*`" ``
+     *         filter: 'placeholder-value',
+     *         // Optional. The field to order the results by.
+     *         orderBy: 'placeholder-value',
+     *         // The maximum number of versions to return. Maximum page size is 1,000.
+     *         pageSize: 'placeholder-value',
+     *         // The next_page_token value returned from a previous list request, if any.
+     *         pageToken: 'placeholder-value',
+     *         // The name of the parent resource whose versions will be listed.
+     *         parent:
+     *           'projects/my-project/locations/my-location/repositories/my-repositorie/packages/my-package',
+     *         // The view that should be returned in the response.
+     *         view: 'placeholder-value',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "versions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7143,11 +10253,11 @@ export namespace artifactregistry_v1 {
     list(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Versions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Repositories$Packages$Versions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListVersionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListVersionsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Versions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7180,8 +10290,8 @@ export namespace artifactregistry_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListVersionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListVersionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Packages$Versions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7229,6 +10339,77 @@ export namespace artifactregistry_v1 {
 
     /**
      * Updates a version.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.packages.versions.patch(
+     *       {
+     *         // The name of the version, for example: `projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/versions/art1`. If the package or version ID parts contain slashes, the slashes are escaped.
+     *         name: 'projects/my-project/locations/my-location/repositories/my-repositorie/packages/my-package/versions/my-version',
+     *         // The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     *         updateMask: 'placeholder-value',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "annotations": {},
+     *           //   "createTime": "my_createTime",
+     *           //   "description": "my_description",
+     *           //   "metadata": {},
+     *           //   "name": "my_name",
+     *           //   "relatedTags": [],
+     *           //   "updateTime": "my_updateTime"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "annotations": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "relatedTags": [],
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7238,11 +10419,11 @@ export namespace artifactregistry_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Versions$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Repositories$Packages$Versions$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Version>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Version>>;
     patch(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Versions$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7271,7 +10452,10 @@ export namespace artifactregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Version>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Version> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Version>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Packages$Versions$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7401,6 +10585,61 @@ export namespace artifactregistry_v1 {
 
     /**
      * Gets a python package.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.pythonPackages.get({
+     *       // Required. The name of the python package.
+     *       name: 'projects/my-project/locations/my-location/repositories/my-repositorie/pythonPackages/my-pythonPackage',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "name": "my_name",
+     *   //   "packageName": "my_packageName",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "uri": "my_uri",
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7410,11 +10649,11 @@ export namespace artifactregistry_v1 {
     get(
       params: Params$Resource$Projects$Locations$Repositories$Pythonpackages$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Repositories$Pythonpackages$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PythonPackage>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PythonPackage>>;
     get(
       params: Params$Resource$Projects$Locations$Repositories$Pythonpackages$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7443,7 +10682,10 @@ export namespace artifactregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$PythonPackage>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$PythonPackage> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$PythonPackage>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Pythonpackages$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7488,6 +10730,62 @@ export namespace artifactregistry_v1 {
 
     /**
      * Lists python packages.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.pythonPackages.list({
+     *       // The maximum number of artifacts to return. Maximum page size is 1,000.
+     *       pageSize: 'placeholder-value',
+     *       // The next_page_token value returned from a previous list request, if any.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The name of the parent resource whose python packages will be listed.
+     *       parent:
+     *         'projects/my-project/locations/my-location/repositories/my-repositorie',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "pythonPackages": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7497,11 +10795,11 @@ export namespace artifactregistry_v1 {
     list(
       params: Params$Resource$Projects$Locations$Repositories$Pythonpackages$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Repositories$Pythonpackages$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListPythonPackagesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListPythonPackagesResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Repositories$Pythonpackages$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7536,8 +10834,8 @@ export namespace artifactregistry_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListPythonPackagesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListPythonPackagesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Pythonpackages$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7615,6 +10913,72 @@ export namespace artifactregistry_v1 {
 
     /**
      * Creates a rule.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.rules.create({
+     *       // Required. The name of the parent resource where the rule will be created.
+     *       parent:
+     *         'projects/my-project/locations/my-location/repositories/my-repositorie',
+     *       // The rule id to use for this repository.
+     *       ruleId: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "action": "my_action",
+     *         //   "condition": {},
+     *         //   "name": "my_name",
+     *         //   "operation": "my_operation",
+     *         //   "packageId": "my_packageId"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "action": "my_action",
+     *   //   "condition": {},
+     *   //   "name": "my_name",
+     *   //   "operation": "my_operation",
+     *   //   "packageId": "my_packageId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7624,11 +10988,13 @@ export namespace artifactregistry_v1 {
     create(
       params: Params$Resource$Projects$Locations$Repositories$Rules$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Repositories$Rules$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleDevtoolsArtifactregistryV1Rule>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleDevtoolsArtifactregistryV1Rule>
+    >;
     create(
       params: Params$Resource$Projects$Locations$Repositories$Rules$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7663,8 +11029,10 @@ export namespace artifactregistry_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleDevtoolsArtifactregistryV1Rule>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleDevtoolsArtifactregistryV1Rule>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Rules$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7714,6 +11082,51 @@ export namespace artifactregistry_v1 {
 
     /**
      * Deletes a rule.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.rules.delete({
+     *       // Required. The name of the rule to delete.
+     *       name: 'projects/my-project/locations/my-location/repositories/my-repositorie/rules/my-rule',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7723,11 +11136,11 @@ export namespace artifactregistry_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Repositories$Rules$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Repositories$Rules$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Locations$Repositories$Rules$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7756,7 +11169,10 @@ export namespace artifactregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Rules$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7801,6 +11217,59 @@ export namespace artifactregistry_v1 {
 
     /**
      * Gets a rule.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await artifactregistry.projects.locations.repositories.rules.get({
+     *     // Required. The name of the rule to retrieve.
+     *     name: 'projects/my-project/locations/my-location/repositories/my-repositorie/rules/my-rule',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "action": "my_action",
+     *   //   "condition": {},
+     *   //   "name": "my_name",
+     *   //   "operation": "my_operation",
+     *   //   "packageId": "my_packageId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7810,11 +11279,13 @@ export namespace artifactregistry_v1 {
     get(
       params: Params$Resource$Projects$Locations$Repositories$Rules$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Repositories$Rules$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleDevtoolsArtifactregistryV1Rule>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleDevtoolsArtifactregistryV1Rule>
+    >;
     get(
       params: Params$Resource$Projects$Locations$Repositories$Rules$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7849,8 +11320,10 @@ export namespace artifactregistry_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleDevtoolsArtifactregistryV1Rule>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleDevtoolsArtifactregistryV1Rule>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Rules$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7897,6 +11370,63 @@ export namespace artifactregistry_v1 {
 
     /**
      * Lists rules.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await artifactregistry.projects.locations.repositories.rules.list(
+     *     {
+     *       // The maximum number of rules to return. Maximum page size is 1,000.
+     *       pageSize: 'placeholder-value',
+     *       // The next_page_token value returned from a previous list request, if any.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The name of the parent repository whose rules will be listed. For example: `projects/p1/locations/us-central1/repositories/repo1`.
+     *       parent:
+     *         'projects/my-project/locations/my-location/repositories/my-repositorie',
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "rules": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7906,11 +11436,11 @@ export namespace artifactregistry_v1 {
     list(
       params: Params$Resource$Projects$Locations$Repositories$Rules$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Repositories$Rules$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListRulesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListRulesResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Repositories$Rules$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7941,8 +11471,8 @@ export namespace artifactregistry_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListRulesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListRulesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Rules$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7990,6 +11520,71 @@ export namespace artifactregistry_v1 {
 
     /**
      * Updates a rule.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.rules.patch({
+     *       // The name of the rule, for example: `projects/p1/locations/us-central1/repositories/repo1/rules/rule1`.
+     *       name: 'projects/my-project/locations/my-location/repositories/my-repositorie/rules/my-rule',
+     *       // The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "action": "my_action",
+     *         //   "condition": {},
+     *         //   "name": "my_name",
+     *         //   "operation": "my_operation",
+     *         //   "packageId": "my_packageId"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "action": "my_action",
+     *   //   "condition": {},
+     *   //   "name": "my_name",
+     *   //   "operation": "my_operation",
+     *   //   "packageId": "my_packageId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7999,11 +11594,13 @@ export namespace artifactregistry_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Repositories$Rules$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Repositories$Rules$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleDevtoolsArtifactregistryV1Rule>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleDevtoolsArtifactregistryV1Rule>
+    >;
     patch(
       params: Params$Resource$Projects$Locations$Repositories$Rules$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8038,8 +11635,10 @@ export namespace artifactregistry_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleDevtoolsArtifactregistryV1Rule>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleDevtoolsArtifactregistryV1Rule>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Rules$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8155,6 +11754,66 @@ export namespace artifactregistry_v1 {
 
     /**
      * Imports Yum (RPM) artifacts. The returned Operation will complete once the resources are imported. Package, Version, and File resources are created based on the imported artifacts. Imported artifacts that conflict with existing resources are ignored.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.yumArtifacts.import({
+     *       // The name of the parent resource where the artifacts will be imported.
+     *       parent:
+     *         'projects/my-project/locations/my-location/repositories/my-repositorie',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "gcsSource": {}
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8164,11 +11823,11 @@ export namespace artifactregistry_v1 {
     import(
       params: Params$Resource$Projects$Locations$Repositories$Yumartifacts$Import,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     import(
       params?: Params$Resource$Projects$Locations$Repositories$Yumartifacts$Import,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     import(
       params: Params$Resource$Projects$Locations$Repositories$Yumartifacts$Import,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8197,7 +11856,10 @@ export namespace artifactregistry_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Yumartifacts$Import;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8245,6 +11907,64 @@ export namespace artifactregistry_v1 {
 
     /**
      * Directly uploads a Yum artifact. The returned Operation will complete once the resources are uploaded. Package, Version, and File resources are created based on the imported artifact. Imported artifacts that conflict with existing resources are ignored.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.yumArtifacts.upload({
+     *       // The name of the parent resource where the artifacts will be uploaded.
+     *       parent:
+     *         'projects/my-project/locations/my-location/repositories/my-repositorie',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {}
+     *       },
+     *       media: {
+     *         mimeType: 'placeholder-value',
+     *         body: 'placeholder-value',
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "operation": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8254,11 +11974,11 @@ export namespace artifactregistry_v1 {
     upload(
       params: Params$Resource$Projects$Locations$Repositories$Yumartifacts$Upload,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     upload(
       params?: Params$Resource$Projects$Locations$Repositories$Yumartifacts$Upload,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$UploadYumArtifactMediaResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$UploadYumArtifactMediaResponse>>;
     upload(
       params: Params$Resource$Projects$Locations$Repositories$Yumartifacts$Upload,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8293,8 +12013,8 @@ export namespace artifactregistry_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$UploadYumArtifactMediaResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$UploadYumArtifactMediaResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Yumartifacts$Upload;
       let options = (optionsOrCallback || {}) as MethodOptions;

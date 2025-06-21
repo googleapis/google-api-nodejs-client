@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -369,6 +369,55 @@ export namespace gamesManagement_v1management {
 
     /**
      * Resets the achievement with the given ID for the currently authenticated player. This method is only accessible to whitelisted tester accounts for your application.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gamesManagement = google.gamesManagement('v1management');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gamesManagement.achievements.reset({
+     *     // The ID of the achievement used by this method.
+     *     achievementId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "currentState": "my_currentState",
+     *   //   "definitionId": "my_definitionId",
+     *   //   "kind": "my_kind",
+     *   //   "updateOccurred": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -378,11 +427,11 @@ export namespace gamesManagement_v1management {
     reset(
       params: Params$Resource$Achievements$Reset,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     reset(
       params?: Params$Resource$Achievements$Reset,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AchievementResetResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AchievementResetResponse>>;
     reset(
       params: Params$Resource$Achievements$Reset,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -417,8 +466,8 @@ export namespace gamesManagement_v1management {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AchievementResetResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AchievementResetResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Achievements$Reset;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -464,6 +513,50 @@ export namespace gamesManagement_v1management {
 
     /**
      * Resets all achievements for the currently authenticated player for your application. This method is only accessible to whitelisted tester accounts for your application.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gamesManagement = google.gamesManagement('v1management');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gamesManagement.achievements.resetAll({});
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "results": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -473,11 +566,11 @@ export namespace gamesManagement_v1management {
     resetAll(
       params: Params$Resource$Achievements$Resetall,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     resetAll(
       params?: Params$Resource$Achievements$Resetall,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AchievementResetAllResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AchievementResetAllResponse>>;
     resetAll(
       params: Params$Resource$Achievements$Resetall,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -512,8 +605,8 @@ export namespace gamesManagement_v1management {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AchievementResetAllResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AchievementResetAllResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Achievements$Resetall;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -560,6 +653,44 @@ export namespace gamesManagement_v1management {
 
     /**
      * Resets all draft achievements for all players. This method is only available to user accounts for your developer console.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gamesManagement = google.gamesManagement('v1management');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gamesManagement.achievements.resetAllForAllPlayers({});
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -569,11 +700,11 @@ export namespace gamesManagement_v1management {
     resetAllForAllPlayers(
       params: Params$Resource$Achievements$Resetallforallplayers,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     resetAllForAllPlayers(
       params?: Params$Resource$Achievements$Resetallforallplayers,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     resetAllForAllPlayers(
       params: Params$Resource$Achievements$Resetallforallplayers,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -600,7 +731,10 @@ export namespace gamesManagement_v1management {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Achievements$Resetallforallplayers;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -646,6 +780,47 @@ export namespace gamesManagement_v1management {
 
     /**
      * Resets the achievement with the given ID for all players. This method is only available to user accounts for your developer console. Only draft achievements can be reset.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gamesManagement = google.gamesManagement('v1management');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gamesManagement.achievements.resetForAllPlayers({
+     *     // The ID of the achievement used by this method.
+     *     achievementId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -655,11 +830,11 @@ export namespace gamesManagement_v1management {
     resetForAllPlayers(
       params: Params$Resource$Achievements$Resetforallplayers,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     resetForAllPlayers(
       params?: Params$Resource$Achievements$Resetforallplayers,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     resetForAllPlayers(
       params: Params$Resource$Achievements$Resetforallplayers,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -686,7 +861,10 @@ export namespace gamesManagement_v1management {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Achievements$Resetforallplayers;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -733,6 +911,53 @@ export namespace gamesManagement_v1management {
 
     /**
      * Resets achievements with the given IDs for all players. This method is only available to user accounts for your developer console. Only draft achievements may be reset.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gamesManagement = google.gamesManagement('v1management');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gamesManagement.achievements.resetMultipleForAllPlayers({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "achievement_ids": [],
+     *       //   "kind": "my_kind"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -742,11 +967,11 @@ export namespace gamesManagement_v1management {
     resetMultipleForAllPlayers(
       params: Params$Resource$Achievements$Resetmultipleforallplayers,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     resetMultipleForAllPlayers(
       params?: Params$Resource$Achievements$Resetmultipleforallplayers,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     resetMultipleForAllPlayers(
       params: Params$Resource$Achievements$Resetmultipleforallplayers,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -773,7 +998,10 @@ export namespace gamesManagement_v1management {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Achievements$Resetmultipleforallplayers;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -853,6 +1081,58 @@ export namespace gamesManagement_v1management {
 
     /**
      * Get the list of players hidden from the given application. This method is only available to user accounts for your developer console.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gamesManagement = google.gamesManagement('v1management');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gamesManagement.applications.listHidden({
+     *     // The application ID from the Google Play developer console.
+     *     applicationId: 'placeholder-value',
+     *     // The maximum number of player resources to return in the response, used for paging. For any response, the actual number of player resources returned may be less than the specified `maxResults`.
+     *     maxResults: 'placeholder-value',
+     *     // The token returned by the previous request.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -862,11 +1142,11 @@ export namespace gamesManagement_v1management {
     listHidden(
       params: Params$Resource$Applications$Listhidden,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     listHidden(
       params?: Params$Resource$Applications$Listhidden,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$HiddenPlayerList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HiddenPlayerList>>;
     listHidden(
       params: Params$Resource$Applications$Listhidden,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -895,7 +1175,10 @@ export namespace gamesManagement_v1management {
       callback?:
         | BodyResponseCallback<Schema$HiddenPlayerList>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$HiddenPlayerList> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$HiddenPlayerList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Applications$Listhidden;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -965,6 +1248,47 @@ export namespace gamesManagement_v1management {
 
     /**
      * Resets all player progress on the event with the given ID for the currently authenticated player. This method is only accessible to whitelisted tester accounts for your application.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gamesManagement = google.gamesManagement('v1management');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gamesManagement.events.reset({
+     *     // The ID of the event.
+     *     eventId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -974,11 +1298,11 @@ export namespace gamesManagement_v1management {
     reset(
       params: Params$Resource$Events$Reset,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     reset(
       params?: Params$Resource$Events$Reset,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     reset(
       params: Params$Resource$Events$Reset,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1005,7 +1329,10 @@ export namespace gamesManagement_v1management {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Events$Reset;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1050,6 +1377,44 @@ export namespace gamesManagement_v1management {
 
     /**
      * Resets all player progress on all events for the currently authenticated player. This method is only accessible to whitelisted tester accounts for your application.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gamesManagement = google.gamesManagement('v1management');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gamesManagement.events.resetAll({});
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1059,11 +1424,11 @@ export namespace gamesManagement_v1management {
     resetAll(
       params: Params$Resource$Events$Resetall,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     resetAll(
       params?: Params$Resource$Events$Resetall,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     resetAll(
       params: Params$Resource$Events$Resetall,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1090,7 +1455,10 @@ export namespace gamesManagement_v1management {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Events$Resetall;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1136,6 +1504,44 @@ export namespace gamesManagement_v1management {
 
     /**
      * Resets all draft events for all players. This method is only available to user accounts for your developer console.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gamesManagement = google.gamesManagement('v1management');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gamesManagement.events.resetAllForAllPlayers({});
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1145,11 +1551,11 @@ export namespace gamesManagement_v1management {
     resetAllForAllPlayers(
       params: Params$Resource$Events$Resetallforallplayers,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     resetAllForAllPlayers(
       params?: Params$Resource$Events$Resetallforallplayers,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     resetAllForAllPlayers(
       params: Params$Resource$Events$Resetallforallplayers,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1176,7 +1582,10 @@ export namespace gamesManagement_v1management {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Events$Resetallforallplayers;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1222,6 +1631,47 @@ export namespace gamesManagement_v1management {
 
     /**
      * Resets the event with the given ID for all players. This method is only available to user accounts for your developer console. Only draft events can be reset.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gamesManagement = google.gamesManagement('v1management');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gamesManagement.events.resetForAllPlayers({
+     *     // The ID of the event.
+     *     eventId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1231,11 +1681,11 @@ export namespace gamesManagement_v1management {
     resetForAllPlayers(
       params: Params$Resource$Events$Resetforallplayers,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     resetForAllPlayers(
       params?: Params$Resource$Events$Resetforallplayers,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     resetForAllPlayers(
       params: Params$Resource$Events$Resetforallplayers,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1262,7 +1712,10 @@ export namespace gamesManagement_v1management {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Events$Resetforallplayers;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1309,6 +1762,53 @@ export namespace gamesManagement_v1management {
 
     /**
      * Resets events with the given IDs for all players. This method is only available to user accounts for your developer console. Only draft events may be reset.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gamesManagement = google.gamesManagement('v1management');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gamesManagement.events.resetMultipleForAllPlayers({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "event_ids": [],
+     *       //   "kind": "my_kind"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1318,11 +1818,11 @@ export namespace gamesManagement_v1management {
     resetMultipleForAllPlayers(
       params: Params$Resource$Events$Resetmultipleforallplayers,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     resetMultipleForAllPlayers(
       params?: Params$Resource$Events$Resetmultipleforallplayers,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     resetMultipleForAllPlayers(
       params: Params$Resource$Events$Resetmultipleforallplayers,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1349,7 +1849,10 @@ export namespace gamesManagement_v1management {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Events$Resetmultipleforallplayers;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1426,6 +1929,49 @@ export namespace gamesManagement_v1management {
 
     /**
      * Hide the given player's leaderboard scores from the given application. This method is only available to user accounts for your developer console.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gamesManagement = google.gamesManagement('v1management');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gamesManagement.players.hide({
+     *     // The application ID from the Google Play developer console.
+     *     applicationId: 'placeholder-value',
+     *     // A player ID. A value of `me` may be used in place of the authenticated player's ID.
+     *     playerId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1435,11 +1981,11 @@ export namespace gamesManagement_v1management {
     hide(
       params: Params$Resource$Players$Hide,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     hide(
       params?: Params$Resource$Players$Hide,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     hide(
       params: Params$Resource$Players$Hide,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1466,7 +2012,10 @@ export namespace gamesManagement_v1management {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Players$Hide;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1512,6 +2061,49 @@ export namespace gamesManagement_v1management {
 
     /**
      * Unhide the given player's leaderboard scores from the given application. This method is only available to user accounts for your developer console.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gamesManagement = google.gamesManagement('v1management');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gamesManagement.players.unhide({
+     *     // The application ID from the Google Play developer console.
+     *     applicationId: 'placeholder-value',
+     *     // A player ID. A value of `me` may be used in place of the authenticated player's ID.
+     *     playerId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1521,11 +2113,11 @@ export namespace gamesManagement_v1management {
     unhide(
       params: Params$Resource$Players$Unhide,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     unhide(
       params?: Params$Resource$Players$Unhide,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     unhide(
       params: Params$Resource$Players$Unhide,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1552,7 +2144,10 @@ export namespace gamesManagement_v1management {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Players$Unhide;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1626,6 +2221,54 @@ export namespace gamesManagement_v1management {
 
     /**
      * Resets scores for the leaderboard with the given ID for the currently authenticated player. This method is only accessible to whitelisted tester accounts for your application.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gamesManagement = google.gamesManagement('v1management');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gamesManagement.scores.reset({
+     *     // The ID of the leaderboard.
+     *     leaderboardId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "definitionId": "my_definitionId",
+     *   //   "kind": "my_kind",
+     *   //   "resetScoreTimeSpans": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1635,11 +2278,11 @@ export namespace gamesManagement_v1management {
     reset(
       params: Params$Resource$Scores$Reset,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     reset(
       params?: Params$Resource$Scores$Reset,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PlayerScoreResetResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PlayerScoreResetResponse>>;
     reset(
       params: Params$Resource$Scores$Reset,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1674,8 +2317,8 @@ export namespace gamesManagement_v1management {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$PlayerScoreResetResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$PlayerScoreResetResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Scores$Reset;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1721,6 +2364,50 @@ export namespace gamesManagement_v1management {
 
     /**
      * Resets all scores for all leaderboards for the currently authenticated players. This method is only accessible to whitelisted tester accounts for your application.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gamesManagement = google.gamesManagement('v1management');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gamesManagement.scores.resetAll({});
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "results": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1730,11 +2417,11 @@ export namespace gamesManagement_v1management {
     resetAll(
       params: Params$Resource$Scores$Resetall,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     resetAll(
       params?: Params$Resource$Scores$Resetall,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PlayerScoreResetAllResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PlayerScoreResetAllResponse>>;
     resetAll(
       params: Params$Resource$Scores$Resetall,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1769,8 +2456,8 @@ export namespace gamesManagement_v1management {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$PlayerScoreResetAllResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$PlayerScoreResetAllResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Scores$Resetall;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1816,6 +2503,44 @@ export namespace gamesManagement_v1management {
 
     /**
      * Resets scores for all draft leaderboards for all players. This method is only available to user accounts for your developer console.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gamesManagement = google.gamesManagement('v1management');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gamesManagement.scores.resetAllForAllPlayers({});
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1825,11 +2550,11 @@ export namespace gamesManagement_v1management {
     resetAllForAllPlayers(
       params: Params$Resource$Scores$Resetallforallplayers,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     resetAllForAllPlayers(
       params?: Params$Resource$Scores$Resetallforallplayers,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     resetAllForAllPlayers(
       params: Params$Resource$Scores$Resetallforallplayers,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1856,7 +2581,10 @@ export namespace gamesManagement_v1management {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Scores$Resetallforallplayers;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1902,6 +2630,47 @@ export namespace gamesManagement_v1management {
 
     /**
      * Resets scores for the leaderboard with the given ID for all players. This method is only available to user accounts for your developer console. Only draft leaderboards can be reset.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gamesManagement = google.gamesManagement('v1management');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gamesManagement.scores.resetForAllPlayers({
+     *     // The ID of the leaderboard.
+     *     leaderboardId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1911,11 +2680,11 @@ export namespace gamesManagement_v1management {
     resetForAllPlayers(
       params: Params$Resource$Scores$Resetforallplayers,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     resetForAllPlayers(
       params?: Params$Resource$Scores$Resetforallplayers,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     resetForAllPlayers(
       params: Params$Resource$Scores$Resetforallplayers,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1942,7 +2711,10 @@ export namespace gamesManagement_v1management {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Scores$Resetforallplayers;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1989,6 +2761,53 @@ export namespace gamesManagement_v1management {
 
     /**
      * Resets scores for the leaderboards with the given IDs for all players. This method is only available to user accounts for your developer console. Only draft leaderboards may be reset.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gamesManagement = google.gamesManagement('v1management');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gamesManagement.scores.resetMultipleForAllPlayers({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "kind": "my_kind",
+     *       //   "leaderboard_ids": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1998,11 +2817,11 @@ export namespace gamesManagement_v1management {
     resetMultipleForAllPlayers(
       params: Params$Resource$Scores$Resetmultipleforallplayers,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     resetMultipleForAllPlayers(
       params?: Params$Resource$Scores$Resetmultipleforallplayers,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     resetMultipleForAllPlayers(
       params: Params$Resource$Scores$Resetmultipleforallplayers,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2029,7 +2848,10 @@ export namespace gamesManagement_v1management {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Scores$Resetmultipleforallplayers;
       let options = (optionsOrCallback || {}) as MethodOptions;

@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -1152,6 +1152,10 @@ export namespace drivelabels_v2 {
      */
     displayHints?: Schema$GoogleAppsDriveLabelsV2LabelDisplayHints;
     /**
+     * Optional. The EnabledAppSettings for this Label.
+     */
+    enabledAppSettings?: Schema$GoogleAppsDriveLabelsV2LabelEnabledAppSettings;
+    /**
      * List of fields in descending priority order.
      */
     fields?: Schema$GoogleAppsDriveLabelsV2Field[];
@@ -1254,6 +1258,24 @@ export namespace drivelabels_v2 {
      * This label should be shown in the apply menu when applying values to a Drive item.
      */
     shownInApply?: boolean | null;
+  }
+  /**
+   * Describes the Workspace apps in which the Label can be used.
+   */
+  export interface Schema$GoogleAppsDriveLabelsV2LabelEnabledAppSettings {
+    /**
+     * Optional. The list of Apps where the Label can be used.
+     */
+    enabledApps?: Schema$GoogleAppsDriveLabelsV2LabelEnabledAppSettingsEnabledApp[];
+  }
+  /**
+   * An App where the Label can be used.
+   */
+  export interface Schema$GoogleAppsDriveLabelsV2LabelEnabledAppSettingsEnabledApp {
+    /**
+     * Optional. The name of the App.
+     */
+    app?: string | null;
   }
   /**
    * Label constraints governing the structure of a Label; such as, the maximum number of Fields allowed and maximum length of the label title.
@@ -1574,6 +1596,27 @@ export namespace drivelabels_v2 {
     view?: string | null;
   }
   /**
+   * Request to update the `EnabledAppSettings` of the given Label. This change is not revisioned, does not require publishing, and takes effect immediately. \
+   */
+  export interface Schema$GoogleAppsDriveLabelsV2UpdateLabelEnabledAppSettingsRequest {
+    /**
+     * Required. The new `EnabledAppSettings` value for the Label.
+     */
+    enabledAppSettings?: Schema$GoogleAppsDriveLabelsV2LabelEnabledAppSettings;
+    /**
+     * Optional. The BCP-47 language code to use for evaluating localized field labels. When not specified, values in the default configured language will be used.
+     */
+    languageCode?: string | null;
+    /**
+     * Optional. Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the Label before allowing access.
+     */
+    useAdminAccess?: boolean | null;
+    /**
+     * Optional. When specified, only certain fields belonging to the indicated view will be returned.
+     */
+    view?: string | null;
+  }
+  /**
    * Updates a Label Permission. Permissions affect the Label resource as a whole, are not revisioned, and do not require publishing.
    */
   export interface Schema$GoogleAppsDriveLabelsV2UpdateLabelPermissionRequest {
@@ -1699,6 +1742,109 @@ export namespace drivelabels_v2 {
 
     /**
      * Creates a new Label.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drivelabels.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drivelabels = google.drivelabels('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive.admin.labels',
+     *       'https://www.googleapis.com/auth/drive.labels',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drivelabels.labels.create({
+     *     // The BCP-47 language code to use for evaluating localized Field labels in response. When not specified, values in the default configured language will be used.
+     *     languageCode: 'placeholder-value',
+     *     // Set to `true` in order to use the user's admin privileges. The server will verify the user is an admin before allowing access.
+     *     useAdminAccess: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "appliedCapabilities": {},
+     *       //   "appliedLabelPolicy": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "creator": {},
+     *       //   "customer": "my_customer",
+     *       //   "disableTime": "my_disableTime",
+     *       //   "disabler": {},
+     *       //   "displayHints": {},
+     *       //   "enabledAppSettings": {},
+     *       //   "fields": [],
+     *       //   "id": "my_id",
+     *       //   "labelType": "my_labelType",
+     *       //   "learnMoreUri": "my_learnMoreUri",
+     *       //   "lifecycle": {},
+     *       //   "lockStatus": {},
+     *       //   "name": "my_name",
+     *       //   "properties": {},
+     *       //   "publishTime": "my_publishTime",
+     *       //   "publisher": {},
+     *       //   "revisionCreateTime": "my_revisionCreateTime",
+     *       //   "revisionCreator": {},
+     *       //   "revisionId": "my_revisionId",
+     *       //   "schemaCapabilities": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appliedCapabilities": {},
+     *   //   "appliedLabelPolicy": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "creator": {},
+     *   //   "customer": "my_customer",
+     *   //   "disableTime": "my_disableTime",
+     *   //   "disabler": {},
+     *   //   "displayHints": {},
+     *   //   "enabledAppSettings": {},
+     *   //   "fields": [],
+     *   //   "id": "my_id",
+     *   //   "labelType": "my_labelType",
+     *   //   "learnMoreUri": "my_learnMoreUri",
+     *   //   "lifecycle": {},
+     *   //   "lockStatus": {},
+     *   //   "name": "my_name",
+     *   //   "properties": {},
+     *   //   "publishTime": "my_publishTime",
+     *   //   "publisher": {},
+     *   //   "revisionCreateTime": "my_revisionCreateTime",
+     *   //   "revisionCreator": {},
+     *   //   "revisionId": "my_revisionId",
+     *   //   "schemaCapabilities": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1708,11 +1854,11 @@ export namespace drivelabels_v2 {
     create(
       params: Params$Resource$Labels$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Labels$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAppsDriveLabelsV2Label>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2Label>>;
     create(
       params: Params$Resource$Labels$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1747,8 +1893,8 @@ export namespace drivelabels_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAppsDriveLabelsV2Label>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2Label>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Labels$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1792,6 +1938,57 @@ export namespace drivelabels_v2 {
 
     /**
      * Permanently deletes a Label and related metadata on Drive Items. Once deleted, the Label and related Drive item metadata will be deleted. Only draft Labels, and disabled Labels may be deleted.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drivelabels.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drivelabels = google.drivelabels('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive.admin.labels',
+     *       'https://www.googleapis.com/auth/drive.labels',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drivelabels.labels.delete({
+     *     // Required. Label resource name.
+     *     name: 'labels/my-label',
+     *     // Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the Label before allowing access.
+     *     useAdminAccess: 'placeholder-value',
+     *     // The revision_id of the label that the write request will be applied to. If this is not the latest revision of the label, the request will not be processed and will return a 400 Bad Request error.
+     *     'writeControl.requiredRevisionId': 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1801,11 +1998,11 @@ export namespace drivelabels_v2 {
     delete(
       params: Params$Resource$Labels$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Labels$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     delete(
       params: Params$Resource$Labels$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1836,8 +2033,8 @@ export namespace drivelabels_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Labels$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1879,6 +2076,68 @@ export namespace drivelabels_v2 {
 
     /**
      * Updates a single Label by applying a set of update requests resulting in a new draft revision. The batch update is all-or-nothing: If any of the update requests are invalid, no changes are applied. The resulting draft revision must be published before the changes may be used with Drive Items.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drivelabels.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drivelabels = google.drivelabels('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive.admin.labels',
+     *       'https://www.googleapis.com/auth/drive.labels',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drivelabels.labels.delta({
+     *     // Required. The resource name of the Label to update.
+     *     name: 'labels/my-label',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "languageCode": "my_languageCode",
+     *       //   "requests": [],
+     *       //   "useAdminAccess": false,
+     *       //   "view": "my_view",
+     *       //   "writeControl": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "responses": [],
+     *   //   "updatedLabel": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1888,11 +2147,13 @@ export namespace drivelabels_v2 {
     delta(
       params: Params$Resource$Labels$Delta,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delta(
       params?: Params$Resource$Labels$Delta,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAppsDriveLabelsV2DeltaUpdateLabelResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2DeltaUpdateLabelResponse>
+    >;
     delta(
       params: Params$Resource$Labels$Delta,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1927,8 +2188,10 @@ export namespace drivelabels_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAppsDriveLabelsV2DeltaUpdateLabelResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2DeltaUpdateLabelResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Labels$Delta;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1972,6 +2235,89 @@ export namespace drivelabels_v2 {
 
     /**
      * Disable a published Label. Disabling a Label will result in a new disabled published revision based on the current published revision. If there is a draft revision, a new disabled draft revision will be created based on the latest draft revision. Older draft revisions will be deleted. Once disabled, a label may be deleted with `DeleteLabel`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drivelabels.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drivelabels = google.drivelabels('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive.admin.labels',
+     *       'https://www.googleapis.com/auth/drive.labels',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drivelabels.labels.disable({
+     *     // Required. Label resource name.
+     *     name: 'labels/my-label',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "disabledPolicy": {},
+     *       //   "languageCode": "my_languageCode",
+     *       //   "updateMask": "my_updateMask",
+     *       //   "useAdminAccess": false,
+     *       //   "writeControl": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appliedCapabilities": {},
+     *   //   "appliedLabelPolicy": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "creator": {},
+     *   //   "customer": "my_customer",
+     *   //   "disableTime": "my_disableTime",
+     *   //   "disabler": {},
+     *   //   "displayHints": {},
+     *   //   "enabledAppSettings": {},
+     *   //   "fields": [],
+     *   //   "id": "my_id",
+     *   //   "labelType": "my_labelType",
+     *   //   "learnMoreUri": "my_learnMoreUri",
+     *   //   "lifecycle": {},
+     *   //   "lockStatus": {},
+     *   //   "name": "my_name",
+     *   //   "properties": {},
+     *   //   "publishTime": "my_publishTime",
+     *   //   "publisher": {},
+     *   //   "revisionCreateTime": "my_revisionCreateTime",
+     *   //   "revisionCreator": {},
+     *   //   "revisionId": "my_revisionId",
+     *   //   "schemaCapabilities": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1981,11 +2327,11 @@ export namespace drivelabels_v2 {
     disable(
       params: Params$Resource$Labels$Disable,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     disable(
       params?: Params$Resource$Labels$Disable,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAppsDriveLabelsV2Label>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2Label>>;
     disable(
       params: Params$Resource$Labels$Disable,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2020,8 +2366,8 @@ export namespace drivelabels_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAppsDriveLabelsV2Label>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2Label>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Labels$Disable;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2068,6 +2414,87 @@ export namespace drivelabels_v2 {
 
     /**
      * Enable a disabled Label and restore it to its published state. This will result in a new published revision based on the current disabled published revision. If there is an existing disabled draft revision, a new revision will be created based on that draft and will be enabled.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drivelabels.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drivelabels = google.drivelabels('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive.admin.labels',
+     *       'https://www.googleapis.com/auth/drive.labels',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drivelabels.labels.enable({
+     *     // Required. Label resource name.
+     *     name: 'labels/my-label',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "languageCode": "my_languageCode",
+     *       //   "useAdminAccess": false,
+     *       //   "writeControl": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appliedCapabilities": {},
+     *   //   "appliedLabelPolicy": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "creator": {},
+     *   //   "customer": "my_customer",
+     *   //   "disableTime": "my_disableTime",
+     *   //   "disabler": {},
+     *   //   "displayHints": {},
+     *   //   "enabledAppSettings": {},
+     *   //   "fields": [],
+     *   //   "id": "my_id",
+     *   //   "labelType": "my_labelType",
+     *   //   "learnMoreUri": "my_learnMoreUri",
+     *   //   "lifecycle": {},
+     *   //   "lockStatus": {},
+     *   //   "name": "my_name",
+     *   //   "properties": {},
+     *   //   "publishTime": "my_publishTime",
+     *   //   "publisher": {},
+     *   //   "revisionCreateTime": "my_revisionCreateTime",
+     *   //   "revisionCreator": {},
+     *   //   "revisionId": "my_revisionId",
+     *   //   "schemaCapabilities": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2077,11 +2504,11 @@ export namespace drivelabels_v2 {
     enable(
       params: Params$Resource$Labels$Enable,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     enable(
       params?: Params$Resource$Labels$Enable,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAppsDriveLabelsV2Label>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2Label>>;
     enable(
       params: Params$Resource$Labels$Enable,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2116,8 +2543,8 @@ export namespace drivelabels_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAppsDriveLabelsV2Label>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2Label>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Labels$Enable;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2161,6 +2588,85 @@ export namespace drivelabels_v2 {
 
     /**
      * Get a label by its resource name. Resource name may be any of: * `labels/{id\}` - See `labels/{id\}@latest` * `labels/{id\}@latest` - Gets the latest revision of the label. * `labels/{id\}@published` - Gets the current published revision of the label. * `labels/{id\}@{revision_id\}` - Gets the label at the specified revision ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drivelabels.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drivelabels = google.drivelabels('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive.admin.labels',
+     *       'https://www.googleapis.com/auth/drive.admin.labels.readonly',
+     *       'https://www.googleapis.com/auth/drive.labels',
+     *       'https://www.googleapis.com/auth/drive.labels.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drivelabels.labels.get({
+     *     // The BCP-47 language code to use for evaluating localized field labels. When not specified, values in the default configured language are used.
+     *     languageCode: 'placeholder-value',
+     *     // Required. Label resource name. May be any of: * `labels/{id\}` (equivalent to labels/{id\}@latest) * `labels/{id\}@latest` * `labels/{id\}@published` * `labels/{id\}@{revision_id\}`
+     *     name: 'labels/my-label',
+     *     // Set to `true` in order to use the user's admin credentials. The server verifies that the user is an admin for the label before allowing access.
+     *     useAdminAccess: 'placeholder-value',
+     *     // When specified, only certain fields belonging to the indicated view are returned.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appliedCapabilities": {},
+     *   //   "appliedLabelPolicy": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "creator": {},
+     *   //   "customer": "my_customer",
+     *   //   "disableTime": "my_disableTime",
+     *   //   "disabler": {},
+     *   //   "displayHints": {},
+     *   //   "enabledAppSettings": {},
+     *   //   "fields": [],
+     *   //   "id": "my_id",
+     *   //   "labelType": "my_labelType",
+     *   //   "learnMoreUri": "my_learnMoreUri",
+     *   //   "lifecycle": {},
+     *   //   "lockStatus": {},
+     *   //   "name": "my_name",
+     *   //   "properties": {},
+     *   //   "publishTime": "my_publishTime",
+     *   //   "publisher": {},
+     *   //   "revisionCreateTime": "my_revisionCreateTime",
+     *   //   "revisionCreator": {},
+     *   //   "revisionId": "my_revisionId",
+     *   //   "schemaCapabilities": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2170,11 +2676,11 @@ export namespace drivelabels_v2 {
     get(
       params: Params$Resource$Labels$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Labels$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAppsDriveLabelsV2Label>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2Label>>;
     get(
       params: Params$Resource$Labels$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2209,8 +2715,8 @@ export namespace drivelabels_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAppsDriveLabelsV2Label>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2Label>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Labels$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2254,6 +2760,72 @@ export namespace drivelabels_v2 {
 
     /**
      * List labels.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drivelabels.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drivelabels = google.drivelabels('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive.admin.labels',
+     *       'https://www.googleapis.com/auth/drive.admin.labels.readonly',
+     *       'https://www.googleapis.com/auth/drive.labels',
+     *       'https://www.googleapis.com/auth/drive.labels.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drivelabels.labels.list({
+     *     // The customer to scope this list request to. For example: "customers/abcd1234". If unset, will return all labels within the current customer.
+     *     customer: 'placeholder-value',
+     *     // The BCP-47 language code to use for evaluating localized field labels. When not specified, values in the default configured language are used.
+     *     languageCode: 'placeholder-value',
+     *     // Specifies the level of access the user must have on the returned Labels. The minimum role a user must have on a label. Defaults to `READER`.
+     *     minimumRole: 'placeholder-value',
+     *     // Maximum number of labels to return per page. Default: 50. Max: 200.
+     *     pageSize: 'placeholder-value',
+     *     // The token of the page to return.
+     *     pageToken: 'placeholder-value',
+     *     // Whether to include only published labels in the results. * When `true`, only the current published label revisions are returned. Disabled labels are included. Returned label resource names reference the published revision (`labels/{id\}/{revision_id\}`). * When `false`, the current label revisions are returned, which might not be published. Returned label resource names don't reference a specific revision (`labels/{id\}`).
+     *     publishedOnly: 'placeholder-value',
+     *     // Set to `true` in order to use the user's admin credentials. This will return all Labels within the customer.
+     *     useAdminAccess: 'placeholder-value',
+     *     // When specified, only certain fields belonging to the indicated view are returned.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "labels": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2263,11 +2835,13 @@ export namespace drivelabels_v2 {
     list(
       params: Params$Resource$Labels$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Labels$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAppsDriveLabelsV2ListLabelsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2ListLabelsResponse>
+    >;
     list(
       params: Params$Resource$Labels$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2302,8 +2876,10 @@ export namespace drivelabels_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAppsDriveLabelsV2ListLabelsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2ListLabelsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Labels$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2347,6 +2923,87 @@ export namespace drivelabels_v2 {
 
     /**
      * Publish all draft changes to the Label. Once published, the Label may not return to its draft state. See `google.apps.drive.labels.v2.Lifecycle` for more information. Publishing a Label will result in a new published revision. All previous draft revisions will be deleted. Previous published revisions will be kept but are subject to automated deletion as needed. Once published, some changes are no longer permitted. Generally, any change that would invalidate or cause new restrictions on existing metadata related to the Label will be rejected. For example, the following changes to a Label will be rejected after the Label is published: * The label cannot be directly deleted. It must be disabled first, then deleted. * Field.FieldType cannot be changed. * Changes to Field validation options cannot reject something that was previously accepted. * Reducing the max entries.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drivelabels.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drivelabels = google.drivelabels('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive.admin.labels',
+     *       'https://www.googleapis.com/auth/drive.labels',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drivelabels.labels.publish({
+     *     // Required. Label resource name.
+     *     name: 'labels/my-label',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "languageCode": "my_languageCode",
+     *       //   "useAdminAccess": false,
+     *       //   "writeControl": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appliedCapabilities": {},
+     *   //   "appliedLabelPolicy": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "creator": {},
+     *   //   "customer": "my_customer",
+     *   //   "disableTime": "my_disableTime",
+     *   //   "disabler": {},
+     *   //   "displayHints": {},
+     *   //   "enabledAppSettings": {},
+     *   //   "fields": [],
+     *   //   "id": "my_id",
+     *   //   "labelType": "my_labelType",
+     *   //   "learnMoreUri": "my_learnMoreUri",
+     *   //   "lifecycle": {},
+     *   //   "lockStatus": {},
+     *   //   "name": "my_name",
+     *   //   "properties": {},
+     *   //   "publishTime": "my_publishTime",
+     *   //   "publisher": {},
+     *   //   "revisionCreateTime": "my_revisionCreateTime",
+     *   //   "revisionCreator": {},
+     *   //   "revisionId": "my_revisionId",
+     *   //   "schemaCapabilities": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2356,11 +3013,11 @@ export namespace drivelabels_v2 {
     publish(
       params: Params$Resource$Labels$Publish,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     publish(
       params?: Params$Resource$Labels$Publish,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAppsDriveLabelsV2Label>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2Label>>;
     publish(
       params: Params$Resource$Labels$Publish,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2395,8 +3052,8 @@ export namespace drivelabels_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAppsDriveLabelsV2Label>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2Label>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Labels$Publish;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2443,6 +3100,88 @@ export namespace drivelabels_v2 {
 
     /**
      * Updates a Label's `CopyMode`. Changes to this policy are not revisioned, do not require publishing, and take effect immediately.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drivelabels.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drivelabels = google.drivelabels('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive.admin.labels',
+     *       'https://www.googleapis.com/auth/drive.labels',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drivelabels.labels.updateLabelCopyMode({
+     *     // Required. The resource name of the Label to update.
+     *     name: 'labels/my-label',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "copyMode": "my_copyMode",
+     *       //   "languageCode": "my_languageCode",
+     *       //   "useAdminAccess": false,
+     *       //   "view": "my_view"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appliedCapabilities": {},
+     *   //   "appliedLabelPolicy": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "creator": {},
+     *   //   "customer": "my_customer",
+     *   //   "disableTime": "my_disableTime",
+     *   //   "disabler": {},
+     *   //   "displayHints": {},
+     *   //   "enabledAppSettings": {},
+     *   //   "fields": [],
+     *   //   "id": "my_id",
+     *   //   "labelType": "my_labelType",
+     *   //   "learnMoreUri": "my_learnMoreUri",
+     *   //   "lifecycle": {},
+     *   //   "lockStatus": {},
+     *   //   "name": "my_name",
+     *   //   "properties": {},
+     *   //   "publishTime": "my_publishTime",
+     *   //   "publisher": {},
+     *   //   "revisionCreateTime": "my_revisionCreateTime",
+     *   //   "revisionCreator": {},
+     *   //   "revisionId": "my_revisionId",
+     *   //   "schemaCapabilities": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2452,11 +3191,11 @@ export namespace drivelabels_v2 {
     updateLabelCopyMode(
       params: Params$Resource$Labels$Updatelabelcopymode,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     updateLabelCopyMode(
       params?: Params$Resource$Labels$Updatelabelcopymode,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAppsDriveLabelsV2Label>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2Label>>;
     updateLabelCopyMode(
       params: Params$Resource$Labels$Updatelabelcopymode,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2491,8 +3230,8 @@ export namespace drivelabels_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAppsDriveLabelsV2Label>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2Label>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Labels$Updatelabelcopymode;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2539,7 +3278,251 @@ export namespace drivelabels_v2 {
     }
 
     /**
+     * Updates a Label's EabledAppSettings. Enabling a Label in a Workspace Application allows it to be used in that application. This change is not revisioned, does not require publishing, and takes effect immediately.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drivelabels.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drivelabels = google.drivelabels('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drivelabels.labels.updateLabelEnabledAppSettings({
+     *     // Required. The resource name of the Label to update. The resource name of the Label to update.
+     *     name: 'labels/my-label',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "enabledAppSettings": {},
+     *       //   "languageCode": "my_languageCode",
+     *       //   "useAdminAccess": false,
+     *       //   "view": "my_view"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appliedCapabilities": {},
+     *   //   "appliedLabelPolicy": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "creator": {},
+     *   //   "customer": "my_customer",
+     *   //   "disableTime": "my_disableTime",
+     *   //   "disabler": {},
+     *   //   "displayHints": {},
+     *   //   "enabledAppSettings": {},
+     *   //   "fields": [],
+     *   //   "id": "my_id",
+     *   //   "labelType": "my_labelType",
+     *   //   "learnMoreUri": "my_learnMoreUri",
+     *   //   "lifecycle": {},
+     *   //   "lockStatus": {},
+     *   //   "name": "my_name",
+     *   //   "properties": {},
+     *   //   "publishTime": "my_publishTime",
+     *   //   "publisher": {},
+     *   //   "revisionCreateTime": "my_revisionCreateTime",
+     *   //   "revisionCreator": {},
+     *   //   "revisionId": "my_revisionId",
+     *   //   "schemaCapabilities": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateLabelEnabledAppSettings(
+      params: Params$Resource$Labels$Updatelabelenabledappsettings,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    updateLabelEnabledAppSettings(
+      params?: Params$Resource$Labels$Updatelabelenabledappsettings,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2Label>>;
+    updateLabelEnabledAppSettings(
+      params: Params$Resource$Labels$Updatelabelenabledappsettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateLabelEnabledAppSettings(
+      params: Params$Resource$Labels$Updatelabelenabledappsettings,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAppsDriveLabelsV2Label>,
+      callback: BodyResponseCallback<Schema$GoogleAppsDriveLabelsV2Label>
+    ): void;
+    updateLabelEnabledAppSettings(
+      params: Params$Resource$Labels$Updatelabelenabledappsettings,
+      callback: BodyResponseCallback<Schema$GoogleAppsDriveLabelsV2Label>
+    ): void;
+    updateLabelEnabledAppSettings(
+      callback: BodyResponseCallback<Schema$GoogleAppsDriveLabelsV2Label>
+    ): void;
+    updateLabelEnabledAppSettings(
+      paramsOrCallback?:
+        | Params$Resource$Labels$Updatelabelenabledappsettings
+        | BodyResponseCallback<Schema$GoogleAppsDriveLabelsV2Label>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAppsDriveLabelsV2Label>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAppsDriveLabelsV2Label>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2Label>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Labels$Updatelabelenabledappsettings;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Labels$Updatelabelenabledappsettings;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://drivelabels.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v2/{+name}:updateLabelEnabledAppSettings'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAppsDriveLabelsV2Label>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAppsDriveLabelsV2Label>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Updates a Label's permissions. If a permission for the indicated principal doesn't exist, a new Label Permission is created, otherwise the existing permission is updated. Permissions affect the Label resource as a whole, are not revisioned, and do not require publishing.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drivelabels.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drivelabels = google.drivelabels('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive.admin.labels',
+     *       'https://www.googleapis.com/auth/drive.labels',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drivelabels.labels.updatePermissions({
+     *     // Required. The parent Label resource name.
+     *     parent: 'labels/my-label',
+     *     // Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the Label before allowing access.
+     *     useAdminAccess: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "audience": "my_audience",
+     *       //   "email": "my_email",
+     *       //   "group": "my_group",
+     *       //   "name": "my_name",
+     *       //   "person": "my_person",
+     *       //   "role": "my_role"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "audience": "my_audience",
+     *   //   "email": "my_email",
+     *   //   "group": "my_group",
+     *   //   "name": "my_name",
+     *   //   "person": "my_person",
+     *   //   "role": "my_role"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2549,11 +3532,13 @@ export namespace drivelabels_v2 {
     updatePermissions(
       params: Params$Resource$Labels$Updatepermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     updatePermissions(
       params?: Params$Resource$Labels$Updatepermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAppsDriveLabelsV2LabelPermission>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2LabelPermission>
+    >;
     updatePermissions(
       params: Params$Resource$Labels$Updatepermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2588,8 +3573,10 @@ export namespace drivelabels_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAppsDriveLabelsV2LabelPermission>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2LabelPermission>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Labels$Updatepermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2773,6 +3760,18 @@ export namespace drivelabels_v2 {
      */
     requestBody?: Schema$GoogleAppsDriveLabelsV2UpdateLabelCopyModeRequest;
   }
+  export interface Params$Resource$Labels$Updatelabelenabledappsettings
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the Label to update. The resource name of the Label to update.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleAppsDriveLabelsV2UpdateLabelEnabledAppSettingsRequest;
+  }
   export interface Params$Resource$Labels$Updatepermissions
     extends StandardParameters {
     /**
@@ -2798,6 +3797,62 @@ export namespace drivelabels_v2 {
 
     /**
      * Lists the LabelLocks on a Label.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drivelabels.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drivelabels = google.drivelabels('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive.admin.labels',
+     *       'https://www.googleapis.com/auth/drive.admin.labels.readonly',
+     *       'https://www.googleapis.com/auth/drive.labels',
+     *       'https://www.googleapis.com/auth/drive.labels.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drivelabels.labels.locks.list({
+     *     // Maximum number of Locks to return per page. Default: 100. Max: 200.
+     *     pageSize: 'placeholder-value',
+     *     // The token of the page to return.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Label on which Locks are applied. Format: labels/{label\}
+     *     parent: 'labels/my-label',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "labelLocks": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2807,11 +3862,13 @@ export namespace drivelabels_v2 {
     list(
       params: Params$Resource$Labels$Locks$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Labels$Locks$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAppsDriveLabelsV2ListLabelLocksResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2ListLabelLocksResponse>
+    >;
     list(
       params: Params$Resource$Labels$Locks$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2846,8 +3903,10 @@ export namespace drivelabels_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAppsDriveLabelsV2ListLabelLocksResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2ListLabelLocksResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Labels$Locks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2918,6 +3977,62 @@ export namespace drivelabels_v2 {
 
     /**
      * Deletes Label permissions. Permissions affect the Label resource as a whole, are not revisioned, and do not require publishing.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drivelabels.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drivelabels = google.drivelabels('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive.admin.labels',
+     *       'https://www.googleapis.com/auth/drive.labels',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drivelabels.labels.permissions.batchDelete({
+     *     // Required. The parent Label resource name shared by all permissions being deleted. Format: labels/{label\} If this is set, the parent field in the UpdateLabelPermissionRequest messages must either be empty or match this field.
+     *     parent: 'labels/my-label',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "requests": [],
+     *       //   "useAdminAccess": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2927,11 +4042,11 @@ export namespace drivelabels_v2 {
     batchDelete(
       params: Params$Resource$Labels$Permissions$Batchdelete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     batchDelete(
       params?: Params$Resource$Labels$Permissions$Batchdelete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     batchDelete(
       params: Params$Resource$Labels$Permissions$Batchdelete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2964,8 +4079,8 @@ export namespace drivelabels_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Labels$Permissions$Batchdelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3011,6 +4126,64 @@ export namespace drivelabels_v2 {
 
     /**
      * Updates Label permissions. If a permission for the indicated principal doesn't exist, a new Label Permission is created, otherwise the existing permission is updated. Permissions affect the Label resource as a whole, are not revisioned, and do not require publishing.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drivelabels.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drivelabels = google.drivelabels('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive.admin.labels',
+     *       'https://www.googleapis.com/auth/drive.labels',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drivelabels.labels.permissions.batchUpdate({
+     *     // Required. The parent Label resource name shared by all permissions being updated. Format: labels/{label\} If this is set, the parent field in the UpdateLabelPermissionRequest messages must either be empty or match this field.
+     *     parent: 'labels/my-label',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "requests": [],
+     *       //   "useAdminAccess": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3020,11 +4193,13 @@ export namespace drivelabels_v2 {
     batchUpdate(
       params: Params$Resource$Labels$Permissions$Batchupdate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     batchUpdate(
       params?: Params$Resource$Labels$Permissions$Batchupdate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAppsDriveLabelsV2BatchUpdateLabelPermissionsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2BatchUpdateLabelPermissionsResponse>
+    >;
     batchUpdate(
       params: Params$Resource$Labels$Permissions$Batchupdate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3059,8 +4234,10 @@ export namespace drivelabels_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAppsDriveLabelsV2BatchUpdateLabelPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2BatchUpdateLabelPermissionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Labels$Permissions$Batchupdate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3108,6 +4285,75 @@ export namespace drivelabels_v2 {
 
     /**
      * Updates a Label's permissions. If a permission for the indicated principal doesn't exist, a new Label Permission is created, otherwise the existing permission is updated. Permissions affect the Label resource as a whole, are not revisioned, and do not require publishing.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drivelabels.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drivelabels = google.drivelabels('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive.admin.labels',
+     *       'https://www.googleapis.com/auth/drive.labels',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drivelabels.labels.permissions.create({
+     *     // Required. The parent Label resource name on the Label Permission is created. Format: labels/{label\}
+     *     parent: 'labels/my-label',
+     *     // Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the Label before allowing access.
+     *     useAdminAccess: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "audience": "my_audience",
+     *       //   "email": "my_email",
+     *       //   "group": "my_group",
+     *       //   "name": "my_name",
+     *       //   "person": "my_person",
+     *       //   "role": "my_role"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "audience": "my_audience",
+     *   //   "email": "my_email",
+     *   //   "group": "my_group",
+     *   //   "name": "my_name",
+     *   //   "person": "my_person",
+     *   //   "role": "my_role"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3117,11 +4363,13 @@ export namespace drivelabels_v2 {
     create(
       params: Params$Resource$Labels$Permissions$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Labels$Permissions$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAppsDriveLabelsV2LabelPermission>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2LabelPermission>
+    >;
     create(
       params: Params$Resource$Labels$Permissions$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3156,8 +4404,10 @@ export namespace drivelabels_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAppsDriveLabelsV2LabelPermission>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2LabelPermission>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Labels$Permissions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3205,6 +4455,55 @@ export namespace drivelabels_v2 {
 
     /**
      * Deletes a Label's permission. Permissions affect the Label resource as a whole, are not revisioned, and do not require publishing.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drivelabels.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drivelabels = google.drivelabels('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive.admin.labels',
+     *       'https://www.googleapis.com/auth/drive.labels',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drivelabels.labels.permissions.delete({
+     *     // Required. Label Permission resource name.
+     *     name: 'labels/my-label/permissions/my-permission',
+     *     // Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the Label before allowing access.
+     *     useAdminAccess: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3214,11 +4513,11 @@ export namespace drivelabels_v2 {
     delete(
       params: Params$Resource$Labels$Permissions$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Labels$Permissions$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     delete(
       params: Params$Resource$Labels$Permissions$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3249,8 +4548,8 @@ export namespace drivelabels_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Labels$Permissions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3293,6 +4592,64 @@ export namespace drivelabels_v2 {
 
     /**
      * Lists a Label's permissions.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drivelabels.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drivelabels = google.drivelabels('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive.admin.labels',
+     *       'https://www.googleapis.com/auth/drive.admin.labels.readonly',
+     *       'https://www.googleapis.com/auth/drive.labels',
+     *       'https://www.googleapis.com/auth/drive.labels.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drivelabels.labels.permissions.list({
+     *     // Maximum number of permissions to return per page. Default: 50. Max: 200.
+     *     pageSize: 'placeholder-value',
+     *     // The token of the page to return.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent Label resource name on which Label Permission are listed. Format: labels/{label\}
+     *     parent: 'labels/my-label',
+     *     // Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the Label before allowing access.
+     *     useAdminAccess: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "labelPermissions": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3302,11 +4659,13 @@ export namespace drivelabels_v2 {
     list(
       params: Params$Resource$Labels$Permissions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Labels$Permissions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAppsDriveLabelsV2ListLabelPermissionsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2ListLabelPermissionsResponse>
+    >;
     list(
       params: Params$Resource$Labels$Permissions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3341,8 +4700,10 @@ export namespace drivelabels_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAppsDriveLabelsV2ListLabelPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2ListLabelPermissionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Labels$Permissions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3474,6 +4835,75 @@ export namespace drivelabels_v2 {
 
     /**
      * Updates a Label's permissions. If a permission for the indicated principal doesn't exist, a new Label Permission is created, otherwise the existing permission is updated. Permissions affect the Label resource as a whole, are not revisioned, and do not require publishing.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drivelabels.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drivelabels = google.drivelabels('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive.admin.labels',
+     *       'https://www.googleapis.com/auth/drive.labels',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drivelabels.labels.revisions.updatePermissions({
+     *     // Required. The parent Label resource name.
+     *     parent: 'labels/my-label/revisions/my-revision',
+     *     // Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the Label before allowing access.
+     *     useAdminAccess: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "audience": "my_audience",
+     *       //   "email": "my_email",
+     *       //   "group": "my_group",
+     *       //   "name": "my_name",
+     *       //   "person": "my_person",
+     *       //   "role": "my_role"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "audience": "my_audience",
+     *   //   "email": "my_email",
+     *   //   "group": "my_group",
+     *   //   "name": "my_name",
+     *   //   "person": "my_person",
+     *   //   "role": "my_role"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3483,11 +4913,13 @@ export namespace drivelabels_v2 {
     updatePermissions(
       params: Params$Resource$Labels$Revisions$Updatepermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     updatePermissions(
       params?: Params$Resource$Labels$Revisions$Updatepermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAppsDriveLabelsV2LabelPermission>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2LabelPermission>
+    >;
     updatePermissions(
       params: Params$Resource$Labels$Revisions$Updatepermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3522,8 +4954,10 @@ export namespace drivelabels_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAppsDriveLabelsV2LabelPermission>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2LabelPermission>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Labels$Revisions$Updatepermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3595,6 +5029,62 @@ export namespace drivelabels_v2 {
 
     /**
      * Lists the LabelLocks on a Label.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drivelabels.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drivelabels = google.drivelabels('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive.admin.labels',
+     *       'https://www.googleapis.com/auth/drive.admin.labels.readonly',
+     *       'https://www.googleapis.com/auth/drive.labels',
+     *       'https://www.googleapis.com/auth/drive.labels.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drivelabels.labels.revisions.locks.list({
+     *     // Maximum number of Locks to return per page. Default: 100. Max: 200.
+     *     pageSize: 'placeholder-value',
+     *     // The token of the page to return.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Label on which Locks are applied. Format: labels/{label\}
+     *     parent: 'labels/my-label/revisions/my-revision',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "labelLocks": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3604,11 +5094,13 @@ export namespace drivelabels_v2 {
     list(
       params: Params$Resource$Labels$Revisions$Locks$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Labels$Revisions$Locks$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAppsDriveLabelsV2ListLabelLocksResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2ListLabelLocksResponse>
+    >;
     list(
       params: Params$Resource$Labels$Revisions$Locks$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3643,8 +5135,10 @@ export namespace drivelabels_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAppsDriveLabelsV2ListLabelLocksResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2ListLabelLocksResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Labels$Revisions$Locks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3715,6 +5209,62 @@ export namespace drivelabels_v2 {
 
     /**
      * Deletes Label permissions. Permissions affect the Label resource as a whole, are not revisioned, and do not require publishing.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drivelabels.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drivelabels = google.drivelabels('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive.admin.labels',
+     *       'https://www.googleapis.com/auth/drive.labels',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drivelabels.labels.revisions.permissions.batchDelete({
+     *     // Required. The parent Label resource name shared by all permissions being deleted. Format: labels/{label\} If this is set, the parent field in the UpdateLabelPermissionRequest messages must either be empty or match this field.
+     *     parent: 'labels/my-label/revisions/my-revision',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "requests": [],
+     *       //   "useAdminAccess": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3724,11 +5274,11 @@ export namespace drivelabels_v2 {
     batchDelete(
       params: Params$Resource$Labels$Revisions$Permissions$Batchdelete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     batchDelete(
       params?: Params$Resource$Labels$Revisions$Permissions$Batchdelete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     batchDelete(
       params: Params$Resource$Labels$Revisions$Permissions$Batchdelete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3761,8 +5311,8 @@ export namespace drivelabels_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Labels$Revisions$Permissions$Batchdelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3808,6 +5358,64 @@ export namespace drivelabels_v2 {
 
     /**
      * Updates Label permissions. If a permission for the indicated principal doesn't exist, a new Label Permission is created, otherwise the existing permission is updated. Permissions affect the Label resource as a whole, are not revisioned, and do not require publishing.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drivelabels.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drivelabels = google.drivelabels('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive.admin.labels',
+     *       'https://www.googleapis.com/auth/drive.labels',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drivelabels.labels.revisions.permissions.batchUpdate({
+     *     // Required. The parent Label resource name shared by all permissions being updated. Format: labels/{label\} If this is set, the parent field in the UpdateLabelPermissionRequest messages must either be empty or match this field.
+     *     parent: 'labels/my-label/revisions/my-revision',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "requests": [],
+     *       //   "useAdminAccess": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3817,11 +5425,13 @@ export namespace drivelabels_v2 {
     batchUpdate(
       params: Params$Resource$Labels$Revisions$Permissions$Batchupdate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     batchUpdate(
       params?: Params$Resource$Labels$Revisions$Permissions$Batchupdate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAppsDriveLabelsV2BatchUpdateLabelPermissionsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2BatchUpdateLabelPermissionsResponse>
+    >;
     batchUpdate(
       params: Params$Resource$Labels$Revisions$Permissions$Batchupdate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3856,8 +5466,10 @@ export namespace drivelabels_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAppsDriveLabelsV2BatchUpdateLabelPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2BatchUpdateLabelPermissionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Labels$Revisions$Permissions$Batchupdate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3905,6 +5517,75 @@ export namespace drivelabels_v2 {
 
     /**
      * Updates a Label's permissions. If a permission for the indicated principal doesn't exist, a new Label Permission is created, otherwise the existing permission is updated. Permissions affect the Label resource as a whole, are not revisioned, and do not require publishing.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drivelabels.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drivelabels = google.drivelabels('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive.admin.labels',
+     *       'https://www.googleapis.com/auth/drive.labels',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drivelabels.labels.revisions.permissions.create({
+     *     // Required. The parent Label resource name on the Label Permission is created. Format: labels/{label\}
+     *     parent: 'labels/my-label/revisions/my-revision',
+     *     // Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the Label before allowing access.
+     *     useAdminAccess: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "audience": "my_audience",
+     *       //   "email": "my_email",
+     *       //   "group": "my_group",
+     *       //   "name": "my_name",
+     *       //   "person": "my_person",
+     *       //   "role": "my_role"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "audience": "my_audience",
+     *   //   "email": "my_email",
+     *   //   "group": "my_group",
+     *   //   "name": "my_name",
+     *   //   "person": "my_person",
+     *   //   "role": "my_role"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3914,11 +5595,13 @@ export namespace drivelabels_v2 {
     create(
       params: Params$Resource$Labels$Revisions$Permissions$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Labels$Revisions$Permissions$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAppsDriveLabelsV2LabelPermission>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2LabelPermission>
+    >;
     create(
       params: Params$Resource$Labels$Revisions$Permissions$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3953,8 +5636,10 @@ export namespace drivelabels_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAppsDriveLabelsV2LabelPermission>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2LabelPermission>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Labels$Revisions$Permissions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4002,6 +5687,55 @@ export namespace drivelabels_v2 {
 
     /**
      * Deletes a Label's permission. Permissions affect the Label resource as a whole, are not revisioned, and do not require publishing.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drivelabels.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drivelabels = google.drivelabels('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive.admin.labels',
+     *       'https://www.googleapis.com/auth/drive.labels',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drivelabels.labels.revisions.permissions.delete({
+     *     // Required. Label Permission resource name.
+     *     name: 'labels/my-label/revisions/my-revision/permissions/my-permission',
+     *     // Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the Label before allowing access.
+     *     useAdminAccess: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4011,11 +5745,11 @@ export namespace drivelabels_v2 {
     delete(
       params: Params$Resource$Labels$Revisions$Permissions$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Labels$Revisions$Permissions$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     delete(
       params: Params$Resource$Labels$Revisions$Permissions$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4046,8 +5780,8 @@ export namespace drivelabels_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Labels$Revisions$Permissions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4090,6 +5824,64 @@ export namespace drivelabels_v2 {
 
     /**
      * Lists a Label's permissions.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drivelabels.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drivelabels = google.drivelabels('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive.admin.labels',
+     *       'https://www.googleapis.com/auth/drive.admin.labels.readonly',
+     *       'https://www.googleapis.com/auth/drive.labels',
+     *       'https://www.googleapis.com/auth/drive.labels.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drivelabels.labels.revisions.permissions.list({
+     *     // Maximum number of permissions to return per page. Default: 50. Max: 200.
+     *     pageSize: 'placeholder-value',
+     *     // The token of the page to return.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent Label resource name on which Label Permission are listed. Format: labels/{label\}
+     *     parent: 'labels/my-label/revisions/my-revision',
+     *     // Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the Label before allowing access.
+     *     useAdminAccess: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "labelPermissions": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4099,11 +5891,13 @@ export namespace drivelabels_v2 {
     list(
       params: Params$Resource$Labels$Revisions$Permissions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Labels$Revisions$Permissions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAppsDriveLabelsV2ListLabelPermissionsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2ListLabelPermissionsResponse>
+    >;
     list(
       params: Params$Resource$Labels$Revisions$Permissions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4138,8 +5932,10 @@ export namespace drivelabels_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAppsDriveLabelsV2ListLabelPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2ListLabelPermissionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Labels$Revisions$Permissions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4265,6 +6061,63 @@ export namespace drivelabels_v2 {
 
     /**
      * Get the constraints on the structure of a Label; such as, the maximum number of Fields allowed and maximum length of the label title.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drivelabels.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drivelabels = google.drivelabels('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive.admin.labels',
+     *       'https://www.googleapis.com/auth/drive.admin.labels.readonly',
+     *       'https://www.googleapis.com/auth/drive.labels',
+     *       'https://www.googleapis.com/auth/drive.labels.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drivelabels.limits.getLabel({
+     *     // Required. Label revision resource name Must be: "limits/label"
+     *     name: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "fieldLimits": {},
+     *   //   "maxDeletedFields": 0,
+     *   //   "maxDescriptionLength": 0,
+     *   //   "maxDraftRevisions": 0,
+     *   //   "maxFields": 0,
+     *   //   "maxTitleLength": 0,
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4274,11 +6127,13 @@ export namespace drivelabels_v2 {
     getLabel(
       params: Params$Resource$Limits$Getlabel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getLabel(
       params?: Params$Resource$Limits$Getlabel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAppsDriveLabelsV2LabelLimits>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2LabelLimits>
+    >;
     getLabel(
       params: Params$Resource$Limits$Getlabel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4313,8 +6168,10 @@ export namespace drivelabels_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAppsDriveLabelsV2LabelLimits>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2LabelLimits>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Limits$Getlabel;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4372,6 +6229,63 @@ export namespace drivelabels_v2 {
 
     /**
      * Gets the user capabilities.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drivelabels.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drivelabels = google.drivelabels('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive.admin.labels',
+     *       'https://www.googleapis.com/auth/drive.admin.labels.readonly',
+     *       'https://www.googleapis.com/auth/drive.labels',
+     *       'https://www.googleapis.com/auth/drive.labels.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drivelabels.users.getCapabilities({
+     *     // The customer to scope this request to. For example: "customers/abcd1234". If unset, will return settings within the current customer.
+     *     customer: 'placeholder-value',
+     *     // Required. The resource name of the user. Only "users/me/capabilities" is supported.
+     *     name: 'users/my-user/capabilities',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "canAccessLabelManager": false,
+     *   //   "canAdministrateLabels": false,
+     *   //   "canCreateAdminLabels": false,
+     *   //   "canCreateSharedLabels": false,
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4381,11 +6295,13 @@ export namespace drivelabels_v2 {
     getCapabilities(
       params: Params$Resource$Users$Getcapabilities,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getCapabilities(
       params?: Params$Resource$Users$Getcapabilities,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAppsDriveLabelsV2UserCapabilities>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2UserCapabilities>
+    >;
     getCapabilities(
       params: Params$Resource$Users$Getcapabilities,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4420,8 +6336,10 @@ export namespace drivelabels_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAppsDriveLabelsV2UserCapabilities>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAppsDriveLabelsV2UserCapabilities>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Getcapabilities;
       let options = (optionsOrCallback || {}) as MethodOptions;

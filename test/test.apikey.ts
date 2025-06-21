@@ -54,7 +54,7 @@ async function testAuthKey(blogger: APIEndpoint) {
   req.done();
   assert.strictEqual(
     Utils.getQs(res)!.indexOf('key=YOUR%20API%20KEY') > -1,
-    true
+    true,
   );
 }
 

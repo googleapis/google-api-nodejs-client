@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/securitycenter",
-  "version": "11.1.0",
+  "version": "13.0.1",
   "description": "securitycenter",
   "main": "build/index.js",
   "types": "build/index.d.ts",
@@ -28,7 +28,7 @@
     "webpack": "webpack"
   },
   "dependencies": {
-    "googleapis-common": "^7.0.0"
+    "googleapis-common": "^8.0.2-rc.0"
   },
   "devDependencies": {
     "@microsoft/api-documenter": "^7.8.10",

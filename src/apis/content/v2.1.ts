@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -1124,6 +1124,10 @@ export namespace content_v2_1 {
      * Whether user can manage payment settings.
      */
     paymentsManager?: boolean | null;
+    /**
+     * Optional. Whether user has standard read-only access.
+     */
+    readOnly?: boolean | null;
     /**
      * Whether user is a reporting manager. This role is equivalent to the Performance and insights role in Merchant Center.
      */
@@ -7206,6 +7210,50 @@ export namespace content_v2_1 {
 
     /**
      * Returns information about the authenticated user.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.accounts.authinfo({});
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountIdentifiers": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7215,11 +7263,11 @@ export namespace content_v2_1 {
     authinfo(
       params: Params$Resource$Accounts$Authinfo,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     authinfo(
       params?: Params$Resource$Accounts$Authinfo,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AccountsAuthInfoResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AccountsAuthInfoResponse>>;
     authinfo(
       params: Params$Resource$Accounts$Authinfo,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7254,8 +7302,8 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AccountsAuthInfoResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AccountsAuthInfoResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Authinfo;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7302,6 +7350,56 @@ export namespace content_v2_1 {
 
     /**
      * Claims the website of a Merchant Center sub-account. Merchant accounts with approved third-party CSSs aren't required to claim a website.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.accounts.claimwebsite({
+     *     // The ID of the account whose website is claimed.
+     *     accountId: 'placeholder-value',
+     *     // The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
+     *     merchantId: 'placeholder-value',
+     *     // Only available to selected merchants, for example multi-client accounts (MCAs) and their sub-accounts. When set to `True`, this option removes any existing claim on the requested website and replaces it with a claim from the account that makes the request.
+     *     overwrite: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7311,11 +7409,11 @@ export namespace content_v2_1 {
     claimwebsite(
       params: Params$Resource$Accounts$Claimwebsite,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     claimwebsite(
       params?: Params$Resource$Accounts$Claimwebsite,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AccountsClaimWebsiteResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AccountsClaimWebsiteResponse>>;
     claimwebsite(
       params: Params$Resource$Accounts$Claimwebsite,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7350,8 +7448,8 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AccountsClaimWebsiteResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AccountsClaimWebsiteResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Claimwebsite;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7400,6 +7498,58 @@ export namespace content_v2_1 {
 
     /**
      * Retrieves, inserts, updates, and deletes multiple Merchant Center (sub-)accounts in a single request.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.accounts.custombatch({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "entries": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entries": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7409,11 +7559,11 @@ export namespace content_v2_1 {
     custombatch(
       params: Params$Resource$Accounts$Custombatch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     custombatch(
       params?: Params$Resource$Accounts$Custombatch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AccountsCustomBatchResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AccountsCustomBatchResponse>>;
     custombatch(
       params: Params$Resource$Accounts$Custombatch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7448,8 +7598,8 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AccountsCustomBatchResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AccountsCustomBatchResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Custombatch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7496,6 +7646,51 @@ export namespace content_v2_1 {
 
     /**
      * Deletes a Merchant Center sub-account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.accounts.delete({
+     *     // The ID of the account.
+     *     accountId: 'placeholder-value',
+     *     // Option to delete sub-accounts with products. The default value is false.
+     *     force: 'placeholder-value',
+     *     // The ID of the managing account. This must be a multi-client account, and accountId must be the ID of a sub-account of this account.
+     *     merchantId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7505,11 +7700,11 @@ export namespace content_v2_1 {
     delete(
       params: Params$Resource$Accounts$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Accounts$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Accounts$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7536,7 +7731,10 @@ export namespace content_v2_1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7581,6 +7779,73 @@ export namespace content_v2_1 {
 
     /**
      * Retrieves a Merchant Center account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.accounts.get({
+     *     // The ID of the account.
+     *     accountId: 'placeholder-value',
+     *     // The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
+     *     merchantId: 'placeholder-value',
+     *     // Controls which fields will be populated. Acceptable values are: "merchant" and "css". The default value is "merchant".
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountManagement": "my_accountManagement",
+     *   //   "adsLinks": [],
+     *   //   "adultContent": false,
+     *   //   "automaticImprovements": {},
+     *   //   "automaticLabelIds": [],
+     *   //   "businessIdentity": {},
+     *   //   "businessInformation": {},
+     *   //   "conversionSettings": {},
+     *   //   "cssId": "my_cssId",
+     *   //   "googleMyBusinessLink": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "labelIds": [],
+     *   //   "name": "my_name",
+     *   //   "sellerId": "my_sellerId",
+     *   //   "users": [],
+     *   //   "websiteUrl": "my_websiteUrl",
+     *   //   "youtubeChannelLinks": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7590,11 +7855,11 @@ export namespace content_v2_1 {
     get(
       params: Params$Resource$Accounts$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Accounts$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Account>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Account>>;
     get(
       params: Params$Resource$Accounts$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7623,7 +7888,10 @@ export namespace content_v2_1 {
       callback?:
         | BodyResponseCallback<Schema$Account>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Account> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Account>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7668,6 +7936,94 @@ export namespace content_v2_1 {
 
     /**
      * Creates a Merchant Center sub-account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.accounts.insert({
+     *     // The ID of the managing account. This must be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountManagement": "my_accountManagement",
+     *       //   "adsLinks": [],
+     *       //   "adultContent": false,
+     *       //   "automaticImprovements": {},
+     *       //   "automaticLabelIds": [],
+     *       //   "businessIdentity": {},
+     *       //   "businessInformation": {},
+     *       //   "conversionSettings": {},
+     *       //   "cssId": "my_cssId",
+     *       //   "googleMyBusinessLink": {},
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "labelIds": [],
+     *       //   "name": "my_name",
+     *       //   "sellerId": "my_sellerId",
+     *       //   "users": [],
+     *       //   "websiteUrl": "my_websiteUrl",
+     *       //   "youtubeChannelLinks": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountManagement": "my_accountManagement",
+     *   //   "adsLinks": [],
+     *   //   "adultContent": false,
+     *   //   "automaticImprovements": {},
+     *   //   "automaticLabelIds": [],
+     *   //   "businessIdentity": {},
+     *   //   "businessInformation": {},
+     *   //   "conversionSettings": {},
+     *   //   "cssId": "my_cssId",
+     *   //   "googleMyBusinessLink": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "labelIds": [],
+     *   //   "name": "my_name",
+     *   //   "sellerId": "my_sellerId",
+     *   //   "users": [],
+     *   //   "websiteUrl": "my_websiteUrl",
+     *   //   "youtubeChannelLinks": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7677,11 +8033,11 @@ export namespace content_v2_1 {
     insert(
       params: Params$Resource$Accounts$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Accounts$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Account>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Account>>;
     insert(
       params: Params$Resource$Accounts$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7710,7 +8066,10 @@ export namespace content_v2_1 {
       callback?:
         | BodyResponseCallback<Schema$Account>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Account> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Account>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7756,6 +8115,67 @@ export namespace content_v2_1 {
 
     /**
      * Performs an action on a link between two Merchant Center accounts, namely accountId and linkedAccountId.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.accounts.link({
+     *     // The ID of the account that should be linked.
+     *     accountId: 'placeholder-value',
+     *     // The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
+     *     merchantId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "action": "my_action",
+     *       //   "eCommercePlatformLinkInfo": {},
+     *       //   "linkType": "my_linkType",
+     *       //   "linkedAccountId": "my_linkedAccountId",
+     *       //   "paymentServiceProviderLinkInfo": {},
+     *       //   "services": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7765,11 +8185,11 @@ export namespace content_v2_1 {
     link(
       params: Params$Resource$Accounts$Link,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     link(
       params?: Params$Resource$Accounts$Link,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AccountsLinkResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AccountsLinkResponse>>;
     link(
       params: Params$Resource$Accounts$Link,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7802,8 +8222,8 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AccountsLinkResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AccountsLinkResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Link;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7848,6 +8268,64 @@ export namespace content_v2_1 {
 
     /**
      * Lists the sub-accounts in your Merchant Center account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.accounts.list({
+     *     // If view is set to "css", only return accounts that are assigned label with given ID.
+     *     label: 'placeholder-value',
+     *     // The maximum number of accounts to return in the response, used for paging.
+     *     maxResults: 'placeholder-value',
+     *     // The ID of the managing account. This must be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *     // If set, only the accounts with the given name (case sensitive) will be returned.
+     *     name: 'placeholder-value',
+     *     // The token returned by the previous request.
+     *     pageToken: 'placeholder-value',
+     *     // Controls which fields will be populated. Acceptable values are: "merchant" and "css". The default value is "merchant".
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "resources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7857,11 +8335,11 @@ export namespace content_v2_1 {
     list(
       params: Params$Resource$Accounts$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Accounts$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AccountsListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AccountsListResponse>>;
     list(
       params: Params$Resource$Accounts$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7894,8 +8372,8 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AccountsListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AccountsListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7941,6 +8419,60 @@ export namespace content_v2_1 {
 
     /**
      * Returns the list of accounts linked to your Merchant Center account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.accounts.listlinks({
+     *     // The ID of the account for which to list links.
+     *     accountId: 'placeholder-value',
+     *     // The maximum number of links to return in the response, used for pagination. The minimum allowed value is 5 results per page. If provided value is lower than 5, it will be automatically increased to 5.
+     *     maxResults: 'placeholder-value',
+     *     // The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
+     *     merchantId: 'placeholder-value',
+     *     // The token returned by the previous request.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "links": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7950,11 +8482,11 @@ export namespace content_v2_1 {
     listlinks(
       params: Params$Resource$Accounts$Listlinks,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     listlinks(
       params?: Params$Resource$Accounts$Listlinks,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AccountsListLinksResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AccountsListLinksResponse>>;
     listlinks(
       params: Params$Resource$Accounts$Listlinks,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7989,8 +8521,8 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AccountsListLinksResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AccountsListLinksResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Listlinks;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8037,6 +8569,65 @@ export namespace content_v2_1 {
 
     /**
      * Request verification code to start phone verification.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.accounts.requestphoneverification({
+     *     // Required. The ID of the account.
+     *     accountId: 'placeholder-value',
+     *     // Required. The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and accountId must be the ID of a sub-account of this account.
+     *     merchantId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "languageCode": "my_languageCode",
+     *       //   "phoneNumber": "my_phoneNumber",
+     *       //   "phoneRegionCode": "my_phoneRegionCode",
+     *       //   "phoneVerificationMethod": "my_phoneVerificationMethod"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "verificationId": "my_verificationId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8046,11 +8637,13 @@ export namespace content_v2_1 {
     requestphoneverification(
       params: Params$Resource$Accounts$Requestphoneverification,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     requestphoneverification(
       params?: Params$Resource$Accounts$Requestphoneverification,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RequestPhoneVerificationResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$RequestPhoneVerificationResponse>
+    >;
     requestphoneverification(
       params: Params$Resource$Accounts$Requestphoneverification,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8085,8 +8678,10 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$RequestPhoneVerificationResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$RequestPhoneVerificationResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Requestphoneverification;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8135,6 +8730,96 @@ export namespace content_v2_1 {
 
     /**
      * Updates a Merchant Center account. Any fields that are not provided are deleted from the resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.accounts.update({
+     *     // The ID of the account.
+     *     accountId: 'placeholder-value',
+     *     // The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
+     *     merchantId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountManagement": "my_accountManagement",
+     *       //   "adsLinks": [],
+     *       //   "adultContent": false,
+     *       //   "automaticImprovements": {},
+     *       //   "automaticLabelIds": [],
+     *       //   "businessIdentity": {},
+     *       //   "businessInformation": {},
+     *       //   "conversionSettings": {},
+     *       //   "cssId": "my_cssId",
+     *       //   "googleMyBusinessLink": {},
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "labelIds": [],
+     *       //   "name": "my_name",
+     *       //   "sellerId": "my_sellerId",
+     *       //   "users": [],
+     *       //   "websiteUrl": "my_websiteUrl",
+     *       //   "youtubeChannelLinks": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountManagement": "my_accountManagement",
+     *   //   "adsLinks": [],
+     *   //   "adultContent": false,
+     *   //   "automaticImprovements": {},
+     *   //   "automaticLabelIds": [],
+     *   //   "businessIdentity": {},
+     *   //   "businessInformation": {},
+     *   //   "conversionSettings": {},
+     *   //   "cssId": "my_cssId",
+     *   //   "googleMyBusinessLink": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "labelIds": [],
+     *   //   "name": "my_name",
+     *   //   "sellerId": "my_sellerId",
+     *   //   "users": [],
+     *   //   "websiteUrl": "my_websiteUrl",
+     *   //   "youtubeChannelLinks": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8144,11 +8829,11 @@ export namespace content_v2_1 {
     update(
       params: Params$Resource$Accounts$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Accounts$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Account>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Account>>;
     update(
       params: Params$Resource$Accounts$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8177,7 +8862,10 @@ export namespace content_v2_1 {
       callback?:
         | BodyResponseCallback<Schema$Account>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Account> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Account>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8222,6 +8910,62 @@ export namespace content_v2_1 {
 
     /**
      * Updates labels that are assigned to the Merchant Center account by CSS user.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.accounts.updatelabels({
+     *     // The ID of the account whose labels are updated.
+     *     accountId: 'placeholder-value',
+     *     // The ID of the managing account.
+     *     merchantId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "labelIds": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8231,11 +8975,11 @@ export namespace content_v2_1 {
     updatelabels(
       params: Params$Resource$Accounts$Updatelabels,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     updatelabels(
       params?: Params$Resource$Accounts$Updatelabels,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AccountsUpdateLabelsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AccountsUpdateLabelsResponse>>;
     updatelabels(
       params: Params$Resource$Accounts$Updatelabels,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8270,8 +9014,8 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AccountsUpdateLabelsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AccountsUpdateLabelsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Updatelabels;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8320,6 +9064,64 @@ export namespace content_v2_1 {
 
     /**
      * Validates verification code to verify phone number for the account. If successful this will overwrite the value of `accounts.businessinformation.phoneNumber`. Only verified phone number will replace an existing verified phone number.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.accounts.verifyphonenumber({
+     *     // Required. The ID of the account.
+     *     accountId: 'placeholder-value',
+     *     // Required. The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and accountId must be the ID of a sub-account of this account.
+     *     merchantId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "phoneVerificationMethod": "my_phoneVerificationMethod",
+     *       //   "verificationCode": "my_verificationCode",
+     *       //   "verificationId": "my_verificationId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "verifiedPhoneNumber": "my_verifiedPhoneNumber"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8329,11 +9131,11 @@ export namespace content_v2_1 {
     verifyphonenumber(
       params: Params$Resource$Accounts$Verifyphonenumber,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     verifyphonenumber(
       params?: Params$Resource$Accounts$Verifyphonenumber,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$VerifyPhoneNumberResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$VerifyPhoneNumberResponse>>;
     verifyphonenumber(
       params: Params$Resource$Accounts$Verifyphonenumber,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8368,8 +9170,8 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$VerifyPhoneNumberResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$VerifyPhoneNumberResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Verifyphonenumber;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8610,6 +9412,64 @@ export namespace content_v2_1 {
 
     /**
      * Uploads credentials for the Merchant Center account. If credentials already exist for this Merchant Center account and purpose, this method updates them.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.accounts.credentials.create({
+     *     // Required. The merchant id of the account these credentials belong to.
+     *     accountId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accessToken": "my_accessToken",
+     *       //   "expiresIn": "my_expiresIn",
+     *       //   "purpose": "my_purpose"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accessToken": "my_accessToken",
+     *   //   "expiresIn": "my_expiresIn",
+     *   //   "purpose": "my_purpose"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8619,11 +9479,11 @@ export namespace content_v2_1 {
     create(
       params: Params$Resource$Accounts$Credentials$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Accounts$Credentials$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AccountCredentials>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AccountCredentials>>;
     create(
       params: Params$Resource$Accounts$Credentials$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8654,8 +9514,8 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AccountCredentials>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AccountCredentials>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Credentials$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8721,6 +9581,68 @@ export namespace content_v2_1 {
 
     /**
      * Creates a new label, not assigned to any account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.accounts.labels.create({
+     *     // Required. The id of the account this label belongs to.
+     *     accountId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "description": "my_description",
+     *       //   "labelId": "my_labelId",
+     *       //   "labelType": "my_labelType",
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "description": "my_description",
+     *   //   "labelId": "my_labelId",
+     *   //   "labelType": "my_labelType",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8730,11 +9652,11 @@ export namespace content_v2_1 {
     create(
       params: Params$Resource$Accounts$Labels$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Accounts$Labels$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AccountLabel>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AccountLabel>>;
     create(
       params: Params$Resource$Accounts$Labels$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8763,7 +9685,10 @@ export namespace content_v2_1 {
       callback?:
         | BodyResponseCallback<Schema$AccountLabel>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AccountLabel> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$AccountLabel>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Labels$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8809,6 +9734,49 @@ export namespace content_v2_1 {
 
     /**
      * Deletes a label and removes it from all accounts to which it was assigned.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.accounts.labels.delete({
+     *     // Required. The id of the account that owns the label.
+     *     accountId: 'placeholder-value',
+     *     // Required. The id of the label to delete.
+     *     labelId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8818,11 +9786,11 @@ export namespace content_v2_1 {
     delete(
       params: Params$Resource$Accounts$Labels$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Accounts$Labels$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Accounts$Labels$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8849,7 +9817,10 @@ export namespace content_v2_1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Labels$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8895,6 +9866,57 @@ export namespace content_v2_1 {
 
     /**
      * Lists the labels assigned to an account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.accounts.labels.list({
+     *     // Required. The account id for whose labels are to be listed.
+     *     accountId: 'placeholder-value',
+     *     // The maximum number of labels to return. The service may return fewer than this value. If unspecified, at most 50 labels will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // A page token, received from a previous `ListAccountLabels` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListAccountLabels` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountLabels": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8904,11 +9926,11 @@ export namespace content_v2_1 {
     list(
       params: Params$Resource$Accounts$Labels$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Accounts$Labels$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAccountLabelsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListAccountLabelsResponse>>;
     list(
       params: Params$Resource$Accounts$Labels$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8943,8 +9965,8 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListAccountLabelsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListAccountLabelsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Labels$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8990,6 +10012,70 @@ export namespace content_v2_1 {
 
     /**
      * Updates a label.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.accounts.labels.patch({
+     *     // Required. The id of the account this label belongs to.
+     *     accountId: 'placeholder-value',
+     *     // Required. The id of the label to update.
+     *     labelId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "description": "my_description",
+     *       //   "labelId": "my_labelId",
+     *       //   "labelType": "my_labelType",
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "description": "my_description",
+     *   //   "labelId": "my_labelId",
+     *   //   "labelType": "my_labelType",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8999,11 +10085,11 @@ export namespace content_v2_1 {
     patch(
       params: Params$Resource$Accounts$Labels$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Accounts$Labels$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AccountLabel>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AccountLabel>>;
     patch(
       params: Params$Resource$Accounts$Labels$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9032,7 +10118,10 @@ export namespace content_v2_1 {
       callback?:
         | BodyResponseCallback<Schema$AccountLabel>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AccountLabel> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$AccountLabel>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Labels$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9140,6 +10229,66 @@ export namespace content_v2_1 {
 
     /**
      * Links return carrier to a merchant account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.accounts.returncarrier.create({
+     *     // Required. The Merchant Center Account Id under which the Return Carrier is to be linked.
+     *     accountId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "carrierAccountId": "my_carrierAccountId",
+     *       //   "carrierAccountName": "my_carrierAccountName",
+     *       //   "carrierAccountNumber": "my_carrierAccountNumber",
+     *       //   "carrierCode": "my_carrierCode"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "carrierAccountId": "my_carrierAccountId",
+     *   //   "carrierAccountName": "my_carrierAccountName",
+     *   //   "carrierAccountNumber": "my_carrierAccountNumber",
+     *   //   "carrierCode": "my_carrierCode"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9149,11 +10298,11 @@ export namespace content_v2_1 {
     create(
       params: Params$Resource$Accounts$Returncarrier$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Accounts$Returncarrier$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AccountReturnCarrier>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AccountReturnCarrier>>;
     create(
       params: Params$Resource$Accounts$Returncarrier$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9186,8 +10335,8 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AccountReturnCarrier>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AccountReturnCarrier>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Returncarrier$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9233,6 +10382,49 @@ export namespace content_v2_1 {
 
     /**
      * Delete a return carrier in the merchant account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.accounts.returncarrier.delete({
+     *     // Required. The Merchant Center Account Id under which the Return Carrier is to be linked.
+     *     accountId: 'placeholder-value',
+     *     // Required. The Google-provided unique carrier ID, used to update the resource.
+     *     carrierAccountId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9242,11 +10434,11 @@ export namespace content_v2_1 {
     delete(
       params: Params$Resource$Accounts$Returncarrier$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Accounts$Returncarrier$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Accounts$Returncarrier$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9273,7 +10465,10 @@ export namespace content_v2_1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Returncarrier$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9320,6 +10515,52 @@ export namespace content_v2_1 {
 
     /**
      * Lists available return carriers in the merchant account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.accounts.returncarrier.list({
+     *     // Required. The Merchant Center Account Id under which the Return Carrier is to be linked.
+     *     accountId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountReturnCarriers": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9329,11 +10570,13 @@ export namespace content_v2_1 {
     list(
       params: Params$Resource$Accounts$Returncarrier$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Accounts$Returncarrier$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAccountReturnCarrierResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListAccountReturnCarrierResponse>
+    >;
     list(
       params: Params$Resource$Accounts$Returncarrier$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9368,8 +10611,10 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListAccountReturnCarrierResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListAccountReturnCarrierResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Returncarrier$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9417,6 +10662,68 @@ export namespace content_v2_1 {
 
     /**
      * Updates a return carrier in the merchant account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.accounts.returncarrier.patch({
+     *     // Required. The Merchant Center Account Id under which the Return Carrier is to be linked.
+     *     accountId: 'placeholder-value',
+     *     // Required. The Google-provided unique carrier ID, used to update the resource.
+     *     carrierAccountId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "carrierAccountId": "my_carrierAccountId",
+     *       //   "carrierAccountName": "my_carrierAccountName",
+     *       //   "carrierAccountNumber": "my_carrierAccountNumber",
+     *       //   "carrierCode": "my_carrierCode"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "carrierAccountId": "my_carrierAccountId",
+     *   //   "carrierAccountName": "my_carrierAccountName",
+     *   //   "carrierAccountNumber": "my_carrierAccountNumber",
+     *   //   "carrierCode": "my_carrierCode"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9426,11 +10733,11 @@ export namespace content_v2_1 {
     patch(
       params: Params$Resource$Accounts$Returncarrier$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Accounts$Returncarrier$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AccountReturnCarrier>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AccountReturnCarrier>>;
     patch(
       params: Params$Resource$Accounts$Returncarrier$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9463,8 +10770,8 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AccountReturnCarrier>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AccountReturnCarrier>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Returncarrier$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9565,6 +10872,58 @@ export namespace content_v2_1 {
 
     /**
      * Retrieves multiple Merchant Center account statuses in a single request.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.accountstatuses.custombatch({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "entries": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entries": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9574,11 +10933,13 @@ export namespace content_v2_1 {
     custombatch(
       params: Params$Resource$Accountstatuses$Custombatch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     custombatch(
       params?: Params$Resource$Accountstatuses$Custombatch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AccountstatusesCustomBatchResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$AccountstatusesCustomBatchResponse>
+    >;
     custombatch(
       params: Params$Resource$Accountstatuses$Custombatch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9613,8 +10974,10 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AccountstatusesCustomBatchResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$AccountstatusesCustomBatchResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accountstatuses$Custombatch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9663,6 +11026,61 @@ export namespace content_v2_1 {
 
     /**
      * Retrieves the status of a Merchant Center account. No itemLevelIssues are returned for multi-client accounts.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.accountstatuses.get({
+     *     // The ID of the account.
+     *     accountId: 'placeholder-value',
+     *     // If set, only issues for the specified destinations are returned, otherwise only issues for the Shopping destination.
+     *     destinations: 'placeholder-value',
+     *     // The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
+     *     merchantId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "accountLevelIssues": [],
+     *   //   "accountManagement": "my_accountManagement",
+     *   //   "kind": "my_kind",
+     *   //   "products": [],
+     *   //   "websiteClaimed": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9672,11 +11090,11 @@ export namespace content_v2_1 {
     get(
       params: Params$Resource$Accountstatuses$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Accountstatuses$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AccountStatus>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AccountStatus>>;
     get(
       params: Params$Resource$Accountstatuses$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9705,7 +11123,10 @@ export namespace content_v2_1 {
       callback?:
         | BodyResponseCallback<Schema$AccountStatus>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AccountStatus> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$AccountStatus>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accountstatuses$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9751,6 +11172,62 @@ export namespace content_v2_1 {
 
     /**
      * Lists the statuses of the sub-accounts in your Merchant Center account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.accountstatuses.list({
+     *     // If set, only issues for the specified destinations are returned, otherwise only issues for the Shopping destination.
+     *     destinations: 'placeholder-value',
+     *     // The maximum number of account statuses to return in the response, used for paging.
+     *     maxResults: 'placeholder-value',
+     *     // The ID of the managing account. This must be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *     // If set, only the accounts with the given name (case sensitive) will be returned.
+     *     name: 'placeholder-value',
+     *     // The token returned by the previous request.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "resources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9760,11 +11237,11 @@ export namespace content_v2_1 {
     list(
       params: Params$Resource$Accountstatuses$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Accountstatuses$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AccountstatusesListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AccountstatusesListResponse>>;
     list(
       params: Params$Resource$Accountstatuses$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9799,8 +11276,8 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AccountstatusesListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AccountstatusesListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accountstatuses$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9899,6 +11376,58 @@ export namespace content_v2_1 {
 
     /**
      * Retrieves and updates tax settings of multiple accounts in a single request.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.accounttax.custombatch({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "entries": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entries": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9908,11 +11437,11 @@ export namespace content_v2_1 {
     custombatch(
       params: Params$Resource$Accounttax$Custombatch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     custombatch(
       params?: Params$Resource$Accounttax$Custombatch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AccounttaxCustomBatchResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AccounttaxCustomBatchResponse>>;
     custombatch(
       params: Params$Resource$Accounttax$Custombatch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9947,8 +11476,8 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AccounttaxCustomBatchResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AccounttaxCustomBatchResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounttax$Custombatch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9997,6 +11526,56 @@ export namespace content_v2_1 {
 
     /**
      * Retrieves the tax settings of the account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.accounttax.get({
+     *     // The ID of the account for which to get/update account tax settings.
+     *     accountId: 'placeholder-value',
+     *     // The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
+     *     merchantId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "kind": "my_kind",
+     *   //   "rules": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10006,11 +11585,11 @@ export namespace content_v2_1 {
     get(
       params: Params$Resource$Accounttax$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Accounttax$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AccountTax>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AccountTax>>;
     get(
       params: Params$Resource$Accounttax$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10039,7 +11618,10 @@ export namespace content_v2_1 {
       callback?:
         | BodyResponseCallback<Schema$AccountTax>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AccountTax> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$AccountTax>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounttax$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -10084,6 +11666,58 @@ export namespace content_v2_1 {
 
     /**
      * Lists the tax settings of the sub-accounts in your Merchant Center account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.accounttax.list({
+     *     // The maximum number of tax settings to return in the response, used for paging.
+     *     maxResults: 'placeholder-value',
+     *     // The ID of the managing account. This must be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *     // The token returned by the previous request.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "resources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10093,11 +11727,11 @@ export namespace content_v2_1 {
     list(
       params: Params$Resource$Accounttax$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Accounttax$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AccounttaxListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AccounttaxListResponse>>;
     list(
       params: Params$Resource$Accounttax$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10130,8 +11764,8 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AccounttaxListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AccounttaxListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounttax$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -10177,6 +11811,66 @@ export namespace content_v2_1 {
 
     /**
      * Updates the tax settings of the account. Any fields that are not provided are deleted from the resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.accounttax.update({
+     *     // The ID of the account for which to get/update account tax settings.
+     *     accountId: 'placeholder-value',
+     *     // The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
+     *     merchantId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "kind": "my_kind",
+     *       //   "rules": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "kind": "my_kind",
+     *   //   "rules": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10186,11 +11880,11 @@ export namespace content_v2_1 {
     update(
       params: Params$Resource$Accounttax$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Accounttax$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AccountTax>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AccountTax>>;
     update(
       params: Params$Resource$Accounttax$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10219,7 +11913,10 @@ export namespace content_v2_1 {
       callback?:
         | BodyResponseCallback<Schema$AccountTax>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AccountTax> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$AccountTax>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounttax$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10320,6 +12017,84 @@ export namespace content_v2_1 {
 
     /**
      * Uploads a collection to your Merchant Center account. If a collection with the same collectionId already exists, this method updates that entry. In each update, the collection is completely replaced by the fields in the body of the update request.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.collections.create({
+     *     // Required. The ID of the account that contains the collection. This account cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "customLabel0": "my_customLabel0",
+     *       //   "customLabel1": "my_customLabel1",
+     *       //   "customLabel2": "my_customLabel2",
+     *       //   "customLabel3": "my_customLabel3",
+     *       //   "customLabel4": "my_customLabel4",
+     *       //   "featuredProduct": [],
+     *       //   "headline": [],
+     *       //   "id": "my_id",
+     *       //   "imageLink": [],
+     *       //   "language": "my_language",
+     *       //   "link": "my_link",
+     *       //   "mobileLink": "my_mobileLink",
+     *       //   "productCountry": "my_productCountry"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "customLabel0": "my_customLabel0",
+     *   //   "customLabel1": "my_customLabel1",
+     *   //   "customLabel2": "my_customLabel2",
+     *   //   "customLabel3": "my_customLabel3",
+     *   //   "customLabel4": "my_customLabel4",
+     *   //   "featuredProduct": [],
+     *   //   "headline": [],
+     *   //   "id": "my_id",
+     *   //   "imageLink": [],
+     *   //   "language": "my_language",
+     *   //   "link": "my_link",
+     *   //   "mobileLink": "my_mobileLink",
+     *   //   "productCountry": "my_productCountry"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10329,11 +12104,11 @@ export namespace content_v2_1 {
     create(
       params: Params$Resource$Collections$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Collections$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Collection>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Collection>>;
     create(
       params: Params$Resource$Collections$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10362,7 +12137,10 @@ export namespace content_v2_1 {
       callback?:
         | BodyResponseCallback<Schema$Collection>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Collection> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Collection>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Collections$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10409,6 +12187,49 @@ export namespace content_v2_1 {
 
     /**
      * Deletes a collection from your Merchant Center account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.collections.delete({
+     *     // Required. The collectionId of the collection. CollectionId is the same as the REST ID of the collection.
+     *     collectionId: 'placeholder-value',
+     *     // Required. The ID of the account that contains the collection. This account cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10418,11 +12239,11 @@ export namespace content_v2_1 {
     delete(
       params: Params$Resource$Collections$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Collections$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Collections$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10449,7 +12270,10 @@ export namespace content_v2_1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Collections$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10495,6 +12319,66 @@ export namespace content_v2_1 {
 
     /**
      * Retrieves a collection from your Merchant Center account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.collections.get({
+     *     // Required. The REST ID of the collection.
+     *     collectionId: 'placeholder-value',
+     *     // Required. The ID of the account that contains the collection. This account cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "customLabel0": "my_customLabel0",
+     *   //   "customLabel1": "my_customLabel1",
+     *   //   "customLabel2": "my_customLabel2",
+     *   //   "customLabel3": "my_customLabel3",
+     *   //   "customLabel4": "my_customLabel4",
+     *   //   "featuredProduct": [],
+     *   //   "headline": [],
+     *   //   "id": "my_id",
+     *   //   "imageLink": [],
+     *   //   "language": "my_language",
+     *   //   "link": "my_link",
+     *   //   "mobileLink": "my_mobileLink",
+     *   //   "productCountry": "my_productCountry"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10504,11 +12388,11 @@ export namespace content_v2_1 {
     get(
       params: Params$Resource$Collections$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Collections$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Collection>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Collection>>;
     get(
       params: Params$Resource$Collections$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10537,7 +12421,10 @@ export namespace content_v2_1 {
       callback?:
         | BodyResponseCallback<Schema$Collection>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Collection> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Collection>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Collections$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -10582,6 +12469,57 @@ export namespace content_v2_1 {
 
     /**
      * Lists the collections in your Merchant Center account. The response might contain fewer items than specified by page_size. Rely on next_page_token to determine if there are more items to be requested.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.collections.list({
+     *     // Required. The ID of the account that contains the collection. This account cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *     // The maximum number of collections to return in the response, used for paging. Defaults to 50; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Token (if provided) to retrieve the subsequent page. All other parameters must match the original call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "resources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10591,11 +12529,11 @@ export namespace content_v2_1 {
     list(
       params: Params$Resource$Collections$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Collections$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListCollectionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListCollectionsResponse>>;
     list(
       params: Params$Resource$Collections$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10628,8 +12566,8 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListCollectionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListCollectionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Collections$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -10730,6 +12668,58 @@ export namespace content_v2_1 {
 
     /**
      * Gets the status of a collection from your Merchant Center account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.collectionstatuses.get({
+     *     // Required. The collectionId of the collection. CollectionId is the same as the REST ID of the collection.
+     *     collectionId: 'placeholder-value',
+     *     // Required. The ID of the account that contains the collection. This account cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "collectionLevelIssuses": [],
+     *   //   "creationDate": "my_creationDate",
+     *   //   "destinationStatuses": [],
+     *   //   "id": "my_id",
+     *   //   "lastUpdateDate": "my_lastUpdateDate"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10739,11 +12729,11 @@ export namespace content_v2_1 {
     get(
       params: Params$Resource$Collectionstatuses$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Collectionstatuses$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CollectionStatus>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CollectionStatus>>;
     get(
       params: Params$Resource$Collectionstatuses$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10772,7 +12762,10 @@ export namespace content_v2_1 {
       callback?:
         | BodyResponseCallback<Schema$CollectionStatus>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CollectionStatus> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$CollectionStatus>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Collectionstatuses$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10819,6 +12812,57 @@ export namespace content_v2_1 {
 
     /**
      * Lists the statuses of the collections in your Merchant Center account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.collectionstatuses.list({
+     *     // Required. The ID of the account that contains the collection. This account cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *     // The maximum number of collection statuses to return in the response, used for paging. Defaults to 50; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Token (if provided) to retrieve the subsequent page. All other parameters must match the original call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "resources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10828,11 +12872,11 @@ export namespace content_v2_1 {
     list(
       params: Params$Resource$Collectionstatuses$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Collectionstatuses$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListCollectionStatusesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListCollectionStatusesResponse>>;
     list(
       params: Params$Resource$Collectionstatuses$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10867,8 +12911,8 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListCollectionStatusesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListCollectionStatusesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Collectionstatuses$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10950,6 +12994,68 @@ export namespace content_v2_1 {
 
     /**
      * Creates a new conversion source.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.conversionsources.create({
+     *     // Required. The ID of the account that owns the new conversion source.
+     *     merchantId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "conversionSourceId": "my_conversionSourceId",
+     *       //   "expireTime": "my_expireTime",
+     *       //   "googleAnalyticsLink": {},
+     *       //   "merchantCenterDestination": {},
+     *       //   "state": "my_state"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "conversionSourceId": "my_conversionSourceId",
+     *   //   "expireTime": "my_expireTime",
+     *   //   "googleAnalyticsLink": {},
+     *   //   "merchantCenterDestination": {},
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10959,11 +13065,11 @@ export namespace content_v2_1 {
     create(
       params: Params$Resource$Conversionsources$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Conversionsources$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ConversionSource>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ConversionSource>>;
     create(
       params: Params$Resource$Conversionsources$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10992,7 +13098,10 @@ export namespace content_v2_1 {
       callback?:
         | BodyResponseCallback<Schema$ConversionSource>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ConversionSource> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ConversionSource>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Conversionsources$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11038,6 +13147,49 @@ export namespace content_v2_1 {
 
     /**
      * Archives an existing conversion source. It will be recoverable for 30 days. This archiving behavior is not typical in the Content API and unique to this service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.conversionsources.delete({
+     *     // Required. The ID of the conversion source to be deleted.
+     *     conversionSourceId: 'placeholder-value',
+     *     // Required. The ID of the account that owns the new conversion source.
+     *     merchantId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11047,11 +13199,11 @@ export namespace content_v2_1 {
     delete(
       params: Params$Resource$Conversionsources$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Conversionsources$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Conversionsources$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11078,7 +13230,10 @@ export namespace content_v2_1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Conversionsources$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11125,6 +13280,58 @@ export namespace content_v2_1 {
 
     /**
      * Fetches a conversion source.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.conversionsources.get({
+     *     // Required. The REST ID of the collection.
+     *     conversionSourceId: 'placeholder-value',
+     *     // Required. The ID of the account that owns the new conversion source.
+     *     merchantId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "conversionSourceId": "my_conversionSourceId",
+     *   //   "expireTime": "my_expireTime",
+     *   //   "googleAnalyticsLink": {},
+     *   //   "merchantCenterDestination": {},
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11134,11 +13341,11 @@ export namespace content_v2_1 {
     get(
       params: Params$Resource$Conversionsources$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Conversionsources$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ConversionSource>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ConversionSource>>;
     get(
       params: Params$Resource$Conversionsources$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11167,7 +13374,10 @@ export namespace content_v2_1 {
       callback?:
         | BodyResponseCallback<Schema$ConversionSource>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ConversionSource> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ConversionSource>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Conversionsources$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11214,6 +13424,59 @@ export namespace content_v2_1 {
 
     /**
      * Retrieves the list of conversion sources the caller has access to.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.conversionsources.list({
+     *     // Required. The ID of the account that owns the new conversion source.
+     *     merchantId: 'placeholder-value',
+     *     // The maximum number of conversion sources to return in a page. If no `page_size` is specified, `100` is used as the default value. The maximum value is `200`. Values above `200` will be coerced to `200`. Regardless of pagination, at most `200` conversion sources are returned in total.
+     *     pageSize: 'placeholder-value',
+     *     // Page token.
+     *     pageToken: 'placeholder-value',
+     *     // If true, also returns archived conversion sources.
+     *     showDeleted: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "conversionSources": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11223,11 +13486,11 @@ export namespace content_v2_1 {
     list(
       params: Params$Resource$Conversionsources$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Conversionsources$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListConversionSourcesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListConversionSourcesResponse>>;
     list(
       params: Params$Resource$Conversionsources$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11262,8 +13525,8 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListConversionSourcesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListConversionSourcesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Conversionsources$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11311,6 +13574,72 @@ export namespace content_v2_1 {
 
     /**
      * Updates information of an existing conversion source.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.conversionsources.patch({
+     *     // Required. The ID of the conversion source to be updated.
+     *     conversionSourceId: 'placeholder-value',
+     *     // Required. The ID of the account that owns the new conversion source.
+     *     merchantId: 'placeholder-value',
+     *     // Optional. List of fields being updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "conversionSourceId": "my_conversionSourceId",
+     *       //   "expireTime": "my_expireTime",
+     *       //   "googleAnalyticsLink": {},
+     *       //   "merchantCenterDestination": {},
+     *       //   "state": "my_state"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "conversionSourceId": "my_conversionSourceId",
+     *   //   "expireTime": "my_expireTime",
+     *   //   "googleAnalyticsLink": {},
+     *   //   "merchantCenterDestination": {},
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11320,11 +13649,11 @@ export namespace content_v2_1 {
     patch(
       params: Params$Resource$Conversionsources$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Conversionsources$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ConversionSource>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ConversionSource>>;
     patch(
       params: Params$Resource$Conversionsources$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11353,7 +13682,10 @@ export namespace content_v2_1 {
       callback?:
         | BodyResponseCallback<Schema$ConversionSource>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ConversionSource> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ConversionSource>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Conversionsources$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11400,6 +13732,55 @@ export namespace content_v2_1 {
 
     /**
      * Re-enables an archived conversion source.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.conversionsources.undelete({
+     *     // Required. The ID of the conversion source to be undeleted.
+     *     conversionSourceId: 'placeholder-value',
+     *     // Required. The ID of the account that owns the new conversion source.
+     *     merchantId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11409,11 +13790,11 @@ export namespace content_v2_1 {
     undelete(
       params: Params$Resource$Conversionsources$Undelete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     undelete(
       params?: Params$Resource$Conversionsources$Undelete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     undelete(
       params: Params$Resource$Conversionsources$Undelete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11440,7 +13821,10 @@ export namespace content_v2_1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Conversionsources$Undelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11584,6 +13968,59 @@ export namespace content_v2_1 {
 
     /**
      * Retrieves a single CSS domain by ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.csses.get({
+     *     // Required. The ID of the CSS domain to return.
+     *     cssDomainId: 'placeholder-value',
+     *     // Required. The ID of the managing account. If this parameter is not the same as [cssDomainId](#cssDomainId), then this ID must be a CSS group ID and `cssDomainId` must be the ID of a CSS domain affiliated with this group.
+     *     cssGroupId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cssDomainId": "my_cssDomainId",
+     *   //   "cssGroupId": "my_cssGroupId",
+     *   //   "displayName": "my_displayName",
+     *   //   "fullName": "my_fullName",
+     *   //   "homepageUri": "my_homepageUri",
+     *   //   "labelIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11593,11 +14030,11 @@ export namespace content_v2_1 {
     get(
       params: Params$Resource$Csses$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Csses$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Css>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Css>>;
     get(
       params: Params$Resource$Csses$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11626,7 +14063,10 @@ export namespace content_v2_1 {
       callback?:
         | BodyResponseCallback<Schema$Css>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Css> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Css>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Csses$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -11671,6 +14111,57 @@ export namespace content_v2_1 {
 
     /**
      * Lists CSS domains affiliated with a CSS group.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.csses.list({
+     *     // Required. The CSS group ID of CSS domains to be listed.
+     *     cssGroupId: 'placeholder-value',
+     *     // The maximum number of CSS domains to return. The service may return fewer than this value. If unspecified, at most 50 CSS domains will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // A page token, received from a previous `ListCsses` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListCsses` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "csses": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11680,11 +14171,11 @@ export namespace content_v2_1 {
     list(
       params: Params$Resource$Csses$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Csses$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListCssesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListCssesResponse>>;
     list(
       params: Params$Resource$Csses$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11715,8 +14206,8 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListCssesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListCssesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Csses$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -11762,6 +14253,67 @@ export namespace content_v2_1 {
 
     /**
      * Updates labels that are assigned to a CSS domain by its CSS group.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.csses.updatelabels({
+     *     // Required. The ID of the updated CSS domain.
+     *     cssDomainId: 'placeholder-value',
+     *     // Required. The CSS group ID of the updated CSS domain.
+     *     cssGroupId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "labelIds": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cssDomainId": "my_cssDomainId",
+     *   //   "cssGroupId": "my_cssGroupId",
+     *   //   "displayName": "my_displayName",
+     *   //   "fullName": "my_fullName",
+     *   //   "homepageUri": "my_homepageUri",
+     *   //   "labelIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11771,11 +14323,11 @@ export namespace content_v2_1 {
     updatelabels(
       params: Params$Resource$Csses$Updatelabels,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     updatelabels(
       params?: Params$Resource$Csses$Updatelabels,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Css>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Css>>;
     updatelabels(
       params: Params$Resource$Csses$Updatelabels,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11804,7 +14356,10 @@ export namespace content_v2_1 {
       callback?:
         | BodyResponseCallback<Schema$Css>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Css> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Css>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Csses$Updatelabels;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11899,6 +14454,58 @@ export namespace content_v2_1 {
 
     /**
      * Deletes, fetches, gets, inserts and updates multiple datafeeds in a single request.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.datafeeds.custombatch({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "entries": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entries": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11908,11 +14515,11 @@ export namespace content_v2_1 {
     custombatch(
       params: Params$Resource$Datafeeds$Custombatch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     custombatch(
       params?: Params$Resource$Datafeeds$Custombatch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DatafeedsCustomBatchResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DatafeedsCustomBatchResponse>>;
     custombatch(
       params: Params$Resource$Datafeeds$Custombatch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11947,8 +14554,8 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$DatafeedsCustomBatchResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$DatafeedsCustomBatchResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Datafeeds$Custombatch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11997,6 +14604,49 @@ export namespace content_v2_1 {
 
     /**
      * Deletes a datafeed configuration from your Merchant Center account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.datafeeds.delete({
+     *     // The ID of the datafeed.
+     *     datafeedId: 'placeholder-value',
+     *     // The ID of the account that manages the datafeed. This account cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12006,11 +14656,11 @@ export namespace content_v2_1 {
     delete(
       params: Params$Resource$Datafeeds$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Datafeeds$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Datafeeds$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12037,7 +14687,10 @@ export namespace content_v2_1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Datafeeds$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -12082,6 +14735,54 @@ export namespace content_v2_1 {
 
     /**
      * Invokes a fetch for the datafeed in your Merchant Center account. If you need to call this method more than once per day, we recommend you use the [Products service](https://developers.google.com/shopping-content/reference/rest/v2.1/products) to update your product data.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.datafeeds.fetchnow({
+     *     // The ID of the datafeed to be fetched.
+     *     datafeedId: 'placeholder-value',
+     *     // The ID of the account that manages the datafeed. This account cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12091,11 +14792,11 @@ export namespace content_v2_1 {
     fetchnow(
       params: Params$Resource$Datafeeds$Fetchnow,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     fetchnow(
       params?: Params$Resource$Datafeeds$Fetchnow,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DatafeedsFetchNowResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DatafeedsFetchNowResponse>>;
     fetchnow(
       params: Params$Resource$Datafeeds$Fetchnow,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12130,8 +14831,8 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$DatafeedsFetchNowResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$DatafeedsFetchNowResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Datafeeds$Fetchnow;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12178,6 +14879,62 @@ export namespace content_v2_1 {
 
     /**
      * Retrieves a datafeed configuration from your Merchant Center account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.datafeeds.get({
+     *     // The ID of the datafeed.
+     *     datafeedId: 'placeholder-value',
+     *     // The ID of the account that manages the datafeed. This account cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attributeLanguage": "my_attributeLanguage",
+     *   //   "contentType": "my_contentType",
+     *   //   "fetchSchedule": {},
+     *   //   "fileName": "my_fileName",
+     *   //   "format": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "targets": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12187,11 +14944,11 @@ export namespace content_v2_1 {
     get(
       params: Params$Resource$Datafeeds$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Datafeeds$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Datafeed>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Datafeed>>;
     get(
       params: Params$Resource$Datafeeds$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12220,7 +14977,10 @@ export namespace content_v2_1 {
       callback?:
         | BodyResponseCallback<Schema$Datafeed>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Datafeed> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Datafeed>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Datafeeds$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -12265,6 +15025,76 @@ export namespace content_v2_1 {
 
     /**
      * Registers a datafeed configuration with your Merchant Center account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.datafeeds.insert({
+     *     // The ID of the account that manages the datafeed. This account cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "attributeLanguage": "my_attributeLanguage",
+     *       //   "contentType": "my_contentType",
+     *       //   "fetchSchedule": {},
+     *       //   "fileName": "my_fileName",
+     *       //   "format": {},
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "targets": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attributeLanguage": "my_attributeLanguage",
+     *   //   "contentType": "my_contentType",
+     *   //   "fetchSchedule": {},
+     *   //   "fileName": "my_fileName",
+     *   //   "format": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "targets": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12274,11 +15104,11 @@ export namespace content_v2_1 {
     insert(
       params: Params$Resource$Datafeeds$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Datafeeds$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Datafeed>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Datafeed>>;
     insert(
       params: Params$Resource$Datafeeds$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12307,7 +15137,10 @@ export namespace content_v2_1 {
       callback?:
         | BodyResponseCallback<Schema$Datafeed>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Datafeed> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Datafeed>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Datafeeds$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -12353,6 +15186,58 @@ export namespace content_v2_1 {
 
     /**
      * Lists the configurations for datafeeds in your Merchant Center account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.datafeeds.list({
+     *     // The maximum number of products to return in the response, used for paging.
+     *     maxResults: 'placeholder-value',
+     *     // The ID of the account that manages the datafeeds. This account cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *     // The token returned by the previous request.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "resources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12362,11 +15247,11 @@ export namespace content_v2_1 {
     list(
       params: Params$Resource$Datafeeds$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Datafeeds$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DatafeedsListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DatafeedsListResponse>>;
     list(
       params: Params$Resource$Datafeeds$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12399,8 +15284,8 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$DatafeedsListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$DatafeedsListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Datafeeds$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -12446,6 +15331,78 @@ export namespace content_v2_1 {
 
     /**
      * Updates a datafeed configuration of your Merchant Center account. Any fields that are not provided are deleted from the resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.datafeeds.update({
+     *     // The ID of the datafeed.
+     *     datafeedId: 'placeholder-value',
+     *     // The ID of the account that manages the datafeed. This account cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "attributeLanguage": "my_attributeLanguage",
+     *       //   "contentType": "my_contentType",
+     *       //   "fetchSchedule": {},
+     *       //   "fileName": "my_fileName",
+     *       //   "format": {},
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "targets": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attributeLanguage": "my_attributeLanguage",
+     *   //   "contentType": "my_contentType",
+     *   //   "fetchSchedule": {},
+     *   //   "fileName": "my_fileName",
+     *   //   "format": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "targets": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12455,11 +15412,11 @@ export namespace content_v2_1 {
     update(
       params: Params$Resource$Datafeeds$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Datafeeds$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Datafeed>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Datafeed>>;
     update(
       params: Params$Resource$Datafeeds$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12488,7 +15445,10 @@ export namespace content_v2_1 {
       callback?:
         | BodyResponseCallback<Schema$Datafeed>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Datafeed> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Datafeed>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Datafeeds$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -12619,6 +15579,58 @@ export namespace content_v2_1 {
 
     /**
      * Gets multiple Merchant Center datafeed statuses in a single request.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.datafeedstatuses.custombatch({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "entries": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entries": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12628,11 +15640,13 @@ export namespace content_v2_1 {
     custombatch(
       params: Params$Resource$Datafeedstatuses$Custombatch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     custombatch(
       params?: Params$Resource$Datafeedstatuses$Custombatch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DatafeedstatusesCustomBatchResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$DatafeedstatusesCustomBatchResponse>
+    >;
     custombatch(
       params: Params$Resource$Datafeedstatuses$Custombatch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12667,8 +15681,10 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$DatafeedstatusesCustomBatchResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$DatafeedstatusesCustomBatchResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Datafeedstatuses$Custombatch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12717,6 +15733,70 @@ export namespace content_v2_1 {
 
     /**
      * Retrieves the status of a datafeed from your Merchant Center account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.datafeedstatuses.get({
+     *     // Deprecated. Use `feedLabel` instead. The country to get the datafeed status for. If this parameter is provided then `language` must also be provided. Note that this parameter is required for feeds targeting multiple countries and languages, since a feed may have a different status for each target.
+     *     country: 'placeholder-value',
+     *     // The ID of the datafeed.
+     *     datafeedId: 'placeholder-value',
+     *     // The feed label to get the datafeed status for. If this parameter is provided then `language` must also be provided. Note that this parameter is required for feeds targeting multiple countries and languages, since a feed may have a different status for each target.
+     *     feedLabel: 'placeholder-value',
+     *     // The language to get the datafeed status for. If this parameter is provided then `country` must also be provided. Note that this parameter is required for feeds targeting multiple countries and languages, since a feed may have a different status for each target.
+     *     language: 'placeholder-value',
+     *     // The ID of the account that manages the datafeed. This account cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "country": "my_country",
+     *   //   "datafeedId": "my_datafeedId",
+     *   //   "errors": [],
+     *   //   "feedLabel": "my_feedLabel",
+     *   //   "itemsTotal": "my_itemsTotal",
+     *   //   "itemsValid": "my_itemsValid",
+     *   //   "kind": "my_kind",
+     *   //   "language": "my_language",
+     *   //   "lastUploadDate": "my_lastUploadDate",
+     *   //   "processingStatus": "my_processingStatus",
+     *   //   "warnings": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12726,11 +15806,11 @@ export namespace content_v2_1 {
     get(
       params: Params$Resource$Datafeedstatuses$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Datafeedstatuses$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DatafeedStatus>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DatafeedStatus>>;
     get(
       params: Params$Resource$Datafeedstatuses$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12759,7 +15839,10 @@ export namespace content_v2_1 {
       callback?:
         | BodyResponseCallback<Schema$DatafeedStatus>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$DatafeedStatus> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$DatafeedStatus>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Datafeedstatuses$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12806,6 +15889,58 @@ export namespace content_v2_1 {
 
     /**
      * Lists the statuses of the datafeeds in your Merchant Center account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.datafeedstatuses.list({
+     *     // The maximum number of products to return in the response, used for paging.
+     *     maxResults: 'placeholder-value',
+     *     // The ID of the account that manages the datafeeds. This account cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *     // The token returned by the previous request.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "resources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12815,11 +15950,11 @@ export namespace content_v2_1 {
     list(
       params: Params$Resource$Datafeedstatuses$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Datafeedstatuses$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DatafeedstatusesListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DatafeedstatusesListResponse>>;
     list(
       params: Params$Resource$Datafeedstatuses$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12854,8 +15989,8 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$DatafeedstatusesListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$DatafeedstatusesListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Datafeedstatuses$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12960,6 +16095,53 @@ export namespace content_v2_1 {
 
     /**
      * Retrieves the status and review eligibility for the free listing program. Returns errors and warnings if they require action to resolve, will become disapprovals, or impact impressions. Use `accountstatuses` to view all issues for an account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.freelistingsprogram.get({
+     *     // Required. The ID of the account.
+     *     merchantId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "globalState": "my_globalState",
+     *   //   "regionStatuses": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12969,11 +16151,11 @@ export namespace content_v2_1 {
     get(
       params: Params$Resource$Freelistingsprogram$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Freelistingsprogram$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FreeListingsProgramStatus>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FreeListingsProgramStatus>>;
     get(
       params: Params$Resource$Freelistingsprogram$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13006,8 +16188,8 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$FreeListingsProgramStatus>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$FreeListingsProgramStatus>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Freelistingsprogram$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13053,6 +16235,55 @@ export namespace content_v2_1 {
 
     /**
      * Requests a review of free listings in a specific region. This method deprecated. Use the `MerchantSupportService` to view product and account issues and request a review.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.freelistingsprogram.requestreview({
+     *     // Required. The ID of the account.
+     *     merchantId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "regionCode": "my_regionCode"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13062,11 +16293,11 @@ export namespace content_v2_1 {
     requestreview(
       params: Params$Resource$Freelistingsprogram$Requestreview,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     requestreview(
       params?: Params$Resource$Freelistingsprogram$Requestreview,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     requestreview(
       params: Params$Resource$Freelistingsprogram$Requestreview,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13093,7 +16324,10 @@ export namespace content_v2_1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Freelistingsprogram$Requestreview;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13167,6 +16401,47 @@ export namespace content_v2_1 {
 
     /**
      * Deletes `Checkout` settings and unenrolls merchant from `Checkout` program.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.freelistingsprogram.checkoutsettings.delete({
+     *     // Required. The ID of the account.
+     *     merchantId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13176,11 +16451,11 @@ export namespace content_v2_1 {
     delete(
       params: Params$Resource$Freelistingsprogram$Checkoutsettings$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Freelistingsprogram$Checkoutsettings$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Freelistingsprogram$Checkoutsettings$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13207,7 +16482,10 @@ export namespace content_v2_1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Freelistingsprogram$Checkoutsettings$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13255,6 +16533,58 @@ export namespace content_v2_1 {
 
     /**
      * Gets Checkout settings for the given merchant. This includes information about review state, enrollment state and URL settings.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.freelistingsprogram.checkoutsettings.get({
+     *     // Required. The ID of the account.
+     *     merchantId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "effectiveEnrollmentState": "my_effectiveEnrollmentState",
+     *   //   "effectiveReviewState": "my_effectiveReviewState",
+     *   //   "effectiveUriSettings": {},
+     *   //   "enrollmentState": "my_enrollmentState",
+     *   //   "merchantId": "my_merchantId",
+     *   //   "reviewState": "my_reviewState",
+     *   //   "uriSettings": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13264,11 +16594,11 @@ export namespace content_v2_1 {
     get(
       params: Params$Resource$Freelistingsprogram$Checkoutsettings$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Freelistingsprogram$Checkoutsettings$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CheckoutSettings>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CheckoutSettings>>;
     get(
       params: Params$Resource$Freelistingsprogram$Checkoutsettings$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13297,7 +16627,10 @@ export namespace content_v2_1 {
       callback?:
         | BodyResponseCallback<Schema$CheckoutSettings>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CheckoutSettings> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$CheckoutSettings>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Freelistingsprogram$Checkoutsettings$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13344,6 +16677,66 @@ export namespace content_v2_1 {
 
     /**
      * Enrolls merchant in `Checkout` program.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.freelistingsprogram.checkoutsettings.insert({
+     *     // Required. The ID of the account.
+     *     merchantId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "uriSettings": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "effectiveEnrollmentState": "my_effectiveEnrollmentState",
+     *   //   "effectiveReviewState": "my_effectiveReviewState",
+     *   //   "effectiveUriSettings": {},
+     *   //   "enrollmentState": "my_enrollmentState",
+     *   //   "merchantId": "my_merchantId",
+     *   //   "reviewState": "my_reviewState",
+     *   //   "uriSettings": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13353,11 +16746,11 @@ export namespace content_v2_1 {
     insert(
       params: Params$Resource$Freelistingsprogram$Checkoutsettings$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Freelistingsprogram$Checkoutsettings$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CheckoutSettings>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CheckoutSettings>>;
     insert(
       params: Params$Resource$Freelistingsprogram$Checkoutsettings$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13386,7 +16779,10 @@ export namespace content_v2_1 {
       callback?:
         | BodyResponseCallback<Schema$CheckoutSettings>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CheckoutSettings> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$CheckoutSettings>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Freelistingsprogram$Checkoutsettings$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13468,6 +16864,58 @@ export namespace content_v2_1 {
 
     /**
      * Retrieves and/or updates the LIA settings of multiple accounts in a single request.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.liasettings.custombatch({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "entries": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entries": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13477,11 +16925,11 @@ export namespace content_v2_1 {
     custombatch(
       params: Params$Resource$Liasettings$Custombatch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     custombatch(
       params?: Params$Resource$Liasettings$Custombatch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LiasettingsCustomBatchResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LiasettingsCustomBatchResponse>>;
     custombatch(
       params: Params$Resource$Liasettings$Custombatch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13516,8 +16964,8 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$LiasettingsCustomBatchResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$LiasettingsCustomBatchResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Liasettings$Custombatch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13566,6 +17014,56 @@ export namespace content_v2_1 {
 
     /**
      * Retrieves the LIA settings of the account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.liasettings.get({
+     *     // The ID of the account for which to get or update LIA settings.
+     *     accountId: 'placeholder-value',
+     *     // The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
+     *     merchantId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "countrySettings": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13575,11 +17073,11 @@ export namespace content_v2_1 {
     get(
       params: Params$Resource$Liasettings$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Liasettings$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LiaSettings>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LiaSettings>>;
     get(
       params: Params$Resource$Liasettings$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13608,7 +17106,10 @@ export namespace content_v2_1 {
       callback?:
         | BodyResponseCallback<Schema$LiaSettings>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LiaSettings> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$LiaSettings>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Liasettings$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -13653,6 +17154,56 @@ export namespace content_v2_1 {
 
     /**
      * Retrieves the list of accessible Business Profiles.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.liasettings.getaccessiblegmbaccounts({
+     *     // The ID of the account for which to retrieve accessible Business Profiles.
+     *     accountId: 'placeholder-value',
+     *     // The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
+     *     merchantId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "gmbAccounts": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13662,11 +17213,13 @@ export namespace content_v2_1 {
     getaccessiblegmbaccounts(
       params: Params$Resource$Liasettings$Getaccessiblegmbaccounts,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getaccessiblegmbaccounts(
       params?: Params$Resource$Liasettings$Getaccessiblegmbaccounts,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LiasettingsGetAccessibleGmbAccountsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$LiasettingsGetAccessibleGmbAccountsResponse>
+    >;
     getaccessiblegmbaccounts(
       params: Params$Resource$Liasettings$Getaccessiblegmbaccounts,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13701,8 +17254,10 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$LiasettingsGetAccessibleGmbAccountsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$LiasettingsGetAccessibleGmbAccountsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Liasettings$Getaccessiblegmbaccounts;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13751,6 +17306,58 @@ export namespace content_v2_1 {
 
     /**
      * Lists the LIA settings of the sub-accounts in your Merchant Center account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.liasettings.list({
+     *     // The maximum number of LIA settings to return in the response, used for paging.
+     *     maxResults: 'placeholder-value',
+     *     // The ID of the managing account. This must be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *     // The token returned by the previous request.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "resources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13760,11 +17367,11 @@ export namespace content_v2_1 {
     list(
       params: Params$Resource$Liasettings$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Liasettings$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LiasettingsListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LiasettingsListResponse>>;
     list(
       params: Params$Resource$Liasettings$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13797,8 +17404,8 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$LiasettingsListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$LiasettingsListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Liasettings$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -13844,6 +17451,50 @@ export namespace content_v2_1 {
 
     /**
      * Retrieves the list of POS data providers that have active settings for the all eiligible countries.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.liasettings.listposdataproviders({});
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "posDataProviders": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13853,11 +17504,13 @@ export namespace content_v2_1 {
     listposdataproviders(
       params: Params$Resource$Liasettings$Listposdataproviders,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     listposdataproviders(
       params?: Params$Resource$Liasettings$Listposdataproviders,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LiasettingsListPosDataProvidersResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$LiasettingsListPosDataProvidersResponse>
+    >;
     listposdataproviders(
       params: Params$Resource$Liasettings$Listposdataproviders,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13892,8 +17545,10 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$LiasettingsListPosDataProvidersResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$LiasettingsListPosDataProvidersResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Liasettings$Listposdataproviders;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13941,6 +17596,56 @@ export namespace content_v2_1 {
 
     /**
      * Requests access to a specified Business Profile.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.liasettings.requestgmbaccess({
+     *     // The ID of the account for which Business Profile access is requested.
+     *     accountId: 'placeholder-value',
+     *     // The email of the Business Profile.
+     *     gmbEmail: 'placeholder-value',
+     *     // The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
+     *     merchantId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13950,11 +17655,13 @@ export namespace content_v2_1 {
     requestgmbaccess(
       params: Params$Resource$Liasettings$Requestgmbaccess,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     requestgmbaccess(
       params?: Params$Resource$Liasettings$Requestgmbaccess,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LiasettingsRequestGmbAccessResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$LiasettingsRequestGmbAccessResponse>
+    >;
     requestgmbaccess(
       params: Params$Resource$Liasettings$Requestgmbaccess,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13989,8 +17696,10 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$LiasettingsRequestGmbAccessResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$LiasettingsRequestGmbAccessResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Liasettings$Requestgmbaccess;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14039,6 +17748,56 @@ export namespace content_v2_1 {
 
     /**
      * Requests inventory validation for the specified country.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.liasettings.requestinventoryverification({
+     *     // The ID of the account that manages the order. This cannot be a multi-client account.
+     *     accountId: 'placeholder-value',
+     *     // The country for which inventory validation is requested.
+     *     country: 'placeholder-value',
+     *     // The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
+     *     merchantId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14048,11 +17807,13 @@ export namespace content_v2_1 {
     requestinventoryverification(
       params: Params$Resource$Liasettings$Requestinventoryverification,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     requestinventoryverification(
       params?: Params$Resource$Liasettings$Requestinventoryverification,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LiasettingsRequestInventoryVerificationResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$LiasettingsRequestInventoryVerificationResponse>
+    >;
     requestinventoryverification(
       params: Params$Resource$Liasettings$Requestinventoryverification,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14087,8 +17848,10 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$LiasettingsRequestInventoryVerificationResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$LiasettingsRequestInventoryVerificationResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Liasettings$Requestinventoryverification;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14137,6 +17900,62 @@ export namespace content_v2_1 {
 
     /**
      * Sets the inventory verification contact for the specified country.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.liasettings.setinventoryverificationcontact({
+     *     // The ID of the account that manages the order. This cannot be a multi-client account.
+     *     accountId: 'placeholder-value',
+     *     // The email of the inventory verification contact.
+     *     contactEmail: 'placeholder-value',
+     *     // The name of the inventory verification contact.
+     *     contactName: 'placeholder-value',
+     *     // The country for which inventory verification is requested.
+     *     country: 'placeholder-value',
+     *     // The language for which inventory verification is requested.
+     *     language: 'placeholder-value',
+     *     // The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
+     *     merchantId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14146,11 +17965,13 @@ export namespace content_v2_1 {
     setinventoryverificationcontact(
       params: Params$Resource$Liasettings$Setinventoryverificationcontact,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setinventoryverificationcontact(
       params?: Params$Resource$Liasettings$Setinventoryverificationcontact,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LiasettingsSetInventoryVerificationContactResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$LiasettingsSetInventoryVerificationContactResponse>
+    >;
     setinventoryverificationcontact(
       params: Params$Resource$Liasettings$Setinventoryverificationcontact,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14185,8 +18006,10 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$LiasettingsSetInventoryVerificationContactResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$LiasettingsSetInventoryVerificationContactResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Liasettings$Setinventoryverificationcontact;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14243,6 +18066,62 @@ export namespace content_v2_1 {
 
     /**
      * Sets the omnichannel experience for the specified country. Only supported for merchants whose POS data provider is trusted to enable the corresponding experience. For more context, see these help articles [about LFP](https://support.google.com/merchants/answer/7676652) and [how to get started](https://support.google.com/merchants/answer/7676578) with it.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.liasettings.setomnichannelexperience({
+     *     // The ID of the account for which to retrieve accessible Business Profiles.
+     *     accountId: 'placeholder-value',
+     *     // The CLDR country code (for example, "US") for which the omnichannel experience is selected.
+     *     country: 'placeholder-value',
+     *     // The Local Store Front (LSF) type for this country. Acceptable values are: - "`ghlsf`" (Google-Hosted Local Store Front) - "`mhlsfBasic`" (Merchant-Hosted Local Store Front Basic) - "`mhlsfFull`" (Merchant-Hosted Local Store Front Full) More details about these types can be found here.
+     *     lsfType: 'placeholder-value',
+     *     // The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
+     *     merchantId: 'placeholder-value',
+     *     // The Pickup types for this country. Acceptable values are: - "`pickupToday`" - "`pickupLater`"
+     *     pickupTypes: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "country": "my_country",
+     *   //   "lsfType": "my_lsfType",
+     *   //   "pickupTypes": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14252,11 +18131,11 @@ export namespace content_v2_1 {
     setomnichannelexperience(
       params: Params$Resource$Liasettings$Setomnichannelexperience,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setomnichannelexperience(
       params?: Params$Resource$Liasettings$Setomnichannelexperience,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LiaOmnichannelExperience>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LiaOmnichannelExperience>>;
     setomnichannelexperience(
       params: Params$Resource$Liasettings$Setomnichannelexperience,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14291,8 +18170,8 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$LiaOmnichannelExperience>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$LiaOmnichannelExperience>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Liasettings$Setomnichannelexperience;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14339,6 +18218,60 @@ export namespace content_v2_1 {
 
     /**
      * Sets the POS data provider for the specified country.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.liasettings.setposdataprovider({
+     *     // The ID of the account for which to retrieve accessible Business Profiles.
+     *     accountId: 'placeholder-value',
+     *     // The country for which the POS data provider is selected.
+     *     country: 'placeholder-value',
+     *     // The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
+     *     merchantId: 'placeholder-value',
+     *     // The ID of POS data provider.
+     *     posDataProviderId: 'placeholder-value',
+     *     // The account ID by which this merchant is known to the POS data provider.
+     *     posExternalAccountId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14348,11 +18281,13 @@ export namespace content_v2_1 {
     setposdataprovider(
       params: Params$Resource$Liasettings$Setposdataprovider,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setposdataprovider(
       params?: Params$Resource$Liasettings$Setposdataprovider,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LiasettingsSetPosDataProviderResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$LiasettingsSetPosDataProviderResponse>
+    >;
     setposdataprovider(
       params: Params$Resource$Liasettings$Setposdataprovider,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14387,8 +18322,10 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$LiasettingsSetPosDataProviderResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$LiasettingsSetPosDataProviderResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Liasettings$Setposdataprovider;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14437,6 +18374,66 @@ export namespace content_v2_1 {
 
     /**
      * Updates the LIA settings of the account. Any fields that are not provided are deleted from the resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.liasettings.update({
+     *     // The ID of the account for which to get or update LIA settings.
+     *     accountId: 'placeholder-value',
+     *     // The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
+     *     merchantId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "countrySettings": [],
+     *       //   "kind": "my_kind"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "countrySettings": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14446,11 +18443,11 @@ export namespace content_v2_1 {
     update(
       params: Params$Resource$Liasettings$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Liasettings$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LiaSettings>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LiaSettings>>;
     update(
       params: Params$Resource$Liasettings$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14479,7 +18476,10 @@ export namespace content_v2_1 {
       callback?:
         | BodyResponseCallback<Schema$LiaSettings>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LiaSettings> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$LiaSettings>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Liasettings$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14696,6 +18696,58 @@ export namespace content_v2_1 {
 
     /**
      * Updates local inventory for multiple products or stores in a single request.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.localinventory.custombatch({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "entries": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entries": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14705,11 +18757,13 @@ export namespace content_v2_1 {
     custombatch(
       params: Params$Resource$Localinventory$Custombatch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     custombatch(
       params?: Params$Resource$Localinventory$Custombatch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LocalinventoryCustomBatchResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$LocalinventoryCustomBatchResponse>
+    >;
     custombatch(
       params: Params$Resource$Localinventory$Custombatch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14744,8 +18798,10 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$LocalinventoryCustomBatchResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$LocalinventoryCustomBatchResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Localinventory$Custombatch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14794,6 +18850,82 @@ export namespace content_v2_1 {
 
     /**
      * Updates the local inventory of a product in your Merchant Center account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.localinventory.insert({
+     *     // The ID of the account that contains the product. This account cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *     // The REST ID of the product for which to update local inventory.
+     *     productId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "availability": "my_availability",
+     *       //   "customAttributes": [],
+     *       //   "instoreProductLocation": "my_instoreProductLocation",
+     *       //   "kind": "my_kind",
+     *       //   "pickupMethod": "my_pickupMethod",
+     *       //   "pickupSla": "my_pickupSla",
+     *       //   "price": {},
+     *       //   "quantity": 0,
+     *       //   "salePrice": {},
+     *       //   "salePriceEffectiveDate": "my_salePriceEffectiveDate",
+     *       //   "storeCode": "my_storeCode"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "availability": "my_availability",
+     *   //   "customAttributes": [],
+     *   //   "instoreProductLocation": "my_instoreProductLocation",
+     *   //   "kind": "my_kind",
+     *   //   "pickupMethod": "my_pickupMethod",
+     *   //   "pickupSla": "my_pickupSla",
+     *   //   "price": {},
+     *   //   "quantity": 0,
+     *   //   "salePrice": {},
+     *   //   "salePriceEffectiveDate": "my_salePriceEffectiveDate",
+     *   //   "storeCode": "my_storeCode"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14803,11 +18935,11 @@ export namespace content_v2_1 {
     insert(
       params: Params$Resource$Localinventory$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Localinventory$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LocalInventory>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LocalInventory>>;
     insert(
       params: Params$Resource$Localinventory$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14836,7 +18968,10 @@ export namespace content_v2_1 {
       callback?:
         | BodyResponseCallback<Schema$LocalInventory>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LocalInventory> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$LocalInventory>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Localinventory$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14914,6 +19049,66 @@ export namespace content_v2_1 {
 
     /**
      * Provide a list of merchant's issues with a support content and available actions. This content and actions are meant to be rendered and shown in third-party applications.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.merchantsupport.renderaccountissues({
+     *     // Optional. The [IETF BCP-47](https://tools.ietf.org/html/bcp47) language code used to localize support content. If not set, the result will be in default language `en-US`.
+     *     languageCode: 'placeholder-value',
+     *     // Required. The ID of the account to fetch issues for.
+     *     merchantId: 'placeholder-value',
+     *     // Optional. The [IANA](https://www.iana.org/time-zones) timezone used to localize times in support content. For example 'America/Los_Angeles'. If not set, results will use as a default UTC.
+     *     timeZone: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "contentOption": "my_contentOption",
+     *       //   "userInputActionOption": "my_userInputActionOption"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "alternateDisputeResolution": {},
+     *   //   "issues": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14923,11 +19118,11 @@ export namespace content_v2_1 {
     renderaccountissues(
       params: Params$Resource$Merchantsupport$Renderaccountissues,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     renderaccountissues(
       params?: Params$Resource$Merchantsupport$Renderaccountissues,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RenderAccountIssuesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$RenderAccountIssuesResponse>>;
     renderaccountissues(
       params: Params$Resource$Merchantsupport$Renderaccountissues,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14962,8 +19157,8 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$RenderAccountIssuesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$RenderAccountIssuesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Merchantsupport$Renderaccountissues;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15010,6 +19205,68 @@ export namespace content_v2_1 {
 
     /**
      * Provide a list of issues for merchant's product with a support content and available actions. This content and actions are meant to be rendered and shown in third-party applications.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.merchantsupport.renderproductissues({
+     *     // Optional. The [IETF BCP-47](https://tools.ietf.org/html/bcp47) language code used to localize support content. If not set, the result will be in default language `en-US`.
+     *     languageCode: 'placeholder-value',
+     *     // Required. The ID of the account that contains the product.
+     *     merchantId: 'placeholder-value',
+     *     // Required. The [REST_ID](https://developers.google.com/shopping-content/reference/rest/v2.1/products#Product.FIELDS.id) of the product to fetch issues for.
+     *     productId: 'placeholder-value',
+     *     // Optional. The [IANA](https://www.iana.org/time-zones) timezone used to localize times in support content. For example 'America/Los_Angeles'. If not set, results will use as a default UTC.
+     *     timeZone: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "contentOption": "my_contentOption",
+     *       //   "userInputActionOption": "my_userInputActionOption"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "alternateDisputeResolution": {},
+     *   //   "issues": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15019,11 +19276,11 @@ export namespace content_v2_1 {
     renderproductissues(
       params: Params$Resource$Merchantsupport$Renderproductissues,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     renderproductissues(
       params?: Params$Resource$Merchantsupport$Renderproductissues,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RenderProductIssuesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$RenderProductIssuesResponse>>;
     renderproductissues(
       params: Params$Resource$Merchantsupport$Renderproductissues,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15058,8 +19315,8 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$RenderProductIssuesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$RenderProductIssuesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Merchantsupport$Renderproductissues;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15106,6 +19363,63 @@ export namespace content_v2_1 {
 
     /**
      * Start an action. The action can be requested by merchants in third-party application. Before merchants can request the action, the third-party application needs to show them action specific content and display a user input form. The action can be successfully started only once all `required` inputs are provided. If any `required` input is missing, or invalid value was provided, the service will return 400 error. Validation errors will contain Ids for all problematic field together with translated, human readable error messages that can be shown to the user.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.merchantsupport.triggeraction({
+     *     // Optional. Language code [IETF BCP 47 syntax](https://tools.ietf.org/html/bcp47) used to localize the response. If not set, the result will be in default language `en-US`.
+     *     languageCode: 'placeholder-value',
+     *     // Required. The ID of the merchant's account.
+     *     merchantId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "actionContext": "my_actionContext",
+     *       //   "actionInput": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "message": "my_message"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15115,11 +19429,11 @@ export namespace content_v2_1 {
     triggeraction(
       params: Params$Resource$Merchantsupport$Triggeraction,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     triggeraction(
       params?: Params$Resource$Merchantsupport$Triggeraction,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TriggerActionResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TriggerActionResponse>>;
     triggeraction(
       params: Params$Resource$Merchantsupport$Triggeraction,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15154,8 +19468,8 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TriggerActionResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TriggerActionResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Merchantsupport$Triggeraction;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15270,6 +19584,78 @@ export namespace content_v2_1 {
 
     /**
      * Creates new order tracking signal.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.ordertrackingsignals.create({
+     *     // The ID of the merchant for which the order signal is created.
+     *     merchantId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "customerShippingFee": {},
+     *       //   "deliveryPostalCode": "my_deliveryPostalCode",
+     *       //   "deliveryRegionCode": "my_deliveryRegionCode",
+     *       //   "lineItems": [],
+     *       //   "merchantId": "my_merchantId",
+     *       //   "orderCreatedTime": {},
+     *       //   "orderId": "my_orderId",
+     *       //   "orderTrackingSignalId": "my_orderTrackingSignalId",
+     *       //   "shipmentLineItemMapping": [],
+     *       //   "shippingInfo": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "customerShippingFee": {},
+     *   //   "deliveryPostalCode": "my_deliveryPostalCode",
+     *   //   "deliveryRegionCode": "my_deliveryRegionCode",
+     *   //   "lineItems": [],
+     *   //   "merchantId": "my_merchantId",
+     *   //   "orderCreatedTime": {},
+     *   //   "orderId": "my_orderId",
+     *   //   "orderTrackingSignalId": "my_orderTrackingSignalId",
+     *   //   "shipmentLineItemMapping": [],
+     *   //   "shippingInfo": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15279,11 +19665,11 @@ export namespace content_v2_1 {
     create(
       params: Params$Resource$Ordertrackingsignals$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Ordertrackingsignals$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$OrderTrackingSignal>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$OrderTrackingSignal>>;
     create(
       params: Params$Resource$Ordertrackingsignals$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15314,8 +19700,8 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$OrderTrackingSignal>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$OrderTrackingSignal>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Ordertrackingsignals$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15381,6 +19767,58 @@ export namespace content_v2_1 {
 
     /**
      * Batches multiple POS-related calls in a single request.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.pos.custombatch({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "entries": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entries": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15390,11 +19828,11 @@ export namespace content_v2_1 {
     custombatch(
       params: Params$Resource$Pos$Custombatch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     custombatch(
       params?: Params$Resource$Pos$Custombatch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PosCustomBatchResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PosCustomBatchResponse>>;
     custombatch(
       params: Params$Resource$Pos$Custombatch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15429,8 +19867,8 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$PosCustomBatchResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$PosCustomBatchResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pos$Custombatch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -15476,6 +19914,51 @@ export namespace content_v2_1 {
 
     /**
      * Deletes a store for the given merchant.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.pos.delete({
+     *     // The ID of the POS or inventory data provider.
+     *     merchantId: 'placeholder-value',
+     *     // A store code that is unique per merchant.
+     *     storeCode: 'placeholder-value',
+     *     // The ID of the target merchant.
+     *     targetMerchantId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15485,11 +19968,11 @@ export namespace content_v2_1 {
     delete(
       params: Params$Resource$Pos$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Pos$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Pos$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15516,7 +19999,10 @@ export namespace content_v2_1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pos$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -15562,6 +20048,65 @@ export namespace content_v2_1 {
 
     /**
      * Retrieves information about the given store.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.pos.get({
+     *     // The ID of the POS or inventory data provider.
+     *     merchantId: 'placeholder-value',
+     *     // A store code that is unique per merchant.
+     *     storeCode: 'placeholder-value',
+     *     // The ID of the target merchant.
+     *     targetMerchantId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "gcidCategory": [],
+     *   //   "kind": "my_kind",
+     *   //   "matchingStatus": "my_matchingStatus",
+     *   //   "matchingStatusHint": "my_matchingStatusHint",
+     *   //   "phoneNumber": "my_phoneNumber",
+     *   //   "placeId": "my_placeId",
+     *   //   "storeAddress": "my_storeAddress",
+     *   //   "storeCode": "my_storeCode",
+     *   //   "storeName": "my_storeName",
+     *   //   "websiteUrl": "my_websiteUrl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15571,11 +20116,11 @@ export namespace content_v2_1 {
     get(
       params: Params$Resource$Pos$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Pos$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PosStore>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PosStore>>;
     get(
       params: Params$Resource$Pos$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15604,7 +20149,10 @@ export namespace content_v2_1 {
       callback?:
         | BodyResponseCallback<Schema$PosStore>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$PosStore> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$PosStore>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pos$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -15650,6 +20198,80 @@ export namespace content_v2_1 {
 
     /**
      * Creates a store for the given merchant.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.pos.insert({
+     *     // The ID of the POS or inventory data provider.
+     *     merchantId: 'placeholder-value',
+     *     // The ID of the target merchant.
+     *     targetMerchantId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "gcidCategory": [],
+     *       //   "kind": "my_kind",
+     *       //   "matchingStatus": "my_matchingStatus",
+     *       //   "matchingStatusHint": "my_matchingStatusHint",
+     *       //   "phoneNumber": "my_phoneNumber",
+     *       //   "placeId": "my_placeId",
+     *       //   "storeAddress": "my_storeAddress",
+     *       //   "storeCode": "my_storeCode",
+     *       //   "storeName": "my_storeName",
+     *       //   "websiteUrl": "my_websiteUrl"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "gcidCategory": [],
+     *   //   "kind": "my_kind",
+     *   //   "matchingStatus": "my_matchingStatus",
+     *   //   "matchingStatusHint": "my_matchingStatusHint",
+     *   //   "phoneNumber": "my_phoneNumber",
+     *   //   "placeId": "my_placeId",
+     *   //   "storeAddress": "my_storeAddress",
+     *   //   "storeCode": "my_storeCode",
+     *   //   "storeName": "my_storeName",
+     *   //   "websiteUrl": "my_websiteUrl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15659,11 +20281,11 @@ export namespace content_v2_1 {
     insert(
       params: Params$Resource$Pos$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Pos$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PosStore>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PosStore>>;
     insert(
       params: Params$Resource$Pos$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15692,7 +20314,10 @@ export namespace content_v2_1 {
       callback?:
         | BodyResponseCallback<Schema$PosStore>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$PosStore> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$PosStore>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pos$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -15738,6 +20363,81 @@ export namespace content_v2_1 {
 
     /**
      * Submit inventory for the given merchant.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.pos.inventory({
+     *     // The ID of the POS or inventory data provider.
+     *     merchantId: 'placeholder-value',
+     *     // The ID of the target merchant.
+     *     targetMerchantId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "contentLanguage": "my_contentLanguage",
+     *       //   "gtin": "my_gtin",
+     *       //   "itemId": "my_itemId",
+     *       //   "pickupMethod": "my_pickupMethod",
+     *       //   "pickupSla": "my_pickupSla",
+     *       //   "price": {},
+     *       //   "quantity": "my_quantity",
+     *       //   "storeCode": "my_storeCode",
+     *       //   "targetCountry": "my_targetCountry",
+     *       //   "timestamp": "my_timestamp"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contentLanguage": "my_contentLanguage",
+     *   //   "gtin": "my_gtin",
+     *   //   "itemId": "my_itemId",
+     *   //   "kind": "my_kind",
+     *   //   "pickupMethod": "my_pickupMethod",
+     *   //   "pickupSla": "my_pickupSla",
+     *   //   "price": {},
+     *   //   "quantity": "my_quantity",
+     *   //   "storeCode": "my_storeCode",
+     *   //   "targetCountry": "my_targetCountry",
+     *   //   "timestamp": "my_timestamp"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15747,11 +20447,11 @@ export namespace content_v2_1 {
     inventory(
       params: Params$Resource$Pos$Inventory,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     inventory(
       params?: Params$Resource$Pos$Inventory,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PosInventoryResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PosInventoryResponse>>;
     inventory(
       params: Params$Resource$Pos$Inventory,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15786,8 +20486,8 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$PosInventoryResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$PosInventoryResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pos$Inventory;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -15833,6 +20533,55 @@ export namespace content_v2_1 {
 
     /**
      * Lists the stores of the target merchant.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.pos.list({
+     *     // The ID of the POS or inventory data provider.
+     *     merchantId: 'placeholder-value',
+     *     // The ID of the target merchant.
+     *     targetMerchantId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "resources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15842,11 +20591,11 @@ export namespace content_v2_1 {
     list(
       params: Params$Resource$Pos$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Pos$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PosListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PosListResponse>>;
     list(
       params: Params$Resource$Pos$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15875,7 +20624,10 @@ export namespace content_v2_1 {
       callback?:
         | BodyResponseCallback<Schema$PosListResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$PosListResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$PosListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pos$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -15921,6 +20673,79 @@ export namespace content_v2_1 {
 
     /**
      * Submit a sale event for the given merchant.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.pos.sale({
+     *     // The ID of the POS or inventory data provider.
+     *     merchantId: 'placeholder-value',
+     *     // The ID of the target merchant.
+     *     targetMerchantId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "contentLanguage": "my_contentLanguage",
+     *       //   "gtin": "my_gtin",
+     *       //   "itemId": "my_itemId",
+     *       //   "price": {},
+     *       //   "quantity": "my_quantity",
+     *       //   "saleId": "my_saleId",
+     *       //   "storeCode": "my_storeCode",
+     *       //   "targetCountry": "my_targetCountry",
+     *       //   "timestamp": "my_timestamp"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contentLanguage": "my_contentLanguage",
+     *   //   "gtin": "my_gtin",
+     *   //   "itemId": "my_itemId",
+     *   //   "kind": "my_kind",
+     *   //   "price": {},
+     *   //   "quantity": "my_quantity",
+     *   //   "saleId": "my_saleId",
+     *   //   "storeCode": "my_storeCode",
+     *   //   "targetCountry": "my_targetCountry",
+     *   //   "timestamp": "my_timestamp"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15930,11 +20755,11 @@ export namespace content_v2_1 {
     sale(
       params: Params$Resource$Pos$Sale,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     sale(
       params?: Params$Resource$Pos$Sale,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PosSaleResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PosSaleResponse>>;
     sale(
       params: Params$Resource$Pos$Sale,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15963,7 +20788,10 @@ export namespace content_v2_1 {
       callback?:
         | BodyResponseCallback<Schema$PosSaleResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$PosSaleResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$PosSaleResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pos$Sale;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -16105,6 +20933,62 @@ export namespace content_v2_1 {
 
     /**
      * Creates or updates the delivery time of a product.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.productdeliverytime.create({
+     *     // The Google merchant ID of the account that contains the product. This account cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "areaDeliveryTimes": [],
+     *       //   "productId": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "areaDeliveryTimes": [],
+     *   //   "productId": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16114,11 +20998,11 @@ export namespace content_v2_1 {
     create(
       params: Params$Resource$Productdeliverytime$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Productdeliverytime$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ProductDeliveryTime>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ProductDeliveryTime>>;
     create(
       params: Params$Resource$Productdeliverytime$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16149,8 +21033,8 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ProductDeliveryTime>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ProductDeliveryTime>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Productdeliverytime$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16196,6 +21080,49 @@ export namespace content_v2_1 {
 
     /**
      * Deletes the delivery time of a product.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.productdeliverytime.delete({
+     *     // Required. The Google merchant ID of the account that contains the product. This account cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *     // Required. The Content API ID of the product, in the form `channel:contentLanguage:targetCountry:offerId`.
+     *     productId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16205,11 +21132,11 @@ export namespace content_v2_1 {
     delete(
       params: Params$Resource$Productdeliverytime$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Productdeliverytime$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Productdeliverytime$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16236,7 +21163,10 @@ export namespace content_v2_1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Productdeliverytime$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16283,6 +21213,55 @@ export namespace content_v2_1 {
 
     /**
      * Gets `productDeliveryTime` by `productId`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.productdeliverytime.get({
+     *     // Required. The Google merchant ID of the account that contains the product. This account cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *     // Required. The Content API ID of the product, in the form `channel:contentLanguage:targetCountry:offerId`.
+     *     productId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "areaDeliveryTimes": [],
+     *   //   "productId": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16292,11 +21271,11 @@ export namespace content_v2_1 {
     get(
       params: Params$Resource$Productdeliverytime$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Productdeliverytime$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ProductDeliveryTime>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ProductDeliveryTime>>;
     get(
       params: Params$Resource$Productdeliverytime$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16327,8 +21306,8 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ProductDeliveryTime>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ProductDeliveryTime>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Productdeliverytime$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16417,6 +21396,58 @@ export namespace content_v2_1 {
 
     /**
      * Retrieves, inserts, and deletes multiple products in a single request.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.products.custombatch({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "entries": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entries": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16426,11 +21457,11 @@ export namespace content_v2_1 {
     custombatch(
       params: Params$Resource$Products$Custombatch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     custombatch(
       params?: Params$Resource$Products$Custombatch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ProductsCustomBatchResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ProductsCustomBatchResponse>>;
     custombatch(
       params: Params$Resource$Products$Custombatch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16465,8 +21496,8 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ProductsCustomBatchResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ProductsCustomBatchResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Products$Custombatch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16513,6 +21544,51 @@ export namespace content_v2_1 {
 
     /**
      * Deletes a product from your Merchant Center account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.products.delete({
+     *     // The Content API Supplemental Feed ID. If present then product deletion applies to the data in a supplemental feed. If absent, entire product will be deleted.
+     *     feedId: 'placeholder-value',
+     *     // The ID of the account that contains the product. This account cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *     // The REST ID of the product.
+     *     productId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16522,11 +21598,11 @@ export namespace content_v2_1 {
     delete(
       params: Params$Resource$Products$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Products$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Products$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16553,7 +21629,10 @@ export namespace content_v2_1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Products$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -16598,6 +21677,156 @@ export namespace content_v2_1 {
 
     /**
      * Retrieves a product from your Merchant Center account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.products.get({
+     *     // The ID of the account that contains the product. This account cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *     // The REST ID of the product.
+     *     productId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "additionalImageLinks": [],
+     *   //   "additionalSizeType": "my_additionalSizeType",
+     *   //   "adsGrouping": "my_adsGrouping",
+     *   //   "adsLabels": [],
+     *   //   "adsRedirect": "my_adsRedirect",
+     *   //   "adult": false,
+     *   //   "ageGroup": "my_ageGroup",
+     *   //   "autoPricingMinPrice": {},
+     *   //   "availability": "my_availability",
+     *   //   "availabilityDate": "my_availabilityDate",
+     *   //   "brand": "my_brand",
+     *   //   "canonicalLink": "my_canonicalLink",
+     *   //   "certifications": [],
+     *   //   "channel": "my_channel",
+     *   //   "cloudExportAdditionalProperties": [],
+     *   //   "color": "my_color",
+     *   //   "condition": "my_condition",
+     *   //   "contentLanguage": "my_contentLanguage",
+     *   //   "costOfGoodsSold": {},
+     *   //   "customAttributes": [],
+     *   //   "customLabel0": "my_customLabel0",
+     *   //   "customLabel1": "my_customLabel1",
+     *   //   "customLabel2": "my_customLabel2",
+     *   //   "customLabel3": "my_customLabel3",
+     *   //   "customLabel4": "my_customLabel4",
+     *   //   "description": "my_description",
+     *   //   "disclosureDate": "my_disclosureDate",
+     *   //   "displayAdsId": "my_displayAdsId",
+     *   //   "displayAdsLink": "my_displayAdsLink",
+     *   //   "displayAdsSimilarIds": [],
+     *   //   "displayAdsTitle": "my_displayAdsTitle",
+     *   //   "displayAdsValue": {},
+     *   //   "energyEfficiencyClass": "my_energyEfficiencyClass",
+     *   //   "excludedDestinations": [],
+     *   //   "expirationDate": "my_expirationDate",
+     *   //   "externalSellerId": "my_externalSellerId",
+     *   //   "feedLabel": "my_feedLabel",
+     *   //   "freeShippingThreshold": [],
+     *   //   "gender": "my_gender",
+     *   //   "googleProductCategory": "my_googleProductCategory",
+     *   //   "gtin": "my_gtin",
+     *   //   "id": "my_id",
+     *   //   "identifierExists": false,
+     *   //   "imageLink": "my_imageLink",
+     *   //   "includedDestinations": [],
+     *   //   "installment": {},
+     *   //   "isBundle": false,
+     *   //   "itemGroupId": "my_itemGroupId",
+     *   //   "kind": "my_kind",
+     *   //   "lifestyleImageLinks": [],
+     *   //   "link": "my_link",
+     *   //   "linkTemplate": "my_linkTemplate",
+     *   //   "loyaltyProgram": {},
+     *   //   "loyaltyPrograms": [],
+     *   //   "material": "my_material",
+     *   //   "maxEnergyEfficiencyClass": "my_maxEnergyEfficiencyClass",
+     *   //   "maxHandlingTime": "my_maxHandlingTime",
+     *   //   "minEnergyEfficiencyClass": "my_minEnergyEfficiencyClass",
+     *   //   "minHandlingTime": "my_minHandlingTime",
+     *   //   "mobileLink": "my_mobileLink",
+     *   //   "mobileLinkTemplate": "my_mobileLinkTemplate",
+     *   //   "mpn": "my_mpn",
+     *   //   "multipack": "my_multipack",
+     *   //   "offerId": "my_offerId",
+     *   //   "pattern": "my_pattern",
+     *   //   "pause": "my_pause",
+     *   //   "pickupMethod": "my_pickupMethod",
+     *   //   "pickupSla": "my_pickupSla",
+     *   //   "price": {},
+     *   //   "productDetails": [],
+     *   //   "productHeight": {},
+     *   //   "productHighlights": [],
+     *   //   "productLength": {},
+     *   //   "productTypes": [],
+     *   //   "productWeight": {},
+     *   //   "productWidth": {},
+     *   //   "promotionIds": [],
+     *   //   "salePrice": {},
+     *   //   "salePriceEffectiveDate": "my_salePriceEffectiveDate",
+     *   //   "sellOnGoogleQuantity": "my_sellOnGoogleQuantity",
+     *   //   "shipping": [],
+     *   //   "shippingHeight": {},
+     *   //   "shippingLabel": "my_shippingLabel",
+     *   //   "shippingLength": {},
+     *   //   "shippingWeight": {},
+     *   //   "shippingWidth": {},
+     *   //   "shoppingAdsExcludedCountries": [],
+     *   //   "sizeSystem": "my_sizeSystem",
+     *   //   "sizeType": "my_sizeType",
+     *   //   "sizes": [],
+     *   //   "source": "my_source",
+     *   //   "structuredDescription": {},
+     *   //   "structuredTitle": {},
+     *   //   "subscriptionCost": {},
+     *   //   "sustainabilityIncentives": [],
+     *   //   "targetCountry": "my_targetCountry",
+     *   //   "taxCategory": "my_taxCategory",
+     *   //   "taxes": [],
+     *   //   "title": "my_title",
+     *   //   "transitTimeLabel": "my_transitTimeLabel",
+     *   //   "unitPricingBaseMeasure": {},
+     *   //   "unitPricingMeasure": {},
+     *   //   "virtualModelLink": "my_virtualModelLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16607,11 +21836,11 @@ export namespace content_v2_1 {
     get(
       params: Params$Resource$Products$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Products$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Product>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Product>>;
     get(
       params: Params$Resource$Products$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16640,7 +21869,10 @@ export namespace content_v2_1 {
       callback?:
         | BodyResponseCallback<Schema$Product>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Product> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Product>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Products$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -16685,6 +21917,266 @@ export namespace content_v2_1 {
 
     /**
      * Uploads a product to your Merchant Center account. If an item with the same channel, contentLanguage, offerId, and targetCountry already exists, this method updates that entry.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.products.insert({
+     *     // The Content API Supplemental Feed ID. If present then product insertion applies to the data in a supplemental feed.
+     *     feedId: 'placeholder-value',
+     *     // The ID of the account that contains the product. This account cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "additionalImageLinks": [],
+     *       //   "additionalSizeType": "my_additionalSizeType",
+     *       //   "adsGrouping": "my_adsGrouping",
+     *       //   "adsLabels": [],
+     *       //   "adsRedirect": "my_adsRedirect",
+     *       //   "adult": false,
+     *       //   "ageGroup": "my_ageGroup",
+     *       //   "autoPricingMinPrice": {},
+     *       //   "availability": "my_availability",
+     *       //   "availabilityDate": "my_availabilityDate",
+     *       //   "brand": "my_brand",
+     *       //   "canonicalLink": "my_canonicalLink",
+     *       //   "certifications": [],
+     *       //   "channel": "my_channel",
+     *       //   "cloudExportAdditionalProperties": [],
+     *       //   "color": "my_color",
+     *       //   "condition": "my_condition",
+     *       //   "contentLanguage": "my_contentLanguage",
+     *       //   "costOfGoodsSold": {},
+     *       //   "customAttributes": [],
+     *       //   "customLabel0": "my_customLabel0",
+     *       //   "customLabel1": "my_customLabel1",
+     *       //   "customLabel2": "my_customLabel2",
+     *       //   "customLabel3": "my_customLabel3",
+     *       //   "customLabel4": "my_customLabel4",
+     *       //   "description": "my_description",
+     *       //   "disclosureDate": "my_disclosureDate",
+     *       //   "displayAdsId": "my_displayAdsId",
+     *       //   "displayAdsLink": "my_displayAdsLink",
+     *       //   "displayAdsSimilarIds": [],
+     *       //   "displayAdsTitle": "my_displayAdsTitle",
+     *       //   "displayAdsValue": {},
+     *       //   "energyEfficiencyClass": "my_energyEfficiencyClass",
+     *       //   "excludedDestinations": [],
+     *       //   "expirationDate": "my_expirationDate",
+     *       //   "externalSellerId": "my_externalSellerId",
+     *       //   "feedLabel": "my_feedLabel",
+     *       //   "freeShippingThreshold": [],
+     *       //   "gender": "my_gender",
+     *       //   "googleProductCategory": "my_googleProductCategory",
+     *       //   "gtin": "my_gtin",
+     *       //   "id": "my_id",
+     *       //   "identifierExists": false,
+     *       //   "imageLink": "my_imageLink",
+     *       //   "includedDestinations": [],
+     *       //   "installment": {},
+     *       //   "isBundle": false,
+     *       //   "itemGroupId": "my_itemGroupId",
+     *       //   "kind": "my_kind",
+     *       //   "lifestyleImageLinks": [],
+     *       //   "link": "my_link",
+     *       //   "linkTemplate": "my_linkTemplate",
+     *       //   "loyaltyProgram": {},
+     *       //   "loyaltyPrograms": [],
+     *       //   "material": "my_material",
+     *       //   "maxEnergyEfficiencyClass": "my_maxEnergyEfficiencyClass",
+     *       //   "maxHandlingTime": "my_maxHandlingTime",
+     *       //   "minEnergyEfficiencyClass": "my_minEnergyEfficiencyClass",
+     *       //   "minHandlingTime": "my_minHandlingTime",
+     *       //   "mobileLink": "my_mobileLink",
+     *       //   "mobileLinkTemplate": "my_mobileLinkTemplate",
+     *       //   "mpn": "my_mpn",
+     *       //   "multipack": "my_multipack",
+     *       //   "offerId": "my_offerId",
+     *       //   "pattern": "my_pattern",
+     *       //   "pause": "my_pause",
+     *       //   "pickupMethod": "my_pickupMethod",
+     *       //   "pickupSla": "my_pickupSla",
+     *       //   "price": {},
+     *       //   "productDetails": [],
+     *       //   "productHeight": {},
+     *       //   "productHighlights": [],
+     *       //   "productLength": {},
+     *       //   "productTypes": [],
+     *       //   "productWeight": {},
+     *       //   "productWidth": {},
+     *       //   "promotionIds": [],
+     *       //   "salePrice": {},
+     *       //   "salePriceEffectiveDate": "my_salePriceEffectiveDate",
+     *       //   "sellOnGoogleQuantity": "my_sellOnGoogleQuantity",
+     *       //   "shipping": [],
+     *       //   "shippingHeight": {},
+     *       //   "shippingLabel": "my_shippingLabel",
+     *       //   "shippingLength": {},
+     *       //   "shippingWeight": {},
+     *       //   "shippingWidth": {},
+     *       //   "shoppingAdsExcludedCountries": [],
+     *       //   "sizeSystem": "my_sizeSystem",
+     *       //   "sizeType": "my_sizeType",
+     *       //   "sizes": [],
+     *       //   "source": "my_source",
+     *       //   "structuredDescription": {},
+     *       //   "structuredTitle": {},
+     *       //   "subscriptionCost": {},
+     *       //   "sustainabilityIncentives": [],
+     *       //   "targetCountry": "my_targetCountry",
+     *       //   "taxCategory": "my_taxCategory",
+     *       //   "taxes": [],
+     *       //   "title": "my_title",
+     *       //   "transitTimeLabel": "my_transitTimeLabel",
+     *       //   "unitPricingBaseMeasure": {},
+     *       //   "unitPricingMeasure": {},
+     *       //   "virtualModelLink": "my_virtualModelLink"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "additionalImageLinks": [],
+     *   //   "additionalSizeType": "my_additionalSizeType",
+     *   //   "adsGrouping": "my_adsGrouping",
+     *   //   "adsLabels": [],
+     *   //   "adsRedirect": "my_adsRedirect",
+     *   //   "adult": false,
+     *   //   "ageGroup": "my_ageGroup",
+     *   //   "autoPricingMinPrice": {},
+     *   //   "availability": "my_availability",
+     *   //   "availabilityDate": "my_availabilityDate",
+     *   //   "brand": "my_brand",
+     *   //   "canonicalLink": "my_canonicalLink",
+     *   //   "certifications": [],
+     *   //   "channel": "my_channel",
+     *   //   "cloudExportAdditionalProperties": [],
+     *   //   "color": "my_color",
+     *   //   "condition": "my_condition",
+     *   //   "contentLanguage": "my_contentLanguage",
+     *   //   "costOfGoodsSold": {},
+     *   //   "customAttributes": [],
+     *   //   "customLabel0": "my_customLabel0",
+     *   //   "customLabel1": "my_customLabel1",
+     *   //   "customLabel2": "my_customLabel2",
+     *   //   "customLabel3": "my_customLabel3",
+     *   //   "customLabel4": "my_customLabel4",
+     *   //   "description": "my_description",
+     *   //   "disclosureDate": "my_disclosureDate",
+     *   //   "displayAdsId": "my_displayAdsId",
+     *   //   "displayAdsLink": "my_displayAdsLink",
+     *   //   "displayAdsSimilarIds": [],
+     *   //   "displayAdsTitle": "my_displayAdsTitle",
+     *   //   "displayAdsValue": {},
+     *   //   "energyEfficiencyClass": "my_energyEfficiencyClass",
+     *   //   "excludedDestinations": [],
+     *   //   "expirationDate": "my_expirationDate",
+     *   //   "externalSellerId": "my_externalSellerId",
+     *   //   "feedLabel": "my_feedLabel",
+     *   //   "freeShippingThreshold": [],
+     *   //   "gender": "my_gender",
+     *   //   "googleProductCategory": "my_googleProductCategory",
+     *   //   "gtin": "my_gtin",
+     *   //   "id": "my_id",
+     *   //   "identifierExists": false,
+     *   //   "imageLink": "my_imageLink",
+     *   //   "includedDestinations": [],
+     *   //   "installment": {},
+     *   //   "isBundle": false,
+     *   //   "itemGroupId": "my_itemGroupId",
+     *   //   "kind": "my_kind",
+     *   //   "lifestyleImageLinks": [],
+     *   //   "link": "my_link",
+     *   //   "linkTemplate": "my_linkTemplate",
+     *   //   "loyaltyProgram": {},
+     *   //   "loyaltyPrograms": [],
+     *   //   "material": "my_material",
+     *   //   "maxEnergyEfficiencyClass": "my_maxEnergyEfficiencyClass",
+     *   //   "maxHandlingTime": "my_maxHandlingTime",
+     *   //   "minEnergyEfficiencyClass": "my_minEnergyEfficiencyClass",
+     *   //   "minHandlingTime": "my_minHandlingTime",
+     *   //   "mobileLink": "my_mobileLink",
+     *   //   "mobileLinkTemplate": "my_mobileLinkTemplate",
+     *   //   "mpn": "my_mpn",
+     *   //   "multipack": "my_multipack",
+     *   //   "offerId": "my_offerId",
+     *   //   "pattern": "my_pattern",
+     *   //   "pause": "my_pause",
+     *   //   "pickupMethod": "my_pickupMethod",
+     *   //   "pickupSla": "my_pickupSla",
+     *   //   "price": {},
+     *   //   "productDetails": [],
+     *   //   "productHeight": {},
+     *   //   "productHighlights": [],
+     *   //   "productLength": {},
+     *   //   "productTypes": [],
+     *   //   "productWeight": {},
+     *   //   "productWidth": {},
+     *   //   "promotionIds": [],
+     *   //   "salePrice": {},
+     *   //   "salePriceEffectiveDate": "my_salePriceEffectiveDate",
+     *   //   "sellOnGoogleQuantity": "my_sellOnGoogleQuantity",
+     *   //   "shipping": [],
+     *   //   "shippingHeight": {},
+     *   //   "shippingLabel": "my_shippingLabel",
+     *   //   "shippingLength": {},
+     *   //   "shippingWeight": {},
+     *   //   "shippingWidth": {},
+     *   //   "shoppingAdsExcludedCountries": [],
+     *   //   "sizeSystem": "my_sizeSystem",
+     *   //   "sizeType": "my_sizeType",
+     *   //   "sizes": [],
+     *   //   "source": "my_source",
+     *   //   "structuredDescription": {},
+     *   //   "structuredTitle": {},
+     *   //   "subscriptionCost": {},
+     *   //   "sustainabilityIncentives": [],
+     *   //   "targetCountry": "my_targetCountry",
+     *   //   "taxCategory": "my_taxCategory",
+     *   //   "taxes": [],
+     *   //   "title": "my_title",
+     *   //   "transitTimeLabel": "my_transitTimeLabel",
+     *   //   "unitPricingBaseMeasure": {},
+     *   //   "unitPricingMeasure": {},
+     *   //   "virtualModelLink": "my_virtualModelLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16694,11 +22186,11 @@ export namespace content_v2_1 {
     insert(
       params: Params$Resource$Products$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Products$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Product>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Product>>;
     insert(
       params: Params$Resource$Products$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16727,7 +22219,10 @@ export namespace content_v2_1 {
       callback?:
         | BodyResponseCallback<Schema$Product>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Product> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Product>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Products$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -16773,6 +22268,58 @@ export namespace content_v2_1 {
 
     /**
      * Lists the products in your Merchant Center account. The response might contain fewer items than specified by maxResults. Rely on nextPageToken to determine if there are more items to be requested.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.products.list({
+     *     // The maximum number of products to return in the response, used for paging. The default value is 25. The maximum value is 250.
+     *     maxResults: 'placeholder-value',
+     *     // The ID of the account that contains the products. This account cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *     // The token returned by the previous request.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "resources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16782,11 +22329,11 @@ export namespace content_v2_1 {
     list(
       params: Params$Resource$Products$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Products$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ProductsListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ProductsListResponse>>;
     list(
       params: Params$Resource$Products$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16819,8 +22366,8 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ProductsListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ProductsListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Products$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -16866,6 +22413,268 @@ export namespace content_v2_1 {
 
     /**
      * Updates an existing product in your Merchant Center account. Only updates attributes provided in the request.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.products.update({
+     *     // The ID of the account that contains the product. This account cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *     // The REST ID of the product for which to update.
+     *     productId: 'placeholder-value',
+     *     // The comma-separated list of product attributes to be updated. Example: `"title,salePrice"`. Attributes specified in the update mask without a value specified in the body will be deleted from the product. *You must specify the update mask to delete attributes.* Only top-level product attributes can be updated. If not defined, product attributes with set values will be updated and other attributes will stay unchanged.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "additionalImageLinks": [],
+     *       //   "additionalSizeType": "my_additionalSizeType",
+     *       //   "adsGrouping": "my_adsGrouping",
+     *       //   "adsLabels": [],
+     *       //   "adsRedirect": "my_adsRedirect",
+     *       //   "adult": false,
+     *       //   "ageGroup": "my_ageGroup",
+     *       //   "autoPricingMinPrice": {},
+     *       //   "availability": "my_availability",
+     *       //   "availabilityDate": "my_availabilityDate",
+     *       //   "brand": "my_brand",
+     *       //   "canonicalLink": "my_canonicalLink",
+     *       //   "certifications": [],
+     *       //   "channel": "my_channel",
+     *       //   "cloudExportAdditionalProperties": [],
+     *       //   "color": "my_color",
+     *       //   "condition": "my_condition",
+     *       //   "contentLanguage": "my_contentLanguage",
+     *       //   "costOfGoodsSold": {},
+     *       //   "customAttributes": [],
+     *       //   "customLabel0": "my_customLabel0",
+     *       //   "customLabel1": "my_customLabel1",
+     *       //   "customLabel2": "my_customLabel2",
+     *       //   "customLabel3": "my_customLabel3",
+     *       //   "customLabel4": "my_customLabel4",
+     *       //   "description": "my_description",
+     *       //   "disclosureDate": "my_disclosureDate",
+     *       //   "displayAdsId": "my_displayAdsId",
+     *       //   "displayAdsLink": "my_displayAdsLink",
+     *       //   "displayAdsSimilarIds": [],
+     *       //   "displayAdsTitle": "my_displayAdsTitle",
+     *       //   "displayAdsValue": {},
+     *       //   "energyEfficiencyClass": "my_energyEfficiencyClass",
+     *       //   "excludedDestinations": [],
+     *       //   "expirationDate": "my_expirationDate",
+     *       //   "externalSellerId": "my_externalSellerId",
+     *       //   "feedLabel": "my_feedLabel",
+     *       //   "freeShippingThreshold": [],
+     *       //   "gender": "my_gender",
+     *       //   "googleProductCategory": "my_googleProductCategory",
+     *       //   "gtin": "my_gtin",
+     *       //   "id": "my_id",
+     *       //   "identifierExists": false,
+     *       //   "imageLink": "my_imageLink",
+     *       //   "includedDestinations": [],
+     *       //   "installment": {},
+     *       //   "isBundle": false,
+     *       //   "itemGroupId": "my_itemGroupId",
+     *       //   "kind": "my_kind",
+     *       //   "lifestyleImageLinks": [],
+     *       //   "link": "my_link",
+     *       //   "linkTemplate": "my_linkTemplate",
+     *       //   "loyaltyProgram": {},
+     *       //   "loyaltyPrograms": [],
+     *       //   "material": "my_material",
+     *       //   "maxEnergyEfficiencyClass": "my_maxEnergyEfficiencyClass",
+     *       //   "maxHandlingTime": "my_maxHandlingTime",
+     *       //   "minEnergyEfficiencyClass": "my_minEnergyEfficiencyClass",
+     *       //   "minHandlingTime": "my_minHandlingTime",
+     *       //   "mobileLink": "my_mobileLink",
+     *       //   "mobileLinkTemplate": "my_mobileLinkTemplate",
+     *       //   "mpn": "my_mpn",
+     *       //   "multipack": "my_multipack",
+     *       //   "offerId": "my_offerId",
+     *       //   "pattern": "my_pattern",
+     *       //   "pause": "my_pause",
+     *       //   "pickupMethod": "my_pickupMethod",
+     *       //   "pickupSla": "my_pickupSla",
+     *       //   "price": {},
+     *       //   "productDetails": [],
+     *       //   "productHeight": {},
+     *       //   "productHighlights": [],
+     *       //   "productLength": {},
+     *       //   "productTypes": [],
+     *       //   "productWeight": {},
+     *       //   "productWidth": {},
+     *       //   "promotionIds": [],
+     *       //   "salePrice": {},
+     *       //   "salePriceEffectiveDate": "my_salePriceEffectiveDate",
+     *       //   "sellOnGoogleQuantity": "my_sellOnGoogleQuantity",
+     *       //   "shipping": [],
+     *       //   "shippingHeight": {},
+     *       //   "shippingLabel": "my_shippingLabel",
+     *       //   "shippingLength": {},
+     *       //   "shippingWeight": {},
+     *       //   "shippingWidth": {},
+     *       //   "shoppingAdsExcludedCountries": [],
+     *       //   "sizeSystem": "my_sizeSystem",
+     *       //   "sizeType": "my_sizeType",
+     *       //   "sizes": [],
+     *       //   "source": "my_source",
+     *       //   "structuredDescription": {},
+     *       //   "structuredTitle": {},
+     *       //   "subscriptionCost": {},
+     *       //   "sustainabilityIncentives": [],
+     *       //   "targetCountry": "my_targetCountry",
+     *       //   "taxCategory": "my_taxCategory",
+     *       //   "taxes": [],
+     *       //   "title": "my_title",
+     *       //   "transitTimeLabel": "my_transitTimeLabel",
+     *       //   "unitPricingBaseMeasure": {},
+     *       //   "unitPricingMeasure": {},
+     *       //   "virtualModelLink": "my_virtualModelLink"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "additionalImageLinks": [],
+     *   //   "additionalSizeType": "my_additionalSizeType",
+     *   //   "adsGrouping": "my_adsGrouping",
+     *   //   "adsLabels": [],
+     *   //   "adsRedirect": "my_adsRedirect",
+     *   //   "adult": false,
+     *   //   "ageGroup": "my_ageGroup",
+     *   //   "autoPricingMinPrice": {},
+     *   //   "availability": "my_availability",
+     *   //   "availabilityDate": "my_availabilityDate",
+     *   //   "brand": "my_brand",
+     *   //   "canonicalLink": "my_canonicalLink",
+     *   //   "certifications": [],
+     *   //   "channel": "my_channel",
+     *   //   "cloudExportAdditionalProperties": [],
+     *   //   "color": "my_color",
+     *   //   "condition": "my_condition",
+     *   //   "contentLanguage": "my_contentLanguage",
+     *   //   "costOfGoodsSold": {},
+     *   //   "customAttributes": [],
+     *   //   "customLabel0": "my_customLabel0",
+     *   //   "customLabel1": "my_customLabel1",
+     *   //   "customLabel2": "my_customLabel2",
+     *   //   "customLabel3": "my_customLabel3",
+     *   //   "customLabel4": "my_customLabel4",
+     *   //   "description": "my_description",
+     *   //   "disclosureDate": "my_disclosureDate",
+     *   //   "displayAdsId": "my_displayAdsId",
+     *   //   "displayAdsLink": "my_displayAdsLink",
+     *   //   "displayAdsSimilarIds": [],
+     *   //   "displayAdsTitle": "my_displayAdsTitle",
+     *   //   "displayAdsValue": {},
+     *   //   "energyEfficiencyClass": "my_energyEfficiencyClass",
+     *   //   "excludedDestinations": [],
+     *   //   "expirationDate": "my_expirationDate",
+     *   //   "externalSellerId": "my_externalSellerId",
+     *   //   "feedLabel": "my_feedLabel",
+     *   //   "freeShippingThreshold": [],
+     *   //   "gender": "my_gender",
+     *   //   "googleProductCategory": "my_googleProductCategory",
+     *   //   "gtin": "my_gtin",
+     *   //   "id": "my_id",
+     *   //   "identifierExists": false,
+     *   //   "imageLink": "my_imageLink",
+     *   //   "includedDestinations": [],
+     *   //   "installment": {},
+     *   //   "isBundle": false,
+     *   //   "itemGroupId": "my_itemGroupId",
+     *   //   "kind": "my_kind",
+     *   //   "lifestyleImageLinks": [],
+     *   //   "link": "my_link",
+     *   //   "linkTemplate": "my_linkTemplate",
+     *   //   "loyaltyProgram": {},
+     *   //   "loyaltyPrograms": [],
+     *   //   "material": "my_material",
+     *   //   "maxEnergyEfficiencyClass": "my_maxEnergyEfficiencyClass",
+     *   //   "maxHandlingTime": "my_maxHandlingTime",
+     *   //   "minEnergyEfficiencyClass": "my_minEnergyEfficiencyClass",
+     *   //   "minHandlingTime": "my_minHandlingTime",
+     *   //   "mobileLink": "my_mobileLink",
+     *   //   "mobileLinkTemplate": "my_mobileLinkTemplate",
+     *   //   "mpn": "my_mpn",
+     *   //   "multipack": "my_multipack",
+     *   //   "offerId": "my_offerId",
+     *   //   "pattern": "my_pattern",
+     *   //   "pause": "my_pause",
+     *   //   "pickupMethod": "my_pickupMethod",
+     *   //   "pickupSla": "my_pickupSla",
+     *   //   "price": {},
+     *   //   "productDetails": [],
+     *   //   "productHeight": {},
+     *   //   "productHighlights": [],
+     *   //   "productLength": {},
+     *   //   "productTypes": [],
+     *   //   "productWeight": {},
+     *   //   "productWidth": {},
+     *   //   "promotionIds": [],
+     *   //   "salePrice": {},
+     *   //   "salePriceEffectiveDate": "my_salePriceEffectiveDate",
+     *   //   "sellOnGoogleQuantity": "my_sellOnGoogleQuantity",
+     *   //   "shipping": [],
+     *   //   "shippingHeight": {},
+     *   //   "shippingLabel": "my_shippingLabel",
+     *   //   "shippingLength": {},
+     *   //   "shippingWeight": {},
+     *   //   "shippingWidth": {},
+     *   //   "shoppingAdsExcludedCountries": [],
+     *   //   "sizeSystem": "my_sizeSystem",
+     *   //   "sizeType": "my_sizeType",
+     *   //   "sizes": [],
+     *   //   "source": "my_source",
+     *   //   "structuredDescription": {},
+     *   //   "structuredTitle": {},
+     *   //   "subscriptionCost": {},
+     *   //   "sustainabilityIncentives": [],
+     *   //   "targetCountry": "my_targetCountry",
+     *   //   "taxCategory": "my_taxCategory",
+     *   //   "taxes": [],
+     *   //   "title": "my_title",
+     *   //   "transitTimeLabel": "my_transitTimeLabel",
+     *   //   "unitPricingBaseMeasure": {},
+     *   //   "unitPricingMeasure": {},
+     *   //   "virtualModelLink": "my_virtualModelLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16875,11 +22684,11 @@ export namespace content_v2_1 {
     update(
       params: Params$Resource$Products$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Products$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Product>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Product>>;
     update(
       params: Params$Resource$Products$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16908,7 +22717,10 @@ export namespace content_v2_1 {
       callback?:
         | BodyResponseCallback<Schema$Product>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Product> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Product>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Products$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -17040,6 +22852,58 @@ export namespace content_v2_1 {
 
     /**
      * Gets the statuses of multiple products in a single request.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.productstatuses.custombatch({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "entries": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entries": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17049,11 +22913,13 @@ export namespace content_v2_1 {
     custombatch(
       params: Params$Resource$Productstatuses$Custombatch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     custombatch(
       params?: Params$Resource$Productstatuses$Custombatch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ProductstatusesCustomBatchResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ProductstatusesCustomBatchResponse>
+    >;
     custombatch(
       params: Params$Resource$Productstatuses$Custombatch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17088,8 +22954,10 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ProductstatusesCustomBatchResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ProductstatusesCustomBatchResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Productstatuses$Custombatch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17138,6 +23006,64 @@ export namespace content_v2_1 {
 
     /**
      * Gets the status of a product from your Merchant Center account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.productstatuses.get({
+     *     // If set, only issues for the specified destinations are returned, otherwise only issues for the Shopping destination.
+     *     destinations: 'placeholder-value',
+     *     // The ID of the account that contains the product. This account cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *     // The REST ID of the product.
+     *     productId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "creationDate": "my_creationDate",
+     *   //   "destinationStatuses": [],
+     *   //   "googleExpirationDate": "my_googleExpirationDate",
+     *   //   "itemLevelIssues": [],
+     *   //   "kind": "my_kind",
+     *   //   "lastUpdateDate": "my_lastUpdateDate",
+     *   //   "link": "my_link",
+     *   //   "productId": "my_productId",
+     *   //   "title": "my_title"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17147,11 +23073,11 @@ export namespace content_v2_1 {
     get(
       params: Params$Resource$Productstatuses$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Productstatuses$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ProductStatus>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ProductStatus>>;
     get(
       params: Params$Resource$Productstatuses$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17180,7 +23106,10 @@ export namespace content_v2_1 {
       callback?:
         | BodyResponseCallback<Schema$ProductStatus>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ProductStatus> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ProductStatus>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Productstatuses$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17226,6 +23155,60 @@ export namespace content_v2_1 {
 
     /**
      * Lists the statuses of the products in your Merchant Center account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.productstatuses.list({
+     *     // If set, only issues for the specified destinations are returned, otherwise only issues for the Shopping destination.
+     *     destinations: 'placeholder-value',
+     *     // The maximum number of product statuses to return in the response, used for paging. The default value is 25. The maximum value is 250.
+     *     maxResults: 'placeholder-value',
+     *     // The ID of the account that contains the products. This account cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *     // The token returned by the previous request.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "resources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17235,11 +23218,11 @@ export namespace content_v2_1 {
     list(
       params: Params$Resource$Productstatuses$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Productstatuses$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ProductstatusesListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ProductstatusesListResponse>>;
     list(
       params: Params$Resource$Productstatuses$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17274,8 +23257,8 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ProductstatusesListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ProductstatusesListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Productstatuses$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17370,6 +23353,140 @@ export namespace content_v2_1 {
 
     /**
      * Inserts a promotion for your Merchant Center account. If the promotion already exists, then it updates the promotion instead. To [end or delete] (https://developers.google.com/shopping-content/guides/promotions#end_a_promotion) a promotion update the time period of the promotion to a time that has already passed.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.promotions.create({
+     *     // Required. The ID of the account that contains the collection.
+     *     merchantId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "brand": [],
+     *       //   "brandExclusion": [],
+     *       //   "contentLanguage": "my_contentLanguage",
+     *       //   "couponValueType": "my_couponValueType",
+     *       //   "freeGiftDescription": "my_freeGiftDescription",
+     *       //   "freeGiftItemId": "my_freeGiftItemId",
+     *       //   "freeGiftValue": {},
+     *       //   "genericRedemptionCode": "my_genericRedemptionCode",
+     *       //   "getThisQuantityDiscounted": 0,
+     *       //   "id": "my_id",
+     *       //   "itemGroupId": [],
+     *       //   "itemGroupIdExclusion": [],
+     *       //   "itemId": [],
+     *       //   "itemIdExclusion": [],
+     *       //   "limitQuantity": 0,
+     *       //   "limitValue": {},
+     *       //   "longTitle": "my_longTitle",
+     *       //   "minimumPurchaseAmount": {},
+     *       //   "minimumPurchaseQuantity": 0,
+     *       //   "moneyBudget": {},
+     *       //   "moneyOffAmount": {},
+     *       //   "offerType": "my_offerType",
+     *       //   "orderLimit": 0,
+     *       //   "percentOff": 0,
+     *       //   "productApplicability": "my_productApplicability",
+     *       //   "productType": [],
+     *       //   "productTypeExclusion": [],
+     *       //   "promotionDestinationIds": [],
+     *       //   "promotionDisplayDates": "my_promotionDisplayDates",
+     *       //   "promotionDisplayTimePeriod": {},
+     *       //   "promotionEffectiveDates": "my_promotionEffectiveDates",
+     *       //   "promotionEffectiveTimePeriod": {},
+     *       //   "promotionId": "my_promotionId",
+     *       //   "promotionStatus": {},
+     *       //   "promotionUrl": "my_promotionUrl",
+     *       //   "redemptionChannel": [],
+     *       //   "shippingServiceNames": [],
+     *       //   "storeApplicability": "my_storeApplicability",
+     *       //   "storeCode": [],
+     *       //   "storeCodeExclusion": [],
+     *       //   "targetCountry": "my_targetCountry"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "brand": [],
+     *   //   "brandExclusion": [],
+     *   //   "contentLanguage": "my_contentLanguage",
+     *   //   "couponValueType": "my_couponValueType",
+     *   //   "freeGiftDescription": "my_freeGiftDescription",
+     *   //   "freeGiftItemId": "my_freeGiftItemId",
+     *   //   "freeGiftValue": {},
+     *   //   "genericRedemptionCode": "my_genericRedemptionCode",
+     *   //   "getThisQuantityDiscounted": 0,
+     *   //   "id": "my_id",
+     *   //   "itemGroupId": [],
+     *   //   "itemGroupIdExclusion": [],
+     *   //   "itemId": [],
+     *   //   "itemIdExclusion": [],
+     *   //   "limitQuantity": 0,
+     *   //   "limitValue": {},
+     *   //   "longTitle": "my_longTitle",
+     *   //   "minimumPurchaseAmount": {},
+     *   //   "minimumPurchaseQuantity": 0,
+     *   //   "moneyBudget": {},
+     *   //   "moneyOffAmount": {},
+     *   //   "offerType": "my_offerType",
+     *   //   "orderLimit": 0,
+     *   //   "percentOff": 0,
+     *   //   "productApplicability": "my_productApplicability",
+     *   //   "productType": [],
+     *   //   "productTypeExclusion": [],
+     *   //   "promotionDestinationIds": [],
+     *   //   "promotionDisplayDates": "my_promotionDisplayDates",
+     *   //   "promotionDisplayTimePeriod": {},
+     *   //   "promotionEffectiveDates": "my_promotionEffectiveDates",
+     *   //   "promotionEffectiveTimePeriod": {},
+     *   //   "promotionId": "my_promotionId",
+     *   //   "promotionStatus": {},
+     *   //   "promotionUrl": "my_promotionUrl",
+     *   //   "redemptionChannel": [],
+     *   //   "shippingServiceNames": [],
+     *   //   "storeApplicability": "my_storeApplicability",
+     *   //   "storeCode": [],
+     *   //   "storeCodeExclusion": [],
+     *   //   "targetCountry": "my_targetCountry"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17379,11 +23496,11 @@ export namespace content_v2_1 {
     create(
       params: Params$Resource$Promotions$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Promotions$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Promotion>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Promotion>>;
     create(
       params: Params$Resource$Promotions$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17412,7 +23529,10 @@ export namespace content_v2_1 {
       callback?:
         | BodyResponseCallback<Schema$Promotion>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Promotion> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Promotion>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Promotions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17459,6 +23579,94 @@ export namespace content_v2_1 {
 
     /**
      * Retrieves a promotion from your Merchant Center account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.promotions.get({
+     *     // Required. REST ID of the promotion to retrieve.
+     *     id: 'placeholder-value',
+     *     // Required. The ID of the account that contains the collection.
+     *     merchantId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "brand": [],
+     *   //   "brandExclusion": [],
+     *   //   "contentLanguage": "my_contentLanguage",
+     *   //   "couponValueType": "my_couponValueType",
+     *   //   "freeGiftDescription": "my_freeGiftDescription",
+     *   //   "freeGiftItemId": "my_freeGiftItemId",
+     *   //   "freeGiftValue": {},
+     *   //   "genericRedemptionCode": "my_genericRedemptionCode",
+     *   //   "getThisQuantityDiscounted": 0,
+     *   //   "id": "my_id",
+     *   //   "itemGroupId": [],
+     *   //   "itemGroupIdExclusion": [],
+     *   //   "itemId": [],
+     *   //   "itemIdExclusion": [],
+     *   //   "limitQuantity": 0,
+     *   //   "limitValue": {},
+     *   //   "longTitle": "my_longTitle",
+     *   //   "minimumPurchaseAmount": {},
+     *   //   "minimumPurchaseQuantity": 0,
+     *   //   "moneyBudget": {},
+     *   //   "moneyOffAmount": {},
+     *   //   "offerType": "my_offerType",
+     *   //   "orderLimit": 0,
+     *   //   "percentOff": 0,
+     *   //   "productApplicability": "my_productApplicability",
+     *   //   "productType": [],
+     *   //   "productTypeExclusion": [],
+     *   //   "promotionDestinationIds": [],
+     *   //   "promotionDisplayDates": "my_promotionDisplayDates",
+     *   //   "promotionDisplayTimePeriod": {},
+     *   //   "promotionEffectiveDates": "my_promotionEffectiveDates",
+     *   //   "promotionEffectiveTimePeriod": {},
+     *   //   "promotionId": "my_promotionId",
+     *   //   "promotionStatus": {},
+     *   //   "promotionUrl": "my_promotionUrl",
+     *   //   "redemptionChannel": [],
+     *   //   "shippingServiceNames": [],
+     *   //   "storeApplicability": "my_storeApplicability",
+     *   //   "storeCode": [],
+     *   //   "storeCodeExclusion": [],
+     *   //   "targetCountry": "my_targetCountry"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17468,11 +23676,11 @@ export namespace content_v2_1 {
     get(
       params: Params$Resource$Promotions$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Promotions$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Promotion>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Promotion>>;
     get(
       params: Params$Resource$Promotions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17501,7 +23709,10 @@ export namespace content_v2_1 {
       callback?:
         | BodyResponseCallback<Schema$Promotion>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Promotion> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Promotion>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Promotions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -17546,6 +23757,61 @@ export namespace content_v2_1 {
 
     /**
      * List all promotions from your Merchant Center account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.promotions.list({
+     *     // [CLDR country code](http://www.unicode.org/repos/cldr/tags/latest/common/main/en.xml) (for example, "US"), used as a filter on promotions target country.
+     *     countryCode: 'placeholder-value',
+     *     // The two-letter ISO 639-1 language code associated with the promotions, used as a filter.
+     *     languageCode: 'placeholder-value',
+     *     // Required. The ID of the account that contains the collection.
+     *     merchantId: 'placeholder-value',
+     *     // The maximum number of promotions to return. The service may return fewer than this value. If unspecified, at most 50 labels will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // A page token, received from a previous `ListPromotion` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListPromotion` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "promotions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17555,11 +23821,11 @@ export namespace content_v2_1 {
     list(
       params: Params$Resource$Promotions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Promotions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListPromotionResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListPromotionResponse>>;
     list(
       params: Params$Resource$Promotions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17592,8 +23858,8 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListPromotionResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListPromotionResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Promotions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -17691,6 +23957,54 @@ export namespace content_v2_1 {
 
     /**
      * Retrieves a Merchant Center account's pubsub notification settings.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.pubsubnotificationsettings.get({
+     *     // The ID of the account for which to get pubsub notification settings.
+     *     merchantId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cloudTopicName": "my_cloudTopicName",
+     *   //   "kind": "my_kind",
+     *   //   "registeredEvents": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17700,11 +24014,11 @@ export namespace content_v2_1 {
     get(
       params: Params$Resource$Pubsubnotificationsettings$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Pubsubnotificationsettings$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PubsubNotificationSettings>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PubsubNotificationSettings>>;
     get(
       params: Params$Resource$Pubsubnotificationsettings$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17739,8 +24053,8 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$PubsubNotificationSettings>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$PubsubNotificationSettings>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Pubsubnotificationsettings$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17786,6 +24100,64 @@ export namespace content_v2_1 {
 
     /**
      * Register a Merchant Center account for pubsub notifications. Note that cloud topic name shouldn't be provided as part of the request.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.pubsubnotificationsettings.update({
+     *     // The ID of the account.
+     *     merchantId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "cloudTopicName": "my_cloudTopicName",
+     *       //   "kind": "my_kind",
+     *       //   "registeredEvents": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cloudTopicName": "my_cloudTopicName",
+     *   //   "kind": "my_kind",
+     *   //   "registeredEvents": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17795,11 +24167,11 @@ export namespace content_v2_1 {
     update(
       params: Params$Resource$Pubsubnotificationsettings$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Pubsubnotificationsettings$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PubsubNotificationSettings>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PubsubNotificationSettings>>;
     update(
       params: Params$Resource$Pubsubnotificationsettings$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17834,8 +24206,8 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$PubsubNotificationSettings>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$PubsubNotificationSettings>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Pubsubnotificationsettings$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17908,6 +24280,57 @@ export namespace content_v2_1 {
 
     /**
      * Lists the daily call quota and usage per method for your Merchant Center account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.quotas.list({
+     *     // Required. The ID of the account that has quota. This account must be an admin.
+     *     merchantId: 'placeholder-value',
+     *     // The maximum number of quotas to return in the response, used for paging. Defaults to 500; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Token (if provided) to retrieve the subsequent page. All other parameters must match the original call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "methodQuotas": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17917,11 +24340,11 @@ export namespace content_v2_1 {
     list(
       params: Params$Resource$Quotas$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Quotas$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListMethodQuotasResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListMethodQuotasResponse>>;
     list(
       params: Params$Resource$Quotas$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17954,8 +24377,8 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListMethodQuotasResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListMethodQuotasResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Quotas$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -18023,6 +24446,57 @@ export namespace content_v2_1 {
 
     /**
      * Generates recommendations for a merchant.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.recommendations.generate({
+     *     // Optional. List of allowed tags. Tags are a set of predefined strings that describe the category that individual recommendation types belong to. User can specify zero or more tags in this field to indicate what categories of recommendations they want to receive. Current list of supported tags: - TREND
+     *     allowedTag: 'placeholder-value',
+     *     // Optional. Language code of the client. If not set, the result will be in default language (English). This language code affects all fields prefixed with "localized". This should be set to ISO 639-1 country code. List of currently verified supported language code: en, fr, cs, da, de, es, it, nl, no, pl, pt, pt, fi, sv, vi, tr, th, ko, zh-CN, zh-TW, ja, id, hi
+     *     languageCode: 'placeholder-value',
+     *     // Required. The ID of the account to fetch recommendations for.
+     *     merchantId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "recommendations": [],
+     *   //   "responseToken": "my_responseToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -18032,11 +24506,11 @@ export namespace content_v2_1 {
     generate(
       params: Params$Resource$Recommendations$Generate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     generate(
       params?: Params$Resource$Recommendations$Generate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GenerateRecommendationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GenerateRecommendationsResponse>>;
     generate(
       params: Params$Resource$Recommendations$Generate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18071,8 +24545,8 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GenerateRecommendationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GenerateRecommendationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Recommendations$Generate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18120,6 +24594,58 @@ export namespace content_v2_1 {
 
     /**
      * Reports an interaction on a recommendation for a merchant.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.recommendations.reportInteraction({
+     *     // Required. The ID of the account that wants to report an interaction.
+     *     merchantId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "interactionType": "my_interactionType",
+     *       //   "responseToken": "my_responseToken",
+     *       //   "subtype": "my_subtype",
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -18129,11 +24655,11 @@ export namespace content_v2_1 {
     reportInteraction(
       params: Params$Resource$Recommendations$Reportinteraction,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     reportInteraction(
       params?: Params$Resource$Recommendations$Reportinteraction,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     reportInteraction(
       params: Params$Resource$Recommendations$Reportinteraction,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18160,7 +24686,10 @@ export namespace content_v2_1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Recommendations$Reportinteraction;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18242,6 +24771,58 @@ export namespace content_v2_1 {
 
     /**
      * Updates regional inventory for multiple products or regions in a single request.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.regionalinventory.custombatch({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "entries": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entries": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -18251,11 +24832,13 @@ export namespace content_v2_1 {
     custombatch(
       params: Params$Resource$Regionalinventory$Custombatch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     custombatch(
       params?: Params$Resource$Regionalinventory$Custombatch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RegionalinventoryCustomBatchResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$RegionalinventoryCustomBatchResponse>
+    >;
     custombatch(
       params: Params$Resource$Regionalinventory$Custombatch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18290,8 +24873,10 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$RegionalinventoryCustomBatchResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$RegionalinventoryCustomBatchResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Regionalinventory$Custombatch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18340,6 +24925,74 @@ export namespace content_v2_1 {
 
     /**
      * Updates the regional inventory of a product in your Merchant Center account. If a regional inventory with the same region ID already exists, this method updates that entry.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.regionalinventory.insert({
+     *     // The ID of the account that contains the product. This account cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *     // The REST ID of the product for which to update the regional inventory.
+     *     productId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "availability": "my_availability",
+     *       //   "customAttributes": [],
+     *       //   "kind": "my_kind",
+     *       //   "price": {},
+     *       //   "regionId": "my_regionId",
+     *       //   "salePrice": {},
+     *       //   "salePriceEffectiveDate": "my_salePriceEffectiveDate"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "availability": "my_availability",
+     *   //   "customAttributes": [],
+     *   //   "kind": "my_kind",
+     *   //   "price": {},
+     *   //   "regionId": "my_regionId",
+     *   //   "salePrice": {},
+     *   //   "salePriceEffectiveDate": "my_salePriceEffectiveDate"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -18349,11 +25002,11 @@ export namespace content_v2_1 {
     insert(
       params: Params$Resource$Regionalinventory$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Regionalinventory$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RegionalInventory>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$RegionalInventory>>;
     insert(
       params: Params$Resource$Regionalinventory$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18384,8 +25037,8 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$RegionalInventory>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$RegionalInventory>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Regionalinventory$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18463,6 +25116,74 @@ export namespace content_v2_1 {
 
     /**
      * Creates a region definition in your Merchant Center account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.regions.create({
+     *     // Required. The id of the merchant for which to create region definition.
+     *     merchantId: 'placeholder-value',
+     *     // Required. The id of the region to create.
+     *     regionId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "displayName": "my_displayName",
+     *       //   "geotargetArea": {},
+     *       //   "merchantId": "my_merchantId",
+     *       //   "postalCodeArea": {},
+     *       //   "regionId": "my_regionId",
+     *       //   "regionalInventoryEligible": false,
+     *       //   "shippingEligible": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "geotargetArea": {},
+     *   //   "merchantId": "my_merchantId",
+     *   //   "postalCodeArea": {},
+     *   //   "regionId": "my_regionId",
+     *   //   "regionalInventoryEligible": false,
+     *   //   "shippingEligible": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -18472,11 +25193,11 @@ export namespace content_v2_1 {
     create(
       params: Params$Resource$Regions$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Regions$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Region>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Region>>;
     create(
       params: Params$Resource$Regions$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18505,7 +25226,10 @@ export namespace content_v2_1 {
       callback?:
         | BodyResponseCallback<Schema$Region>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Region> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Region>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Regions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -18551,6 +25275,49 @@ export namespace content_v2_1 {
 
     /**
      * Deletes a region definition from your Merchant Center account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.regions.delete({
+     *     // Required. The id of the merchant for which to delete region definition.
+     *     merchantId: 'placeholder-value',
+     *     // Required. The id of the region to delete.
+     *     regionId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -18560,11 +25327,11 @@ export namespace content_v2_1 {
     delete(
       params: Params$Resource$Regions$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Regions$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Regions$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18591,7 +25358,10 @@ export namespace content_v2_1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Regions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -18636,6 +25406,60 @@ export namespace content_v2_1 {
 
     /**
      * Retrieves a region defined in your Merchant Center account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.regions.get({
+     *     // Required. The id of the merchant for which to retrieve region definition.
+     *     merchantId: 'placeholder-value',
+     *     // Required. The id of the region to retrieve.
+     *     regionId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "geotargetArea": {},
+     *   //   "merchantId": "my_merchantId",
+     *   //   "postalCodeArea": {},
+     *   //   "regionId": "my_regionId",
+     *   //   "regionalInventoryEligible": false,
+     *   //   "shippingEligible": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -18645,11 +25469,11 @@ export namespace content_v2_1 {
     get(
       params: Params$Resource$Regions$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Regions$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Region>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Region>>;
     get(
       params: Params$Resource$Regions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18678,7 +25502,10 @@ export namespace content_v2_1 {
       callback?:
         | BodyResponseCallback<Schema$Region>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Region> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Region>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Regions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -18723,6 +25550,57 @@ export namespace content_v2_1 {
 
     /**
      * Lists the regions in your Merchant Center account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.regions.list({
+     *     // Required. The id of the merchant for which to list region definitions.
+     *     merchantId: 'placeholder-value',
+     *     // The maximum number of regions to return. The service may return fewer than this value. If unspecified, at most 50 rules will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // A page token, received from a previous `ListRegions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListRegions` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "regions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -18732,11 +25610,11 @@ export namespace content_v2_1 {
     list(
       params: Params$Resource$Regions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Regions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListRegionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListRegionsResponse>>;
     list(
       params: Params$Resource$Regions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18767,8 +25645,8 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListRegionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListRegionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Regions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -18814,6 +25692,76 @@ export namespace content_v2_1 {
 
     /**
      * Updates a region definition in your Merchant Center account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.regions.patch({
+     *     // Required. The id of the merchant for which to update region definition.
+     *     merchantId: 'placeholder-value',
+     *     // Required. The id of the region to update.
+     *     regionId: 'placeholder-value',
+     *     // Optional. The comma-separated field mask indicating the fields to update. Example: `"displayName,postalCodeArea.regionCode"`.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "displayName": "my_displayName",
+     *       //   "geotargetArea": {},
+     *       //   "merchantId": "my_merchantId",
+     *       //   "postalCodeArea": {},
+     *       //   "regionId": "my_regionId",
+     *       //   "regionalInventoryEligible": false,
+     *       //   "shippingEligible": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "geotargetArea": {},
+     *   //   "merchantId": "my_merchantId",
+     *   //   "postalCodeArea": {},
+     *   //   "regionId": "my_regionId",
+     *   //   "regionalInventoryEligible": false,
+     *   //   "shippingEligible": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -18823,11 +25771,11 @@ export namespace content_v2_1 {
     patch(
       params: Params$Resource$Regions$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Regions$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Region>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Region>>;
     patch(
       params: Params$Resource$Regions$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18856,7 +25804,10 @@ export namespace content_v2_1 {
       callback?:
         | BodyResponseCallback<Schema$Region>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Region> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Region>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Regions$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -18977,6 +25928,63 @@ export namespace content_v2_1 {
 
     /**
      * Retrieves merchant performance metrics matching the search query and optionally segmented by selected dimensions.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.reports.search({
+     *     // Required. Id of the merchant making the call. Must be a standalone account or an MCA subaccount.
+     *     merchantId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "pageSize": 0,
+     *       //   "pageToken": "my_pageToken",
+     *       //   "query": "my_query"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "results": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -18986,11 +25994,11 @@ export namespace content_v2_1 {
     search(
       params: Params$Resource$Reports$Search,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     search(
       params?: Params$Resource$Reports$Search,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SearchResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SearchResponse>>;
     search(
       params: Params$Resource$Reports$Search,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -19019,7 +26027,10 @@ export namespace content_v2_1 {
       callback?:
         | BodyResponseCallback<Schema$SearchResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SearchResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SearchResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reports$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -19083,6 +26094,58 @@ export namespace content_v2_1 {
 
     /**
      * Batches multiple return address related calls in a single request.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.returnaddress.custombatch({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "entries": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entries": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -19092,11 +26155,13 @@ export namespace content_v2_1 {
     custombatch(
       params: Params$Resource$Returnaddress$Custombatch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     custombatch(
       params?: Params$Resource$Returnaddress$Custombatch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ReturnaddressCustomBatchResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ReturnaddressCustomBatchResponse>
+    >;
     custombatch(
       params: Params$Resource$Returnaddress$Custombatch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -19131,8 +26196,10 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ReturnaddressCustomBatchResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ReturnaddressCustomBatchResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Returnaddress$Custombatch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19181,6 +26248,49 @@ export namespace content_v2_1 {
 
     /**
      * Deletes a return address for the given Merchant Center account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.returnaddress.delete({
+     *     // The Merchant Center account from which to delete the given return address.
+     *     merchantId: 'placeholder-value',
+     *     // Return address ID generated by Google.
+     *     returnAddressId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -19190,11 +26300,11 @@ export namespace content_v2_1 {
     delete(
       params: Params$Resource$Returnaddress$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Returnaddress$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Returnaddress$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -19221,7 +26331,10 @@ export namespace content_v2_1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Returnaddress$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19268,6 +26381,59 @@ export namespace content_v2_1 {
 
     /**
      * Gets a return address of the Merchant Center account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.returnaddress.get({
+     *     // The Merchant Center account to get a return address for.
+     *     merchantId: 'placeholder-value',
+     *     // Return address ID generated by Google.
+     *     returnAddressId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "address": {},
+     *   //   "country": "my_country",
+     *   //   "kind": "my_kind",
+     *   //   "label": "my_label",
+     *   //   "phoneNumber": "my_phoneNumber",
+     *   //   "returnAddressId": "my_returnAddressId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -19277,11 +26443,11 @@ export namespace content_v2_1 {
     get(
       params: Params$Resource$Returnaddress$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Returnaddress$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ReturnAddress>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ReturnAddress>>;
     get(
       params: Params$Resource$Returnaddress$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -19310,7 +26476,10 @@ export namespace content_v2_1 {
       callback?:
         | BodyResponseCallback<Schema$ReturnAddress>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ReturnAddress> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ReturnAddress>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Returnaddress$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19357,6 +26526,70 @@ export namespace content_v2_1 {
 
     /**
      * Inserts a return address for the Merchant Center account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.returnaddress.insert({
+     *     // The Merchant Center account to insert a return address for.
+     *     merchantId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "address": {},
+     *       //   "country": "my_country",
+     *       //   "kind": "my_kind",
+     *       //   "label": "my_label",
+     *       //   "phoneNumber": "my_phoneNumber",
+     *       //   "returnAddressId": "my_returnAddressId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "address": {},
+     *   //   "country": "my_country",
+     *   //   "kind": "my_kind",
+     *   //   "label": "my_label",
+     *   //   "phoneNumber": "my_phoneNumber",
+     *   //   "returnAddressId": "my_returnAddressId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -19366,11 +26599,11 @@ export namespace content_v2_1 {
     insert(
       params: Params$Resource$Returnaddress$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Returnaddress$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ReturnAddress>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ReturnAddress>>;
     insert(
       params: Params$Resource$Returnaddress$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -19399,7 +26632,10 @@ export namespace content_v2_1 {
       callback?:
         | BodyResponseCallback<Schema$ReturnAddress>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ReturnAddress> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ReturnAddress>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Returnaddress$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19446,6 +26682,60 @@ export namespace content_v2_1 {
 
     /**
      * Lists the return addresses of the Merchant Center account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.returnaddress.list({
+     *     // List only return addresses applicable to the given country of sale. When omitted, all return addresses are listed.
+     *     country: 'placeholder-value',
+     *     // The maximum number of addresses in the response, used for paging.
+     *     maxResults: 'placeholder-value',
+     *     // The Merchant Center account to list return addresses for.
+     *     merchantId: 'placeholder-value',
+     *     // The token returned by the previous request.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "resources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -19455,11 +26745,11 @@ export namespace content_v2_1 {
     list(
       params: Params$Resource$Returnaddress$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Returnaddress$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ReturnaddressListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ReturnaddressListResponse>>;
     list(
       params: Params$Resource$Returnaddress$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -19494,8 +26784,8 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ReturnaddressListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ReturnaddressListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Returnaddress$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19610,6 +26900,58 @@ export namespace content_v2_1 {
 
     /**
      * Batches multiple return policy related calls in a single request.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.returnpolicy.custombatch({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "entries": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entries": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -19619,11 +26961,11 @@ export namespace content_v2_1 {
     custombatch(
       params: Params$Resource$Returnpolicy$Custombatch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     custombatch(
       params?: Params$Resource$Returnpolicy$Custombatch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ReturnpolicyCustomBatchResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ReturnpolicyCustomBatchResponse>>;
     custombatch(
       params: Params$Resource$Returnpolicy$Custombatch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -19658,8 +27000,8 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ReturnpolicyCustomBatchResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ReturnpolicyCustomBatchResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Returnpolicy$Custombatch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19708,6 +27050,49 @@ export namespace content_v2_1 {
 
     /**
      * Deletes a return policy for the given Merchant Center account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.returnpolicy.delete({
+     *     // The Merchant Center account from which to delete the given return policy.
+     *     merchantId: 'placeholder-value',
+     *     // Return policy ID generated by Google.
+     *     returnPolicyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -19717,11 +27102,11 @@ export namespace content_v2_1 {
     delete(
       params: Params$Resource$Returnpolicy$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Returnpolicy$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Returnpolicy$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -19748,7 +27133,10 @@ export namespace content_v2_1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Returnpolicy$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19795,6 +27183,62 @@ export namespace content_v2_1 {
 
     /**
      * Gets a return policy of the Merchant Center account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.returnpolicy.get({
+     *     // The Merchant Center account to get a return policy for.
+     *     merchantId: 'placeholder-value',
+     *     // Return policy ID generated by Google.
+     *     returnPolicyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "country": "my_country",
+     *   //   "kind": "my_kind",
+     *   //   "label": "my_label",
+     *   //   "name": "my_name",
+     *   //   "nonFreeReturnReasons": [],
+     *   //   "policy": {},
+     *   //   "returnPolicyId": "my_returnPolicyId",
+     *   //   "returnShippingFee": {},
+     *   //   "seasonalOverrides": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -19804,11 +27248,11 @@ export namespace content_v2_1 {
     get(
       params: Params$Resource$Returnpolicy$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Returnpolicy$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ReturnPolicy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ReturnPolicy>>;
     get(
       params: Params$Resource$Returnpolicy$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -19837,7 +27281,10 @@ export namespace content_v2_1 {
       callback?:
         | BodyResponseCallback<Schema$ReturnPolicy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ReturnPolicy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ReturnPolicy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Returnpolicy$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -19883,6 +27330,76 @@ export namespace content_v2_1 {
 
     /**
      * Inserts a return policy for the Merchant Center account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.returnpolicy.insert({
+     *     // The Merchant Center account to insert a return policy for.
+     *     merchantId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "country": "my_country",
+     *       //   "kind": "my_kind",
+     *       //   "label": "my_label",
+     *       //   "name": "my_name",
+     *       //   "nonFreeReturnReasons": [],
+     *       //   "policy": {},
+     *       //   "returnPolicyId": "my_returnPolicyId",
+     *       //   "returnShippingFee": {},
+     *       //   "seasonalOverrides": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "country": "my_country",
+     *   //   "kind": "my_kind",
+     *   //   "label": "my_label",
+     *   //   "name": "my_name",
+     *   //   "nonFreeReturnReasons": [],
+     *   //   "policy": {},
+     *   //   "returnPolicyId": "my_returnPolicyId",
+     *   //   "returnShippingFee": {},
+     *   //   "seasonalOverrides": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -19892,11 +27409,11 @@ export namespace content_v2_1 {
     insert(
       params: Params$Resource$Returnpolicy$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Returnpolicy$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ReturnPolicy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ReturnPolicy>>;
     insert(
       params: Params$Resource$Returnpolicy$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -19925,7 +27442,10 @@ export namespace content_v2_1 {
       callback?:
         | BodyResponseCallback<Schema$ReturnPolicy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ReturnPolicy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ReturnPolicy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Returnpolicy$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19972,6 +27492,53 @@ export namespace content_v2_1 {
 
     /**
      * Lists the return policies of the Merchant Center account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.returnpolicy.list({
+     *     // The Merchant Center account to list return policies for.
+     *     merchantId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "resources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -19981,11 +27548,11 @@ export namespace content_v2_1 {
     list(
       params: Params$Resource$Returnpolicy$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Returnpolicy$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ReturnpolicyListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ReturnpolicyListResponse>>;
     list(
       params: Params$Resource$Returnpolicy$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -20018,8 +27585,8 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ReturnpolicyListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ReturnpolicyListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Returnpolicy$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20121,6 +27688,78 @@ export namespace content_v2_1 {
 
     /**
      * Creates a new return policy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.returnpolicyonline.create({
+     *     // Required. The id of the merchant for which to retrieve the return policy online object.
+     *     merchantId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "countries": [],
+     *       //   "itemConditions": [],
+     *       //   "label": "my_label",
+     *       //   "name": "my_name",
+     *       //   "policy": {},
+     *       //   "restockingFee": {},
+     *       //   "returnMethods": [],
+     *       //   "returnPolicyId": "my_returnPolicyId",
+     *       //   "returnPolicyUri": "my_returnPolicyUri",
+     *       //   "returnReasonCategoryInfo": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "countries": [],
+     *   //   "itemConditions": [],
+     *   //   "label": "my_label",
+     *   //   "name": "my_name",
+     *   //   "policy": {},
+     *   //   "restockingFee": {},
+     *   //   "returnMethods": [],
+     *   //   "returnPolicyId": "my_returnPolicyId",
+     *   //   "returnPolicyUri": "my_returnPolicyUri",
+     *   //   "returnReasonCategoryInfo": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -20130,11 +27769,11 @@ export namespace content_v2_1 {
     create(
       params: Params$Resource$Returnpolicyonline$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Returnpolicyonline$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ReturnPolicyOnline>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ReturnPolicyOnline>>;
     create(
       params: Params$Resource$Returnpolicyonline$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -20165,8 +27804,8 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ReturnPolicyOnline>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ReturnPolicyOnline>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Returnpolicyonline$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20212,6 +27851,49 @@ export namespace content_v2_1 {
 
     /**
      * Deletes an existing return policy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.returnpolicyonline.delete({
+     *     // Required. The id of the merchant for which to retrieve the return policy online object.
+     *     merchantId: 'placeholder-value',
+     *     // Required. The id of the return policy to delete.
+     *     returnPolicyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -20221,11 +27903,11 @@ export namespace content_v2_1 {
     delete(
       params: Params$Resource$Returnpolicyonline$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Returnpolicyonline$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Returnpolicyonline$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -20252,7 +27934,10 @@ export namespace content_v2_1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Returnpolicyonline$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20299,6 +27984,63 @@ export namespace content_v2_1 {
 
     /**
      * Gets an existing return policy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.returnpolicyonline.get({
+     *     // Required. The id of the merchant for which to retrieve the return policy online object.
+     *     merchantId: 'placeholder-value',
+     *     // Required. The id of the return policy to retrieve.
+     *     returnPolicyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "countries": [],
+     *   //   "itemConditions": [],
+     *   //   "label": "my_label",
+     *   //   "name": "my_name",
+     *   //   "policy": {},
+     *   //   "restockingFee": {},
+     *   //   "returnMethods": [],
+     *   //   "returnPolicyId": "my_returnPolicyId",
+     *   //   "returnPolicyUri": "my_returnPolicyUri",
+     *   //   "returnReasonCategoryInfo": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -20308,11 +28050,11 @@ export namespace content_v2_1 {
     get(
       params: Params$Resource$Returnpolicyonline$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Returnpolicyonline$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ReturnPolicyOnline>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ReturnPolicyOnline>>;
     get(
       params: Params$Resource$Returnpolicyonline$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -20343,8 +28085,8 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ReturnPolicyOnline>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ReturnPolicyOnline>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Returnpolicyonline$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20391,6 +28133,52 @@ export namespace content_v2_1 {
 
     /**
      * Lists all existing return policies.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.returnpolicyonline.list({
+     *     // Required. The id of the merchant for which to retrieve the return policy online object.
+     *     merchantId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "returnPolicies": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -20400,11 +28188,11 @@ export namespace content_v2_1 {
     list(
       params: Params$Resource$Returnpolicyonline$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Returnpolicyonline$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListReturnPolicyOnlineResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListReturnPolicyOnlineResponse>>;
     list(
       params: Params$Resource$Returnpolicyonline$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -20439,8 +28227,8 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListReturnPolicyOnlineResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListReturnPolicyOnlineResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Returnpolicyonline$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20488,6 +28276,80 @@ export namespace content_v2_1 {
 
     /**
      * Updates an existing return policy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.returnpolicyonline.patch({
+     *     // Required. The id of the merchant for which to retrieve the return policy online object.
+     *     merchantId: 'placeholder-value',
+     *     // Required. The id of the return policy to update.
+     *     returnPolicyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "countries": [],
+     *       //   "itemConditions": [],
+     *       //   "label": "my_label",
+     *       //   "name": "my_name",
+     *       //   "policy": {},
+     *       //   "restockingFee": {},
+     *       //   "returnMethods": [],
+     *       //   "returnPolicyId": "my_returnPolicyId",
+     *       //   "returnPolicyUri": "my_returnPolicyUri",
+     *       //   "returnReasonCategoryInfo": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "countries": [],
+     *   //   "itemConditions": [],
+     *   //   "label": "my_label",
+     *   //   "name": "my_name",
+     *   //   "policy": {},
+     *   //   "restockingFee": {},
+     *   //   "returnMethods": [],
+     *   //   "returnPolicyId": "my_returnPolicyId",
+     *   //   "returnPolicyUri": "my_returnPolicyUri",
+     *   //   "returnReasonCategoryInfo": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -20497,11 +28359,11 @@ export namespace content_v2_1 {
     patch(
       params: Params$Resource$Returnpolicyonline$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Returnpolicyonline$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ReturnPolicyOnline>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ReturnPolicyOnline>>;
     patch(
       params: Params$Resource$Returnpolicyonline$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -20532,8 +28394,8 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ReturnPolicyOnline>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ReturnPolicyOnline>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Returnpolicyonline$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20645,6 +28507,58 @@ export namespace content_v2_1 {
 
     /**
      * Retrieves and updates the shipping settings of multiple accounts in a single request.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.shippingsettings.custombatch({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "entries": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entries": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -20654,11 +28568,13 @@ export namespace content_v2_1 {
     custombatch(
       params: Params$Resource$Shippingsettings$Custombatch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     custombatch(
       params?: Params$Resource$Shippingsettings$Custombatch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ShippingsettingsCustomBatchResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ShippingsettingsCustomBatchResponse>
+    >;
     custombatch(
       params: Params$Resource$Shippingsettings$Custombatch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -20693,8 +28609,10 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ShippingsettingsCustomBatchResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ShippingsettingsCustomBatchResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Shippingsettings$Custombatch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20743,6 +28661,57 @@ export namespace content_v2_1 {
 
     /**
      * Retrieves the shipping settings of the account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.shippingsettings.get({
+     *     // The ID of the account for which to get/update shipping settings.
+     *     accountId: 'placeholder-value',
+     *     // The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
+     *     merchantId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "postalCodeGroups": [],
+     *   //   "services": [],
+     *   //   "warehouses": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -20752,11 +28721,11 @@ export namespace content_v2_1 {
     get(
       params: Params$Resource$Shippingsettings$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Shippingsettings$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ShippingSettings>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ShippingSettings>>;
     get(
       params: Params$Resource$Shippingsettings$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -20785,7 +28754,10 @@ export namespace content_v2_1 {
       callback?:
         | BodyResponseCallback<Schema$ShippingSettings>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ShippingSettings> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ShippingSettings>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Shippingsettings$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20832,6 +28804,53 @@ export namespace content_v2_1 {
 
     /**
      * Retrieves supported carriers and carrier services for an account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.shippingsettings.getsupportedcarriers({
+     *     // The ID of the account for which to retrieve the supported carriers.
+     *     merchantId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "carriers": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -20841,11 +28860,13 @@ export namespace content_v2_1 {
     getsupportedcarriers(
       params: Params$Resource$Shippingsettings$Getsupportedcarriers,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getsupportedcarriers(
       params?: Params$Resource$Shippingsettings$Getsupportedcarriers,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ShippingsettingsGetSupportedCarriersResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ShippingsettingsGetSupportedCarriersResponse>
+    >;
     getsupportedcarriers(
       params: Params$Resource$Shippingsettings$Getsupportedcarriers,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -20880,8 +28901,10 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ShippingsettingsGetSupportedCarriersResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ShippingsettingsGetSupportedCarriersResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Shippingsettings$Getsupportedcarriers;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20929,6 +28952,53 @@ export namespace content_v2_1 {
 
     /**
      * Retrieves supported holidays for an account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.shippingsettings.getsupportedholidays({
+     *     // The ID of the account for which to retrieve the supported holidays.
+     *     merchantId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "holidays": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -20938,11 +29008,13 @@ export namespace content_v2_1 {
     getsupportedholidays(
       params: Params$Resource$Shippingsettings$Getsupportedholidays,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getsupportedholidays(
       params?: Params$Resource$Shippingsettings$Getsupportedholidays,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ShippingsettingsGetSupportedHolidaysResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ShippingsettingsGetSupportedHolidaysResponse>
+    >;
     getsupportedholidays(
       params: Params$Resource$Shippingsettings$Getsupportedholidays,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -20977,8 +29049,10 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ShippingsettingsGetSupportedHolidaysResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ShippingsettingsGetSupportedHolidaysResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Shippingsettings$Getsupportedholidays;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21026,6 +29100,53 @@ export namespace content_v2_1 {
 
     /**
      * Retrieves supported pickup services for an account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.shippingsettings.getsupportedpickupservices({
+     *     // The ID of the account for which to retrieve the supported pickup services.
+     *     merchantId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "pickupServices": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -21035,11 +29156,13 @@ export namespace content_v2_1 {
     getsupportedpickupservices(
       params: Params$Resource$Shippingsettings$Getsupportedpickupservices,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getsupportedpickupservices(
       params?: Params$Resource$Shippingsettings$Getsupportedpickupservices,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ShippingsettingsGetSupportedPickupServicesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ShippingsettingsGetSupportedPickupServicesResponse>
+    >;
     getsupportedpickupservices(
       params: Params$Resource$Shippingsettings$Getsupportedpickupservices,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -21074,8 +29197,10 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ShippingsettingsGetSupportedPickupServicesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ShippingsettingsGetSupportedPickupServicesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Shippingsettings$Getsupportedpickupservices;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21124,6 +29249,58 @@ export namespace content_v2_1 {
 
     /**
      * Lists the shipping settings of the sub-accounts in your Merchant Center account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.shippingsettings.list({
+     *     // The maximum number of shipping settings to return in the response, used for paging.
+     *     maxResults: 'placeholder-value',
+     *     // The ID of the managing account. This must be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *     // The token returned by the previous request.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "resources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -21133,11 +29310,11 @@ export namespace content_v2_1 {
     list(
       params: Params$Resource$Shippingsettings$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Shippingsettings$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ShippingsettingsListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ShippingsettingsListResponse>>;
     list(
       params: Params$Resource$Shippingsettings$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -21172,8 +29349,8 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ShippingsettingsListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ShippingsettingsListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Shippingsettings$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21221,6 +29398,68 @@ export namespace content_v2_1 {
 
     /**
      * Updates the shipping settings of the account. Any fields that are not provided are deleted from the resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.shippingsettings.update({
+     *     // The ID of the account for which to get/update shipping settings.
+     *     accountId: 'placeholder-value',
+     *     // The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
+     *     merchantId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "postalCodeGroups": [],
+     *       //   "services": [],
+     *       //   "warehouses": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "postalCodeGroups": [],
+     *   //   "services": [],
+     *   //   "warehouses": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -21230,11 +29469,11 @@ export namespace content_v2_1 {
     update(
       params: Params$Resource$Shippingsettings$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Shippingsettings$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ShippingSettings>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ShippingSettings>>;
     update(
       params: Params$Resource$Shippingsettings$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -21263,7 +29502,10 @@ export namespace content_v2_1 {
       callback?:
         | BodyResponseCallback<Schema$ShippingSettings>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ShippingSettings> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ShippingSettings>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Shippingsettings$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21388,6 +29630,53 @@ export namespace content_v2_1 {
 
     /**
      * Retrieves the status and review eligibility for the Shopping Ads program. Returns errors and warnings if they require action to resolve, will become disapprovals, or impact impressions. Use `accountstatuses` to view all issues for an account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.shoppingadsprogram.get({
+     *     // Required. The ID of the account.
+     *     merchantId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "globalState": "my_globalState",
+     *   //   "regionStatuses": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -21397,11 +29686,11 @@ export namespace content_v2_1 {
     get(
       params: Params$Resource$Shoppingadsprogram$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Shoppingadsprogram$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ShoppingAdsProgramStatus>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ShoppingAdsProgramStatus>>;
     get(
       params: Params$Resource$Shoppingadsprogram$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -21434,8 +29723,8 @@ export namespace content_v2_1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ShoppingAdsProgramStatus>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ShoppingAdsProgramStatus>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Shoppingadsprogram$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21481,6 +29770,55 @@ export namespace content_v2_1 {
 
     /**
      * Requests a review of Shopping ads in a specific region. This method deprecated. Use the `MerchantSupportService` to view product and account issues and request a review.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.shoppingadsprogram.requestreview({
+     *     // Required. The ID of the account.
+     *     merchantId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "regionCode": "my_regionCode"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -21490,11 +29828,11 @@ export namespace content_v2_1 {
     requestreview(
       params: Params$Resource$Shoppingadsprogram$Requestreview,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     requestreview(
       params?: Params$Resource$Shoppingadsprogram$Requestreview,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     requestreview(
       params: Params$Resource$Shoppingadsprogram$Requestreview,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -21521,7 +29859,10 @@ export namespace content_v2_1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Shoppingadsprogram$Requestreview;
       let options = (optionsOrCallback || {}) as MethodOptions;

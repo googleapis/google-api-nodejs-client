@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -453,7 +453,7 @@ export namespace merchantapi_datasources_v1beta {
      */
     eventTime?: string | null;
     /**
-     * Optional. The product expiration time. This field will not bet set if the notification is sent for a product deletion event.
+     * Optional. The product expiration time. This field will not be set if the notification is sent for a product deletion event.
      */
     expirationTime?: string | null;
     /**
@@ -558,7 +558,83 @@ export namespace merchantapi_datasources_v1beta {
     }
 
     /**
-     * Creates the new data source configuration for the given account.
+     * Creates the new data source configuration for the given account. This method always creates a new data source.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('datasources_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.dataSources.create({
+     *     // Required. The account where this data source will be created. Format: `accounts/{account\}`
+     *     parent: 'accounts/my-account',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "dataSourceId": "my_dataSourceId",
+     *       //   "displayName": "my_displayName",
+     *       //   "fileInput": {},
+     *       //   "input": "my_input",
+     *       //   "localInventoryDataSource": {},
+     *       //   "merchantReviewDataSource": {},
+     *       //   "name": "my_name",
+     *       //   "primaryProductDataSource": {},
+     *       //   "productReviewDataSource": {},
+     *       //   "promotionDataSource": {},
+     *       //   "regionalInventoryDataSource": {},
+     *       //   "supplementalProductDataSource": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dataSourceId": "my_dataSourceId",
+     *   //   "displayName": "my_displayName",
+     *   //   "fileInput": {},
+     *   //   "input": "my_input",
+     *   //   "localInventoryDataSource": {},
+     *   //   "merchantReviewDataSource": {},
+     *   //   "name": "my_name",
+     *   //   "primaryProductDataSource": {},
+     *   //   "productReviewDataSource": {},
+     *   //   "promotionDataSource": {},
+     *   //   "regionalInventoryDataSource": {},
+     *   //   "supplementalProductDataSource": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -568,11 +644,11 @@ export namespace merchantapi_datasources_v1beta {
     create(
       params: Params$Resource$Accounts$Datasources$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Accounts$Datasources$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DataSource>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DataSource>>;
     create(
       params: Params$Resource$Accounts$Datasources$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -601,7 +677,10 @@ export namespace merchantapi_datasources_v1beta {
       callback?:
         | BodyResponseCallback<Schema$DataSource>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$DataSource> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$DataSource>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Datasources$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -646,6 +725,50 @@ export namespace merchantapi_datasources_v1beta {
 
     /**
      * Deletes a data source from your Merchant Center account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('datasources_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.dataSources.delete({
+     *     // Required. The name of the data source to delete. Format: `accounts/{account\}/dataSources/{datasource\}`
+     *     name: 'accounts/my-account/dataSources/my-dataSource',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -655,11 +778,11 @@ export namespace merchantapi_datasources_v1beta {
     delete(
       params: Params$Resource$Accounts$Datasources$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Accounts$Datasources$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Accounts$Datasources$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -688,7 +811,10 @@ export namespace merchantapi_datasources_v1beta {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Datasources$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -734,6 +860,56 @@ export namespace merchantapi_datasources_v1beta {
 
     /**
      * Performs the data fetch immediately (even outside fetch schedule) on a data source from your Merchant Center Account. If you need to call this method more than once per day, you should use the Products service to update your product data instead. This method only works on data sources with a file input set.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('datasources_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.dataSources.fetch({
+     *     // Required. The name of the data source resource to fetch. Format: `accounts/{account\}/dataSources/{datasource\}`
+     *     name: 'accounts/my-account/dataSources/my-dataSource',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -743,11 +919,11 @@ export namespace merchantapi_datasources_v1beta {
     fetch(
       params: Params$Resource$Accounts$Datasources$Fetch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     fetch(
       params?: Params$Resource$Accounts$Datasources$Fetch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     fetch(
       params: Params$Resource$Accounts$Datasources$Fetch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -776,7 +952,10 @@ export namespace merchantapi_datasources_v1beta {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Datasources$Fetch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -822,6 +1001,63 @@ export namespace merchantapi_datasources_v1beta {
 
     /**
      * Retrieves the data source configuration for the given account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('datasources_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.dataSources.get({
+     *     // Required. The name of the data source to retrieve. Format: `accounts/{account\}/dataSources/{datasource\}`
+     *     name: 'accounts/my-account/dataSources/my-dataSource',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dataSourceId": "my_dataSourceId",
+     *   //   "displayName": "my_displayName",
+     *   //   "fileInput": {},
+     *   //   "input": "my_input",
+     *   //   "localInventoryDataSource": {},
+     *   //   "merchantReviewDataSource": {},
+     *   //   "name": "my_name",
+     *   //   "primaryProductDataSource": {},
+     *   //   "productReviewDataSource": {},
+     *   //   "promotionDataSource": {},
+     *   //   "regionalInventoryDataSource": {},
+     *   //   "supplementalProductDataSource": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -831,11 +1067,11 @@ export namespace merchantapi_datasources_v1beta {
     get(
       params: Params$Resource$Accounts$Datasources$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Accounts$Datasources$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DataSource>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DataSource>>;
     get(
       params: Params$Resource$Accounts$Datasources$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -864,7 +1100,10 @@ export namespace merchantapi_datasources_v1beta {
       callback?:
         | BodyResponseCallback<Schema$DataSource>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$DataSource> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$DataSource>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Datasources$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -910,6 +1149,57 @@ export namespace merchantapi_datasources_v1beta {
 
     /**
      * Lists the configurations for data sources for the given account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('datasources_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.dataSources.list({
+     *     // Optional. The maximum number of data sources to return. The service may return fewer than this value. The maximum value is 1000; values above 1000 will be coerced to 1000. If unspecified, the maximum number of data sources will be returned.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous `ListDataSources` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListDataSources` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The account to list data sources for. Format: `accounts/{account\}`
+     *     parent: 'accounts/my-account',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dataSources": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -919,11 +1209,11 @@ export namespace merchantapi_datasources_v1beta {
     list(
       params: Params$Resource$Accounts$Datasources$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Accounts$Datasources$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListDataSourcesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListDataSourcesResponse>>;
     list(
       params: Params$Resource$Accounts$Datasources$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -956,8 +1246,8 @@ export namespace merchantapi_datasources_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListDataSourcesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListDataSourcesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Datasources$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1002,6 +1292,84 @@ export namespace merchantapi_datasources_v1beta {
 
     /**
      * Updates the existing data source configuration. The fields that are set in the update mask but not provided in the resource will be deleted.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('datasources_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.dataSources.patch({
+     *     // Required. Identifier. The name of the data source. Format: `accounts/{account\}/dataSources/{datasource\}`
+     *     name: 'accounts/my-account/dataSources/my-dataSource',
+     *     // Required. The list of data source fields to be updated. Fields specified in the update mask without a value specified in the body will be deleted from the data source. Providing special "*" value for full data source replacement is not supported. For example, If you insert `updateMask=displayName` in the request, it will only update the `displayName` leaving all other fields untouched.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "dataSourceId": "my_dataSourceId",
+     *       //   "displayName": "my_displayName",
+     *       //   "fileInput": {},
+     *       //   "input": "my_input",
+     *       //   "localInventoryDataSource": {},
+     *       //   "merchantReviewDataSource": {},
+     *       //   "name": "my_name",
+     *       //   "primaryProductDataSource": {},
+     *       //   "productReviewDataSource": {},
+     *       //   "promotionDataSource": {},
+     *       //   "regionalInventoryDataSource": {},
+     *       //   "supplementalProductDataSource": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dataSourceId": "my_dataSourceId",
+     *   //   "displayName": "my_displayName",
+     *   //   "fileInput": {},
+     *   //   "input": "my_input",
+     *   //   "localInventoryDataSource": {},
+     *   //   "merchantReviewDataSource": {},
+     *   //   "name": "my_name",
+     *   //   "primaryProductDataSource": {},
+     *   //   "productReviewDataSource": {},
+     *   //   "promotionDataSource": {},
+     *   //   "regionalInventoryDataSource": {},
+     *   //   "supplementalProductDataSource": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1011,11 +1379,11 @@ export namespace merchantapi_datasources_v1beta {
     patch(
       params: Params$Resource$Accounts$Datasources$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Accounts$Datasources$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DataSource>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DataSource>>;
     patch(
       params: Params$Resource$Accounts$Datasources$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1044,7 +1412,10 @@ export namespace merchantapi_datasources_v1beta {
       callback?:
         | BodyResponseCallback<Schema$DataSource>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$DataSource> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$DataSource>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Datasources$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1149,7 +1520,7 @@ export namespace merchantapi_datasources_v1beta {
      */
     name?: string;
     /**
-     * Required. The list of data source fields to be updated. Fields specified in the update mask without a value specified in the body will be deleted from the data source. Providing special "*" value for full data source replacement is not supported.
+     * Required. The list of data source fields to be updated. Fields specified in the update mask without a value specified in the body will be deleted from the data source. Providing special "*" value for full data source replacement is not supported. For example, If you insert `updateMask=displayName` in the request, it will only update the `displayName` leaving all other fields untouched.
      */
     updateMask?: string;
 
@@ -1167,6 +1538,59 @@ export namespace merchantapi_datasources_v1beta {
 
     /**
      * Gets the latest data source file upload. Only the `latest` alias is accepted for a file upload.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('datasources_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.dataSources.fileUploads.get({
+     *     // Required. The name of the data source file upload to retrieve. Format: `accounts/{account\}/dataSources/{datasource\}/fileUploads/latest`
+     *     name: 'accounts/my-account/dataSources/my-dataSource/fileUploads/my-fileUpload',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dataSourceId": "my_dataSourceId",
+     *   //   "issues": [],
+     *   //   "itemsCreated": "my_itemsCreated",
+     *   //   "itemsTotal": "my_itemsTotal",
+     *   //   "itemsUpdated": "my_itemsUpdated",
+     *   //   "name": "my_name",
+     *   //   "processingState": "my_processingState",
+     *   //   "uploadTime": "my_uploadTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1176,11 +1600,11 @@ export namespace merchantapi_datasources_v1beta {
     get(
       params: Params$Resource$Accounts$Datasources$Fileuploads$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Accounts$Datasources$Fileuploads$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FileUpload>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FileUpload>>;
     get(
       params: Params$Resource$Accounts$Datasources$Fileuploads$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1209,7 +1633,10 @@ export namespace merchantapi_datasources_v1beta {
       callback?:
         | BodyResponseCallback<Schema$FileUpload>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$FileUpload> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$FileUpload>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Datasources$Fileuploads$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;

@@ -1,5 +1,30 @@
 # Changelog
 
+## [1.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/bigquerydatapolicy-v1.0.0...bigquerydatapolicy-v1.0.1) (2025-06-04)
+
+
+### Bug Fixes
+
+* **deps:** upgrade googleapis-common to 8.0.2-rc ([f4b0990](https://github.com/googleapis/google-api-nodejs-client/commit/f4b099071040cfbcfe4a2e7d487d45ee93b369e0))
+
+## [1.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/bigquerydatapolicy-v0.2.1...bigquerydatapolicy-v1.0.0) (2025-05-29)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to node 18
+
+### Features
+
+* upgrade to node 18 ([682fbb8](https://github.com/googleapis/google-api-nodejs-client/commit/682fbb869189ae92b3e9a194d37d0548af0c1f92))
+
+## [0.2.1](https://github.com/googleapis/google-api-nodejs-client/compare/bigquerydatapolicy-v0.2.0...bigquerydatapolicy-v0.2.1) (2025-05-05)
+
+
+### Bug Fixes
+
+* **bigquerydatapolicy:** update the API ([c583f1f](https://github.com/googleapis/google-api-nodejs-client/commit/c583f1f4be2ec61aa905310b85eeaff9f5bccfa2))
+
 ## [0.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/bigquerydatapolicy-v0.1.2...bigquerydatapolicy-v0.2.0) (2024-08-16)
 
 

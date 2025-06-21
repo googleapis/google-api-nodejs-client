@@ -1,5 +1,30 @@
 # Changelog
 
+## [4.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/verifiedaccess-v4.0.0...verifiedaccess-v4.0.1) (2025-06-04)
+
+
+### Bug Fixes
+
+* **deps:** upgrade googleapis-common to 8.0.2-rc ([f4b0990](https://github.com/googleapis/google-api-nodejs-client/commit/f4b099071040cfbcfe4a2e7d487d45ee93b369e0))
+
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/verifiedaccess-v3.9.0...verifiedaccess-v4.0.0) (2025-05-29)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to node 18
+
+### Features
+
+* upgrade to node 18 ([682fbb8](https://github.com/googleapis/google-api-nodejs-client/commit/682fbb869189ae92b3e9a194d37d0548af0c1f92))
+
+## [3.9.0](https://github.com/googleapis/google-api-nodejs-client/compare/verifiedaccess-v3.8.0...verifiedaccess-v3.9.0) (2025-05-05)
+
+
+### Features
+
+* **verifiedaccess:** update the API ([fbd86e4](https://github.com/googleapis/google-api-nodejs-client/commit/fbd86e49504ba79a4458dc3475ab27a694afb0e0))
+
 ## [3.8.0](https://github.com/googleapis/google-api-nodejs-client/compare/verifiedaccess-v3.7.0...verifiedaccess-v3.8.0) (2025-04-18)
 
 

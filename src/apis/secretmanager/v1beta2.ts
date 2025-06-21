@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -626,6 +626,56 @@ export namespace secretmanager_v1beta2 {
 
     /**
      * Gets information about a location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/secretmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const secretmanager = google.secretmanager('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await secretmanager.projects.locations.get({
+     *     // Resource name for the location.
+     *     name: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "labels": {},
+     *   //   "locationId": "my_locationId",
+     *   //   "metadata": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -635,11 +685,11 @@ export namespace secretmanager_v1beta2 {
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Location>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Location>>;
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -668,7 +718,10 @@ export namespace secretmanager_v1beta2 {
       callback?:
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Location> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -712,6 +765,61 @@ export namespace secretmanager_v1beta2 {
 
     /**
      * Lists information about the supported locations for this service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/secretmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const secretmanager = google.secretmanager('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await secretmanager.projects.locations.list({
+     *     // Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     *     extraLocationTypes: 'placeholder-value',
+     *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
+     *     filter: 'placeholder-value',
+     *     // The resource that owns the locations collection, if applicable.
+     *     name: 'projects/my-project',
+     *     // The maximum number of results to return. If not set, the service selects a default.
+     *     pageSize: 'placeholder-value',
+     *     // A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "locations": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -721,11 +829,11 @@ export namespace secretmanager_v1beta2 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListLocationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -758,8 +866,8 @@ export namespace secretmanager_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListLocationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -848,6 +956,68 @@ export namespace secretmanager_v1beta2 {
 
     /**
      * Creates a new SecretVersion containing secret data and attaches it to an existing Secret.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/secretmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const secretmanager = google.secretmanager('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await secretmanager.projects.locations.secrets.addVersion({
+     *     // Required. The resource name of the Secret to associate with the SecretVersion in the format `projects/x/secrets/x` or `projects/x/locations/x/secrets/x`.
+     *     parent: 'projects/my-project/locations/my-location/secrets/my-secret',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "payload": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientSpecifiedPayloadChecksum": false,
+     *   //   "createTime": "my_createTime",
+     *   //   "customerManagedEncryption": {},
+     *   //   "destroyTime": "my_destroyTime",
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "replicationStatus": {},
+     *   //   "scheduledDestroyTime": "my_scheduledDestroyTime",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -857,11 +1027,11 @@ export namespace secretmanager_v1beta2 {
     addVersion(
       params: Params$Resource$Projects$Locations$Secrets$Addversion,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     addVersion(
       params?: Params$Resource$Projects$Locations$Secrets$Addversion,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SecretVersion>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SecretVersion>>;
     addVersion(
       params: Params$Resource$Projects$Locations$Secrets$Addversion,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -890,7 +1060,10 @@ export namespace secretmanager_v1beta2 {
       callback?:
         | BodyResponseCallback<Schema$SecretVersion>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SecretVersion> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SecretVersion>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Secrets$Addversion;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -937,6 +1110,86 @@ export namespace secretmanager_v1beta2 {
 
     /**
      * Creates a new Secret containing no SecretVersions.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/secretmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const secretmanager = google.secretmanager('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await secretmanager.projects.locations.secrets.create({
+     *     // Required. The resource name of the project to associate with the Secret, in the format `projects/x` or `projects/x/locations/x`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // Required. This must be unique within the project. A secret ID is a string with a maximum length of 255 characters and can contain uppercase and lowercase letters, numerals, and the hyphen (`-`) and underscore (`_`) characters.
+     *     secretId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "annotations": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "customerManagedEncryption": {},
+     *       //   "etag": "my_etag",
+     *       //   "expireTime": "my_expireTime",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "replication": {},
+     *       //   "rotation": {},
+     *       //   "topics": [],
+     *       //   "ttl": "my_ttl",
+     *       //   "versionAliases": {},
+     *       //   "versionDestroyTtl": "my_versionDestroyTtl"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "annotations": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "customerManagedEncryption": {},
+     *   //   "etag": "my_etag",
+     *   //   "expireTime": "my_expireTime",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "replication": {},
+     *   //   "rotation": {},
+     *   //   "topics": [],
+     *   //   "ttl": "my_ttl",
+     *   //   "versionAliases": {},
+     *   //   "versionDestroyTtl": "my_versionDestroyTtl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -946,11 +1199,11 @@ export namespace secretmanager_v1beta2 {
     create(
       params: Params$Resource$Projects$Locations$Secrets$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Secrets$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Secret>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Secret>>;
     create(
       params: Params$Resource$Projects$Locations$Secrets$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -979,7 +1232,10 @@ export namespace secretmanager_v1beta2 {
       callback?:
         | BodyResponseCallback<Schema$Secret>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Secret> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Secret>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Secrets$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1026,6 +1282,52 @@ export namespace secretmanager_v1beta2 {
 
     /**
      * Deletes a Secret.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/secretmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const secretmanager = google.secretmanager('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await secretmanager.projects.locations.secrets.delete({
+     *     // Optional. Etag of the Secret. The request succeeds if it matches the etag of the currently stored secret object. If the etag is omitted, the request succeeds.
+     *     etag: 'placeholder-value',
+     *     // Required. The resource name of the Secret to delete in the format `projects/x/secrets/x`.
+     *     name: 'projects/my-project/locations/my-location/secrets/my-secret',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1035,11 +1337,11 @@ export namespace secretmanager_v1beta2 {
     delete(
       params: Params$Resource$Projects$Locations$Secrets$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Secrets$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Locations$Secrets$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1068,7 +1370,10 @@ export namespace secretmanager_v1beta2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Secrets$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1112,6 +1417,64 @@ export namespace secretmanager_v1beta2 {
 
     /**
      * Gets metadata for a given Secret.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/secretmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const secretmanager = google.secretmanager('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await secretmanager.projects.locations.secrets.get({
+     *     // Required. The resource name of the Secret, in the format `projects/x/secrets/x` or `projects/x/locations/x/secrets/x`.
+     *     name: 'projects/my-project/locations/my-location/secrets/my-secret',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "annotations": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "customerManagedEncryption": {},
+     *   //   "etag": "my_etag",
+     *   //   "expireTime": "my_expireTime",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "replication": {},
+     *   //   "rotation": {},
+     *   //   "topics": [],
+     *   //   "ttl": "my_ttl",
+     *   //   "versionAliases": {},
+     *   //   "versionDestroyTtl": "my_versionDestroyTtl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1121,11 +1484,11 @@ export namespace secretmanager_v1beta2 {
     get(
       params: Params$Resource$Projects$Locations$Secrets$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Secrets$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Secret>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Secret>>;
     get(
       params: Params$Resource$Projects$Locations$Secrets$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1154,7 +1517,10 @@ export namespace secretmanager_v1beta2 {
       callback?:
         | BodyResponseCallback<Schema$Secret>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Secret> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Secret>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Secrets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1198,6 +1564,57 @@ export namespace secretmanager_v1beta2 {
 
     /**
      * Gets the access control policy for a secret. Returns empty policy if the secret exists and does not have a policy set.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/secretmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const secretmanager = google.secretmanager('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await secretmanager.projects.locations.secrets.getIamPolicy({
+     *     // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     *     'options.requestedPolicyVersion': 'placeholder-value',
+     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource: 'projects/my-project/locations/my-location/secrets/my-secret',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1207,11 +1624,11 @@ export namespace secretmanager_v1beta2 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Secrets$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Secrets$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Secrets$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1240,7 +1657,10 @@ export namespace secretmanager_v1beta2 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Secrets$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1287,6 +1707,60 @@ export namespace secretmanager_v1beta2 {
 
     /**
      * Lists Secrets.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/secretmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const secretmanager = google.secretmanager('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await secretmanager.projects.locations.secrets.list({
+     *     // Optional. Filter string, adhering to the rules in [List-operation filtering](https://cloud.google.com/secret-manager/docs/filtering). List only secrets matching the filter. If filter is empty, all secrets are listed.
+     *     filter: 'placeholder-value',
+     *     // Optional. The maximum number of results to be returned in a single page. If set to 0, the server decides the number of results to return. If the number is greater than 25000, it is capped at 25000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. Pagination token, returned earlier via ListSecretsResponse.next_page_token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name of the project associated with the Secrets, in the format `projects/x` or `projects/x/locations/x`
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "secrets": [],
+     *   //   "totalSize": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1296,11 +1770,11 @@ export namespace secretmanager_v1beta2 {
     list(
       params: Params$Resource$Projects$Locations$Secrets$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Secrets$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListSecretsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListSecretsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Secrets$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1331,8 +1805,8 @@ export namespace secretmanager_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListSecretsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListSecretsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Secrets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1379,6 +1853,86 @@ export namespace secretmanager_v1beta2 {
 
     /**
      * Updates metadata of an existing Secret.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/secretmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const secretmanager = google.secretmanager('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await secretmanager.projects.locations.secrets.patch({
+     *     // Output only. The resource name of the Secret in the format `projects/x/secrets/x`.
+     *     name: 'projects/my-project/locations/my-location/secrets/my-secret',
+     *     // Required. Specifies the fields to be updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "annotations": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "customerManagedEncryption": {},
+     *       //   "etag": "my_etag",
+     *       //   "expireTime": "my_expireTime",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "replication": {},
+     *       //   "rotation": {},
+     *       //   "topics": [],
+     *       //   "ttl": "my_ttl",
+     *       //   "versionAliases": {},
+     *       //   "versionDestroyTtl": "my_versionDestroyTtl"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "annotations": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "customerManagedEncryption": {},
+     *   //   "etag": "my_etag",
+     *   //   "expireTime": "my_expireTime",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "replication": {},
+     *   //   "rotation": {},
+     *   //   "topics": [],
+     *   //   "ttl": "my_ttl",
+     *   //   "versionAliases": {},
+     *   //   "versionDestroyTtl": "my_versionDestroyTtl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1388,11 +1942,11 @@ export namespace secretmanager_v1beta2 {
     patch(
       params: Params$Resource$Projects$Locations$Secrets$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Secrets$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Secret>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Secret>>;
     patch(
       params: Params$Resource$Projects$Locations$Secrets$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1421,7 +1975,10 @@ export namespace secretmanager_v1beta2 {
       callback?:
         | BodyResponseCallback<Schema$Secret>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Secret> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Secret>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Secrets$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1465,6 +2022,64 @@ export namespace secretmanager_v1beta2 {
 
     /**
      * Sets the access control policy on the specified secret. Replaces any existing policy. Permissions on SecretVersions are enforced according to the policy set on the associated Secret.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/secretmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const secretmanager = google.secretmanager('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await secretmanager.projects.locations.secrets.setIamPolicy({
+     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource: 'projects/my-project/locations/my-location/secrets/my-secret',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "policy": {},
+     *       //   "updateMask": "my_updateMask"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1474,11 +2089,11 @@ export namespace secretmanager_v1beta2 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Secrets$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Secrets$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Secrets$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1507,7 +2122,10 @@ export namespace secretmanager_v1beta2 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Secrets$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1554,6 +2172,62 @@ export namespace secretmanager_v1beta2 {
 
     /**
      * Returns permissions that a caller has for the specified secret. If the secret does not exist, this call returns an empty set of permissions, not a NOT_FOUND error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/secretmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const secretmanager = google.secretmanager('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await secretmanager.projects.locations.secrets.testIamPermissions(
+     *     {
+     *       // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *       resource: 'projects/my-project/locations/my-location/secrets/my-secret',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "permissions": []
+     *         // }
+     *       },
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1563,11 +2237,11 @@ export namespace secretmanager_v1beta2 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Secrets$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Secrets$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Secrets$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1602,8 +2276,8 @@ export namespace secretmanager_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Secrets$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1775,6 +2449,53 @@ export namespace secretmanager_v1beta2 {
 
     /**
      * Accesses a SecretVersion. This call returns the secret data. `projects/x/secrets/x/versions/latest` is an alias to the most recently created SecretVersion.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/secretmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const secretmanager = google.secretmanager('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await secretmanager.projects.locations.secrets.versions.access({
+     *     // Required. The resource name of the SecretVersion in the format `projects/x/secrets/x/versions/x` or `projects/x/locations/x/secrets/x/versions/x`. `projects/x/secrets/x/versions/latest` or `projects/x/locations/x/secrets/x/versions/latest` is an alias to the most recently created SecretVersion.
+     *     name: 'projects/my-project/locations/my-location/secrets/my-secret/versions/my-version',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "payload": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1784,11 +2505,11 @@ export namespace secretmanager_v1beta2 {
     access(
       params: Params$Resource$Projects$Locations$Secrets$Versions$Access,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     access(
       params?: Params$Resource$Projects$Locations$Secrets$Versions$Access,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AccessSecretVersionResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AccessSecretVersionResponse>>;
     access(
       params: Params$Resource$Projects$Locations$Secrets$Versions$Access,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1823,8 +2544,8 @@ export namespace secretmanager_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AccessSecretVersionResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AccessSecretVersionResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Secrets$Versions$Access;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1872,6 +2593,68 @@ export namespace secretmanager_v1beta2 {
 
     /**
      * Destroys a SecretVersion. Sets the state of the SecretVersion to DESTROYED and irrevocably destroys the secret data.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/secretmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const secretmanager = google.secretmanager('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await secretmanager.projects.locations.secrets.versions.destroy({
+     *     // Required. The resource name of the SecretVersion to destroy in the format `projects/x/secrets/x/versions/x` or `projects/x/locations/x/secrets/x/versions/x`.
+     *     name: 'projects/my-project/locations/my-location/secrets/my-secret/versions/my-version',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "etag": "my_etag"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientSpecifiedPayloadChecksum": false,
+     *   //   "createTime": "my_createTime",
+     *   //   "customerManagedEncryption": {},
+     *   //   "destroyTime": "my_destroyTime",
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "replicationStatus": {},
+     *   //   "scheduledDestroyTime": "my_scheduledDestroyTime",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1881,11 +2664,11 @@ export namespace secretmanager_v1beta2 {
     destroy(
       params: Params$Resource$Projects$Locations$Secrets$Versions$Destroy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     destroy(
       params?: Params$Resource$Projects$Locations$Secrets$Versions$Destroy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SecretVersion>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SecretVersion>>;
     destroy(
       params: Params$Resource$Projects$Locations$Secrets$Versions$Destroy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1914,7 +2697,10 @@ export namespace secretmanager_v1beta2 {
       callback?:
         | BodyResponseCallback<Schema$SecretVersion>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SecretVersion> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SecretVersion>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Secrets$Versions$Destroy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1962,6 +2748,68 @@ export namespace secretmanager_v1beta2 {
 
     /**
      * Disables a SecretVersion. Sets the state of the SecretVersion to DISABLED.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/secretmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const secretmanager = google.secretmanager('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await secretmanager.projects.locations.secrets.versions.disable({
+     *     // Required. The resource name of the SecretVersion to disable in the format `projects/x/secrets/x/versions/x` or `projects/x/locations/x/secrets/x/versions/x`.
+     *     name: 'projects/my-project/locations/my-location/secrets/my-secret/versions/my-version',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "etag": "my_etag"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientSpecifiedPayloadChecksum": false,
+     *   //   "createTime": "my_createTime",
+     *   //   "customerManagedEncryption": {},
+     *   //   "destroyTime": "my_destroyTime",
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "replicationStatus": {},
+     *   //   "scheduledDestroyTime": "my_scheduledDestroyTime",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1971,11 +2819,11 @@ export namespace secretmanager_v1beta2 {
     disable(
       params: Params$Resource$Projects$Locations$Secrets$Versions$Disable,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     disable(
       params?: Params$Resource$Projects$Locations$Secrets$Versions$Disable,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SecretVersion>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SecretVersion>>;
     disable(
       params: Params$Resource$Projects$Locations$Secrets$Versions$Disable,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2004,7 +2852,10 @@ export namespace secretmanager_v1beta2 {
       callback?:
         | BodyResponseCallback<Schema$SecretVersion>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SecretVersion> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SecretVersion>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Secrets$Versions$Disable;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2052,6 +2903,68 @@ export namespace secretmanager_v1beta2 {
 
     /**
      * Enables a SecretVersion. Sets the state of the SecretVersion to ENABLED.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/secretmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const secretmanager = google.secretmanager('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await secretmanager.projects.locations.secrets.versions.enable({
+     *     // Required. The resource name of the SecretVersion to enable in the format `projects/x/secrets/x/versions/x` or `projects/x/locations/x/secrets/x/versions/x`.
+     *     name: 'projects/my-project/locations/my-location/secrets/my-secret/versions/my-version',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "etag": "my_etag"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientSpecifiedPayloadChecksum": false,
+     *   //   "createTime": "my_createTime",
+     *   //   "customerManagedEncryption": {},
+     *   //   "destroyTime": "my_destroyTime",
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "replicationStatus": {},
+     *   //   "scheduledDestroyTime": "my_scheduledDestroyTime",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2061,11 +2974,11 @@ export namespace secretmanager_v1beta2 {
     enable(
       params: Params$Resource$Projects$Locations$Secrets$Versions$Enable,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     enable(
       params?: Params$Resource$Projects$Locations$Secrets$Versions$Enable,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SecretVersion>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SecretVersion>>;
     enable(
       params: Params$Resource$Projects$Locations$Secrets$Versions$Enable,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2094,7 +3007,10 @@ export namespace secretmanager_v1beta2 {
       callback?:
         | BodyResponseCallback<Schema$SecretVersion>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SecretVersion> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SecretVersion>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Secrets$Versions$Enable;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2142,6 +3058,60 @@ export namespace secretmanager_v1beta2 {
 
     /**
      * Gets metadata for a SecretVersion. `projects/x/secrets/x/versions/latest` is an alias to the most recently created SecretVersion.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/secretmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const secretmanager = google.secretmanager('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await secretmanager.projects.locations.secrets.versions.get({
+     *     // Required. The resource name of the SecretVersion in the format `projects/x/secrets/x/versions/x` or `projects/x/locations/x/secrets/x/versions/x`. `projects/x/secrets/x/versions/latest` or `projects/x/locations/x/secrets/x/versions/latest` is an alias to the most recently created SecretVersion.
+     *     name: 'projects/my-project/locations/my-location/secrets/my-secret/versions/my-version',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientSpecifiedPayloadChecksum": false,
+     *   //   "createTime": "my_createTime",
+     *   //   "customerManagedEncryption": {},
+     *   //   "destroyTime": "my_destroyTime",
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "replicationStatus": {},
+     *   //   "scheduledDestroyTime": "my_scheduledDestroyTime",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2151,11 +3121,11 @@ export namespace secretmanager_v1beta2 {
     get(
       params: Params$Resource$Projects$Locations$Secrets$Versions$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Secrets$Versions$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SecretVersion>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SecretVersion>>;
     get(
       params: Params$Resource$Projects$Locations$Secrets$Versions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2184,7 +3154,10 @@ export namespace secretmanager_v1beta2 {
       callback?:
         | BodyResponseCallback<Schema$SecretVersion>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SecretVersion> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SecretVersion>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Secrets$Versions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2228,6 +3201,60 @@ export namespace secretmanager_v1beta2 {
 
     /**
      * Lists SecretVersions. This call does not return secret data.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/secretmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const secretmanager = google.secretmanager('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await secretmanager.projects.locations.secrets.versions.list({
+     *     // Optional. Filter string, adhering to the rules in [List-operation filtering](https://cloud.google.com/secret-manager/docs/filtering). List only secret versions matching the filter. If filter is empty, all secret versions are listed.
+     *     filter: 'placeholder-value',
+     *     // Optional. The maximum number of results to be returned in a single page. If set to 0, the server decides the number of results to return. If the number is greater than 25000, it is capped at 25000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. Pagination token, returned earlier via ListSecretVersionsResponse.next_page_token][].
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name of the Secret associated with the SecretVersions to list, in the format `projects/x/secrets/x` or `projects/x/locations/x/secrets/x`.
+     *     parent: 'projects/my-project/locations/my-location/secrets/my-secret',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "totalSize": 0,
+     *   //   "versions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2237,11 +3264,11 @@ export namespace secretmanager_v1beta2 {
     list(
       params: Params$Resource$Projects$Locations$Secrets$Versions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Secrets$Versions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListSecretVersionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListSecretVersionsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Secrets$Versions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2276,8 +3303,8 @@ export namespace secretmanager_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListSecretVersionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListSecretVersionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Secrets$Versions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2403,6 +3430,68 @@ export namespace secretmanager_v1beta2 {
 
     /**
      * Creates a new SecretVersion containing secret data and attaches it to an existing Secret.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/secretmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const secretmanager = google.secretmanager('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await secretmanager.projects.secrets.addVersion({
+     *     // Required. The resource name of the Secret to associate with the SecretVersion in the format `projects/x/secrets/x` or `projects/x/locations/x/secrets/x`.
+     *     parent: 'projects/my-project/secrets/my-secret',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "payload": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientSpecifiedPayloadChecksum": false,
+     *   //   "createTime": "my_createTime",
+     *   //   "customerManagedEncryption": {},
+     *   //   "destroyTime": "my_destroyTime",
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "replicationStatus": {},
+     *   //   "scheduledDestroyTime": "my_scheduledDestroyTime",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2412,11 +3501,11 @@ export namespace secretmanager_v1beta2 {
     addVersion(
       params: Params$Resource$Projects$Secrets$Addversion,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     addVersion(
       params?: Params$Resource$Projects$Secrets$Addversion,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SecretVersion>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SecretVersion>>;
     addVersion(
       params: Params$Resource$Projects$Secrets$Addversion,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2445,7 +3534,10 @@ export namespace secretmanager_v1beta2 {
       callback?:
         | BodyResponseCallback<Schema$SecretVersion>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SecretVersion> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SecretVersion>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Secrets$Addversion;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2492,6 +3584,86 @@ export namespace secretmanager_v1beta2 {
 
     /**
      * Creates a new Secret containing no SecretVersions.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/secretmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const secretmanager = google.secretmanager('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await secretmanager.projects.secrets.create({
+     *     // Required. The resource name of the project to associate with the Secret, in the format `projects/x` or `projects/x/locations/x`.
+     *     parent: 'projects/my-project',
+     *     // Required. This must be unique within the project. A secret ID is a string with a maximum length of 255 characters and can contain uppercase and lowercase letters, numerals, and the hyphen (`-`) and underscore (`_`) characters.
+     *     secretId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "annotations": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "customerManagedEncryption": {},
+     *       //   "etag": "my_etag",
+     *       //   "expireTime": "my_expireTime",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "replication": {},
+     *       //   "rotation": {},
+     *       //   "topics": [],
+     *       //   "ttl": "my_ttl",
+     *       //   "versionAliases": {},
+     *       //   "versionDestroyTtl": "my_versionDestroyTtl"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "annotations": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "customerManagedEncryption": {},
+     *   //   "etag": "my_etag",
+     *   //   "expireTime": "my_expireTime",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "replication": {},
+     *   //   "rotation": {},
+     *   //   "topics": [],
+     *   //   "ttl": "my_ttl",
+     *   //   "versionAliases": {},
+     *   //   "versionDestroyTtl": "my_versionDestroyTtl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2501,11 +3673,11 @@ export namespace secretmanager_v1beta2 {
     create(
       params: Params$Resource$Projects$Secrets$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Secrets$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Secret>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Secret>>;
     create(
       params: Params$Resource$Projects$Secrets$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2534,7 +3706,10 @@ export namespace secretmanager_v1beta2 {
       callback?:
         | BodyResponseCallback<Schema$Secret>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Secret> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Secret>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Secrets$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2581,6 +3756,52 @@ export namespace secretmanager_v1beta2 {
 
     /**
      * Deletes a Secret.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/secretmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const secretmanager = google.secretmanager('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await secretmanager.projects.secrets.delete({
+     *     // Optional. Etag of the Secret. The request succeeds if it matches the etag of the currently stored secret object. If the etag is omitted, the request succeeds.
+     *     etag: 'placeholder-value',
+     *     // Required. The resource name of the Secret to delete in the format `projects/x/secrets/x`.
+     *     name: 'projects/my-project/secrets/my-secret',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2590,11 +3811,11 @@ export namespace secretmanager_v1beta2 {
     delete(
       params: Params$Resource$Projects$Secrets$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Secrets$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Secrets$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2623,7 +3844,10 @@ export namespace secretmanager_v1beta2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Secrets$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2667,6 +3891,64 @@ export namespace secretmanager_v1beta2 {
 
     /**
      * Gets metadata for a given Secret.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/secretmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const secretmanager = google.secretmanager('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await secretmanager.projects.secrets.get({
+     *     // Required. The resource name of the Secret, in the format `projects/x/secrets/x` or `projects/x/locations/x/secrets/x`.
+     *     name: 'projects/my-project/secrets/my-secret',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "annotations": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "customerManagedEncryption": {},
+     *   //   "etag": "my_etag",
+     *   //   "expireTime": "my_expireTime",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "replication": {},
+     *   //   "rotation": {},
+     *   //   "topics": [],
+     *   //   "ttl": "my_ttl",
+     *   //   "versionAliases": {},
+     *   //   "versionDestroyTtl": "my_versionDestroyTtl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2676,11 +3958,11 @@ export namespace secretmanager_v1beta2 {
     get(
       params: Params$Resource$Projects$Secrets$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Secrets$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Secret>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Secret>>;
     get(
       params: Params$Resource$Projects$Secrets$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2709,7 +3991,10 @@ export namespace secretmanager_v1beta2 {
       callback?:
         | BodyResponseCallback<Schema$Secret>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Secret> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Secret>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Secrets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2753,6 +4038,57 @@ export namespace secretmanager_v1beta2 {
 
     /**
      * Gets the access control policy for a secret. Returns empty policy if the secret exists and does not have a policy set.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/secretmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const secretmanager = google.secretmanager('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await secretmanager.projects.secrets.getIamPolicy({
+     *     // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     *     'options.requestedPolicyVersion': 'placeholder-value',
+     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource: 'projects/my-project/secrets/my-secret',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2762,11 +4098,11 @@ export namespace secretmanager_v1beta2 {
     getIamPolicy(
       params: Params$Resource$Projects$Secrets$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Secrets$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Secrets$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2795,7 +4131,10 @@ export namespace secretmanager_v1beta2 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Secrets$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2842,6 +4181,60 @@ export namespace secretmanager_v1beta2 {
 
     /**
      * Lists Secrets.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/secretmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const secretmanager = google.secretmanager('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await secretmanager.projects.secrets.list({
+     *     // Optional. Filter string, adhering to the rules in [List-operation filtering](https://cloud.google.com/secret-manager/docs/filtering). List only secrets matching the filter. If filter is empty, all secrets are listed.
+     *     filter: 'placeholder-value',
+     *     // Optional. The maximum number of results to be returned in a single page. If set to 0, the server decides the number of results to return. If the number is greater than 25000, it is capped at 25000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. Pagination token, returned earlier via ListSecretsResponse.next_page_token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name of the project associated with the Secrets, in the format `projects/x` or `projects/x/locations/x`
+     *     parent: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "secrets": [],
+     *   //   "totalSize": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2851,11 +4244,11 @@ export namespace secretmanager_v1beta2 {
     list(
       params: Params$Resource$Projects$Secrets$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Secrets$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListSecretsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListSecretsResponse>>;
     list(
       params: Params$Resource$Projects$Secrets$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2886,8 +4279,8 @@ export namespace secretmanager_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListSecretsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListSecretsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Secrets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2934,6 +4327,86 @@ export namespace secretmanager_v1beta2 {
 
     /**
      * Updates metadata of an existing Secret.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/secretmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const secretmanager = google.secretmanager('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await secretmanager.projects.secrets.patch({
+     *     // Output only. The resource name of the Secret in the format `projects/x/secrets/x`.
+     *     name: 'projects/my-project/secrets/my-secret',
+     *     // Required. Specifies the fields to be updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "annotations": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "customerManagedEncryption": {},
+     *       //   "etag": "my_etag",
+     *       //   "expireTime": "my_expireTime",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "replication": {},
+     *       //   "rotation": {},
+     *       //   "topics": [],
+     *       //   "ttl": "my_ttl",
+     *       //   "versionAliases": {},
+     *       //   "versionDestroyTtl": "my_versionDestroyTtl"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "annotations": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "customerManagedEncryption": {},
+     *   //   "etag": "my_etag",
+     *   //   "expireTime": "my_expireTime",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "replication": {},
+     *   //   "rotation": {},
+     *   //   "topics": [],
+     *   //   "ttl": "my_ttl",
+     *   //   "versionAliases": {},
+     *   //   "versionDestroyTtl": "my_versionDestroyTtl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2943,11 +4416,11 @@ export namespace secretmanager_v1beta2 {
     patch(
       params: Params$Resource$Projects$Secrets$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Secrets$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Secret>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Secret>>;
     patch(
       params: Params$Resource$Projects$Secrets$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2976,7 +4449,10 @@ export namespace secretmanager_v1beta2 {
       callback?:
         | BodyResponseCallback<Schema$Secret>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Secret> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Secret>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Secrets$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3020,6 +4496,64 @@ export namespace secretmanager_v1beta2 {
 
     /**
      * Sets the access control policy on the specified secret. Replaces any existing policy. Permissions on SecretVersions are enforced according to the policy set on the associated Secret.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/secretmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const secretmanager = google.secretmanager('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await secretmanager.projects.secrets.setIamPolicy({
+     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource: 'projects/my-project/secrets/my-secret',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "policy": {},
+     *       //   "updateMask": "my_updateMask"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3029,11 +4563,11 @@ export namespace secretmanager_v1beta2 {
     setIamPolicy(
       params: Params$Resource$Projects$Secrets$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Secrets$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Secrets$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3062,7 +4596,10 @@ export namespace secretmanager_v1beta2 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Secrets$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3109,6 +4646,60 @@ export namespace secretmanager_v1beta2 {
 
     /**
      * Returns permissions that a caller has for the specified secret. If the secret does not exist, this call returns an empty set of permissions, not a NOT_FOUND error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/secretmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const secretmanager = google.secretmanager('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await secretmanager.projects.secrets.testIamPermissions({
+     *     // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource: 'projects/my-project/secrets/my-secret',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "permissions": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3118,11 +4709,11 @@ export namespace secretmanager_v1beta2 {
     testIamPermissions(
       params: Params$Resource$Projects$Secrets$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Secrets$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Secrets$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3157,8 +4748,8 @@ export namespace secretmanager_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Secrets$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3329,6 +4920,53 @@ export namespace secretmanager_v1beta2 {
 
     /**
      * Accesses a SecretVersion. This call returns the secret data. `projects/x/secrets/x/versions/latest` is an alias to the most recently created SecretVersion.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/secretmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const secretmanager = google.secretmanager('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await secretmanager.projects.secrets.versions.access({
+     *     // Required. The resource name of the SecretVersion in the format `projects/x/secrets/x/versions/x` or `projects/x/locations/x/secrets/x/versions/x`. `projects/x/secrets/x/versions/latest` or `projects/x/locations/x/secrets/x/versions/latest` is an alias to the most recently created SecretVersion.
+     *     name: 'projects/my-project/secrets/my-secret/versions/my-version',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "payload": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3338,11 +4976,11 @@ export namespace secretmanager_v1beta2 {
     access(
       params: Params$Resource$Projects$Secrets$Versions$Access,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     access(
       params?: Params$Resource$Projects$Secrets$Versions$Access,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AccessSecretVersionResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AccessSecretVersionResponse>>;
     access(
       params: Params$Resource$Projects$Secrets$Versions$Access,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3377,8 +5015,8 @@ export namespace secretmanager_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AccessSecretVersionResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AccessSecretVersionResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Secrets$Versions$Access;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3425,6 +5063,68 @@ export namespace secretmanager_v1beta2 {
 
     /**
      * Destroys a SecretVersion. Sets the state of the SecretVersion to DESTROYED and irrevocably destroys the secret data.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/secretmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const secretmanager = google.secretmanager('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await secretmanager.projects.secrets.versions.destroy({
+     *     // Required. The resource name of the SecretVersion to destroy in the format `projects/x/secrets/x/versions/x` or `projects/x/locations/x/secrets/x/versions/x`.
+     *     name: 'projects/my-project/secrets/my-secret/versions/my-version',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "etag": "my_etag"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientSpecifiedPayloadChecksum": false,
+     *   //   "createTime": "my_createTime",
+     *   //   "customerManagedEncryption": {},
+     *   //   "destroyTime": "my_destroyTime",
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "replicationStatus": {},
+     *   //   "scheduledDestroyTime": "my_scheduledDestroyTime",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3434,11 +5134,11 @@ export namespace secretmanager_v1beta2 {
     destroy(
       params: Params$Resource$Projects$Secrets$Versions$Destroy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     destroy(
       params?: Params$Resource$Projects$Secrets$Versions$Destroy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SecretVersion>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SecretVersion>>;
     destroy(
       params: Params$Resource$Projects$Secrets$Versions$Destroy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3467,7 +5167,10 @@ export namespace secretmanager_v1beta2 {
       callback?:
         | BodyResponseCallback<Schema$SecretVersion>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SecretVersion> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SecretVersion>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Secrets$Versions$Destroy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3514,6 +5217,68 @@ export namespace secretmanager_v1beta2 {
 
     /**
      * Disables a SecretVersion. Sets the state of the SecretVersion to DISABLED.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/secretmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const secretmanager = google.secretmanager('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await secretmanager.projects.secrets.versions.disable({
+     *     // Required. The resource name of the SecretVersion to disable in the format `projects/x/secrets/x/versions/x` or `projects/x/locations/x/secrets/x/versions/x`.
+     *     name: 'projects/my-project/secrets/my-secret/versions/my-version',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "etag": "my_etag"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientSpecifiedPayloadChecksum": false,
+     *   //   "createTime": "my_createTime",
+     *   //   "customerManagedEncryption": {},
+     *   //   "destroyTime": "my_destroyTime",
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "replicationStatus": {},
+     *   //   "scheduledDestroyTime": "my_scheduledDestroyTime",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3523,11 +5288,11 @@ export namespace secretmanager_v1beta2 {
     disable(
       params: Params$Resource$Projects$Secrets$Versions$Disable,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     disable(
       params?: Params$Resource$Projects$Secrets$Versions$Disable,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SecretVersion>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SecretVersion>>;
     disable(
       params: Params$Resource$Projects$Secrets$Versions$Disable,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3556,7 +5321,10 @@ export namespace secretmanager_v1beta2 {
       callback?:
         | BodyResponseCallback<Schema$SecretVersion>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SecretVersion> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SecretVersion>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Secrets$Versions$Disable;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3603,6 +5371,68 @@ export namespace secretmanager_v1beta2 {
 
     /**
      * Enables a SecretVersion. Sets the state of the SecretVersion to ENABLED.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/secretmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const secretmanager = google.secretmanager('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await secretmanager.projects.secrets.versions.enable({
+     *     // Required. The resource name of the SecretVersion to enable in the format `projects/x/secrets/x/versions/x` or `projects/x/locations/x/secrets/x/versions/x`.
+     *     name: 'projects/my-project/secrets/my-secret/versions/my-version',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "etag": "my_etag"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientSpecifiedPayloadChecksum": false,
+     *   //   "createTime": "my_createTime",
+     *   //   "customerManagedEncryption": {},
+     *   //   "destroyTime": "my_destroyTime",
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "replicationStatus": {},
+     *   //   "scheduledDestroyTime": "my_scheduledDestroyTime",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3612,11 +5442,11 @@ export namespace secretmanager_v1beta2 {
     enable(
       params: Params$Resource$Projects$Secrets$Versions$Enable,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     enable(
       params?: Params$Resource$Projects$Secrets$Versions$Enable,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SecretVersion>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SecretVersion>>;
     enable(
       params: Params$Resource$Projects$Secrets$Versions$Enable,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3645,7 +5475,10 @@ export namespace secretmanager_v1beta2 {
       callback?:
         | BodyResponseCallback<Schema$SecretVersion>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SecretVersion> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SecretVersion>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Secrets$Versions$Enable;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3692,6 +5525,60 @@ export namespace secretmanager_v1beta2 {
 
     /**
      * Gets metadata for a SecretVersion. `projects/x/secrets/x/versions/latest` is an alias to the most recently created SecretVersion.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/secretmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const secretmanager = google.secretmanager('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await secretmanager.projects.secrets.versions.get({
+     *     // Required. The resource name of the SecretVersion in the format `projects/x/secrets/x/versions/x` or `projects/x/locations/x/secrets/x/versions/x`. `projects/x/secrets/x/versions/latest` or `projects/x/locations/x/secrets/x/versions/latest` is an alias to the most recently created SecretVersion.
+     *     name: 'projects/my-project/secrets/my-secret/versions/my-version',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientSpecifiedPayloadChecksum": false,
+     *   //   "createTime": "my_createTime",
+     *   //   "customerManagedEncryption": {},
+     *   //   "destroyTime": "my_destroyTime",
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "replicationStatus": {},
+     *   //   "scheduledDestroyTime": "my_scheduledDestroyTime",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3701,11 +5588,11 @@ export namespace secretmanager_v1beta2 {
     get(
       params: Params$Resource$Projects$Secrets$Versions$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Secrets$Versions$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SecretVersion>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SecretVersion>>;
     get(
       params: Params$Resource$Projects$Secrets$Versions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3734,7 +5621,10 @@ export namespace secretmanager_v1beta2 {
       callback?:
         | BodyResponseCallback<Schema$SecretVersion>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SecretVersion> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SecretVersion>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Secrets$Versions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3778,6 +5668,60 @@ export namespace secretmanager_v1beta2 {
 
     /**
      * Lists SecretVersions. This call does not return secret data.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/secretmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const secretmanager = google.secretmanager('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await secretmanager.projects.secrets.versions.list({
+     *     // Optional. Filter string, adhering to the rules in [List-operation filtering](https://cloud.google.com/secret-manager/docs/filtering). List only secret versions matching the filter. If filter is empty, all secret versions are listed.
+     *     filter: 'placeholder-value',
+     *     // Optional. The maximum number of results to be returned in a single page. If set to 0, the server decides the number of results to return. If the number is greater than 25000, it is capped at 25000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. Pagination token, returned earlier via ListSecretVersionsResponse.next_page_token][].
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name of the Secret associated with the SecretVersions to list, in the format `projects/x/secrets/x` or `projects/x/locations/x/secrets/x`.
+     *     parent: 'projects/my-project/secrets/my-secret',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "totalSize": 0,
+     *   //   "versions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3787,11 +5731,11 @@ export namespace secretmanager_v1beta2 {
     list(
       params: Params$Resource$Projects$Secrets$Versions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Secrets$Versions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListSecretVersionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListSecretVersionsResponse>>;
     list(
       params: Params$Resource$Projects$Secrets$Versions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3826,8 +5770,8 @@ export namespace secretmanager_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListSecretVersionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListSecretVersionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Secrets$Versions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

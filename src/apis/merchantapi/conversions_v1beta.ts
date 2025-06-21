@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -280,7 +280,7 @@ export namespace merchantapi_conversions_v1beta {
      */
     eventTime?: string | null;
     /**
-     * Optional. The product expiration time. This field will not bet set if the notification is sent for a product deletion event.
+     * Optional. The product expiration time. This field will not be set if the notification is sent for a product deletion event.
      */
     expirationTime?: string | null;
     /**
@@ -324,6 +324,70 @@ export namespace merchantapi_conversions_v1beta {
 
     /**
      * Creates a new conversion source.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('conversions_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.conversionSources.create({
+     *     // Required. The merchant account that will own the new conversion source. Format: `accounts/{account\}`
+     *     parent: 'accounts/my-account',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "controller": "my_controller",
+     *       //   "expireTime": "my_expireTime",
+     *       //   "googleAnalyticsLink": {},
+     *       //   "merchantCenterDestination": {},
+     *       //   "name": "my_name",
+     *       //   "state": "my_state"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "controller": "my_controller",
+     *   //   "expireTime": "my_expireTime",
+     *   //   "googleAnalyticsLink": {},
+     *   //   "merchantCenterDestination": {},
+     *   //   "name": "my_name",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -333,11 +397,11 @@ export namespace merchantapi_conversions_v1beta {
     create(
       params: Params$Resource$Accounts$Conversionsources$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Accounts$Conversionsources$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ConversionSource>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ConversionSource>>;
     create(
       params: Params$Resource$Accounts$Conversionsources$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -366,7 +430,10 @@ export namespace merchantapi_conversions_v1beta {
       callback?:
         | BodyResponseCallback<Schema$ConversionSource>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ConversionSource> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ConversionSource>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Conversionsources$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -411,6 +478,50 @@ export namespace merchantapi_conversions_v1beta {
 
     /**
      * Archives an existing conversion source. If the conversion source is a Merchant Center Destination, it will be recoverable for 30 days. If the conversion source is a Google Analytics Link, it will be deleted immediately and can be restored by creating a new one.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('conversions_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.conversionSources.delete({
+     *     // Required. The name of the conversion source to be deleted. Format: `accounts/{account\}/conversionSources/{conversion_source\}`
+     *     name: 'accounts/my-account/conversionSources/my-conversionSource',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -420,11 +531,11 @@ export namespace merchantapi_conversions_v1beta {
     delete(
       params: Params$Resource$Accounts$Conversionsources$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Accounts$Conversionsources$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Accounts$Conversionsources$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -453,7 +564,10 @@ export namespace merchantapi_conversions_v1beta {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Conversionsources$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -499,6 +613,57 @@ export namespace merchantapi_conversions_v1beta {
 
     /**
      * Fetches a conversion source.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('conversions_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.conversionSources.get({
+     *     // Required. The name of the conversion source to be fetched. Format: `accounts/{account\}/conversionSources/{conversion_source\}`
+     *     name: 'accounts/my-account/conversionSources/my-conversionSource',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "controller": "my_controller",
+     *   //   "expireTime": "my_expireTime",
+     *   //   "googleAnalyticsLink": {},
+     *   //   "merchantCenterDestination": {},
+     *   //   "name": "my_name",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -508,11 +673,11 @@ export namespace merchantapi_conversions_v1beta {
     get(
       params: Params$Resource$Accounts$Conversionsources$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Accounts$Conversionsources$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ConversionSource>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ConversionSource>>;
     get(
       params: Params$Resource$Accounts$Conversionsources$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -541,7 +706,10 @@ export namespace merchantapi_conversions_v1beta {
       callback?:
         | BodyResponseCallback<Schema$ConversionSource>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ConversionSource> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ConversionSource>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Conversionsources$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -587,6 +755,59 @@ export namespace merchantapi_conversions_v1beta {
 
     /**
      * Retrieves the list of conversion sources the caller has access to.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('conversions_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.conversionSources.list({
+     *     // Optional. The maximum number of conversion sources to return in a page. If no `page_size` is specified, `100` is used as the default value. The maximum value is `200`. Values above `200` will be coerced to `200`. Regardless of pagination, at most `200` conversion sources are returned in total.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. Page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The merchant account who owns the collection of conversion sources. Format: `accounts/{account\}`
+     *     parent: 'accounts/my-account',
+     *     // Optional. Show deleted (archived) conversion sources. By default, deleted conversion sources are not returned.
+     *     showDeleted: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "conversionSources": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -596,11 +817,11 @@ export namespace merchantapi_conversions_v1beta {
     list(
       params: Params$Resource$Accounts$Conversionsources$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Accounts$Conversionsources$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListConversionSourcesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListConversionSourcesResponse>>;
     list(
       params: Params$Resource$Accounts$Conversionsources$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -635,8 +856,8 @@ export namespace merchantapi_conversions_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListConversionSourcesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListConversionSourcesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Conversionsources$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -683,6 +904,72 @@ export namespace merchantapi_conversions_v1beta {
 
     /**
      * Updates information of an existing conversion source. Available only for Merchant Center Destination conversion sources.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('conversions_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.conversionSources.patch({
+     *     // Output only. Identifier. Generated by the Content API upon creation of a new `ConversionSource`. Format: `[a-z]{4\}:.+` The four characters before the colon represent the type of conversion source. Content after the colon represents the ID of the conversion source within that type. The ID of two different conversion sources might be the same across different types. The following type prefixes are supported: * `galk`: For GoogleAnalyticsLink sources. * `mcdn`: For MerchantCenterDestination sources.
+     *     name: 'accounts/my-account/conversionSources/my-conversionSource',
+     *     // Optional. List of fields being updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "controller": "my_controller",
+     *       //   "expireTime": "my_expireTime",
+     *       //   "googleAnalyticsLink": {},
+     *       //   "merchantCenterDestination": {},
+     *       //   "name": "my_name",
+     *       //   "state": "my_state"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "controller": "my_controller",
+     *   //   "expireTime": "my_expireTime",
+     *   //   "googleAnalyticsLink": {},
+     *   //   "merchantCenterDestination": {},
+     *   //   "name": "my_name",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -692,11 +979,11 @@ export namespace merchantapi_conversions_v1beta {
     patch(
       params: Params$Resource$Accounts$Conversionsources$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Accounts$Conversionsources$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ConversionSource>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ConversionSource>>;
     patch(
       params: Params$Resource$Accounts$Conversionsources$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -725,7 +1012,10 @@ export namespace merchantapi_conversions_v1beta {
       callback?:
         | BodyResponseCallback<Schema$ConversionSource>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ConversionSource> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ConversionSource>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Conversionsources$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -771,6 +1061,63 @@ export namespace merchantapi_conversions_v1beta {
 
     /**
      * Re-enables an archived conversion source. Only Available for Merchant Center Destination conversion sources.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('conversions_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.conversionSources.undelete({
+     *     // Required. The name of the conversion source to be undeleted. Format: `accounts/{account\}/conversionSources/{conversion_source\}`
+     *     name: 'accounts/my-account/conversionSources/my-conversionSource',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "controller": "my_controller",
+     *   //   "expireTime": "my_expireTime",
+     *   //   "googleAnalyticsLink": {},
+     *   //   "merchantCenterDestination": {},
+     *   //   "name": "my_name",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -780,11 +1127,11 @@ export namespace merchantapi_conversions_v1beta {
     undelete(
       params: Params$Resource$Accounts$Conversionsources$Undelete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     undelete(
       params?: Params$Resource$Accounts$Conversionsources$Undelete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ConversionSource>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ConversionSource>>;
     undelete(
       params: Params$Resource$Accounts$Conversionsources$Undelete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -813,7 +1160,10 @@ export namespace merchantapi_conversions_v1beta {
       callback?:
         | BodyResponseCallback<Schema$ConversionSource>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ConversionSource> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ConversionSource>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Conversionsources$Undelete;
       let options = (optionsOrCallback || {}) as MethodOptions;

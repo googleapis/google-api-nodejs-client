@@ -261,7 +261,7 @@
       }
     }
   },
-  "revision": "20250415",
+  "revision": "20250612",
   "rootUrl": "https://texttospeech.googleapis.com/",
   "schemas": {
     "AdvancedVoiceOptions": {
@@ -289,7 +289,8 @@
             "OGG_OPUS",
             "MULAW",
             "ALAW",
-            "PCM"
+            "PCM",
+            "M4A"
           ],
           "enumDescriptions": [
             "Not specified. Will return result google.rpc.Code.INVALID_ARGUMENT.",
@@ -299,7 +300,8 @@
             "Opus encoded audio wrapped in an ogg container. The result is a file which can be played natively on Android, and in browsers (at least Chrome and Firefox). The quality of the encoding is considerably higher than MP3 while using approximately the same bitrate.",
             "8-bit samples that compand 14-bit audio samples using G.711 PCMU/mu-law. Audio content returned as MULAW also contains a WAV header.",
             "8-bit samples that compand 14-bit audio samples using G.711 PCMU/A-law. Audio content returned as ALAW also contains a WAV header.",
-            "Uncompressed 16-bit signed little-endian samples (Linear PCM). Note that as opposed to LINEAR16, audio won't be wrapped in a WAV (or any other) header."
+            "Uncompressed 16-bit signed little-endian samples (Linear PCM). Note that as opposed to LINEAR16, audio won't be wrapped in a WAV (or any other) header.",
+            "M4A audio."
           ],
           "type": "string"
         },
@@ -342,12 +344,16 @@
           "enum": [
             "PHONETIC_ENCODING_UNSPECIFIED",
             "PHONETIC_ENCODING_IPA",
-            "PHONETIC_ENCODING_X_SAMPA"
+            "PHONETIC_ENCODING_X_SAMPA",
+            "PHONETIC_ENCODING_JAPANESE_YOMIGANA",
+            "PHONETIC_ENCODING_PINYIN"
           ],
           "enumDescriptions": [
             "Not specified.",
             "IPA, such as apple -> ˈæpəl. https://en.wikipedia.org/wiki/International_Phonetic_Alphabet",
-            "X-SAMPA, such as apple -> \"{p@l\". https://en.wikipedia.org/wiki/X-SAMPA"
+            "X-SAMPA, such as apple -> \"{p@l\". https://en.wikipedia.org/wiki/X-SAMPA",
+            "For reading-to-pron conversion to work well, the `pronunciation` field should only contain Kanji, Hiragana, and Katakana. The pronunciation can also contain pitch accents. The start of a pitch phrase is specified with `^` and the down-pitch position is specified with `!`, for example: phrase:端 pronunciation:^はし phrase:箸 pronunciation:^は!し phrase:橋 pronunciation:^はし! We currently only support the Tokyo dialect, which allows at most one down-pitch per phrase (i.e. at most one `!` between `^`).",
+            "Used to specify pronunciations for Mandarin words. See https://en.wikipedia.org/wiki/Pinyin. For example: 朝阳, the pronunciation is \"chao2 yang2\". The number represents the tone, and there is a space between syllables. Neutral tones are represented by 5, for example 孩子 \"hai2 zi5\"."
           ],
           "type": "string"
         },
@@ -540,6 +546,10 @@
         "customPronunciations": {
           "$ref": "CustomPronunciations",
           "description": "Optional. The pronunciation customizations are applied to the input. If this is set, the input is synthesized using the given pronunciation customizations. The initial support is for en-us, with plans to expand to other locales in the future. Instant Clone voices aren't supported. In order to customize the pronunciation of a phrase, there must be an exact match of the phrase in the input types. If using SSML, the phrase must not be inside a phoneme tag."
+        },
+        "markup": {
+          "description": "Markup for HD voices specifically. This field may not be used with any other voices.",
+          "type": "string"
         },
         "multiSpeakerMarkup": {
           "$ref": "MultiSpeakerMarkup",

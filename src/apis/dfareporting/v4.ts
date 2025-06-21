@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -1386,7 +1386,7 @@ export namespace dfareporting_v4 {
     totalAmountMicros?: string | null;
   }
   /**
-   * Contains additional information about cart data. This field may only be used when calling batchinsert; it is not supported by batchupdate.
+   *  *Beta:* This feature is currently in beta. Contains additional information about cart data. This field may only be used when calling batchinsert; it is not supported by batchupdate. Cart data reporting is only supported in SA360. [Learn more](https://support.google.com/sa360/topic/13425788)
    */
   export interface Schema$CartData {
     /**
@@ -1811,6 +1811,10 @@ export namespace dfareporting_v4 {
      * The quantity of the conversion. This is a required field.
      */
     quantity?: string | null;
+    /**
+     * Session attributes for the conversion, encoded as based64 bytes. This field may only be used when calling batchinsert; it is not supported by batchupdate.
+     */
+    sessionAttributesEncoded?: string | null;
     /**
      * The timestamp of conversion, in Unix epoch micros. This is a required field.
      */
@@ -2896,7 +2900,7 @@ export namespace dfareporting_v4 {
     metrics?: Schema$Metric[];
   }
   /**
-   * A custom floodlight variable. This field may only be used when calling batchinsert; it is not supported by batchupdate.
+   * A custom floodlight variable. Can be used in both batchinsert and batchupdate. Adding this in batchupdate will update or append the variable to the existing list.
    */
   export interface Schema$CustomFloodlightVariable {
     /**
@@ -7044,6 +7048,58 @@ export namespace dfareporting_v4 {
 
     /**
      * Gets the account's active ad summary by account ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.accountActiveAdSummaries.get({
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *     // Account ID.
+     *     summaryAccountId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "activeAds": "my_activeAds",
+     *   //   "activeAdsLimitTier": "my_activeAdsLimitTier",
+     *   //   "availableAds": "my_availableAds",
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7053,11 +7109,11 @@ export namespace dfareporting_v4 {
     get(
       params: Params$Resource$Accountactiveadsummaries$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Accountactiveadsummaries$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AccountActiveAdSummary>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AccountActiveAdSummary>>;
     get(
       params: Params$Resource$Accountactiveadsummaries$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7090,8 +7146,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AccountActiveAdSummary>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AccountActiveAdSummary>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accountactiveadsummaries$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7156,6 +7212,56 @@ export namespace dfareporting_v4 {
 
     /**
      * Gets one account permission group by ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.accountPermissionGroups.get({
+     *     // Account permission group ID.
+     *     id: '[^/]+',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7165,11 +7271,11 @@ export namespace dfareporting_v4 {
     get(
       params: Params$Resource$Accountpermissiongroups$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Accountpermissiongroups$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AccountPermissionGroup>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AccountPermissionGroup>>;
     get(
       params: Params$Resource$Accountpermissiongroups$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7202,8 +7308,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AccountPermissionGroup>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AccountPermissionGroup>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accountpermissiongroups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7249,6 +7355,53 @@ export namespace dfareporting_v4 {
 
     /**
      * Retrieves the list of account permission groups.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.accountPermissionGroups.list({
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountPermissionGroups": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7258,11 +7411,13 @@ export namespace dfareporting_v4 {
     list(
       params: Params$Resource$Accountpermissiongroups$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Accountpermissiongroups$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AccountPermissionGroupsListResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$AccountPermissionGroupsListResponse>
+    >;
     list(
       params: Params$Resource$Accountpermissiongroups$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7297,8 +7452,10 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AccountPermissionGroupsListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$AccountPermissionGroupsListResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accountpermissiongroups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7372,6 +7529,59 @@ export namespace dfareporting_v4 {
 
     /**
      * Gets one account permission by ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.accountPermissions.get({
+     *     // Account permission ID.
+     *     id: '[^/]+',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountProfiles": [],
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "level": "my_level",
+     *   //   "name": "my_name",
+     *   //   "permissionGroupId": "my_permissionGroupId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7381,11 +7591,11 @@ export namespace dfareporting_v4 {
     get(
       params: Params$Resource$Accountpermissions$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Accountpermissions$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AccountPermission>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AccountPermission>>;
     get(
       params: Params$Resource$Accountpermissions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7416,8 +7626,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AccountPermission>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AccountPermission>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accountpermissions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7463,6 +7673,53 @@ export namespace dfareporting_v4 {
 
     /**
      * Retrieves the list of account permissions.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.accountPermissions.list({
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountPermissions": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7472,11 +7729,11 @@ export namespace dfareporting_v4 {
     list(
       params: Params$Resource$Accountpermissions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Accountpermissions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AccountPermissionsListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AccountPermissionsListResponse>>;
     list(
       params: Params$Resource$Accountpermissions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7511,8 +7768,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AccountPermissionsListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AccountPermissionsListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accountpermissions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7586,6 +7843,72 @@ export namespace dfareporting_v4 {
 
     /**
      * Gets one account by ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.accounts.get({
+     *     // Account ID.
+     *     id: '[^/]+',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountPermissionIds": [],
+     *   //   "accountProfile": "my_accountProfile",
+     *   //   "active": false,
+     *   //   "activeAdsLimitTier": "my_activeAdsLimitTier",
+     *   //   "activeViewOptOut": false,
+     *   //   "availablePermissionIds": [],
+     *   //   "countryId": "my_countryId",
+     *   //   "currencyId": "my_currencyId",
+     *   //   "defaultCreativeSizeId": "my_defaultCreativeSizeId",
+     *   //   "description": "my_description",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "locale": "my_locale",
+     *   //   "maximumImageSize": "my_maximumImageSize",
+     *   //   "name": "my_name",
+     *   //   "nielsenOcrEnabled": false,
+     *   //   "reportsConfiguration": {},
+     *   //   "shareReportsWithTwitter": false,
+     *   //   "teaserSizeLimit": "my_teaserSizeLimit"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7595,11 +7918,11 @@ export namespace dfareporting_v4 {
     get(
       params: Params$Resource$Accounts$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Accounts$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Account>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Account>>;
     get(
       params: Params$Resource$Accounts$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7628,7 +7951,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Account>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Account> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Account>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7673,6 +7999,68 @@ export namespace dfareporting_v4 {
 
     /**
      * Retrieves the list of accounts, possibly filtered. This method supports paging.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.accounts.list({
+     *     // Select only active accounts. Don't set this field to select both active and non-active accounts.
+     *     active: 'placeholder-value',
+     *     // Select only accounts with these IDs.
+     *     ids: 'placeholder-value',
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Value of the nextPageToken from the previous result page.
+     *     pageToken: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *     // Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "account*2015" will return objects with names like "account June 2015", "account April 2015", or simply "account 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "account" will match objects with name "my account", "account 2015", or simply "account".
+     *     searchString: 'placeholder-value',
+     *     // Field by which to sort the list.
+     *     sortField: 'placeholder-value',
+     *     // Order of sorted results.
+     *     sortOrder: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accounts": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7682,11 +8070,11 @@ export namespace dfareporting_v4 {
     list(
       params: Params$Resource$Accounts$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Accounts$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AccountsListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AccountsListResponse>>;
     list(
       params: Params$Resource$Accounts$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7719,8 +8107,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AccountsListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AccountsListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7764,6 +8152,98 @@ export namespace dfareporting_v4 {
 
     /**
      * Updates an existing account. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.accounts.patch({
+     *     // Required. Account ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountPermissionIds": [],
+     *       //   "accountProfile": "my_accountProfile",
+     *       //   "active": false,
+     *       //   "activeAdsLimitTier": "my_activeAdsLimitTier",
+     *       //   "activeViewOptOut": false,
+     *       //   "availablePermissionIds": [],
+     *       //   "countryId": "my_countryId",
+     *       //   "currencyId": "my_currencyId",
+     *       //   "defaultCreativeSizeId": "my_defaultCreativeSizeId",
+     *       //   "description": "my_description",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "locale": "my_locale",
+     *       //   "maximumImageSize": "my_maximumImageSize",
+     *       //   "name": "my_name",
+     *       //   "nielsenOcrEnabled": false,
+     *       //   "reportsConfiguration": {},
+     *       //   "shareReportsWithTwitter": false,
+     *       //   "teaserSizeLimit": "my_teaserSizeLimit"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountPermissionIds": [],
+     *   //   "accountProfile": "my_accountProfile",
+     *   //   "active": false,
+     *   //   "activeAdsLimitTier": "my_activeAdsLimitTier",
+     *   //   "activeViewOptOut": false,
+     *   //   "availablePermissionIds": [],
+     *   //   "countryId": "my_countryId",
+     *   //   "currencyId": "my_currencyId",
+     *   //   "defaultCreativeSizeId": "my_defaultCreativeSizeId",
+     *   //   "description": "my_description",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "locale": "my_locale",
+     *   //   "maximumImageSize": "my_maximumImageSize",
+     *   //   "name": "my_name",
+     *   //   "nielsenOcrEnabled": false,
+     *   //   "reportsConfiguration": {},
+     *   //   "shareReportsWithTwitter": false,
+     *   //   "teaserSizeLimit": "my_teaserSizeLimit"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7773,11 +8253,11 @@ export namespace dfareporting_v4 {
     patch(
       params: Params$Resource$Accounts$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Accounts$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Account>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Account>>;
     patch(
       params: Params$Resource$Accounts$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7806,7 +8286,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Account>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Account> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Account>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7850,6 +8333,96 @@ export namespace dfareporting_v4 {
 
     /**
      * Updates an existing account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.accounts.update({
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountPermissionIds": [],
+     *       //   "accountProfile": "my_accountProfile",
+     *       //   "active": false,
+     *       //   "activeAdsLimitTier": "my_activeAdsLimitTier",
+     *       //   "activeViewOptOut": false,
+     *       //   "availablePermissionIds": [],
+     *       //   "countryId": "my_countryId",
+     *       //   "currencyId": "my_currencyId",
+     *       //   "defaultCreativeSizeId": "my_defaultCreativeSizeId",
+     *       //   "description": "my_description",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "locale": "my_locale",
+     *       //   "maximumImageSize": "my_maximumImageSize",
+     *       //   "name": "my_name",
+     *       //   "nielsenOcrEnabled": false,
+     *       //   "reportsConfiguration": {},
+     *       //   "shareReportsWithTwitter": false,
+     *       //   "teaserSizeLimit": "my_teaserSizeLimit"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountPermissionIds": [],
+     *   //   "accountProfile": "my_accountProfile",
+     *   //   "active": false,
+     *   //   "activeAdsLimitTier": "my_activeAdsLimitTier",
+     *   //   "activeViewOptOut": false,
+     *   //   "availablePermissionIds": [],
+     *   //   "countryId": "my_countryId",
+     *   //   "currencyId": "my_currencyId",
+     *   //   "defaultCreativeSizeId": "my_defaultCreativeSizeId",
+     *   //   "description": "my_description",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "locale": "my_locale",
+     *   //   "maximumImageSize": "my_maximumImageSize",
+     *   //   "name": "my_name",
+     *   //   "nielsenOcrEnabled": false,
+     *   //   "reportsConfiguration": {},
+     *   //   "shareReportsWithTwitter": false,
+     *   //   "teaserSizeLimit": "my_teaserSizeLimit"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7859,11 +8432,11 @@ export namespace dfareporting_v4 {
     update(
       params: Params$Resource$Accounts$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Accounts$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Account>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Account>>;
     update(
       params: Params$Resource$Accounts$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7892,7 +8465,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Account>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Account> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Account>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8014,6 +8590,69 @@ export namespace dfareporting_v4 {
 
     /**
      * Gets one account user profile by ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.accountUserProfiles.get({
+     *     // User profile ID.
+     *     id: '[^/]+',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "active": false,
+     *   //   "advertiserFilter": {},
+     *   //   "campaignFilter": {},
+     *   //   "comments": "my_comments",
+     *   //   "email": "my_email",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "locale": "my_locale",
+     *   //   "name": "my_name",
+     *   //   "siteFilter": {},
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "traffickerType": "my_traffickerType",
+     *   //   "userAccessType": "my_userAccessType",
+     *   //   "userRoleFilter": {},
+     *   //   "userRoleId": "my_userRoleId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8023,11 +8662,11 @@ export namespace dfareporting_v4 {
     get(
       params: Params$Resource$Accountuserprofiles$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Accountuserprofiles$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AccountUserProfile>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AccountUserProfile>>;
     get(
       params: Params$Resource$Accountuserprofiles$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8058,8 +8697,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AccountUserProfile>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AccountUserProfile>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accountuserprofiles$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8105,6 +8744,90 @@ export namespace dfareporting_v4 {
 
     /**
      * Inserts a new account user profile.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.accountUserProfiles.insert({
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "active": false,
+     *       //   "advertiserFilter": {},
+     *       //   "campaignFilter": {},
+     *       //   "comments": "my_comments",
+     *       //   "email": "my_email",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "locale": "my_locale",
+     *       //   "name": "my_name",
+     *       //   "siteFilter": {},
+     *       //   "subaccountId": "my_subaccountId",
+     *       //   "traffickerType": "my_traffickerType",
+     *       //   "userAccessType": "my_userAccessType",
+     *       //   "userRoleFilter": {},
+     *       //   "userRoleId": "my_userRoleId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "active": false,
+     *   //   "advertiserFilter": {},
+     *   //   "campaignFilter": {},
+     *   //   "comments": "my_comments",
+     *   //   "email": "my_email",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "locale": "my_locale",
+     *   //   "name": "my_name",
+     *   //   "siteFilter": {},
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "traffickerType": "my_traffickerType",
+     *   //   "userAccessType": "my_userAccessType",
+     *   //   "userRoleFilter": {},
+     *   //   "userRoleId": "my_userRoleId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8114,11 +8837,11 @@ export namespace dfareporting_v4 {
     insert(
       params: Params$Resource$Accountuserprofiles$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Accountuserprofiles$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AccountUserProfile>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AccountUserProfile>>;
     insert(
       params: Params$Resource$Accountuserprofiles$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8149,8 +8872,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AccountUserProfile>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AccountUserProfile>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accountuserprofiles$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8196,6 +8919,72 @@ export namespace dfareporting_v4 {
 
     /**
      * Retrieves a list of account user profiles, possibly filtered. This method supports paging.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.accountUserProfiles.list({
+     *     // Select only active user profiles.
+     *     active: 'placeholder-value',
+     *     // Select only user profiles with these IDs.
+     *     ids: 'placeholder-value',
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Value of the nextPageToken from the previous result page.
+     *     pageToken: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *     // Allows searching for objects by name, ID or email. Wildcards (*) are allowed. For example, "user profile*2015" will return objects with names like "user profile June 2015", "user profile April 2015", or simply "user profile 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "user profile" will match objects with name "my user profile", "user profile 2015", or simply "user profile".
+     *     searchString: 'placeholder-value',
+     *     // Field by which to sort the list.
+     *     sortField: 'placeholder-value',
+     *     // Order of sorted results.
+     *     sortOrder: 'placeholder-value',
+     *     // Select only user profiles with the specified subaccount ID.
+     *     subaccountId: 'placeholder-value',
+     *     // Select only user profiles with the specified user role ID.
+     *     userRoleId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountUserProfiles": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8205,11 +8994,11 @@ export namespace dfareporting_v4 {
     list(
       params: Params$Resource$Accountuserprofiles$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Accountuserprofiles$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AccountUserProfilesListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AccountUserProfilesListResponse>>;
     list(
       params: Params$Resource$Accountuserprofiles$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8244,8 +9033,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AccountUserProfilesListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AccountUserProfilesListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accountuserprofiles$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8293,6 +9082,92 @@ export namespace dfareporting_v4 {
 
     /**
      * Updates an existing account user profile. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.accountUserProfiles.patch({
+     *     // Required. AccountUserProfile ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "active": false,
+     *       //   "advertiserFilter": {},
+     *       //   "campaignFilter": {},
+     *       //   "comments": "my_comments",
+     *       //   "email": "my_email",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "locale": "my_locale",
+     *       //   "name": "my_name",
+     *       //   "siteFilter": {},
+     *       //   "subaccountId": "my_subaccountId",
+     *       //   "traffickerType": "my_traffickerType",
+     *       //   "userAccessType": "my_userAccessType",
+     *       //   "userRoleFilter": {},
+     *       //   "userRoleId": "my_userRoleId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "active": false,
+     *   //   "advertiserFilter": {},
+     *   //   "campaignFilter": {},
+     *   //   "comments": "my_comments",
+     *   //   "email": "my_email",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "locale": "my_locale",
+     *   //   "name": "my_name",
+     *   //   "siteFilter": {},
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "traffickerType": "my_traffickerType",
+     *   //   "userAccessType": "my_userAccessType",
+     *   //   "userRoleFilter": {},
+     *   //   "userRoleId": "my_userRoleId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8302,11 +9177,11 @@ export namespace dfareporting_v4 {
     patch(
       params: Params$Resource$Accountuserprofiles$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Accountuserprofiles$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AccountUserProfile>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AccountUserProfile>>;
     patch(
       params: Params$Resource$Accountuserprofiles$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8337,8 +9212,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AccountUserProfile>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AccountUserProfile>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accountuserprofiles$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8384,6 +9259,90 @@ export namespace dfareporting_v4 {
 
     /**
      * Updates an existing account user profile.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.accountUserProfiles.update({
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "active": false,
+     *       //   "advertiserFilter": {},
+     *       //   "campaignFilter": {},
+     *       //   "comments": "my_comments",
+     *       //   "email": "my_email",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "locale": "my_locale",
+     *       //   "name": "my_name",
+     *       //   "siteFilter": {},
+     *       //   "subaccountId": "my_subaccountId",
+     *       //   "traffickerType": "my_traffickerType",
+     *       //   "userAccessType": "my_userAccessType",
+     *       //   "userRoleFilter": {},
+     *       //   "userRoleId": "my_userRoleId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "active": false,
+     *   //   "advertiserFilter": {},
+     *   //   "campaignFilter": {},
+     *   //   "comments": "my_comments",
+     *   //   "email": "my_email",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "locale": "my_locale",
+     *   //   "name": "my_name",
+     *   //   "siteFilter": {},
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "traffickerType": "my_traffickerType",
+     *   //   "userAccessType": "my_userAccessType",
+     *   //   "userRoleFilter": {},
+     *   //   "userRoleId": "my_userRoleId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8393,11 +9352,11 @@ export namespace dfareporting_v4 {
     update(
       params: Params$Resource$Accountuserprofiles$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Accountuserprofiles$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AccountUserProfile>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AccountUserProfile>>;
     update(
       params: Params$Resource$Accountuserprofiles$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8428,8 +9387,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AccountUserProfile>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AccountUserProfile>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accountuserprofiles$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8577,6 +9536,92 @@ export namespace dfareporting_v4 {
 
     /**
      * Gets one ad by ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.ads.get({
+     *     // Ad ID.
+     *     id: '[^/]+',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "active": false,
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "archived": false,
+     *   //   "audienceSegmentId": "my_audienceSegmentId",
+     *   //   "campaignId": "my_campaignId",
+     *   //   "campaignIdDimensionValue": {},
+     *   //   "clickThroughUrl": {},
+     *   //   "clickThroughUrlSuffixProperties": {},
+     *   //   "comments": "my_comments",
+     *   //   "compatibility": "my_compatibility",
+     *   //   "createInfo": {},
+     *   //   "creativeGroupAssignments": [],
+     *   //   "creativeRotation": {},
+     *   //   "dayPartTargeting": {},
+     *   //   "defaultClickThroughEventTagProperties": {},
+     *   //   "deliverySchedule": {},
+     *   //   "dynamicClickTracker": false,
+     *   //   "endTime": "my_endTime",
+     *   //   "eventTagOverrides": [],
+     *   //   "geoTargeting": {},
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "keyValueTargetingExpression": {},
+     *   //   "kind": "my_kind",
+     *   //   "languageTargeting": {},
+     *   //   "lastModifiedInfo": {},
+     *   //   "name": "my_name",
+     *   //   "placementAssignments": [],
+     *   //   "remarketingListExpression": {},
+     *   //   "size": {},
+     *   //   "sslCompliant": false,
+     *   //   "sslRequired": false,
+     *   //   "startTime": "my_startTime",
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "targetingTemplateId": "my_targetingTemplateId",
+     *   //   "technologyTargeting": {},
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8586,11 +9631,11 @@ export namespace dfareporting_v4 {
     get(
       params: Params$Resource$Ads$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Ads$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Ad>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Ad>>;
     get(
       params: Params$Resource$Ads$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8619,7 +9664,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Ad>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Ad> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Ad>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Ads$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8663,6 +9711,136 @@ export namespace dfareporting_v4 {
 
     /**
      * Inserts a new ad.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.ads.insert({
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "active": false,
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "advertiserIdDimensionValue": {},
+     *       //   "archived": false,
+     *       //   "audienceSegmentId": "my_audienceSegmentId",
+     *       //   "campaignId": "my_campaignId",
+     *       //   "campaignIdDimensionValue": {},
+     *       //   "clickThroughUrl": {},
+     *       //   "clickThroughUrlSuffixProperties": {},
+     *       //   "comments": "my_comments",
+     *       //   "compatibility": "my_compatibility",
+     *       //   "createInfo": {},
+     *       //   "creativeGroupAssignments": [],
+     *       //   "creativeRotation": {},
+     *       //   "dayPartTargeting": {},
+     *       //   "defaultClickThroughEventTagProperties": {},
+     *       //   "deliverySchedule": {},
+     *       //   "dynamicClickTracker": false,
+     *       //   "endTime": "my_endTime",
+     *       //   "eventTagOverrides": [],
+     *       //   "geoTargeting": {},
+     *       //   "id": "my_id",
+     *       //   "idDimensionValue": {},
+     *       //   "keyValueTargetingExpression": {},
+     *       //   "kind": "my_kind",
+     *       //   "languageTargeting": {},
+     *       //   "lastModifiedInfo": {},
+     *       //   "name": "my_name",
+     *       //   "placementAssignments": [],
+     *       //   "remarketingListExpression": {},
+     *       //   "size": {},
+     *       //   "sslCompliant": false,
+     *       //   "sslRequired": false,
+     *       //   "startTime": "my_startTime",
+     *       //   "subaccountId": "my_subaccountId",
+     *       //   "targetingTemplateId": "my_targetingTemplateId",
+     *       //   "technologyTargeting": {},
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "active": false,
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "archived": false,
+     *   //   "audienceSegmentId": "my_audienceSegmentId",
+     *   //   "campaignId": "my_campaignId",
+     *   //   "campaignIdDimensionValue": {},
+     *   //   "clickThroughUrl": {},
+     *   //   "clickThroughUrlSuffixProperties": {},
+     *   //   "comments": "my_comments",
+     *   //   "compatibility": "my_compatibility",
+     *   //   "createInfo": {},
+     *   //   "creativeGroupAssignments": [],
+     *   //   "creativeRotation": {},
+     *   //   "dayPartTargeting": {},
+     *   //   "defaultClickThroughEventTagProperties": {},
+     *   //   "deliverySchedule": {},
+     *   //   "dynamicClickTracker": false,
+     *   //   "endTime": "my_endTime",
+     *   //   "eventTagOverrides": [],
+     *   //   "geoTargeting": {},
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "keyValueTargetingExpression": {},
+     *   //   "kind": "my_kind",
+     *   //   "languageTargeting": {},
+     *   //   "lastModifiedInfo": {},
+     *   //   "name": "my_name",
+     *   //   "placementAssignments": [],
+     *   //   "remarketingListExpression": {},
+     *   //   "size": {},
+     *   //   "sslCompliant": false,
+     *   //   "sslRequired": false,
+     *   //   "startTime": "my_startTime",
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "targetingTemplateId": "my_targetingTemplateId",
+     *   //   "technologyTargeting": {},
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8672,11 +9850,11 @@ export namespace dfareporting_v4 {
     insert(
       params: Params$Resource$Ads$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Ads$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Ad>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Ad>>;
     insert(
       params: Params$Resource$Ads$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8705,7 +9883,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Ad>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Ad> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Ad>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Ads$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8749,6 +9930,100 @@ export namespace dfareporting_v4 {
 
     /**
      * Retrieves a list of ads, possibly filtered. This method supports paging.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.ads.list({
+     *     // Select only active ads.
+     *     active: 'placeholder-value',
+     *     // Select only ads with this advertiser ID.
+     *     advertiserId: 'placeholder-value',
+     *     // Select only archived ads.
+     *     archived: 'placeholder-value',
+     *     // Select only ads with these audience segment IDs.
+     *     audienceSegmentIds: 'placeholder-value',
+     *     // Select only ads with these campaign IDs.
+     *     campaignIds: 'placeholder-value',
+     *     // Select default ads with the specified compatibility. Applicable when type is AD_SERVING_DEFAULT_AD. DISPLAY and DISPLAY_INTERSTITIAL refer to rendering either on desktop or on mobile devices for regular or interstitial ads, respectively. APP and APP_INTERSTITIAL are for rendering in mobile apps. IN_STREAM_VIDEO refers to rendering an in-stream video ads developed with the VAST standard.
+     *     compatibility: 'placeholder-value',
+     *     // Select only ads with these creative IDs assigned.
+     *     creativeIds: 'placeholder-value',
+     *     // Select only ads with these creative optimization configuration IDs.
+     *     creativeOptimizationConfigurationIds: 'placeholder-value',
+     *     // Select only dynamic click trackers. Applicable when type is AD_SERVING_CLICK_TRACKER. If true, select dynamic click trackers. If false, select static click trackers. Leave unset to select both.
+     *     dynamicClickTracker: 'placeholder-value',
+     *     // Select only ads with these IDs.
+     *     ids: 'placeholder-value',
+     *     // Select only ads with these landing page IDs.
+     *     landingPageIds: 'placeholder-value',
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Select only ads with this event tag override ID.
+     *     overriddenEventTagId: 'placeholder-value',
+     *     // Value of the nextPageToken from the previous result page.
+     *     pageToken: 'placeholder-value',
+     *     // Select only ads with these placement IDs assigned.
+     *     placementIds: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *     // Select only ads whose list targeting expression use these remarketing list IDs.
+     *     remarketingListIds: 'placeholder-value',
+     *     // Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "ad*2015" will return objects with names like "ad June 2015", "ad April 2015", or simply "ad 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "ad" will match objects with name "my ad", "ad 2015", or simply "ad".
+     *     searchString: 'placeholder-value',
+     *     // Select only ads with these size IDs.
+     *     sizeIds: 'placeholder-value',
+     *     // Field by which to sort the list.
+     *     sortField: 'placeholder-value',
+     *     // Order of sorted results.
+     *     sortOrder: 'placeholder-value',
+     *     // Select only ads that are SSL-compliant.
+     *     sslCompliant: 'placeholder-value',
+     *     // Select only ads that require SSL.
+     *     sslRequired: 'placeholder-value',
+     *     // Select only ads with these types.
+     *     type: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "ads": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8758,11 +10033,11 @@ export namespace dfareporting_v4 {
     list(
       params: Params$Resource$Ads$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Ads$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AdsListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AdsListResponse>>;
     list(
       params: Params$Resource$Ads$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8791,7 +10066,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$AdsListResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AdsListResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$AdsListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Ads$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8835,6 +10113,138 @@ export namespace dfareporting_v4 {
 
     /**
      * Updates an existing ad. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.ads.patch({
+     *     // Required. RemarketingList ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "active": false,
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "advertiserIdDimensionValue": {},
+     *       //   "archived": false,
+     *       //   "audienceSegmentId": "my_audienceSegmentId",
+     *       //   "campaignId": "my_campaignId",
+     *       //   "campaignIdDimensionValue": {},
+     *       //   "clickThroughUrl": {},
+     *       //   "clickThroughUrlSuffixProperties": {},
+     *       //   "comments": "my_comments",
+     *       //   "compatibility": "my_compatibility",
+     *       //   "createInfo": {},
+     *       //   "creativeGroupAssignments": [],
+     *       //   "creativeRotation": {},
+     *       //   "dayPartTargeting": {},
+     *       //   "defaultClickThroughEventTagProperties": {},
+     *       //   "deliverySchedule": {},
+     *       //   "dynamicClickTracker": false,
+     *       //   "endTime": "my_endTime",
+     *       //   "eventTagOverrides": [],
+     *       //   "geoTargeting": {},
+     *       //   "id": "my_id",
+     *       //   "idDimensionValue": {},
+     *       //   "keyValueTargetingExpression": {},
+     *       //   "kind": "my_kind",
+     *       //   "languageTargeting": {},
+     *       //   "lastModifiedInfo": {},
+     *       //   "name": "my_name",
+     *       //   "placementAssignments": [],
+     *       //   "remarketingListExpression": {},
+     *       //   "size": {},
+     *       //   "sslCompliant": false,
+     *       //   "sslRequired": false,
+     *       //   "startTime": "my_startTime",
+     *       //   "subaccountId": "my_subaccountId",
+     *       //   "targetingTemplateId": "my_targetingTemplateId",
+     *       //   "technologyTargeting": {},
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "active": false,
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "archived": false,
+     *   //   "audienceSegmentId": "my_audienceSegmentId",
+     *   //   "campaignId": "my_campaignId",
+     *   //   "campaignIdDimensionValue": {},
+     *   //   "clickThroughUrl": {},
+     *   //   "clickThroughUrlSuffixProperties": {},
+     *   //   "comments": "my_comments",
+     *   //   "compatibility": "my_compatibility",
+     *   //   "createInfo": {},
+     *   //   "creativeGroupAssignments": [],
+     *   //   "creativeRotation": {},
+     *   //   "dayPartTargeting": {},
+     *   //   "defaultClickThroughEventTagProperties": {},
+     *   //   "deliverySchedule": {},
+     *   //   "dynamicClickTracker": false,
+     *   //   "endTime": "my_endTime",
+     *   //   "eventTagOverrides": [],
+     *   //   "geoTargeting": {},
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "keyValueTargetingExpression": {},
+     *   //   "kind": "my_kind",
+     *   //   "languageTargeting": {},
+     *   //   "lastModifiedInfo": {},
+     *   //   "name": "my_name",
+     *   //   "placementAssignments": [],
+     *   //   "remarketingListExpression": {},
+     *   //   "size": {},
+     *   //   "sslCompliant": false,
+     *   //   "sslRequired": false,
+     *   //   "startTime": "my_startTime",
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "targetingTemplateId": "my_targetingTemplateId",
+     *   //   "technologyTargeting": {},
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8844,11 +10254,11 @@ export namespace dfareporting_v4 {
     patch(
       params: Params$Resource$Ads$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Ads$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Ad>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Ad>>;
     patch(
       params: Params$Resource$Ads$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8877,7 +10287,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Ad>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Ad> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Ad>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Ads$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8921,6 +10334,136 @@ export namespace dfareporting_v4 {
 
     /**
      * Updates an existing ad.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.ads.update({
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "active": false,
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "advertiserIdDimensionValue": {},
+     *       //   "archived": false,
+     *       //   "audienceSegmentId": "my_audienceSegmentId",
+     *       //   "campaignId": "my_campaignId",
+     *       //   "campaignIdDimensionValue": {},
+     *       //   "clickThroughUrl": {},
+     *       //   "clickThroughUrlSuffixProperties": {},
+     *       //   "comments": "my_comments",
+     *       //   "compatibility": "my_compatibility",
+     *       //   "createInfo": {},
+     *       //   "creativeGroupAssignments": [],
+     *       //   "creativeRotation": {},
+     *       //   "dayPartTargeting": {},
+     *       //   "defaultClickThroughEventTagProperties": {},
+     *       //   "deliverySchedule": {},
+     *       //   "dynamicClickTracker": false,
+     *       //   "endTime": "my_endTime",
+     *       //   "eventTagOverrides": [],
+     *       //   "geoTargeting": {},
+     *       //   "id": "my_id",
+     *       //   "idDimensionValue": {},
+     *       //   "keyValueTargetingExpression": {},
+     *       //   "kind": "my_kind",
+     *       //   "languageTargeting": {},
+     *       //   "lastModifiedInfo": {},
+     *       //   "name": "my_name",
+     *       //   "placementAssignments": [],
+     *       //   "remarketingListExpression": {},
+     *       //   "size": {},
+     *       //   "sslCompliant": false,
+     *       //   "sslRequired": false,
+     *       //   "startTime": "my_startTime",
+     *       //   "subaccountId": "my_subaccountId",
+     *       //   "targetingTemplateId": "my_targetingTemplateId",
+     *       //   "technologyTargeting": {},
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "active": false,
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "archived": false,
+     *   //   "audienceSegmentId": "my_audienceSegmentId",
+     *   //   "campaignId": "my_campaignId",
+     *   //   "campaignIdDimensionValue": {},
+     *   //   "clickThroughUrl": {},
+     *   //   "clickThroughUrlSuffixProperties": {},
+     *   //   "comments": "my_comments",
+     *   //   "compatibility": "my_compatibility",
+     *   //   "createInfo": {},
+     *   //   "creativeGroupAssignments": [],
+     *   //   "creativeRotation": {},
+     *   //   "dayPartTargeting": {},
+     *   //   "defaultClickThroughEventTagProperties": {},
+     *   //   "deliverySchedule": {},
+     *   //   "dynamicClickTracker": false,
+     *   //   "endTime": "my_endTime",
+     *   //   "eventTagOverrides": [],
+     *   //   "geoTargeting": {},
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "keyValueTargetingExpression": {},
+     *   //   "kind": "my_kind",
+     *   //   "languageTargeting": {},
+     *   //   "lastModifiedInfo": {},
+     *   //   "name": "my_name",
+     *   //   "placementAssignments": [],
+     *   //   "remarketingListExpression": {},
+     *   //   "size": {},
+     *   //   "sslCompliant": false,
+     *   //   "sslRequired": false,
+     *   //   "startTime": "my_startTime",
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "targetingTemplateId": "my_targetingTemplateId",
+     *   //   "technologyTargeting": {},
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8930,11 +10473,11 @@ export namespace dfareporting_v4 {
     update(
       params: Params$Resource$Ads$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Ads$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Ad>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Ad>>;
     update(
       params: Params$Resource$Ads$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8963,7 +10506,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Ad>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Ad> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Ad>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Ads$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9160,6 +10706,49 @@ export namespace dfareporting_v4 {
 
     /**
      * Deletes an existing advertiser group.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.advertiserGroups.delete({
+     *     // Advertiser group ID.
+     *     id: '[^/]+',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9169,11 +10758,11 @@ export namespace dfareporting_v4 {
     delete(
       params: Params$Resource$Advertisergroups$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Advertisergroups$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Advertisergroups$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9200,7 +10789,10 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisergroups$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9246,6 +10838,57 @@ export namespace dfareporting_v4 {
 
     /**
      * Gets one advertiser group by ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.advertiserGroups.get({
+     *     // Advertiser group ID.
+     *     id: '[^/]+',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9255,11 +10898,11 @@ export namespace dfareporting_v4 {
     get(
       params: Params$Resource$Advertisergroups$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Advertisergroups$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AdvertiserGroup>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AdvertiserGroup>>;
     get(
       params: Params$Resource$Advertisergroups$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9288,7 +10931,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$AdvertiserGroup>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AdvertiserGroup> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$AdvertiserGroup>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisergroups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9334,6 +10980,66 @@ export namespace dfareporting_v4 {
 
     /**
      * Inserts a new advertiser group.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.advertiserGroups.insert({
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9343,11 +11049,11 @@ export namespace dfareporting_v4 {
     insert(
       params: Params$Resource$Advertisergroups$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Advertisergroups$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AdvertiserGroup>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AdvertiserGroup>>;
     insert(
       params: Params$Resource$Advertisergroups$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9376,7 +11082,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$AdvertiserGroup>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AdvertiserGroup> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$AdvertiserGroup>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisergroups$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9422,6 +11131,66 @@ export namespace dfareporting_v4 {
 
     /**
      * Retrieves a list of advertiser groups, possibly filtered. This method supports paging.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.advertiserGroups.list({
+     *     // Select only advertiser groups with these IDs.
+     *     ids: 'placeholder-value',
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Value of the nextPageToken from the previous result page.
+     *     pageToken: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *     // Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "advertiser*2015" will return objects with names like "advertiser group June 2015", "advertiser group April 2015", or simply "advertiser group 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "advertisergroup" will match objects with name "my advertisergroup", "advertisergroup 2015", or simply "advertisergroup".
+     *     searchString: 'placeholder-value',
+     *     // Field by which to sort the list.
+     *     sortField: 'placeholder-value',
+     *     // Order of sorted results.
+     *     sortOrder: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "advertiserGroups": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9431,11 +11200,11 @@ export namespace dfareporting_v4 {
     list(
       params: Params$Resource$Advertisergroups$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Advertisergroups$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AdvertiserGroupsListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AdvertiserGroupsListResponse>>;
     list(
       params: Params$Resource$Advertisergroups$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9470,8 +11239,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AdvertiserGroupsListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AdvertiserGroupsListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisergroups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9519,6 +11288,68 @@ export namespace dfareporting_v4 {
 
     /**
      * Updates an existing advertiser group. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.advertiserGroups.patch({
+     *     // Required. Advertiser Group ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9528,11 +11359,11 @@ export namespace dfareporting_v4 {
     patch(
       params: Params$Resource$Advertisergroups$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Advertisergroups$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AdvertiserGroup>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AdvertiserGroup>>;
     patch(
       params: Params$Resource$Advertisergroups$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9561,7 +11392,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$AdvertiserGroup>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AdvertiserGroup> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$AdvertiserGroup>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisergroups$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9607,6 +11441,66 @@ export namespace dfareporting_v4 {
 
     /**
      * Updates an existing advertiser group.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.advertiserGroups.update({
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9616,11 +11510,11 @@ export namespace dfareporting_v4 {
     update(
       params: Params$Resource$Advertisergroups$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Advertisergroups$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AdvertiserGroup>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AdvertiserGroup>>;
     update(
       params: Params$Resource$Advertisergroups$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9649,7 +11543,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$AdvertiserGroup>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AdvertiserGroup> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$AdvertiserGroup>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisergroups$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9796,6 +11693,62 @@ export namespace dfareporting_v4 {
 
     /**
      * Retrieves a list of invoices for a particular issue month. The api only works if the billing profile invoice level is set to either advertiser or campaign non-consolidated invoice level.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.advertiserInvoices.list({
+     *     // Advertiser ID of this invoice.
+     *     advertiserId: '[^/]+',
+     *     // Month for which invoices are needed in the format YYYYMM. Required field
+     *     issueMonth: 'placeholder-value',
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Value of the nextPageToken from the previous result page.
+     *     pageToken: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "invoices": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9805,11 +11758,11 @@ export namespace dfareporting_v4 {
     list(
       params: Params$Resource$Advertiserinvoices$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Advertiserinvoices$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AdvertiserInvoicesListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AdvertiserInvoicesListResponse>>;
     list(
       params: Params$Resource$Advertiserinvoices$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9844,8 +11797,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AdvertiserInvoicesListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AdvertiserInvoicesListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertiserinvoices$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9924,6 +11877,60 @@ export namespace dfareporting_v4 {
 
     /**
      * Gets one landing page by ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.advertiserLandingPages.get({
+     *     // Landing page ID.
+     *     id: '[^/]+',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "archived": false,
+     *   //   "deepLinks": [],
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "url": "my_url"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9933,11 +11940,11 @@ export namespace dfareporting_v4 {
     get(
       params: Params$Resource$Advertiserlandingpages$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Advertiserlandingpages$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LandingPage>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LandingPage>>;
     get(
       params: Params$Resource$Advertiserlandingpages$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9966,7 +11973,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$LandingPage>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LandingPage> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$LandingPage>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertiserlandingpages$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10012,6 +12022,72 @@ export namespace dfareporting_v4 {
 
     /**
      * Inserts a new landing page.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.advertiserLandingPages.insert({
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "archived": false,
+     *       //   "deepLinks": [],
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "url": "my_url"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "archived": false,
+     *   //   "deepLinks": [],
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "url": "my_url"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10021,11 +12097,11 @@ export namespace dfareporting_v4 {
     insert(
       params: Params$Resource$Advertiserlandingpages$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Advertiserlandingpages$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LandingPage>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LandingPage>>;
     insert(
       params: Params$Resource$Advertiserlandingpages$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10054,7 +12130,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$LandingPage>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LandingPage> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$LandingPage>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertiserlandingpages$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10100,6 +12179,74 @@ export namespace dfareporting_v4 {
 
     /**
      * Retrieves a list of landing pages.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.advertiserLandingPages.list({
+     *     // Select only landing pages that belong to these advertisers.
+     *     advertiserIds: 'placeholder-value',
+     *     // Select only archived landing pages. Don't set this field to select both archived and non-archived landing pages.
+     *     archived: 'placeholder-value',
+     *     // Select only landing pages that are associated with these campaigns.
+     *     campaignIds: 'placeholder-value',
+     *     // Select only landing pages with these IDs.
+     *     ids: 'placeholder-value',
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Value of the nextPageToken from the previous result page.
+     *     pageToken: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *     // Allows searching for landing pages by name or ID. Wildcards (*) are allowed. For example, "landingpage*2017" will return landing pages with names like "landingpage July 2017", "landingpage March 2017", or simply "landingpage 2017". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "landingpage" will match campaigns with name "my landingpage", "landingpage 2015", or simply "landingpage".
+     *     searchString: 'placeholder-value',
+     *     // Field by which to sort the list.
+     *     sortField: 'placeholder-value',
+     *     // Order of sorted results.
+     *     sortOrder: 'placeholder-value',
+     *     // Select only landing pages that belong to this subaccount.
+     *     subaccountId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "landingPages": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10109,11 +12256,13 @@ export namespace dfareporting_v4 {
     list(
       params: Params$Resource$Advertiserlandingpages$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Advertiserlandingpages$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AdvertiserLandingPagesListResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$AdvertiserLandingPagesListResponse>
+    >;
     list(
       params: Params$Resource$Advertiserlandingpages$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10148,8 +12297,10 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AdvertiserLandingPagesListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$AdvertiserLandingPagesListResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertiserlandingpages$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10197,6 +12348,74 @@ export namespace dfareporting_v4 {
 
     /**
      * Updates an existing landing page. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.advertiserLandingPages.patch({
+     *     // Required. Landing Page ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "archived": false,
+     *       //   "deepLinks": [],
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "url": "my_url"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "archived": false,
+     *   //   "deepLinks": [],
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "url": "my_url"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10206,11 +12425,11 @@ export namespace dfareporting_v4 {
     patch(
       params: Params$Resource$Advertiserlandingpages$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Advertiserlandingpages$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LandingPage>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LandingPage>>;
     patch(
       params: Params$Resource$Advertiserlandingpages$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10239,7 +12458,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$LandingPage>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LandingPage> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$LandingPage>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertiserlandingpages$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10285,6 +12507,72 @@ export namespace dfareporting_v4 {
 
     /**
      * Updates an existing landing page.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.advertiserLandingPages.update({
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "archived": false,
+     *       //   "deepLinks": [],
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "url": "my_url"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "archived": false,
+     *   //   "deepLinks": [],
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "url": "my_url"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10294,11 +12582,11 @@ export namespace dfareporting_v4 {
     update(
       params: Params$Resource$Advertiserlandingpages$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Advertiserlandingpages$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LandingPage>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LandingPage>>;
     update(
       params: Params$Resource$Advertiserlandingpages$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10327,7 +12615,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$LandingPage>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LandingPage> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$LandingPage>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertiserlandingpages$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10479,6 +12770,69 @@ export namespace dfareporting_v4 {
 
     /**
      * Gets one advertiser by ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.advertisers.get({
+     *     // Advertiser ID.
+     *     id: '[^/]+',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advertiserGroupId": "my_advertiserGroupId",
+     *   //   "clickThroughUrlSuffix": "my_clickThroughUrlSuffix",
+     *   //   "defaultClickThroughEventTagId": "my_defaultClickThroughEventTagId",
+     *   //   "defaultEmail": "my_defaultEmail",
+     *   //   "floodlightConfigurationId": "my_floodlightConfigurationId",
+     *   //   "floodlightConfigurationIdDimensionValue": {},
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "kind": "my_kind",
+     *   //   "measurementPartnerLink": {},
+     *   //   "name": "my_name",
+     *   //   "originalFloodlightConfigurationId": "my_originalFloodlightConfigurationId",
+     *   //   "status": "my_status",
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "suspended": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10488,11 +12842,11 @@ export namespace dfareporting_v4 {
     get(
       params: Params$Resource$Advertisers$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Advertisers$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Advertiser>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Advertiser>>;
     get(
       params: Params$Resource$Advertisers$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10521,7 +12875,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Advertiser>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Advertiser> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Advertiser>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Advertisers$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -10566,6 +12923,90 @@ export namespace dfareporting_v4 {
 
     /**
      * Inserts a new advertiser.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.advertisers.insert({
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "advertiserGroupId": "my_advertiserGroupId",
+     *       //   "clickThroughUrlSuffix": "my_clickThroughUrlSuffix",
+     *       //   "defaultClickThroughEventTagId": "my_defaultClickThroughEventTagId",
+     *       //   "defaultEmail": "my_defaultEmail",
+     *       //   "floodlightConfigurationId": "my_floodlightConfigurationId",
+     *       //   "floodlightConfigurationIdDimensionValue": {},
+     *       //   "id": "my_id",
+     *       //   "idDimensionValue": {},
+     *       //   "kind": "my_kind",
+     *       //   "measurementPartnerLink": {},
+     *       //   "name": "my_name",
+     *       //   "originalFloodlightConfigurationId": "my_originalFloodlightConfigurationId",
+     *       //   "status": "my_status",
+     *       //   "subaccountId": "my_subaccountId",
+     *       //   "suspended": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advertiserGroupId": "my_advertiserGroupId",
+     *   //   "clickThroughUrlSuffix": "my_clickThroughUrlSuffix",
+     *   //   "defaultClickThroughEventTagId": "my_defaultClickThroughEventTagId",
+     *   //   "defaultEmail": "my_defaultEmail",
+     *   //   "floodlightConfigurationId": "my_floodlightConfigurationId",
+     *   //   "floodlightConfigurationIdDimensionValue": {},
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "kind": "my_kind",
+     *   //   "measurementPartnerLink": {},
+     *   //   "name": "my_name",
+     *   //   "originalFloodlightConfigurationId": "my_originalFloodlightConfigurationId",
+     *   //   "status": "my_status",
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "suspended": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10575,11 +13016,11 @@ export namespace dfareporting_v4 {
     insert(
       params: Params$Resource$Advertisers$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Advertisers$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Advertiser>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Advertiser>>;
     insert(
       params: Params$Resource$Advertisers$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10608,7 +13049,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Advertiser>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Advertiser> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Advertiser>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10653,6 +13097,78 @@ export namespace dfareporting_v4 {
 
     /**
      * Retrieves a list of advertisers, possibly filtered. This method supports paging.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.advertisers.list({
+     *     // Select only advertisers with these advertiser group IDs.
+     *     advertiserGroupIds: 'placeholder-value',
+     *     // Select only advertisers with these floodlight configuration IDs.
+     *     floodlightConfigurationIds: 'placeholder-value',
+     *     // Select only advertisers with these IDs.
+     *     ids: 'placeholder-value',
+     *     // Select only advertisers which do not belong to any advertiser group.
+     *     includeAdvertisersWithoutGroupsOnly: 'placeholder-value',
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Select only advertisers which use another advertiser's floodlight configuration.
+     *     onlyParent: 'placeholder-value',
+     *     // Value of the nextPageToken from the previous result page.
+     *     pageToken: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *     // Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "advertiser*2015" will return objects with names like "advertiser June 2015", "advertiser April 2015", or simply "advertiser 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "advertiser" will match objects with name "my advertiser", "advertiser 2015", or simply "advertiser" .
+     *     searchString: 'placeholder-value',
+     *     // Field by which to sort the list.
+     *     sortField: 'placeholder-value',
+     *     // Order of sorted results.
+     *     sortOrder: 'placeholder-value',
+     *     // Select only advertisers with the specified status.
+     *     status: 'placeholder-value',
+     *     // Select only advertisers with these subaccount IDs.
+     *     subaccountId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "advertisers": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10662,11 +13178,11 @@ export namespace dfareporting_v4 {
     list(
       params: Params$Resource$Advertisers$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Advertisers$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AdvertisersListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AdvertisersListResponse>>;
     list(
       params: Params$Resource$Advertisers$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10699,8 +13215,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AdvertisersListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AdvertisersListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Advertisers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -10744,6 +13260,92 @@ export namespace dfareporting_v4 {
 
     /**
      * Updates an existing advertiser. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.advertisers.patch({
+     *     // Required. Advertiser ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "advertiserGroupId": "my_advertiserGroupId",
+     *       //   "clickThroughUrlSuffix": "my_clickThroughUrlSuffix",
+     *       //   "defaultClickThroughEventTagId": "my_defaultClickThroughEventTagId",
+     *       //   "defaultEmail": "my_defaultEmail",
+     *       //   "floodlightConfigurationId": "my_floodlightConfigurationId",
+     *       //   "floodlightConfigurationIdDimensionValue": {},
+     *       //   "id": "my_id",
+     *       //   "idDimensionValue": {},
+     *       //   "kind": "my_kind",
+     *       //   "measurementPartnerLink": {},
+     *       //   "name": "my_name",
+     *       //   "originalFloodlightConfigurationId": "my_originalFloodlightConfigurationId",
+     *       //   "status": "my_status",
+     *       //   "subaccountId": "my_subaccountId",
+     *       //   "suspended": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advertiserGroupId": "my_advertiserGroupId",
+     *   //   "clickThroughUrlSuffix": "my_clickThroughUrlSuffix",
+     *   //   "defaultClickThroughEventTagId": "my_defaultClickThroughEventTagId",
+     *   //   "defaultEmail": "my_defaultEmail",
+     *   //   "floodlightConfigurationId": "my_floodlightConfigurationId",
+     *   //   "floodlightConfigurationIdDimensionValue": {},
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "kind": "my_kind",
+     *   //   "measurementPartnerLink": {},
+     *   //   "name": "my_name",
+     *   //   "originalFloodlightConfigurationId": "my_originalFloodlightConfigurationId",
+     *   //   "status": "my_status",
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "suspended": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10753,11 +13355,11 @@ export namespace dfareporting_v4 {
     patch(
       params: Params$Resource$Advertisers$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Advertisers$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Advertiser>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Advertiser>>;
     patch(
       params: Params$Resource$Advertisers$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10786,7 +13388,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Advertiser>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Advertiser> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Advertiser>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10831,6 +13436,90 @@ export namespace dfareporting_v4 {
 
     /**
      * Updates an existing advertiser.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.advertisers.update({
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "advertiserGroupId": "my_advertiserGroupId",
+     *       //   "clickThroughUrlSuffix": "my_clickThroughUrlSuffix",
+     *       //   "defaultClickThroughEventTagId": "my_defaultClickThroughEventTagId",
+     *       //   "defaultEmail": "my_defaultEmail",
+     *       //   "floodlightConfigurationId": "my_floodlightConfigurationId",
+     *       //   "floodlightConfigurationIdDimensionValue": {},
+     *       //   "id": "my_id",
+     *       //   "idDimensionValue": {},
+     *       //   "kind": "my_kind",
+     *       //   "measurementPartnerLink": {},
+     *       //   "name": "my_name",
+     *       //   "originalFloodlightConfigurationId": "my_originalFloodlightConfigurationId",
+     *       //   "status": "my_status",
+     *       //   "subaccountId": "my_subaccountId",
+     *       //   "suspended": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advertiserGroupId": "my_advertiserGroupId",
+     *   //   "clickThroughUrlSuffix": "my_clickThroughUrlSuffix",
+     *   //   "defaultClickThroughEventTagId": "my_defaultClickThroughEventTagId",
+     *   //   "defaultEmail": "my_defaultEmail",
+     *   //   "floodlightConfigurationId": "my_floodlightConfigurationId",
+     *   //   "floodlightConfigurationIdDimensionValue": {},
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "kind": "my_kind",
+     *   //   "measurementPartnerLink": {},
+     *   //   "name": "my_name",
+     *   //   "originalFloodlightConfigurationId": "my_originalFloodlightConfigurationId",
+     *   //   "status": "my_status",
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "suspended": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10840,11 +13529,11 @@ export namespace dfareporting_v4 {
     update(
       params: Params$Resource$Advertisers$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Advertisers$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Advertiser>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Advertiser>>;
     update(
       params: Params$Resource$Advertisers$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10873,7 +13562,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Advertiser>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Advertiser> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Advertiser>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11030,6 +13722,70 @@ export namespace dfareporting_v4 {
 
     /**
      * Inserts a new billing assignment and returns the new assignment. Only one of advertiser_id or campaign_id is support per request. If the new assignment has no effect (assigning a campaign to the parent advertiser billing profile or assigning an advertiser to the account billing profile), no assignment will be returned.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.billingAssignments.insert({
+     *     // Billing profile ID of this billing assignment.
+     *     billingProfileId: '[^/]+',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "campaignId": "my_campaignId",
+     *       //   "kind": "my_kind",
+     *       //   "subaccountId": "my_subaccountId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "campaignId": "my_campaignId",
+     *   //   "kind": "my_kind",
+     *   //   "subaccountId": "my_subaccountId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11039,11 +13795,11 @@ export namespace dfareporting_v4 {
     insert(
       params: Params$Resource$Billingassignments$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Billingassignments$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BillingAssignment>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BillingAssignment>>;
     insert(
       params: Params$Resource$Billingassignments$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11074,8 +13830,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BillingAssignment>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$BillingAssignment>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingassignments$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11121,6 +13877,55 @@ export namespace dfareporting_v4 {
 
     /**
      * Retrieves a list of billing assignments.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.billingAssignments.list({
+     *     // Billing profile ID of this billing assignment.
+     *     billingProfileId: '[^/]+',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "billingAssignments": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11130,11 +13935,11 @@ export namespace dfareporting_v4 {
     list(
       params: Params$Resource$Billingassignments$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Billingassignments$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BillingAssignmentsListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BillingAssignmentsListResponse>>;
     list(
       params: Params$Resource$Billingassignments$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11169,8 +13974,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BillingAssignmentsListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$BillingAssignmentsListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingassignments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11253,6 +14058,66 @@ export namespace dfareporting_v4 {
 
     /**
      * Gets one billing profile by ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.billingProfiles.get({
+     *     // Billing Profile ID.
+     *     id: '[^/]+',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "consolidatedInvoice": false,
+     *   //   "countryCode": "my_countryCode",
+     *   //   "currencyCode": "my_currencyCode",
+     *   //   "id": "my_id",
+     *   //   "invoiceLevel": "my_invoiceLevel",
+     *   //   "isDefault": false,
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "paymentsAccountId": "my_paymentsAccountId",
+     *   //   "paymentsCustomerId": "my_paymentsCustomerId",
+     *   //   "purchaseOrder": "my_purchaseOrder",
+     *   //   "secondaryPaymentsCustomerId": "my_secondaryPaymentsCustomerId",
+     *   //   "status": "my_status"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11262,11 +14127,11 @@ export namespace dfareporting_v4 {
     get(
       params: Params$Resource$Billingprofiles$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Billingprofiles$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BillingProfile>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BillingProfile>>;
     get(
       params: Params$Resource$Billingprofiles$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11295,7 +14160,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$BillingProfile>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$BillingProfile> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$BillingProfile>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingprofiles$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11341,6 +14209,74 @@ export namespace dfareporting_v4 {
 
     /**
      * Retrieves a list of billing profiles, possibly filtered. This method supports paging.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.billingProfiles.list({
+     *     // Select only billing profile with currency.
+     *     currency_code: 'placeholder-value',
+     *     // Select only billing profile with these IDs.
+     *     ids: 'placeholder-value',
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Allows searching for billing profiles by name. Wildcards (*) are allowed. For example, "profile*2020" will return objects with names like "profile June 2020", "profile April 2020", or simply "profile 2020". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "profile" will match objects with name "my profile", "profile 2021", or simply "profile".
+     *     name: 'placeholder-value',
+     *     // Select only billing profile which is suggested for the currency_code & subaccount_id using the Billing Suggestion API.
+     *     onlySuggestion: 'placeholder-value',
+     *     // Value of the nextPageToken from the previous result page.
+     *     pageToken: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *     // Field by which to sort the list.
+     *     sortField: 'placeholder-value',
+     *     // Order of sorted results.
+     *     sortOrder: 'placeholder-value',
+     *     // Select only billing profile with the specified status.
+     *     status: 'placeholder-value',
+     *     // Select only billing profile with the specified subaccount.When only_suggestion is true, only a single subaccount_id is supported.
+     *     subaccountIds: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "billingProfiles": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11350,11 +14286,11 @@ export namespace dfareporting_v4 {
     list(
       params: Params$Resource$Billingprofiles$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Billingprofiles$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BillingProfilesListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BillingProfilesListResponse>>;
     list(
       params: Params$Resource$Billingprofiles$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11389,8 +14325,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BillingProfilesListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$BillingProfilesListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingprofiles$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11436,6 +14372,84 @@ export namespace dfareporting_v4 {
 
     /**
      * Updates an existing billing profile.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.billingProfiles.update({
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "consolidatedInvoice": false,
+     *       //   "countryCode": "my_countryCode",
+     *       //   "currencyCode": "my_currencyCode",
+     *       //   "id": "my_id",
+     *       //   "invoiceLevel": "my_invoiceLevel",
+     *       //   "isDefault": false,
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "paymentsAccountId": "my_paymentsAccountId",
+     *       //   "paymentsCustomerId": "my_paymentsCustomerId",
+     *       //   "purchaseOrder": "my_purchaseOrder",
+     *       //   "secondaryPaymentsCustomerId": "my_secondaryPaymentsCustomerId",
+     *       //   "status": "my_status"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "consolidatedInvoice": false,
+     *   //   "countryCode": "my_countryCode",
+     *   //   "currencyCode": "my_currencyCode",
+     *   //   "id": "my_id",
+     *   //   "invoiceLevel": "my_invoiceLevel",
+     *   //   "isDefault": false,
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "paymentsAccountId": "my_paymentsAccountId",
+     *   //   "paymentsCustomerId": "my_paymentsCustomerId",
+     *   //   "purchaseOrder": "my_purchaseOrder",
+     *   //   "secondaryPaymentsCustomerId": "my_secondaryPaymentsCustomerId",
+     *   //   "status": "my_status"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11445,11 +14459,11 @@ export namespace dfareporting_v4 {
     update(
       params: Params$Resource$Billingprofiles$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Billingprofiles$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BillingProfile>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BillingProfile>>;
     update(
       params: Params$Resource$Billingprofiles$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11478,7 +14492,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$BillingProfile>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$BillingProfile> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$BillingProfile>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingprofiles$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11602,6 +14619,56 @@ export namespace dfareporting_v4 {
 
     /**
      * Retrieves a list of billing rates. This method supports paging.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.billingRates.list({
+     *     // Billing profile ID of this billing rate.
+     *     billingProfileId: '[^/]+',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "billingRates": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11611,11 +14678,11 @@ export namespace dfareporting_v4 {
     list(
       params: Params$Resource$Billingrates$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Billingrates$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BillingRatesListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BillingRatesListResponse>>;
     list(
       params: Params$Resource$Billingrates$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11648,8 +14715,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BillingRatesListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$BillingRatesListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingrates$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11714,6 +14781,53 @@ export namespace dfareporting_v4 {
 
     /**
      * Retrieves a list of browsers.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.browsers.list({
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "browsers": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11723,11 +14837,11 @@ export namespace dfareporting_v4 {
     list(
       params: Params$Resource$Browsers$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Browsers$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BrowsersListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BrowsersListResponse>>;
     list(
       params: Params$Resource$Browsers$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11760,8 +14874,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BrowsersListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$BrowsersListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Browsers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -11819,6 +14933,64 @@ export namespace dfareporting_v4 {
 
     /**
      * Associates a creative with the specified campaign. This method creates a default ad with dimensions matching the creative in the campaign if such a default ad does not exist already.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.campaignCreativeAssociations.insert({
+     *     // Campaign ID in this association.
+     *     campaignId: '[^/]+',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "creativeId": "my_creativeId",
+     *       //   "kind": "my_kind"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "creativeId": "my_creativeId",
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11828,11 +15000,11 @@ export namespace dfareporting_v4 {
     insert(
       params: Params$Resource$Campaigncreativeassociations$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Campaigncreativeassociations$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CampaignCreativeAssociation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CampaignCreativeAssociation>>;
     insert(
       params: Params$Resource$Campaigncreativeassociations$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11867,8 +15039,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CampaignCreativeAssociation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CampaignCreativeAssociation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Campaigncreativeassociations$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11914,6 +15086,62 @@ export namespace dfareporting_v4 {
 
     /**
      * Retrieves the list of creative IDs associated with the specified campaign. This method supports paging.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.campaignCreativeAssociations.list({
+     *     // Campaign ID in this association.
+     *     campaignId: '[^/]+',
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Value of the nextPageToken from the previous result page.
+     *     pageToken: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *     // Order of sorted results.
+     *     sortOrder: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "campaignCreativeAssociations": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11923,11 +15151,13 @@ export namespace dfareporting_v4 {
     list(
       params: Params$Resource$Campaigncreativeassociations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Campaigncreativeassociations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CampaignCreativeAssociationsListResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$CampaignCreativeAssociationsListResponse>
+    >;
     list(
       params: Params$Resource$Campaigncreativeassociations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11962,8 +15192,10 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CampaignCreativeAssociationsListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$CampaignCreativeAssociationsListResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Campaigncreativeassociations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12058,6 +15290,80 @@ export namespace dfareporting_v4 {
 
     /**
      * Gets one campaign by ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.campaigns.get({
+     *     // Campaign ID.
+     *     id: '[^/]+',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "adBlockingConfiguration": {},
+     *   //   "additionalCreativeOptimizationConfigurations": [],
+     *   //   "advertiserGroupId": "my_advertiserGroupId",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "archived": false,
+     *   //   "audienceSegmentGroups": [],
+     *   //   "billingInvoiceCode": "my_billingInvoiceCode",
+     *   //   "clickThroughUrlSuffixProperties": {},
+     *   //   "comment": "my_comment",
+     *   //   "createInfo": {},
+     *   //   "creativeGroupIds": [],
+     *   //   "creativeOptimizationConfiguration": {},
+     *   //   "defaultClickThroughEventTagProperties": {},
+     *   //   "defaultLandingPageId": "my_defaultLandingPageId",
+     *   //   "endDate": "my_endDate",
+     *   //   "eventTagOverrides": [],
+     *   //   "externalId": "my_externalId",
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "kind": "my_kind",
+     *   //   "lastModifiedInfo": {},
+     *   //   "measurementPartnerLink": {},
+     *   //   "name": "my_name",
+     *   //   "startDate": "my_startDate",
+     *   //   "subaccountId": "my_subaccountId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12067,11 +15373,11 @@ export namespace dfareporting_v4 {
     get(
       params: Params$Resource$Campaigns$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Campaigns$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Campaign>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Campaign>>;
     get(
       params: Params$Resource$Campaigns$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12100,7 +15406,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Campaign>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Campaign> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Campaign>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Campaigns$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -12145,6 +15454,112 @@ export namespace dfareporting_v4 {
 
     /**
      * Inserts a new campaign.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.campaigns.insert({
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "adBlockingConfiguration": {},
+     *       //   "additionalCreativeOptimizationConfigurations": [],
+     *       //   "advertiserGroupId": "my_advertiserGroupId",
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "advertiserIdDimensionValue": {},
+     *       //   "archived": false,
+     *       //   "audienceSegmentGroups": [],
+     *       //   "billingInvoiceCode": "my_billingInvoiceCode",
+     *       //   "clickThroughUrlSuffixProperties": {},
+     *       //   "comment": "my_comment",
+     *       //   "createInfo": {},
+     *       //   "creativeGroupIds": [],
+     *       //   "creativeOptimizationConfiguration": {},
+     *       //   "defaultClickThroughEventTagProperties": {},
+     *       //   "defaultLandingPageId": "my_defaultLandingPageId",
+     *       //   "endDate": "my_endDate",
+     *       //   "eventTagOverrides": [],
+     *       //   "externalId": "my_externalId",
+     *       //   "id": "my_id",
+     *       //   "idDimensionValue": {},
+     *       //   "kind": "my_kind",
+     *       //   "lastModifiedInfo": {},
+     *       //   "measurementPartnerLink": {},
+     *       //   "name": "my_name",
+     *       //   "startDate": "my_startDate",
+     *       //   "subaccountId": "my_subaccountId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "adBlockingConfiguration": {},
+     *   //   "additionalCreativeOptimizationConfigurations": [],
+     *   //   "advertiserGroupId": "my_advertiserGroupId",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "archived": false,
+     *   //   "audienceSegmentGroups": [],
+     *   //   "billingInvoiceCode": "my_billingInvoiceCode",
+     *   //   "clickThroughUrlSuffixProperties": {},
+     *   //   "comment": "my_comment",
+     *   //   "createInfo": {},
+     *   //   "creativeGroupIds": [],
+     *   //   "creativeOptimizationConfiguration": {},
+     *   //   "defaultClickThroughEventTagProperties": {},
+     *   //   "defaultLandingPageId": "my_defaultLandingPageId",
+     *   //   "endDate": "my_endDate",
+     *   //   "eventTagOverrides": [],
+     *   //   "externalId": "my_externalId",
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "kind": "my_kind",
+     *   //   "lastModifiedInfo": {},
+     *   //   "measurementPartnerLink": {},
+     *   //   "name": "my_name",
+     *   //   "startDate": "my_startDate",
+     *   //   "subaccountId": "my_subaccountId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12154,11 +15569,11 @@ export namespace dfareporting_v4 {
     insert(
       params: Params$Resource$Campaigns$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Campaigns$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Campaign>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Campaign>>;
     insert(
       params: Params$Resource$Campaigns$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12187,7 +15602,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Campaign>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Campaign> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Campaign>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Campaigns$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -12231,6 +15649,80 @@ export namespace dfareporting_v4 {
 
     /**
      * Retrieves a list of campaigns, possibly filtered. This method supports paging.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.campaigns.list({
+     *     // Select only campaigns whose advertisers belong to these advertiser groups.
+     *     advertiserGroupIds: 'placeholder-value',
+     *     // Select only campaigns that belong to these advertisers.
+     *     advertiserIds: 'placeholder-value',
+     *     // Select only archived campaigns. Don't set this field to select both archived and non-archived campaigns.
+     *     archived: 'placeholder-value',
+     *     // Select only campaigns that have at least one optimization activity.
+     *     atLeastOneOptimizationActivity: 'placeholder-value',
+     *     // Exclude campaigns with these IDs.
+     *     excludedIds: 'placeholder-value',
+     *     // Select only campaigns with these IDs.
+     *     ids: 'placeholder-value',
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Select only campaigns that have overridden this event tag ID.
+     *     overriddenEventTagId: 'placeholder-value',
+     *     // Value of the nextPageToken from the previous result page.
+     *     pageToken: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *     // Allows searching for campaigns by name or ID. Wildcards (*) are allowed. For example, "campaign*2015" will return campaigns with names like "campaign June 2015", "campaign April 2015", or simply "campaign 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "campaign" will match campaigns with name "my campaign", "campaign 2015", or simply "campaign".
+     *     searchString: 'placeholder-value',
+     *     // Field by which to sort the list.
+     *     sortField: 'placeholder-value',
+     *     // Order of sorted results.
+     *     sortOrder: 'placeholder-value',
+     *     // Select only campaigns that belong to this subaccount.
+     *     subaccountId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "campaigns": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12240,11 +15732,11 @@ export namespace dfareporting_v4 {
     list(
       params: Params$Resource$Campaigns$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Campaigns$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CampaignsListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CampaignsListResponse>>;
     list(
       params: Params$Resource$Campaigns$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12277,8 +15769,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CampaignsListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CampaignsListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Campaigns$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -12322,6 +15814,114 @@ export namespace dfareporting_v4 {
 
     /**
      * Updates an existing campaign. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.campaigns.patch({
+     *     // Required. Campaign ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "adBlockingConfiguration": {},
+     *       //   "additionalCreativeOptimizationConfigurations": [],
+     *       //   "advertiserGroupId": "my_advertiserGroupId",
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "advertiserIdDimensionValue": {},
+     *       //   "archived": false,
+     *       //   "audienceSegmentGroups": [],
+     *       //   "billingInvoiceCode": "my_billingInvoiceCode",
+     *       //   "clickThroughUrlSuffixProperties": {},
+     *       //   "comment": "my_comment",
+     *       //   "createInfo": {},
+     *       //   "creativeGroupIds": [],
+     *       //   "creativeOptimizationConfiguration": {},
+     *       //   "defaultClickThroughEventTagProperties": {},
+     *       //   "defaultLandingPageId": "my_defaultLandingPageId",
+     *       //   "endDate": "my_endDate",
+     *       //   "eventTagOverrides": [],
+     *       //   "externalId": "my_externalId",
+     *       //   "id": "my_id",
+     *       //   "idDimensionValue": {},
+     *       //   "kind": "my_kind",
+     *       //   "lastModifiedInfo": {},
+     *       //   "measurementPartnerLink": {},
+     *       //   "name": "my_name",
+     *       //   "startDate": "my_startDate",
+     *       //   "subaccountId": "my_subaccountId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "adBlockingConfiguration": {},
+     *   //   "additionalCreativeOptimizationConfigurations": [],
+     *   //   "advertiserGroupId": "my_advertiserGroupId",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "archived": false,
+     *   //   "audienceSegmentGroups": [],
+     *   //   "billingInvoiceCode": "my_billingInvoiceCode",
+     *   //   "clickThroughUrlSuffixProperties": {},
+     *   //   "comment": "my_comment",
+     *   //   "createInfo": {},
+     *   //   "creativeGroupIds": [],
+     *   //   "creativeOptimizationConfiguration": {},
+     *   //   "defaultClickThroughEventTagProperties": {},
+     *   //   "defaultLandingPageId": "my_defaultLandingPageId",
+     *   //   "endDate": "my_endDate",
+     *   //   "eventTagOverrides": [],
+     *   //   "externalId": "my_externalId",
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "kind": "my_kind",
+     *   //   "lastModifiedInfo": {},
+     *   //   "measurementPartnerLink": {},
+     *   //   "name": "my_name",
+     *   //   "startDate": "my_startDate",
+     *   //   "subaccountId": "my_subaccountId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12331,11 +15931,11 @@ export namespace dfareporting_v4 {
     patch(
       params: Params$Resource$Campaigns$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Campaigns$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Campaign>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Campaign>>;
     patch(
       params: Params$Resource$Campaigns$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12364,7 +15964,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Campaign>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Campaign> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Campaign>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Campaigns$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -12408,6 +16011,112 @@ export namespace dfareporting_v4 {
 
     /**
      * Updates an existing campaign.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.campaigns.update({
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "adBlockingConfiguration": {},
+     *       //   "additionalCreativeOptimizationConfigurations": [],
+     *       //   "advertiserGroupId": "my_advertiserGroupId",
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "advertiserIdDimensionValue": {},
+     *       //   "archived": false,
+     *       //   "audienceSegmentGroups": [],
+     *       //   "billingInvoiceCode": "my_billingInvoiceCode",
+     *       //   "clickThroughUrlSuffixProperties": {},
+     *       //   "comment": "my_comment",
+     *       //   "createInfo": {},
+     *       //   "creativeGroupIds": [],
+     *       //   "creativeOptimizationConfiguration": {},
+     *       //   "defaultClickThroughEventTagProperties": {},
+     *       //   "defaultLandingPageId": "my_defaultLandingPageId",
+     *       //   "endDate": "my_endDate",
+     *       //   "eventTagOverrides": [],
+     *       //   "externalId": "my_externalId",
+     *       //   "id": "my_id",
+     *       //   "idDimensionValue": {},
+     *       //   "kind": "my_kind",
+     *       //   "lastModifiedInfo": {},
+     *       //   "measurementPartnerLink": {},
+     *       //   "name": "my_name",
+     *       //   "startDate": "my_startDate",
+     *       //   "subaccountId": "my_subaccountId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "adBlockingConfiguration": {},
+     *   //   "additionalCreativeOptimizationConfigurations": [],
+     *   //   "advertiserGroupId": "my_advertiserGroupId",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "archived": false,
+     *   //   "audienceSegmentGroups": [],
+     *   //   "billingInvoiceCode": "my_billingInvoiceCode",
+     *   //   "clickThroughUrlSuffixProperties": {},
+     *   //   "comment": "my_comment",
+     *   //   "createInfo": {},
+     *   //   "creativeGroupIds": [],
+     *   //   "creativeOptimizationConfiguration": {},
+     *   //   "defaultClickThroughEventTagProperties": {},
+     *   //   "defaultLandingPageId": "my_defaultLandingPageId",
+     *   //   "endDate": "my_endDate",
+     *   //   "eventTagOverrides": [],
+     *   //   "externalId": "my_externalId",
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "kind": "my_kind",
+     *   //   "lastModifiedInfo": {},
+     *   //   "measurementPartnerLink": {},
+     *   //   "name": "my_name",
+     *   //   "startDate": "my_startDate",
+     *   //   "subaccountId": "my_subaccountId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12417,11 +16126,11 @@ export namespace dfareporting_v4 {
     update(
       params: Params$Resource$Campaigns$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Campaigns$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Campaign>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Campaign>>;
     update(
       params: Params$Resource$Campaigns$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12450,7 +16159,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Campaign>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Campaign> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Campaign>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Campaigns$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -12607,6 +16319,67 @@ export namespace dfareporting_v4 {
 
     /**
      * Gets one change log by ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.changeLogs.get({
+     *     // Change log ID.
+     *     id: '[^/]+',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "action": "my_action",
+     *   //   "changeTime": "my_changeTime",
+     *   //   "fieldName": "my_fieldName",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "newValue": "my_newValue",
+     *   //   "objectId": "my_objectId",
+     *   //   "objectType": "my_objectType",
+     *   //   "oldValue": "my_oldValue",
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "transactionId": "my_transactionId",
+     *   //   "userProfileId": "my_userProfileId",
+     *   //   "userProfileName": "my_userProfileName"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12616,11 +16389,11 @@ export namespace dfareporting_v4 {
     get(
       params: Params$Resource$Changelogs$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Changelogs$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ChangeLog>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ChangeLog>>;
     get(
       params: Params$Resource$Changelogs$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12649,7 +16422,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$ChangeLog>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ChangeLog> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ChangeLog>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Changelogs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -12694,6 +16470,74 @@ export namespace dfareporting_v4 {
 
     /**
      * Retrieves a list of change logs. This method supports paging.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.changeLogs.list({
+     *     // Select only change logs with the specified action.
+     *     action: 'placeholder-value',
+     *     // Select only change logs with these IDs.
+     *     ids: 'placeholder-value',
+     *     // Select only change logs whose change time is before the specified maxChangeTime.The time should be formatted as an RFC3339 date/time string. For example, for 10:54 PM on July 18th, 2015, in the America/New York time zone, the format is "2015-07-18T22:54:00-04:00". In other words, the year, month, day, the letter T, the hour (24-hour clock system), minute, second, and then the time zone offset.
+     *     maxChangeTime: 'placeholder-value',
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Select only change logs whose change time is after the specified minChangeTime.The time should be formatted as an RFC3339 date/time string. For example, for 10:54 PM on July 18th, 2015, in the America/New York time zone, the format is "2015-07-18T22:54:00-04:00". In other words, the year, month, day, the letter T, the hour (24-hour clock system), minute, second, and then the time zone offset.
+     *     minChangeTime: 'placeholder-value',
+     *     // Select only change logs with these object IDs.
+     *     objectIds: 'placeholder-value',
+     *     // Select only change logs with the specified object type.
+     *     objectType: 'placeholder-value',
+     *     // Value of the nextPageToken from the previous result page.
+     *     pageToken: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *     // Select only change logs whose object ID, user name, old or new values match the search string.
+     *     searchString: 'placeholder-value',
+     *     // Select only change logs with these user profile IDs.
+     *     userProfileIds: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "changeLogs": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12703,11 +16547,11 @@ export namespace dfareporting_v4 {
     list(
       params: Params$Resource$Changelogs$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Changelogs$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ChangeLogsListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ChangeLogsListResponse>>;
     list(
       params: Params$Resource$Changelogs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12740,8 +16584,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ChangeLogsListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ChangeLogsListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Changelogs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -12849,6 +16693,61 @@ export namespace dfareporting_v4 {
 
     /**
      * Retrieves a list of cities, possibly filtered.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.cities.list({
+     *     // Select only cities from these countries.
+     *     countryDartIds: 'placeholder-value',
+     *     // Select only cities with these DART IDs.
+     *     dartIds: 'placeholder-value',
+     *     // Select only cities with names starting with this prefix.
+     *     namePrefix: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *     // Select only cities from these regions.
+     *     regionDartIds: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cities": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12858,11 +16757,11 @@ export namespace dfareporting_v4 {
     list(
       params: Params$Resource$Cities$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Cities$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CitiesListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CitiesListResponse>>;
     list(
       params: Params$Resource$Cities$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12893,8 +16792,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CitiesListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CitiesListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Cities$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -12968,6 +16867,56 @@ export namespace dfareporting_v4 {
 
     /**
      * Gets one connection type by ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.connectionTypes.get({
+     *     // Connection type ID.
+     *     id: '[^/]+',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12977,11 +16926,11 @@ export namespace dfareporting_v4 {
     get(
       params: Params$Resource$Connectiontypes$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Connectiontypes$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ConnectionType>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ConnectionType>>;
     get(
       params: Params$Resource$Connectiontypes$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13010,7 +16959,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$ConnectionType>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ConnectionType> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ConnectionType>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Connectiontypes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13056,6 +17008,53 @@ export namespace dfareporting_v4 {
 
     /**
      * Retrieves a list of connection types.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.connectionTypes.list({
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "connectionTypes": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13065,11 +17064,11 @@ export namespace dfareporting_v4 {
     list(
       params: Params$Resource$Connectiontypes$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Connectiontypes$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ConnectionTypesListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ConnectionTypesListResponse>>;
     list(
       params: Params$Resource$Connectiontypes$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13104,8 +17103,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ConnectionTypesListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ConnectionTypesListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Connectiontypes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13177,6 +17176,49 @@ export namespace dfareporting_v4 {
 
     /**
      * Deletes an existing content category.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.contentCategories.delete({
+     *     // Content category ID.
+     *     id: '[^/]+',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13186,11 +17228,11 @@ export namespace dfareporting_v4 {
     delete(
       params: Params$Resource$Contentcategories$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Contentcategories$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Contentcategories$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13217,7 +17259,10 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Contentcategories$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13263,6 +17308,57 @@ export namespace dfareporting_v4 {
 
     /**
      * Gets one content category by ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.contentCategories.get({
+     *     // Content category ID.
+     *     id: '[^/]+',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13272,11 +17368,11 @@ export namespace dfareporting_v4 {
     get(
       params: Params$Resource$Contentcategories$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Contentcategories$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ContentCategory>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ContentCategory>>;
     get(
       params: Params$Resource$Contentcategories$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13305,7 +17401,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$ContentCategory>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ContentCategory> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ContentCategory>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Contentcategories$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13351,6 +17450,66 @@ export namespace dfareporting_v4 {
 
     /**
      * Inserts a new content category.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.contentCategories.insert({
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13360,11 +17519,11 @@ export namespace dfareporting_v4 {
     insert(
       params: Params$Resource$Contentcategories$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Contentcategories$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ContentCategory>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ContentCategory>>;
     insert(
       params: Params$Resource$Contentcategories$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13393,7 +17552,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$ContentCategory>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ContentCategory> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ContentCategory>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Contentcategories$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13439,6 +17601,66 @@ export namespace dfareporting_v4 {
 
     /**
      * Retrieves a list of content categories, possibly filtered. This method supports paging.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.contentCategories.list({
+     *     // Select only content categories with these IDs.
+     *     ids: 'placeholder-value',
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Value of the nextPageToken from the previous result page.
+     *     pageToken: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *     // Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "contentcategory*2015" will return objects with names like "contentcategory June 2015", "contentcategory April 2015", or simply "contentcategory 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "contentcategory" will match objects with name "my contentcategory", "contentcategory 2015", or simply "contentcategory".
+     *     searchString: 'placeholder-value',
+     *     // Field by which to sort the list.
+     *     sortField: 'placeholder-value',
+     *     // Order of sorted results.
+     *     sortOrder: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contentCategories": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13448,11 +17670,11 @@ export namespace dfareporting_v4 {
     list(
       params: Params$Resource$Contentcategories$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Contentcategories$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ContentCategoriesListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ContentCategoriesListResponse>>;
     list(
       params: Params$Resource$Contentcategories$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13487,8 +17709,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ContentCategoriesListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ContentCategoriesListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Contentcategories$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13536,6 +17758,68 @@ export namespace dfareporting_v4 {
 
     /**
      * Updates an existing content category. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.contentCategories.patch({
+     *     // Required. ContentCategory ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13545,11 +17829,11 @@ export namespace dfareporting_v4 {
     patch(
       params: Params$Resource$Contentcategories$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Contentcategories$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ContentCategory>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ContentCategory>>;
     patch(
       params: Params$Resource$Contentcategories$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13578,7 +17862,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$ContentCategory>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ContentCategory> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ContentCategory>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Contentcategories$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13624,6 +17911,66 @@ export namespace dfareporting_v4 {
 
     /**
      * Updates an existing content category.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.contentCategories.update({
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13633,11 +17980,11 @@ export namespace dfareporting_v4 {
     update(
       params: Params$Resource$Contentcategories$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Contentcategories$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ContentCategory>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ContentCategory>>;
     update(
       params: Params$Resource$Contentcategories$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13666,7 +18013,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$ContentCategory>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ContentCategory> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ContentCategory>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Contentcategories$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13813,6 +18163,64 @@ export namespace dfareporting_v4 {
 
     /**
      * Inserts conversions.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/ddmconversions'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.conversions.batchinsert({
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "conversions": [],
+     *       //   "encryptionInfo": {},
+     *       //   "kind": "my_kind"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "hasFailures": false,
+     *   //   "kind": "my_kind",
+     *   //   "status": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13822,11 +18230,11 @@ export namespace dfareporting_v4 {
     batchinsert(
       params: Params$Resource$Conversions$Batchinsert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     batchinsert(
       params?: Params$Resource$Conversions$Batchinsert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ConversionsBatchInsertResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ConversionsBatchInsertResponse>>;
     batchinsert(
       params: Params$Resource$Conversions$Batchinsert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13861,8 +18269,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ConversionsBatchInsertResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ConversionsBatchInsertResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Conversions$Batchinsert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13910,6 +18318,64 @@ export namespace dfareporting_v4 {
 
     /**
      * Updates existing conversions.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/ddmconversions'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.conversions.batchupdate({
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "conversions": [],
+     *       //   "encryptionInfo": {},
+     *       //   "kind": "my_kind"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "hasFailures": false,
+     *   //   "kind": "my_kind",
+     *   //   "status": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13919,11 +18385,11 @@ export namespace dfareporting_v4 {
     batchupdate(
       params: Params$Resource$Conversions$Batchupdate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     batchupdate(
       params?: Params$Resource$Conversions$Batchupdate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ConversionsBatchUpdateResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ConversionsBatchUpdateResponse>>;
     batchupdate(
       params: Params$Resource$Conversions$Batchupdate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13958,8 +18424,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ConversionsBatchUpdateResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ConversionsBatchUpdateResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Conversions$Batchupdate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14039,6 +18505,58 @@ export namespace dfareporting_v4 {
 
     /**
      * Gets one country by ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.countries.get({
+     *     // Country DART ID.
+     *     dartId: '[^/]+',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "countryCode": "my_countryCode",
+     *   //   "dartId": "my_dartId",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "sslEnabled": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14048,11 +18566,11 @@ export namespace dfareporting_v4 {
     get(
       params: Params$Resource$Countries$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Countries$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Country>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Country>>;
     get(
       params: Params$Resource$Countries$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14081,7 +18599,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Country>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Country> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Country>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Countries$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -14126,6 +18647,53 @@ export namespace dfareporting_v4 {
 
     /**
      * Retrieves a list of countries.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.countries.list({
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "countries": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14135,11 +18703,11 @@ export namespace dfareporting_v4 {
     list(
       params: Params$Resource$Countries$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Countries$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CountriesListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CountriesListResponse>>;
     list(
       params: Params$Resource$Countries$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14172,8 +18740,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CountriesListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CountriesListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Countries$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -14241,6 +18809,86 @@ export namespace dfareporting_v4 {
 
     /**
      * Inserts a new creative asset.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.creativeAssets.insert({
+     *     // Advertiser ID of this creative. This is a required field.
+     *     advertiserId: '[^/]+',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "assetIdentifier": {},
+     *       //   "clickTags": [],
+     *       //   "counterCustomEvents": [],
+     *       //   "detectedFeatures": [],
+     *       //   "exitCustomEvents": [],
+     *       //   "id": "my_id",
+     *       //   "idDimensionValue": {},
+     *       //   "kind": "my_kind",
+     *       //   "richMedia": false,
+     *       //   "timerCustomEvents": [],
+     *       //   "warnedValidationRules": []
+     *       // }
+     *     },
+     *     media: {
+     *       mimeType: 'placeholder-value',
+     *       body: 'placeholder-value',
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assetIdentifier": {},
+     *   //   "clickTags": [],
+     *   //   "counterCustomEvents": [],
+     *   //   "detectedFeatures": [],
+     *   //   "exitCustomEvents": [],
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "kind": "my_kind",
+     *   //   "richMedia": false,
+     *   //   "timerCustomEvents": [],
+     *   //   "warnedValidationRules": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14250,11 +18898,11 @@ export namespace dfareporting_v4 {
     insert(
       params: Params$Resource$Creativeassets$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Creativeassets$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CreativeAssetMetadata>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CreativeAssetMetadata>>;
     insert(
       params: Params$Resource$Creativeassets$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14287,8 +18935,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CreativeAssetMetadata>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CreativeAssetMetadata>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Creativeassets$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14377,6 +19025,49 @@ export namespace dfareporting_v4 {
 
     /**
      * Deletes an existing creative field.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.creativeFields.delete({
+     *     // Creative Field ID
+     *     id: '[^/]+',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14386,11 +19077,11 @@ export namespace dfareporting_v4 {
     delete(
       params: Params$Resource$Creativefields$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Creativefields$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Creativefields$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14417,7 +19108,10 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Creativefields$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14463,6 +19157,60 @@ export namespace dfareporting_v4 {
 
     /**
      * Gets one creative field by ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.creativeFields.get({
+     *     // Creative Field ID
+     *     id: '[^/]+',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "subaccountId": "my_subaccountId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14472,11 +19220,11 @@ export namespace dfareporting_v4 {
     get(
       params: Params$Resource$Creativefields$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Creativefields$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CreativeField>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CreativeField>>;
     get(
       params: Params$Resource$Creativefields$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14505,7 +19253,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$CreativeField>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CreativeField> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$CreativeField>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Creativefields$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14551,6 +19302,72 @@ export namespace dfareporting_v4 {
 
     /**
      * Inserts a new creative field.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.creativeFields.insert({
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "advertiserIdDimensionValue": {},
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "subaccountId": "my_subaccountId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "subaccountId": "my_subaccountId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14560,11 +19377,11 @@ export namespace dfareporting_v4 {
     insert(
       params: Params$Resource$Creativefields$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Creativefields$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CreativeField>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CreativeField>>;
     insert(
       params: Params$Resource$Creativefields$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14593,7 +19410,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$CreativeField>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CreativeField> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$CreativeField>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Creativefields$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14639,6 +19459,68 @@ export namespace dfareporting_v4 {
 
     /**
      * Retrieves a list of creative fields, possibly filtered. This method supports paging.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.creativeFields.list({
+     *     // Select only creative fields that belong to these advertisers.
+     *     advertiserIds: 'placeholder-value',
+     *     // Select only creative fields with these IDs.
+     *     ids: 'placeholder-value',
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Value of the nextPageToken from the previous result page.
+     *     pageToken: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *     // Allows searching for creative fields by name or ID. Wildcards (*) are allowed. For example, "creativefield*2015" will return creative fields with names like "creativefield June 2015", "creativefield April 2015", or simply "creativefield 2015". Most of the searches also add wild-cards implicitly at the start and the end of the search string. For example, a search string of "creativefield" will match creative fields with the name "my creativefield", "creativefield 2015", or simply "creativefield".
+     *     searchString: 'placeholder-value',
+     *     // Field by which to sort the list.
+     *     sortField: 'placeholder-value',
+     *     // Order of sorted results.
+     *     sortOrder: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "creativeFields": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14648,11 +19530,11 @@ export namespace dfareporting_v4 {
     list(
       params: Params$Resource$Creativefields$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Creativefields$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CreativeFieldsListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CreativeFieldsListResponse>>;
     list(
       params: Params$Resource$Creativefields$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14687,8 +19569,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CreativeFieldsListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CreativeFieldsListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Creativefields$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14734,6 +19616,74 @@ export namespace dfareporting_v4 {
 
     /**
      * Updates an existing creative field. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.creativeFields.patch({
+     *     // CreativeField ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "advertiserIdDimensionValue": {},
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "subaccountId": "my_subaccountId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "subaccountId": "my_subaccountId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14743,11 +19693,11 @@ export namespace dfareporting_v4 {
     patch(
       params: Params$Resource$Creativefields$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Creativefields$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CreativeField>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CreativeField>>;
     patch(
       params: Params$Resource$Creativefields$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14776,7 +19726,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$CreativeField>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CreativeField> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$CreativeField>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Creativefields$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14822,6 +19775,72 @@ export namespace dfareporting_v4 {
 
     /**
      * Updates an existing creative field.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.creativeFields.update({
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "advertiserIdDimensionValue": {},
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "subaccountId": "my_subaccountId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "subaccountId": "my_subaccountId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14831,11 +19850,11 @@ export namespace dfareporting_v4 {
     update(
       params: Params$Resource$Creativefields$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Creativefields$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CreativeField>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CreativeField>>;
     update(
       params: Params$Resource$Creativefields$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14864,7 +19883,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$CreativeField>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CreativeField> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$CreativeField>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Creativefields$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15015,6 +20037,51 @@ export namespace dfareporting_v4 {
 
     /**
      * Deletes an existing creative field value.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.creativeFieldValues.delete({
+     *     // Creative field ID for this creative field value.
+     *     creativeFieldId: '[^/]+',
+     *     // Creative Field Value ID
+     *     id: '[^/]+',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15024,11 +20091,11 @@ export namespace dfareporting_v4 {
     delete(
       params: Params$Resource$Creativefieldvalues$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Creativefieldvalues$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Creativefieldvalues$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15055,7 +20122,10 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Creativefieldvalues$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15101,6 +20171,58 @@ export namespace dfareporting_v4 {
 
     /**
      * Gets one creative field value by ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.creativeFieldValues.get({
+     *     // Creative field ID for this creative field value.
+     *     creativeFieldId: '[^/]+',
+     *     // Creative Field Value ID
+     *     id: '[^/]+',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "value": "my_value"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15110,11 +20232,11 @@ export namespace dfareporting_v4 {
     get(
       params: Params$Resource$Creativefieldvalues$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Creativefieldvalues$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CreativeFieldValue>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CreativeFieldValue>>;
     get(
       params: Params$Resource$Creativefieldvalues$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15145,8 +20267,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CreativeFieldValue>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CreativeFieldValue>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Creativefieldvalues$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15192,6 +20314,66 @@ export namespace dfareporting_v4 {
 
     /**
      * Inserts a new creative field value.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.creativeFieldValues.insert({
+     *     // Creative field ID for this creative field value.
+     *     creativeFieldId: '[^/]+',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "value": "my_value"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "value": "my_value"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15201,11 +20383,11 @@ export namespace dfareporting_v4 {
     insert(
       params: Params$Resource$Creativefieldvalues$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Creativefieldvalues$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CreativeFieldValue>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CreativeFieldValue>>;
     insert(
       params: Params$Resource$Creativefieldvalues$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15236,8 +20418,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CreativeFieldValue>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CreativeFieldValue>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Creativefieldvalues$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15283,6 +20465,68 @@ export namespace dfareporting_v4 {
 
     /**
      * Retrieves a list of creative field values, possibly filtered. This method supports paging.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.creativeFieldValues.list({
+     *     // Creative field ID for this creative field value.
+     *     creativeFieldId: '[^/]+',
+     *     // Select only creative field values with these IDs.
+     *     ids: 'placeholder-value',
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Value of the nextPageToken from the previous result page.
+     *     pageToken: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *     // Allows searching for creative field values by their values. Wildcards (e.g. *) are not allowed.
+     *     searchString: 'placeholder-value',
+     *     // Field by which to sort the list.
+     *     sortField: 'placeholder-value',
+     *     // Order of sorted results.
+     *     sortOrder: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "creativeFieldValues": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15292,11 +20536,11 @@ export namespace dfareporting_v4 {
     list(
       params: Params$Resource$Creativefieldvalues$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Creativefieldvalues$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CreativeFieldValuesListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CreativeFieldValuesListResponse>>;
     list(
       params: Params$Resource$Creativefieldvalues$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15331,8 +20575,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CreativeFieldValuesListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CreativeFieldValuesListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Creativefieldvalues$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15380,6 +20624,68 @@ export namespace dfareporting_v4 {
 
     /**
      * Updates an existing creative field value. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.creativeFieldValues.patch({
+     *     // CreativeField ID.
+     *     creativeFieldId: '[^/]+',
+     *     // CreativeFieldValue ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "value": "my_value"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "value": "my_value"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15389,11 +20695,11 @@ export namespace dfareporting_v4 {
     patch(
       params: Params$Resource$Creativefieldvalues$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Creativefieldvalues$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CreativeFieldValue>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CreativeFieldValue>>;
     patch(
       params: Params$Resource$Creativefieldvalues$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15424,8 +20730,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CreativeFieldValue>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CreativeFieldValue>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Creativefieldvalues$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15471,6 +20777,66 @@ export namespace dfareporting_v4 {
 
     /**
      * Updates an existing creative field value.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.creativeFieldValues.update({
+     *     // Creative field ID for this creative field value.
+     *     creativeFieldId: '[^/]+',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "value": "my_value"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "value": "my_value"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15480,11 +20846,11 @@ export namespace dfareporting_v4 {
     update(
       params: Params$Resource$Creativefieldvalues$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Creativefieldvalues$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CreativeFieldValue>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CreativeFieldValue>>;
     update(
       params: Params$Resource$Creativefieldvalues$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15515,8 +20881,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CreativeFieldValue>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CreativeFieldValue>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Creativefieldvalues$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15687,6 +21053,61 @@ export namespace dfareporting_v4 {
 
     /**
      * Gets one creative group by ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.creativeGroups.get({
+     *     // Creative group ID.
+     *     id: '[^/]+',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "groupNumber": 0,
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "subaccountId": "my_subaccountId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15696,11 +21117,11 @@ export namespace dfareporting_v4 {
     get(
       params: Params$Resource$Creativegroups$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Creativegroups$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CreativeGroup>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CreativeGroup>>;
     get(
       params: Params$Resource$Creativegroups$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15729,7 +21150,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$CreativeGroup>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CreativeGroup> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$CreativeGroup>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Creativegroups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15775,6 +21199,74 @@ export namespace dfareporting_v4 {
 
     /**
      * Inserts a new creative group.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.creativeGroups.insert({
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "advertiserIdDimensionValue": {},
+     *       //   "groupNumber": 0,
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "subaccountId": "my_subaccountId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "groupNumber": 0,
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "subaccountId": "my_subaccountId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15784,11 +21276,11 @@ export namespace dfareporting_v4 {
     insert(
       params: Params$Resource$Creativegroups$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Creativegroups$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CreativeGroup>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CreativeGroup>>;
     insert(
       params: Params$Resource$Creativegroups$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15817,7 +21309,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$CreativeGroup>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CreativeGroup> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$CreativeGroup>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Creativegroups$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15863,6 +21358,70 @@ export namespace dfareporting_v4 {
 
     /**
      * Retrieves a list of creative groups, possibly filtered. This method supports paging.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.creativeGroups.list({
+     *     // Select only creative groups that belong to these advertisers.
+     *     advertiserIds: 'placeholder-value',
+     *     // Select only creative groups that belong to this subgroup.
+     *     groupNumber: 'placeholder-value',
+     *     // Select only creative groups with these IDs.
+     *     ids: 'placeholder-value',
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Value of the nextPageToken from the previous result page.
+     *     pageToken: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *     // Allows searching for creative groups by name or ID. Wildcards (*) are allowed. For example, "creativegroup*2015" will return creative groups with names like "creativegroup June 2015", "creativegroup April 2015", or simply "creativegroup 2015". Most of the searches also add wild-cards implicitly at the start and the end of the search string. For example, a search string of "creativegroup" will match creative groups with the name "my creativegroup", "creativegroup 2015", or simply "creativegroup".
+     *     searchString: 'placeholder-value',
+     *     // Field by which to sort the list.
+     *     sortField: 'placeholder-value',
+     *     // Order of sorted results.
+     *     sortOrder: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "creativeGroups": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15872,11 +21431,11 @@ export namespace dfareporting_v4 {
     list(
       params: Params$Resource$Creativegroups$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Creativegroups$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CreativeGroupsListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CreativeGroupsListResponse>>;
     list(
       params: Params$Resource$Creativegroups$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15911,8 +21470,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CreativeGroupsListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CreativeGroupsListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Creativegroups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15958,6 +21517,76 @@ export namespace dfareporting_v4 {
 
     /**
      * Updates an existing creative group. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.creativeGroups.patch({
+     *     // Required. Creative Group ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "advertiserIdDimensionValue": {},
+     *       //   "groupNumber": 0,
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "subaccountId": "my_subaccountId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "groupNumber": 0,
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "subaccountId": "my_subaccountId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15967,11 +21596,11 @@ export namespace dfareporting_v4 {
     patch(
       params: Params$Resource$Creativegroups$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Creativegroups$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CreativeGroup>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CreativeGroup>>;
     patch(
       params: Params$Resource$Creativegroups$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16000,7 +21629,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$CreativeGroup>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CreativeGroup> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$CreativeGroup>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Creativegroups$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16046,6 +21678,74 @@ export namespace dfareporting_v4 {
 
     /**
      * Updates an existing creative group.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.creativeGroups.update({
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "advertiserIdDimensionValue": {},
+     *       //   "groupNumber": 0,
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "subaccountId": "my_subaccountId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "groupNumber": 0,
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "subaccountId": "my_subaccountId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16055,11 +21755,11 @@ export namespace dfareporting_v4 {
     update(
       params: Params$Resource$Creativegroups$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Creativegroups$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CreativeGroup>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CreativeGroup>>;
     update(
       params: Params$Resource$Creativegroups$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16088,7 +21788,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$CreativeGroup>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CreativeGroup> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$CreativeGroup>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Creativegroups$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16232,6 +21935,118 @@ export namespace dfareporting_v4 {
 
     /**
      * Gets one creative by ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.creatives.get({
+     *     // Creative ID.
+     *     id: '[^/]+',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "active": false,
+     *   //   "adParameters": "my_adParameters",
+     *   //   "adTagKeys": [],
+     *   //   "additionalSizes": [],
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "allowScriptAccess": false,
+     *   //   "archived": false,
+     *   //   "artworkType": "my_artworkType",
+     *   //   "authoringSource": "my_authoringSource",
+     *   //   "authoringTool": "my_authoringTool",
+     *   //   "autoAdvanceImages": false,
+     *   //   "backgroundColor": "my_backgroundColor",
+     *   //   "backupImageClickThroughUrl": {},
+     *   //   "backupImageFeatures": [],
+     *   //   "backupImageReportingLabel": "my_backupImageReportingLabel",
+     *   //   "backupImageTargetWindow": {},
+     *   //   "clickTags": [],
+     *   //   "commercialId": "my_commercialId",
+     *   //   "companionCreatives": [],
+     *   //   "compatibility": [],
+     *   //   "convertFlashToHtml5": false,
+     *   //   "counterCustomEvents": [],
+     *   //   "creativeAssetSelection": {},
+     *   //   "creativeAssets": [],
+     *   //   "creativeFieldAssignments": [],
+     *   //   "customKeyValues": [],
+     *   //   "dynamicAssetSelection": false,
+     *   //   "exitCustomEvents": [],
+     *   //   "fsCommand": {},
+     *   //   "htmlCode": "my_htmlCode",
+     *   //   "htmlCodeLocked": false,
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "kind": "my_kind",
+     *   //   "lastModifiedInfo": {},
+     *   //   "latestTraffickedCreativeId": "my_latestTraffickedCreativeId",
+     *   //   "mediaDescription": "my_mediaDescription",
+     *   //   "mediaDuration": {},
+     *   //   "name": "my_name",
+     *   //   "obaIcon": {},
+     *   //   "overrideCss": "my_overrideCss",
+     *   //   "progressOffset": {},
+     *   //   "redirectUrl": "my_redirectUrl",
+     *   //   "renderingId": "my_renderingId",
+     *   //   "renderingIdDimensionValue": {},
+     *   //   "requiredFlashPluginVersion": "my_requiredFlashPluginVersion",
+     *   //   "requiredFlashVersion": 0,
+     *   //   "size": {},
+     *   //   "skipOffset": {},
+     *   //   "skippable": false,
+     *   //   "sslCompliant": false,
+     *   //   "sslOverride": false,
+     *   //   "studioAdvertiserId": "my_studioAdvertiserId",
+     *   //   "studioCreativeId": "my_studioCreativeId",
+     *   //   "studioTraffickedCreativeId": "my_studioTraffickedCreativeId",
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "thirdPartyBackupImageImpressionsUrl": "my_thirdPartyBackupImageImpressionsUrl",
+     *   //   "thirdPartyRichMediaImpressionsUrl": "my_thirdPartyRichMediaImpressionsUrl",
+     *   //   "thirdPartyUrls": [],
+     *   //   "timerCustomEvents": [],
+     *   //   "totalFileSize": "my_totalFileSize",
+     *   //   "type": "my_type",
+     *   //   "universalAdId": {},
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16241,11 +22056,11 @@ export namespace dfareporting_v4 {
     get(
       params: Params$Resource$Creatives$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Creatives$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Creative>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Creative>>;
     get(
       params: Params$Resource$Creatives$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16274,7 +22089,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Creative>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Creative> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Creative>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Creatives$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -16319,6 +22137,188 @@ export namespace dfareporting_v4 {
 
     /**
      * Inserts a new creative.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.creatives.insert({
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "active": false,
+     *       //   "adParameters": "my_adParameters",
+     *       //   "adTagKeys": [],
+     *       //   "additionalSizes": [],
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "allowScriptAccess": false,
+     *       //   "archived": false,
+     *       //   "artworkType": "my_artworkType",
+     *       //   "authoringSource": "my_authoringSource",
+     *       //   "authoringTool": "my_authoringTool",
+     *       //   "autoAdvanceImages": false,
+     *       //   "backgroundColor": "my_backgroundColor",
+     *       //   "backupImageClickThroughUrl": {},
+     *       //   "backupImageFeatures": [],
+     *       //   "backupImageReportingLabel": "my_backupImageReportingLabel",
+     *       //   "backupImageTargetWindow": {},
+     *       //   "clickTags": [],
+     *       //   "commercialId": "my_commercialId",
+     *       //   "companionCreatives": [],
+     *       //   "compatibility": [],
+     *       //   "convertFlashToHtml5": false,
+     *       //   "counterCustomEvents": [],
+     *       //   "creativeAssetSelection": {},
+     *       //   "creativeAssets": [],
+     *       //   "creativeFieldAssignments": [],
+     *       //   "customKeyValues": [],
+     *       //   "dynamicAssetSelection": false,
+     *       //   "exitCustomEvents": [],
+     *       //   "fsCommand": {},
+     *       //   "htmlCode": "my_htmlCode",
+     *       //   "htmlCodeLocked": false,
+     *       //   "id": "my_id",
+     *       //   "idDimensionValue": {},
+     *       //   "kind": "my_kind",
+     *       //   "lastModifiedInfo": {},
+     *       //   "latestTraffickedCreativeId": "my_latestTraffickedCreativeId",
+     *       //   "mediaDescription": "my_mediaDescription",
+     *       //   "mediaDuration": {},
+     *       //   "name": "my_name",
+     *       //   "obaIcon": {},
+     *       //   "overrideCss": "my_overrideCss",
+     *       //   "progressOffset": {},
+     *       //   "redirectUrl": "my_redirectUrl",
+     *       //   "renderingId": "my_renderingId",
+     *       //   "renderingIdDimensionValue": {},
+     *       //   "requiredFlashPluginVersion": "my_requiredFlashPluginVersion",
+     *       //   "requiredFlashVersion": 0,
+     *       //   "size": {},
+     *       //   "skipOffset": {},
+     *       //   "skippable": false,
+     *       //   "sslCompliant": false,
+     *       //   "sslOverride": false,
+     *       //   "studioAdvertiserId": "my_studioAdvertiserId",
+     *       //   "studioCreativeId": "my_studioCreativeId",
+     *       //   "studioTraffickedCreativeId": "my_studioTraffickedCreativeId",
+     *       //   "subaccountId": "my_subaccountId",
+     *       //   "thirdPartyBackupImageImpressionsUrl": "my_thirdPartyBackupImageImpressionsUrl",
+     *       //   "thirdPartyRichMediaImpressionsUrl": "my_thirdPartyRichMediaImpressionsUrl",
+     *       //   "thirdPartyUrls": [],
+     *       //   "timerCustomEvents": [],
+     *       //   "totalFileSize": "my_totalFileSize",
+     *       //   "type": "my_type",
+     *       //   "universalAdId": {},
+     *       //   "version": 0
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "active": false,
+     *   //   "adParameters": "my_adParameters",
+     *   //   "adTagKeys": [],
+     *   //   "additionalSizes": [],
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "allowScriptAccess": false,
+     *   //   "archived": false,
+     *   //   "artworkType": "my_artworkType",
+     *   //   "authoringSource": "my_authoringSource",
+     *   //   "authoringTool": "my_authoringTool",
+     *   //   "autoAdvanceImages": false,
+     *   //   "backgroundColor": "my_backgroundColor",
+     *   //   "backupImageClickThroughUrl": {},
+     *   //   "backupImageFeatures": [],
+     *   //   "backupImageReportingLabel": "my_backupImageReportingLabel",
+     *   //   "backupImageTargetWindow": {},
+     *   //   "clickTags": [],
+     *   //   "commercialId": "my_commercialId",
+     *   //   "companionCreatives": [],
+     *   //   "compatibility": [],
+     *   //   "convertFlashToHtml5": false,
+     *   //   "counterCustomEvents": [],
+     *   //   "creativeAssetSelection": {},
+     *   //   "creativeAssets": [],
+     *   //   "creativeFieldAssignments": [],
+     *   //   "customKeyValues": [],
+     *   //   "dynamicAssetSelection": false,
+     *   //   "exitCustomEvents": [],
+     *   //   "fsCommand": {},
+     *   //   "htmlCode": "my_htmlCode",
+     *   //   "htmlCodeLocked": false,
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "kind": "my_kind",
+     *   //   "lastModifiedInfo": {},
+     *   //   "latestTraffickedCreativeId": "my_latestTraffickedCreativeId",
+     *   //   "mediaDescription": "my_mediaDescription",
+     *   //   "mediaDuration": {},
+     *   //   "name": "my_name",
+     *   //   "obaIcon": {},
+     *   //   "overrideCss": "my_overrideCss",
+     *   //   "progressOffset": {},
+     *   //   "redirectUrl": "my_redirectUrl",
+     *   //   "renderingId": "my_renderingId",
+     *   //   "renderingIdDimensionValue": {},
+     *   //   "requiredFlashPluginVersion": "my_requiredFlashPluginVersion",
+     *   //   "requiredFlashVersion": 0,
+     *   //   "size": {},
+     *   //   "skipOffset": {},
+     *   //   "skippable": false,
+     *   //   "sslCompliant": false,
+     *   //   "sslOverride": false,
+     *   //   "studioAdvertiserId": "my_studioAdvertiserId",
+     *   //   "studioCreativeId": "my_studioCreativeId",
+     *   //   "studioTraffickedCreativeId": "my_studioTraffickedCreativeId",
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "thirdPartyBackupImageImpressionsUrl": "my_thirdPartyBackupImageImpressionsUrl",
+     *   //   "thirdPartyRichMediaImpressionsUrl": "my_thirdPartyRichMediaImpressionsUrl",
+     *   //   "thirdPartyUrls": [],
+     *   //   "timerCustomEvents": [],
+     *   //   "totalFileSize": "my_totalFileSize",
+     *   //   "type": "my_type",
+     *   //   "universalAdId": {},
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16328,11 +22328,11 @@ export namespace dfareporting_v4 {
     insert(
       params: Params$Resource$Creatives$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Creatives$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Creative>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Creative>>;
     insert(
       params: Params$Resource$Creatives$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16361,7 +22361,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Creative>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Creative> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Creative>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Creatives$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -16405,6 +22408,86 @@ export namespace dfareporting_v4 {
 
     /**
      * Retrieves a list of creatives, possibly filtered. This method supports paging.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.creatives.list({
+     *     // Select only active creatives. Leave blank to select active and inactive creatives.
+     *     active: 'placeholder-value',
+     *     // Select only creatives with this advertiser ID.
+     *     advertiserId: 'placeholder-value',
+     *     // Select only archived creatives. Leave blank to select archived and unarchived creatives.
+     *     archived: 'placeholder-value',
+     *     // Select only creatives with this campaign ID.
+     *     campaignId: 'placeholder-value',
+     *     // Select only in-stream video creatives with these companion IDs.
+     *     companionCreativeIds: 'placeholder-value',
+     *     // Select only creatives with these creative field IDs.
+     *     creativeFieldIds: 'placeholder-value',
+     *     // Select only creatives with these IDs.
+     *     ids: 'placeholder-value',
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Value of the nextPageToken from the previous result page.
+     *     pageToken: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *     // Select only creatives with these rendering IDs.
+     *     renderingIds: 'placeholder-value',
+     *     // Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "creative*2015" will return objects with names like "creative June 2015", "creative April 2015", or simply "creative 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "creative" will match objects with name "my creative", "creative 2015", or simply "creative".
+     *     searchString: 'placeholder-value',
+     *     // Select only creatives with these size IDs.
+     *     sizeIds: 'placeholder-value',
+     *     // Field by which to sort the list.
+     *     sortField: 'placeholder-value',
+     *     // Order of sorted results.
+     *     sortOrder: 'placeholder-value',
+     *     // Select only creatives corresponding to this Studio creative ID.
+     *     studioCreativeId: 'placeholder-value',
+     *     // Select only creatives with these creative types.
+     *     types: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "creatives": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16414,11 +22497,11 @@ export namespace dfareporting_v4 {
     list(
       params: Params$Resource$Creatives$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Creatives$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CreativesListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CreativesListResponse>>;
     list(
       params: Params$Resource$Creatives$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16451,8 +22534,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CreativesListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CreativesListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Creatives$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -16496,6 +22579,190 @@ export namespace dfareporting_v4 {
 
     /**
      * Updates an existing creative. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.creatives.patch({
+     *     // Required. Creative ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "active": false,
+     *       //   "adParameters": "my_adParameters",
+     *       //   "adTagKeys": [],
+     *       //   "additionalSizes": [],
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "allowScriptAccess": false,
+     *       //   "archived": false,
+     *       //   "artworkType": "my_artworkType",
+     *       //   "authoringSource": "my_authoringSource",
+     *       //   "authoringTool": "my_authoringTool",
+     *       //   "autoAdvanceImages": false,
+     *       //   "backgroundColor": "my_backgroundColor",
+     *       //   "backupImageClickThroughUrl": {},
+     *       //   "backupImageFeatures": [],
+     *       //   "backupImageReportingLabel": "my_backupImageReportingLabel",
+     *       //   "backupImageTargetWindow": {},
+     *       //   "clickTags": [],
+     *       //   "commercialId": "my_commercialId",
+     *       //   "companionCreatives": [],
+     *       //   "compatibility": [],
+     *       //   "convertFlashToHtml5": false,
+     *       //   "counterCustomEvents": [],
+     *       //   "creativeAssetSelection": {},
+     *       //   "creativeAssets": [],
+     *       //   "creativeFieldAssignments": [],
+     *       //   "customKeyValues": [],
+     *       //   "dynamicAssetSelection": false,
+     *       //   "exitCustomEvents": [],
+     *       //   "fsCommand": {},
+     *       //   "htmlCode": "my_htmlCode",
+     *       //   "htmlCodeLocked": false,
+     *       //   "id": "my_id",
+     *       //   "idDimensionValue": {},
+     *       //   "kind": "my_kind",
+     *       //   "lastModifiedInfo": {},
+     *       //   "latestTraffickedCreativeId": "my_latestTraffickedCreativeId",
+     *       //   "mediaDescription": "my_mediaDescription",
+     *       //   "mediaDuration": {},
+     *       //   "name": "my_name",
+     *       //   "obaIcon": {},
+     *       //   "overrideCss": "my_overrideCss",
+     *       //   "progressOffset": {},
+     *       //   "redirectUrl": "my_redirectUrl",
+     *       //   "renderingId": "my_renderingId",
+     *       //   "renderingIdDimensionValue": {},
+     *       //   "requiredFlashPluginVersion": "my_requiredFlashPluginVersion",
+     *       //   "requiredFlashVersion": 0,
+     *       //   "size": {},
+     *       //   "skipOffset": {},
+     *       //   "skippable": false,
+     *       //   "sslCompliant": false,
+     *       //   "sslOverride": false,
+     *       //   "studioAdvertiserId": "my_studioAdvertiserId",
+     *       //   "studioCreativeId": "my_studioCreativeId",
+     *       //   "studioTraffickedCreativeId": "my_studioTraffickedCreativeId",
+     *       //   "subaccountId": "my_subaccountId",
+     *       //   "thirdPartyBackupImageImpressionsUrl": "my_thirdPartyBackupImageImpressionsUrl",
+     *       //   "thirdPartyRichMediaImpressionsUrl": "my_thirdPartyRichMediaImpressionsUrl",
+     *       //   "thirdPartyUrls": [],
+     *       //   "timerCustomEvents": [],
+     *       //   "totalFileSize": "my_totalFileSize",
+     *       //   "type": "my_type",
+     *       //   "universalAdId": {},
+     *       //   "version": 0
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "active": false,
+     *   //   "adParameters": "my_adParameters",
+     *   //   "adTagKeys": [],
+     *   //   "additionalSizes": [],
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "allowScriptAccess": false,
+     *   //   "archived": false,
+     *   //   "artworkType": "my_artworkType",
+     *   //   "authoringSource": "my_authoringSource",
+     *   //   "authoringTool": "my_authoringTool",
+     *   //   "autoAdvanceImages": false,
+     *   //   "backgroundColor": "my_backgroundColor",
+     *   //   "backupImageClickThroughUrl": {},
+     *   //   "backupImageFeatures": [],
+     *   //   "backupImageReportingLabel": "my_backupImageReportingLabel",
+     *   //   "backupImageTargetWindow": {},
+     *   //   "clickTags": [],
+     *   //   "commercialId": "my_commercialId",
+     *   //   "companionCreatives": [],
+     *   //   "compatibility": [],
+     *   //   "convertFlashToHtml5": false,
+     *   //   "counterCustomEvents": [],
+     *   //   "creativeAssetSelection": {},
+     *   //   "creativeAssets": [],
+     *   //   "creativeFieldAssignments": [],
+     *   //   "customKeyValues": [],
+     *   //   "dynamicAssetSelection": false,
+     *   //   "exitCustomEvents": [],
+     *   //   "fsCommand": {},
+     *   //   "htmlCode": "my_htmlCode",
+     *   //   "htmlCodeLocked": false,
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "kind": "my_kind",
+     *   //   "lastModifiedInfo": {},
+     *   //   "latestTraffickedCreativeId": "my_latestTraffickedCreativeId",
+     *   //   "mediaDescription": "my_mediaDescription",
+     *   //   "mediaDuration": {},
+     *   //   "name": "my_name",
+     *   //   "obaIcon": {},
+     *   //   "overrideCss": "my_overrideCss",
+     *   //   "progressOffset": {},
+     *   //   "redirectUrl": "my_redirectUrl",
+     *   //   "renderingId": "my_renderingId",
+     *   //   "renderingIdDimensionValue": {},
+     *   //   "requiredFlashPluginVersion": "my_requiredFlashPluginVersion",
+     *   //   "requiredFlashVersion": 0,
+     *   //   "size": {},
+     *   //   "skipOffset": {},
+     *   //   "skippable": false,
+     *   //   "sslCompliant": false,
+     *   //   "sslOverride": false,
+     *   //   "studioAdvertiserId": "my_studioAdvertiserId",
+     *   //   "studioCreativeId": "my_studioCreativeId",
+     *   //   "studioTraffickedCreativeId": "my_studioTraffickedCreativeId",
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "thirdPartyBackupImageImpressionsUrl": "my_thirdPartyBackupImageImpressionsUrl",
+     *   //   "thirdPartyRichMediaImpressionsUrl": "my_thirdPartyRichMediaImpressionsUrl",
+     *   //   "thirdPartyUrls": [],
+     *   //   "timerCustomEvents": [],
+     *   //   "totalFileSize": "my_totalFileSize",
+     *   //   "type": "my_type",
+     *   //   "universalAdId": {},
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16505,11 +22772,11 @@ export namespace dfareporting_v4 {
     patch(
       params: Params$Resource$Creatives$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Creatives$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Creative>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Creative>>;
     patch(
       params: Params$Resource$Creatives$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16538,7 +22805,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Creative>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Creative> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Creative>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Creatives$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -16582,6 +22852,188 @@ export namespace dfareporting_v4 {
 
     /**
      * Updates an existing creative.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.creatives.update({
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "active": false,
+     *       //   "adParameters": "my_adParameters",
+     *       //   "adTagKeys": [],
+     *       //   "additionalSizes": [],
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "allowScriptAccess": false,
+     *       //   "archived": false,
+     *       //   "artworkType": "my_artworkType",
+     *       //   "authoringSource": "my_authoringSource",
+     *       //   "authoringTool": "my_authoringTool",
+     *       //   "autoAdvanceImages": false,
+     *       //   "backgroundColor": "my_backgroundColor",
+     *       //   "backupImageClickThroughUrl": {},
+     *       //   "backupImageFeatures": [],
+     *       //   "backupImageReportingLabel": "my_backupImageReportingLabel",
+     *       //   "backupImageTargetWindow": {},
+     *       //   "clickTags": [],
+     *       //   "commercialId": "my_commercialId",
+     *       //   "companionCreatives": [],
+     *       //   "compatibility": [],
+     *       //   "convertFlashToHtml5": false,
+     *       //   "counterCustomEvents": [],
+     *       //   "creativeAssetSelection": {},
+     *       //   "creativeAssets": [],
+     *       //   "creativeFieldAssignments": [],
+     *       //   "customKeyValues": [],
+     *       //   "dynamicAssetSelection": false,
+     *       //   "exitCustomEvents": [],
+     *       //   "fsCommand": {},
+     *       //   "htmlCode": "my_htmlCode",
+     *       //   "htmlCodeLocked": false,
+     *       //   "id": "my_id",
+     *       //   "idDimensionValue": {},
+     *       //   "kind": "my_kind",
+     *       //   "lastModifiedInfo": {},
+     *       //   "latestTraffickedCreativeId": "my_latestTraffickedCreativeId",
+     *       //   "mediaDescription": "my_mediaDescription",
+     *       //   "mediaDuration": {},
+     *       //   "name": "my_name",
+     *       //   "obaIcon": {},
+     *       //   "overrideCss": "my_overrideCss",
+     *       //   "progressOffset": {},
+     *       //   "redirectUrl": "my_redirectUrl",
+     *       //   "renderingId": "my_renderingId",
+     *       //   "renderingIdDimensionValue": {},
+     *       //   "requiredFlashPluginVersion": "my_requiredFlashPluginVersion",
+     *       //   "requiredFlashVersion": 0,
+     *       //   "size": {},
+     *       //   "skipOffset": {},
+     *       //   "skippable": false,
+     *       //   "sslCompliant": false,
+     *       //   "sslOverride": false,
+     *       //   "studioAdvertiserId": "my_studioAdvertiserId",
+     *       //   "studioCreativeId": "my_studioCreativeId",
+     *       //   "studioTraffickedCreativeId": "my_studioTraffickedCreativeId",
+     *       //   "subaccountId": "my_subaccountId",
+     *       //   "thirdPartyBackupImageImpressionsUrl": "my_thirdPartyBackupImageImpressionsUrl",
+     *       //   "thirdPartyRichMediaImpressionsUrl": "my_thirdPartyRichMediaImpressionsUrl",
+     *       //   "thirdPartyUrls": [],
+     *       //   "timerCustomEvents": [],
+     *       //   "totalFileSize": "my_totalFileSize",
+     *       //   "type": "my_type",
+     *       //   "universalAdId": {},
+     *       //   "version": 0
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "active": false,
+     *   //   "adParameters": "my_adParameters",
+     *   //   "adTagKeys": [],
+     *   //   "additionalSizes": [],
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "allowScriptAccess": false,
+     *   //   "archived": false,
+     *   //   "artworkType": "my_artworkType",
+     *   //   "authoringSource": "my_authoringSource",
+     *   //   "authoringTool": "my_authoringTool",
+     *   //   "autoAdvanceImages": false,
+     *   //   "backgroundColor": "my_backgroundColor",
+     *   //   "backupImageClickThroughUrl": {},
+     *   //   "backupImageFeatures": [],
+     *   //   "backupImageReportingLabel": "my_backupImageReportingLabel",
+     *   //   "backupImageTargetWindow": {},
+     *   //   "clickTags": [],
+     *   //   "commercialId": "my_commercialId",
+     *   //   "companionCreatives": [],
+     *   //   "compatibility": [],
+     *   //   "convertFlashToHtml5": false,
+     *   //   "counterCustomEvents": [],
+     *   //   "creativeAssetSelection": {},
+     *   //   "creativeAssets": [],
+     *   //   "creativeFieldAssignments": [],
+     *   //   "customKeyValues": [],
+     *   //   "dynamicAssetSelection": false,
+     *   //   "exitCustomEvents": [],
+     *   //   "fsCommand": {},
+     *   //   "htmlCode": "my_htmlCode",
+     *   //   "htmlCodeLocked": false,
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "kind": "my_kind",
+     *   //   "lastModifiedInfo": {},
+     *   //   "latestTraffickedCreativeId": "my_latestTraffickedCreativeId",
+     *   //   "mediaDescription": "my_mediaDescription",
+     *   //   "mediaDuration": {},
+     *   //   "name": "my_name",
+     *   //   "obaIcon": {},
+     *   //   "overrideCss": "my_overrideCss",
+     *   //   "progressOffset": {},
+     *   //   "redirectUrl": "my_redirectUrl",
+     *   //   "renderingId": "my_renderingId",
+     *   //   "renderingIdDimensionValue": {},
+     *   //   "requiredFlashPluginVersion": "my_requiredFlashPluginVersion",
+     *   //   "requiredFlashVersion": 0,
+     *   //   "size": {},
+     *   //   "skipOffset": {},
+     *   //   "skippable": false,
+     *   //   "sslCompliant": false,
+     *   //   "sslOverride": false,
+     *   //   "studioAdvertiserId": "my_studioAdvertiserId",
+     *   //   "studioCreativeId": "my_studioCreativeId",
+     *   //   "studioTraffickedCreativeId": "my_studioTraffickedCreativeId",
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "thirdPartyBackupImageImpressionsUrl": "my_thirdPartyBackupImageImpressionsUrl",
+     *   //   "thirdPartyRichMediaImpressionsUrl": "my_thirdPartyRichMediaImpressionsUrl",
+     *   //   "thirdPartyUrls": [],
+     *   //   "timerCustomEvents": [],
+     *   //   "totalFileSize": "my_totalFileSize",
+     *   //   "type": "my_type",
+     *   //   "universalAdId": {},
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16591,11 +23043,11 @@ export namespace dfareporting_v4 {
     update(
       params: Params$Resource$Creatives$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Creatives$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Creative>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Creative>>;
     update(
       params: Params$Resource$Creatives$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16624,7 +23076,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Creative>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Creative> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Creative>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Creatives$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -16793,6 +23248,71 @@ export namespace dfareporting_v4 {
 
     /**
      * Retrieves list of report dimension values for a list of filters.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfareporting'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.dimensionValues.query({
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // The value of the nextToken from the previous result page.
+     *     pageToken: 'placeholder-value',
+     *     // The Campaign Manager 360 user profile ID.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "dimensionName": "my_dimensionName",
+     *       //   "endDate": "my_endDate",
+     *       //   "filters": [],
+     *       //   "kind": "my_kind",
+     *       //   "startDate": "my_startDate"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16802,11 +23322,11 @@ export namespace dfareporting_v4 {
     query(
       params: Params$Resource$Dimensionvalues$Query,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     query(
       params?: Params$Resource$Dimensionvalues$Query,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DimensionValueList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DimensionValueList>>;
     query(
       params: Params$Resource$Dimensionvalues$Query,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16837,8 +23357,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$DimensionValueList>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$DimensionValueList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Dimensionvalues$Query;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16912,6 +23432,62 @@ export namespace dfareporting_v4 {
 
     /**
      * Gets one directory site by ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.directorySites.get({
+     *     // Directory site ID.
+     *     id: '[^/]+',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "inpageTagFormats": [],
+     *   //   "interstitialTagFormats": [],
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "publisherSpecificationId": "my_publisherSpecificationId",
+     *   //   "settings": {},
+     *   //   "url": "my_url"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16921,11 +23497,11 @@ export namespace dfareporting_v4 {
     get(
       params: Params$Resource$Directorysites$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Directorysites$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DirectorySite>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DirectorySite>>;
     get(
       params: Params$Resource$Directorysites$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -16954,7 +23530,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$DirectorySite>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$DirectorySite> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$DirectorySite>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Directorysites$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17000,6 +23579,76 @@ export namespace dfareporting_v4 {
 
     /**
      * Inserts a new directory site.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.directorySites.insert({
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "id": "my_id",
+     *       //   "idDimensionValue": {},
+     *       //   "inpageTagFormats": [],
+     *       //   "interstitialTagFormats": [],
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "publisherSpecificationId": "my_publisherSpecificationId",
+     *       //   "settings": {},
+     *       //   "url": "my_url"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "inpageTagFormats": [],
+     *   //   "interstitialTagFormats": [],
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "publisherSpecificationId": "my_publisherSpecificationId",
+     *   //   "settings": {},
+     *   //   "url": "my_url"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17009,11 +23658,11 @@ export namespace dfareporting_v4 {
     insert(
       params: Params$Resource$Directorysites$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Directorysites$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DirectorySite>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DirectorySite>>;
     insert(
       params: Params$Resource$Directorysites$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17042,7 +23691,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$DirectorySite>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$DirectorySite> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$DirectorySite>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Directorysites$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17088,6 +23740,76 @@ export namespace dfareporting_v4 {
 
     /**
      * Retrieves a list of directory sites, possibly filtered. This method supports paging.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.directorySites.list({
+     *     // This search filter is no longer supported and will have no effect on the results returned.
+     *     acceptsInStreamVideoPlacements: 'placeholder-value',
+     *     // This search filter is no longer supported and will have no effect on the results returned.
+     *     acceptsInterstitialPlacements: 'placeholder-value',
+     *     // Select only directory sites that accept publisher paid placements. This field can be left blank.
+     *     acceptsPublisherPaidPlacements: 'placeholder-value',
+     *     // Select only active directory sites. Leave blank to retrieve both active and inactive directory sites.
+     *     active: 'placeholder-value',
+     *     // Select only directory sites with this Ad Manager network code.
+     *     dfpNetworkCode: 'placeholder-value',
+     *     // Select only directory sites with these IDs.
+     *     ids: 'placeholder-value',
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Value of the nextPageToken from the previous result page.
+     *     pageToken: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *     // Allows searching for objects by name, ID or URL. Wildcards (*) are allowed. For example, "directory site*2015" will return objects with names like "directory site June 2015", "directory site April 2015", or simply "directory site 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "directory site" will match objects with name "my directory site", "directory site 2015" or simply, "directory site".
+     *     searchString: 'placeholder-value',
+     *     // Field by which to sort the list.
+     *     sortField: 'placeholder-value',
+     *     // Order of sorted results.
+     *     sortOrder: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "directorySites": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17097,11 +23819,11 @@ export namespace dfareporting_v4 {
     list(
       params: Params$Resource$Directorysites$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Directorysites$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DirectorySitesListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DirectorySitesListResponse>>;
     list(
       params: Params$Resource$Directorysites$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17136,8 +23858,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$DirectorySitesListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$DirectorySitesListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Directorysites$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17265,6 +23987,53 @@ export namespace dfareporting_v4 {
 
     /**
      * Deletes an existing dynamic targeting key.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.dynamicTargetingKeys.delete({
+     *     // Required. Name of this dynamic targeting key. This is a required field. Must be less than 256 characters long and cannot contain commas. All characters are converted to lowercase.
+     *     name: 'placeholder-value',
+     *     // ID of the object of this dynamic targeting key. This is a required field.
+     *     objectId: '[^/]+',
+     *     // Required. Type of the object of this dynamic targeting key. This is a required field.
+     *     objectType: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17274,11 +24043,11 @@ export namespace dfareporting_v4 {
     delete(
       params: Params$Resource$Dynamictargetingkeys$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Dynamictargetingkeys$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Dynamictargetingkeys$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17305,7 +24074,10 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Dynamictargetingkeys$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17351,6 +24123,66 @@ export namespace dfareporting_v4 {
 
     /**
      * Inserts a new dynamic targeting key. Keys must be created at the advertiser level before being assigned to the advertiser's ads, creatives, or placements. There is a maximum of 1000 keys per advertiser, out of which a maximum of 20 keys can be assigned per ad, creative, or placement.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.dynamicTargetingKeys.insert({
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "objectId": "my_objectId",
+     *       //   "objectType": "my_objectType"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "objectId": "my_objectId",
+     *   //   "objectType": "my_objectType"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17360,11 +24192,11 @@ export namespace dfareporting_v4 {
     insert(
       params: Params$Resource$Dynamictargetingkeys$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Dynamictargetingkeys$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DynamicTargetingKey>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DynamicTargetingKey>>;
     insert(
       params: Params$Resource$Dynamictargetingkeys$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17395,8 +24227,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$DynamicTargetingKey>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$DynamicTargetingKey>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Dynamictargetingkeys$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17442,6 +24274,61 @@ export namespace dfareporting_v4 {
 
     /**
      * Retrieves a list of dynamic targeting keys.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.dynamicTargetingKeys.list({
+     *     // Select only dynamic targeting keys whose object has this advertiser ID.
+     *     advertiserId: 'placeholder-value',
+     *     // Select only dynamic targeting keys exactly matching these names.
+     *     names: 'placeholder-value',
+     *     // Select only dynamic targeting keys with this object ID.
+     *     objectId: 'placeholder-value',
+     *     // Select only dynamic targeting keys with this object type.
+     *     objectType: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dynamicTargetingKeys": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17451,11 +24338,13 @@ export namespace dfareporting_v4 {
     list(
       params: Params$Resource$Dynamictargetingkeys$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Dynamictargetingkeys$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DynamicTargetingKeysListResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$DynamicTargetingKeysListResponse>
+    >;
     list(
       params: Params$Resource$Dynamictargetingkeys$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17490,8 +24379,10 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$DynamicTargetingKeysListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$DynamicTargetingKeysListResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Dynamictargetingkeys$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17601,6 +24492,49 @@ export namespace dfareporting_v4 {
 
     /**
      * Deletes an existing event tag.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.eventTags.delete({
+     *     // Event tag ID.
+     *     id: '[^/]+',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17610,11 +24544,11 @@ export namespace dfareporting_v4 {
     delete(
       params: Params$Resource$Eventtags$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Eventtags$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Eventtags$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17641,7 +24575,10 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Eventtags$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -17686,6 +24623,71 @@ export namespace dfareporting_v4 {
 
     /**
      * Gets one event tag by ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.eventTags.get({
+     *     // Event tag ID.
+     *     id: '[^/]+',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "campaignId": "my_campaignId",
+     *   //   "campaignIdDimensionValue": {},
+     *   //   "enabledByDefault": false,
+     *   //   "excludeFromAdxRequests": false,
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "siteFilterType": "my_siteFilterType",
+     *   //   "siteIds": [],
+     *   //   "sslCompliant": false,
+     *   //   "status": "my_status",
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "type": "my_type",
+     *   //   "url": "my_url",
+     *   //   "urlEscapeLevels": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17695,11 +24697,11 @@ export namespace dfareporting_v4 {
     get(
       params: Params$Resource$Eventtags$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Eventtags$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$EventTag>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$EventTag>>;
     get(
       params: Params$Resource$Eventtags$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17728,7 +24730,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$EventTag>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$EventTag> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$EventTag>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Eventtags$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -17773,6 +24778,94 @@ export namespace dfareporting_v4 {
 
     /**
      * Inserts a new event tag.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.eventTags.insert({
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "advertiserIdDimensionValue": {},
+     *       //   "campaignId": "my_campaignId",
+     *       //   "campaignIdDimensionValue": {},
+     *       //   "enabledByDefault": false,
+     *       //   "excludeFromAdxRequests": false,
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "siteFilterType": "my_siteFilterType",
+     *       //   "siteIds": [],
+     *       //   "sslCompliant": false,
+     *       //   "status": "my_status",
+     *       //   "subaccountId": "my_subaccountId",
+     *       //   "type": "my_type",
+     *       //   "url": "my_url",
+     *       //   "urlEscapeLevels": 0
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "campaignId": "my_campaignId",
+     *   //   "campaignIdDimensionValue": {},
+     *   //   "enabledByDefault": false,
+     *   //   "excludeFromAdxRequests": false,
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "siteFilterType": "my_siteFilterType",
+     *   //   "siteIds": [],
+     *   //   "sslCompliant": false,
+     *   //   "status": "my_status",
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "type": "my_type",
+     *   //   "url": "my_url",
+     *   //   "urlEscapeLevels": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17782,11 +24875,11 @@ export namespace dfareporting_v4 {
     insert(
       params: Params$Resource$Eventtags$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Eventtags$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$EventTag>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$EventTag>>;
     insert(
       params: Params$Resource$Eventtags$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17815,7 +24908,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$EventTag>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$EventTag> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$EventTag>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Eventtags$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -17859,6 +24955,73 @@ export namespace dfareporting_v4 {
 
     /**
      * Retrieves a list of event tags, possibly filtered.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.eventTags.list({
+     *     // Select only event tags that belong to this ad.
+     *     adId: 'placeholder-value',
+     *     // Select only event tags that belong to this advertiser.
+     *     advertiserId: 'placeholder-value',
+     *     // Select only event tags that belong to this campaign.
+     *     campaignId: 'placeholder-value',
+     *     // Examine only the specified campaign or advertiser's event tags for matching selector criteria. When set to false, the parent advertiser and parent campaign of the specified ad or campaign is examined as well. In addition, when set to false, the status field is examined as well, along with the enabledByDefault field. This parameter can not be set to true when adId is specified as ads do not define their own even tags.
+     *     definitionsOnly: 'placeholder-value',
+     *     // Select only enabled event tags. What is considered enabled or disabled depends on the definitionsOnly parameter. When definitionsOnly is set to true, only the specified advertiser or campaign's event tags' enabledByDefault field is examined. When definitionsOnly is set to false, the specified ad or specified campaign's parent advertiser's or parent campaign's event tags' enabledByDefault and status fields are examined as well.
+     *     enabled: 'placeholder-value',
+     *     // Select only event tags with the specified event tag types. Event tag types can be used to specify whether to use a third-party pixel, a third-party JavaScript URL, or a third-party click-through URL for either impression or click tracking.
+     *     eventTagTypes: 'placeholder-value',
+     *     // Select only event tags with these IDs.
+     *     ids: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *     // Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "eventtag*2015" will return objects with names like "eventtag June 2015", "eventtag April 2015", or simply "eventtag 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "eventtag" will match objects with name "my eventtag", "eventtag 2015", or simply "eventtag".
+     *     searchString: 'placeholder-value',
+     *     // Field by which to sort the list.
+     *     sortField: 'placeholder-value',
+     *     // Order of sorted results.
+     *     sortOrder: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "eventTags": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17868,11 +25031,11 @@ export namespace dfareporting_v4 {
     list(
       params: Params$Resource$Eventtags$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Eventtags$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$EventTagsListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$EventTagsListResponse>>;
     list(
       params: Params$Resource$Eventtags$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17905,8 +25068,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$EventTagsListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$EventTagsListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Eventtags$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -17950,6 +25113,96 @@ export namespace dfareporting_v4 {
 
     /**
      * Updates an existing event tag. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.eventTags.patch({
+     *     // Required. EventTag ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "advertiserIdDimensionValue": {},
+     *       //   "campaignId": "my_campaignId",
+     *       //   "campaignIdDimensionValue": {},
+     *       //   "enabledByDefault": false,
+     *       //   "excludeFromAdxRequests": false,
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "siteFilterType": "my_siteFilterType",
+     *       //   "siteIds": [],
+     *       //   "sslCompliant": false,
+     *       //   "status": "my_status",
+     *       //   "subaccountId": "my_subaccountId",
+     *       //   "type": "my_type",
+     *       //   "url": "my_url",
+     *       //   "urlEscapeLevels": 0
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "campaignId": "my_campaignId",
+     *   //   "campaignIdDimensionValue": {},
+     *   //   "enabledByDefault": false,
+     *   //   "excludeFromAdxRequests": false,
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "siteFilterType": "my_siteFilterType",
+     *   //   "siteIds": [],
+     *   //   "sslCompliant": false,
+     *   //   "status": "my_status",
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "type": "my_type",
+     *   //   "url": "my_url",
+     *   //   "urlEscapeLevels": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17959,11 +25212,11 @@ export namespace dfareporting_v4 {
     patch(
       params: Params$Resource$Eventtags$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Eventtags$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$EventTag>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$EventTag>>;
     patch(
       params: Params$Resource$Eventtags$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17992,7 +25245,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$EventTag>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$EventTag> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$EventTag>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Eventtags$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -18036,6 +25292,94 @@ export namespace dfareporting_v4 {
 
     /**
      * Updates an existing event tag.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.eventTags.update({
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "advertiserIdDimensionValue": {},
+     *       //   "campaignId": "my_campaignId",
+     *       //   "campaignIdDimensionValue": {},
+     *       //   "enabledByDefault": false,
+     *       //   "excludeFromAdxRequests": false,
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "siteFilterType": "my_siteFilterType",
+     *       //   "siteIds": [],
+     *       //   "sslCompliant": false,
+     *       //   "status": "my_status",
+     *       //   "subaccountId": "my_subaccountId",
+     *       //   "type": "my_type",
+     *       //   "url": "my_url",
+     *       //   "urlEscapeLevels": 0
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "campaignId": "my_campaignId",
+     *   //   "campaignIdDimensionValue": {},
+     *   //   "enabledByDefault": false,
+     *   //   "excludeFromAdxRequests": false,
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "siteFilterType": "my_siteFilterType",
+     *   //   "siteIds": [],
+     *   //   "sslCompliant": false,
+     *   //   "status": "my_status",
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "type": "my_type",
+     *   //   "url": "my_url",
+     *   //   "urlEscapeLevels": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -18045,11 +25389,11 @@ export namespace dfareporting_v4 {
     update(
       params: Params$Resource$Eventtags$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Eventtags$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$EventTag>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$EventTag>>;
     update(
       params: Params$Resource$Eventtags$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18078,7 +25422,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$EventTag>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$EventTag> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$EventTag>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Eventtags$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -18233,6 +25580,63 @@ export namespace dfareporting_v4 {
 
     /**
      * Retrieves a report file by its report ID and file ID. This method supports media download.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfareporting'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.files.get({
+     *     // The ID of the report file.
+     *     fileId: 'placeholder-value',
+     *     // The ID of the report.
+     *     reportId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dateRange": {},
+     *   //   "etag": "my_etag",
+     *   //   "fileName": "my_fileName",
+     *   //   "format": "my_format",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "lastModifiedTime": "my_lastModifiedTime",
+     *   //   "reportId": "my_reportId",
+     *   //   "status": "my_status",
+     *   //   "urls": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -18242,11 +25646,11 @@ export namespace dfareporting_v4 {
     get(
       params: Params$Resource$Files$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Files$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$File>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$File>>;
     get(
       params: Params$Resource$Files$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18275,7 +25679,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$File>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$File> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$File>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -18319,6 +25726,65 @@ export namespace dfareporting_v4 {
 
     /**
      * Lists files for a user profile.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfareporting'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.files.list({
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // The value of the nextToken from the previous result page.
+     *     pageToken: 'placeholder-value',
+     *     // The Campaign Manager 360 user profile ID.
+     *     profileId: 'placeholder-value',
+     *     // The scope that defines which results are returned.
+     *     scope: 'placeholder-value',
+     *     // The field by which to sort the list.
+     *     sortField: 'placeholder-value',
+     *     // Order of sorted results.
+     *     sortOrder: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -18328,11 +25794,11 @@ export namespace dfareporting_v4 {
     list(
       params: Params$Resource$Files$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Files$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FileList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FileList>>;
     list(
       params: Params$Resource$Files$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18361,7 +25827,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$FileList>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$FileList> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$FileList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -18449,6 +25918,49 @@ export namespace dfareporting_v4 {
 
     /**
      * Deletes an existing floodlight activity.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.floodlightActivities.delete({
+     *     // Floodlight activity ID.
+     *     id: '[^/]+',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -18458,11 +25970,11 @@ export namespace dfareporting_v4 {
     delete(
       params: Params$Resource$Floodlightactivities$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Floodlightactivities$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Floodlightactivities$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18489,7 +26001,10 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Floodlightactivities$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18535,6 +26050,56 @@ export namespace dfareporting_v4 {
 
     /**
      * Generates a tag for a floodlight activity.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.floodlightActivities.generatetag({
+     *     // Floodlight activity ID for which we want to generate a tag.
+     *     floodlightActivityId: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "floodlightActivityTag": "my_floodlightActivityTag",
+     *   //   "globalSiteTagGlobalSnippet": "my_globalSiteTagGlobalSnippet",
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -18544,11 +26109,13 @@ export namespace dfareporting_v4 {
     generatetag(
       params: Params$Resource$Floodlightactivities$Generatetag,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     generatetag(
       params?: Params$Resource$Floodlightactivities$Generatetag,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FloodlightActivitiesGenerateTagResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$FloodlightActivitiesGenerateTagResponse>
+    >;
     generatetag(
       params: Params$Resource$Floodlightactivities$Generatetag,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18583,8 +26150,10 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$FloodlightActivitiesGenerateTagResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$FloodlightActivitiesGenerateTagResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Floodlightactivities$Generatetag;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18632,6 +26201,82 @@ export namespace dfareporting_v4 {
 
     /**
      * Gets one floodlight activity by ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.floodlightActivities.get({
+     *     // Floodlight activity ID.
+     *     id: '[^/]+',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "attributionEnabled": false,
+     *   //   "cacheBustingType": "my_cacheBustingType",
+     *   //   "countingMethod": "my_countingMethod",
+     *   //   "defaultTags": [],
+     *   //   "expectedUrl": "my_expectedUrl",
+     *   //   "floodlightActivityGroupId": "my_floodlightActivityGroupId",
+     *   //   "floodlightActivityGroupName": "my_floodlightActivityGroupName",
+     *   //   "floodlightActivityGroupTagString": "my_floodlightActivityGroupTagString",
+     *   //   "floodlightActivityGroupType": "my_floodlightActivityGroupType",
+     *   //   "floodlightConfigurationId": "my_floodlightConfigurationId",
+     *   //   "floodlightConfigurationIdDimensionValue": {},
+     *   //   "floodlightTagType": "my_floodlightTagType",
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "notes": "my_notes",
+     *   //   "publisherTags": [],
+     *   //   "secure": false,
+     *   //   "sslCompliant": false,
+     *   //   "sslRequired": false,
+     *   //   "status": "my_status",
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "tagFormat": "my_tagFormat",
+     *   //   "tagString": "my_tagString",
+     *   //   "userDefinedVariableTypes": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -18641,11 +26286,11 @@ export namespace dfareporting_v4 {
     get(
       params: Params$Resource$Floodlightactivities$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Floodlightactivities$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FloodlightActivity>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FloodlightActivity>>;
     get(
       params: Params$Resource$Floodlightactivities$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18676,8 +26321,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$FloodlightActivity>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$FloodlightActivity>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Floodlightactivities$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18723,6 +26368,116 @@ export namespace dfareporting_v4 {
 
     /**
      * Inserts a new floodlight activity.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.floodlightActivities.insert({
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "advertiserIdDimensionValue": {},
+     *       //   "attributionEnabled": false,
+     *       //   "cacheBustingType": "my_cacheBustingType",
+     *       //   "countingMethod": "my_countingMethod",
+     *       //   "defaultTags": [],
+     *       //   "expectedUrl": "my_expectedUrl",
+     *       //   "floodlightActivityGroupId": "my_floodlightActivityGroupId",
+     *       //   "floodlightActivityGroupName": "my_floodlightActivityGroupName",
+     *       //   "floodlightActivityGroupTagString": "my_floodlightActivityGroupTagString",
+     *       //   "floodlightActivityGroupType": "my_floodlightActivityGroupType",
+     *       //   "floodlightConfigurationId": "my_floodlightConfigurationId",
+     *       //   "floodlightConfigurationIdDimensionValue": {},
+     *       //   "floodlightTagType": "my_floodlightTagType",
+     *       //   "id": "my_id",
+     *       //   "idDimensionValue": {},
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "notes": "my_notes",
+     *       //   "publisherTags": [],
+     *       //   "secure": false,
+     *       //   "sslCompliant": false,
+     *       //   "sslRequired": false,
+     *       //   "status": "my_status",
+     *       //   "subaccountId": "my_subaccountId",
+     *       //   "tagFormat": "my_tagFormat",
+     *       //   "tagString": "my_tagString",
+     *       //   "userDefinedVariableTypes": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "attributionEnabled": false,
+     *   //   "cacheBustingType": "my_cacheBustingType",
+     *   //   "countingMethod": "my_countingMethod",
+     *   //   "defaultTags": [],
+     *   //   "expectedUrl": "my_expectedUrl",
+     *   //   "floodlightActivityGroupId": "my_floodlightActivityGroupId",
+     *   //   "floodlightActivityGroupName": "my_floodlightActivityGroupName",
+     *   //   "floodlightActivityGroupTagString": "my_floodlightActivityGroupTagString",
+     *   //   "floodlightActivityGroupType": "my_floodlightActivityGroupType",
+     *   //   "floodlightConfigurationId": "my_floodlightConfigurationId",
+     *   //   "floodlightConfigurationIdDimensionValue": {},
+     *   //   "floodlightTagType": "my_floodlightTagType",
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "notes": "my_notes",
+     *   //   "publisherTags": [],
+     *   //   "secure": false,
+     *   //   "sslCompliant": false,
+     *   //   "sslRequired": false,
+     *   //   "status": "my_status",
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "tagFormat": "my_tagFormat",
+     *   //   "tagString": "my_tagString",
+     *   //   "userDefinedVariableTypes": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -18732,11 +26487,11 @@ export namespace dfareporting_v4 {
     insert(
       params: Params$Resource$Floodlightactivities$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Floodlightactivities$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FloodlightActivity>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FloodlightActivity>>;
     insert(
       params: Params$Resource$Floodlightactivities$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18767,8 +26522,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$FloodlightActivity>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$FloodlightActivity>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Floodlightactivities$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18814,6 +26569,80 @@ export namespace dfareporting_v4 {
 
     /**
      * Retrieves a list of floodlight activities, possibly filtered. This method supports paging.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.floodlightActivities.list({
+     *     // Select only floodlight activities for the specified advertiser ID. Must specify either ids, advertiserId, or floodlightConfigurationId for a non-empty result.
+     *     advertiserId: 'placeholder-value',
+     *     // Select only floodlight activities with the specified floodlight activity group IDs.
+     *     floodlightActivityGroupIds: 'placeholder-value',
+     *     // Select only floodlight activities with the specified floodlight activity group name.
+     *     floodlightActivityGroupName: 'placeholder-value',
+     *     // Select only floodlight activities with the specified floodlight activity group tag string.
+     *     floodlightActivityGroupTagString: 'placeholder-value',
+     *     // Select only floodlight activities with the specified floodlight activity group type.
+     *     floodlightActivityGroupType: 'placeholder-value',
+     *     // Select only floodlight activities for the specified floodlight configuration ID. Must specify either ids, advertiserId, or floodlightConfigurationId for a non-empty result.
+     *     floodlightConfigurationId: 'placeholder-value',
+     *     // Select only floodlight activities with the specified IDs. Must specify either ids, advertiserId, or floodlightConfigurationId for a non-empty result.
+     *     ids: 'placeholder-value',
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Value of the nextPageToken from the previous result page.
+     *     pageToken: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *     // Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "floodlightactivity*2015" will return objects with names like "floodlightactivity June 2015", "floodlightactivity April 2015", or simply "floodlightactivity 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "floodlightactivity" will match objects with name "my floodlightactivity activity", "floodlightactivity 2015", or simply "floodlightactivity".
+     *     searchString: 'placeholder-value',
+     *     // Field by which to sort the list.
+     *     sortField: 'placeholder-value',
+     *     // Order of sorted results.
+     *     sortOrder: 'placeholder-value',
+     *     // Select only floodlight activities with the specified tag string.
+     *     tagString: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "floodlightActivities": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -18823,11 +26652,13 @@ export namespace dfareporting_v4 {
     list(
       params: Params$Resource$Floodlightactivities$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Floodlightactivities$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FloodlightActivitiesListResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$FloodlightActivitiesListResponse>
+    >;
     list(
       params: Params$Resource$Floodlightactivities$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18862,8 +26693,10 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$FloodlightActivitiesListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$FloodlightActivitiesListResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Floodlightactivities$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18911,6 +26744,118 @@ export namespace dfareporting_v4 {
 
     /**
      * Updates an existing floodlight activity. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.floodlightActivities.patch({
+     *     // Required. EventTag ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "advertiserIdDimensionValue": {},
+     *       //   "attributionEnabled": false,
+     *       //   "cacheBustingType": "my_cacheBustingType",
+     *       //   "countingMethod": "my_countingMethod",
+     *       //   "defaultTags": [],
+     *       //   "expectedUrl": "my_expectedUrl",
+     *       //   "floodlightActivityGroupId": "my_floodlightActivityGroupId",
+     *       //   "floodlightActivityGroupName": "my_floodlightActivityGroupName",
+     *       //   "floodlightActivityGroupTagString": "my_floodlightActivityGroupTagString",
+     *       //   "floodlightActivityGroupType": "my_floodlightActivityGroupType",
+     *       //   "floodlightConfigurationId": "my_floodlightConfigurationId",
+     *       //   "floodlightConfigurationIdDimensionValue": {},
+     *       //   "floodlightTagType": "my_floodlightTagType",
+     *       //   "id": "my_id",
+     *       //   "idDimensionValue": {},
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "notes": "my_notes",
+     *       //   "publisherTags": [],
+     *       //   "secure": false,
+     *       //   "sslCompliant": false,
+     *       //   "sslRequired": false,
+     *       //   "status": "my_status",
+     *       //   "subaccountId": "my_subaccountId",
+     *       //   "tagFormat": "my_tagFormat",
+     *       //   "tagString": "my_tagString",
+     *       //   "userDefinedVariableTypes": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "attributionEnabled": false,
+     *   //   "cacheBustingType": "my_cacheBustingType",
+     *   //   "countingMethod": "my_countingMethod",
+     *   //   "defaultTags": [],
+     *   //   "expectedUrl": "my_expectedUrl",
+     *   //   "floodlightActivityGroupId": "my_floodlightActivityGroupId",
+     *   //   "floodlightActivityGroupName": "my_floodlightActivityGroupName",
+     *   //   "floodlightActivityGroupTagString": "my_floodlightActivityGroupTagString",
+     *   //   "floodlightActivityGroupType": "my_floodlightActivityGroupType",
+     *   //   "floodlightConfigurationId": "my_floodlightConfigurationId",
+     *   //   "floodlightConfigurationIdDimensionValue": {},
+     *   //   "floodlightTagType": "my_floodlightTagType",
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "notes": "my_notes",
+     *   //   "publisherTags": [],
+     *   //   "secure": false,
+     *   //   "sslCompliant": false,
+     *   //   "sslRequired": false,
+     *   //   "status": "my_status",
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "tagFormat": "my_tagFormat",
+     *   //   "tagString": "my_tagString",
+     *   //   "userDefinedVariableTypes": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -18920,11 +26865,11 @@ export namespace dfareporting_v4 {
     patch(
       params: Params$Resource$Floodlightactivities$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Floodlightactivities$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FloodlightActivity>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FloodlightActivity>>;
     patch(
       params: Params$Resource$Floodlightactivities$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18955,8 +26900,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$FloodlightActivity>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$FloodlightActivity>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Floodlightactivities$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19002,6 +26947,116 @@ export namespace dfareporting_v4 {
 
     /**
      * Updates an existing floodlight activity.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.floodlightActivities.update({
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "advertiserIdDimensionValue": {},
+     *       //   "attributionEnabled": false,
+     *       //   "cacheBustingType": "my_cacheBustingType",
+     *       //   "countingMethod": "my_countingMethod",
+     *       //   "defaultTags": [],
+     *       //   "expectedUrl": "my_expectedUrl",
+     *       //   "floodlightActivityGroupId": "my_floodlightActivityGroupId",
+     *       //   "floodlightActivityGroupName": "my_floodlightActivityGroupName",
+     *       //   "floodlightActivityGroupTagString": "my_floodlightActivityGroupTagString",
+     *       //   "floodlightActivityGroupType": "my_floodlightActivityGroupType",
+     *       //   "floodlightConfigurationId": "my_floodlightConfigurationId",
+     *       //   "floodlightConfigurationIdDimensionValue": {},
+     *       //   "floodlightTagType": "my_floodlightTagType",
+     *       //   "id": "my_id",
+     *       //   "idDimensionValue": {},
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "notes": "my_notes",
+     *       //   "publisherTags": [],
+     *       //   "secure": false,
+     *       //   "sslCompliant": false,
+     *       //   "sslRequired": false,
+     *       //   "status": "my_status",
+     *       //   "subaccountId": "my_subaccountId",
+     *       //   "tagFormat": "my_tagFormat",
+     *       //   "tagString": "my_tagString",
+     *       //   "userDefinedVariableTypes": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "attributionEnabled": false,
+     *   //   "cacheBustingType": "my_cacheBustingType",
+     *   //   "countingMethod": "my_countingMethod",
+     *   //   "defaultTags": [],
+     *   //   "expectedUrl": "my_expectedUrl",
+     *   //   "floodlightActivityGroupId": "my_floodlightActivityGroupId",
+     *   //   "floodlightActivityGroupName": "my_floodlightActivityGroupName",
+     *   //   "floodlightActivityGroupTagString": "my_floodlightActivityGroupTagString",
+     *   //   "floodlightActivityGroupType": "my_floodlightActivityGroupType",
+     *   //   "floodlightConfigurationId": "my_floodlightConfigurationId",
+     *   //   "floodlightConfigurationIdDimensionValue": {},
+     *   //   "floodlightTagType": "my_floodlightTagType",
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "notes": "my_notes",
+     *   //   "publisherTags": [],
+     *   //   "secure": false,
+     *   //   "sslCompliant": false,
+     *   //   "sslRequired": false,
+     *   //   "status": "my_status",
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "tagFormat": "my_tagFormat",
+     *   //   "tagString": "my_tagString",
+     *   //   "userDefinedVariableTypes": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -19011,11 +27066,11 @@ export namespace dfareporting_v4 {
     update(
       params: Params$Resource$Floodlightactivities$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Floodlightactivities$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FloodlightActivity>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FloodlightActivity>>;
     update(
       params: Params$Resource$Floodlightactivities$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -19046,8 +27101,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$FloodlightActivity>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$FloodlightActivity>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Floodlightactivities$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19233,6 +27288,65 @@ export namespace dfareporting_v4 {
 
     /**
      * Gets one floodlight activity group by ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.floodlightActivityGroups.get({
+     *     // Floodlight activity Group ID.
+     *     id: '[^/]+',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "floodlightConfigurationId": "my_floodlightConfigurationId",
+     *   //   "floodlightConfigurationIdDimensionValue": {},
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "tagString": "my_tagString",
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -19242,11 +27356,11 @@ export namespace dfareporting_v4 {
     get(
       params: Params$Resource$Floodlightactivitygroups$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Floodlightactivitygroups$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FloodlightActivityGroup>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FloodlightActivityGroup>>;
     get(
       params: Params$Resource$Floodlightactivitygroups$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -19279,8 +27393,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$FloodlightActivityGroup>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$FloodlightActivityGroup>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Floodlightactivitygroups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19326,6 +27440,82 @@ export namespace dfareporting_v4 {
 
     /**
      * Inserts a new floodlight activity group.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.floodlightActivityGroups.insert({
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "advertiserIdDimensionValue": {},
+     *       //   "floodlightConfigurationId": "my_floodlightConfigurationId",
+     *       //   "floodlightConfigurationIdDimensionValue": {},
+     *       //   "id": "my_id",
+     *       //   "idDimensionValue": {},
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "subaccountId": "my_subaccountId",
+     *       //   "tagString": "my_tagString",
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "floodlightConfigurationId": "my_floodlightConfigurationId",
+     *   //   "floodlightConfigurationIdDimensionValue": {},
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "tagString": "my_tagString",
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -19335,11 +27525,11 @@ export namespace dfareporting_v4 {
     insert(
       params: Params$Resource$Floodlightactivitygroups$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Floodlightactivitygroups$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FloodlightActivityGroup>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FloodlightActivityGroup>>;
     insert(
       params: Params$Resource$Floodlightactivitygroups$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -19374,8 +27564,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$FloodlightActivityGroup>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$FloodlightActivityGroup>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Floodlightactivitygroups$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19421,6 +27611,72 @@ export namespace dfareporting_v4 {
 
     /**
      * Retrieves a list of floodlight activity groups, possibly filtered. This method supports paging.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.floodlightActivityGroups.list({
+     *     // Select only floodlight activity groups with the specified advertiser ID. Must specify either advertiserId or floodlightConfigurationId for a non-empty result.
+     *     advertiserId: 'placeholder-value',
+     *     // Select only floodlight activity groups with the specified floodlight configuration ID. Must specify either advertiserId, or floodlightConfigurationId for a non-empty result.
+     *     floodlightConfigurationId: 'placeholder-value',
+     *     // Select only floodlight activity groups with the specified IDs. Must specify either advertiserId or floodlightConfigurationId for a non-empty result.
+     *     ids: 'placeholder-value',
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Value of the nextPageToken from the previous result page.
+     *     pageToken: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *     // Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "floodlightactivitygroup*2015" will return objects with names like "floodlightactivitygroup June 2015", "floodlightactivitygroup April 2015", or simply "floodlightactivitygroup 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "floodlightactivitygroup" will match objects with name "my floodlightactivitygroup activity", "floodlightactivitygroup 2015", or simply "floodlightactivitygroup".
+     *     searchString: 'placeholder-value',
+     *     // Field by which to sort the list.
+     *     sortField: 'placeholder-value',
+     *     // Order of sorted results.
+     *     sortOrder: 'placeholder-value',
+     *     // Select only floodlight activity groups with the specified floodlight activity group type.
+     *     type: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "floodlightActivityGroups": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -19430,11 +27686,13 @@ export namespace dfareporting_v4 {
     list(
       params: Params$Resource$Floodlightactivitygroups$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Floodlightactivitygroups$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FloodlightActivityGroupsListResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$FloodlightActivityGroupsListResponse>
+    >;
     list(
       params: Params$Resource$Floodlightactivitygroups$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -19469,8 +27727,10 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$FloodlightActivityGroupsListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$FloodlightActivityGroupsListResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Floodlightactivitygroups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19518,6 +27778,84 @@ export namespace dfareporting_v4 {
 
     /**
      * Updates an existing floodlight activity group. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.floodlightActivityGroups.patch({
+     *     // Required. EventTag ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "advertiserIdDimensionValue": {},
+     *       //   "floodlightConfigurationId": "my_floodlightConfigurationId",
+     *       //   "floodlightConfigurationIdDimensionValue": {},
+     *       //   "id": "my_id",
+     *       //   "idDimensionValue": {},
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "subaccountId": "my_subaccountId",
+     *       //   "tagString": "my_tagString",
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "floodlightConfigurationId": "my_floodlightConfigurationId",
+     *   //   "floodlightConfigurationIdDimensionValue": {},
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "tagString": "my_tagString",
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -19527,11 +27865,11 @@ export namespace dfareporting_v4 {
     patch(
       params: Params$Resource$Floodlightactivitygroups$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Floodlightactivitygroups$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FloodlightActivityGroup>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FloodlightActivityGroup>>;
     patch(
       params: Params$Resource$Floodlightactivitygroups$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -19564,8 +27902,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$FloodlightActivityGroup>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$FloodlightActivityGroup>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Floodlightactivitygroups$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19611,6 +27949,82 @@ export namespace dfareporting_v4 {
 
     /**
      * Updates an existing floodlight activity group.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.floodlightActivityGroups.update({
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "advertiserIdDimensionValue": {},
+     *       //   "floodlightConfigurationId": "my_floodlightConfigurationId",
+     *       //   "floodlightConfigurationIdDimensionValue": {},
+     *       //   "id": "my_id",
+     *       //   "idDimensionValue": {},
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "subaccountId": "my_subaccountId",
+     *       //   "tagString": "my_tagString",
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "floodlightConfigurationId": "my_floodlightConfigurationId",
+     *   //   "floodlightConfigurationIdDimensionValue": {},
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "tagString": "my_tagString",
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -19620,11 +28034,11 @@ export namespace dfareporting_v4 {
     update(
       params: Params$Resource$Floodlightactivitygroups$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Floodlightactivitygroups$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FloodlightActivityGroup>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FloodlightActivityGroup>>;
     update(
       params: Params$Resource$Floodlightactivitygroups$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -19659,8 +28073,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$FloodlightActivityGroup>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$FloodlightActivityGroup>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Floodlightactivitygroups$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19808,6 +28222,71 @@ export namespace dfareporting_v4 {
 
     /**
      * Gets one floodlight configuration by ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.floodlightConfigurations.get({
+     *     // Floodlight configuration ID.
+     *     id: '[^/]+',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "analyticsDataSharingEnabled": false,
+     *   //   "customViewabilityMetric": {},
+     *   //   "exposureToConversionEnabled": false,
+     *   //   "firstDayOfWeek": "my_firstDayOfWeek",
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "inAppAttributionTrackingEnabled": false,
+     *   //   "kind": "my_kind",
+     *   //   "lookbackConfiguration": {},
+     *   //   "naturalSearchConversionAttributionOption": "my_naturalSearchConversionAttributionOption",
+     *   //   "omnitureSettings": {},
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "tagSettings": {},
+     *   //   "thirdPartyAuthenticationTokens": [],
+     *   //   "userDefinedVariableConfigurations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -19817,11 +28296,11 @@ export namespace dfareporting_v4 {
     get(
       params: Params$Resource$Floodlightconfigurations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Floodlightconfigurations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FloodlightConfiguration>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FloodlightConfiguration>>;
     get(
       params: Params$Resource$Floodlightconfigurations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -19854,8 +28333,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$FloodlightConfiguration>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$FloodlightConfiguration>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Floodlightconfigurations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19901,6 +28380,55 @@ export namespace dfareporting_v4 {
 
     /**
      * Retrieves a list of floodlight configurations, possibly filtered.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.floodlightConfigurations.list({
+     *     // Set of IDs of floodlight configurations to retrieve. Required field; otherwise an empty list will be returned.
+     *     ids: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "floodlightConfigurations": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -19910,11 +28438,13 @@ export namespace dfareporting_v4 {
     list(
       params: Params$Resource$Floodlightconfigurations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Floodlightconfigurations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FloodlightConfigurationsListResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$FloodlightConfigurationsListResponse>
+    >;
     list(
       params: Params$Resource$Floodlightconfigurations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -19949,8 +28479,10 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$FloodlightConfigurationsListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$FloodlightConfigurationsListResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Floodlightconfigurations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19998,6 +28530,96 @@ export namespace dfareporting_v4 {
 
     /**
      * Updates an existing floodlight configuration. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.floodlightConfigurations.patch({
+     *     // Required. EventTag ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "advertiserIdDimensionValue": {},
+     *       //   "analyticsDataSharingEnabled": false,
+     *       //   "customViewabilityMetric": {},
+     *       //   "exposureToConversionEnabled": false,
+     *       //   "firstDayOfWeek": "my_firstDayOfWeek",
+     *       //   "id": "my_id",
+     *       //   "idDimensionValue": {},
+     *       //   "inAppAttributionTrackingEnabled": false,
+     *       //   "kind": "my_kind",
+     *       //   "lookbackConfiguration": {},
+     *       //   "naturalSearchConversionAttributionOption": "my_naturalSearchConversionAttributionOption",
+     *       //   "omnitureSettings": {},
+     *       //   "subaccountId": "my_subaccountId",
+     *       //   "tagSettings": {},
+     *       //   "thirdPartyAuthenticationTokens": [],
+     *       //   "userDefinedVariableConfigurations": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "analyticsDataSharingEnabled": false,
+     *   //   "customViewabilityMetric": {},
+     *   //   "exposureToConversionEnabled": false,
+     *   //   "firstDayOfWeek": "my_firstDayOfWeek",
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "inAppAttributionTrackingEnabled": false,
+     *   //   "kind": "my_kind",
+     *   //   "lookbackConfiguration": {},
+     *   //   "naturalSearchConversionAttributionOption": "my_naturalSearchConversionAttributionOption",
+     *   //   "omnitureSettings": {},
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "tagSettings": {},
+     *   //   "thirdPartyAuthenticationTokens": [],
+     *   //   "userDefinedVariableConfigurations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -20007,11 +28629,11 @@ export namespace dfareporting_v4 {
     patch(
       params: Params$Resource$Floodlightconfigurations$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Floodlightconfigurations$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FloodlightConfiguration>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FloodlightConfiguration>>;
     patch(
       params: Params$Resource$Floodlightconfigurations$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -20044,8 +28666,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$FloodlightConfiguration>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$FloodlightConfiguration>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Floodlightconfigurations$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20091,6 +28713,94 @@ export namespace dfareporting_v4 {
 
     /**
      * Updates an existing floodlight configuration.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.floodlightConfigurations.update({
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "advertiserIdDimensionValue": {},
+     *       //   "analyticsDataSharingEnabled": false,
+     *       //   "customViewabilityMetric": {},
+     *       //   "exposureToConversionEnabled": false,
+     *       //   "firstDayOfWeek": "my_firstDayOfWeek",
+     *       //   "id": "my_id",
+     *       //   "idDimensionValue": {},
+     *       //   "inAppAttributionTrackingEnabled": false,
+     *       //   "kind": "my_kind",
+     *       //   "lookbackConfiguration": {},
+     *       //   "naturalSearchConversionAttributionOption": "my_naturalSearchConversionAttributionOption",
+     *       //   "omnitureSettings": {},
+     *       //   "subaccountId": "my_subaccountId",
+     *       //   "tagSettings": {},
+     *       //   "thirdPartyAuthenticationTokens": [],
+     *       //   "userDefinedVariableConfigurations": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "analyticsDataSharingEnabled": false,
+     *   //   "customViewabilityMetric": {},
+     *   //   "exposureToConversionEnabled": false,
+     *   //   "firstDayOfWeek": "my_firstDayOfWeek",
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "inAppAttributionTrackingEnabled": false,
+     *   //   "kind": "my_kind",
+     *   //   "lookbackConfiguration": {},
+     *   //   "naturalSearchConversionAttributionOption": "my_naturalSearchConversionAttributionOption",
+     *   //   "omnitureSettings": {},
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "tagSettings": {},
+     *   //   "thirdPartyAuthenticationTokens": [],
+     *   //   "userDefinedVariableConfigurations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -20100,11 +28810,11 @@ export namespace dfareporting_v4 {
     update(
       params: Params$Resource$Floodlightconfigurations$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Floodlightconfigurations$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FloodlightConfiguration>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FloodlightConfiguration>>;
     update(
       params: Params$Resource$Floodlightconfigurations$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -20139,8 +28849,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$FloodlightConfiguration>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$FloodlightConfiguration>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Floodlightconfigurations$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20244,6 +28954,75 @@ export namespace dfareporting_v4 {
 
     /**
      * Gets one inventory item by ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.inventoryItems.get({
+     *     // Inventory item ID.
+     *     id: '[^/]+',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *     // Project ID for order documents.
+     *     projectId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "adSlots": [],
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "contentCategoryId": "my_contentCategoryId",
+     *   //   "estimatedClickThroughRate": "my_estimatedClickThroughRate",
+     *   //   "estimatedConversionRate": "my_estimatedConversionRate",
+     *   //   "id": "my_id",
+     *   //   "inPlan": false,
+     *   //   "kind": "my_kind",
+     *   //   "lastModifiedInfo": {},
+     *   //   "name": "my_name",
+     *   //   "negotiationChannelId": "my_negotiationChannelId",
+     *   //   "orderId": "my_orderId",
+     *   //   "placementStrategyId": "my_placementStrategyId",
+     *   //   "pricing": {},
+     *   //   "projectId": "my_projectId",
+     *   //   "rfpId": "my_rfpId",
+     *   //   "siteId": "my_siteId",
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -20253,11 +29032,11 @@ export namespace dfareporting_v4 {
     get(
       params: Params$Resource$Inventoryitems$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Inventoryitems$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$InventoryItem>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$InventoryItem>>;
     get(
       params: Params$Resource$Inventoryitems$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -20286,7 +29065,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$InventoryItem>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$InventoryItem> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$InventoryItem>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Inventoryitems$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20332,6 +29114,74 @@ export namespace dfareporting_v4 {
 
     /**
      * Retrieves a list of inventory items, possibly filtered. This method supports paging.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.inventoryItems.list({
+     *     // Select only inventory items with these IDs.
+     *     ids: 'placeholder-value',
+     *     // Select only inventory items that are in plan.
+     *     inPlan: 'placeholder-value',
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Select only inventory items that belong to specified orders.
+     *     orderId: 'placeholder-value',
+     *     // Value of the nextPageToken from the previous result page.
+     *     pageToken: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *     // Project ID for order documents.
+     *     projectId: 'placeholder-value',
+     *     // Select only inventory items that are associated with these sites.
+     *     siteId: 'placeholder-value',
+     *     // Field by which to sort the list.
+     *     sortField: 'placeholder-value',
+     *     // Order of sorted results.
+     *     sortOrder: 'placeholder-value',
+     *     // Select only inventory items with this type.
+     *     type: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "inventoryItems": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -20341,11 +29191,11 @@ export namespace dfareporting_v4 {
     list(
       params: Params$Resource$Inventoryitems$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Inventoryitems$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$InventoryItemsListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$InventoryItemsListResponse>>;
     list(
       params: Params$Resource$Inventoryitems$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -20380,8 +29230,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$InventoryItemsListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$InventoryItemsListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Inventoryitems$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20497,6 +29347,53 @@ export namespace dfareporting_v4 {
 
     /**
      * Retrieves a list of languages.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.languages.list({
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "languages": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -20506,11 +29403,11 @@ export namespace dfareporting_v4 {
     list(
       params: Params$Resource$Languages$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Languages$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LanguagesListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LanguagesListResponse>>;
     list(
       params: Params$Resource$Languages$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -20543,8 +29440,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$LanguagesListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$LanguagesListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Languages$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -20602,6 +29499,53 @@ export namespace dfareporting_v4 {
 
     /**
      * Retrieves a list of metros.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.metros.list({
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "metros": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -20611,11 +29555,11 @@ export namespace dfareporting_v4 {
     list(
       params: Params$Resource$Metros$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Metros$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$MetrosListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$MetrosListResponse>>;
     list(
       params: Params$Resource$Metros$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -20646,8 +29590,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$MetrosListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$MetrosListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Metros$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -20705,6 +29649,58 @@ export namespace dfareporting_v4 {
 
     /**
      * Gets one mobile app by ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.mobileApps.get({
+     *     // Mobile app ID.
+     *     id: '[^/]+',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "directory": "my_directory",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "publisherName": "my_publisherName",
+     *   //   "title": "my_title"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -20714,11 +29710,11 @@ export namespace dfareporting_v4 {
     get(
       params: Params$Resource$Mobileapps$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Mobileapps$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$MobileApp>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$MobileApp>>;
     get(
       params: Params$Resource$Mobileapps$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -20747,7 +29743,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$MobileApp>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$MobileApp> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$MobileApp>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Mobileapps$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -20792,6 +29791,64 @@ export namespace dfareporting_v4 {
 
     /**
      * Retrieves list of available mobile apps.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.mobileApps.list({
+     *     // Select only apps from these directories.
+     *     directories: 'placeholder-value',
+     *     // Select only apps with these IDs.
+     *     ids: 'placeholder-value',
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Value of the nextPageToken from the previous result page.
+     *     pageToken: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *     // Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "app*2015" will return objects with names like "app Jan 2018", "app Jan 2018", or simply "app 2018". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "app" will match objects with name "my app", "app 2018", or simply "app".
+     *     searchString: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "mobileApps": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -20801,11 +29858,11 @@ export namespace dfareporting_v4 {
     list(
       params: Params$Resource$Mobileapps$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Mobileapps$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$MobileAppsListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$MobileAppsListResponse>>;
     list(
       params: Params$Resource$Mobileapps$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -20838,8 +29895,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$MobileAppsListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$MobileAppsListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Mobileapps$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -20927,6 +29984,58 @@ export namespace dfareporting_v4 {
 
     /**
      * Gets one mobile carrier by ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.mobileCarriers.get({
+     *     // Mobile carrier ID.
+     *     id: '[^/]+',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "countryCode": "my_countryCode",
+     *   //   "countryDartId": "my_countryDartId",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -20936,11 +30045,11 @@ export namespace dfareporting_v4 {
     get(
       params: Params$Resource$Mobilecarriers$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Mobilecarriers$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$MobileCarrier>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$MobileCarrier>>;
     get(
       params: Params$Resource$Mobilecarriers$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -20969,7 +30078,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$MobileCarrier>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$MobileCarrier> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$MobileCarrier>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Mobilecarriers$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21015,6 +30127,53 @@ export namespace dfareporting_v4 {
 
     /**
      * Retrieves a list of mobile carriers.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.mobileCarriers.list({
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "mobileCarriers": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -21024,11 +30183,11 @@ export namespace dfareporting_v4 {
     list(
       params: Params$Resource$Mobilecarriers$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Mobilecarriers$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$MobileCarriersListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$MobileCarriersListResponse>>;
     list(
       params: Params$Resource$Mobilecarriers$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -21063,8 +30222,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$MobileCarriersListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$MobileCarriersListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Mobilecarriers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21136,6 +30295,58 @@ export namespace dfareporting_v4 {
 
     /**
      * Gets one operating system by DART ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.operatingSystems.get({
+     *     // Operating system DART ID.
+     *     dartId: '[^/]+',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dartId": "my_dartId",
+     *   //   "desktop": false,
+     *   //   "kind": "my_kind",
+     *   //   "mobile": false,
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -21145,11 +30356,11 @@ export namespace dfareporting_v4 {
     get(
       params: Params$Resource$Operatingsystems$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Operatingsystems$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$OperatingSystem>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$OperatingSystem>>;
     get(
       params: Params$Resource$Operatingsystems$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -21178,7 +30389,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$OperatingSystem>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$OperatingSystem> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$OperatingSystem>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Operatingsystems$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21224,6 +30438,53 @@ export namespace dfareporting_v4 {
 
     /**
      * Retrieves a list of operating systems.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.operatingSystems.list({
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "operatingSystems": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -21233,11 +30494,11 @@ export namespace dfareporting_v4 {
     list(
       params: Params$Resource$Operatingsystems$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Operatingsystems$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$OperatingSystemsListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$OperatingSystemsListResponse>>;
     list(
       params: Params$Resource$Operatingsystems$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -21272,8 +30533,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$OperatingSystemsListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$OperatingSystemsListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Operatingsystems$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21347,6 +30608,59 @@ export namespace dfareporting_v4 {
 
     /**
      * Gets one operating system version by ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.operatingSystemVersions.get({
+     *     // Operating system version ID.
+     *     id: '[^/]+',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "majorVersion": "my_majorVersion",
+     *   //   "minorVersion": "my_minorVersion",
+     *   //   "name": "my_name",
+     *   //   "operatingSystem": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -21356,11 +30670,11 @@ export namespace dfareporting_v4 {
     get(
       params: Params$Resource$Operatingsystemversions$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Operatingsystemversions$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$OperatingSystemVersion>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$OperatingSystemVersion>>;
     get(
       params: Params$Resource$Operatingsystemversions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -21393,8 +30707,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$OperatingSystemVersion>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$OperatingSystemVersion>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Operatingsystemversions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21440,6 +30754,53 @@ export namespace dfareporting_v4 {
 
     /**
      * Retrieves a list of operating system versions.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.operatingSystemVersions.list({
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "operatingSystemVersions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -21449,11 +30810,13 @@ export namespace dfareporting_v4 {
     list(
       params: Params$Resource$Operatingsystemversions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Operatingsystemversions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$OperatingSystemVersionsListResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$OperatingSystemVersionsListResponse>
+    >;
     list(
       params: Params$Resource$Operatingsystemversions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -21488,8 +30851,10 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$OperatingSystemVersionsListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$OperatingSystemVersionsListResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Operatingsystemversions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21563,6 +30928,75 @@ export namespace dfareporting_v4 {
 
     /**
      * Gets one order by ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.orders.get({
+     *     // Order ID.
+     *     id: '[^/]+',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *     // Project ID for orders.
+     *     projectId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "approverUserProfileIds": [],
+     *   //   "buyerInvoiceId": "my_buyerInvoiceId",
+     *   //   "buyerOrganizationName": "my_buyerOrganizationName",
+     *   //   "comments": "my_comments",
+     *   //   "contacts": [],
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "lastModifiedInfo": {},
+     *   //   "name": "my_name",
+     *   //   "notes": "my_notes",
+     *   //   "planningTermId": "my_planningTermId",
+     *   //   "projectId": "my_projectId",
+     *   //   "sellerOrderId": "my_sellerOrderId",
+     *   //   "sellerOrganizationName": "my_sellerOrganizationName",
+     *   //   "siteId": [],
+     *   //   "siteNames": [],
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "termsAndConditions": "my_termsAndConditions"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -21572,11 +31006,11 @@ export namespace dfareporting_v4 {
     get(
       params: Params$Resource$Orders$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Orders$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Order>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Order>>;
     get(
       params: Params$Resource$Orders$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -21605,7 +31039,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Order>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Order> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Order>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Orders$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -21650,6 +31087,70 @@ export namespace dfareporting_v4 {
 
     /**
      * Retrieves a list of orders, possibly filtered. This method supports paging.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.orders.list({
+     *     // Select only orders with these IDs.
+     *     ids: 'placeholder-value',
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Value of the nextPageToken from the previous result page.
+     *     pageToken: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *     // Project ID for orders.
+     *     projectId: 'placeholder-value',
+     *     // Allows searching for orders by name or ID. Wildcards (*) are allowed. For example, "order*2015" will return orders with names like "order June 2015", "order April 2015", or simply "order 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "order" will match orders with name "my order", "order 2015", or simply "order".
+     *     searchString: 'placeholder-value',
+     *     // Select only orders that are associated with these site IDs.
+     *     siteId: 'placeholder-value',
+     *     // Field by which to sort the list.
+     *     sortField: 'placeholder-value',
+     *     // Order of sorted results.
+     *     sortOrder: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "orders": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -21659,11 +31160,11 @@ export namespace dfareporting_v4 {
     list(
       params: Params$Resource$Orders$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Orders$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$OrdersListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$OrdersListResponse>>;
     list(
       params: Params$Resource$Orders$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -21694,8 +31195,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$OrdersListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$OrdersListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Orders$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -21800,6 +31301,79 @@ export namespace dfareporting_v4 {
 
     /**
      * Gets one placement group by ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.placementGroups.get({
+     *     // Placement group ID.
+     *     id: '[^/]+',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "activeStatus": "my_activeStatus",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "campaignId": "my_campaignId",
+     *   //   "campaignIdDimensionValue": {},
+     *   //   "childPlacementIds": [],
+     *   //   "comment": "my_comment",
+     *   //   "contentCategoryId": "my_contentCategoryId",
+     *   //   "createInfo": {},
+     *   //   "directorySiteId": "my_directorySiteId",
+     *   //   "directorySiteIdDimensionValue": {},
+     *   //   "externalId": "my_externalId",
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "kind": "my_kind",
+     *   //   "lastModifiedInfo": {},
+     *   //   "name": "my_name",
+     *   //   "placementGroupType": "my_placementGroupType",
+     *   //   "placementStrategyId": "my_placementStrategyId",
+     *   //   "pricingSchedule": {},
+     *   //   "primaryPlacementId": "my_primaryPlacementId",
+     *   //   "primaryPlacementIdDimensionValue": {},
+     *   //   "siteId": "my_siteId",
+     *   //   "siteIdDimensionValue": {},
+     *   //   "subaccountId": "my_subaccountId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -21809,11 +31383,11 @@ export namespace dfareporting_v4 {
     get(
       params: Params$Resource$Placementgroups$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Placementgroups$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PlacementGroup>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PlacementGroup>>;
     get(
       params: Params$Resource$Placementgroups$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -21842,7 +31416,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$PlacementGroup>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$PlacementGroup> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$PlacementGroup>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Placementgroups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21888,6 +31465,110 @@ export namespace dfareporting_v4 {
 
     /**
      * Inserts a new placement group.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.placementGroups.insert({
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "activeStatus": "my_activeStatus",
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "advertiserIdDimensionValue": {},
+     *       //   "campaignId": "my_campaignId",
+     *       //   "campaignIdDimensionValue": {},
+     *       //   "childPlacementIds": [],
+     *       //   "comment": "my_comment",
+     *       //   "contentCategoryId": "my_contentCategoryId",
+     *       //   "createInfo": {},
+     *       //   "directorySiteId": "my_directorySiteId",
+     *       //   "directorySiteIdDimensionValue": {},
+     *       //   "externalId": "my_externalId",
+     *       //   "id": "my_id",
+     *       //   "idDimensionValue": {},
+     *       //   "kind": "my_kind",
+     *       //   "lastModifiedInfo": {},
+     *       //   "name": "my_name",
+     *       //   "placementGroupType": "my_placementGroupType",
+     *       //   "placementStrategyId": "my_placementStrategyId",
+     *       //   "pricingSchedule": {},
+     *       //   "primaryPlacementId": "my_primaryPlacementId",
+     *       //   "primaryPlacementIdDimensionValue": {},
+     *       //   "siteId": "my_siteId",
+     *       //   "siteIdDimensionValue": {},
+     *       //   "subaccountId": "my_subaccountId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "activeStatus": "my_activeStatus",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "campaignId": "my_campaignId",
+     *   //   "campaignIdDimensionValue": {},
+     *   //   "childPlacementIds": [],
+     *   //   "comment": "my_comment",
+     *   //   "contentCategoryId": "my_contentCategoryId",
+     *   //   "createInfo": {},
+     *   //   "directorySiteId": "my_directorySiteId",
+     *   //   "directorySiteIdDimensionValue": {},
+     *   //   "externalId": "my_externalId",
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "kind": "my_kind",
+     *   //   "lastModifiedInfo": {},
+     *   //   "name": "my_name",
+     *   //   "placementGroupType": "my_placementGroupType",
+     *   //   "placementStrategyId": "my_placementStrategyId",
+     *   //   "pricingSchedule": {},
+     *   //   "primaryPlacementId": "my_primaryPlacementId",
+     *   //   "primaryPlacementIdDimensionValue": {},
+     *   //   "siteId": "my_siteId",
+     *   //   "siteIdDimensionValue": {},
+     *   //   "subaccountId": "my_subaccountId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -21897,11 +31578,11 @@ export namespace dfareporting_v4 {
     insert(
       params: Params$Resource$Placementgroups$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Placementgroups$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PlacementGroup>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PlacementGroup>>;
     insert(
       params: Params$Resource$Placementgroups$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -21930,7 +31611,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$PlacementGroup>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$PlacementGroup> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$PlacementGroup>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Placementgroups$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21976,6 +31660,92 @@ export namespace dfareporting_v4 {
 
     /**
      * Retrieves a list of placement groups, possibly filtered. This method supports paging.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.placementGroups.list({
+     *     // Select only placements with these active statuses.
+     *     activeStatus: 'placeholder-value',
+     *     // Select only placement groups that belong to these advertisers.
+     *     advertiserIds: 'placeholder-value',
+     *     // Select only placement groups that belong to these campaigns.
+     *     campaignIds: 'placeholder-value',
+     *     // Select only placement groups that are associated with these content categories.
+     *     contentCategoryIds: 'placeholder-value',
+     *     // Select only placement groups that are associated with these directory sites.
+     *     directorySiteIds: 'placeholder-value',
+     *     // Select only placement groups with these IDs.
+     *     ids: 'placeholder-value',
+     *     // Select only placements or placement groups whose end date is on or before the specified maxEndDate. The date should be formatted as "yyyy-MM-dd".
+     *     maxEndDate: 'placeholder-value',
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Select only placements or placement groups whose start date is on or before the specified maxStartDate. The date should be formatted as "yyyy-MM-dd".
+     *     maxStartDate: 'placeholder-value',
+     *     // Select only placements or placement groups whose end date is on or after the specified minEndDate. The date should be formatted as "yyyy-MM-dd".
+     *     minEndDate: 'placeholder-value',
+     *     // Select only placements or placement groups whose start date is on or after the specified minStartDate. The date should be formatted as "yyyy-MM-dd".
+     *     minStartDate: 'placeholder-value',
+     *     // Value of the nextPageToken from the previous result page.
+     *     pageToken: 'placeholder-value',
+     *     // Select only placement groups belonging with this group type. A package is a simple group of placements that acts as a single pricing point for a group of tags. A roadblock is a group of placements that not only acts as a single pricing point but also assumes that all the tags in it will be served at the same time. A roadblock requires one of its assigned placements to be marked as primary for reporting.
+     *     placementGroupType: 'placeholder-value',
+     *     // Select only placement groups that are associated with these placement strategies.
+     *     placementStrategyIds: 'placeholder-value',
+     *     // Select only placement groups with these pricing types.
+     *     pricingTypes: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *     // Allows searching for placement groups by name or ID. Wildcards (*) are allowed. For example, "placement*2015" will return placement groups with names like "placement group June 2015", "placement group May 2015", or simply "placements 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "placementgroup" will match placement groups with name "my placementgroup", "placementgroup 2015", or simply "placementgroup".
+     *     searchString: 'placeholder-value',
+     *     // Select only placement groups that are associated with these sites.
+     *     siteIds: 'placeholder-value',
+     *     // Field by which to sort the list.
+     *     sortField: 'placeholder-value',
+     *     // Order of sorted results.
+     *     sortOrder: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "placementGroups": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -21985,11 +31755,11 @@ export namespace dfareporting_v4 {
     list(
       params: Params$Resource$Placementgroups$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Placementgroups$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PlacementGroupsListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PlacementGroupsListResponse>>;
     list(
       params: Params$Resource$Placementgroups$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -22024,8 +31794,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$PlacementGroupsListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$PlacementGroupsListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Placementgroups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -22071,6 +31841,112 @@ export namespace dfareporting_v4 {
 
     /**
      * Updates an existing placement group. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.placementGroups.patch({
+     *     // Required. Placement ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "activeStatus": "my_activeStatus",
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "advertiserIdDimensionValue": {},
+     *       //   "campaignId": "my_campaignId",
+     *       //   "campaignIdDimensionValue": {},
+     *       //   "childPlacementIds": [],
+     *       //   "comment": "my_comment",
+     *       //   "contentCategoryId": "my_contentCategoryId",
+     *       //   "createInfo": {},
+     *       //   "directorySiteId": "my_directorySiteId",
+     *       //   "directorySiteIdDimensionValue": {},
+     *       //   "externalId": "my_externalId",
+     *       //   "id": "my_id",
+     *       //   "idDimensionValue": {},
+     *       //   "kind": "my_kind",
+     *       //   "lastModifiedInfo": {},
+     *       //   "name": "my_name",
+     *       //   "placementGroupType": "my_placementGroupType",
+     *       //   "placementStrategyId": "my_placementStrategyId",
+     *       //   "pricingSchedule": {},
+     *       //   "primaryPlacementId": "my_primaryPlacementId",
+     *       //   "primaryPlacementIdDimensionValue": {},
+     *       //   "siteId": "my_siteId",
+     *       //   "siteIdDimensionValue": {},
+     *       //   "subaccountId": "my_subaccountId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "activeStatus": "my_activeStatus",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "campaignId": "my_campaignId",
+     *   //   "campaignIdDimensionValue": {},
+     *   //   "childPlacementIds": [],
+     *   //   "comment": "my_comment",
+     *   //   "contentCategoryId": "my_contentCategoryId",
+     *   //   "createInfo": {},
+     *   //   "directorySiteId": "my_directorySiteId",
+     *   //   "directorySiteIdDimensionValue": {},
+     *   //   "externalId": "my_externalId",
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "kind": "my_kind",
+     *   //   "lastModifiedInfo": {},
+     *   //   "name": "my_name",
+     *   //   "placementGroupType": "my_placementGroupType",
+     *   //   "placementStrategyId": "my_placementStrategyId",
+     *   //   "pricingSchedule": {},
+     *   //   "primaryPlacementId": "my_primaryPlacementId",
+     *   //   "primaryPlacementIdDimensionValue": {},
+     *   //   "siteId": "my_siteId",
+     *   //   "siteIdDimensionValue": {},
+     *   //   "subaccountId": "my_subaccountId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -22080,11 +31956,11 @@ export namespace dfareporting_v4 {
     patch(
       params: Params$Resource$Placementgroups$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Placementgroups$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PlacementGroup>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PlacementGroup>>;
     patch(
       params: Params$Resource$Placementgroups$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -22113,7 +31989,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$PlacementGroup>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$PlacementGroup> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$PlacementGroup>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Placementgroups$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -22159,6 +32038,110 @@ export namespace dfareporting_v4 {
 
     /**
      * Updates an existing placement group.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.placementGroups.update({
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "activeStatus": "my_activeStatus",
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "advertiserIdDimensionValue": {},
+     *       //   "campaignId": "my_campaignId",
+     *       //   "campaignIdDimensionValue": {},
+     *       //   "childPlacementIds": [],
+     *       //   "comment": "my_comment",
+     *       //   "contentCategoryId": "my_contentCategoryId",
+     *       //   "createInfo": {},
+     *       //   "directorySiteId": "my_directorySiteId",
+     *       //   "directorySiteIdDimensionValue": {},
+     *       //   "externalId": "my_externalId",
+     *       //   "id": "my_id",
+     *       //   "idDimensionValue": {},
+     *       //   "kind": "my_kind",
+     *       //   "lastModifiedInfo": {},
+     *       //   "name": "my_name",
+     *       //   "placementGroupType": "my_placementGroupType",
+     *       //   "placementStrategyId": "my_placementStrategyId",
+     *       //   "pricingSchedule": {},
+     *       //   "primaryPlacementId": "my_primaryPlacementId",
+     *       //   "primaryPlacementIdDimensionValue": {},
+     *       //   "siteId": "my_siteId",
+     *       //   "siteIdDimensionValue": {},
+     *       //   "subaccountId": "my_subaccountId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "activeStatus": "my_activeStatus",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "campaignId": "my_campaignId",
+     *   //   "campaignIdDimensionValue": {},
+     *   //   "childPlacementIds": [],
+     *   //   "comment": "my_comment",
+     *   //   "contentCategoryId": "my_contentCategoryId",
+     *   //   "createInfo": {},
+     *   //   "directorySiteId": "my_directorySiteId",
+     *   //   "directorySiteIdDimensionValue": {},
+     *   //   "externalId": "my_externalId",
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "kind": "my_kind",
+     *   //   "lastModifiedInfo": {},
+     *   //   "name": "my_name",
+     *   //   "placementGroupType": "my_placementGroupType",
+     *   //   "placementStrategyId": "my_placementStrategyId",
+     *   //   "pricingSchedule": {},
+     *   //   "primaryPlacementId": "my_primaryPlacementId",
+     *   //   "primaryPlacementIdDimensionValue": {},
+     *   //   "siteId": "my_siteId",
+     *   //   "siteIdDimensionValue": {},
+     *   //   "subaccountId": "my_subaccountId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -22168,11 +32151,11 @@ export namespace dfareporting_v4 {
     update(
       params: Params$Resource$Placementgroups$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Placementgroups$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PlacementGroup>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PlacementGroup>>;
     update(
       params: Params$Resource$Placementgroups$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -22201,7 +32184,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$PlacementGroup>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$PlacementGroup> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$PlacementGroup>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Placementgroups$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -22389,6 +32375,59 @@ export namespace dfareporting_v4 {
 
     /**
      * Generates tags for a placement.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.placements.generatetags({
+     *     // Generate placements belonging to this campaign. This is a required field.
+     *     campaignId: 'placeholder-value',
+     *     // Generate tags for these placements.
+     *     placementIds: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *     // Tag formats to generate for these placements. *Note:* PLACEMENT_TAG_STANDARD can only be generated for 1x1 placements.
+     *     tagFormats: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "placementTags": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -22398,11 +32437,11 @@ export namespace dfareporting_v4 {
     generatetags(
       params: Params$Resource$Placements$Generatetags,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     generatetags(
       params?: Params$Resource$Placements$Generatetags,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PlacementsGenerateTagsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PlacementsGenerateTagsResponse>>;
     generatetags(
       params: Params$Resource$Placements$Generatetags,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -22437,8 +32476,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$PlacementsGenerateTagsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$PlacementsGenerateTagsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Placements$Generatetags;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -22486,6 +32525,99 @@ export namespace dfareporting_v4 {
 
     /**
      * Gets one placement by ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.placements.get({
+     *     // Placement ID.
+     *     id: '[^/]+',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "activeStatus": "my_activeStatus",
+     *   //   "adBlockingOptOut": false,
+     *   //   "adServingPlatformId": "my_adServingPlatformId",
+     *   //   "additionalSizes": [],
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "campaignId": "my_campaignId",
+     *   //   "campaignIdDimensionValue": {},
+     *   //   "comment": "my_comment",
+     *   //   "compatibility": "my_compatibility",
+     *   //   "contentCategoryId": "my_contentCategoryId",
+     *   //   "conversionDomainOverride": {},
+     *   //   "createInfo": {},
+     *   //   "directorySiteId": "my_directorySiteId",
+     *   //   "directorySiteIdDimensionValue": {},
+     *   //   "externalId": "my_externalId",
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "keyName": "my_keyName",
+     *   //   "kind": "my_kind",
+     *   //   "lastModifiedInfo": {},
+     *   //   "lookbackConfiguration": {},
+     *   //   "name": "my_name",
+     *   //   "partnerWrappingData": {},
+     *   //   "paymentApproved": false,
+     *   //   "paymentSource": "my_paymentSource",
+     *   //   "placementGroupId": "my_placementGroupId",
+     *   //   "placementGroupIdDimensionValue": {},
+     *   //   "placementStrategyId": "my_placementStrategyId",
+     *   //   "pricingSchedule": {},
+     *   //   "primary": false,
+     *   //   "publisherUpdateInfo": {},
+     *   //   "siteId": "my_siteId",
+     *   //   "siteIdDimensionValue": {},
+     *   //   "siteServed": false,
+     *   //   "size": {},
+     *   //   "sslRequired": false,
+     *   //   "status": "my_status",
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "tagFormats": [],
+     *   //   "tagSetting": {},
+     *   //   "videoActiveViewOptOut": false,
+     *   //   "videoSettings": {},
+     *   //   "vpaidAdapterChoice": "my_vpaidAdapterChoice",
+     *   //   "wrappingOptOut": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -22495,11 +32627,11 @@ export namespace dfareporting_v4 {
     get(
       params: Params$Resource$Placements$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Placements$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Placement>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Placement>>;
     get(
       params: Params$Resource$Placements$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -22528,7 +32660,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Placement>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Placement> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Placement>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Placements$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -22573,6 +32708,150 @@ export namespace dfareporting_v4 {
 
     /**
      * Inserts a new placement.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.placements.insert({
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "activeStatus": "my_activeStatus",
+     *       //   "adBlockingOptOut": false,
+     *       //   "adServingPlatformId": "my_adServingPlatformId",
+     *       //   "additionalSizes": [],
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "advertiserIdDimensionValue": {},
+     *       //   "campaignId": "my_campaignId",
+     *       //   "campaignIdDimensionValue": {},
+     *       //   "comment": "my_comment",
+     *       //   "compatibility": "my_compatibility",
+     *       //   "contentCategoryId": "my_contentCategoryId",
+     *       //   "conversionDomainOverride": {},
+     *       //   "createInfo": {},
+     *       //   "directorySiteId": "my_directorySiteId",
+     *       //   "directorySiteIdDimensionValue": {},
+     *       //   "externalId": "my_externalId",
+     *       //   "id": "my_id",
+     *       //   "idDimensionValue": {},
+     *       //   "keyName": "my_keyName",
+     *       //   "kind": "my_kind",
+     *       //   "lastModifiedInfo": {},
+     *       //   "lookbackConfiguration": {},
+     *       //   "name": "my_name",
+     *       //   "partnerWrappingData": {},
+     *       //   "paymentApproved": false,
+     *       //   "paymentSource": "my_paymentSource",
+     *       //   "placementGroupId": "my_placementGroupId",
+     *       //   "placementGroupIdDimensionValue": {},
+     *       //   "placementStrategyId": "my_placementStrategyId",
+     *       //   "pricingSchedule": {},
+     *       //   "primary": false,
+     *       //   "publisherUpdateInfo": {},
+     *       //   "siteId": "my_siteId",
+     *       //   "siteIdDimensionValue": {},
+     *       //   "siteServed": false,
+     *       //   "size": {},
+     *       //   "sslRequired": false,
+     *       //   "status": "my_status",
+     *       //   "subaccountId": "my_subaccountId",
+     *       //   "tagFormats": [],
+     *       //   "tagSetting": {},
+     *       //   "videoActiveViewOptOut": false,
+     *       //   "videoSettings": {},
+     *       //   "vpaidAdapterChoice": "my_vpaidAdapterChoice",
+     *       //   "wrappingOptOut": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "activeStatus": "my_activeStatus",
+     *   //   "adBlockingOptOut": false,
+     *   //   "adServingPlatformId": "my_adServingPlatformId",
+     *   //   "additionalSizes": [],
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "campaignId": "my_campaignId",
+     *   //   "campaignIdDimensionValue": {},
+     *   //   "comment": "my_comment",
+     *   //   "compatibility": "my_compatibility",
+     *   //   "contentCategoryId": "my_contentCategoryId",
+     *   //   "conversionDomainOverride": {},
+     *   //   "createInfo": {},
+     *   //   "directorySiteId": "my_directorySiteId",
+     *   //   "directorySiteIdDimensionValue": {},
+     *   //   "externalId": "my_externalId",
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "keyName": "my_keyName",
+     *   //   "kind": "my_kind",
+     *   //   "lastModifiedInfo": {},
+     *   //   "lookbackConfiguration": {},
+     *   //   "name": "my_name",
+     *   //   "partnerWrappingData": {},
+     *   //   "paymentApproved": false,
+     *   //   "paymentSource": "my_paymentSource",
+     *   //   "placementGroupId": "my_placementGroupId",
+     *   //   "placementGroupIdDimensionValue": {},
+     *   //   "placementStrategyId": "my_placementStrategyId",
+     *   //   "pricingSchedule": {},
+     *   //   "primary": false,
+     *   //   "publisherUpdateInfo": {},
+     *   //   "siteId": "my_siteId",
+     *   //   "siteIdDimensionValue": {},
+     *   //   "siteServed": false,
+     *   //   "size": {},
+     *   //   "sslRequired": false,
+     *   //   "status": "my_status",
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "tagFormats": [],
+     *   //   "tagSetting": {},
+     *   //   "videoActiveViewOptOut": false,
+     *   //   "videoSettings": {},
+     *   //   "vpaidAdapterChoice": "my_vpaidAdapterChoice",
+     *   //   "wrappingOptOut": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -22582,11 +32861,11 @@ export namespace dfareporting_v4 {
     insert(
       params: Params$Resource$Placements$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Placements$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Placement>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Placement>>;
     insert(
       params: Params$Resource$Placements$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -22615,7 +32894,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Placement>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Placement> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Placement>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Placements$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -22660,6 +32942,98 @@ export namespace dfareporting_v4 {
 
     /**
      * Retrieves a list of placements, possibly filtered. This method supports paging.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.placements.list({
+     *     // Select only placements with these active statuses.
+     *     activeStatus: 'placeholder-value',
+     *     // Select only placements that belong to these advertisers.
+     *     advertiserIds: 'placeholder-value',
+     *     // Select only placements that belong to these campaigns.
+     *     campaignIds: 'placeholder-value',
+     *     // Select only placements that are associated with these compatibilities. DISPLAY and DISPLAY_INTERSTITIAL refer to rendering either on desktop or on mobile devices for regular or interstitial ads respectively. APP and APP_INTERSTITIAL are for rendering in mobile apps. IN_STREAM_VIDEO refers to rendering in in-stream video ads developed with the VAST standard.
+     *     compatibilities: 'placeholder-value',
+     *     // Select only placements that are associated with these content categories.
+     *     contentCategoryIds: 'placeholder-value',
+     *     // Select only placements that are associated with these directory sites.
+     *     directorySiteIds: 'placeholder-value',
+     *     // Select only placements that belong to these placement groups.
+     *     groupIds: 'placeholder-value',
+     *     // Select only placements with these IDs.
+     *     ids: 'placeholder-value',
+     *     // Select only placements or placement groups whose end date is on or before the specified maxEndDate. The date should be formatted as "yyyy-MM-dd".
+     *     maxEndDate: 'placeholder-value',
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Select only placements or placement groups whose start date is on or before the specified maxStartDate. The date should be formatted as "yyyy-MM-dd".
+     *     maxStartDate: 'placeholder-value',
+     *     // Select only placements or placement groups whose end date is on or after the specified minEndDate. The date should be formatted as "yyyy-MM-dd".
+     *     minEndDate: 'placeholder-value',
+     *     // Select only placements or placement groups whose start date is on or after the specified minStartDate. The date should be formatted as "yyyy-MM-dd".
+     *     minStartDate: 'placeholder-value',
+     *     // Value of the nextPageToken from the previous result page.
+     *     pageToken: 'placeholder-value',
+     *     // Select only placements with this payment source.
+     *     paymentSource: 'placeholder-value',
+     *     // Select only placements that are associated with these placement strategies.
+     *     placementStrategyIds: 'placeholder-value',
+     *     // Select only placements with these pricing types.
+     *     pricingTypes: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *     // Allows searching for placements by name or ID. Wildcards (*) are allowed. For example, "placement*2015" will return placements with names like "placement June 2015", "placement May 2015", or simply "placements 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "placement" will match placements with name "my placement", "placement 2015", or simply "placement" .
+     *     searchString: 'placeholder-value',
+     *     // Select only placements that are associated with these sites.
+     *     siteIds: 'placeholder-value',
+     *     // Select only placements that are associated with these sizes.
+     *     sizeIds: 'placeholder-value',
+     *     // Field by which to sort the list.
+     *     sortField: 'placeholder-value',
+     *     // Order of sorted results.
+     *     sortOrder: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "placements": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -22669,11 +33043,11 @@ export namespace dfareporting_v4 {
     list(
       params: Params$Resource$Placements$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Placements$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PlacementsListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PlacementsListResponse>>;
     list(
       params: Params$Resource$Placements$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -22706,8 +33080,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$PlacementsListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$PlacementsListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Placements$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -22751,6 +33125,152 @@ export namespace dfareporting_v4 {
 
     /**
      * Updates an existing placement. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.placements.patch({
+     *     // Required. Placement ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "activeStatus": "my_activeStatus",
+     *       //   "adBlockingOptOut": false,
+     *       //   "adServingPlatformId": "my_adServingPlatformId",
+     *       //   "additionalSizes": [],
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "advertiserIdDimensionValue": {},
+     *       //   "campaignId": "my_campaignId",
+     *       //   "campaignIdDimensionValue": {},
+     *       //   "comment": "my_comment",
+     *       //   "compatibility": "my_compatibility",
+     *       //   "contentCategoryId": "my_contentCategoryId",
+     *       //   "conversionDomainOverride": {},
+     *       //   "createInfo": {},
+     *       //   "directorySiteId": "my_directorySiteId",
+     *       //   "directorySiteIdDimensionValue": {},
+     *       //   "externalId": "my_externalId",
+     *       //   "id": "my_id",
+     *       //   "idDimensionValue": {},
+     *       //   "keyName": "my_keyName",
+     *       //   "kind": "my_kind",
+     *       //   "lastModifiedInfo": {},
+     *       //   "lookbackConfiguration": {},
+     *       //   "name": "my_name",
+     *       //   "partnerWrappingData": {},
+     *       //   "paymentApproved": false,
+     *       //   "paymentSource": "my_paymentSource",
+     *       //   "placementGroupId": "my_placementGroupId",
+     *       //   "placementGroupIdDimensionValue": {},
+     *       //   "placementStrategyId": "my_placementStrategyId",
+     *       //   "pricingSchedule": {},
+     *       //   "primary": false,
+     *       //   "publisherUpdateInfo": {},
+     *       //   "siteId": "my_siteId",
+     *       //   "siteIdDimensionValue": {},
+     *       //   "siteServed": false,
+     *       //   "size": {},
+     *       //   "sslRequired": false,
+     *       //   "status": "my_status",
+     *       //   "subaccountId": "my_subaccountId",
+     *       //   "tagFormats": [],
+     *       //   "tagSetting": {},
+     *       //   "videoActiveViewOptOut": false,
+     *       //   "videoSettings": {},
+     *       //   "vpaidAdapterChoice": "my_vpaidAdapterChoice",
+     *       //   "wrappingOptOut": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "activeStatus": "my_activeStatus",
+     *   //   "adBlockingOptOut": false,
+     *   //   "adServingPlatformId": "my_adServingPlatformId",
+     *   //   "additionalSizes": [],
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "campaignId": "my_campaignId",
+     *   //   "campaignIdDimensionValue": {},
+     *   //   "comment": "my_comment",
+     *   //   "compatibility": "my_compatibility",
+     *   //   "contentCategoryId": "my_contentCategoryId",
+     *   //   "conversionDomainOverride": {},
+     *   //   "createInfo": {},
+     *   //   "directorySiteId": "my_directorySiteId",
+     *   //   "directorySiteIdDimensionValue": {},
+     *   //   "externalId": "my_externalId",
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "keyName": "my_keyName",
+     *   //   "kind": "my_kind",
+     *   //   "lastModifiedInfo": {},
+     *   //   "lookbackConfiguration": {},
+     *   //   "name": "my_name",
+     *   //   "partnerWrappingData": {},
+     *   //   "paymentApproved": false,
+     *   //   "paymentSource": "my_paymentSource",
+     *   //   "placementGroupId": "my_placementGroupId",
+     *   //   "placementGroupIdDimensionValue": {},
+     *   //   "placementStrategyId": "my_placementStrategyId",
+     *   //   "pricingSchedule": {},
+     *   //   "primary": false,
+     *   //   "publisherUpdateInfo": {},
+     *   //   "siteId": "my_siteId",
+     *   //   "siteIdDimensionValue": {},
+     *   //   "siteServed": false,
+     *   //   "size": {},
+     *   //   "sslRequired": false,
+     *   //   "status": "my_status",
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "tagFormats": [],
+     *   //   "tagSetting": {},
+     *   //   "videoActiveViewOptOut": false,
+     *   //   "videoSettings": {},
+     *   //   "vpaidAdapterChoice": "my_vpaidAdapterChoice",
+     *   //   "wrappingOptOut": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -22760,11 +33280,11 @@ export namespace dfareporting_v4 {
     patch(
       params: Params$Resource$Placements$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Placements$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Placement>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Placement>>;
     patch(
       params: Params$Resource$Placements$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -22793,7 +33313,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Placement>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Placement> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Placement>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Placements$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -22837,6 +33360,150 @@ export namespace dfareporting_v4 {
 
     /**
      * Updates an existing placement.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.placements.update({
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "activeStatus": "my_activeStatus",
+     *       //   "adBlockingOptOut": false,
+     *       //   "adServingPlatformId": "my_adServingPlatformId",
+     *       //   "additionalSizes": [],
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "advertiserIdDimensionValue": {},
+     *       //   "campaignId": "my_campaignId",
+     *       //   "campaignIdDimensionValue": {},
+     *       //   "comment": "my_comment",
+     *       //   "compatibility": "my_compatibility",
+     *       //   "contentCategoryId": "my_contentCategoryId",
+     *       //   "conversionDomainOverride": {},
+     *       //   "createInfo": {},
+     *       //   "directorySiteId": "my_directorySiteId",
+     *       //   "directorySiteIdDimensionValue": {},
+     *       //   "externalId": "my_externalId",
+     *       //   "id": "my_id",
+     *       //   "idDimensionValue": {},
+     *       //   "keyName": "my_keyName",
+     *       //   "kind": "my_kind",
+     *       //   "lastModifiedInfo": {},
+     *       //   "lookbackConfiguration": {},
+     *       //   "name": "my_name",
+     *       //   "partnerWrappingData": {},
+     *       //   "paymentApproved": false,
+     *       //   "paymentSource": "my_paymentSource",
+     *       //   "placementGroupId": "my_placementGroupId",
+     *       //   "placementGroupIdDimensionValue": {},
+     *       //   "placementStrategyId": "my_placementStrategyId",
+     *       //   "pricingSchedule": {},
+     *       //   "primary": false,
+     *       //   "publisherUpdateInfo": {},
+     *       //   "siteId": "my_siteId",
+     *       //   "siteIdDimensionValue": {},
+     *       //   "siteServed": false,
+     *       //   "size": {},
+     *       //   "sslRequired": false,
+     *       //   "status": "my_status",
+     *       //   "subaccountId": "my_subaccountId",
+     *       //   "tagFormats": [],
+     *       //   "tagSetting": {},
+     *       //   "videoActiveViewOptOut": false,
+     *       //   "videoSettings": {},
+     *       //   "vpaidAdapterChoice": "my_vpaidAdapterChoice",
+     *       //   "wrappingOptOut": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "activeStatus": "my_activeStatus",
+     *   //   "adBlockingOptOut": false,
+     *   //   "adServingPlatformId": "my_adServingPlatformId",
+     *   //   "additionalSizes": [],
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "campaignId": "my_campaignId",
+     *   //   "campaignIdDimensionValue": {},
+     *   //   "comment": "my_comment",
+     *   //   "compatibility": "my_compatibility",
+     *   //   "contentCategoryId": "my_contentCategoryId",
+     *   //   "conversionDomainOverride": {},
+     *   //   "createInfo": {},
+     *   //   "directorySiteId": "my_directorySiteId",
+     *   //   "directorySiteIdDimensionValue": {},
+     *   //   "externalId": "my_externalId",
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "keyName": "my_keyName",
+     *   //   "kind": "my_kind",
+     *   //   "lastModifiedInfo": {},
+     *   //   "lookbackConfiguration": {},
+     *   //   "name": "my_name",
+     *   //   "partnerWrappingData": {},
+     *   //   "paymentApproved": false,
+     *   //   "paymentSource": "my_paymentSource",
+     *   //   "placementGroupId": "my_placementGroupId",
+     *   //   "placementGroupIdDimensionValue": {},
+     *   //   "placementStrategyId": "my_placementStrategyId",
+     *   //   "pricingSchedule": {},
+     *   //   "primary": false,
+     *   //   "publisherUpdateInfo": {},
+     *   //   "siteId": "my_siteId",
+     *   //   "siteIdDimensionValue": {},
+     *   //   "siteServed": false,
+     *   //   "size": {},
+     *   //   "sslRequired": false,
+     *   //   "status": "my_status",
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "tagFormats": [],
+     *   //   "tagSetting": {},
+     *   //   "videoActiveViewOptOut": false,
+     *   //   "videoSettings": {},
+     *   //   "vpaidAdapterChoice": "my_vpaidAdapterChoice",
+     *   //   "wrappingOptOut": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -22846,11 +33513,11 @@ export namespace dfareporting_v4 {
     update(
       params: Params$Resource$Placements$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Placements$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Placement>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Placement>>;
     update(
       params: Params$Resource$Placements$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -22879,7 +33546,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Placement>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Placement> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Placement>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Placements$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -23094,6 +33764,49 @@ export namespace dfareporting_v4 {
 
     /**
      * Deletes an existing placement strategy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.placementStrategies.delete({
+     *     // Placement strategy ID.
+     *     id: '[^/]+',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -23103,11 +33816,11 @@ export namespace dfareporting_v4 {
     delete(
       params: Params$Resource$Placementstrategies$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Placementstrategies$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Placementstrategies$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -23134,7 +33847,10 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Placementstrategies$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -23180,6 +33896,57 @@ export namespace dfareporting_v4 {
 
     /**
      * Gets one placement strategy by ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.placementStrategies.get({
+     *     // Placement strategy ID.
+     *     id: '[^/]+',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -23189,11 +33956,11 @@ export namespace dfareporting_v4 {
     get(
       params: Params$Resource$Placementstrategies$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Placementstrategies$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PlacementStrategy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PlacementStrategy>>;
     get(
       params: Params$Resource$Placementstrategies$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -23224,8 +33991,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$PlacementStrategy>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$PlacementStrategy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Placementstrategies$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -23271,6 +34038,66 @@ export namespace dfareporting_v4 {
 
     /**
      * Inserts a new placement strategy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.placementStrategies.insert({
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -23280,11 +34107,11 @@ export namespace dfareporting_v4 {
     insert(
       params: Params$Resource$Placementstrategies$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Placementstrategies$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PlacementStrategy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PlacementStrategy>>;
     insert(
       params: Params$Resource$Placementstrategies$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -23315,8 +34142,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$PlacementStrategy>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$PlacementStrategy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Placementstrategies$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -23362,6 +34189,66 @@ export namespace dfareporting_v4 {
 
     /**
      * Retrieves a list of placement strategies, possibly filtered. This method supports paging.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.placementStrategies.list({
+     *     // Select only placement strategies with these IDs.
+     *     ids: 'placeholder-value',
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Value of the nextPageToken from the previous result page.
+     *     pageToken: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *     // Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "placementstrategy*2015" will return objects with names like "placementstrategy June 2015", "placementstrategy April 2015", or simply "placementstrategy 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "placementstrategy" will match objects with name "my placementstrategy", "placementstrategy 2015", or simply "placementstrategy".
+     *     searchString: 'placeholder-value',
+     *     // Field by which to sort the list.
+     *     sortField: 'placeholder-value',
+     *     // Order of sorted results.
+     *     sortOrder: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "placementStrategies": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -23371,11 +34258,11 @@ export namespace dfareporting_v4 {
     list(
       params: Params$Resource$Placementstrategies$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Placementstrategies$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PlacementStrategiesListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PlacementStrategiesListResponse>>;
     list(
       params: Params$Resource$Placementstrategies$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -23410,8 +34297,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$PlacementStrategiesListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$PlacementStrategiesListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Placementstrategies$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -23459,6 +34346,68 @@ export namespace dfareporting_v4 {
 
     /**
      * Updates an existing placement strategy. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.placementStrategies.patch({
+     *     // Required. PlacementStrategy ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -23468,11 +34417,11 @@ export namespace dfareporting_v4 {
     patch(
       params: Params$Resource$Placementstrategies$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Placementstrategies$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PlacementStrategy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PlacementStrategy>>;
     patch(
       params: Params$Resource$Placementstrategies$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -23503,8 +34452,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$PlacementStrategy>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$PlacementStrategy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Placementstrategies$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -23550,6 +34499,66 @@ export namespace dfareporting_v4 {
 
     /**
      * Updates an existing placement strategy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.placementStrategies.update({
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -23559,11 +34568,11 @@ export namespace dfareporting_v4 {
     update(
       params: Params$Resource$Placementstrategies$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Placementstrategies$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PlacementStrategy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PlacementStrategy>>;
     update(
       params: Params$Resource$Placementstrategies$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -23594,8 +34603,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$PlacementStrategy>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$PlacementStrategy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Placementstrategies$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -23742,6 +34751,56 @@ export namespace dfareporting_v4 {
 
     /**
      * Gets one platform type by ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.platformTypes.get({
+     *     // Platform type ID.
+     *     id: '[^/]+',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -23751,11 +34810,11 @@ export namespace dfareporting_v4 {
     get(
       params: Params$Resource$Platformtypes$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Platformtypes$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PlatformType>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PlatformType>>;
     get(
       params: Params$Resource$Platformtypes$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -23784,7 +34843,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$PlatformType>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$PlatformType> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$PlatformType>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Platformtypes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -23830,6 +34892,53 @@ export namespace dfareporting_v4 {
 
     /**
      * Retrieves a list of platform types.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.platformTypes.list({
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "platformTypes": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -23839,11 +34948,11 @@ export namespace dfareporting_v4 {
     list(
       params: Params$Resource$Platformtypes$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Platformtypes$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PlatformTypesListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PlatformTypesListResponse>>;
     list(
       params: Params$Resource$Platformtypes$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -23878,8 +34987,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$PlatformTypesListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$PlatformTypesListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Platformtypes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -23951,6 +35060,58 @@ export namespace dfareporting_v4 {
 
     /**
      * Gets one postal code by ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.postalCodes.get({
+     *     // Postal code ID.
+     *     code: '[^/]+',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "code": "my_code",
+     *   //   "countryCode": "my_countryCode",
+     *   //   "countryDartId": "my_countryDartId",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -23960,11 +35121,11 @@ export namespace dfareporting_v4 {
     get(
       params: Params$Resource$Postalcodes$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Postalcodes$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PostalCode>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PostalCode>>;
     get(
       params: Params$Resource$Postalcodes$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -23993,7 +35154,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$PostalCode>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$PostalCode> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$PostalCode>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Postalcodes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -24038,6 +35202,53 @@ export namespace dfareporting_v4 {
 
     /**
      * Retrieves a list of postal codes.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.postalCodes.list({
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "postalCodes": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -24047,11 +35258,11 @@ export namespace dfareporting_v4 {
     list(
       params: Params$Resource$Postalcodes$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Postalcodes$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PostalCodesListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PostalCodesListResponse>>;
     list(
       params: Params$Resource$Postalcodes$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -24084,8 +35295,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$PostalCodesListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$PostalCodesListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Postalcodes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -24153,6 +35364,75 @@ export namespace dfareporting_v4 {
 
     /**
      * Gets one project by ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.projects.get({
+     *     // Project ID.
+     *     id: '[^/]+',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "audienceAgeGroup": "my_audienceAgeGroup",
+     *   //   "audienceGender": "my_audienceGender",
+     *   //   "budget": "my_budget",
+     *   //   "clientBillingCode": "my_clientBillingCode",
+     *   //   "clientName": "my_clientName",
+     *   //   "endDate": "my_endDate",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "lastModifiedInfo": {},
+     *   //   "name": "my_name",
+     *   //   "overview": "my_overview",
+     *   //   "startDate": "my_startDate",
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "targetClicks": "my_targetClicks",
+     *   //   "targetConversions": "my_targetConversions",
+     *   //   "targetCpaNanos": "my_targetCpaNanos",
+     *   //   "targetCpcNanos": "my_targetCpcNanos",
+     *   //   "targetCpmActiveViewNanos": "my_targetCpmActiveViewNanos",
+     *   //   "targetCpmNanos": "my_targetCpmNanos",
+     *   //   "targetImpressions": "my_targetImpressions"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -24162,11 +35442,11 @@ export namespace dfareporting_v4 {
     get(
       params: Params$Resource$Projects$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Project>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Project>>;
     get(
       params: Params$Resource$Projects$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -24195,7 +35475,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Project>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Project> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Project>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Projects$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -24240,6 +35523,68 @@ export namespace dfareporting_v4 {
 
     /**
      * Retrieves a list of projects, possibly filtered. This method supports paging .
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.projects.list({
+     *     // Select only projects with these advertiser IDs.
+     *     advertiserIds: 'placeholder-value',
+     *     // Select only projects with these IDs.
+     *     ids: 'placeholder-value',
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Value of the nextPageToken from the previous result page.
+     *     pageToken: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *     // Allows searching for projects by name or ID. Wildcards (*) are allowed. For example, "project*2015" will return projects with names like "project June 2015", "project April 2015", or simply "project 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "project" will match projects with name "my project", "project 2015", or simply "project".
+     *     searchString: 'placeholder-value',
+     *     // Field by which to sort the list.
+     *     sortField: 'placeholder-value',
+     *     // Order of sorted results.
+     *     sortOrder: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "projects": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -24249,11 +35594,11 @@ export namespace dfareporting_v4 {
     list(
       params: Params$Resource$Projects$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ProjectsListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ProjectsListResponse>>;
     list(
       params: Params$Resource$Projects$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -24286,8 +35631,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ProjectsListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ProjectsListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Projects$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -24383,6 +35728,53 @@ export namespace dfareporting_v4 {
 
     /**
      * Retrieves a list of regions.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.regions.list({
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "regions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -24392,11 +35784,11 @@ export namespace dfareporting_v4 {
     list(
       params: Params$Resource$Regions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Regions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RegionsListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$RegionsListResponse>>;
     list(
       params: Params$Resource$Regions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -24427,8 +35819,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$RegionsListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$RegionsListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Regions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -24486,6 +35878,66 @@ export namespace dfareporting_v4 {
 
     /**
      * Gets one remarketing list by ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.remarketingLists.get({
+     *     // Remarketing list ID.
+     *     id: '[^/]+',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "active": false,
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "description": "my_description",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "lifeSpan": "my_lifeSpan",
+     *   //   "listPopulationRule": {},
+     *   //   "listSize": "my_listSize",
+     *   //   "listSource": "my_listSource",
+     *   //   "name": "my_name",
+     *   //   "subaccountId": "my_subaccountId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -24495,11 +35947,11 @@ export namespace dfareporting_v4 {
     get(
       params: Params$Resource$Remarketinglists$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Remarketinglists$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RemarketingList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$RemarketingList>>;
     get(
       params: Params$Resource$Remarketinglists$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -24528,7 +35980,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$RemarketingList>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$RemarketingList> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$RemarketingList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Remarketinglists$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -24574,6 +36029,84 @@ export namespace dfareporting_v4 {
 
     /**
      * Inserts a new remarketing list.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.remarketingLists.insert({
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "active": false,
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "advertiserIdDimensionValue": {},
+     *       //   "description": "my_description",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "lifeSpan": "my_lifeSpan",
+     *       //   "listPopulationRule": {},
+     *       //   "listSize": "my_listSize",
+     *       //   "listSource": "my_listSource",
+     *       //   "name": "my_name",
+     *       //   "subaccountId": "my_subaccountId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "active": false,
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "description": "my_description",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "lifeSpan": "my_lifeSpan",
+     *   //   "listPopulationRule": {},
+     *   //   "listSize": "my_listSize",
+     *   //   "listSource": "my_listSource",
+     *   //   "name": "my_name",
+     *   //   "subaccountId": "my_subaccountId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -24583,11 +36116,11 @@ export namespace dfareporting_v4 {
     insert(
       params: Params$Resource$Remarketinglists$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Remarketinglists$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RemarketingList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$RemarketingList>>;
     insert(
       params: Params$Resource$Remarketinglists$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -24616,7 +36149,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$RemarketingList>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$RemarketingList> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$RemarketingList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Remarketinglists$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -24662,6 +36198,70 @@ export namespace dfareporting_v4 {
 
     /**
      * Retrieves a list of remarketing lists, possibly filtered. This method supports paging.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.remarketingLists.list({
+     *     // Select only active or only inactive remarketing lists.
+     *     active: 'placeholder-value',
+     *     // Required. Select only remarketing lists owned by this advertiser.
+     *     advertiserId: 'placeholder-value',
+     *     // Select only remarketing lists that have this floodlight activity ID.
+     *     floodlightActivityId: 'placeholder-value',
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "remarketing list*2015" will return objects with names like "remarketing list June 2015", "remarketing list April 2015", or simply "remarketing list 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "remarketing list" will match objects with name "my remarketing list", "remarketing list 2015", or simply "remarketing list".
+     *     name: 'placeholder-value',
+     *     // Value of the nextPageToken from the previous result page.
+     *     pageToken: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *     // Field by which to sort the list.
+     *     sortField: 'placeholder-value',
+     *     // Order of sorted results.
+     *     sortOrder: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "remarketingLists": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -24671,11 +36271,11 @@ export namespace dfareporting_v4 {
     list(
       params: Params$Resource$Remarketinglists$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Remarketinglists$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RemarketingListsListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$RemarketingListsListResponse>>;
     list(
       params: Params$Resource$Remarketinglists$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -24710,8 +36310,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$RemarketingListsListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$RemarketingListsListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Remarketinglists$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -24759,6 +36359,86 @@ export namespace dfareporting_v4 {
 
     /**
      * Updates an existing remarketing list. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.remarketingLists.patch({
+     *     // Required. RemarketingList ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "active": false,
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "advertiserIdDimensionValue": {},
+     *       //   "description": "my_description",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "lifeSpan": "my_lifeSpan",
+     *       //   "listPopulationRule": {},
+     *       //   "listSize": "my_listSize",
+     *       //   "listSource": "my_listSource",
+     *       //   "name": "my_name",
+     *       //   "subaccountId": "my_subaccountId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "active": false,
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "description": "my_description",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "lifeSpan": "my_lifeSpan",
+     *   //   "listPopulationRule": {},
+     *   //   "listSize": "my_listSize",
+     *   //   "listSource": "my_listSource",
+     *   //   "name": "my_name",
+     *   //   "subaccountId": "my_subaccountId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -24768,11 +36448,11 @@ export namespace dfareporting_v4 {
     patch(
       params: Params$Resource$Remarketinglists$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Remarketinglists$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RemarketingList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$RemarketingList>>;
     patch(
       params: Params$Resource$Remarketinglists$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -24801,7 +36481,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$RemarketingList>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$RemarketingList> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$RemarketingList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Remarketinglists$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -24847,6 +36530,84 @@ export namespace dfareporting_v4 {
 
     /**
      * Updates an existing remarketing list.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.remarketingLists.update({
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "active": false,
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "advertiserIdDimensionValue": {},
+     *       //   "description": "my_description",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "lifeSpan": "my_lifeSpan",
+     *       //   "listPopulationRule": {},
+     *       //   "listSize": "my_listSize",
+     *       //   "listSource": "my_listSource",
+     *       //   "name": "my_name",
+     *       //   "subaccountId": "my_subaccountId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "active": false,
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "description": "my_description",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "lifeSpan": "my_lifeSpan",
+     *   //   "listPopulationRule": {},
+     *   //   "listSize": "my_listSize",
+     *   //   "listSource": "my_listSource",
+     *   //   "name": "my_name",
+     *   //   "subaccountId": "my_subaccountId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -24856,11 +36617,11 @@ export namespace dfareporting_v4 {
     update(
       params: Params$Resource$Remarketinglists$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Remarketinglists$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RemarketingList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$RemarketingList>>;
     update(
       params: Params$Resource$Remarketinglists$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -24889,7 +36650,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$RemarketingList>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$RemarketingList> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$RemarketingList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Remarketinglists$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -25033,6 +36797,57 @@ export namespace dfareporting_v4 {
 
     /**
      * Gets one remarketing list share by remarketing list ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.remarketingListShares.get({
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *     // Remarketing list ID.
+     *     remarketingListId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "remarketingListId": "my_remarketingListId",
+     *   //   "sharedAccountIds": [],
+     *   //   "sharedAdvertiserIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -25042,11 +36857,11 @@ export namespace dfareporting_v4 {
     get(
       params: Params$Resource$Remarketinglistshares$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Remarketinglistshares$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RemarketingListShare>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$RemarketingListShare>>;
     get(
       params: Params$Resource$Remarketinglistshares$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -25079,8 +36894,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$RemarketingListShare>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$RemarketingListShare>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Remarketinglistshares$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -25126,6 +36941,68 @@ export namespace dfareporting_v4 {
 
     /**
      * Updates an existing remarketing list share. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.remarketingListShares.patch({
+     *     // Required. RemarketingList ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "kind": "my_kind",
+     *       //   "remarketingListId": "my_remarketingListId",
+     *       //   "sharedAccountIds": [],
+     *       //   "sharedAdvertiserIds": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "remarketingListId": "my_remarketingListId",
+     *   //   "sharedAccountIds": [],
+     *   //   "sharedAdvertiserIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -25135,11 +37012,11 @@ export namespace dfareporting_v4 {
     patch(
       params: Params$Resource$Remarketinglistshares$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Remarketinglistshares$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RemarketingListShare>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$RemarketingListShare>>;
     patch(
       params: Params$Resource$Remarketinglistshares$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -25172,8 +37049,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$RemarketingListShare>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$RemarketingListShare>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Remarketinglistshares$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -25219,6 +37096,66 @@ export namespace dfareporting_v4 {
 
     /**
      * Updates an existing remarketing list share.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.remarketingListShares.update({
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "kind": "my_kind",
+     *       //   "remarketingListId": "my_remarketingListId",
+     *       //   "sharedAccountIds": [],
+     *       //   "sharedAdvertiserIds": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "remarketingListId": "my_remarketingListId",
+     *   //   "sharedAccountIds": [],
+     *   //   "sharedAdvertiserIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -25228,11 +37165,11 @@ export namespace dfareporting_v4 {
     update(
       params: Params$Resource$Remarketinglistshares$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Remarketinglistshares$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RemarketingListShare>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$RemarketingListShare>>;
     update(
       params: Params$Resource$Remarketinglistshares$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -25265,8 +37202,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$RemarketingListShare>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$RemarketingListShare>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Remarketinglistshares$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -25365,6 +37302,49 @@ export namespace dfareporting_v4 {
 
     /**
      * Deletes a report by its ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfareporting'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.reports.delete({
+     *     // The Campaign Manager 360 user profile ID.
+     *     profileId: 'placeholder-value',
+     *     // The ID of the report.
+     *     reportId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -25374,11 +37354,11 @@ export namespace dfareporting_v4 {
     delete(
       params: Params$Resource$Reports$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Reports$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Reports$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -25405,7 +37385,10 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reports$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -25450,6 +37433,72 @@ export namespace dfareporting_v4 {
 
     /**
      * Retrieves a report by its ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfareporting'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.reports.get({
+     *     // The Campaign Manager 360 user profile ID.
+     *     profileId: 'placeholder-value',
+     *     // The ID of the report.
+     *     reportId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "criteria": {},
+     *   //   "crossDimensionReachCriteria": {},
+     *   //   "crossMediaReachCriteria": {},
+     *   //   "delivery": {},
+     *   //   "etag": "my_etag",
+     *   //   "fileName": "my_fileName",
+     *   //   "floodlightCriteria": {},
+     *   //   "format": "my_format",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "lastModifiedTime": "my_lastModifiedTime",
+     *   //   "name": "my_name",
+     *   //   "ownerProfileId": "my_ownerProfileId",
+     *   //   "pathToConversionCriteria": {},
+     *   //   "reachCriteria": {},
+     *   //   "schedule": {},
+     *   //   "subAccountId": "my_subAccountId",
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -25459,11 +37508,11 @@ export namespace dfareporting_v4 {
     get(
       params: Params$Resource$Reports$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Reports$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Report>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Report>>;
     get(
       params: Params$Resource$Reports$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -25492,7 +37541,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Report>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Report> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Report>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reports$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -25537,6 +37589,96 @@ export namespace dfareporting_v4 {
 
     /**
      * Creates a report.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfareporting'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.reports.insert({
+     *     // The Campaign Manager 360 user profile ID.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "criteria": {},
+     *       //   "crossDimensionReachCriteria": {},
+     *       //   "crossMediaReachCriteria": {},
+     *       //   "delivery": {},
+     *       //   "etag": "my_etag",
+     *       //   "fileName": "my_fileName",
+     *       //   "floodlightCriteria": {},
+     *       //   "format": "my_format",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "lastModifiedTime": "my_lastModifiedTime",
+     *       //   "name": "my_name",
+     *       //   "ownerProfileId": "my_ownerProfileId",
+     *       //   "pathToConversionCriteria": {},
+     *       //   "reachCriteria": {},
+     *       //   "schedule": {},
+     *       //   "subAccountId": "my_subAccountId",
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "criteria": {},
+     *   //   "crossDimensionReachCriteria": {},
+     *   //   "crossMediaReachCriteria": {},
+     *   //   "delivery": {},
+     *   //   "etag": "my_etag",
+     *   //   "fileName": "my_fileName",
+     *   //   "floodlightCriteria": {},
+     *   //   "format": "my_format",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "lastModifiedTime": "my_lastModifiedTime",
+     *   //   "name": "my_name",
+     *   //   "ownerProfileId": "my_ownerProfileId",
+     *   //   "pathToConversionCriteria": {},
+     *   //   "reachCriteria": {},
+     *   //   "schedule": {},
+     *   //   "subAccountId": "my_subAccountId",
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -25546,11 +37688,11 @@ export namespace dfareporting_v4 {
     insert(
       params: Params$Resource$Reports$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Reports$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Report>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Report>>;
     insert(
       params: Params$Resource$Reports$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -25579,7 +37721,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Report>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Report> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Report>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reports$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -25623,6 +37768,65 @@ export namespace dfareporting_v4 {
 
     /**
      * Retrieves list of reports.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfareporting'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.reports.list({
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // The value of the nextToken from the previous result page.
+     *     pageToken: 'placeholder-value',
+     *     // The Campaign Manager 360 user profile ID.
+     *     profileId: 'placeholder-value',
+     *     // The scope that defines which results are returned.
+     *     scope: 'placeholder-value',
+     *     // The field by which to sort the list.
+     *     sortField: 'placeholder-value',
+     *     // Order of sorted results.
+     *     sortOrder: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -25632,11 +37836,11 @@ export namespace dfareporting_v4 {
     list(
       params: Params$Resource$Reports$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Reports$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ReportList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ReportList>>;
     list(
       params: Params$Resource$Reports$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -25665,7 +37869,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$ReportList>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ReportList> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ReportList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reports$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -25709,6 +37916,98 @@ export namespace dfareporting_v4 {
 
     /**
      * Updates an existing report. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfareporting'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.reports.patch({
+     *     // The Campaign Manager 360 user profile ID.
+     *     profileId: 'placeholder-value',
+     *     // The ID of the report.
+     *     reportId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "criteria": {},
+     *       //   "crossDimensionReachCriteria": {},
+     *       //   "crossMediaReachCriteria": {},
+     *       //   "delivery": {},
+     *       //   "etag": "my_etag",
+     *       //   "fileName": "my_fileName",
+     *       //   "floodlightCriteria": {},
+     *       //   "format": "my_format",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "lastModifiedTime": "my_lastModifiedTime",
+     *       //   "name": "my_name",
+     *       //   "ownerProfileId": "my_ownerProfileId",
+     *       //   "pathToConversionCriteria": {},
+     *       //   "reachCriteria": {},
+     *       //   "schedule": {},
+     *       //   "subAccountId": "my_subAccountId",
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "criteria": {},
+     *   //   "crossDimensionReachCriteria": {},
+     *   //   "crossMediaReachCriteria": {},
+     *   //   "delivery": {},
+     *   //   "etag": "my_etag",
+     *   //   "fileName": "my_fileName",
+     *   //   "floodlightCriteria": {},
+     *   //   "format": "my_format",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "lastModifiedTime": "my_lastModifiedTime",
+     *   //   "name": "my_name",
+     *   //   "ownerProfileId": "my_ownerProfileId",
+     *   //   "pathToConversionCriteria": {},
+     *   //   "reachCriteria": {},
+     *   //   "schedule": {},
+     *   //   "subAccountId": "my_subAccountId",
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -25718,11 +38017,11 @@ export namespace dfareporting_v4 {
     patch(
       params: Params$Resource$Reports$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Reports$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Report>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Report>>;
     patch(
       params: Params$Resource$Reports$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -25751,7 +38050,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Report>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Report> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Report>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reports$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -25796,6 +38098,65 @@ export namespace dfareporting_v4 {
 
     /**
      * Runs a report.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfareporting'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.reports.run({
+     *     // The Campaign Manager 360 user profile ID.
+     *     profileId: 'placeholder-value',
+     *     // The ID of the report.
+     *     reportId: 'placeholder-value',
+     *     // If set and true, tries to run the report synchronously.
+     *     synchronous: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dateRange": {},
+     *   //   "etag": "my_etag",
+     *   //   "fileName": "my_fileName",
+     *   //   "format": "my_format",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "lastModifiedTime": "my_lastModifiedTime",
+     *   //   "reportId": "my_reportId",
+     *   //   "status": "my_status",
+     *   //   "urls": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -25805,11 +38166,11 @@ export namespace dfareporting_v4 {
     run(
       params: Params$Resource$Reports$Run,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     run(
       params?: Params$Resource$Reports$Run,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$File>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$File>>;
     run(
       params: Params$Resource$Reports$Run,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -25838,7 +38199,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$File>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$File> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$File>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reports$Run;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -25883,6 +38247,98 @@ export namespace dfareporting_v4 {
 
     /**
      * Updates a report.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfareporting'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.reports.update({
+     *     // The Campaign Manager 360 user profile ID.
+     *     profileId: 'placeholder-value',
+     *     // The ID of the report.
+     *     reportId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "criteria": {},
+     *       //   "crossDimensionReachCriteria": {},
+     *       //   "crossMediaReachCriteria": {},
+     *       //   "delivery": {},
+     *       //   "etag": "my_etag",
+     *       //   "fileName": "my_fileName",
+     *       //   "floodlightCriteria": {},
+     *       //   "format": "my_format",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "lastModifiedTime": "my_lastModifiedTime",
+     *       //   "name": "my_name",
+     *       //   "ownerProfileId": "my_ownerProfileId",
+     *       //   "pathToConversionCriteria": {},
+     *       //   "reachCriteria": {},
+     *       //   "schedule": {},
+     *       //   "subAccountId": "my_subAccountId",
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "criteria": {},
+     *   //   "crossDimensionReachCriteria": {},
+     *   //   "crossMediaReachCriteria": {},
+     *   //   "delivery": {},
+     *   //   "etag": "my_etag",
+     *   //   "fileName": "my_fileName",
+     *   //   "floodlightCriteria": {},
+     *   //   "format": "my_format",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "lastModifiedTime": "my_lastModifiedTime",
+     *   //   "name": "my_name",
+     *   //   "ownerProfileId": "my_ownerProfileId",
+     *   //   "pathToConversionCriteria": {},
+     *   //   "reachCriteria": {},
+     *   //   "schedule": {},
+     *   //   "subAccountId": "my_subAccountId",
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -25892,11 +38348,11 @@ export namespace dfareporting_v4 {
     update(
       params: Params$Resource$Reports$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Reports$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Report>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Report>>;
     update(
       params: Params$Resource$Reports$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -25925,7 +38381,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Report>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Report> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Report>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reports$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -26079,6 +38538,84 @@ export namespace dfareporting_v4 {
 
     /**
      * Returns the fields that are compatible to be selected in the respective sections of a report criteria, given the fields already selected in the input report and user permissions.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfareporting'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.reports.compatibleFields.query({
+     *     // The Campaign Manager 360 user profile ID.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "criteria": {},
+     *       //   "crossDimensionReachCriteria": {},
+     *       //   "crossMediaReachCriteria": {},
+     *       //   "delivery": {},
+     *       //   "etag": "my_etag",
+     *       //   "fileName": "my_fileName",
+     *       //   "floodlightCriteria": {},
+     *       //   "format": "my_format",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "lastModifiedTime": "my_lastModifiedTime",
+     *       //   "name": "my_name",
+     *       //   "ownerProfileId": "my_ownerProfileId",
+     *       //   "pathToConversionCriteria": {},
+     *       //   "reachCriteria": {},
+     *       //   "schedule": {},
+     *       //   "subAccountId": "my_subAccountId",
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "crossDimensionReachReportCompatibleFields": {},
+     *   //   "crossMediaReachReportCompatibleFields": {},
+     *   //   "floodlightReportCompatibleFields": {},
+     *   //   "kind": "my_kind",
+     *   //   "pathToConversionReportCompatibleFields": {},
+     *   //   "reachReportCompatibleFields": {},
+     *   //   "reportCompatibleFields": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -26088,11 +38625,11 @@ export namespace dfareporting_v4 {
     query(
       params: Params$Resource$Reports$Compatiblefields$Query,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     query(
       params?: Params$Resource$Reports$Compatiblefields$Query,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CompatibleFields>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CompatibleFields>>;
     query(
       params: Params$Resource$Reports$Compatiblefields$Query,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -26121,7 +38658,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$CompatibleFields>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CompatibleFields> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$CompatibleFields>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Reports$Compatiblefields$Query;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -26187,6 +38727,65 @@ export namespace dfareporting_v4 {
 
     /**
      * Retrieves a report file by its report ID and file ID. This method supports media download.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfareporting'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.reports.files.get({
+     *     // The ID of the report file.
+     *     fileId: 'placeholder-value',
+     *     // The Campaign Manager 360 user profile ID.
+     *     profileId: 'placeholder-value',
+     *     // The ID of the report.
+     *     reportId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dateRange": {},
+     *   //   "etag": "my_etag",
+     *   //   "fileName": "my_fileName",
+     *   //   "format": "my_format",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "lastModifiedTime": "my_lastModifiedTime",
+     *   //   "reportId": "my_reportId",
+     *   //   "status": "my_status",
+     *   //   "urls": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -26196,11 +38795,11 @@ export namespace dfareporting_v4 {
     get(
       params: Params$Resource$Reports$Files$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Reports$Files$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$File>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$File>>;
     get(
       params: Params$Resource$Reports$Files$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -26229,7 +38828,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$File>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$File> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$File>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Reports$Files$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -26275,6 +38877,65 @@ export namespace dfareporting_v4 {
 
     /**
      * Lists files for a report.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfareporting'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.reports.files.list({
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // The value of the nextToken from the previous result page.
+     *     pageToken: 'placeholder-value',
+     *     // The Campaign Manager 360 user profile ID.
+     *     profileId: 'placeholder-value',
+     *     // The ID of the parent report.
+     *     reportId: 'placeholder-value',
+     *     // The field by which to sort the list.
+     *     sortField: 'placeholder-value',
+     *     // Order of sorted results.
+     *     sortOrder: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -26284,11 +38945,11 @@ export namespace dfareporting_v4 {
     list(
       params: Params$Resource$Reports$Files$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Reports$Files$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FileList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FileList>>;
     list(
       params: Params$Resource$Reports$Files$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -26317,7 +38978,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$FileList>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$FileList> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$FileList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Reports$Files$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -26413,6 +39077,67 @@ export namespace dfareporting_v4 {
 
     /**
      * Gets one site by ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.sites.get({
+     *     // Site ID.
+     *     id: '[^/]+',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "adServingPlatformId": "my_adServingPlatformId",
+     *   //   "approved": false,
+     *   //   "directorySiteId": "my_directorySiteId",
+     *   //   "directorySiteIdDimensionValue": {},
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "keyName": "my_keyName",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "siteContacts": [],
+     *   //   "siteSettings": {},
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "videoSettings": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -26422,11 +39147,11 @@ export namespace dfareporting_v4 {
     get(
       params: Params$Resource$Sites$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Sites$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Site>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Site>>;
     get(
       params: Params$Resource$Sites$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -26455,7 +39180,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Site>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Site> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Site>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sites$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -26499,6 +39227,86 @@ export namespace dfareporting_v4 {
 
     /**
      * Inserts a new site.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.sites.insert({
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "adServingPlatformId": "my_adServingPlatformId",
+     *       //   "approved": false,
+     *       //   "directorySiteId": "my_directorySiteId",
+     *       //   "directorySiteIdDimensionValue": {},
+     *       //   "id": "my_id",
+     *       //   "idDimensionValue": {},
+     *       //   "keyName": "my_keyName",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "siteContacts": [],
+     *       //   "siteSettings": {},
+     *       //   "subaccountId": "my_subaccountId",
+     *       //   "videoSettings": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "adServingPlatformId": "my_adServingPlatformId",
+     *   //   "approved": false,
+     *   //   "directorySiteId": "my_directorySiteId",
+     *   //   "directorySiteIdDimensionValue": {},
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "keyName": "my_keyName",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "siteContacts": [],
+     *   //   "siteSettings": {},
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "videoSettings": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -26508,11 +39316,11 @@ export namespace dfareporting_v4 {
     insert(
       params: Params$Resource$Sites$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Sites$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Site>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Site>>;
     insert(
       params: Params$Resource$Sites$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -26541,7 +39349,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Site>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Site> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Site>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sites$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -26585,6 +39396,84 @@ export namespace dfareporting_v4 {
 
     /**
      * Retrieves a list of sites, possibly filtered. This method supports paging.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.sites.list({
+     *     // This search filter is no longer supported and will have no effect on the results returned.
+     *     acceptsInStreamVideoPlacements: 'placeholder-value',
+     *     // This search filter is no longer supported and will have no effect on the results returned.
+     *     acceptsInterstitialPlacements: 'placeholder-value',
+     *     // Select only sites that accept publisher paid placements.
+     *     acceptsPublisherPaidPlacements: 'placeholder-value',
+     *     // Select only AdWords sites.
+     *     adWordsSite: 'placeholder-value',
+     *     // Select only approved sites.
+     *     approved: 'placeholder-value',
+     *     // Select only sites with these campaign IDs.
+     *     campaignIds: 'placeholder-value',
+     *     // Select only sites with these directory site IDs.
+     *     directorySiteIds: 'placeholder-value',
+     *     // Select only sites with these IDs.
+     *     ids: 'placeholder-value',
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Value of the nextPageToken from the previous result page.
+     *     pageToken: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *     // Allows searching for objects by name, ID or keyName. Wildcards (*) are allowed. For example, "site*2015" will return objects with names like "site June 2015", "site April 2015", or simply "site 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "site" will match objects with name "my site", "site 2015", or simply "site".
+     *     searchString: 'placeholder-value',
+     *     // Field by which to sort the list.
+     *     sortField: 'placeholder-value',
+     *     // Order of sorted results.
+     *     sortOrder: 'placeholder-value',
+     *     // Select only sites with this subaccount ID.
+     *     subaccountId: 'placeholder-value',
+     *     // Select only sites that have not been mapped to a directory site.
+     *     unmappedSite: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "sites": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -26594,11 +39483,11 @@ export namespace dfareporting_v4 {
     list(
       params: Params$Resource$Sites$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Sites$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SitesListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SitesListResponse>>;
     list(
       params: Params$Resource$Sites$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -26629,8 +39518,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SitesListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SitesListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sites$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -26674,6 +39563,88 @@ export namespace dfareporting_v4 {
 
     /**
      * Updates an existing site. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.sites.patch({
+     *     // Required. Site ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "adServingPlatformId": "my_adServingPlatformId",
+     *       //   "approved": false,
+     *       //   "directorySiteId": "my_directorySiteId",
+     *       //   "directorySiteIdDimensionValue": {},
+     *       //   "id": "my_id",
+     *       //   "idDimensionValue": {},
+     *       //   "keyName": "my_keyName",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "siteContacts": [],
+     *       //   "siteSettings": {},
+     *       //   "subaccountId": "my_subaccountId",
+     *       //   "videoSettings": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "adServingPlatformId": "my_adServingPlatformId",
+     *   //   "approved": false,
+     *   //   "directorySiteId": "my_directorySiteId",
+     *   //   "directorySiteIdDimensionValue": {},
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "keyName": "my_keyName",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "siteContacts": [],
+     *   //   "siteSettings": {},
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "videoSettings": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -26683,11 +39654,11 @@ export namespace dfareporting_v4 {
     patch(
       params: Params$Resource$Sites$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Sites$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Site>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Site>>;
     patch(
       params: Params$Resource$Sites$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -26716,7 +39687,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Site>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Site> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Site>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sites$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -26760,6 +39734,86 @@ export namespace dfareporting_v4 {
 
     /**
      * Updates an existing site.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.sites.update({
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "adServingPlatformId": "my_adServingPlatformId",
+     *       //   "approved": false,
+     *       //   "directorySiteId": "my_directorySiteId",
+     *       //   "directorySiteIdDimensionValue": {},
+     *       //   "id": "my_id",
+     *       //   "idDimensionValue": {},
+     *       //   "keyName": "my_keyName",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "siteContacts": [],
+     *       //   "siteSettings": {},
+     *       //   "subaccountId": "my_subaccountId",
+     *       //   "videoSettings": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "adServingPlatformId": "my_adServingPlatformId",
+     *   //   "approved": false,
+     *   //   "directorySiteId": "my_directorySiteId",
+     *   //   "directorySiteIdDimensionValue": {},
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "keyName": "my_keyName",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "siteContacts": [],
+     *   //   "siteSettings": {},
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "videoSettings": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -26769,11 +39823,11 @@ export namespace dfareporting_v4 {
     update(
       params: Params$Resource$Sites$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Sites$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Site>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Site>>;
     update(
       params: Params$Resource$Sites$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -26802,7 +39856,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Site>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Site> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Site>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sites$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -26967,6 +40024,58 @@ export namespace dfareporting_v4 {
 
     /**
      * Gets one size by ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.sizes.get({
+     *     // Size ID.
+     *     id: '[^/]+',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "height": 0,
+     *   //   "iab": false,
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "width": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -26976,11 +40085,11 @@ export namespace dfareporting_v4 {
     get(
       params: Params$Resource$Sizes$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Sizes$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Size>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Size>>;
     get(
       params: Params$Resource$Sizes$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -27009,7 +40118,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Size>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Size> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Size>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sizes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -27053,6 +40165,68 @@ export namespace dfareporting_v4 {
 
     /**
      * Inserts a new size.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.sizes.insert({
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "height": 0,
+     *       //   "iab": false,
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "width": 0
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "height": 0,
+     *   //   "iab": false,
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "width": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -27062,11 +40236,11 @@ export namespace dfareporting_v4 {
     insert(
       params: Params$Resource$Sizes$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Sizes$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Size>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Size>>;
     insert(
       params: Params$Resource$Sizes$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -27095,7 +40269,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Size>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Size> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Size>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sizes$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -27139,6 +40316,61 @@ export namespace dfareporting_v4 {
 
     /**
      * Retrieves a list of sizes, possibly filtered. Retrieved sizes are globally unique and may include values not currently in use by your account. Due to this, the list of sizes returned by this method may differ from the list seen in the Trafficking UI.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.sizes.list({
+     *     // Select only sizes with this height.
+     *     height: 'placeholder-value',
+     *     // Select only IAB standard sizes.
+     *     iabStandard: 'placeholder-value',
+     *     // Select only sizes with these IDs.
+     *     ids: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *     // Select only sizes with this width.
+     *     width: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "sizes": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -27148,11 +40380,11 @@ export namespace dfareporting_v4 {
     list(
       params: Params$Resource$Sizes$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Sizes$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SizesListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SizesListResponse>>;
     list(
       params: Params$Resource$Sizes$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -27183,8 +40415,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SizesListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SizesListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sizes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -27279,6 +40511,58 @@ export namespace dfareporting_v4 {
 
     /**
      * Gets one subaccount by ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.subaccounts.get({
+     *     // Subaccount ID.
+     *     id: '[^/]+',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "availablePermissionIds": [],
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -27288,11 +40572,11 @@ export namespace dfareporting_v4 {
     get(
       params: Params$Resource$Subaccounts$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Subaccounts$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Subaccount>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Subaccount>>;
     get(
       params: Params$Resource$Subaccounts$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -27321,7 +40605,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Subaccount>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Subaccount> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Subaccount>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Subaccounts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -27366,6 +40653,68 @@ export namespace dfareporting_v4 {
 
     /**
      * Inserts a new subaccount.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.subaccounts.insert({
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "availablePermissionIds": [],
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "availablePermissionIds": [],
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -27375,11 +40724,11 @@ export namespace dfareporting_v4 {
     insert(
       params: Params$Resource$Subaccounts$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Subaccounts$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Subaccount>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Subaccount>>;
     insert(
       params: Params$Resource$Subaccounts$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -27408,7 +40757,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Subaccount>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Subaccount> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Subaccount>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Subaccounts$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -27453,6 +40805,66 @@ export namespace dfareporting_v4 {
 
     /**
      * Gets a list of subaccounts, possibly filtered. This method supports paging.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.subaccounts.list({
+     *     // Select only subaccounts with these IDs.
+     *     ids: 'placeholder-value',
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Value of the nextPageToken from the previous result page.
+     *     pageToken: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *     // Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "subaccount*2015" will return objects with names like "subaccount June 2015", "subaccount April 2015", or simply "subaccount 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "subaccount" will match objects with name "my subaccount", "subaccount 2015", or simply "subaccount" .
+     *     searchString: 'placeholder-value',
+     *     // Field by which to sort the list.
+     *     sortField: 'placeholder-value',
+     *     // Order of sorted results.
+     *     sortOrder: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "subaccounts": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -27462,11 +40874,11 @@ export namespace dfareporting_v4 {
     list(
       params: Params$Resource$Subaccounts$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Subaccounts$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SubaccountsListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SubaccountsListResponse>>;
     list(
       params: Params$Resource$Subaccounts$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -27499,8 +40911,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SubaccountsListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SubaccountsListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Subaccounts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -27544,6 +40956,70 @@ export namespace dfareporting_v4 {
 
     /**
      * Updates an existing subaccount. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.subaccounts.patch({
+     *     // Required. Subaccount ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "availablePermissionIds": [],
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "availablePermissionIds": [],
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -27553,11 +41029,11 @@ export namespace dfareporting_v4 {
     patch(
       params: Params$Resource$Subaccounts$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Subaccounts$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Subaccount>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Subaccount>>;
     patch(
       params: Params$Resource$Subaccounts$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -27586,7 +41062,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Subaccount>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Subaccount> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Subaccount>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Subaccounts$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -27631,6 +41110,68 @@ export namespace dfareporting_v4 {
 
     /**
      * Updates an existing subaccount.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.subaccounts.update({
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "availablePermissionIds": [],
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "availablePermissionIds": [],
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -27640,11 +41181,11 @@ export namespace dfareporting_v4 {
     update(
       params: Params$Resource$Subaccounts$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Subaccounts$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Subaccount>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Subaccount>>;
     update(
       params: Params$Resource$Subaccounts$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -27673,7 +41214,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$Subaccount>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Subaccount> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Subaccount>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Subaccounts$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -27806,6 +41350,65 @@ export namespace dfareporting_v4 {
 
     /**
      * Gets one remarketing list by ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.targetableRemarketingLists.get({
+     *     // Remarketing list ID.
+     *     id: '[^/]+',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "active": false,
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "description": "my_description",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "lifeSpan": "my_lifeSpan",
+     *   //   "listSize": "my_listSize",
+     *   //   "listSource": "my_listSource",
+     *   //   "name": "my_name",
+     *   //   "subaccountId": "my_subaccountId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -27815,11 +41418,11 @@ export namespace dfareporting_v4 {
     get(
       params: Params$Resource$Targetableremarketinglists$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Targetableremarketinglists$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TargetableRemarketingList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TargetableRemarketingList>>;
     get(
       params: Params$Resource$Targetableremarketinglists$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -27852,8 +41455,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TargetableRemarketingList>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TargetableRemarketingList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Targetableremarketinglists$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -27899,6 +41502,68 @@ export namespace dfareporting_v4 {
 
     /**
      * Retrieves a list of targetable remarketing lists, possibly filtered. This method supports paging.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.targetableRemarketingLists.list({
+     *     // Select only active or only inactive targetable remarketing lists.
+     *     active: 'placeholder-value',
+     *     // Required. Select only targetable remarketing lists targetable by these advertisers.
+     *     advertiserId: 'placeholder-value',
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "remarketing list*2015" will return objects with names like "remarketing list June 2015", "remarketing list April 2015", or simply "remarketing list 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "remarketing list" will match objects with name "my remarketing list", "remarketing list 2015", or simply "remarketing list".
+     *     name: 'placeholder-value',
+     *     // Value of the nextPageToken from the previous result page.
+     *     pageToken: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *     // Field by which to sort the list.
+     *     sortField: 'placeholder-value',
+     *     // Order of sorted results.
+     *     sortOrder: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "targetableRemarketingLists": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -27908,11 +41573,13 @@ export namespace dfareporting_v4 {
     list(
       params: Params$Resource$Targetableremarketinglists$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Targetableremarketinglists$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TargetableRemarketingListsListResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$TargetableRemarketingListsListResponse>
+    >;
     list(
       params: Params$Resource$Targetableremarketinglists$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -27947,8 +41614,10 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TargetableRemarketingListsListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$TargetableRemarketingListsListResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Targetableremarketinglists$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -28050,6 +41719,66 @@ export namespace dfareporting_v4 {
 
     /**
      * Gets one targeting template by ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.targetingTemplates.get({
+     *     // Targeting template ID.
+     *     id: '[^/]+',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "dayPartTargeting": {},
+     *   //   "geoTargeting": {},
+     *   //   "id": "my_id",
+     *   //   "keyValueTargetingExpression": {},
+     *   //   "kind": "my_kind",
+     *   //   "languageTargeting": {},
+     *   //   "listTargetingExpression": {},
+     *   //   "name": "my_name",
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "technologyTargeting": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -28059,11 +41788,11 @@ export namespace dfareporting_v4 {
     get(
       params: Params$Resource$Targetingtemplates$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Targetingtemplates$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TargetingTemplate>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TargetingTemplate>>;
     get(
       params: Params$Resource$Targetingtemplates$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -28094,8 +41823,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TargetingTemplate>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TargetingTemplate>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Targetingtemplates$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -28141,6 +41870,84 @@ export namespace dfareporting_v4 {
 
     /**
      * Inserts a new targeting template.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.targetingTemplates.insert({
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "advertiserIdDimensionValue": {},
+     *       //   "dayPartTargeting": {},
+     *       //   "geoTargeting": {},
+     *       //   "id": "my_id",
+     *       //   "keyValueTargetingExpression": {},
+     *       //   "kind": "my_kind",
+     *       //   "languageTargeting": {},
+     *       //   "listTargetingExpression": {},
+     *       //   "name": "my_name",
+     *       //   "subaccountId": "my_subaccountId",
+     *       //   "technologyTargeting": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "dayPartTargeting": {},
+     *   //   "geoTargeting": {},
+     *   //   "id": "my_id",
+     *   //   "keyValueTargetingExpression": {},
+     *   //   "kind": "my_kind",
+     *   //   "languageTargeting": {},
+     *   //   "listTargetingExpression": {},
+     *   //   "name": "my_name",
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "technologyTargeting": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -28150,11 +41957,11 @@ export namespace dfareporting_v4 {
     insert(
       params: Params$Resource$Targetingtemplates$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Targetingtemplates$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TargetingTemplate>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TargetingTemplate>>;
     insert(
       params: Params$Resource$Targetingtemplates$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -28185,8 +41992,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TargetingTemplate>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TargetingTemplate>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Targetingtemplates$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -28232,6 +42039,68 @@ export namespace dfareporting_v4 {
 
     /**
      * Retrieves a list of targeting templates, optionally filtered. This method supports paging.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.targetingTemplates.list({
+     *     // Select only targeting templates with this advertiser ID.
+     *     advertiserId: 'placeholder-value',
+     *     // Select only targeting templates with these IDs.
+     *     ids: 'placeholder-value',
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Value of the nextPageToken from the previous result page.
+     *     pageToken: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *     // Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "template*2015" will return objects with names like "template June 2015", "template April 2015", or simply "template 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "template" will match objects with name "my template", "template 2015", or simply "template".
+     *     searchString: 'placeholder-value',
+     *     // Field by which to sort the list.
+     *     sortField: 'placeholder-value',
+     *     // Order of sorted results.
+     *     sortOrder: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "targetingTemplates": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -28241,11 +42110,11 @@ export namespace dfareporting_v4 {
     list(
       params: Params$Resource$Targetingtemplates$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Targetingtemplates$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TargetingTemplatesListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TargetingTemplatesListResponse>>;
     list(
       params: Params$Resource$Targetingtemplates$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -28280,8 +42149,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TargetingTemplatesListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TargetingTemplatesListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Targetingtemplates$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -28329,6 +42198,86 @@ export namespace dfareporting_v4 {
 
     /**
      * Updates an existing targeting template. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.targetingTemplates.patch({
+     *     // Required. RemarketingList ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "advertiserIdDimensionValue": {},
+     *       //   "dayPartTargeting": {},
+     *       //   "geoTargeting": {},
+     *       //   "id": "my_id",
+     *       //   "keyValueTargetingExpression": {},
+     *       //   "kind": "my_kind",
+     *       //   "languageTargeting": {},
+     *       //   "listTargetingExpression": {},
+     *       //   "name": "my_name",
+     *       //   "subaccountId": "my_subaccountId",
+     *       //   "technologyTargeting": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "dayPartTargeting": {},
+     *   //   "geoTargeting": {},
+     *   //   "id": "my_id",
+     *   //   "keyValueTargetingExpression": {},
+     *   //   "kind": "my_kind",
+     *   //   "languageTargeting": {},
+     *   //   "listTargetingExpression": {},
+     *   //   "name": "my_name",
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "technologyTargeting": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -28338,11 +42287,11 @@ export namespace dfareporting_v4 {
     patch(
       params: Params$Resource$Targetingtemplates$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Targetingtemplates$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TargetingTemplate>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TargetingTemplate>>;
     patch(
       params: Params$Resource$Targetingtemplates$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -28373,8 +42322,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TargetingTemplate>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TargetingTemplate>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Targetingtemplates$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -28420,6 +42369,84 @@ export namespace dfareporting_v4 {
 
     /**
      * Updates an existing targeting template.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.targetingTemplates.update({
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "advertiserIdDimensionValue": {},
+     *       //   "dayPartTargeting": {},
+     *       //   "geoTargeting": {},
+     *       //   "id": "my_id",
+     *       //   "keyValueTargetingExpression": {},
+     *       //   "kind": "my_kind",
+     *       //   "languageTargeting": {},
+     *       //   "listTargetingExpression": {},
+     *       //   "name": "my_name",
+     *       //   "subaccountId": "my_subaccountId",
+     *       //   "technologyTargeting": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "advertiserIdDimensionValue": {},
+     *   //   "dayPartTargeting": {},
+     *   //   "geoTargeting": {},
+     *   //   "id": "my_id",
+     *   //   "keyValueTargetingExpression": {},
+     *   //   "kind": "my_kind",
+     *   //   "languageTargeting": {},
+     *   //   "listTargetingExpression": {},
+     *   //   "name": "my_name",
+     *   //   "subaccountId": "my_subaccountId",
+     *   //   "technologyTargeting": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -28429,11 +42456,11 @@ export namespace dfareporting_v4 {
     update(
       params: Params$Resource$Targetingtemplates$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Targetingtemplates$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TargetingTemplate>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TargetingTemplate>>;
     update(
       params: Params$Resource$Targetingtemplates$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -28464,8 +42491,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TargetingTemplate>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TargetingTemplate>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Targetingtemplates$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -28605,6 +42632,58 @@ export namespace dfareporting_v4 {
 
     /**
      * Gets one TvCampaignDetail by ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.tvCampaignDetails.get({
+     *     // Required. Account ID associated with this request.
+     *     accountId: 'placeholder-value',
+     *     // Required. TV Campaign ID.
+     *     id: '[^/]+',
+     *     // Required. User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "timepoints": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -28614,11 +42693,11 @@ export namespace dfareporting_v4 {
     get(
       params: Params$Resource$Tvcampaigndetails$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Tvcampaigndetails$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TvCampaignDetail>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TvCampaignDetail>>;
     get(
       params: Params$Resource$Tvcampaigndetails$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -28647,7 +42726,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$TvCampaignDetail>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$TvCampaignDetail> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$TvCampaignDetail>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Tvcampaigndetails$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -28716,6 +42798,57 @@ export namespace dfareporting_v4 {
 
     /**
      * Retrieves a list of TV campaign summaries.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.tvCampaignSummaries.list({
+     *     // Required. Account ID associated with this request.
+     *     accountId: 'placeholder-value',
+     *     // Required. Search string to filter the list of TV campaign summaries. Matches any substring. Required field.
+     *     name: 'placeholder-value',
+     *     // Required. User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "tvCampaignSummaries": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -28725,11 +42858,11 @@ export namespace dfareporting_v4 {
     list(
       params: Params$Resource$Tvcampaignsummaries$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Tvcampaignsummaries$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TvCampaignSummariesListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TvCampaignSummariesListResponse>>;
     list(
       params: Params$Resource$Tvcampaignsummaries$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -28764,8 +42897,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TvCampaignSummariesListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TvCampaignSummariesListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Tvcampaignsummaries$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -28836,6 +42969,63 @@ export namespace dfareporting_v4 {
 
     /**
      * Gets one user profile by ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/ddmconversions',
+     *       'https://www.googleapis.com/auth/dfareporting',
+     *       'https://www.googleapis.com/auth/dfatrafficking',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.userProfiles.get({
+     *     // The user profile ID.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "accountName": "my_accountName",
+     *   //   "etag": "my_etag",
+     *   //   "kind": "my_kind",
+     *   //   "profileId": "my_profileId",
+     *   //   "subAccountId": "my_subAccountId",
+     *   //   "subAccountName": "my_subAccountName",
+     *   //   "userName": "my_userName"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -28845,11 +43035,11 @@ export namespace dfareporting_v4 {
     get(
       params: Params$Resource$Userprofiles$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Userprofiles$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$UserProfile>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$UserProfile>>;
     get(
       params: Params$Resource$Userprofiles$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -28878,7 +43068,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$UserProfile>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$UserProfile> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$UserProfile>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Userprofiles$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -28922,6 +43115,55 @@ export namespace dfareporting_v4 {
 
     /**
      * Retrieves list of user profiles for a user.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/ddmconversions',
+     *       'https://www.googleapis.com/auth/dfareporting',
+     *       'https://www.googleapis.com/auth/dfatrafficking',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.userProfiles.list({});
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -28931,11 +43173,11 @@ export namespace dfareporting_v4 {
     list(
       params: Params$Resource$Userprofiles$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Userprofiles$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$UserProfileList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$UserProfileList>>;
     list(
       params: Params$Resource$Userprofiles$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -28964,7 +43206,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$UserProfileList>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$UserProfileList> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$UserProfileList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Userprofiles$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -29026,6 +43271,56 @@ export namespace dfareporting_v4 {
 
     /**
      * Gets one user role permission group by ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.userRolePermissionGroups.get({
+     *     // User role permission group ID.
+     *     id: '[^/]+',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -29035,11 +43330,11 @@ export namespace dfareporting_v4 {
     get(
       params: Params$Resource$Userrolepermissiongroups$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Userrolepermissiongroups$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$UserRolePermissionGroup>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$UserRolePermissionGroup>>;
     get(
       params: Params$Resource$Userrolepermissiongroups$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -29072,8 +43367,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$UserRolePermissionGroup>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$UserRolePermissionGroup>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Userrolepermissiongroups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -29119,6 +43414,53 @@ export namespace dfareporting_v4 {
 
     /**
      * Gets a list of all supported user role permission groups.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.userRolePermissionGroups.list({
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "userRolePermissionGroups": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -29128,11 +43470,13 @@ export namespace dfareporting_v4 {
     list(
       params: Params$Resource$Userrolepermissiongroups$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Userrolepermissiongroups$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$UserRolePermissionGroupsListResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$UserRolePermissionGroupsListResponse>
+    >;
     list(
       params: Params$Resource$Userrolepermissiongroups$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -29167,8 +43511,10 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$UserRolePermissionGroupsListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$UserRolePermissionGroupsListResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Userrolepermissiongroups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -29242,6 +43588,58 @@ export namespace dfareporting_v4 {
 
     /**
      * Gets one user role permission by ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.userRolePermissions.get({
+     *     // User role permission ID.
+     *     id: '[^/]+',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "availability": "my_availability",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "permissionGroupId": "my_permissionGroupId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -29251,11 +43649,11 @@ export namespace dfareporting_v4 {
     get(
       params: Params$Resource$Userrolepermissions$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Userrolepermissions$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$UserRolePermission>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$UserRolePermission>>;
     get(
       params: Params$Resource$Userrolepermissions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -29286,8 +43684,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$UserRolePermission>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$UserRolePermission>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Userrolepermissions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -29333,6 +43731,55 @@ export namespace dfareporting_v4 {
 
     /**
      * Gets a list of user role permissions, possibly filtered.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.userRolePermissions.list({
+     *     // Select only user role permissions with these IDs.
+     *     ids: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "userRolePermissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -29342,11 +43789,11 @@ export namespace dfareporting_v4 {
     list(
       params: Params$Resource$Userrolepermissions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Userrolepermissions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$UserRolePermissionsListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$UserRolePermissionsListResponse>>;
     list(
       params: Params$Resource$Userrolepermissions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -29381,8 +43828,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$UserRolePermissionsListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$UserRolePermissionsListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Userrolepermissions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -29460,6 +43907,49 @@ export namespace dfareporting_v4 {
 
     /**
      * Deletes an existing user role.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.userRoles.delete({
+     *     // User role ID.
+     *     id: '[^/]+',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -29469,11 +43959,11 @@ export namespace dfareporting_v4 {
     delete(
       params: Params$Resource$Userroles$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Userroles$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Userroles$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -29500,7 +43990,10 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Userroles$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -29545,6 +44038,61 @@ export namespace dfareporting_v4 {
 
     /**
      * Gets one user role by ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.userRoles.get({
+     *     // User role ID.
+     *     id: '[^/]+',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "defaultUserRole": false,
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "parentUserRoleId": "my_parentUserRoleId",
+     *   //   "permissions": [],
+     *   //   "subaccountId": "my_subaccountId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -29554,11 +44102,11 @@ export namespace dfareporting_v4 {
     get(
       params: Params$Resource$Userroles$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Userroles$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$UserRole>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$UserRole>>;
     get(
       params: Params$Resource$Userroles$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -29587,7 +44135,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$UserRole>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$UserRole> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$UserRole>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Userroles$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -29632,6 +44183,74 @@ export namespace dfareporting_v4 {
 
     /**
      * Inserts a new user role.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.userRoles.insert({
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "defaultUserRole": false,
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "parentUserRoleId": "my_parentUserRoleId",
+     *       //   "permissions": [],
+     *       //   "subaccountId": "my_subaccountId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "defaultUserRole": false,
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "parentUserRoleId": "my_parentUserRoleId",
+     *   //   "permissions": [],
+     *   //   "subaccountId": "my_subaccountId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -29641,11 +44260,11 @@ export namespace dfareporting_v4 {
     insert(
       params: Params$Resource$Userroles$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Userroles$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$UserRole>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$UserRole>>;
     insert(
       params: Params$Resource$Userroles$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -29674,7 +44293,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$UserRole>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$UserRole> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$UserRole>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Userroles$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -29718,6 +44340,70 @@ export namespace dfareporting_v4 {
 
     /**
      * Retrieves a list of user roles, possibly filtered. This method supports paging.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.userRoles.list({
+     *     // Select only account level user roles not associated with any specific subaccount.
+     *     accountUserRoleOnly: 'placeholder-value',
+     *     // Select only user roles with the specified IDs.
+     *     ids: 'placeholder-value',
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Value of the nextPageToken from the previous result page.
+     *     pageToken: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *     // Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "userrole*2015" will return objects with names like "userrole June 2015", "userrole April 2015", or simply "userrole 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "userrole" will match objects with name "my userrole", "userrole 2015", or simply "userrole".
+     *     searchString: 'placeholder-value',
+     *     // Field by which to sort the list.
+     *     sortField: 'placeholder-value',
+     *     // Order of sorted results.
+     *     sortOrder: 'placeholder-value',
+     *     // Select only user roles that belong to this subaccount.
+     *     subaccountId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "userRoles": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -29727,11 +44413,11 @@ export namespace dfareporting_v4 {
     list(
       params: Params$Resource$Userroles$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Userroles$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$UserRolesListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$UserRolesListResponse>>;
     list(
       params: Params$Resource$Userroles$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -29764,8 +44450,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$UserRolesListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$UserRolesListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Userroles$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -29809,6 +44495,76 @@ export namespace dfareporting_v4 {
 
     /**
      * Updates an existing user role. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.userRoles.patch({
+     *     // Required. UserRole ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "defaultUserRole": false,
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "parentUserRoleId": "my_parentUserRoleId",
+     *       //   "permissions": [],
+     *       //   "subaccountId": "my_subaccountId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "defaultUserRole": false,
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "parentUserRoleId": "my_parentUserRoleId",
+     *   //   "permissions": [],
+     *   //   "subaccountId": "my_subaccountId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -29818,11 +44574,11 @@ export namespace dfareporting_v4 {
     patch(
       params: Params$Resource$Userroles$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Userroles$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$UserRole>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$UserRole>>;
     patch(
       params: Params$Resource$Userroles$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -29851,7 +44607,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$UserRole>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$UserRole> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$UserRole>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Userroles$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -29895,6 +44654,74 @@ export namespace dfareporting_v4 {
 
     /**
      * Updates an existing user role.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.userRoles.update({
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "defaultUserRole": false,
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "parentUserRoleId": "my_parentUserRoleId",
+     *       //   "permissions": [],
+     *       //   "subaccountId": "my_subaccountId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "defaultUserRole": false,
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "parentUserRoleId": "my_parentUserRoleId",
+     *   //   "permissions": [],
+     *   //   "subaccountId": "my_subaccountId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -29904,11 +44731,11 @@ export namespace dfareporting_v4 {
     update(
       params: Params$Resource$Userroles$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Userroles$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$UserRole>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$UserRole>>;
     update(
       params: Params$Resource$Userroles$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -29937,7 +44764,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$UserRole>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$UserRole> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$UserRole>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Userroles$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -30084,6 +44914,58 @@ export namespace dfareporting_v4 {
 
     /**
      * Gets one video format by ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.videoFormats.get({
+     *     // Video format ID.
+     *     id: '[^/]+',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "fileType": "my_fileType",
+     *   //   "id": 0,
+     *   //   "kind": "my_kind",
+     *   //   "resolution": {},
+     *   //   "targetBitRate": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -30093,11 +44975,11 @@ export namespace dfareporting_v4 {
     get(
       params: Params$Resource$Videoformats$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Videoformats$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$VideoFormat>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$VideoFormat>>;
     get(
       params: Params$Resource$Videoformats$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -30126,7 +45008,10 @@ export namespace dfareporting_v4 {
       callback?:
         | BodyResponseCallback<Schema$VideoFormat>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$VideoFormat> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$VideoFormat>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Videoformats$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -30171,6 +45056,53 @@ export namespace dfareporting_v4 {
 
     /**
      * Lists available video formats.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.videoFormats.list({
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "videoFormats": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -30180,11 +45112,11 @@ export namespace dfareporting_v4 {
     list(
       params: Params$Resource$Videoformats$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Videoformats$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$VideoFormatsListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$VideoFormatsListResponse>>;
     list(
       params: Params$Resource$Videoformats$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -30217,8 +45149,8 @@ export namespace dfareporting_v4 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$VideoFormatsListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$VideoFormatsListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Videoformats$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

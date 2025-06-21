@@ -173,7 +173,7 @@
           ]
         },
         "generateEnterpriseUpgradeUrl": {
-          "description": "Generates an enterprise upgrade URL to upgrade an existing managed Google Play Accounts enterprise to a managed Google domain.Note: This feature is not generally available.",
+          "description": "Generates an enterprise upgrade URL to upgrade an existing managed Google Play Accounts enterprise to a managed Google domain. See the guide (https://developers.google.com/android/management/upgrade-an-enterprise) for more details.",
           "flatPath": "v1/enterprises/{enterprisesId}:generateEnterpriseUpgradeUrl",
           "httpMethod": "POST",
           "id": "androidmanagement.enterprises.generateEnterpriseUpgradeUrl",
@@ -343,7 +343,7 @@
         "devices": {
           "methods": {
             "delete": {
-              "description": "Deletes a device. This operation wipes the device. Deleted devices do not show up in enterprises.devices.list calls and a 404 is returned from enterprises.devices.get.",
+              "description": "Deletes a device. This operation attempts to wipe the device but this is not guaranteed to succeed if the device is offline for an extended period. Deleted devices do not show up in enterprises.devices.list calls and a 404 is returned from enterprises.devices.get.",
               "flatPath": "v1/enterprises/{enterprisesId}/devices/{devicesId}",
               "httpMethod": "DELETE",
               "id": "androidmanagement.enterprises.devices.delete",
@@ -363,12 +363,14 @@
                   "enum": [
                     "WIPE_DATA_FLAG_UNSPECIFIED",
                     "PRESERVE_RESET_PROTECTION_DATA",
-                    "WIPE_EXTERNAL_STORAGE"
+                    "WIPE_EXTERNAL_STORAGE",
+                    "WIPE_ESIMS"
                   ],
                   "enumDescriptions": [
                     "This value is ignored.",
                     "Preserve the factory reset protection data on the device.",
-                    "Additionally wipe the device's external storage (such as SD cards)."
+                    "Additionally wipe the device's external storage (such as SD cards).",
+                    "For company-owned devices, this removes all eSIMs from the device when the device is wiped. In personally-owned devices, this will remove managed eSIMs (eSIMs which are added via the ADD_ESIM command) on the devices and no personally owned eSIMs will be removed."
                   ],
                   "location": "query",
                   "repeated": true,
@@ -909,6 +911,34 @@
                 "https://www.googleapis.com/auth/androidmanagement"
               ]
             },
+            "modifyPolicyApplications": {
+              "description": "Updates or creates applications in a policy.",
+              "flatPath": "v1/enterprises/{enterprisesId}/policies/{policiesId}:modifyPolicyApplications",
+              "httpMethod": "POST",
+              "id": "androidmanagement.enterprises.policies.modifyPolicyApplications",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the Policy containing the ApplicationPolicy objects to be updated, in the form enterprises/{enterpriseId}/policies/{policyId}.",
+                  "location": "path",
+                  "pattern": "^enterprises/[^/]+/policies/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}:modifyPolicyApplications",
+              "request": {
+                "$ref": "ModifyPolicyApplicationsRequest"
+              },
+              "response": {
+                "$ref": "ModifyPolicyApplicationsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/androidmanagement"
+              ]
+            },
             "patch": {
               "description": "Updates or creates a policy.",
               "flatPath": "v1/enterprises/{enterprisesId}/policies/{policiesId}",
@@ -938,6 +968,34 @@
               },
               "response": {
                 "$ref": "Policy"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/androidmanagement"
+              ]
+            },
+            "removePolicyApplications": {
+              "description": "Removes applications in a policy.",
+              "flatPath": "v1/enterprises/{enterprisesId}/policies/{policiesId}:removePolicyApplications",
+              "httpMethod": "POST",
+              "id": "androidmanagement.enterprises.policies.removePolicyApplications",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the policy containing the ApplicationPolicy objects to be removed, in the form enterprises/{enterpriseId}/policies/{policyId}.",
+                  "location": "path",
+                  "pattern": "^enterprises/[^/]+/policies/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}:removePolicyApplications",
+              "request": {
+                "$ref": "RemovePolicyApplicationsRequest"
+              },
+              "response": {
+                "$ref": "RemovePolicyApplicationsResponse"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/androidmanagement"
@@ -1202,7 +1260,7 @@
       }
     }
   },
-  "revision": "20250501",
+  "revision": "20250617",
   "rootUrl": "https://androidmanagement.googleapis.com/",
   "schemas": {
     "AdbShellCommandEvent": {
@@ -1220,6 +1278,31 @@
       "description": "An ADB interactive shell was opened via “adb shell”. Intentionally empty.",
       "id": "AdbShellInteractiveEvent",
       "properties": {},
+      "type": "object"
+    },
+    "AddEsimParams": {
+      "description": "Parameters associated with the ADD_ESIM command to add an eSIM profile to the device.",
+      "id": "AddEsimParams",
+      "properties": {
+        "activationCode": {
+          "description": "Required. The activation code for the eSIM profile.",
+          "type": "string"
+        },
+        "activationState": {
+          "description": "Required. The activation state of the eSIM profile once it is downloaded.",
+          "enum": [
+            "ACTIVATION_STATE_UNSPECIFIED",
+            "ACTIVATED",
+            "NOT_ACTIVATED"
+          ],
+          "enumDescriptions": [
+            "eSIM activation state is not specified. This defaults to the eSIM profile being NOT_ACTIVATED on personally-owned devices and ACTIVATED on company-owned devices.",
+            "The eSIM is automatically activated after downloading. Setting this as the activation state for personally-owned devices will result in the command being rejected.",
+            "The eSIM profile is downloaded but not activated. In this case, the user will need to activate the eSIM manually on the device."
+          ],
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "AdvancedSecurityOverrides": {
@@ -1350,6 +1433,274 @@
           "description": "The minimum desired Android Framework API level. If the device doesn't meet the minimum requirement, this condition is satisfied. Must be greater than zero.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "ApnPolicy": {
+      "description": "Access Point Name (APN) policy. Configuration for Access Point Names (APNs) which may override any other APNs on the device. See OVERRIDE_APNS_ENABLED and overrideApns for details.",
+      "id": "ApnPolicy",
+      "properties": {
+        "apnSettings": {
+          "description": "Optional. APN settings for override APNs. There must not be any conflict between any of APN settings provided, otherwise the policy will be rejected. Two ApnSettings are considered to conflict when all of the following fields match on both: numericOperatorId, apn, proxyAddress, proxyPort, mmsProxyAddress, mmsProxyPort, mmsc, mvnoType, protocol, roamingProtocol. If some of the APN settings result in non-compliance of INVALID_VALUE , they will be ignored. This can be set on fully managed devices on Android 10 and above. This can also be set on work profiles on Android 13 and above and only with ApnSetting's with ENTERPRISE APN type. A nonComplianceDetail with API_LEVEL is reported if the Android version is less than 10. A nonComplianceDetail with MANAGEMENT_MODE is reported for work profiles on Android versions less than 13.",
+          "items": {
+            "$ref": "ApnSetting"
+          },
+          "type": "array"
+        },
+        "overrideApns": {
+          "description": "Optional. Whether override APNs are disabled or enabled. See DevicePolicyManager.setOverrideApnsEnabled (https://developer.android.com/reference/android/app/admin/DevicePolicyManager#setOverrideApnsEnabled) for more details.",
+          "enum": [
+            "OVERRIDE_APNS_UNSPECIFIED",
+            "OVERRIDE_APNS_DISABLED",
+            "OVERRIDE_APNS_ENABLED"
+          ],
+          "enumDescriptions": [
+            "Unspecified. Defaults to OVERRIDE_APNS_DISABLED.",
+            "Override APNs disabled. Any configured apnSettings are saved on the device, but are disabled and have no effect. Any other APNs on the device remain in use.",
+            "Override APNs enabled. Only override APNs are in use, any other APNs are ignored. This can only be set on fully managed devices on Android 10 and above. For work profiles override APNs are enabled via preferentialNetworkServiceSettings and this value cannot be set. A nonComplianceDetail with API_LEVEL is reported if the Android version is less than 10. A nonComplianceDetail with MANAGEMENT_MODE is reported for work profiles."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ApnSetting": {
+      "description": "An Access Point Name (APN) configuration for a carrier data connection. The APN provides configuration to connect a cellular network device to an IP data network. A carrier uses this setting to decide which IP address to assign, any security methods to apply, and how the device might be connected to private networks.",
+      "id": "ApnSetting",
+      "properties": {
+        "alwaysOnSetting": {
+          "description": "Optional. Whether User Plane resources have to be activated during every transition from CM-IDLE mode to CM-CONNECTED state for this APN. See 3GPP TS 23.501 section 5.6.13.",
+          "enum": [
+            "ALWAYS_ON_SETTING_UNSPECIFIED",
+            "NOT_ALWAYS_ON",
+            "ALWAYS_ON"
+          ],
+          "enumDescriptions": [
+            "Unspecified. Defaults to NOT_ALWAYS_ON.",
+            "The PDU session brought up by this APN should not be always on.",
+            "The PDU session brought up by this APN should always be on. Supported on Android 15 and above. A nonComplianceDetail with API_LEVEL is reported if the Android version is less than 15."
+          ],
+          "type": "string"
+        },
+        "apn": {
+          "description": "Required. Name of the APN. Policy will be rejected if this field is empty.",
+          "type": "string"
+        },
+        "apnTypes": {
+          "description": "Required. Usage categories for the APN. Policy will be rejected if this field is empty or contains APN_TYPE_UNSPECIFIED or duplicates. Multiple APN types can be set on fully managed devices. ENTERPRISE is the only allowed APN type on work profiles. A nonComplianceDetail with MANAGEMENT_MODE is reported for any other value on work profiles. APN types that are not supported on the device or management mode will be ignored. If this results in the empty list, the APN setting will be ignored, because apnTypes is a required field. A nonComplianceDetail with INVALID_VALUE is reported if none of the APN types are supported on the device or management mode.",
+          "items": {
+            "enum": [
+              "APN_TYPE_UNSPECIFIED",
+              "ENTERPRISE",
+              "BIP",
+              "CBS",
+              "DEFAULT",
+              "DUN",
+              "EMERGENCY",
+              "FOTA",
+              "HIPRI",
+              "IA",
+              "IMS",
+              "MCX",
+              "MMS",
+              "RCS",
+              "SUPL",
+              "VSIM",
+              "XCAP"
+            ],
+            "enumDescriptions": [
+              "Unspecified. This value is not used.",
+              "APN type for enterprise traffic. Supported on Android 13 and above. A nonComplianceDetail with API_LEVEL is reported if the Android version is less than 13.",
+              "APN type for BIP (Bearer Independent Protocol). This can only be set on fully managed devices on Android 12 and above. A nonComplianceDetail with API_LEVEL is reported if the Android version is less than 12. A nonComplianceDetail with MANAGEMENT_MODE is reported for work profiles.",
+              "APN type for CBS (Carrier Branded Services). This can only be set on fully managed devices. A nonComplianceDetail with MANAGEMENT_MODE is reported for work profiles.",
+              "APN type for default data traffic. This can only be set on fully managed devices. A nonComplianceDetail with MANAGEMENT_MODE is reported for work profiles.",
+              "APN type for DUN (Dial-up networking) traffic. This can only be set on fully managed devices. A nonComplianceDetail with MANAGEMENT_MODE is reported for work profiles.",
+              "APN type for Emergency PDN. This is not an IA apn, but is used for access to carrier services in an emergency call situation. This can only be set on fully managed devices. A nonComplianceDetail with MANAGEMENT_MODE is reported for work profiles.",
+              "APN type for accessing the carrier's FOTA (Firmware Over-the-Air) portal, used for over the air updates. This can only be set on fully managed devices. A nonComplianceDetail with MANAGEMENT_MODE is reported for work profiles.",
+              "APN type for HiPri (high-priority) traffic. This can only be set on fully managed devices. A nonComplianceDetail with MANAGEMENT_MODE is reported for work profiles.",
+              "APN type for IA (Initial Attach) APN. This can only be set on fully managed devices. A nonComplianceDetail with MANAGEMENT_MODE is reported for work profiles.",
+              "APN type for IMS (IP Multimedia Subsystem) traffic. This can only be set on fully managed devices. A nonComplianceDetail with MANAGEMENT_MODE is reported for work profiles.",
+              "APN type for MCX (Mission Critical Service) where X can be PTT/Video/Data. This can only be set on fully managed devices. A nonComplianceDetail with MANAGEMENT_MODE is reported for work profiles.",
+              "APN type for MMS (Multimedia Messaging Service) traffic. This can only be set on fully managed devices. A nonComplianceDetail with MANAGEMENT_MODE is reported for work profiles.",
+              "APN type for RCS (Rich Communication Services). This can only be set on fully managed devices on Android 15 and above. A nonComplianceDetail with API_LEVEL is reported if the Android version is less than 15. A nonComplianceDetail with MANAGEMENT_MODE is reported for work profiles.",
+              "APN type for SUPL (Secure User Plane Location) assisted GPS. This can only be set on fully managed devices. A nonComplianceDetail with MANAGEMENT_MODE is reported for work profiles.",
+              "APN type for VSIM (Virtual SIM) service. This can only be set on fully managed devices on Android 12 and above. A nonComplianceDetail with API_LEVEL is reported if the Android version is less than 12. A nonComplianceDetail with MANAGEMENT_MODE is reported for work profiles.",
+              "APN type for XCAP (XML Configuration Access Protocol) traffic. This can only be set on fully managed devices on Android 11 and above. A nonComplianceDetail with API_LEVEL is reported if the Android version is less than 11. A nonComplianceDetail with MANAGEMENT_MODE is reported for work profiles."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "authType": {
+          "description": "Optional. Authentication type of the APN.",
+          "enum": [
+            "AUTH_TYPE_UNSPECIFIED",
+            "NONE",
+            "PAP",
+            "CHAP",
+            "PAP_OR_CHAP"
+          ],
+          "enumDescriptions": [
+            "Unspecified. If username is empty, defaults to NONE. Otherwise, defaults to PAP_OR_CHAP.",
+            "Authentication is not required.",
+            "Authentication type for PAP.",
+            "Authentication type for CHAP.",
+            "Authentication type for PAP or CHAP."
+          ],
+          "type": "string"
+        },
+        "carrierId": {
+          "description": "Optional. Carrier ID for the APN. A value of 0 (default) means not set and negative values are rejected.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "displayName": {
+          "description": "Required. Human-readable name that describes the APN. Policy will be rejected if this field is empty.",
+          "type": "string"
+        },
+        "mmsProxyAddress": {
+          "description": "Optional. MMS (Multimedia Messaging Service) proxy address of the APN which can be an IP address or hostname (not a URL).",
+          "type": "string"
+        },
+        "mmsProxyPort": {
+          "description": "Optional. MMS (Multimedia Messaging Service) proxy port of the APN. A value of 0 (default) means not set and negative values are rejected.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "mmsc": {
+          "description": "Optional. MMSC (Multimedia Messaging Service Center) URI of the APN.",
+          "type": "string"
+        },
+        "mtuV4": {
+          "description": "Optional. The default MTU (Maximum Transmission Unit) size in bytes of the IPv4 routes brought up by this APN setting. A value of 0 (default) means not set and negative values are rejected. Supported on Android 13 and above. A nonComplianceDetail with API_LEVEL is reported if the Android version is less than 13.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "mtuV6": {
+          "description": "Optional. The MTU (Maximum Transmission Unit) size of the IPv6 mobile interface to which the APN connected. A value of 0 (default) means not set and negative values are rejected. Supported on Android 13 and above. A nonComplianceDetail with API_LEVEL is reported if the Android version is less than 13.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "mvnoType": {
+          "description": "Optional. MVNO match type for the APN.",
+          "enum": [
+            "MVNO_TYPE_UNSPECIFIED",
+            "GID",
+            "ICCID",
+            "IMSI",
+            "SPN"
+          ],
+          "enumDescriptions": [
+            "The MVNO type is not specified.",
+            "MVNO type for group identifier level 1.",
+            "MVNO type for ICCID.",
+            "MVNO type for IMSI.",
+            "MVNO type for SPN (service provider name)."
+          ],
+          "type": "string"
+        },
+        "networkTypes": {
+          "description": "Optional. Radio technologies (network types) the APN may use. Policy will be rejected if this field contains NETWORK_TYPE_UNSPECIFIED or duplicates.",
+          "items": {
+            "enum": [
+              "NETWORK_TYPE_UNSPECIFIED",
+              "EDGE",
+              "GPRS",
+              "GSM",
+              "HSDPA",
+              "HSPA",
+              "HSPAP",
+              "HSUPA",
+              "IWLAN",
+              "LTE",
+              "NR",
+              "TD_SCDMA",
+              "UMTS"
+            ],
+            "enumDescriptions": [
+              "Unspecified. This value must not be used.",
+              "Radio technology EDGE.",
+              "Radio technology GPRS.",
+              "Radio technology GSM.",
+              "Radio technology HSDPA.",
+              "Radio technology HSPA.",
+              "Radio technology HSPAP.",
+              "Radio technology HSUPA.",
+              "Radio technology IWLAN.",
+              "Radio technology LTE.",
+              "Radio technology NR (New Radio) 5G.",
+              "Radio technology TD_SCDMA.",
+              "Radio technology UMTS."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "numericOperatorId": {
+          "description": "Optional. The numeric operator ID of the APN. Numeric operator ID is defined as MCC (Mobile Country Code) + MNC (Mobile Network Code).",
+          "type": "string"
+        },
+        "password": {
+          "description": "Optional. APN password of the APN.",
+          "type": "string"
+        },
+        "protocol": {
+          "description": "Optional. The protocol to use to connect to this APN.",
+          "enum": [
+            "PROTOCOL_UNSPECIFIED",
+            "IP",
+            "IPV4V6",
+            "IPV6",
+            "NON_IP",
+            "PPP",
+            "UNSTRUCTURED"
+          ],
+          "enumDescriptions": [
+            "The protocol is not specified.",
+            "Internet protocol.",
+            "Virtual PDP type introduced to handle dual IP stack UE capability.",
+            "Internet protocol, version 6.",
+            "Transfer of Non-IP data to external packet data network.",
+            "Point to point protocol.",
+            "Transfer of Unstructured data to the Data Network via N6."
+          ],
+          "type": "string"
+        },
+        "proxyAddress": {
+          "description": "Optional. The proxy address of the APN.",
+          "type": "string"
+        },
+        "proxyPort": {
+          "description": "Optional. The proxy port of the APN. A value of 0 (default) means not set and negative values are rejected.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "roamingProtocol": {
+          "description": "Optional. The protocol to use to connect to this APN while the device is roaming.",
+          "enum": [
+            "PROTOCOL_UNSPECIFIED",
+            "IP",
+            "IPV4V6",
+            "IPV6",
+            "NON_IP",
+            "PPP",
+            "UNSTRUCTURED"
+          ],
+          "enumDescriptions": [
+            "The protocol is not specified.",
+            "Internet protocol.",
+            "Virtual PDP type introduced to handle dual IP stack UE capability.",
+            "Internet protocol, version 6.",
+            "Transfer of Non-IP data to external packet data network.",
+            "Point to point protocol.",
+            "Transfer of Unstructured data to the Data Network via N6."
+          ],
+          "type": "string"
+        },
+        "username": {
+          "description": "Optional. APN username of the APN.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -1792,7 +2143,7 @@
         },
         "extensionConfig": {
           "$ref": "ExtensionConfig",
-          "description": "Configuration to enable this app as an extension app, with the capability of interacting with Android Device Policy offline.This field can be set for at most one app."
+          "description": "Configuration to enable this app as an extension app, with the capability of interacting with Android Device Policy offline.This field can be set for at most one app.The signing key certificate fingerprint of the app on the device must match one of the entries in signingKeyFingerprintsSha256 or the signing key certificate fingerprints obtained from Play Store for the app to be able to communicate with Android Device Policy. If the app is not on Play Store and signingKeyFingerprintsSha256 is not set, a nonComplianceDetail with INVALID_VALUE is reported."
         },
         "installConstraint": {
           "description": "Optional. The constraints for installing the app. You can specify a maximum of one InstallConstraint. Multiple constraints are rejected.",
@@ -1861,6 +2212,28 @@
           },
           "type": "array"
         },
+        "preferentialNetworkId": {
+          "description": "Optional. ID of the preferential network the application uses. There must be a configuration for the specified network ID in preferentialNetworkServiceConfigs. If set to PREFERENTIAL_NETWORK_ID_UNSPECIFIED, the application will use the default network ID specified in defaultPreferentialNetworkId. See the documentation of defaultPreferentialNetworkId for the list of apps excluded from this defaulting. This applies on both work profiles and fully managed devices on Android 13 and above.",
+          "enum": [
+            "PREFERENTIAL_NETWORK_ID_UNSPECIFIED",
+            "NO_PREFERENTIAL_NETWORK",
+            "PREFERENTIAL_NETWORK_ID_ONE",
+            "PREFERENTIAL_NETWORK_ID_TWO",
+            "PREFERENTIAL_NETWORK_ID_THREE",
+            "PREFERENTIAL_NETWORK_ID_FOUR",
+            "PREFERENTIAL_NETWORK_ID_FIVE"
+          ],
+          "enumDescriptions": [
+            "Whether this value is valid and what it means depends on where it is used, and this is documented on the relevant fields.",
+            "Application does not use any preferential network.",
+            "Preferential network identifier 1.",
+            "Preferential network identifier 2.",
+            "Preferential network identifier 3.",
+            "Preferential network identifier 4.",
+            "Preferential network identifier 5."
+          ],
+          "type": "string"
+        },
         "userControlSettings": {
           "description": "Optional. Specifies whether user control is permitted for the app. User control includes user actions like force-stopping and clearing app data. Supported on Android 11 and above.",
           "enum": [
@@ -1887,6 +2260,22 @@
             "Work profile widgets are allowed. This means the application will be able to add widgets to the home screen.",
             "Work profile widgets are disallowed. This means the application will not be able to add widgets to the home screen."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ApplicationPolicyChange": {
+      "description": "A change to be made to a single ApplicationPolicy object.",
+      "id": "ApplicationPolicyChange",
+      "properties": {
+        "application": {
+          "$ref": "ApplicationPolicy",
+          "description": "If ApplicationPolicy.packageName matches an existing ApplicationPolicy object within the Policy being modified, then that object will be updated. Otherwise, it will be added to the end of the Policy.applications."
+        },
+        "updateMask": {
+          "description": "The field mask indicating the fields to update. If omitted, all modifiable fields are updated.",
+          "format": "google-fieldmask",
           "type": "string"
         }
       },
@@ -2188,6 +2577,10 @@
       "description": "A command.",
       "id": "Command",
       "properties": {
+        "addEsimParams": {
+          "$ref": "AddEsimParams",
+          "description": "Optional. Parameters for the ADD_ESIM command to add an eSIM profile to the device. If this is set, then it is suggested that type should not be set. In this case, the server automatically sets it to ADD_ESIM. It is also acceptable to explicitly set type to ADD_ESIM."
+        },
         "clearAppsDataParams": {
           "$ref": "ClearAppsDataParams",
           "description": "Parameters for the CLEAR_APP_DATA command to clear the data of specified apps from the device. See ClearAppsDataParams. If this is set, then it is suggested that type should not be set. In this case, the server automatically sets it to CLEAR_APP_DATA. It is also acceptable to explicitly set type to CLEAR_APP_DATA."
@@ -2227,9 +2620,18 @@
           ],
           "type": "string"
         },
+        "esimStatus": {
+          "$ref": "EsimCommandStatus",
+          "description": "Output only. Status of an ADD_ESIM or REMOVE_ESIM command.",
+          "readOnly": true
+        },
         "newPassword": {
           "description": "For commands of type RESET_PASSWORD, optionally specifies the new password. Note: The new password must be at least 6 characters long if it is numeric in case of Android 14 devices. Else the command will fail with INVALID_VALUE.",
           "type": "string"
+        },
+        "removeEsimParams": {
+          "$ref": "RemoveEsimParams",
+          "description": "Optional. Parameters for the REMOVE_ESIM command to remove an eSIM profile from the device. If this is set, then it is suggested that type should not be set. In this case, the server automatically sets it to REMOVE_ESIM. It is also acceptable to explicitly set type to REMOVE_ESIM."
         },
         "requestDeviceInfoParams": {
           "$ref": "RequestDeviceInfoParams",
@@ -2287,7 +2689,10 @@
             "RELINQUISH_OWNERSHIP",
             "CLEAR_APP_DATA",
             "START_LOST_MODE",
-            "STOP_LOST_MODE"
+            "STOP_LOST_MODE",
+            "ADD_ESIM",
+            "REMOVE_ESIM",
+            "REQUEST_DEVICE_INFO"
           ],
           "enumDescriptions": [
             "This value is disallowed.",
@@ -2297,7 +2702,10 @@
             "Removes the work profile and all policies from a company-owned Android 8.0+ device, relinquishing the device for personal use. Apps and data associated with the personal profile(s) are preserved. The device will be deleted from the server after it acknowledges the command.",
             "Clears the application data of specified apps. This is supported on Android 9 and above. Note that an application can store data outside of its application data, for example in external storage or in a user dictionary. See also clear_apps_data_params.",
             "Puts the device into lost mode. Only supported on fully managed devices or organization-owned devices with a managed profile. See also start_lost_mode_params.",
-            "Takes the device out of lost mode. Only supported on fully managed devices or organization-owned devices with a managed profile. See also stop_lost_mode_params."
+            "Takes the device out of lost mode. Only supported on fully managed devices or organization-owned devices with a managed profile. See also stop_lost_mode_params.",
+            "Adds an eSIM profile to the device. This is supported on Android 15 and above. See also addEsimParams. To remove an eSIM profile, use the REMOVE_ESIM command. To determine what happens to the eSIM profile when a device is wiped, set wipeDataFlags in the policy. Note: To provision multiple eSIMs on a single device, it is recommended to introduce a delay of a few minutes between successive executions of the command.",
+            "Removes an eSIM profile from the device. This is supported on Android 15 and above. See also removeEsimParams.",
+            "Request information related to the device."
           ],
           "type": "string"
         },
@@ -2806,6 +3214,10 @@
       "description": "Covers controls for device connectivity such as Wi-Fi, USB data access, keyboard/mouse connections, and more.",
       "id": "DeviceConnectivityManagement",
       "properties": {
+        "apnPolicy": {
+          "$ref": "ApnPolicy",
+          "description": "Optional. Access Point Name (APN) policy. Configuration for Access Point Names (APNs) which may override any other APNs on the device. See OVERRIDE_APNS_ENABLED and overrideApns for details."
+        },
         "bluetoothSharing": {
           "description": "Optional. Controls whether Bluetooth sharing is allowed.",
           "enum": [
@@ -2835,6 +3247,10 @@
             "Disallows configuring Wi-Fi networks. The setting wifiConfigDisabled is ignored when this value is set. Supported on fully managed devices and work profile on company-owned devices, on all supported API levels. For fully managed devices, setting this removes all configured networks and retains only the networks configured using openNetworkConfiguration policy. For work profiles on company-owned devices, existing configured networks are not affected and the user is not allowed to add, remove, or modify Wi-Fi networks. Note: If a network connection can't be made at boot time and configuring Wi-Fi is disabled then network escape hatch will be shown in order to refresh the device policy (see networkEscapeHatchEnabled)."
           ],
           "type": "string"
+        },
+        "preferentialNetworkServiceSettings": {
+          "$ref": "PreferentialNetworkServiceSettings",
+          "description": "Optional. Preferential network service configuration. Setting this field will override preferentialNetworkService. This can be set on both work profiles and fully managed devices on Android 13 and above. See 5G network slicing (https://developers.google.com/android/management/5g-network-slicing) guide for more details."
         },
         "tetheringSettings": {
           "description": "Controls tethering settings. Based on the value set, the user is partially or fully disallowed from using different forms of tethering.",
@@ -3401,6 +3817,62 @@
       },
       "type": "object"
     },
+    "EsimCommandStatus": {
+      "description": "Status and error details (if present) of an ADD_ESIM or REMOVE_ESIM command.",
+      "id": "EsimCommandStatus",
+      "properties": {
+        "esimInfo": {
+          "$ref": "EsimInfo",
+          "description": "Output only. Information about the eSIM added or removed. This is populated only when the eSIM operation status is SUCCESS.",
+          "readOnly": true
+        },
+        "internalErrorDetails": {
+          "$ref": "InternalErrorDetails",
+          "description": "Output only. Details of the error if the status is set to INTERNAL_ERROR.",
+          "readOnly": true
+        },
+        "status": {
+          "description": "Output only. Status of an ADD_ESIM or REMOVE_ESIM command.",
+          "enum": [
+            "STATUS_UNSPECIFIED",
+            "SUCCESS",
+            "IN_PROGRESS",
+            "PENDING_USER_ACTION",
+            "ERROR_SETUP_IN_PROGRESS",
+            "ERROR_USER_DENIED",
+            "INTERNAL_ERROR",
+            "ERROR_ICC_ID_NOT_FOUND",
+            "ERROR_MULTIPLE_ACTIVE_ESIMS_NO_AVAILABLE_SLOT"
+          ],
+          "enumDescriptions": [
+            "Unspecified. This value is not used.",
+            "The eSIM operation was successfully performed on the device.",
+            "The eSIM operation is in progress.",
+            "The user needs to take an action for the eSIM operation to proceed.",
+            "The eSIM operation cannot be executed when setup is in progress.",
+            "The user has denied the eSIM operation.",
+            "An error has occurred while trying to add or remove the eSIM on the device, see internal_error_details.",
+            "For a REMOVE_ESIM command, the iccId of the eSIM to be removed was not found on the device. This could either mean the eSIM does not belong to the enterprise or the eSIM corresponding to the iccId is not present on the device.",
+            "The ADD_ESIM command failed when attempting to add a new eSIM with its activation state set to ACTIVATED since multiple eSIM slots on the device contain active eSIM profiles and there is no free eSIM slot available. To resolve this, the new eSIM can be added with its activation state as NOT_ACTIVATED for later manual activation, or the user must first deactivate an existing active eSIM for the operation to proceed."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EsimInfo": {
+      "description": "Details of the eSIM added or removed.",
+      "id": "EsimInfo",
+      "properties": {
+        "iccId": {
+          "description": "Output only. ICC ID of the eSIM.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "EuiccChipInfo": {
       "description": "Information related to the eUICC chip.",
       "id": "EuiccChipInfo",
@@ -3422,7 +3894,7 @@
           "type": "string"
         },
         "signingKeyFingerprintsSha256": {
-          "description": "Hex-encoded SHA-256 hash of the signing certificate of the extension app. Only hexadecimal string representations of 64 characters are valid.If not specified, the signature for the corresponding package name is obtained from the Play Store instead.If this list is empty, the signature of the extension app on the device must match the signature obtained from the Play Store for the app to be able to communicate with Android Device Policy.If this list is not empty, the signature of the extension app on the device must match one of the entries in this list for the app to be able to communicate with Android Device Policy.In production use cases, it is recommended to leave this empty.",
+          "description": "Hex-encoded SHA-256 hashes of the signing key certificates of the extension app. Only hexadecimal string representations of 64 characters are valid.The signing key certificate fingerprints are always obtained from the Play Store and this field is used to provide additional signing key certificate fingerprints. However, if the application is not available on the Play Store, this field needs to be set. A nonComplianceDetail with INVALID_VALUE is reported if this field is not set when the application is not available on the Play Store.The signing key certificate fingerprint of the extension app on the device must match one of the signing key certificate fingerprints obtained from the Play Store or the ones provided in this field for the app to be able to communicate with Android Device Policy.In production use cases, it is recommended to leave this empty.",
           "items": {
             "type": "string"
           },
@@ -3746,6 +4218,105 @@
             "Any active networks (Wi-Fi, cellular, etc.).",
             "Any unmetered network (e.g. Wi-FI)."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "InternalErrorDetails": {
+      "description": "Internal error details if present for the ADD_ESIM or REMOVE_ESIM command.",
+      "id": "InternalErrorDetails",
+      "properties": {
+        "errorCode": {
+          "description": "Output only. Integer representation of the error code as specified here (https://developer.android.com/reference/android/telephony/euicc/EuiccManager#EXTRA_EMBEDDED_SUBSCRIPTION_DETAILED_CODE). See also, OPERATION_SMDX_SUBJECT_REASON_CODE. See error_code_detail for more details.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "errorCodeDetail": {
+          "description": "Output only. The error code detail corresponding to the error_code.",
+          "enum": [
+            "ERROR_CODE_DETAIL_UNSPECIFIED",
+            "ERROR_TIME_OUT",
+            "ERROR_EUICC_MISSING",
+            "ERROR_UNSUPPORTED_VERSION",
+            "ERROR_ADDRESS_MISSING",
+            "ERROR_INVALID_CONFIRMATION_CODE",
+            "ERROR_CERTIFICATE_ERROR",
+            "ERROR_NO_PROFILES_AVAILABLE",
+            "ERROR_CONNECTION_ERROR",
+            "ERROR_INVALID_RESPONSE",
+            "ERROR_CARRIER_LOCKED",
+            "ERROR_DISALLOWED_BY_PPR",
+            "ERROR_INVALID_ACTIVATION_CODE",
+            "ERROR_INCOMPATIBLE_CARRIER",
+            "ERROR_OPERATION_BUSY",
+            "ERROR_INSTALL_PROFILE",
+            "ERROR_EUICC_INSUFFICIENT_MEMORY",
+            "ERROR_INVALID_PORT",
+            "ERROR_SIM_MISSING"
+          ],
+          "enumDescriptions": [
+            "Error code detail is unspecified. The error_code is not recognized by Android Management API. However, see error_code",
+            "See EuiccManager.ERROR_TIME_OUT (https://developer.android.com/reference/android/telephony/euicc/EuiccManager#ERROR_TIME_OUT) for details.",
+            "See EuiccManager.ERROR_EUICC_MISSING (https://developer.android.com/reference/android/telephony/euicc/EuiccManager#ERROR_EUICC_MISSING) for details.",
+            "See EuiccManager.ERROR_UNSUPPORTED_VERSION (https://developer.android.com/reference/android/telephony/euicc/EuiccManager#ERROR_UNSUPPORTED_VERSION) for details.",
+            "See EuiccManager.ERROR_ADDRESS_MISSING (https://developer.android.com/reference/android/telephony/euicc/EuiccManager#ERROR_ADDRESS_MISSING) for details.",
+            "See EuiccManager.ERROR_INVALID_CONFIRMATION_CODE (https://developer.android.com/reference/android/telephony/euicc/EuiccManager#ERROR_INVALID_CONFIRMATION_CODE) for details.",
+            "See EuiccManager.ERROR_CERTIFICATE_ERROR (https://developer.android.com/reference/android/telephony/euicc/EuiccManager#ERROR_CERTIFICATE_ERROR) for details.",
+            "See EuiccManager.ERROR_NO_PROFILES_AVAILABLE (https://developer.android.com/reference/android/telephony/euicc/EuiccManager#ERROR_NO_PROFILES_AVAILABLE) for details.",
+            "See EuiccManager.ERROR_CONNECTION_ERROR (https://developer.android.com/reference/android/telephony/euicc/EuiccManager#ERROR_CONNECTION_ERROR) for details.",
+            "See EuiccManager.ERROR_INVALID_RESPONSE (https://developer.android.com/reference/android/telephony/euicc/EuiccManager#ERROR_INVALID_RESPONSE) for details.",
+            "See EuiccManager.ERROR_CARRIER_LOCKED (https://developer.android.com/reference/android/telephony/euicc/EuiccManager#ERROR_CARRIER_LOCKED) for details.",
+            "See EuiccManager.ERROR_DISALLOWED_BY_PPR (https://developer.android.com/reference/android/telephony/euicc/EuiccManager#ERROR_DISALLOWED_BY_PPR) for details.",
+            "See EuiccManager.ERROR_INVALID_ACTIVATION_CODE (https://developer.android.com/reference/android/telephony/euicc/EuiccManager#ERROR_INVALID_ACTIVATION_CODE) for details.",
+            "See EuiccManager.ERROR_INCOMPATIBLE_CARRIER (https://developer.android.com/reference/android/telephony/euicc/EuiccManager#ERROR_INCOMPATIBLE_CARRIER) for details.",
+            "See EuiccManager.ERROR_OPERATION_BUSY (https://developer.android.com/reference/android/telephony/euicc/EuiccManager#ERROR_OPERATION_BUSY) for details.",
+            "See EuiccManager.ERROR_INSTALL_PROFILE (https://developer.android.com/reference/android/telephony/euicc/EuiccManager#ERROR_INSTALL_PROFILE) for details.",
+            "See EuiccManager.ERROR_EUICC_INSUFFICIENT_MEMORY (https://developer.android.com/reference/android/telephony/euicc/EuiccManager#ERROR_EUICC_INSUFFICIENT_MEMORY) for details.",
+            "See EuiccManager.ERROR_INVALID_PORT (https://developer.android.com/reference/android/telephony/euicc/EuiccManager#ERROR_INVALID_PORT) for details.",
+            "See EuiccManager.ERROR_SIM_MISSING (https://developer.android.com/reference/android/telephony/euicc/EuiccManager#ERROR_SIM_MISSING) for details."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "operationCode": {
+          "description": "Output only. Integer representation of the operation code as specified here (https://developer.android.com/reference/android/telephony/euicc/EuiccManager#EXTRA_EMBEDDED_SUBSCRIPTION_DETAILED_CODE). See operation_code_detail for more details.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "operationCodeDetail": {
+          "description": "Output only. The operation code detail corresponding to the operation_code.",
+          "enum": [
+            "OPERATION_CODE_DETAIL_UNSPECIFIED",
+            "OPERATION_SYSTEM",
+            "OPERATION_SIM_SLOT",
+            "OPERATION_EUICC_CARD",
+            "OPERATION_SMDX",
+            "OPERATION_SWITCH",
+            "OPERATION_DOWNLOAD",
+            "OPERATION_METADATA",
+            "OPERATION_EUICC_GSMA",
+            "OPERATION_APDU",
+            "OPERATION_SMDX_SUBJECT_REASON_CODE",
+            "OPERATION_HTTP"
+          ],
+          "enumDescriptions": [
+            "Operation code detail is unspecified. The operation_code is not recognized by Android Management API. However, see operation_code.",
+            "See EuiccManager.OPERATION_SYSTEM (https://developer.android.com/reference/android/telephony/euicc/EuiccManager#OPERATION_SYSTEM) for details.",
+            "See EuiccManager.OPERATION_SIM_SLOT (https://developer.android.com/reference/android/telephony/euicc/EuiccManager#OPERATION_SIM_SLOT) for details.",
+            "See EuiccManager.OPERATION_EUICC_CARD (https://developer.android.com/reference/android/telephony/euicc/EuiccManager#OPERATION_EUICC_CARD) for details.",
+            "See EuiccManager.OPERATION_SMDX (https://developer.android.com/reference/android/telephony/euicc/EuiccManager#OPERATION_SMDX) for details.",
+            "See EuiccManager.OPERATION_SWITCH (https://developer.android.com/reference/android/telephony/euicc/EuiccManager#OPERATION_SWITCH) for details.",
+            "See EuiccManager.OPERATION_DOWNLOAD (https://developer.android.com/reference/android/telephony/euicc/EuiccManager#OPERATION_DOWNLOAD) for details.",
+            "See EuiccManager.OPERATION_METADATA (https://developer.android.com/reference/android/telephony/euicc/EuiccManager#OPERATION_METADATA) for details.",
+            "See EuiccManager.OPERATION_EUICC_GSMA (https://developer.android.com/reference/android/telephony/euicc/EuiccManager#OPERATION_EUICC_GSMA) for details.",
+            "See EuiccManager.OPERATION_APDU (https://developer.android.com/reference/android/telephony/euicc/EuiccManager#OPERATION_APDU) for details.",
+            "See EuiccManager.OPERATION_SMDX_SUBJECT_REASON_CODE (https://developer.android.com/reference/android/telephony/euicc/EuiccManager#OPERATION_SMDX_SUBJECT_REASON_CODE) for details. Note that, in this case, error_code is the least significant 3 bytes of the EXTRA_EMBEDDED_SUBSCRIPTION_DETAILED_CODE (https://developer.android.com/reference/android/telephony/euicc/EuiccManager#EXTRA_EMBEDDED_SUBSCRIPTION_DETAILED_CODE) specifying the subject code and the reason code as indicated here (https://developer.android.com/reference/android/telephony/euicc/EuiccManager#OPERATION_SMDX_SUBJECT_REASON_CODE). The most significant byte of the integer is zeroed out. For example, a Subject Code of 8.11.1 and a Reason Code of 5.1 is represented in error_code as 0000 0000 1000 1011 0001 0000 0101 0001 in binary, which is 9113681 in decimal.",
+            "See EuiccManager.OPERATION_HTTP (https://developer.android.com/reference/android/telephony/euicc/EuiccManager#OPERATION_HTTP) for details."
+          ],
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -4428,6 +4999,31 @@
       },
       "type": "object"
     },
+    "ModifyPolicyApplicationsRequest": {
+      "description": "Request to update or create ApplicationPolicy objects in the given Policy.",
+      "id": "ModifyPolicyApplicationsRequest",
+      "properties": {
+        "changes": {
+          "description": "Required. The changes to be made to the ApplicationPolicy objects. There must be at least one ApplicationPolicyChange.",
+          "items": {
+            "$ref": "ApplicationPolicyChange"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ModifyPolicyApplicationsResponse": {
+      "description": "Response to a request to update or create ApplicationPolicy objects in the given policy.",
+      "id": "ModifyPolicyApplicationsResponse",
+      "properties": {
+        "policy": {
+          "$ref": "Policy",
+          "description": "The updated policy."
+        }
+      },
+      "type": "object"
+    },
     "NetworkInfo": {
       "description": "Device network info.",
       "id": "NetworkInfo",
@@ -4519,7 +5115,8 @@
             "PENDING",
             "APP_INCOMPATIBLE",
             "APP_NOT_UPDATED",
-            "DEVICE_INCOMPATIBLE"
+            "DEVICE_INCOMPATIBLE",
+            "PROJECT_NOT_PERMITTED"
           ],
           "enumDescriptions": [
             "This value is not used.",
@@ -4533,7 +5130,8 @@
             "The setting hasn't been applied at the time of the report, but is expected to be applied shortly.",
             "The setting can't be applied to the app because the app doesn't support it, for example because its target SDK version is not high enough.",
             "The app is installed, but it hasn't been updated to the minimum version code specified by policy.",
-            "The device is incompatible with the policy requirements."
+            "The device is incompatible with the policy requirements.",
+            "The Google Cloud Platform project used to manage the device is not permitted to use this policy."
           ],
           "type": "string"
         },
@@ -4560,7 +5158,10 @@
             "ONC_WIFI_API_LEVEL",
             "ONC_WIFI_INVALID_ENTERPRISE_CONFIG",
             "ONC_WIFI_USER_SHOULD_REMOVE_NETWORK",
-            "ONC_WIFI_KEY_PAIR_ALIAS_NOT_CORRESPONDING_TO_EXISTING_KEY"
+            "ONC_WIFI_KEY_PAIR_ALIAS_NOT_CORRESPONDING_TO_EXISTING_KEY",
+            "PERMISSIBLE_USAGE_RESTRICTION",
+            "REQUIRED_ACCOUNT_NOT_IN_ENTERPRISE",
+            "NEW_ACCOUNT_NOT_IN_ENTERPRISE"
           ],
           "enumDescriptions": [
             "Specific non-compliance reason is not specified. Fields in specific_non_compliance_context are not set.",
@@ -4571,7 +5172,10 @@
             "The ONC Wi-Fi setting is not supported in the API level of the Android version running on the device. fieldPath specifies which field value is not supported. oncWifiContext is set. nonComplianceReason is set to API_LEVEL.",
             "The enterprise Wi-Fi network is missing either the root CA or domain name. nonComplianceReason is set to INVALID_VALUE.",
             "User needs to remove the configured Wi-Fi network manually. This is applicable only on work profiles on personally-owned devices. nonComplianceReason is set to USER_ACTION.",
-            "Key pair alias specified via ClientCertKeyPairAlias (https://chromium.googlesource.com/chromium/src/+/main/components/onc/docs/onc_spec.md#eap-type) field in openNetworkConfiguration does not correspond to an existing key installed on the device. nonComplianceReason is set to INVALID_VALUE."
+            "Key pair alias specified via ClientCertKeyPairAlias (https://chromium.googlesource.com/chromium/src/+/main/components/onc/docs/onc_spec.md#eap-type) field in openNetworkConfiguration does not correspond to an existing key installed on the device. nonComplianceReason is set to INVALID_VALUE.",
+            "This policy setting is restricted and cannot be set for this Google Cloud Platform project. More details (including how to enable usage of this policy setting) are available in the Permissible Usage policy (https://developers.google.com/android/management/permissible-usage). nonComplianceReason is set to PROJECT_NOT_PERMITTED.",
+            "Work account required by the workAccountSetupConfig policy setting is not part of the enterprise anymore. nonComplianceReason is set to USER_ACTION.",
+            "Work account added by the user is not part of the enterprise. nonComplianceReason is set to USER_ACTION."
           ],
           "type": "string"
         }
@@ -4597,7 +5201,8 @@
             "PENDING",
             "APP_INCOMPATIBLE",
             "APP_NOT_UPDATED",
-            "DEVICE_INCOMPATIBLE"
+            "DEVICE_INCOMPATIBLE",
+            "PROJECT_NOT_PERMITTED"
           ],
           "enumDescriptions": [
             "This value is not used.",
@@ -4611,7 +5216,8 @@
             "The setting hasn't been applied at the time of the report, but is expected to be applied shortly.",
             "The setting can't be applied to the app because the app doesn't support it, for example because its target SDK version is not high enough.",
             "The app is installed, but it hasn't been updated to the minimum version code specified by policy.",
-            "The device is incompatible with the policy requirements."
+            "The device is incompatible with the policy requirements.",
+            "The Google Cloud Platform project used to manage the device is not permitted to use this policy."
           ],
           "type": "string"
         },
@@ -5331,6 +5937,20 @@
           "description": "Whether app verification is force-enabled.",
           "type": "boolean"
         },
+        "enterpriseDisplayNameVisibility": {
+          "description": "Optional. Controls whether the enterpriseDisplayName is visible on the device (e.g. lock screen message on company-owned devices).",
+          "enum": [
+            "ENTERPRISE_DISPLAY_NAME_VISIBILITY_UNSPECIFIED",
+            "ENTERPRISE_DISPLAY_NAME_VISIBLE",
+            "ENTERPRISE_DISPLAY_NAME_HIDDEN"
+          ],
+          "enumDescriptions": [
+            "Unspecified. Defaults to displaying the enterprise name that's set at the time of device setup. In future, this will default to ENTERPRISE_DISPLAY_NAME_VISIBLE.",
+            "The enterprise display name is visible on the device. Supported on work profiles on Android 7 and above. Supported on fully managed devices on Android 8 and above. A nonComplianceDetail with API_LEVEL is reported if the Android version is less than 7. A nonComplianceDetail with MANAGEMENT_MODE is reported on fully managed devices on Android 7.",
+            "The enterprise display name is hidden on the device."
+          ],
+          "type": "string"
+        },
         "factoryResetDisabled": {
           "description": "Whether factory resetting from settings is disabled.",
           "type": "boolean"
@@ -5573,7 +6193,7 @@
           "type": "array"
         },
         "preferentialNetworkService": {
-          "description": "Controls whether preferential network service is enabled on the work profile. For example, an organization may have an agreement with a carrier that all of the work data from its employees' devices will be sent via a network service dedicated for enterprise use. An example of a supported preferential network service is the enterprise slice on 5G networks. This has no effect on fully managed devices.",
+          "description": "Controls whether preferential network service is enabled on the work profile or on fully managed devices. For example, an organization may have an agreement with a carrier that all of the work data from its employees' devices will be sent via a network service dedicated for enterprise use. An example of a supported preferential network service is the enterprise slice on 5G networks. This policy has no effect if preferentialNetworkServiceSettings or ApplicationPolicy.preferentialNetworkId is set on devices running Android 13 or above.",
           "enum": [
             "PREFERENTIAL_NETWORK_SERVICE_UNSPECIFIED",
             "PREFERENTIAL_NETWORK_SERVICE_DISABLED",
@@ -5582,7 +6202,7 @@
           "enumDescriptions": [
             "Unspecified. Defaults to PREFERENTIAL_NETWORK_SERVICES_DISABLED.",
             "Preferential network service is disabled on the work profile.",
-            "Preferential network service is enabled on the work profile."
+            "Preferential network service is enabled on the work profile. This setting is only supported on work profiles on devices running Android 12 or above. Starting with Android 13, fully managed devices are also supported."
           ],
           "type": "string"
         },
@@ -5730,6 +6350,25 @@
           "deprecated": true,
           "description": "This is deprecated.",
           "type": "boolean"
+        },
+        "wipeDataFlags": {
+          "description": "Optional. Wipe flags to indicate what data is wiped when a device or profile wipe is triggered due to any reason (for example, non-compliance). This does not apply to the enterprises.devices.delete method. . This list must not have duplicates.",
+          "items": {
+            "enum": [
+              "WIPE_DATA_FLAG_UNSPECIFIED",
+              "WIPE_ESIMS"
+            ],
+            "enumDescriptions": [
+              "This value must not be used.",
+              "For company-owned devices, setting this in wipeDataFlags will remove all eSIMs on the device when wipe is triggered due to any reason. On personally-owned devices, this will remove only managed eSIMs on the device. (eSIMs which are added via the ADD_ESIM command). This is supported on devices running Android 15 and above. A nonComplianceDetail with API_LEVEL is reported if the Android version is less than 15."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "workAccountSetupConfig": {
+          "$ref": "WorkAccountSetupConfig",
+          "description": "Optional. Controls the work account setup configuration, such as details of whether a Google authenticated account is required."
         }
       },
       "type": "object"
@@ -5820,6 +6459,99 @@
             "The device shut down."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PreferentialNetworkServiceConfig": {
+      "description": "Individual preferential network service configuration.",
+      "id": "PreferentialNetworkServiceConfig",
+      "properties": {
+        "fallbackToDefaultConnection": {
+          "description": "Optional. Whether fallback to the device-wide default network is allowed. If this is set to FALLBACK_TO_DEFAULT_CONNECTION_ALLOWED, then nonMatchingNetworks must not be set to NON_MATCHING_NETWORKS_DISALLOWED, the policy will be rejected otherwise. Note: If this is set to FALLBACK_TO_DEFAULT_CONNECTION_DISALLOWED, applications are not able to access the internet if the 5G slice is not available.",
+          "enum": [
+            "FALLBACK_TO_DEFAULT_CONNECTION_UNSPECIFIED",
+            "FALLBACK_TO_DEFAULT_CONNECTION_ALLOWED",
+            "FALLBACK_TO_DEFAULT_CONNECTION_DISALLOWED"
+          ],
+          "enumDescriptions": [
+            "Unspecified. Defaults to FALLBACK_TO_DEFAULT_CONNECTION_ALLOWED.",
+            "Fallback to default connection is allowed. If this is set, nonMatchingNetworks must not be set to NON_MATCHING_NETWORKS_DISALLOWED, the policy will be rejected otherwise.",
+            "Fallback to default connection is not allowed."
+          ],
+          "type": "string"
+        },
+        "nonMatchingNetworks": {
+          "description": "Optional. Whether apps this configuration applies to are blocked from using networks other than the preferential service. If this is set to NON_MATCHING_NETWORKS_DISALLOWED, then fallbackToDefaultConnection must be set to FALLBACK_TO_DEFAULT_CONNECTION_DISALLOWED.",
+          "enum": [
+            "NON_MATCHING_NETWORKS_UNSPECIFIED",
+            "NON_MATCHING_NETWORKS_ALLOWED",
+            "NON_MATCHING_NETWORKS_DISALLOWED"
+          ],
+          "enumDescriptions": [
+            "Unspecified. Defaults to NON_MATCHING_NETWORKS_ALLOWED.",
+            "Apps this configuration applies to are allowed to use networks other than the preferential service.",
+            "Apps this configuration applies to are disallowed from using other networks than the preferential service. This can be set on Android 14 and above. A nonComplianceDetail with API_LEVEL is reported if the Android version is less than 14. If this is set, fallbackToDefaultConnection must be set to FALLBACK_TO_DEFAULT_CONNECTION_DISALLOWED, the policy will be rejected otherwise."
+          ],
+          "type": "string"
+        },
+        "preferentialNetworkId": {
+          "description": "Required. Preferential network identifier. This must not be set to NO_PREFERENTIAL_NETWORK or PREFERENTIAL_NETWORK_ID_UNSPECIFIED, the policy will be rejected otherwise.",
+          "enum": [
+            "PREFERENTIAL_NETWORK_ID_UNSPECIFIED",
+            "NO_PREFERENTIAL_NETWORK",
+            "PREFERENTIAL_NETWORK_ID_ONE",
+            "PREFERENTIAL_NETWORK_ID_TWO",
+            "PREFERENTIAL_NETWORK_ID_THREE",
+            "PREFERENTIAL_NETWORK_ID_FOUR",
+            "PREFERENTIAL_NETWORK_ID_FIVE"
+          ],
+          "enumDescriptions": [
+            "Whether this value is valid and what it means depends on where it is used, and this is documented on the relevant fields.",
+            "Application does not use any preferential network.",
+            "Preferential network identifier 1.",
+            "Preferential network identifier 2.",
+            "Preferential network identifier 3.",
+            "Preferential network identifier 4.",
+            "Preferential network identifier 5."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PreferentialNetworkServiceSettings": {
+      "description": "Preferential network service settings.",
+      "id": "PreferentialNetworkServiceSettings",
+      "properties": {
+        "defaultPreferentialNetworkId": {
+          "description": "Required. Default preferential network ID for the applications that are not in applications or if ApplicationPolicy.preferentialNetworkId is set to PREFERENTIAL_NETWORK_ID_UNSPECIFIED. There must be a configuration for the specified network ID in preferentialNetworkServiceConfigs, unless this is set to NO_PREFERENTIAL_NETWORK. If set to PREFERENTIAL_NETWORK_ID_UNSPECIFIED or unset, this defaults to NO_PREFERENTIAL_NETWORK. Note: If the default preferential network is misconfigured, applications with no ApplicationPolicy.preferentialNetworkId set are not able to access the internet. This setting does not apply to the following critical apps: com.google.android.apps.work.clouddpc com.google.android.gmsApplicationPolicy.preferentialNetworkId can still be used to configure the preferential network for them.",
+          "enum": [
+            "PREFERENTIAL_NETWORK_ID_UNSPECIFIED",
+            "NO_PREFERENTIAL_NETWORK",
+            "PREFERENTIAL_NETWORK_ID_ONE",
+            "PREFERENTIAL_NETWORK_ID_TWO",
+            "PREFERENTIAL_NETWORK_ID_THREE",
+            "PREFERENTIAL_NETWORK_ID_FOUR",
+            "PREFERENTIAL_NETWORK_ID_FIVE"
+          ],
+          "enumDescriptions": [
+            "Whether this value is valid and what it means depends on where it is used, and this is documented on the relevant fields.",
+            "Application does not use any preferential network.",
+            "Preferential network identifier 1.",
+            "Preferential network identifier 2.",
+            "Preferential network identifier 3.",
+            "Preferential network identifier 4.",
+            "Preferential network identifier 5."
+          ],
+          "type": "string"
+        },
+        "preferentialNetworkServiceConfigs": {
+          "description": "Required. Preferential network service configurations which enables having multiple enterprise slices. There must not be multiple configurations with the same preferentialNetworkId. If a configuration is not referenced by any application by setting ApplicationPolicy.preferentialNetworkId or by setting defaultPreferentialNetworkId, it will be ignored. For devices on 4G networks, enterprise APN needs to be configured additionally to set up data call for preferential network service. These APNs can be added using apnPolicy.",
+          "items": {
+            "$ref": "PreferentialNetworkServiceConfig"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -5940,6 +6672,42 @@
           "description": "User ID in which the change was requested in.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "RemoveEsimParams": {
+      "description": "Parameters associated with the REMOVE_ESIM command to remove an eSIM profile from the device.",
+      "id": "RemoveEsimParams",
+      "properties": {
+        "iccId": {
+          "description": "Required. ICC ID of the eSIM profile to be deleted.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RemovePolicyApplicationsRequest": {
+      "description": "Request to remove ApplicationPolicy objects in the given policy.",
+      "id": "RemovePolicyApplicationsRequest",
+      "properties": {
+        "packageNames": {
+          "description": "Required. Package names to be removed. Entries that are not found are ignored. There must be at least one entry in package_names.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "RemovePolicyApplicationsResponse": {
+      "description": "Response to a request to remove ApplicationPolicy objects in the given policy.",
+      "id": "RemovePolicyApplicationsResponse",
+      "properties": {
+        "policy": {
+          "$ref": "Policy",
+          "description": "The updated policy after ApplicationPolicy objects have been removed."
         }
       },
       "type": "object"
@@ -6484,8 +7252,38 @@
       "description": "Telephony information associated with a given SIM card on the device. Only supported on fully managed devices starting from Android API level 23.",
       "id": "TelephonyInfo",
       "properties": {
+        "activationState": {
+          "description": "Output only. Activation state of the SIM card on the device. This is applicable for eSIMs only. This is supported on all devices for API level 35 and above. This is always ACTIVATION_STATE_UNSPECIFIED for physical SIMs and for devices below API level 35.",
+          "enum": [
+            "ACTIVATION_STATE_UNSPECIFIED",
+            "ACTIVATED",
+            "NOT_ACTIVATED"
+          ],
+          "enumDescriptions": [
+            "Activation state is not specified.",
+            "The SIM card is activated.",
+            "The SIM card is not activated."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "carrierName": {
           "description": "The carrier name associated with this SIM card.",
+          "type": "string"
+        },
+        "configMode": {
+          "description": "Output only. The configuration mode of the SIM card on the device. This is applicable for eSIMs only. This is supported on all devices for API level 35 and above. This is always CONFIG_MODE_UNSPECIFIED for physical SIMs and for devices below API level 35.",
+          "enum": [
+            "CONFIG_MODE_UNSPECIFIED",
+            "ADMIN_CONFIGURED",
+            "USER_CONFIGURED"
+          ],
+          "enumDescriptions": [
+            "The configuration mode is unspecified.",
+            "The admin has configured this SIM.",
+            "The user has configured this SIM."
+          ],
+          "readOnly": true,
           "type": "string"
         },
         "iccId": {
@@ -7022,6 +7820,31 @@
       "description": "The work profile or company-owned device failed to wipe when requested. This could be user initiated or admin initiated e.g. delete was received. Intentionally empty.",
       "id": "WipeFailureEvent",
       "properties": {},
+      "type": "object"
+    },
+    "WorkAccountSetupConfig": {
+      "description": "Controls the work account setup configuration, such as details of whether a Google authenticated account is required.",
+      "id": "WorkAccountSetupConfig",
+      "properties": {
+        "authenticationType": {
+          "description": "Optional. The authentication type of the user on the device.",
+          "enum": [
+            "AUTHENTICATION_TYPE_UNSPECIFIED",
+            "AUTHENTICATION_TYPE_NOT_ENFORCED",
+            "GOOGLE_AUTHENTICATED"
+          ],
+          "enumDescriptions": [
+            "Unspecified. Defaults to AUTHENTICATION_TYPE_NOT_ENFORCED.",
+            "Authentication status of user on device is not enforced.",
+            "Requires device to be managed with a Google authenticated account."
+          ],
+          "type": "string"
+        },
+        "requiredAccountEmail": {
+          "description": "Optional. The specific google work account email address to be added. This field is only relevant if authenticationType is GOOGLE_AUTHENTICATED. This must be an enterprise account and not a consumer account. Once set and a Google authenticated account is added to the device, changing this field will have no effect, and thus recommended to be set only once.",
+          "type": "string"
+        }
+      },
       "type": "object"
     }
   },

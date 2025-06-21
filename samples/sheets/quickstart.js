@@ -28,7 +28,7 @@ const scopes = ['https://www.googleapis.com/auth/spreadsheets.readonly'];
 const client = new google.auth.OAuth2(
   keys.web.client_id,
   keys.web.client_secret,
-  keys.web.redirect_uris[0]
+  keys.web.redirect_uris[0],
 );
 
 // Generate the url that will be used for authorization
@@ -86,7 +86,7 @@ function listMajors(auth) {
           console.log(`${row[0]}, ${row[4]}`);
         }
       }
-    }
+    },
   );
 }
 // [END main_body]

@@ -2,6 +2,12 @@
   "auth": {
     "oauth2": {
       "scopes": {
+        "https://www.googleapis.com/auth/chat.app.memberships": {
+          "description": "On their own behalf, apps in Google Chat can see, add, update, and remove members from conversations and spaces"
+        },
+        "https://www.googleapis.com/auth/chat.app.spaces": {
+          "description": "On their own behalf, apps in Google Chat can create conversations and spaces and see or update their metadata (including history settings and access settings)"
+        },
         "https://www.googleapis.com/auth/chat.bot": {
           "description": "Private Service: https://www.googleapis.com/auth/chat.bot"
         },
@@ -217,6 +223,8 @@
             "$ref": "Operation"
           },
           "scopes": [
+            "https://www.googleapis.com/auth/chat.app.memberships",
+            "https://www.googleapis.com/auth/chat.app.spaces",
             "https://www.googleapis.com/auth/chat.memberships",
             "https://www.googleapis.com/auth/chat.memberships.readonly",
             "https://www.googleapis.com/auth/chat.messages",
@@ -412,6 +420,8 @@
             "$ref": "Operation"
           },
           "scopes": [
+            "https://www.googleapis.com/auth/chat.app.memberships",
+            "https://www.googleapis.com/auth/chat.app.spaces",
             "https://www.googleapis.com/auth/chat.memberships",
             "https://www.googleapis.com/auth/chat.memberships.readonly",
             "https://www.googleapis.com/auth/chat.messages",
@@ -454,6 +464,8 @@
             "$ref": "Operation"
           },
           "scopes": [
+            "https://www.googleapis.com/auth/chat.app.memberships",
+            "https://www.googleapis.com/auth/chat.app.spaces",
             "https://www.googleapis.com/auth/chat.memberships",
             "https://www.googleapis.com/auth/chat.memberships.readonly",
             "https://www.googleapis.com/auth/chat.messages",
@@ -474,7 +486,7 @@
       }
     }
   },
-  "revision": "20250427",
+  "revision": "20250615",
   "rootUrl": "https://workspaceevents.googleapis.com/",
   "schemas": {
     "ListSubscriptionsResponse": {

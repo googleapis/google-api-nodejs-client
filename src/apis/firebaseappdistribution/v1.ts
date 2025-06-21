@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -855,6 +855,68 @@ export namespace firebaseappdistribution_v1 {
 
     /**
      * Uploads a binary. Uploading a binary can result in a new release being created, an update to an existing release, or a no-op if a release with the same binary already exists.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebaseappdistribution.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebaseappdistribution = google.firebaseappdistribution('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebaseappdistribution.media.upload({
+     *     // The name of the app resource. Format: `projects/{project_number\}/apps/{app_id\}`
+     *     app: 'projects/my-project/apps/my-app',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "blob": {}
+     *       // }
+     *     },
+     *     media: {
+     *       mimeType: 'placeholder-value',
+     *       body: 'placeholder-value',
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -864,11 +926,11 @@ export namespace firebaseappdistribution_v1 {
     upload(
       params: Params$Resource$Media$Upload,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     upload(
       params?: Params$Resource$Media$Upload,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     upload(
       params: Params$Resource$Media$Upload,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -903,8 +965,8 @@ export namespace firebaseappdistribution_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Media$Upload;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1003,6 +1065,54 @@ export namespace firebaseappdistribution_v1 {
 
     /**
      * Gets Android App Bundle (AAB) information for a Firebase app.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebaseappdistribution.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebaseappdistribution = google.firebaseappdistribution('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebaseappdistribution.projects.apps.getAabInfo({
+     *     // Required. The name of the `AabInfo` resource to retrieve. Format: `projects/{project_number\}/apps/{app_id\}/aabInfo`
+     *     name: 'projects/my-project/apps/my-app/aabInfo',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "integrationState": "my_integrationState",
+     *   //   "name": "my_name",
+     *   //   "testCertificate": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1012,11 +1122,13 @@ export namespace firebaseappdistribution_v1 {
     getAabInfo(
       params: Params$Resource$Projects$Apps$Getaabinfo,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getAabInfo(
       params?: Params$Resource$Projects$Apps$Getaabinfo,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppdistroV1AabInfo>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppdistroV1AabInfo>
+    >;
     getAabInfo(
       params: Params$Resource$Projects$Apps$Getaabinfo,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1051,8 +1163,10 @@ export namespace firebaseappdistribution_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppdistroV1AabInfo>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppdistroV1AabInfo>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Apps$Getaabinfo;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1120,6 +1234,58 @@ export namespace firebaseappdistribution_v1 {
 
     /**
      * Deletes releases. A maximum of 100 releases can be deleted per request.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebaseappdistribution.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebaseappdistribution = google.firebaseappdistribution('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebaseappdistribution.projects.apps.releases.batchDelete({
+     *     // Required. The name of the app resource, which is the parent of the release resources. Format: `projects/{project_number\}/apps/{app_id\}`
+     *     parent: 'projects/my-project/apps/my-app',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "names": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1129,11 +1295,11 @@ export namespace firebaseappdistribution_v1 {
     batchDelete(
       params: Params$Resource$Projects$Apps$Releases$Batchdelete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     batchDelete(
       params?: Params$Resource$Projects$Apps$Releases$Batchdelete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     batchDelete(
       params: Params$Resource$Projects$Apps$Releases$Batchdelete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1166,8 +1332,8 @@ export namespace firebaseappdistribution_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Apps$Releases$Batchdelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1214,6 +1380,59 @@ export namespace firebaseappdistribution_v1 {
 
     /**
      * Distributes a release to testers. This call does the following: 1. Creates testers for the specified emails, if none exist. 2. Adds the testers and groups to the release. 3. Sends new testers an invitation email. 4. Sends existing testers a new release email. The request will fail with a `INVALID_ARGUMENT` if it contains a group that doesn't exist.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebaseappdistribution.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebaseappdistribution = google.firebaseappdistribution('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebaseappdistribution.projects.apps.releases.distribute({
+     *     // Required. The name of the release resource to distribute. Format: `projects/{project_number\}/apps/{app_id\}/releases/{release_id\}`
+     *     name: 'projects/my-project/apps/my-app/releases/my-release',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "groupAliases": [],
+     *       //   "testerEmails": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1223,11 +1442,13 @@ export namespace firebaseappdistribution_v1 {
     distribute(
       params: Params$Resource$Projects$Apps$Releases$Distribute,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     distribute(
       params?: Params$Resource$Projects$Apps$Releases$Distribute,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppdistroV1DistributeReleaseResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppdistroV1DistributeReleaseResponse>
+    >;
     distribute(
       params: Params$Resource$Projects$Apps$Releases$Distribute,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1262,8 +1483,10 @@ export namespace firebaseappdistribution_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppdistroV1DistributeReleaseResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppdistroV1DistributeReleaseResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Apps$Releases$Distribute;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1312,6 +1535,59 @@ export namespace firebaseappdistribution_v1 {
 
     /**
      * Gets a release.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebaseappdistribution.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebaseappdistribution = google.firebaseappdistribution('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebaseappdistribution.projects.apps.releases.get({
+     *     // Required. The name of the release resource to retrieve. Format: projects/{project_number\}/apps/{app_id\}/releases/{release_id\}
+     *     name: 'projects/my-project/apps/my-app/releases/my-release',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "binaryDownloadUri": "my_binaryDownloadUri",
+     *   //   "buildVersion": "my_buildVersion",
+     *   //   "createTime": "my_createTime",
+     *   //   "displayVersion": "my_displayVersion",
+     *   //   "firebaseConsoleUri": "my_firebaseConsoleUri",
+     *   //   "name": "my_name",
+     *   //   "releaseNotes": {},
+     *   //   "testingUri": "my_testingUri"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1321,11 +1597,13 @@ export namespace firebaseappdistribution_v1 {
     get(
       params: Params$Resource$Projects$Apps$Releases$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Apps$Releases$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppdistroV1Release>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppdistroV1Release>
+    >;
     get(
       params: Params$Resource$Projects$Apps$Releases$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1360,8 +1638,10 @@ export namespace firebaseappdistribution_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppdistroV1Release>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppdistroV1Release>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Apps$Releases$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1407,6 +1687,61 @@ export namespace firebaseappdistribution_v1 {
 
     /**
      * Lists releases. By default, sorts by `createTime` in descending order.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebaseappdistribution.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebaseappdistribution = google.firebaseappdistribution('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebaseappdistribution.projects.apps.releases.list({
+     *     // The expression to filter releases listed in the response. To learn more about filtering, refer to [Google's AIP-160 standard](http://aip.dev/160). Supported fields: - `releaseNotes.text` supports `=` (can contain a wildcard character (`*`) at the beginning or end of the string) - `createTime` supports `<`, `<=`, `\>` and `\>=`, and expects an RFC-3339 formatted string Examples: - `createTime <= "2021-09-08T00:00:00+04:00"` - `releaseNotes.text="fixes" AND createTime \>= "2021-09-08T00:00:00.0Z"` - `releaseNotes.text="*v1.0.0-rc*"`
+     *     filter: 'placeholder-value',
+     *     // The fields used to order releases. Supported fields: - `createTime` To specify descending order for a field, append a "desc" suffix, for example, `createTime desc`. If this parameter is not set, releases are ordered by `createTime` in descending order.
+     *     orderBy: 'placeholder-value',
+     *     // The maximum number of releases to return. The service may return fewer than this value. The valid range is [1-100]; If unspecified (0), at most 25 releases are returned. Values above 100 are coerced to 100.
+     *     pageSize: 'placeholder-value',
+     *     // A page token, received from a previous `ListReleases` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListReleases` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The name of the app resource, which is the parent of the release resources. Format: `projects/{project_number\}/apps/{app_id\}`
+     *     parent: 'projects/my-project/apps/my-app',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "releases": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1416,11 +1751,13 @@ export namespace firebaseappdistribution_v1 {
     list(
       params: Params$Resource$Projects$Apps$Releases$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Apps$Releases$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppdistroV1ListReleasesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppdistroV1ListReleasesResponse>
+    >;
     list(
       params: Params$Resource$Projects$Apps$Releases$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1455,8 +1792,10 @@ export namespace firebaseappdistribution_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppdistroV1ListReleasesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppdistroV1ListReleasesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Apps$Releases$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1505,6 +1844,76 @@ export namespace firebaseappdistribution_v1 {
 
     /**
      * Updates a release.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebaseappdistribution.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebaseappdistribution = google.firebaseappdistribution('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebaseappdistribution.projects.apps.releases.patch({
+     *     // The name of the release resource. Format: `projects/{project_number\}/apps/{app_id\}/releases/{release_id\}`
+     *     name: 'projects/my-project/apps/my-app/releases/my-release',
+     *     // The list of fields to update.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "binaryDownloadUri": "my_binaryDownloadUri",
+     *       //   "buildVersion": "my_buildVersion",
+     *       //   "createTime": "my_createTime",
+     *       //   "displayVersion": "my_displayVersion",
+     *       //   "firebaseConsoleUri": "my_firebaseConsoleUri",
+     *       //   "name": "my_name",
+     *       //   "releaseNotes": {},
+     *       //   "testingUri": "my_testingUri"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "binaryDownloadUri": "my_binaryDownloadUri",
+     *   //   "buildVersion": "my_buildVersion",
+     *   //   "createTime": "my_createTime",
+     *   //   "displayVersion": "my_displayVersion",
+     *   //   "firebaseConsoleUri": "my_firebaseConsoleUri",
+     *   //   "name": "my_name",
+     *   //   "releaseNotes": {},
+     *   //   "testingUri": "my_testingUri"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1514,11 +1923,13 @@ export namespace firebaseappdistribution_v1 {
     patch(
       params: Params$Resource$Projects$Apps$Releases$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Apps$Releases$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppdistroV1Release>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppdistroV1Release>
+    >;
     patch(
       params: Params$Resource$Projects$Apps$Releases$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1553,8 +1964,10 @@ export namespace firebaseappdistribution_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppdistroV1Release>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppdistroV1Release>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Apps$Releases$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1678,6 +2091,53 @@ export namespace firebaseappdistribution_v1 {
 
     /**
      * Deletes a feedback report.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebaseappdistribution.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebaseappdistribution = google.firebaseappdistribution('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await firebaseappdistribution.projects.apps.releases.feedbackReports.delete(
+     *       {
+     *         // Required. The name of the feedback report to delete. Format: projects/{project_number\}/apps/{app\}/releases/{release\}/feedbackReports/{feedback_report\}
+     *         name: 'projects/my-project/apps/my-app/releases/my-release/feedbackReports/my-feedbackReport',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1687,11 +2147,11 @@ export namespace firebaseappdistribution_v1 {
     delete(
       params: Params$Resource$Projects$Apps$Releases$Feedbackreports$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Apps$Releases$Feedbackreports$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     delete(
       params: Params$Resource$Projects$Apps$Releases$Feedbackreports$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1722,8 +2182,8 @@ export namespace firebaseappdistribution_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Apps$Releases$Feedbackreports$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1768,6 +2228,58 @@ export namespace firebaseappdistribution_v1 {
 
     /**
      * Gets a feedback report.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebaseappdistribution.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebaseappdistribution = google.firebaseappdistribution('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await firebaseappdistribution.projects.apps.releases.feedbackReports.get({
+     *       // Required. The name of the feedback report to retrieve. Format: projects/{project_number\}/apps/{app\}/releases/{release\}/feedbackReports/{feedback_report\}
+     *       name: 'projects/my-project/apps/my-app/releases/my-release/feedbackReports/my-feedbackReport',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "firebaseConsoleUri": "my_firebaseConsoleUri",
+     *   //   "name": "my_name",
+     *   //   "screenshotUri": "my_screenshotUri",
+     *   //   "tester": "my_tester",
+     *   //   "text": "my_text"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1777,11 +2289,13 @@ export namespace firebaseappdistribution_v1 {
     get(
       params: Params$Resource$Projects$Apps$Releases$Feedbackreports$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Apps$Releases$Feedbackreports$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppdistroV1FeedbackReport>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppdistroV1FeedbackReport>
+    >;
     get(
       params: Params$Resource$Projects$Apps$Releases$Feedbackreports$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1816,8 +2330,10 @@ export namespace firebaseappdistribution_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppdistroV1FeedbackReport>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppdistroV1FeedbackReport>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Apps$Releases$Feedbackreports$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1864,6 +2380,58 @@ export namespace firebaseappdistribution_v1 {
 
     /**
      * Lists feedback reports. By default, sorts by `createTime` in descending order.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebaseappdistribution.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebaseappdistribution = google.firebaseappdistribution('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await firebaseappdistribution.projects.apps.releases.feedbackReports.list({
+     *       // The maximum number of feedback reports to return. The service may return fewer than this value. The valid range is [1-100]; If unspecified (0), at most 25 feedback reports are returned. Values above 100 are coerced to 100.
+     *       pageSize: 'placeholder-value',
+     *       // A page token, received from a previous `ListFeedbackReports` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListFeedbackReports` must match the call that provided the page token.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The name of the release resource, which is the parent of the feedback report resources. Format: `projects/{project_number\}/apps/{app\}/releases/{release\}`
+     *       parent: 'projects/my-project/apps/my-app/releases/my-release',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "feedbackReports": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1873,11 +2441,13 @@ export namespace firebaseappdistribution_v1 {
     list(
       params: Params$Resource$Projects$Apps$Releases$Feedbackreports$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Apps$Releases$Feedbackreports$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppdistroV1ListFeedbackReportsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppdistroV1ListFeedbackReportsResponse>
+    >;
     list(
       params: Params$Resource$Projects$Apps$Releases$Feedbackreports$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1912,8 +2482,10 @@ export namespace firebaseappdistribution_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppdistroV1ListFeedbackReportsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppdistroV1ListFeedbackReportsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Apps$Releases$Feedbackreports$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2000,6 +2572,57 @@ export namespace firebaseappdistribution_v1 {
 
     /**
      * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebaseappdistribution.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebaseappdistribution = google.firebaseappdistribution('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await firebaseappdistribution.projects.apps.releases.operations.cancel({
+     *       // The name of the operation resource to be cancelled.
+     *       name: 'projects/my-project/apps/my-app/releases/my-release/operations/my-operation',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {}
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2009,11 +2632,11 @@ export namespace firebaseappdistribution_v1 {
     cancel(
       params: Params$Resource$Projects$Apps$Releases$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     cancel(
       params?: Params$Resource$Projects$Apps$Releases$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     cancel(
       params: Params$Resource$Projects$Apps$Releases$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2044,8 +2667,8 @@ export namespace firebaseappdistribution_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Apps$Releases$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2089,6 +2712,51 @@ export namespace firebaseappdistribution_v1 {
 
     /**
      * Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebaseappdistribution.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebaseappdistribution = google.firebaseappdistribution('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await firebaseappdistribution.projects.apps.releases.operations.delete({
+     *       // The name of the operation resource to be deleted.
+     *       name: 'projects/my-project/apps/my-app/releases/my-release/operations/my-operation',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2098,11 +2766,11 @@ export namespace firebaseappdistribution_v1 {
     delete(
       params: Params$Resource$Projects$Apps$Releases$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Apps$Releases$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     delete(
       params: Params$Resource$Projects$Apps$Releases$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2133,8 +2801,8 @@ export namespace firebaseappdistribution_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Apps$Releases$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2178,6 +2846,57 @@ export namespace firebaseappdistribution_v1 {
 
     /**
      * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebaseappdistribution.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebaseappdistribution = google.firebaseappdistribution('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await firebaseappdistribution.projects.apps.releases.operations.get({
+     *       // The name of the operation resource.
+     *       name: 'projects/my-project/apps/my-app/releases/my-release/operations/my-operation',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2187,11 +2906,11 @@ export namespace firebaseappdistribution_v1 {
     get(
       params: Params$Resource$Projects$Apps$Releases$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Apps$Releases$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     get(
       params: Params$Resource$Projects$Apps$Releases$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2226,8 +2945,8 @@ export namespace firebaseappdistribution_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Apps$Releases$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2271,6 +2990,60 @@ export namespace firebaseappdistribution_v1 {
 
     /**
      * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebaseappdistribution.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebaseappdistribution = google.firebaseappdistribution('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await firebaseappdistribution.projects.apps.releases.operations.list({
+     *       // The standard list filter.
+     *       filter: 'placeholder-value',
+     *       // The name of the operation's parent resource.
+     *       name: 'projects/my-project/apps/my-app/releases/my-release',
+     *       // The standard list page size.
+     *       pageSize: 'placeholder-value',
+     *       // The standard list page token.
+     *       pageToken: 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "operations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2280,11 +3053,13 @@ export namespace firebaseappdistribution_v1 {
     list(
       params: Params$Resource$Projects$Apps$Releases$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Apps$Releases$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>
+    >;
     list(
       params: Params$Resource$Projects$Apps$Releases$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2319,8 +3094,10 @@ export namespace firebaseappdistribution_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Apps$Releases$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2369,6 +3146,65 @@ export namespace firebaseappdistribution_v1 {
 
     /**
      * Waits until the specified long-running operation is done or reaches at most a specified timeout, returning the latest state. If the operation is already done, the latest state is immediately returned. If the timeout specified is greater than the default HTTP/RPC timeout, the HTTP/RPC timeout is used. If the server does not support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Note that this method is on a best-effort basis. It may return the latest state before the specified timeout (including immediately), meaning even an immediate response is no guarantee that the operation is done.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebaseappdistribution.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebaseappdistribution = google.firebaseappdistribution('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await firebaseappdistribution.projects.apps.releases.operations.wait({
+     *       // The name of the operation resource to wait on.
+     *       name: 'projects/my-project/apps/my-app/releases/my-release/operations/my-operation',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "timeout": "my_timeout"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2378,11 +3214,11 @@ export namespace firebaseappdistribution_v1 {
     wait(
       params: Params$Resource$Projects$Apps$Releases$Operations$Wait,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     wait(
       params?: Params$Resource$Projects$Apps$Releases$Operations$Wait,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     wait(
       params: Params$Resource$Projects$Apps$Releases$Operations$Wait,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2417,8 +3253,8 @@ export namespace firebaseappdistribution_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Apps$Releases$Operations$Wait;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2527,6 +3363,59 @@ export namespace firebaseappdistribution_v1 {
 
     /**
      * Batch adds members to a group. The testers will gain access to all releases that the groups have access to.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebaseappdistribution.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebaseappdistribution = google.firebaseappdistribution('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebaseappdistribution.projects.groups.batchJoin({
+     *     // Required. The name of the group resource to which testers are added. Format: `projects/{project_number\}/groups/{group_alias\}`
+     *     group: 'projects/my-project/groups/my-group',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createMissingTesters": false,
+     *       //   "emails": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2536,11 +3425,11 @@ export namespace firebaseappdistribution_v1 {
     batchJoin(
       params: Params$Resource$Projects$Groups$Batchjoin,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     batchJoin(
       params?: Params$Resource$Projects$Groups$Batchjoin,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     batchJoin(
       params: Params$Resource$Projects$Groups$Batchjoin,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2571,8 +3460,8 @@ export namespace firebaseappdistribution_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Groups$Batchjoin;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2619,6 +3508,58 @@ export namespace firebaseappdistribution_v1 {
 
     /**
      * Batch removed members from a group. The testers will lose access to all releases that the groups have access to.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebaseappdistribution.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebaseappdistribution = google.firebaseappdistribution('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebaseappdistribution.projects.groups.batchLeave({
+     *     // Required. The name of the group resource from which testers are removed. Format: `projects/{project_number\}/groups/{group_alias\}`
+     *     group: 'projects/my-project/groups/my-group',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "emails": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2628,11 +3569,11 @@ export namespace firebaseappdistribution_v1 {
     batchLeave(
       params: Params$Resource$Projects$Groups$Batchleave,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     batchLeave(
       params?: Params$Resource$Projects$Groups$Batchleave,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     batchLeave(
       params: Params$Resource$Projects$Groups$Batchleave,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2665,8 +3606,8 @@ export namespace firebaseappdistribution_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Groups$Batchleave;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2713,6 +3654,70 @@ export namespace firebaseappdistribution_v1 {
 
     /**
      * Create a group.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebaseappdistribution.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebaseappdistribution = google.firebaseappdistribution('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebaseappdistribution.projects.groups.create({
+     *     // Optional. The "alias" to use for the group, which will become the final component of the group's resource name. This value must be unique per project. The field is named `groupId` to comply with AIP guidance for user-specified IDs. This value should be 4-63 characters, and valid characters are `/a-z-/`. If not set, it will be generated based on the display name.
+     *     groupId: 'placeholder-value',
+     *     // Required. The name of the project resource, which is the parent of the group resource. Format: `projects/{project_number\}`
+     *     parent: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "displayName": "my_displayName",
+     *       //   "inviteLinkCount": 0,
+     *       //   "name": "my_name",
+     *       //   "releaseCount": 0,
+     *       //   "testerCount": 0
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "inviteLinkCount": 0,
+     *   //   "name": "my_name",
+     *   //   "releaseCount": 0,
+     *   //   "testerCount": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2722,11 +3727,11 @@ export namespace firebaseappdistribution_v1 {
     create(
       params: Params$Resource$Projects$Groups$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Groups$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppdistroV1Group>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppdistroV1Group>>;
     create(
       params: Params$Resource$Projects$Groups$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2761,8 +3766,8 @@ export namespace firebaseappdistribution_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppdistroV1Group>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppdistroV1Group>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Groups$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2811,6 +3816,50 @@ export namespace firebaseappdistribution_v1 {
 
     /**
      * Delete a group.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebaseappdistribution.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebaseappdistribution = google.firebaseappdistribution('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebaseappdistribution.projects.groups.delete({
+     *     // Required. The name of the group resource. Format: `projects/{project_number\}/groups/{group_alias\}`
+     *     name: 'projects/my-project/groups/my-group',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2820,11 +3869,11 @@ export namespace firebaseappdistribution_v1 {
     delete(
       params: Params$Resource$Projects$Groups$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Groups$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     delete(
       params: Params$Resource$Projects$Groups$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2855,8 +3904,8 @@ export namespace firebaseappdistribution_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Groups$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2900,6 +3949,56 @@ export namespace firebaseappdistribution_v1 {
 
     /**
      * Get a group.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebaseappdistribution.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebaseappdistribution = google.firebaseappdistribution('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebaseappdistribution.projects.groups.get({
+     *     // Required. The name of the group resource to retrieve. Format: `projects/{project_number\}/groups/{group_alias\}`
+     *     name: 'projects/my-project/groups/my-group',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "inviteLinkCount": 0,
+     *   //   "name": "my_name",
+     *   //   "releaseCount": 0,
+     *   //   "testerCount": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2909,11 +4008,11 @@ export namespace firebaseappdistribution_v1 {
     get(
       params: Params$Resource$Projects$Groups$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Groups$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppdistroV1Group>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppdistroV1Group>>;
     get(
       params: Params$Resource$Projects$Groups$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2948,8 +4047,8 @@ export namespace firebaseappdistribution_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppdistroV1Group>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppdistroV1Group>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Groups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2995,6 +4094,57 @@ export namespace firebaseappdistribution_v1 {
 
     /**
      * List groups.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebaseappdistribution.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebaseappdistribution = google.firebaseappdistribution('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebaseappdistribution.projects.groups.list({
+     *     // Optional. The maximum number of groups to return. The service may return fewer than this value. The valid range is [1-1000]; If unspecified (0), at most 25 groups are returned. Values above 1000 are coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous `ListGroups` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListGroups` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The name of the project resource, which is the parent of the group resources. Format: `projects/{project_number\}`
+     *     parent: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "groups": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3004,11 +4154,13 @@ export namespace firebaseappdistribution_v1 {
     list(
       params: Params$Resource$Projects$Groups$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Groups$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppdistroV1ListGroupsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppdistroV1ListGroupsResponse>
+    >;
     list(
       params: Params$Resource$Projects$Groups$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3043,8 +4195,10 @@ export namespace firebaseappdistribution_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppdistroV1ListGroupsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppdistroV1ListGroupsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Groups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3093,6 +4247,70 @@ export namespace firebaseappdistribution_v1 {
 
     /**
      * Update a group.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebaseappdistribution.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebaseappdistribution = google.firebaseappdistribution('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebaseappdistribution.projects.groups.patch({
+     *     // The name of the group resource. Format: `projects/{project_number\}/groups/{group_alias\}`
+     *     name: 'projects/my-project/groups/my-group',
+     *     // The list of fields to update.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "displayName": "my_displayName",
+     *       //   "inviteLinkCount": 0,
+     *       //   "name": "my_name",
+     *       //   "releaseCount": 0,
+     *       //   "testerCount": 0
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "inviteLinkCount": 0,
+     *   //   "name": "my_name",
+     *   //   "releaseCount": 0,
+     *   //   "testerCount": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3102,11 +4320,11 @@ export namespace firebaseappdistribution_v1 {
     patch(
       params: Params$Resource$Projects$Groups$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Groups$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppdistroV1Group>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppdistroV1Group>>;
     patch(
       params: Params$Resource$Projects$Groups$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3141,8 +4359,8 @@ export namespace firebaseappdistribution_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppdistroV1Group>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppdistroV1Group>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Groups$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3281,6 +4499,60 @@ export namespace firebaseappdistribution_v1 {
 
     /**
      * Batch adds testers. This call adds testers for the specified emails if they don't already exist. Returns all testers specified in the request, including newly created and previously existing testers. This action is idempotent.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebaseappdistribution.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebaseappdistribution = google.firebaseappdistribution('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebaseappdistribution.projects.testers.batchAdd({
+     *     // Required. The name of the project resource. Format: `projects/{project_number\}`
+     *     project: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "emails": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "testers": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3290,11 +4562,13 @@ export namespace firebaseappdistribution_v1 {
     batchAdd(
       params: Params$Resource$Projects$Testers$Batchadd,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     batchAdd(
       params?: Params$Resource$Projects$Testers$Batchadd,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppdistroV1BatchAddTestersResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppdistroV1BatchAddTestersResponse>
+    >;
     batchAdd(
       params: Params$Resource$Projects$Testers$Batchadd,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3329,8 +4603,10 @@ export namespace firebaseappdistribution_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppdistroV1BatchAddTestersResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppdistroV1BatchAddTestersResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Testers$Batchadd;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3379,6 +4655,60 @@ export namespace firebaseappdistribution_v1 {
 
     /**
      * Batch removes testers. If found, this call deletes testers for the specified emails. Returns all deleted testers.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebaseappdistribution.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebaseappdistribution = google.firebaseappdistribution('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebaseappdistribution.projects.testers.batchRemove({
+     *     // Required. The name of the project resource. Format: `projects/{project_number\}`
+     *     project: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "emails": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "emails": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3388,11 +4718,13 @@ export namespace firebaseappdistribution_v1 {
     batchRemove(
       params: Params$Resource$Projects$Testers$Batchremove,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     batchRemove(
       params?: Params$Resource$Projects$Testers$Batchremove,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppdistroV1BatchRemoveTestersResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppdistroV1BatchRemoveTestersResponse>
+    >;
     batchRemove(
       params: Params$Resource$Projects$Testers$Batchremove,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3427,8 +4759,10 @@ export namespace firebaseappdistribution_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppdistroV1BatchRemoveTestersResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppdistroV1BatchRemoveTestersResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Testers$Batchremove;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3477,6 +4811,59 @@ export namespace firebaseappdistribution_v1 {
 
     /**
      * Lists testers and their resource ids.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebaseappdistribution.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebaseappdistribution = google.firebaseappdistribution('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebaseappdistribution.projects.testers.list({
+     *     // Optional. The expression to filter testers listed in the response. To learn more about filtering, refer to [Google's AIP-160 standard](http://aip.dev/160). Supported fields: - `name` - `displayName` - `groups` Example: - `name = "projects/-/testers/x@example.com"` - `displayName = "Joe Sixpack"` - `groups = "projects/x/groups/qa-team"`
+     *     filter: 'placeholder-value',
+     *     // Optional. The maximum number of testers to return. The service may return fewer than this value. The valid range is [1-1000]; If unspecified (0), at most 10 testers are returned. Values above 1000 are coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous `ListTesters` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListTesters` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The name of the project resource, which is the parent of the tester resources. Format: `projects/{project_number\}`
+     *     parent: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "testers": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3486,11 +4873,13 @@ export namespace firebaseappdistribution_v1 {
     list(
       params: Params$Resource$Projects$Testers$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Testers$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppdistroV1ListTestersResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppdistroV1ListTestersResponse>
+    >;
     list(
       params: Params$Resource$Projects$Testers$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3525,8 +4914,10 @@ export namespace firebaseappdistribution_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppdistroV1ListTestersResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppdistroV1ListTestersResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Testers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3575,6 +4966,68 @@ export namespace firebaseappdistribution_v1 {
 
     /**
      * Update a tester. If the testers joins a group they gain access to all releases that the group has access to.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebaseappdistribution.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebaseappdistribution = google.firebaseappdistribution('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebaseappdistribution.projects.testers.patch({
+     *     // The name of the tester resource. Format: `projects/{project_number\}/testers/{email_address\}`
+     *     name: 'projects/my-project/testers/my-tester',
+     *     // The list of fields to update.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "displayName": "my_displayName",
+     *       //   "groups": [],
+     *       //   "lastActivityTime": "my_lastActivityTime",
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "groups": [],
+     *   //   "lastActivityTime": "my_lastActivityTime",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3584,11 +5037,11 @@ export namespace firebaseappdistribution_v1 {
     patch(
       params: Params$Resource$Projects$Testers$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Testers$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppdistroV1Tester>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppdistroV1Tester>>;
     patch(
       params: Params$Resource$Projects$Testers$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3623,8 +5076,8 @@ export namespace firebaseappdistribution_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppdistroV1Tester>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppdistroV1Tester>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Testers$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;

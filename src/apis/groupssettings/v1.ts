@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -572,6 +572,113 @@ export namespace groupssettings_v1 {
 
     /**
      * Gets one resource by id.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/groupssettings.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const groupssettings = google.groupssettings('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/apps.groups.settings'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await groupsSettings.groups.get({
+     *     // The group's email address.
+     *     groupUniqueId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allowExternalMembers": "my_allowExternalMembers",
+     *   //   "allowGoogleCommunication": "my_allowGoogleCommunication",
+     *   //   "allowWebPosting": "my_allowWebPosting",
+     *   //   "archiveOnly": "my_archiveOnly",
+     *   //   "customFooterText": "my_customFooterText",
+     *   //   "customReplyTo": "my_customReplyTo",
+     *   //   "customRolesEnabledForSettingsToBeMerged": "my_customRolesEnabledForSettingsToBeMerged",
+     *   //   "defaultMessageDenyNotificationText": "my_defaultMessageDenyNotificationText",
+     *   //   "default_sender": "my_default_sender",
+     *   //   "description": "my_description",
+     *   //   "email": "my_email",
+     *   //   "enableCollaborativeInbox": "my_enableCollaborativeInbox",
+     *   //   "favoriteRepliesOnTop": "my_favoriteRepliesOnTop",
+     *   //   "includeCustomFooter": "my_includeCustomFooter",
+     *   //   "includeInGlobalAddressList": "my_includeInGlobalAddressList",
+     *   //   "isArchived": "my_isArchived",
+     *   //   "kind": "my_kind",
+     *   //   "maxMessageBytes": 0,
+     *   //   "membersCanPostAsTheGroup": "my_membersCanPostAsTheGroup",
+     *   //   "messageDisplayFont": "my_messageDisplayFont",
+     *   //   "messageModerationLevel": "my_messageModerationLevel",
+     *   //   "name": "my_name",
+     *   //   "primaryLanguage": "my_primaryLanguage",
+     *   //   "replyTo": "my_replyTo",
+     *   //   "sendMessageDenyNotification": "my_sendMessageDenyNotification",
+     *   //   "showInGroupDirectory": "my_showInGroupDirectory",
+     *   //   "spamModerationLevel": "my_spamModerationLevel",
+     *   //   "whoCanAdd": "my_whoCanAdd",
+     *   //   "whoCanAddReferences": "my_whoCanAddReferences",
+     *   //   "whoCanApproveMembers": "my_whoCanApproveMembers",
+     *   //   "whoCanApproveMessages": "my_whoCanApproveMessages",
+     *   //   "whoCanAssignTopics": "my_whoCanAssignTopics",
+     *   //   "whoCanAssistContent": "my_whoCanAssistContent",
+     *   //   "whoCanBanUsers": "my_whoCanBanUsers",
+     *   //   "whoCanContactOwner": "my_whoCanContactOwner",
+     *   //   "whoCanDeleteAnyPost": "my_whoCanDeleteAnyPost",
+     *   //   "whoCanDeleteTopics": "my_whoCanDeleteTopics",
+     *   //   "whoCanDiscoverGroup": "my_whoCanDiscoverGroup",
+     *   //   "whoCanEnterFreeFormTags": "my_whoCanEnterFreeFormTags",
+     *   //   "whoCanHideAbuse": "my_whoCanHideAbuse",
+     *   //   "whoCanInvite": "my_whoCanInvite",
+     *   //   "whoCanJoin": "my_whoCanJoin",
+     *   //   "whoCanLeaveGroup": "my_whoCanLeaveGroup",
+     *   //   "whoCanLockTopics": "my_whoCanLockTopics",
+     *   //   "whoCanMakeTopicsSticky": "my_whoCanMakeTopicsSticky",
+     *   //   "whoCanMarkDuplicate": "my_whoCanMarkDuplicate",
+     *   //   "whoCanMarkFavoriteReplyOnAnyTopic": "my_whoCanMarkFavoriteReplyOnAnyTopic",
+     *   //   "whoCanMarkFavoriteReplyOnOwnTopic": "my_whoCanMarkFavoriteReplyOnOwnTopic",
+     *   //   "whoCanMarkNoResponseNeeded": "my_whoCanMarkNoResponseNeeded",
+     *   //   "whoCanModerateContent": "my_whoCanModerateContent",
+     *   //   "whoCanModerateMembers": "my_whoCanModerateMembers",
+     *   //   "whoCanModifyMembers": "my_whoCanModifyMembers",
+     *   //   "whoCanModifyTagsAndCategories": "my_whoCanModifyTagsAndCategories",
+     *   //   "whoCanMoveTopicsIn": "my_whoCanMoveTopicsIn",
+     *   //   "whoCanMoveTopicsOut": "my_whoCanMoveTopicsOut",
+     *   //   "whoCanPostAnnouncements": "my_whoCanPostAnnouncements",
+     *   //   "whoCanPostMessage": "my_whoCanPostMessage",
+     *   //   "whoCanTakeTopics": "my_whoCanTakeTopics",
+     *   //   "whoCanUnassignTopic": "my_whoCanUnassignTopic",
+     *   //   "whoCanUnmarkFavoriteReplyOnAnyTopic": "my_whoCanUnmarkFavoriteReplyOnAnyTopic",
+     *   //   "whoCanViewGroup": "my_whoCanViewGroup",
+     *   //   "whoCanViewMembership": "my_whoCanViewMembership"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -581,11 +688,11 @@ export namespace groupssettings_v1 {
     get(
       params: Params$Resource$Groups$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Groups$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Groups>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Groups>>;
     get(
       params: Params$Resource$Groups$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -614,7 +721,10 @@ export namespace groupssettings_v1 {
       callback?:
         | BodyResponseCallback<Schema$Groups>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Groups> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Groups>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -659,6 +769,182 @@ export namespace groupssettings_v1 {
 
     /**
      * Updates an existing resource. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/groupssettings.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const groupssettings = google.groupssettings('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/apps.groups.settings'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await groupsSettings.groups.patch({
+     *     // The group's email address.
+     *     groupUniqueId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "allowExternalMembers": "my_allowExternalMembers",
+     *       //   "allowGoogleCommunication": "my_allowGoogleCommunication",
+     *       //   "allowWebPosting": "my_allowWebPosting",
+     *       //   "archiveOnly": "my_archiveOnly",
+     *       //   "customFooterText": "my_customFooterText",
+     *       //   "customReplyTo": "my_customReplyTo",
+     *       //   "customRolesEnabledForSettingsToBeMerged": "my_customRolesEnabledForSettingsToBeMerged",
+     *       //   "defaultMessageDenyNotificationText": "my_defaultMessageDenyNotificationText",
+     *       //   "default_sender": "my_default_sender",
+     *       //   "description": "my_description",
+     *       //   "email": "my_email",
+     *       //   "enableCollaborativeInbox": "my_enableCollaborativeInbox",
+     *       //   "favoriteRepliesOnTop": "my_favoriteRepliesOnTop",
+     *       //   "includeCustomFooter": "my_includeCustomFooter",
+     *       //   "includeInGlobalAddressList": "my_includeInGlobalAddressList",
+     *       //   "isArchived": "my_isArchived",
+     *       //   "kind": "my_kind",
+     *       //   "maxMessageBytes": 0,
+     *       //   "membersCanPostAsTheGroup": "my_membersCanPostAsTheGroup",
+     *       //   "messageDisplayFont": "my_messageDisplayFont",
+     *       //   "messageModerationLevel": "my_messageModerationLevel",
+     *       //   "name": "my_name",
+     *       //   "primaryLanguage": "my_primaryLanguage",
+     *       //   "replyTo": "my_replyTo",
+     *       //   "sendMessageDenyNotification": "my_sendMessageDenyNotification",
+     *       //   "showInGroupDirectory": "my_showInGroupDirectory",
+     *       //   "spamModerationLevel": "my_spamModerationLevel",
+     *       //   "whoCanAdd": "my_whoCanAdd",
+     *       //   "whoCanAddReferences": "my_whoCanAddReferences",
+     *       //   "whoCanApproveMembers": "my_whoCanApproveMembers",
+     *       //   "whoCanApproveMessages": "my_whoCanApproveMessages",
+     *       //   "whoCanAssignTopics": "my_whoCanAssignTopics",
+     *       //   "whoCanAssistContent": "my_whoCanAssistContent",
+     *       //   "whoCanBanUsers": "my_whoCanBanUsers",
+     *       //   "whoCanContactOwner": "my_whoCanContactOwner",
+     *       //   "whoCanDeleteAnyPost": "my_whoCanDeleteAnyPost",
+     *       //   "whoCanDeleteTopics": "my_whoCanDeleteTopics",
+     *       //   "whoCanDiscoverGroup": "my_whoCanDiscoverGroup",
+     *       //   "whoCanEnterFreeFormTags": "my_whoCanEnterFreeFormTags",
+     *       //   "whoCanHideAbuse": "my_whoCanHideAbuse",
+     *       //   "whoCanInvite": "my_whoCanInvite",
+     *       //   "whoCanJoin": "my_whoCanJoin",
+     *       //   "whoCanLeaveGroup": "my_whoCanLeaveGroup",
+     *       //   "whoCanLockTopics": "my_whoCanLockTopics",
+     *       //   "whoCanMakeTopicsSticky": "my_whoCanMakeTopicsSticky",
+     *       //   "whoCanMarkDuplicate": "my_whoCanMarkDuplicate",
+     *       //   "whoCanMarkFavoriteReplyOnAnyTopic": "my_whoCanMarkFavoriteReplyOnAnyTopic",
+     *       //   "whoCanMarkFavoriteReplyOnOwnTopic": "my_whoCanMarkFavoriteReplyOnOwnTopic",
+     *       //   "whoCanMarkNoResponseNeeded": "my_whoCanMarkNoResponseNeeded",
+     *       //   "whoCanModerateContent": "my_whoCanModerateContent",
+     *       //   "whoCanModerateMembers": "my_whoCanModerateMembers",
+     *       //   "whoCanModifyMembers": "my_whoCanModifyMembers",
+     *       //   "whoCanModifyTagsAndCategories": "my_whoCanModifyTagsAndCategories",
+     *       //   "whoCanMoveTopicsIn": "my_whoCanMoveTopicsIn",
+     *       //   "whoCanMoveTopicsOut": "my_whoCanMoveTopicsOut",
+     *       //   "whoCanPostAnnouncements": "my_whoCanPostAnnouncements",
+     *       //   "whoCanPostMessage": "my_whoCanPostMessage",
+     *       //   "whoCanTakeTopics": "my_whoCanTakeTopics",
+     *       //   "whoCanUnassignTopic": "my_whoCanUnassignTopic",
+     *       //   "whoCanUnmarkFavoriteReplyOnAnyTopic": "my_whoCanUnmarkFavoriteReplyOnAnyTopic",
+     *       //   "whoCanViewGroup": "my_whoCanViewGroup",
+     *       //   "whoCanViewMembership": "my_whoCanViewMembership"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allowExternalMembers": "my_allowExternalMembers",
+     *   //   "allowGoogleCommunication": "my_allowGoogleCommunication",
+     *   //   "allowWebPosting": "my_allowWebPosting",
+     *   //   "archiveOnly": "my_archiveOnly",
+     *   //   "customFooterText": "my_customFooterText",
+     *   //   "customReplyTo": "my_customReplyTo",
+     *   //   "customRolesEnabledForSettingsToBeMerged": "my_customRolesEnabledForSettingsToBeMerged",
+     *   //   "defaultMessageDenyNotificationText": "my_defaultMessageDenyNotificationText",
+     *   //   "default_sender": "my_default_sender",
+     *   //   "description": "my_description",
+     *   //   "email": "my_email",
+     *   //   "enableCollaborativeInbox": "my_enableCollaborativeInbox",
+     *   //   "favoriteRepliesOnTop": "my_favoriteRepliesOnTop",
+     *   //   "includeCustomFooter": "my_includeCustomFooter",
+     *   //   "includeInGlobalAddressList": "my_includeInGlobalAddressList",
+     *   //   "isArchived": "my_isArchived",
+     *   //   "kind": "my_kind",
+     *   //   "maxMessageBytes": 0,
+     *   //   "membersCanPostAsTheGroup": "my_membersCanPostAsTheGroup",
+     *   //   "messageDisplayFont": "my_messageDisplayFont",
+     *   //   "messageModerationLevel": "my_messageModerationLevel",
+     *   //   "name": "my_name",
+     *   //   "primaryLanguage": "my_primaryLanguage",
+     *   //   "replyTo": "my_replyTo",
+     *   //   "sendMessageDenyNotification": "my_sendMessageDenyNotification",
+     *   //   "showInGroupDirectory": "my_showInGroupDirectory",
+     *   //   "spamModerationLevel": "my_spamModerationLevel",
+     *   //   "whoCanAdd": "my_whoCanAdd",
+     *   //   "whoCanAddReferences": "my_whoCanAddReferences",
+     *   //   "whoCanApproveMembers": "my_whoCanApproveMembers",
+     *   //   "whoCanApproveMessages": "my_whoCanApproveMessages",
+     *   //   "whoCanAssignTopics": "my_whoCanAssignTopics",
+     *   //   "whoCanAssistContent": "my_whoCanAssistContent",
+     *   //   "whoCanBanUsers": "my_whoCanBanUsers",
+     *   //   "whoCanContactOwner": "my_whoCanContactOwner",
+     *   //   "whoCanDeleteAnyPost": "my_whoCanDeleteAnyPost",
+     *   //   "whoCanDeleteTopics": "my_whoCanDeleteTopics",
+     *   //   "whoCanDiscoverGroup": "my_whoCanDiscoverGroup",
+     *   //   "whoCanEnterFreeFormTags": "my_whoCanEnterFreeFormTags",
+     *   //   "whoCanHideAbuse": "my_whoCanHideAbuse",
+     *   //   "whoCanInvite": "my_whoCanInvite",
+     *   //   "whoCanJoin": "my_whoCanJoin",
+     *   //   "whoCanLeaveGroup": "my_whoCanLeaveGroup",
+     *   //   "whoCanLockTopics": "my_whoCanLockTopics",
+     *   //   "whoCanMakeTopicsSticky": "my_whoCanMakeTopicsSticky",
+     *   //   "whoCanMarkDuplicate": "my_whoCanMarkDuplicate",
+     *   //   "whoCanMarkFavoriteReplyOnAnyTopic": "my_whoCanMarkFavoriteReplyOnAnyTopic",
+     *   //   "whoCanMarkFavoriteReplyOnOwnTopic": "my_whoCanMarkFavoriteReplyOnOwnTopic",
+     *   //   "whoCanMarkNoResponseNeeded": "my_whoCanMarkNoResponseNeeded",
+     *   //   "whoCanModerateContent": "my_whoCanModerateContent",
+     *   //   "whoCanModerateMembers": "my_whoCanModerateMembers",
+     *   //   "whoCanModifyMembers": "my_whoCanModifyMembers",
+     *   //   "whoCanModifyTagsAndCategories": "my_whoCanModifyTagsAndCategories",
+     *   //   "whoCanMoveTopicsIn": "my_whoCanMoveTopicsIn",
+     *   //   "whoCanMoveTopicsOut": "my_whoCanMoveTopicsOut",
+     *   //   "whoCanPostAnnouncements": "my_whoCanPostAnnouncements",
+     *   //   "whoCanPostMessage": "my_whoCanPostMessage",
+     *   //   "whoCanTakeTopics": "my_whoCanTakeTopics",
+     *   //   "whoCanUnassignTopic": "my_whoCanUnassignTopic",
+     *   //   "whoCanUnmarkFavoriteReplyOnAnyTopic": "my_whoCanUnmarkFavoriteReplyOnAnyTopic",
+     *   //   "whoCanViewGroup": "my_whoCanViewGroup",
+     *   //   "whoCanViewMembership": "my_whoCanViewMembership"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -668,11 +954,11 @@ export namespace groupssettings_v1 {
     patch(
       params: Params$Resource$Groups$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Groups$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Groups>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Groups>>;
     patch(
       params: Params$Resource$Groups$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -701,7 +987,10 @@ export namespace groupssettings_v1 {
       callback?:
         | BodyResponseCallback<Schema$Groups>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Groups> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Groups>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groups$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -746,6 +1035,182 @@ export namespace groupssettings_v1 {
 
     /**
      * Updates an existing resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/groupssettings.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const groupssettings = google.groupssettings('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/apps.groups.settings'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await groupsSettings.groups.update({
+     *     // The group's email address.
+     *     groupUniqueId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "allowExternalMembers": "my_allowExternalMembers",
+     *       //   "allowGoogleCommunication": "my_allowGoogleCommunication",
+     *       //   "allowWebPosting": "my_allowWebPosting",
+     *       //   "archiveOnly": "my_archiveOnly",
+     *       //   "customFooterText": "my_customFooterText",
+     *       //   "customReplyTo": "my_customReplyTo",
+     *       //   "customRolesEnabledForSettingsToBeMerged": "my_customRolesEnabledForSettingsToBeMerged",
+     *       //   "defaultMessageDenyNotificationText": "my_defaultMessageDenyNotificationText",
+     *       //   "default_sender": "my_default_sender",
+     *       //   "description": "my_description",
+     *       //   "email": "my_email",
+     *       //   "enableCollaborativeInbox": "my_enableCollaborativeInbox",
+     *       //   "favoriteRepliesOnTop": "my_favoriteRepliesOnTop",
+     *       //   "includeCustomFooter": "my_includeCustomFooter",
+     *       //   "includeInGlobalAddressList": "my_includeInGlobalAddressList",
+     *       //   "isArchived": "my_isArchived",
+     *       //   "kind": "my_kind",
+     *       //   "maxMessageBytes": 0,
+     *       //   "membersCanPostAsTheGroup": "my_membersCanPostAsTheGroup",
+     *       //   "messageDisplayFont": "my_messageDisplayFont",
+     *       //   "messageModerationLevel": "my_messageModerationLevel",
+     *       //   "name": "my_name",
+     *       //   "primaryLanguage": "my_primaryLanguage",
+     *       //   "replyTo": "my_replyTo",
+     *       //   "sendMessageDenyNotification": "my_sendMessageDenyNotification",
+     *       //   "showInGroupDirectory": "my_showInGroupDirectory",
+     *       //   "spamModerationLevel": "my_spamModerationLevel",
+     *       //   "whoCanAdd": "my_whoCanAdd",
+     *       //   "whoCanAddReferences": "my_whoCanAddReferences",
+     *       //   "whoCanApproveMembers": "my_whoCanApproveMembers",
+     *       //   "whoCanApproveMessages": "my_whoCanApproveMessages",
+     *       //   "whoCanAssignTopics": "my_whoCanAssignTopics",
+     *       //   "whoCanAssistContent": "my_whoCanAssistContent",
+     *       //   "whoCanBanUsers": "my_whoCanBanUsers",
+     *       //   "whoCanContactOwner": "my_whoCanContactOwner",
+     *       //   "whoCanDeleteAnyPost": "my_whoCanDeleteAnyPost",
+     *       //   "whoCanDeleteTopics": "my_whoCanDeleteTopics",
+     *       //   "whoCanDiscoverGroup": "my_whoCanDiscoverGroup",
+     *       //   "whoCanEnterFreeFormTags": "my_whoCanEnterFreeFormTags",
+     *       //   "whoCanHideAbuse": "my_whoCanHideAbuse",
+     *       //   "whoCanInvite": "my_whoCanInvite",
+     *       //   "whoCanJoin": "my_whoCanJoin",
+     *       //   "whoCanLeaveGroup": "my_whoCanLeaveGroup",
+     *       //   "whoCanLockTopics": "my_whoCanLockTopics",
+     *       //   "whoCanMakeTopicsSticky": "my_whoCanMakeTopicsSticky",
+     *       //   "whoCanMarkDuplicate": "my_whoCanMarkDuplicate",
+     *       //   "whoCanMarkFavoriteReplyOnAnyTopic": "my_whoCanMarkFavoriteReplyOnAnyTopic",
+     *       //   "whoCanMarkFavoriteReplyOnOwnTopic": "my_whoCanMarkFavoriteReplyOnOwnTopic",
+     *       //   "whoCanMarkNoResponseNeeded": "my_whoCanMarkNoResponseNeeded",
+     *       //   "whoCanModerateContent": "my_whoCanModerateContent",
+     *       //   "whoCanModerateMembers": "my_whoCanModerateMembers",
+     *       //   "whoCanModifyMembers": "my_whoCanModifyMembers",
+     *       //   "whoCanModifyTagsAndCategories": "my_whoCanModifyTagsAndCategories",
+     *       //   "whoCanMoveTopicsIn": "my_whoCanMoveTopicsIn",
+     *       //   "whoCanMoveTopicsOut": "my_whoCanMoveTopicsOut",
+     *       //   "whoCanPostAnnouncements": "my_whoCanPostAnnouncements",
+     *       //   "whoCanPostMessage": "my_whoCanPostMessage",
+     *       //   "whoCanTakeTopics": "my_whoCanTakeTopics",
+     *       //   "whoCanUnassignTopic": "my_whoCanUnassignTopic",
+     *       //   "whoCanUnmarkFavoriteReplyOnAnyTopic": "my_whoCanUnmarkFavoriteReplyOnAnyTopic",
+     *       //   "whoCanViewGroup": "my_whoCanViewGroup",
+     *       //   "whoCanViewMembership": "my_whoCanViewMembership"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allowExternalMembers": "my_allowExternalMembers",
+     *   //   "allowGoogleCommunication": "my_allowGoogleCommunication",
+     *   //   "allowWebPosting": "my_allowWebPosting",
+     *   //   "archiveOnly": "my_archiveOnly",
+     *   //   "customFooterText": "my_customFooterText",
+     *   //   "customReplyTo": "my_customReplyTo",
+     *   //   "customRolesEnabledForSettingsToBeMerged": "my_customRolesEnabledForSettingsToBeMerged",
+     *   //   "defaultMessageDenyNotificationText": "my_defaultMessageDenyNotificationText",
+     *   //   "default_sender": "my_default_sender",
+     *   //   "description": "my_description",
+     *   //   "email": "my_email",
+     *   //   "enableCollaborativeInbox": "my_enableCollaborativeInbox",
+     *   //   "favoriteRepliesOnTop": "my_favoriteRepliesOnTop",
+     *   //   "includeCustomFooter": "my_includeCustomFooter",
+     *   //   "includeInGlobalAddressList": "my_includeInGlobalAddressList",
+     *   //   "isArchived": "my_isArchived",
+     *   //   "kind": "my_kind",
+     *   //   "maxMessageBytes": 0,
+     *   //   "membersCanPostAsTheGroup": "my_membersCanPostAsTheGroup",
+     *   //   "messageDisplayFont": "my_messageDisplayFont",
+     *   //   "messageModerationLevel": "my_messageModerationLevel",
+     *   //   "name": "my_name",
+     *   //   "primaryLanguage": "my_primaryLanguage",
+     *   //   "replyTo": "my_replyTo",
+     *   //   "sendMessageDenyNotification": "my_sendMessageDenyNotification",
+     *   //   "showInGroupDirectory": "my_showInGroupDirectory",
+     *   //   "spamModerationLevel": "my_spamModerationLevel",
+     *   //   "whoCanAdd": "my_whoCanAdd",
+     *   //   "whoCanAddReferences": "my_whoCanAddReferences",
+     *   //   "whoCanApproveMembers": "my_whoCanApproveMembers",
+     *   //   "whoCanApproveMessages": "my_whoCanApproveMessages",
+     *   //   "whoCanAssignTopics": "my_whoCanAssignTopics",
+     *   //   "whoCanAssistContent": "my_whoCanAssistContent",
+     *   //   "whoCanBanUsers": "my_whoCanBanUsers",
+     *   //   "whoCanContactOwner": "my_whoCanContactOwner",
+     *   //   "whoCanDeleteAnyPost": "my_whoCanDeleteAnyPost",
+     *   //   "whoCanDeleteTopics": "my_whoCanDeleteTopics",
+     *   //   "whoCanDiscoverGroup": "my_whoCanDiscoverGroup",
+     *   //   "whoCanEnterFreeFormTags": "my_whoCanEnterFreeFormTags",
+     *   //   "whoCanHideAbuse": "my_whoCanHideAbuse",
+     *   //   "whoCanInvite": "my_whoCanInvite",
+     *   //   "whoCanJoin": "my_whoCanJoin",
+     *   //   "whoCanLeaveGroup": "my_whoCanLeaveGroup",
+     *   //   "whoCanLockTopics": "my_whoCanLockTopics",
+     *   //   "whoCanMakeTopicsSticky": "my_whoCanMakeTopicsSticky",
+     *   //   "whoCanMarkDuplicate": "my_whoCanMarkDuplicate",
+     *   //   "whoCanMarkFavoriteReplyOnAnyTopic": "my_whoCanMarkFavoriteReplyOnAnyTopic",
+     *   //   "whoCanMarkFavoriteReplyOnOwnTopic": "my_whoCanMarkFavoriteReplyOnOwnTopic",
+     *   //   "whoCanMarkNoResponseNeeded": "my_whoCanMarkNoResponseNeeded",
+     *   //   "whoCanModerateContent": "my_whoCanModerateContent",
+     *   //   "whoCanModerateMembers": "my_whoCanModerateMembers",
+     *   //   "whoCanModifyMembers": "my_whoCanModifyMembers",
+     *   //   "whoCanModifyTagsAndCategories": "my_whoCanModifyTagsAndCategories",
+     *   //   "whoCanMoveTopicsIn": "my_whoCanMoveTopicsIn",
+     *   //   "whoCanMoveTopicsOut": "my_whoCanMoveTopicsOut",
+     *   //   "whoCanPostAnnouncements": "my_whoCanPostAnnouncements",
+     *   //   "whoCanPostMessage": "my_whoCanPostMessage",
+     *   //   "whoCanTakeTopics": "my_whoCanTakeTopics",
+     *   //   "whoCanUnassignTopic": "my_whoCanUnassignTopic",
+     *   //   "whoCanUnmarkFavoriteReplyOnAnyTopic": "my_whoCanUnmarkFavoriteReplyOnAnyTopic",
+     *   //   "whoCanViewGroup": "my_whoCanViewGroup",
+     *   //   "whoCanViewMembership": "my_whoCanViewMembership"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -755,11 +1220,11 @@ export namespace groupssettings_v1 {
     update(
       params: Params$Resource$Groups$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Groups$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Groups>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Groups>>;
     update(
       params: Params$Resource$Groups$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -788,7 +1253,10 @@ export namespace groupssettings_v1 {
       callback?:
         | BodyResponseCallback<Schema$Groups>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Groups> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Groups>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groups$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

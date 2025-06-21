@@ -24,7 +24,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -1060,11 +1060,11 @@ export namespace analyticsdata_v1alpha {
     getMetadata(
       params: Params$Resource$Properties$Getmetadata,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getMetadata(
       params?: Params$Resource$Properties$Getmetadata,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Metadata>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Metadata>>;
     getMetadata(
       params: Params$Resource$Properties$Getmetadata,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1093,7 +1093,7 @@ export namespace analyticsdata_v1alpha {
       callback?:
         | BodyResponseCallback<Schema$Metadata>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Metadata> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Metadata>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Getmetadata;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1212,11 +1212,11 @@ export namespace analyticsdata_v1alpha {
     runRealtimeReport(
       params: Params$Resource$Properties$Runrealtimereport,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     runRealtimeReport(
       params?: Params$Resource$Properties$Runrealtimereport,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RunRealtimeReportResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$RunRealtimeReportResponse>>;
     runRealtimeReport(
       params: Params$Resource$Properties$Runrealtimereport,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1251,8 +1251,8 @@ export namespace analyticsdata_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$RunRealtimeReportResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$RunRealtimeReportResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Runrealtimereport;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1385,11 +1385,11 @@ export namespace analyticsdata_v1alpha {
     batchRunPivotReports(
       params: Params$Resource$V1alpha$Batchrunpivotreports,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     batchRunPivotReports(
       params?: Params$Resource$V1alpha$Batchrunpivotreports,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BatchRunPivotReportsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BatchRunPivotReportsResponse>>;
     batchRunPivotReports(
       params: Params$Resource$V1alpha$Batchrunpivotreports,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1424,8 +1424,8 @@ export namespace analyticsdata_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BatchRunPivotReportsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$BatchRunPivotReportsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$V1alpha$Batchrunpivotreports;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1533,11 +1533,11 @@ export namespace analyticsdata_v1alpha {
     batchRunReports(
       params: Params$Resource$V1alpha$Batchrunreports,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     batchRunReports(
       params?: Params$Resource$V1alpha$Batchrunreports,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BatchRunReportsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BatchRunReportsResponse>>;
     batchRunReports(
       params: Params$Resource$V1alpha$Batchrunreports,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1572,8 +1572,8 @@ export namespace analyticsdata_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BatchRunReportsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$BatchRunReportsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$V1alpha$Batchrunreports;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1694,11 +1694,11 @@ export namespace analyticsdata_v1alpha {
     runPivotReport(
       params: Params$Resource$V1alpha$Runpivotreport,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     runPivotReport(
       params?: Params$Resource$V1alpha$Runpivotreport,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RunPivotReportResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$RunPivotReportResponse>>;
     runPivotReport(
       params: Params$Resource$V1alpha$Runpivotreport,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1733,8 +1733,8 @@ export namespace analyticsdata_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$RunPivotReportResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$RunPivotReportResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$V1alpha$Runpivotreport;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1860,11 +1860,11 @@ export namespace analyticsdata_v1alpha {
     runReport(
       params: Params$Resource$V1alpha$Runreport,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     runReport(
       params?: Params$Resource$V1alpha$Runreport,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RunReportResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$RunReportResponse>>;
     runReport(
       params: Params$Resource$V1alpha$Runreport,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1895,8 +1895,8 @@ export namespace analyticsdata_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$RunReportResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$RunReportResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$V1alpha$Runreport;
       let options = (optionsOrCallback || {}) as MethodOptions;

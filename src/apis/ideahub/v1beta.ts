@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -361,11 +361,11 @@ export namespace ideahub_v1beta {
     create(
       params: Params$Resource$Platforms$Properties$Ideaactivities$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Platforms$Properties$Ideaactivities$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleSearchIdeahubV1betaIdeaActivity>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleSearchIdeahubV1betaIdeaActivity>>;
     create(
       params: Params$Resource$Platforms$Properties$Ideaactivities$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -400,8 +400,8 @@ export namespace ideahub_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleSearchIdeahubV1betaIdeaActivity>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleSearchIdeahubV1betaIdeaActivity>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Platforms$Properties$Ideaactivities$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -529,11 +529,11 @@ export namespace ideahub_v1beta {
     list(
       params: Params$Resource$Platforms$Properties$Ideas$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Platforms$Properties$Ideas$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleSearchIdeahubV1betaListIdeasResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleSearchIdeahubV1betaListIdeasResponse>>;
     list(
       params: Params$Resource$Platforms$Properties$Ideas$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -568,8 +568,8 @@ export namespace ideahub_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleSearchIdeahubV1betaListIdeasResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleSearchIdeahubV1betaListIdeasResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Platforms$Properties$Ideas$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -712,11 +712,11 @@ export namespace ideahub_v1beta {
     patch(
       params: Params$Resource$Platforms$Properties$Ideastates$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Platforms$Properties$Ideastates$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleSearchIdeahubV1betaIdeaState>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleSearchIdeahubV1betaIdeaState>>;
     patch(
       params: Params$Resource$Platforms$Properties$Ideastates$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -751,8 +751,8 @@ export namespace ideahub_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleSearchIdeahubV1betaIdeaState>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleSearchIdeahubV1betaIdeaState>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Platforms$Properties$Ideastates$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -876,11 +876,11 @@ export namespace ideahub_v1beta {
     list(
       params: Params$Resource$Platforms$Properties$Locales$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Platforms$Properties$Locales$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleSearchIdeahubV1betaListAvailableLocalesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleSearchIdeahubV1betaListAvailableLocalesResponse>>;
     list(
       params: Params$Resource$Platforms$Properties$Locales$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -915,8 +915,8 @@ export namespace ideahub_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleSearchIdeahubV1betaListAvailableLocalesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleSearchIdeahubV1betaListAvailableLocalesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Platforms$Properties$Locales$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1051,11 +1051,11 @@ export namespace ideahub_v1beta {
     patch(
       params: Params$Resource$Platforms$Properties$Topicstates$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Platforms$Properties$Topicstates$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleSearchIdeahubV1betaTopicState>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleSearchIdeahubV1betaTopicState>>;
     patch(
       params: Params$Resource$Platforms$Properties$Topicstates$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1090,8 +1090,8 @@ export namespace ideahub_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleSearchIdeahubV1betaTopicState>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleSearchIdeahubV1betaTopicState>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Platforms$Properties$Topicstates$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;

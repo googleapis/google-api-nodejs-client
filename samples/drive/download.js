@@ -16,9 +16,10 @@
 const {google} = require('googleapis');
 const fs = require('fs');
 const os = require('os');
-const uuid = require('uuid');
 const path = require('path');
 const {authenticate} = require('@google-cloud/local-auth');
+const crypto = require('crypto');
+const uuid = crypto.randomUUID();
 
 const drive = google.drive('v3');
 
@@ -45,7 +46,7 @@ async function runSample(fileId) {
     .get({fileId, alt: 'media'}, {responseType: 'stream'})
     .then(res => {
       return new Promise((resolve, reject) => {
-        const filePath = path.join(os.tmpdir(), uuid.v4());
+        const filePath = path.join(os.tmpdir(), uuid);
         console.log(`writing to ${filePath}`);
         const dest = fs.createWriteStream(filePath);
         let progress = 0;

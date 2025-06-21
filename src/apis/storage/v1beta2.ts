@@ -23,7 +23,7 @@ import {
   JWT,
   Compute,
   UserRefreshClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -604,11 +604,11 @@ export namespace storage_v1beta2 {
     delete(
       params: Params$Resource$Bucketaccesscontrols$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Bucketaccesscontrols$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Bucketaccesscontrols$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -635,7 +635,7 @@ export namespace storage_v1beta2 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<void>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bucketaccesscontrols$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -745,11 +745,11 @@ export namespace storage_v1beta2 {
     get(
       params: Params$Resource$Bucketaccesscontrols$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Bucketaccesscontrols$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BucketAccessControl>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BucketAccessControl>>;
     get(
       params: Params$Resource$Bucketaccesscontrols$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -780,8 +780,8 @@ export namespace storage_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BucketAccessControl>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$BucketAccessControl>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bucketaccesscontrols$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -906,11 +906,11 @@ export namespace storage_v1beta2 {
     insert(
       params: Params$Resource$Bucketaccesscontrols$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Bucketaccesscontrols$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BucketAccessControl>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BucketAccessControl>>;
     insert(
       params: Params$Resource$Bucketaccesscontrols$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -941,8 +941,8 @@ export namespace storage_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BucketAccessControl>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$BucketAccessControl>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bucketaccesscontrols$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1041,11 +1041,11 @@ export namespace storage_v1beta2 {
     list(
       params: Params$Resource$Bucketaccesscontrols$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Bucketaccesscontrols$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BucketAccessControls>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BucketAccessControls>>;
     list(
       params: Params$Resource$Bucketaccesscontrols$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1078,8 +1078,8 @@ export namespace storage_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BucketAccessControls>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$BucketAccessControls>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bucketaccesscontrols$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1207,11 +1207,11 @@ export namespace storage_v1beta2 {
     patch(
       params: Params$Resource$Bucketaccesscontrols$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Bucketaccesscontrols$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BucketAccessControl>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BucketAccessControl>>;
     patch(
       params: Params$Resource$Bucketaccesscontrols$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1242,8 +1242,8 @@ export namespace storage_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BucketAccessControl>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$BucketAccessControl>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bucketaccesscontrols$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1371,11 +1371,11 @@ export namespace storage_v1beta2 {
     update(
       params: Params$Resource$Bucketaccesscontrols$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Bucketaccesscontrols$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BucketAccessControl>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BucketAccessControl>>;
     update(
       params: Params$Resource$Bucketaccesscontrols$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1406,8 +1406,8 @@ export namespace storage_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BucketAccessControl>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$BucketAccessControl>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bucketaccesscontrols$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1590,11 +1590,11 @@ export namespace storage_v1beta2 {
     delete(
       params: Params$Resource$Buckets$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Buckets$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Buckets$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1621,7 +1621,7 @@ export namespace storage_v1beta2 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<void>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Buckets$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1747,11 +1747,11 @@ export namespace storage_v1beta2 {
     get(
       params: Params$Resource$Buckets$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Buckets$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Bucket>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Bucket>>;
     get(
       params: Params$Resource$Buckets$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1780,7 +1780,7 @@ export namespace storage_v1beta2 {
       callback?:
         | BodyResponseCallback<Schema$Bucket>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Bucket> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Bucket>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Buckets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1924,11 +1924,11 @@ export namespace storage_v1beta2 {
     insert(
       params: Params$Resource$Buckets$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Buckets$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Bucket>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Bucket>>;
     insert(
       params: Params$Resource$Buckets$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1957,7 +1957,7 @@ export namespace storage_v1beta2 {
       callback?:
         | BodyResponseCallback<Schema$Bucket>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Bucket> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Bucket>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Buckets$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2066,11 +2066,11 @@ export namespace storage_v1beta2 {
     list(
       params: Params$Resource$Buckets$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Buckets$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Buckets>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Buckets>>;
     list(
       params: Params$Resource$Buckets$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2099,7 +2099,7 @@ export namespace storage_v1beta2 {
       callback?:
         | BodyResponseCallback<Schema$Buckets>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Buckets> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Buckets>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Buckets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2246,11 +2246,11 @@ export namespace storage_v1beta2 {
     patch(
       params: Params$Resource$Buckets$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Buckets$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Bucket>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Bucket>>;
     patch(
       params: Params$Resource$Buckets$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2279,7 +2279,7 @@ export namespace storage_v1beta2 {
       callback?:
         | BodyResponseCallback<Schema$Bucket>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Bucket> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Bucket>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Buckets$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2429,11 +2429,11 @@ export namespace storage_v1beta2 {
     update(
       params: Params$Resource$Buckets$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Buckets$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Bucket>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Bucket>>;
     update(
       params: Params$Resource$Buckets$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2462,7 +2462,7 @@ export namespace storage_v1beta2 {
       callback?:
         | BodyResponseCallback<Schema$Bucket>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Bucket> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Bucket>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Buckets$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2691,11 +2691,11 @@ export namespace storage_v1beta2 {
     stop(
       params: Params$Resource$Channels$Stop,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     stop(
       params?: Params$Resource$Channels$Stop,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     stop(
       params: Params$Resource$Channels$Stop,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2722,7 +2722,7 @@ export namespace storage_v1beta2 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<void>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Channels$Stop;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2831,11 +2831,11 @@ export namespace storage_v1beta2 {
     delete(
       params: Params$Resource$Defaultobjectaccesscontrols$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Defaultobjectaccesscontrols$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Defaultobjectaccesscontrols$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2862,7 +2862,7 @@ export namespace storage_v1beta2 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<void>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Defaultobjectaccesscontrols$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2973,11 +2973,11 @@ export namespace storage_v1beta2 {
     get(
       params: Params$Resource$Defaultobjectaccesscontrols$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Defaultobjectaccesscontrols$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ObjectAccessControl>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ObjectAccessControl>>;
     get(
       params: Params$Resource$Defaultobjectaccesscontrols$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3008,8 +3008,8 @@ export namespace storage_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ObjectAccessControl>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ObjectAccessControl>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Defaultobjectaccesscontrols$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3137,11 +3137,11 @@ export namespace storage_v1beta2 {
     insert(
       params: Params$Resource$Defaultobjectaccesscontrols$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Defaultobjectaccesscontrols$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ObjectAccessControl>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ObjectAccessControl>>;
     insert(
       params: Params$Resource$Defaultobjectaccesscontrols$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3172,8 +3172,8 @@ export namespace storage_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ObjectAccessControl>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ObjectAccessControl>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Defaultobjectaccesscontrols$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3277,11 +3277,11 @@ export namespace storage_v1beta2 {
     list(
       params: Params$Resource$Defaultobjectaccesscontrols$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Defaultobjectaccesscontrols$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ObjectAccessControls>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ObjectAccessControls>>;
     list(
       params: Params$Resource$Defaultobjectaccesscontrols$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3314,8 +3314,8 @@ export namespace storage_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ObjectAccessControls>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ObjectAccessControls>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Defaultobjectaccesscontrols$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3446,11 +3446,11 @@ export namespace storage_v1beta2 {
     patch(
       params: Params$Resource$Defaultobjectaccesscontrols$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Defaultobjectaccesscontrols$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ObjectAccessControl>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ObjectAccessControl>>;
     patch(
       params: Params$Resource$Defaultobjectaccesscontrols$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3481,8 +3481,8 @@ export namespace storage_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ObjectAccessControl>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ObjectAccessControl>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Defaultobjectaccesscontrols$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3613,11 +3613,11 @@ export namespace storage_v1beta2 {
     update(
       params: Params$Resource$Defaultobjectaccesscontrols$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Defaultobjectaccesscontrols$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ObjectAccessControl>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ObjectAccessControl>>;
     update(
       params: Params$Resource$Defaultobjectaccesscontrols$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3648,8 +3648,8 @@ export namespace storage_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ObjectAccessControl>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ObjectAccessControl>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Defaultobjectaccesscontrols$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3839,11 +3839,11 @@ export namespace storage_v1beta2 {
     delete(
       params: Params$Resource$Objectaccesscontrols$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Objectaccesscontrols$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Objectaccesscontrols$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3870,7 +3870,7 @@ export namespace storage_v1beta2 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<void>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Objectaccesscontrols$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3987,11 +3987,11 @@ export namespace storage_v1beta2 {
     get(
       params: Params$Resource$Objectaccesscontrols$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Objectaccesscontrols$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ObjectAccessControl>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ObjectAccessControl>>;
     get(
       params: Params$Resource$Objectaccesscontrols$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4022,8 +4022,8 @@ export namespace storage_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ObjectAccessControl>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ObjectAccessControl>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Objectaccesscontrols$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4157,11 +4157,11 @@ export namespace storage_v1beta2 {
     insert(
       params: Params$Resource$Objectaccesscontrols$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Objectaccesscontrols$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ObjectAccessControl>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ObjectAccessControl>>;
     insert(
       params: Params$Resource$Objectaccesscontrols$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4192,8 +4192,8 @@ export namespace storage_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ObjectAccessControl>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ObjectAccessControl>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Objectaccesscontrols$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4297,11 +4297,11 @@ export namespace storage_v1beta2 {
     list(
       params: Params$Resource$Objectaccesscontrols$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Objectaccesscontrols$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ObjectAccessControls>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ObjectAccessControls>>;
     list(
       params: Params$Resource$Objectaccesscontrols$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4334,8 +4334,8 @@ export namespace storage_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ObjectAccessControls>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ObjectAccessControls>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Objectaccesscontrols$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4472,11 +4472,11 @@ export namespace storage_v1beta2 {
     patch(
       params: Params$Resource$Objectaccesscontrols$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Objectaccesscontrols$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ObjectAccessControl>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ObjectAccessControl>>;
     patch(
       params: Params$Resource$Objectaccesscontrols$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4507,8 +4507,8 @@ export namespace storage_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ObjectAccessControl>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ObjectAccessControl>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Objectaccesscontrols$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4645,11 +4645,11 @@ export namespace storage_v1beta2 {
     update(
       params: Params$Resource$Objectaccesscontrols$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Objectaccesscontrols$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ObjectAccessControl>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ObjectAccessControl>>;
     update(
       params: Params$Resource$Objectaccesscontrols$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4680,8 +4680,8 @@ export namespace storage_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ObjectAccessControl>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ObjectAccessControl>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Objectaccesscontrols$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4953,11 +4953,11 @@ export namespace storage_v1beta2 {
     compose(
       params: Params$Resource$Objects$Compose,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     compose(
       params?: Params$Resource$Objects$Compose,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Object>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Object>>;
     compose(
       params: Params$Resource$Objects$Compose,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4986,7 +4986,7 @@ export namespace storage_v1beta2 {
       callback?:
         | BodyResponseCallback<Schema$Object>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Object> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Object>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Objects$Compose;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5180,11 +5180,11 @@ export namespace storage_v1beta2 {
     copy(
       params: Params$Resource$Objects$Copy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     copy(
       params?: Params$Resource$Objects$Copy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Object>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Object>>;
     copy(
       params: Params$Resource$Objects$Copy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5213,7 +5213,7 @@ export namespace storage_v1beta2 {
       callback?:
         | BodyResponseCallback<Schema$Object>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Object> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Object>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Objects$Copy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5336,11 +5336,11 @@ export namespace storage_v1beta2 {
     delete(
       params: Params$Resource$Objects$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Objects$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Objects$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5367,7 +5367,7 @@ export namespace storage_v1beta2 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<void>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Objects$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5512,11 +5512,11 @@ export namespace storage_v1beta2 {
     get(
       params: Params$Resource$Objects$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Objects$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Object>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Object>>;
     get(
       params: Params$Resource$Objects$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5545,7 +5545,7 @@ export namespace storage_v1beta2 {
       callback?:
         | BodyResponseCallback<Schema$Object>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Object> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Object>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Objects$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5725,11 +5725,11 @@ export namespace storage_v1beta2 {
     insert(
       params: Params$Resource$Objects$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Objects$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Object>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Object>>;
     insert(
       params: Params$Resource$Objects$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5758,7 +5758,7 @@ export namespace storage_v1beta2 {
       callback?:
         | BodyResponseCallback<Schema$Object>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Object> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Object>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Objects$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5884,11 +5884,11 @@ export namespace storage_v1beta2 {
     list(
       params: Params$Resource$Objects$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Objects$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Objects>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Objects>>;
     list(
       params: Params$Resource$Objects$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5917,7 +5917,7 @@ export namespace storage_v1beta2 {
       callback?:
         | BodyResponseCallback<Schema$Objects>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Objects> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Objects>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Objects$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6093,11 +6093,11 @@ export namespace storage_v1beta2 {
     patch(
       params: Params$Resource$Objects$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Objects$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Object>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Object>>;
     patch(
       params: Params$Resource$Objects$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6126,7 +6126,7 @@ export namespace storage_v1beta2 {
       callback?:
         | BodyResponseCallback<Schema$Object>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Object> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Object>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Objects$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6302,11 +6302,11 @@ export namespace storage_v1beta2 {
     update(
       params: Params$Resource$Objects$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Objects$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Object>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Object>>;
     update(
       params: Params$Resource$Objects$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6335,7 +6335,7 @@ export namespace storage_v1beta2 {
       callback?:
         | BodyResponseCallback<Schema$Object>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Object> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Object>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Objects$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6481,11 +6481,11 @@ export namespace storage_v1beta2 {
     watchAll(
       params: Params$Resource$Objects$Watchall,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     watchAll(
       params?: Params$Resource$Objects$Watchall,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Channel>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Channel>>;
     watchAll(
       params: Params$Resource$Objects$Watchall,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6514,7 +6514,7 @@ export namespace storage_v1beta2 {
       callback?:
         | BodyResponseCallback<Schema$Channel>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Channel> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Channel>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Objects$Watchall;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

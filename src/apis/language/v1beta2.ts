@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -2638,6 +2638,62 @@ export namespace language_v1beta2 {
 
     /**
      * Finds named entities (currently proper names and common nouns) in the text along with entity types, salience, mentions for each entity, and other properties.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/language.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const language = google.language('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-language',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await language.documents.analyzeEntities({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "document": {},
+     *       //   "encodingType": "my_encodingType"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entities": [],
+     *   //   "language": "my_language"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2647,11 +2703,11 @@ export namespace language_v1beta2 {
     analyzeEntities(
       params: Params$Resource$Documents$Analyzeentities,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     analyzeEntities(
       params?: Params$Resource$Documents$Analyzeentities,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AnalyzeEntitiesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AnalyzeEntitiesResponse>>;
     analyzeEntities(
       params: Params$Resource$Documents$Analyzeentities,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2686,8 +2742,8 @@ export namespace language_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AnalyzeEntitiesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AnalyzeEntitiesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Documents$Analyzeentities;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2733,6 +2789,62 @@ export namespace language_v1beta2 {
 
     /**
      * Finds entities, similar to AnalyzeEntities in the text and analyzes sentiment associated with each entity and its mentions.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/language.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const language = google.language('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-language',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await language.documents.analyzeEntitySentiment({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "document": {},
+     *       //   "encodingType": "my_encodingType"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entities": [],
+     *   //   "language": "my_language"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2742,11 +2854,11 @@ export namespace language_v1beta2 {
     analyzeEntitySentiment(
       params: Params$Resource$Documents$Analyzeentitysentiment,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     analyzeEntitySentiment(
       params?: Params$Resource$Documents$Analyzeentitysentiment,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AnalyzeEntitySentimentResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AnalyzeEntitySentimentResponse>>;
     analyzeEntitySentiment(
       params: Params$Resource$Documents$Analyzeentitysentiment,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2781,8 +2893,8 @@ export namespace language_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AnalyzeEntitySentimentResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AnalyzeEntitySentimentResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Documents$Analyzeentitysentiment;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2829,6 +2941,63 @@ export namespace language_v1beta2 {
 
     /**
      * Analyzes the sentiment of the provided text.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/language.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const language = google.language('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-language',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await language.documents.analyzeSentiment({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "document": {},
+     *       //   "encodingType": "my_encodingType"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "documentSentiment": {},
+     *   //   "language": "my_language",
+     *   //   "sentences": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2838,11 +3007,11 @@ export namespace language_v1beta2 {
     analyzeSentiment(
       params: Params$Resource$Documents$Analyzesentiment,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     analyzeSentiment(
       params?: Params$Resource$Documents$Analyzesentiment,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AnalyzeSentimentResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AnalyzeSentimentResponse>>;
     analyzeSentiment(
       params: Params$Resource$Documents$Analyzesentiment,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2877,8 +3046,8 @@ export namespace language_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AnalyzeSentimentResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AnalyzeSentimentResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Documents$Analyzesentiment;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2924,6 +3093,63 @@ export namespace language_v1beta2 {
 
     /**
      * Analyzes the syntax of the text and provides sentence boundaries and tokenization along with part of speech tags, dependency trees, and other properties.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/language.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const language = google.language('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-language',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await language.documents.analyzeSyntax({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "document": {},
+     *       //   "encodingType": "my_encodingType"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "language": "my_language",
+     *   //   "sentences": [],
+     *   //   "tokens": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2933,11 +3159,11 @@ export namespace language_v1beta2 {
     analyzeSyntax(
       params: Params$Resource$Documents$Analyzesyntax,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     analyzeSyntax(
       params?: Params$Resource$Documents$Analyzesyntax,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AnalyzeSyntaxResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AnalyzeSyntaxResponse>>;
     analyzeSyntax(
       params: Params$Resource$Documents$Analyzesyntax,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2972,8 +3198,8 @@ export namespace language_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AnalyzeSyntaxResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AnalyzeSyntaxResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Documents$Analyzesyntax;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3019,6 +3245,68 @@ export namespace language_v1beta2 {
 
     /**
      * A convenience method that provides all syntax, sentiment, entity, and classification features in one call.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/language.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const language = google.language('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-language',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await language.documents.annotateText({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "document": {},
+     *       //   "encodingType": "my_encodingType",
+     *       //   "features": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "categories": [],
+     *   //   "documentSentiment": {},
+     *   //   "entities": [],
+     *   //   "language": "my_language",
+     *   //   "moderationCategories": [],
+     *   //   "sentences": [],
+     *   //   "tokens": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3028,11 +3316,11 @@ export namespace language_v1beta2 {
     annotateText(
       params: Params$Resource$Documents$Annotatetext,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     annotateText(
       params?: Params$Resource$Documents$Annotatetext,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AnnotateTextResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AnnotateTextResponse>>;
     annotateText(
       params: Params$Resource$Documents$Annotatetext,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3067,8 +3355,8 @@ export namespace language_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AnnotateTextResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AnnotateTextResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Documents$Annotatetext;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3114,6 +3402,61 @@ export namespace language_v1beta2 {
 
     /**
      * Classifies a document into categories.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/language.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const language = google.language('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-language',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await language.documents.classifyText({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "classificationModelOptions": {},
+     *       //   "document": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "categories": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3123,11 +3466,11 @@ export namespace language_v1beta2 {
     classifyText(
       params: Params$Resource$Documents$Classifytext,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     classifyText(
       params?: Params$Resource$Documents$Classifytext,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ClassifyTextResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ClassifyTextResponse>>;
     classifyText(
       params: Params$Resource$Documents$Classifytext,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3162,8 +3505,8 @@ export namespace language_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ClassifyTextResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ClassifyTextResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Documents$Classifytext;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3209,6 +3552,60 @@ export namespace language_v1beta2 {
 
     /**
      * Moderates a document for harmful and sensitive categories.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/language.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const language = google.language('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-language',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await language.documents.moderateText({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "document": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "moderationCategories": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3218,11 +3615,11 @@ export namespace language_v1beta2 {
     moderateText(
       params: Params$Resource$Documents$Moderatetext,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     moderateText(
       params?: Params$Resource$Documents$Moderatetext,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ModerateTextResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ModerateTextResponse>>;
     moderateText(
       params: Params$Resource$Documents$Moderatetext,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3257,8 +3654,8 @@ export namespace language_v1beta2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ModerateTextResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ModerateTextResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Documents$Moderatetext;
       let options = (optionsOrCallback || {}) as MethodOptions;

@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -201,6 +201,54 @@ export namespace licensing_v1 {
 
     /**
      * Revoke a license.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/licensing.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const licensing = google.licensing('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/apps.licensing'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await licensing.licenseAssignments.delete({
+     *     // A product's unique identifier. For more information about products in this version of the API, see Products and SKUs.
+     *     productId: 'placeholder-value',
+     *     // A product SKU's unique identifier. For more information about available SKUs in this version of the API, see Products and SKUs.
+     *     skuId: 'placeholder-value',
+     *     // The user's current primary email address. If the user's email address changes, use the new email address in your API requests. Since a `userId` is subject to change, do not use a `userId` value as a key for persistent data. This key could break if the current user's email address changes. If the `userId` is suspended, the license status changes.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -210,11 +258,11 @@ export namespace licensing_v1 {
     delete(
       params: Params$Resource$Licenseassignments$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Licenseassignments$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Licenseassignments$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -243,7 +291,10 @@ export namespace licensing_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Licenseassignments$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -289,6 +340,63 @@ export namespace licensing_v1 {
 
     /**
      * Get a specific user's license by product SKU.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/licensing.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const licensing = google.licensing('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/apps.licensing'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await licensing.licenseAssignments.get({
+     *     // A product's unique identifier. For more information about products in this version of the API, see Products and SKUs.
+     *     productId: 'placeholder-value',
+     *     // A product SKU's unique identifier. For more information about available SKUs in this version of the API, see Products and SKUs.
+     *     skuId: 'placeholder-value',
+     *     // The user's current primary email address. If the user's email address changes, use the new email address in your API requests. Since a `userId` is subject to change, do not use a `userId` value as a key for persistent data. This key could break if the current user's email address changes. If the `userId` is suspended, the license status changes.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etags": "my_etags",
+     *   //   "kind": "my_kind",
+     *   //   "productId": "my_productId",
+     *   //   "productName": "my_productName",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "skuId": "my_skuId",
+     *   //   "skuName": "my_skuName",
+     *   //   "userId": "my_userId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -298,11 +406,11 @@ export namespace licensing_v1 {
     get(
       params: Params$Resource$Licenseassignments$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Licenseassignments$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LicenseAssignment>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LicenseAssignment>>;
     get(
       params: Params$Resource$Licenseassignments$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -333,8 +441,8 @@ export namespace licensing_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$LicenseAssignment>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$LicenseAssignment>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Licenseassignments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -380,6 +488,69 @@ export namespace licensing_v1 {
 
     /**
      * Assign a license.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/licensing.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const licensing = google.licensing('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/apps.licensing'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await licensing.licenseAssignments.insert({
+     *     // A product's unique identifier. For more information about products in this version of the API, see Products and SKUs.
+     *     productId: 'placeholder-value',
+     *     // A product SKU's unique identifier. For more information about available SKUs in this version of the API, see Products and SKUs.
+     *     skuId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "userId": "my_userId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etags": "my_etags",
+     *   //   "kind": "my_kind",
+     *   //   "productId": "my_productId",
+     *   //   "productName": "my_productName",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "skuId": "my_skuId",
+     *   //   "skuName": "my_skuName",
+     *   //   "userId": "my_userId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -389,11 +560,11 @@ export namespace licensing_v1 {
     insert(
       params: Params$Resource$Licenseassignments$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Licenseassignments$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LicenseAssignment>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LicenseAssignment>>;
     insert(
       params: Params$Resource$Licenseassignments$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -424,8 +595,8 @@ export namespace licensing_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$LicenseAssignment>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$LicenseAssignment>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Licenseassignments$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -471,6 +642,61 @@ export namespace licensing_v1 {
 
     /**
      * List all users assigned licenses for a specific product SKU.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/licensing.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const licensing = google.licensing('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/apps.licensing'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await licensing.licenseAssignments.listForProduct({
+     *     // The customer's unique ID as defined in the Admin console, such as `C00000000`. If the customer is suspended, the server returns an error.
+     *     customerId: 'placeholder-value',
+     *     // The `maxResults` query string determines how many entries are returned on each page of a large response. This is an optional parameter. The value must be a positive number.
+     *     maxResults: 'placeholder-value',
+     *     // Token to fetch the next page of data. The `maxResults` query string is related to the `pageToken` since `maxResults` determines how many entries are returned on each page. This is an optional query string. If not specified, the server returns the first page.
+     *     pageToken: 'placeholder-value',
+     *     // A product's unique identifier. For more information about products in this version of the API, see Products and SKUs.
+     *     productId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -480,11 +706,11 @@ export namespace licensing_v1 {
     listForProduct(
       params: Params$Resource$Licenseassignments$Listforproduct,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     listForProduct(
       params?: Params$Resource$Licenseassignments$Listforproduct,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LicenseAssignmentList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LicenseAssignmentList>>;
     listForProduct(
       params: Params$Resource$Licenseassignments$Listforproduct,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -519,8 +745,8 @@ export namespace licensing_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$LicenseAssignmentList>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$LicenseAssignmentList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Licenseassignments$Listforproduct;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -565,6 +791,63 @@ export namespace licensing_v1 {
 
     /**
      * List all users assigned licenses for a specific product SKU.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/licensing.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const licensing = google.licensing('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/apps.licensing'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await licensing.licenseAssignments.listForProductAndSku({
+     *     // The customer's unique ID as defined in the Admin console, such as `C00000000`. If the customer is suspended, the server returns an error.
+     *     customerId: 'placeholder-value',
+     *     // The `maxResults` query string determines how many entries are returned on each page of a large response. This is an optional parameter. The value must be a positive number.
+     *     maxResults: 'placeholder-value',
+     *     // Token to fetch the next page of data. The `maxResults` query string is related to the `pageToken` since `maxResults` determines how many entries are returned on each page. This is an optional query string. If not specified, the server returns the first page.
+     *     pageToken: 'placeholder-value',
+     *     // A product's unique identifier. For more information about products in this version of the API, see Products and SKUs.
+     *     productId: 'placeholder-value',
+     *     // A product SKU's unique identifier. For more information about available SKUs in this version of the API, see Products and SKUs.
+     *     skuId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -574,11 +857,11 @@ export namespace licensing_v1 {
     listForProductAndSku(
       params: Params$Resource$Licenseassignments$Listforproductandsku,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     listForProductAndSku(
       params?: Params$Resource$Licenseassignments$Listforproductandsku,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LicenseAssignmentList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LicenseAssignmentList>>;
     listForProductAndSku(
       params: Params$Resource$Licenseassignments$Listforproductandsku,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -613,8 +896,8 @@ export namespace licensing_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$LicenseAssignmentList>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$LicenseAssignmentList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Licenseassignments$Listforproductandsku;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -660,6 +943,78 @@ export namespace licensing_v1 {
 
     /**
      * Reassign a user's product SKU with a different SKU in the same product. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/licensing.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const licensing = google.licensing('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/apps.licensing'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await licensing.licenseAssignments.patch({
+     *     // A product's unique identifier. For more information about products in this version of the API, see Products and SKUs.
+     *     productId: 'placeholder-value',
+     *     // A product SKU's unique identifier. For more information about available SKUs in this version of the API, see Products and SKUs.
+     *     skuId: 'placeholder-value',
+     *     // The user's current primary email address. If the user's email address changes, use the new email address in your API requests. Since a `userId` is subject to change, do not use a `userId` value as a key for persistent data. This key could break if the current user's email address changes. If the `userId` is suspended, the license status changes.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "etags": "my_etags",
+     *       //   "kind": "my_kind",
+     *       //   "productId": "my_productId",
+     *       //   "productName": "my_productName",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "skuId": "my_skuId",
+     *       //   "skuName": "my_skuName",
+     *       //   "userId": "my_userId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etags": "my_etags",
+     *   //   "kind": "my_kind",
+     *   //   "productId": "my_productId",
+     *   //   "productName": "my_productName",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "skuId": "my_skuId",
+     *   //   "skuName": "my_skuName",
+     *   //   "userId": "my_userId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -669,11 +1024,11 @@ export namespace licensing_v1 {
     patch(
       params: Params$Resource$Licenseassignments$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Licenseassignments$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LicenseAssignment>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LicenseAssignment>>;
     patch(
       params: Params$Resource$Licenseassignments$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -704,8 +1059,8 @@ export namespace licensing_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$LicenseAssignment>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$LicenseAssignment>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Licenseassignments$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -751,6 +1106,78 @@ export namespace licensing_v1 {
 
     /**
      * Reassign a user's product SKU with a different SKU in the same product.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/licensing.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const licensing = google.licensing('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/apps.licensing'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await licensing.licenseAssignments.update({
+     *     // A product's unique identifier. For more information about products in this version of the API, see Products and SKUs.
+     *     productId: 'placeholder-value',
+     *     // A product SKU's unique identifier. For more information about available SKUs in this version of the API, see Products and SKUs.
+     *     skuId: 'placeholder-value',
+     *     // The user's current primary email address. If the user's email address changes, use the new email address in your API requests. Since a `userId` is subject to change, do not use a `userId` value as a key for persistent data. This key could break if the current user's email address changes. If the `userId` is suspended, the license status changes.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "etags": "my_etags",
+     *       //   "kind": "my_kind",
+     *       //   "productId": "my_productId",
+     *       //   "productName": "my_productName",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "skuId": "my_skuId",
+     *       //   "skuName": "my_skuName",
+     *       //   "userId": "my_userId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etags": "my_etags",
+     *   //   "kind": "my_kind",
+     *   //   "productId": "my_productId",
+     *   //   "productName": "my_productName",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "skuId": "my_skuId",
+     *   //   "skuName": "my_skuName",
+     *   //   "userId": "my_userId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -760,11 +1187,11 @@ export namespace licensing_v1 {
     update(
       params: Params$Resource$Licenseassignments$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Licenseassignments$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LicenseAssignment>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LicenseAssignment>>;
     update(
       params: Params$Resource$Licenseassignments$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -795,8 +1222,8 @@ export namespace licensing_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$LicenseAssignment>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$LicenseAssignment>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Licenseassignments$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;

@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -358,6 +358,73 @@ export namespace biglake_v1 {
 
     /**
      * Creates a new catalog.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/biglake.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const biglake = google.biglake('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await biglake.projects.locations.catalogs.create({
+     *     // Required. The ID to use for the catalog, which will become the final component of the catalog's resource name.
+     *     catalogId: 'placeholder-value',
+     *     // Required. The parent resource where this catalog will be created. Format: projects/{project_id_or_number\}/locations/{location_id\}
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "deleteTime": "my_deleteTime",
+     *       //   "expireTime": "my_expireTime",
+     *       //   "name": "my_name",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "deleteTime": "my_deleteTime",
+     *   //   "expireTime": "my_expireTime",
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -367,11 +434,11 @@ export namespace biglake_v1 {
     create(
       params: Params$Resource$Projects$Locations$Catalogs$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Catalogs$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Catalog>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Catalog>>;
     create(
       params: Params$Resource$Projects$Locations$Catalogs$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -400,7 +467,10 @@ export namespace biglake_v1 {
       callback?:
         | BodyResponseCallback<Schema$Catalog>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Catalog> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Catalog>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -446,6 +516,59 @@ export namespace biglake_v1 {
 
     /**
      * Deletes an existing catalog specified by the catalog ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/biglake.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const biglake = google.biglake('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await biglake.projects.locations.catalogs.delete({
+     *     // Required. The name of the catalog to delete. Format: projects/{project_id_or_number\}/locations/{location_id\}/catalogs/{catalog_id\}
+     *     name: 'projects/my-project/locations/my-location/catalogs/my-catalog',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "deleteTime": "my_deleteTime",
+     *   //   "expireTime": "my_expireTime",
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -455,11 +578,11 @@ export namespace biglake_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Catalogs$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Catalogs$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Catalog>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Catalog>>;
     delete(
       params: Params$Resource$Projects$Locations$Catalogs$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -488,7 +611,10 @@ export namespace biglake_v1 {
       callback?:
         | BodyResponseCallback<Schema$Catalog>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Catalog> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Catalog>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -531,6 +657,59 @@ export namespace biglake_v1 {
 
     /**
      * Gets the catalog specified by the resource name.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/biglake.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const biglake = google.biglake('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await biglake.projects.locations.catalogs.get({
+     *     // Required. The name of the catalog to retrieve. Format: projects/{project_id_or_number\}/locations/{location_id\}/catalogs/{catalog_id\}
+     *     name: 'projects/my-project/locations/my-location/catalogs/my-catalog',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "deleteTime": "my_deleteTime",
+     *   //   "expireTime": "my_expireTime",
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -540,11 +719,11 @@ export namespace biglake_v1 {
     get(
       params: Params$Resource$Projects$Locations$Catalogs$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Catalogs$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Catalog>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Catalog>>;
     get(
       params: Params$Resource$Projects$Locations$Catalogs$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -573,7 +752,10 @@ export namespace biglake_v1 {
       callback?:
         | BodyResponseCallback<Schema$Catalog>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Catalog> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Catalog>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -616,6 +798,60 @@ export namespace biglake_v1 {
 
     /**
      * List all catalogs in a specified project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/biglake.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const biglake = google.biglake('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await biglake.projects.locations.catalogs.list({
+     *     // The maximum number of catalogs to return. The service may return fewer than this value. If unspecified, at most 50 catalogs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // A page token, received from a previous `ListCatalogs` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListCatalogs` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent, which owns this collection of catalogs. Format: projects/{project_id_or_number\}/locations/{location_id\}
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "catalogs": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -625,11 +861,11 @@ export namespace biglake_v1 {
     list(
       params: Params$Resource$Projects$Locations$Catalogs$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Catalogs$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListCatalogsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListCatalogsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Catalogs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -662,8 +898,8 @@ export namespace biglake_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListCatalogsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListCatalogsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -766,6 +1002,77 @@ export namespace biglake_v1 {
 
     /**
      * Creates a new database.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/biglake.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const biglake = google.biglake('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await biglake.projects.locations.catalogs.databases.create({
+     *     // Required. The ID to use for the database, which will become the final component of the database's resource name.
+     *     databaseId: 'placeholder-value',
+     *     // Required. The parent resource where this database will be created. Format: projects/{project_id_or_number\}/locations/{location_id\}/catalogs/{catalog_id\}
+     *     parent: 'projects/my-project/locations/my-location/catalogs/my-catalog',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "deleteTime": "my_deleteTime",
+     *       //   "expireTime": "my_expireTime",
+     *       //   "hiveOptions": {},
+     *       //   "name": "my_name",
+     *       //   "type": "my_type",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "deleteTime": "my_deleteTime",
+     *   //   "expireTime": "my_expireTime",
+     *   //   "hiveOptions": {},
+     *   //   "name": "my_name",
+     *   //   "type": "my_type",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -775,11 +1082,11 @@ export namespace biglake_v1 {
     create(
       params: Params$Resource$Projects$Locations$Catalogs$Databases$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Catalogs$Databases$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Database>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Database>>;
     create(
       params: Params$Resource$Projects$Locations$Catalogs$Databases$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -808,7 +1115,10 @@ export namespace biglake_v1 {
       callback?:
         | BodyResponseCallback<Schema$Database>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Database> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Database>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Databases$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -855,6 +1165,61 @@ export namespace biglake_v1 {
 
     /**
      * Deletes an existing database specified by the database ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/biglake.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const biglake = google.biglake('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await biglake.projects.locations.catalogs.databases.delete({
+     *     // Required. The name of the database to delete. Format: projects/{project_id_or_number\}/locations/{location_id\}/catalogs/{catalog_id\}/databases/{database_id\}
+     *     name: 'projects/my-project/locations/my-location/catalogs/my-catalog/databases/my-database',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "deleteTime": "my_deleteTime",
+     *   //   "expireTime": "my_expireTime",
+     *   //   "hiveOptions": {},
+     *   //   "name": "my_name",
+     *   //   "type": "my_type",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -864,11 +1229,11 @@ export namespace biglake_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Catalogs$Databases$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Catalogs$Databases$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Database>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Database>>;
     delete(
       params: Params$Resource$Projects$Locations$Catalogs$Databases$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -897,7 +1262,10 @@ export namespace biglake_v1 {
       callback?:
         | BodyResponseCallback<Schema$Database>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Database> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Database>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Databases$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -941,6 +1309,61 @@ export namespace biglake_v1 {
 
     /**
      * Gets the database specified by the resource name.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/biglake.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const biglake = google.biglake('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await biglake.projects.locations.catalogs.databases.get({
+     *     // Required. The name of the database to retrieve. Format: projects/{project_id_or_number\}/locations/{location_id\}/catalogs/{catalog_id\}/databases/{database_id\}
+     *     name: 'projects/my-project/locations/my-location/catalogs/my-catalog/databases/my-database',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "deleteTime": "my_deleteTime",
+     *   //   "expireTime": "my_expireTime",
+     *   //   "hiveOptions": {},
+     *   //   "name": "my_name",
+     *   //   "type": "my_type",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -950,11 +1373,11 @@ export namespace biglake_v1 {
     get(
       params: Params$Resource$Projects$Locations$Catalogs$Databases$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Catalogs$Databases$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Database>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Database>>;
     get(
       params: Params$Resource$Projects$Locations$Catalogs$Databases$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -983,7 +1406,10 @@ export namespace biglake_v1 {
       callback?:
         | BodyResponseCallback<Schema$Database>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Database> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Database>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Databases$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1027,6 +1453,60 @@ export namespace biglake_v1 {
 
     /**
      * List all databases in a specified catalog.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/biglake.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const biglake = google.biglake('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await biglake.projects.locations.catalogs.databases.list({
+     *     // The maximum number of databases to return. The service may return fewer than this value. If unspecified, at most 50 databases will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // A page token, received from a previous `ListDatabases` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListDatabases` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent, which owns this collection of databases. Format: projects/{project_id_or_number\}/locations/{location_id\}/catalogs/{catalog_id\}
+     *     parent: 'projects/my-project/locations/my-location/catalogs/my-catalog',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "databases": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1036,11 +1516,11 @@ export namespace biglake_v1 {
     list(
       params: Params$Resource$Projects$Locations$Catalogs$Databases$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Catalogs$Databases$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListDatabasesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListDatabasesResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Catalogs$Databases$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1073,8 +1553,8 @@ export namespace biglake_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListDatabasesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListDatabasesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Databases$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1121,6 +1601,77 @@ export namespace biglake_v1 {
 
     /**
      * Updates an existing database specified by the database ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/biglake.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const biglake = google.biglake('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await biglake.projects.locations.catalogs.databases.patch({
+     *     // Output only. The resource name. Format: projects/{project_id_or_number\}/locations/{location_id\}/catalogs/{catalog_id\}/databases/{database_id\}
+     *     name: 'projects/my-project/locations/my-location/catalogs/my-catalog/databases/my-database',
+     *     // The list of fields to update. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask If not set, defaults to all of the fields that are allowed to update.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "deleteTime": "my_deleteTime",
+     *       //   "expireTime": "my_expireTime",
+     *       //   "hiveOptions": {},
+     *       //   "name": "my_name",
+     *       //   "type": "my_type",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "deleteTime": "my_deleteTime",
+     *   //   "expireTime": "my_expireTime",
+     *   //   "hiveOptions": {},
+     *   //   "name": "my_name",
+     *   //   "type": "my_type",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1130,11 +1681,11 @@ export namespace biglake_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Catalogs$Databases$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Catalogs$Databases$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Database>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Database>>;
     patch(
       params: Params$Resource$Projects$Locations$Catalogs$Databases$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1163,7 +1714,10 @@ export namespace biglake_v1 {
       callback?:
         | BodyResponseCallback<Schema$Database>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Database> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Database>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Databases$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1276,6 +1830,82 @@ export namespace biglake_v1 {
 
     /**
      * Creates a new table.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/biglake.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const biglake = google.biglake('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await biglake.projects.locations.catalogs.databases.tables.create(
+     *     {
+     *       // Required. The parent resource where this table will be created. Format: projects/{project_id_or_number\}/locations/{location_id\}/catalogs/{catalog_id\}/databases/{database_id\}
+     *       parent:
+     *         'projects/my-project/locations/my-location/catalogs/my-catalog/databases/my-database',
+     *       // Required. The ID to use for the table, which will become the final component of the table's resource name.
+     *       tableId: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "createTime": "my_createTime",
+     *         //   "deleteTime": "my_deleteTime",
+     *         //   "etag": "my_etag",
+     *         //   "expireTime": "my_expireTime",
+     *         //   "hiveOptions": {},
+     *         //   "name": "my_name",
+     *         //   "type": "my_type",
+     *         //   "updateTime": "my_updateTime"
+     *         // }
+     *       },
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "deleteTime": "my_deleteTime",
+     *   //   "etag": "my_etag",
+     *   //   "expireTime": "my_expireTime",
+     *   //   "hiveOptions": {},
+     *   //   "name": "my_name",
+     *   //   "type": "my_type",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1285,11 +1915,11 @@ export namespace biglake_v1 {
     create(
       params: Params$Resource$Projects$Locations$Catalogs$Databases$Tables$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Catalogs$Databases$Tables$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Table>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Table>>;
     create(
       params: Params$Resource$Projects$Locations$Catalogs$Databases$Tables$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1318,7 +1948,10 @@ export namespace biglake_v1 {
       callback?:
         | BodyResponseCallback<Schema$Table>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Table> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Table>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Databases$Tables$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1365,6 +1998,64 @@ export namespace biglake_v1 {
 
     /**
      * Deletes an existing table specified by the table ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/biglake.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const biglake = google.biglake('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await biglake.projects.locations.catalogs.databases.tables.delete(
+     *     {
+     *       // Required. The name of the table to delete. Format: projects/{project_id_or_number\}/locations/{location_id\}/catalogs/{catalog_id\}/databases/{database_id\}/tables/{table_id\}
+     *       name: 'projects/my-project/locations/my-location/catalogs/my-catalog/databases/my-database/tables/my-table',
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "deleteTime": "my_deleteTime",
+     *   //   "etag": "my_etag",
+     *   //   "expireTime": "my_expireTime",
+     *   //   "hiveOptions": {},
+     *   //   "name": "my_name",
+     *   //   "type": "my_type",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1374,11 +2065,11 @@ export namespace biglake_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Catalogs$Databases$Tables$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Catalogs$Databases$Tables$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Table>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Table>>;
     delete(
       params: Params$Resource$Projects$Locations$Catalogs$Databases$Tables$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1407,7 +2098,10 @@ export namespace biglake_v1 {
       callback?:
         | BodyResponseCallback<Schema$Table>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Table> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Table>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Databases$Tables$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1451,6 +2145,62 @@ export namespace biglake_v1 {
 
     /**
      * Gets the table specified by the resource name.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/biglake.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const biglake = google.biglake('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await biglake.projects.locations.catalogs.databases.tables.get({
+     *     // Required. The name of the table to retrieve. Format: projects/{project_id_or_number\}/locations/{location_id\}/catalogs/{catalog_id\}/databases/{database_id\}/tables/{table_id\}
+     *     name: 'projects/my-project/locations/my-location/catalogs/my-catalog/databases/my-database/tables/my-table',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "deleteTime": "my_deleteTime",
+     *   //   "etag": "my_etag",
+     *   //   "expireTime": "my_expireTime",
+     *   //   "hiveOptions": {},
+     *   //   "name": "my_name",
+     *   //   "type": "my_type",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1460,11 +2210,11 @@ export namespace biglake_v1 {
     get(
       params: Params$Resource$Projects$Locations$Catalogs$Databases$Tables$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Catalogs$Databases$Tables$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Table>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Table>>;
     get(
       params: Params$Resource$Projects$Locations$Catalogs$Databases$Tables$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1493,7 +2243,10 @@ export namespace biglake_v1 {
       callback?:
         | BodyResponseCallback<Schema$Table>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Table> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Table>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Databases$Tables$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1537,6 +2290,63 @@ export namespace biglake_v1 {
 
     /**
      * List all tables in a specified database.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/biglake.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const biglake = google.biglake('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await biglake.projects.locations.catalogs.databases.tables.list({
+     *     // The maximum number of tables to return. The service may return fewer than this value. If unspecified, at most 50 tables will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // A page token, received from a previous `ListTables` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListTables` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent, which owns this collection of tables. Format: projects/{project_id_or_number\}/locations/{location_id\}/catalogs/{catalog_id\}/databases/{database_id\}
+     *     parent:
+     *       'projects/my-project/locations/my-location/catalogs/my-catalog/databases/my-database',
+     *     // The view for the returned tables.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "tables": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1546,11 +2356,11 @@ export namespace biglake_v1 {
     list(
       params: Params$Resource$Projects$Locations$Catalogs$Databases$Tables$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Catalogs$Databases$Tables$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListTablesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListTablesResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Catalogs$Databases$Tables$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1581,8 +2391,8 @@ export namespace biglake_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListTablesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListTablesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Databases$Tables$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1629,6 +2439,79 @@ export namespace biglake_v1 {
 
     /**
      * Updates an existing table specified by the table ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/biglake.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const biglake = google.biglake('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await biglake.projects.locations.catalogs.databases.tables.patch({
+     *     // Output only. The resource name. Format: projects/{project_id_or_number\}/locations/{location_id\}/catalogs/{catalog_id\}/databases/{database_id\}/tables/{table_id\}
+     *     name: 'projects/my-project/locations/my-location/catalogs/my-catalog/databases/my-database/tables/my-table',
+     *     // The list of fields to update. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask If not set, defaults to all of the fields that are allowed to update.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "deleteTime": "my_deleteTime",
+     *       //   "etag": "my_etag",
+     *       //   "expireTime": "my_expireTime",
+     *       //   "hiveOptions": {},
+     *       //   "name": "my_name",
+     *       //   "type": "my_type",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "deleteTime": "my_deleteTime",
+     *   //   "etag": "my_etag",
+     *   //   "expireTime": "my_expireTime",
+     *   //   "hiveOptions": {},
+     *   //   "name": "my_name",
+     *   //   "type": "my_type",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1638,11 +2521,11 @@ export namespace biglake_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Catalogs$Databases$Tables$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Catalogs$Databases$Tables$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Table>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Table>>;
     patch(
       params: Params$Resource$Projects$Locations$Catalogs$Databases$Tables$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1671,7 +2554,10 @@ export namespace biglake_v1 {
       callback?:
         | BodyResponseCallback<Schema$Table>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Table> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Table>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Databases$Tables$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1715,6 +2601,72 @@ export namespace biglake_v1 {
 
     /**
      * Renames an existing table specified by the table ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/biglake.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const biglake = google.biglake('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await biglake.projects.locations.catalogs.databases.tables.rename(
+     *     {
+     *       // Required. The table's `name` field is used to identify the table to rename. Format: projects/{project_id_or_number\}/locations/{location_id\}/catalogs/{catalog_id\}/databases/{database_id\}/tables/{table_id\}
+     *       name: 'projects/my-project/locations/my-location/catalogs/my-catalog/databases/my-database/tables/my-table',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "newName": "my_newName"
+     *         // }
+     *       },
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "deleteTime": "my_deleteTime",
+     *   //   "etag": "my_etag",
+     *   //   "expireTime": "my_expireTime",
+     *   //   "hiveOptions": {},
+     *   //   "name": "my_name",
+     *   //   "type": "my_type",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1724,11 +2676,11 @@ export namespace biglake_v1 {
     rename(
       params: Params$Resource$Projects$Locations$Catalogs$Databases$Tables$Rename,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     rename(
       params?: Params$Resource$Projects$Locations$Catalogs$Databases$Tables$Rename,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Table>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Table>>;
     rename(
       params: Params$Resource$Projects$Locations$Catalogs$Databases$Tables$Rename,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1757,7 +2709,10 @@ export namespace biglake_v1 {
       callback?:
         | BodyResponseCallback<Schema$Table>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Table> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Table>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Databases$Tables$Rename;
       let options = (optionsOrCallback || {}) as MethodOptions;

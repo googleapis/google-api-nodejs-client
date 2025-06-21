@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -358,6 +358,70 @@ export namespace billingbudgets_v1beta1 {
 
     /**
      * Creates a new budget. See [Quotas and limits](https://cloud.google.com/billing/quotas) for more information on the limits of the number of budgets you can create.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/billingbudgets.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const billingbudgets = google.billingbudgets('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-billing',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await billingbudgets.billingAccounts.budgets.create({
+     *     // Required. The name of the billing account to create the budget in. Values are of the form `billingAccounts/{billingAccountId\}`.
+     *     parent: 'billingAccounts/my-billingAccount',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "budget": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allUpdatesRule": {},
+     *   //   "amount": {},
+     *   //   "budgetFilter": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "ownershipScope": "my_ownershipScope",
+     *   //   "thresholdRules": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -367,11 +431,13 @@ export namespace billingbudgets_v1beta1 {
     create(
       params: Params$Resource$Billingaccounts$Budgets$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Billingaccounts$Budgets$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudBillingBudgetsV1beta1Budget>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudBillingBudgetsV1beta1Budget>
+    >;
     create(
       params: Params$Resource$Billingaccounts$Budgets$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -406,8 +472,10 @@ export namespace billingbudgets_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudBillingBudgetsV1beta1Budget>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudBillingBudgetsV1beta1Budget>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Budgets$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -456,6 +524,53 @@ export namespace billingbudgets_v1beta1 {
 
     /**
      * Deletes a budget. Returns successfully if already deleted.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/billingbudgets.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const billingbudgets = google.billingbudgets('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-billing',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await billingbudgets.billingAccounts.budgets.delete({
+     *     // Required. Name of the budget to delete. Values are of the form `billingAccounts/{billingAccountId\}/budgets/{budgetId\}`.
+     *     name: 'billingAccounts/my-billingAccount/budgets/my-budget',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -465,11 +580,11 @@ export namespace billingbudgets_v1beta1 {
     delete(
       params: Params$Resource$Billingaccounts$Budgets$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Billingaccounts$Budgets$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     delete(
       params: Params$Resource$Billingaccounts$Budgets$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -500,8 +615,8 @@ export namespace billingbudgets_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Budgets$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -545,6 +660,62 @@ export namespace billingbudgets_v1beta1 {
 
     /**
      * Returns a budget. WARNING: There are some fields exposed on the Google Cloud Console that aren't available on this API. When reading from the API, you will not see these fields in the return value, though they may have been set in the Cloud Console.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/billingbudgets.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const billingbudgets = google.billingbudgets('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-billing',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await billingbudgets.billingAccounts.budgets.get({
+     *     // Required. Name of budget to get. Values are of the form `billingAccounts/{billingAccountId\}/budgets/{budgetId\}`.
+     *     name: 'billingAccounts/my-billingAccount/budgets/my-budget',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allUpdatesRule": {},
+     *   //   "amount": {},
+     *   //   "budgetFilter": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "ownershipScope": "my_ownershipScope",
+     *   //   "thresholdRules": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -554,11 +725,13 @@ export namespace billingbudgets_v1beta1 {
     get(
       params: Params$Resource$Billingaccounts$Budgets$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Billingaccounts$Budgets$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudBillingBudgetsV1beta1Budget>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudBillingBudgetsV1beta1Budget>
+    >;
     get(
       params: Params$Resource$Billingaccounts$Budgets$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -593,8 +766,10 @@ export namespace billingbudgets_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudBillingBudgetsV1beta1Budget>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudBillingBudgetsV1beta1Budget>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Budgets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -640,6 +815,62 @@ export namespace billingbudgets_v1beta1 {
 
     /**
      * Returns a list of budgets for a billing account. WARNING: There are some fields exposed on the Google Cloud Console that aren't available on this API. When reading from the API, you will not see these fields in the return value, though they may have been set in the Cloud Console.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/billingbudgets.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const billingbudgets = google.billingbudgets('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-billing',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await billingbudgets.billingAccounts.budgets.list({
+     *     // Optional. The maximum number of budgets to return per page. The default and maximum value are 100.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. The value returned by the last `ListBudgetsResponse` which indicates that this is a continuation of a prior `ListBudgets` call, and that the system should return the next page of data.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Name of billing account to list budgets under. Values are of the form `billingAccounts/{billingAccountId\}`.
+     *     parent: 'billingAccounts/my-billingAccount',
+     *     // Optional. Set the scope of the budgets to be returned, in the format of the resource name. The scope of a budget is the cost that it tracks, such as costs for a single project, or the costs for all projects in a folder. Only project scope (in the format of "projects/project-id" or "projects/123") is supported in this field. When this field is set to a project's resource name, the budgets returned are tracking the costs for that project.
+     *     scope: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "budgets": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -649,11 +880,13 @@ export namespace billingbudgets_v1beta1 {
     list(
       params: Params$Resource$Billingaccounts$Budgets$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Billingaccounts$Budgets$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudBillingBudgetsV1beta1ListBudgetsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudBillingBudgetsV1beta1ListBudgetsResponse>
+    >;
     list(
       params: Params$Resource$Billingaccounts$Budgets$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -688,8 +921,10 @@ export namespace billingbudgets_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudBillingBudgetsV1beta1ListBudgetsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudBillingBudgetsV1beta1ListBudgetsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Budgets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -738,6 +973,71 @@ export namespace billingbudgets_v1beta1 {
 
     /**
      * Updates a budget and returns the updated budget. WARNING: There are some fields exposed on the Google Cloud Console that aren't available on this API. Budget fields that are not exposed in this API will not be changed by this method.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/billingbudgets.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const billingbudgets = google.billingbudgets('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-billing',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await billingbudgets.billingAccounts.budgets.patch({
+     *     // Output only. Resource name of the budget. The resource name implies the scope of a budget. Values are of the form `billingAccounts/{billingAccountId\}/budgets/{budgetId\}`.
+     *     name: 'billingAccounts/my-billingAccount/budgets/my-budget',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "budget": {},
+     *       //   "updateMask": "my_updateMask"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allUpdatesRule": {},
+     *   //   "amount": {},
+     *   //   "budgetFilter": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "ownershipScope": "my_ownershipScope",
+     *   //   "thresholdRules": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -747,11 +1047,13 @@ export namespace billingbudgets_v1beta1 {
     patch(
       params: Params$Resource$Billingaccounts$Budgets$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Billingaccounts$Budgets$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudBillingBudgetsV1beta1Budget>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudBillingBudgetsV1beta1Budget>
+    >;
     patch(
       params: Params$Resource$Billingaccounts$Budgets$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -786,8 +1088,10 @@ export namespace billingbudgets_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudBillingBudgetsV1beta1Budget>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudBillingBudgetsV1beta1Budget>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Budgets$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;

@@ -96,6 +96,7 @@ import {
   VERSIONS as apigeeregistryVersions,
   apigeeregistry,
 } from './apigeeregistry';
+import {VERSIONS as apihubVersions, apihub} from './apihub';
 import {VERSIONS as apikeysVersions, apikeys} from './apikeys';
 import {VERSIONS as apimVersions, apim} from './apim';
 import {VERSIONS as appengineVersions, appengine} from './appengine';
@@ -334,6 +335,10 @@ import {
   VERSIONS as firebaseappdistributionVersions,
   firebaseappdistribution,
 } from './firebaseappdistribution';
+import {
+  VERSIONS as firebaseapphostingVersions,
+  firebaseapphosting,
+} from './firebaseapphosting';
 import {
   VERSIONS as firebasedatabaseVersions,
   firebasedatabase,
@@ -599,6 +604,10 @@ import {
   VERSIONS as runtimeconfigVersions,
   runtimeconfig,
 } from './runtimeconfig';
+import {
+  VERSIONS as saasservicemgmtVersions,
+  saasservicemgmt,
+} from './saasservicemgmt';
 import {VERSIONS as safebrowsingVersions, safebrowsing} from './safebrowsing';
 import {VERSIONS as sasportalVersions, sasportal} from './sasportal';
 import {VERSIONS as scriptVersions, script} from './script';
@@ -775,6 +784,7 @@ export const APIS: APIList = {
   androidpublisher: androidpublisherVersions,
   apigateway: apigatewayVersions,
   apigeeregistry: apigeeregistryVersions,
+  apihub: apihubVersions,
   apikeys: apikeysVersions,
   apim: apimVersions,
   appengine: appengineVersions,
@@ -884,6 +894,7 @@ export const APIS: APIList = {
   firebase: firebaseVersions,
   firebaseappcheck: firebaseappcheckVersions,
   firebaseappdistribution: firebaseappdistributionVersions,
+  firebaseapphosting: firebaseapphostingVersions,
   firebasedatabase: firebasedatabaseVersions,
   firebasedataconnect: firebasedataconnectVersions,
   firebasedynamiclinks: firebasedynamiclinksVersions,
@@ -993,6 +1004,7 @@ export const APIS: APIList = {
   retail: retailVersions,
   run: runVersions,
   runtimeconfig: runtimeconfigVersions,
+  saasservicemgmt: saasservicemgmtVersions,
   safebrowsing: safebrowsingVersions,
   sasportal: sasportalVersions,
   script: scriptVersions,
@@ -1087,6 +1099,7 @@ export class GeneratedAPIs {
   androidpublisher = androidpublisher;
   apigateway = apigateway;
   apigeeregistry = apigeeregistry;
+  apihub = apihub;
   apikeys = apikeys;
   apim = apim;
   appengine = appengine;
@@ -1196,6 +1209,7 @@ export class GeneratedAPIs {
   firebase = firebase;
   firebaseappcheck = firebaseappcheck;
   firebaseappdistribution = firebaseappdistribution;
+  firebaseapphosting = firebaseapphosting;
   firebasedatabase = firebasedatabase;
   firebasedataconnect = firebasedataconnect;
   firebasedynamiclinks = firebasedynamiclinks;
@@ -1305,6 +1319,7 @@ export class GeneratedAPIs {
   retail = retail;
   run = run;
   runtimeconfig = runtimeconfig;
+  saasservicemgmt = saasservicemgmt;
   safebrowsing = safebrowsing;
   sasportal = sasportal;
   script = script;

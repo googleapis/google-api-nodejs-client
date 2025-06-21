@@ -2,7 +2,7 @@
 
 # analyticsreporting
 
-> Accesses Analytics report data.
+> 
 
 ## Installation
 

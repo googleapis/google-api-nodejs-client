@@ -1,5 +1,30 @@
 # Changelog
 
+## [7.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/androiddeviceprovisioning-v7.0.0...androiddeviceprovisioning-v7.0.1) (2025-06-04)
+
+
+### Bug Fixes
+
+* **deps:** upgrade googleapis-common to 8.0.2-rc ([f4b0990](https://github.com/googleapis/google-api-nodejs-client/commit/f4b099071040cfbcfe4a2e7d487d45ee93b369e0))
+
+## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/androiddeviceprovisioning-v6.5.1...androiddeviceprovisioning-v7.0.0) (2025-05-29)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to node 18
+
+### Features
+
+* upgrade to node 18 ([682fbb8](https://github.com/googleapis/google-api-nodejs-client/commit/682fbb869189ae92b3e9a194d37d0548af0c1f92))
+
+## [6.5.1](https://github.com/googleapis/google-api-nodejs-client/compare/androiddeviceprovisioning-v6.5.0...androiddeviceprovisioning-v6.5.1) (2025-05-05)
+
+
+### Bug Fixes
+
+* **androiddeviceprovisioning:** update the API ([dfc0ce5](https://github.com/googleapis/google-api-nodejs-client/commit/dfc0ce5f14abb491932f32cadee44c2a2a1f32cf))
+
 ## [6.5.0](https://github.com/googleapis/google-api-nodejs-client/compare/androiddeviceprovisioning-v6.4.0...androiddeviceprovisioning-v6.5.0) (2025-02-04)
 
 

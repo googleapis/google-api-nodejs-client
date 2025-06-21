@@ -36,7 +36,7 @@ prettierConfig.parser = 'babel';
 
 const env = new nunjucks.Environment(
   new nunjucks.FileSystemLoader(TEMPLATES_DIR),
-  {trimBlocks: true}
+  {trimBlocks: true},
 );
 env.addFilter('unRegex', filters.unRegex);
 env.addFilter('cleanPropertyName', filters.cleanPropertyName);
@@ -153,7 +153,7 @@ function getExamplePropertyValue(
   name: string,
   details: SchemaItem,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  schemas: SchemaItems
+  schemas: SchemaItems,
 ): {} {
   switch (details.type) {
     case 'string':

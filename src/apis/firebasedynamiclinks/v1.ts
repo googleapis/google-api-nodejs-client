@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -700,6 +700,63 @@ export namespace firebasedynamiclinks_v1 {
 
     /**
      * Creates a managed short Dynamic Link given either a valid long Dynamic Link or details such as Dynamic Link domain, Android and iOS app information. The created short Dynamic Link will not expire. This differs from CreateShortDynamicLink in the following ways: - The request will also contain a name for the link (non unique name for the front end). - The response must be authenticated with an auth token (generated with the admin service account). - The link will appear in the FDL list of links in the console front end. The Dynamic Link domain in the request must be owned by requester's Firebase project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebasedynamiclinks.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebasedynamiclinks = google.firebasedynamiclinks('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/firebase'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebasedynamiclinks.managedShortLinks.create({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "dynamicLinkInfo": {},
+     *       //   "longDynamicLink": "my_longDynamicLink",
+     *       //   "name": "my_name",
+     *       //   "sdkVersion": "my_sdkVersion",
+     *       //   "suffix": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "managedShortLink": {},
+     *   //   "previewLink": "my_previewLink",
+     *   //   "warning": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -709,11 +766,11 @@ export namespace firebasedynamiclinks_v1 {
     create(
       params: Params$Resource$Managedshortlinks$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Managedshortlinks$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CreateManagedShortLinkResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CreateManagedShortLinkResponse>>;
     create(
       params: Params$Resource$Managedshortlinks$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -748,8 +805,8 @@ export namespace firebasedynamiclinks_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CreateManagedShortLinkResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CreateManagedShortLinkResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Managedshortlinks$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -813,6 +870,62 @@ export namespace firebasedynamiclinks_v1 {
 
     /**
      * Creates a short Dynamic Link given either a valid long Dynamic Link or details such as Dynamic Link domain, Android and iOS app information. The created short Dynamic Link will not expire. Repeated calls with the same long Dynamic Link or Dynamic Link information will produce the same short Dynamic Link. The Dynamic Link domain in the request must be owned by requester's Firebase project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebasedynamiclinks.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebasedynamiclinks = google.firebasedynamiclinks('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/firebase'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebasedynamiclinks.shortLinks.create({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "dynamicLinkInfo": {},
+     *       //   "longDynamicLink": "my_longDynamicLink",
+     *       //   "sdkVersion": "my_sdkVersion",
+     *       //   "suffix": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "previewLink": "my_previewLink",
+     *   //   "shortLink": "my_shortLink",
+     *   //   "warning": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -822,11 +935,11 @@ export namespace firebasedynamiclinks_v1 {
     create(
       params: Params$Resource$Shortlinks$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Shortlinks$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CreateShortDynamicLinkResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CreateShortDynamicLinkResponse>>;
     create(
       params: Params$Resource$Shortlinks$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -861,8 +974,8 @@ export namespace firebasedynamiclinks_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CreateShortDynamicLinkResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CreateShortDynamicLinkResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Shortlinks$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -923,6 +1036,57 @@ export namespace firebasedynamiclinks_v1 {
 
     /**
      * Fetches analytics stats of a short Dynamic Link for a given duration. Metrics include number of clicks, redirects, installs, app first opens, and app reopens.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebasedynamiclinks.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebasedynamiclinks = google.firebasedynamiclinks('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/firebase'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebasedynamiclinks.getLinkStats({
+     *     // The span of time requested in days.
+     *     durationDays: 'placeholder-value',
+     *     // Dynamic Link URL. e.g. https://abcd.app.goo.gl/wxyz
+     *     dynamicLink: 'placeholder-value',
+     *     // Google SDK version. Version takes the form "$major.$minor.$patch"
+     *     sdkVersion: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "linkEventStats": [],
+     *   //   "warnings": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -932,11 +1096,11 @@ export namespace firebasedynamiclinks_v1 {
     getLinkStats(
       params: Params$Resource$V1$Getlinkstats,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getLinkStats(
       params?: Params$Resource$V1$Getlinkstats,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DynamicLinkStats>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DynamicLinkStats>>;
     getLinkStats(
       params: Params$Resource$V1$Getlinkstats,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -965,7 +1129,10 @@ export namespace firebasedynamiclinks_v1 {
       callback?:
         | BodyResponseCallback<Schema$DynamicLinkStats>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$DynamicLinkStats> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$DynamicLinkStats>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$V1$Getlinkstats;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1011,6 +1178,79 @@ export namespace firebasedynamiclinks_v1 {
 
     /**
      * Get iOS strong/weak-match info for post-install attribution.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebasedynamiclinks.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebasedynamiclinks = google.firebasedynamiclinks('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/firebase'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebasedynamiclinks.installAttribution({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "appInstallationTime": "my_appInstallationTime",
+     *       //   "bundleId": "my_bundleId",
+     *       //   "device": {},
+     *       //   "iosVersion": "my_iosVersion",
+     *       //   "retrievalMethod": "my_retrievalMethod",
+     *       //   "sdkVersion": "my_sdkVersion",
+     *       //   "uniqueMatchLinkToCheck": "my_uniqueMatchLinkToCheck",
+     *       //   "visualStyle": "my_visualStyle"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appMinimumVersion": "my_appMinimumVersion",
+     *   //   "attributionConfidence": "my_attributionConfidence",
+     *   //   "deepLink": "my_deepLink",
+     *   //   "externalBrowserDestinationLink": "my_externalBrowserDestinationLink",
+     *   //   "fallbackLink": "my_fallbackLink",
+     *   //   "invitationId": "my_invitationId",
+     *   //   "isStrongMatchExecutable": false,
+     *   //   "matchMessage": "my_matchMessage",
+     *   //   "requestIpVersion": "my_requestIpVersion",
+     *   //   "requestedLink": "my_requestedLink",
+     *   //   "resolvedLink": "my_resolvedLink",
+     *   //   "utmCampaign": "my_utmCampaign",
+     *   //   "utmContent": "my_utmContent",
+     *   //   "utmMedium": "my_utmMedium",
+     *   //   "utmSource": "my_utmSource",
+     *   //   "utmTerm": "my_utmTerm"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1020,11 +1260,13 @@ export namespace firebasedynamiclinks_v1 {
     installAttribution(
       params: Params$Resource$V1$Installattribution,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     installAttribution(
       params?: Params$Resource$V1$Installattribution,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GetIosPostInstallAttributionResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GetIosPostInstallAttributionResponse>
+    >;
     installAttribution(
       params: Params$Resource$V1$Installattribution,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1059,8 +1301,10 @@ export namespace firebasedynamiclinks_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GetIosPostInstallAttributionResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GetIosPostInstallAttributionResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$V1$Installattribution;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1109,6 +1353,68 @@ export namespace firebasedynamiclinks_v1 {
 
     /**
      * Get iOS reopen attribution for app universal link open deeplinking.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebasedynamiclinks.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebasedynamiclinks = google.firebasedynamiclinks('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/firebase'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebasedynamiclinks.reopenAttribution({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bundleId": "my_bundleId",
+     *       //   "requestedLink": "my_requestedLink",
+     *       //   "sdkVersion": "my_sdkVersion"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deepLink": "my_deepLink",
+     *   //   "invitationId": "my_invitationId",
+     *   //   "iosMinAppVersion": "my_iosMinAppVersion",
+     *   //   "resolvedLink": "my_resolvedLink",
+     *   //   "utmCampaign": "my_utmCampaign",
+     *   //   "utmContent": "my_utmContent",
+     *   //   "utmMedium": "my_utmMedium",
+     *   //   "utmSource": "my_utmSource",
+     *   //   "utmTerm": "my_utmTerm",
+     *   //   "warning": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1118,11 +1424,11 @@ export namespace firebasedynamiclinks_v1 {
     reopenAttribution(
       params: Params$Resource$V1$Reopenattribution,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     reopenAttribution(
       params?: Params$Resource$V1$Reopenattribution,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GetIosReopenAttributionResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GetIosReopenAttributionResponse>>;
     reopenAttribution(
       params: Params$Resource$V1$Reopenattribution,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1157,8 +1463,8 @@ export namespace firebasedynamiclinks_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GetIosReopenAttributionResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GetIosReopenAttributionResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$V1$Reopenattribution;
       let options = (optionsOrCallback || {}) as MethodOptions;

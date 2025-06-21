@@ -1,5 +1,30 @@
 # Changelog
 
+## [2.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/cloudscheduler-v2.0.0...cloudscheduler-v2.0.1) (2025-06-04)
+
+
+### Bug Fixes
+
+* **deps:** upgrade googleapis-common to 8.0.2-rc ([f4b0990](https://github.com/googleapis/google-api-nodejs-client/commit/f4b099071040cfbcfe4a2e7d487d45ee93b369e0))
+
+## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudscheduler-v1.4.0...cloudscheduler-v2.0.0) (2025-05-29)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to node 18
+
+### Features
+
+* upgrade to node 18 ([682fbb8](https://github.com/googleapis/google-api-nodejs-client/commit/682fbb869189ae92b3e9a194d37d0548af0c1f92))
+
+## [1.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudscheduler-v1.3.0...cloudscheduler-v1.4.0) (2025-05-05)
+
+
+### Features
+
+* **cloudscheduler:** update the API ([99db82a](https://github.com/googleapis/google-api-nodejs-client/commit/99db82aa0ad48c08045858fef3d860e7391f6d90))
+
 ## [1.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudscheduler-v1.2.0...cloudscheduler-v1.3.0) (2025-02-04)
 
 

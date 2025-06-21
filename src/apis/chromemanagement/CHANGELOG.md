@@ -1,5 +1,30 @@
 # Changelog
 
+## [20.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/chromemanagement-v20.0.0...chromemanagement-v20.0.1) (2025-06-04)
+
+
+### Bug Fixes
+
+* **deps:** upgrade googleapis-common to 8.0.2-rc ([f4b0990](https://github.com/googleapis/google-api-nodejs-client/commit/f4b099071040cfbcfe4a2e7d487d45ee93b369e0))
+
+## [20.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/chromemanagement-v19.0.1...chromemanagement-v20.0.0) (2025-05-29)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to node 18
+
+### Features
+
+* upgrade to node 18 ([682fbb8](https://github.com/googleapis/google-api-nodejs-client/commit/682fbb869189ae92b3e9a194d37d0548af0c1f92))
+
+## [19.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/chromemanagement-v19.0.0...chromemanagement-v19.0.1) (2025-05-05)
+
+
+### Bug Fixes
+
+* **chromemanagement:** update the API ([27b8141](https://github.com/googleapis/google-api-nodejs-client/commit/27b814119e48724f29737af8a8ac66272f340dd5))
+
 ## [19.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/chromemanagement-v18.0.0...chromemanagement-v19.0.0) (2025-04-18)
 
 

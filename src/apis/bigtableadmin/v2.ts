@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -1778,6 +1778,10 @@ export namespace bigtableadmin_v2 {
      * Output only. Only available with STATS_VIEW, this includes summary statistics about the entire table contents. For statistics about a specific column family, see ColumnFamilyStats in the mapped ColumnFamily collection above.
      */
     stats?: Schema$TableStats;
+    /**
+     * Rules to specify what data is stored in each storage tier. Different tiers store data differently, providing different trade-offs between cost and performance. Different parts of a table can be stored separately on different tiers. If a config is specified, tiered storage is enabled for this table. Otherwise, tiered storage is disabled. Only SSD instances can configure tiered storage.
+     */
+    tieredStorageConfig?: Schema$TieredStorageConfig;
   }
   /**
    * Progress info for copying a table's data to the new cluster.
@@ -1831,6 +1835,24 @@ export namespace bigtableadmin_v2 {
      * A subset of `TestPermissionsRequest.permissions` that the caller is allowed.
      */
     permissions?: string[] | null;
+  }
+  /**
+   * Config for tiered storage. A valid config must have a valid TieredStorageRule. Otherwise the whole TieredStorageConfig must be unset. By default all data is stored in the SSD tier (only SSD instances can configure tiered storage).
+   */
+  export interface Schema$TieredStorageConfig {
+    /**
+     * Rule to specify what data is stored in the infrequent access(IA) tier. The IA tier allows storing more data per node with reduced performance.
+     */
+    infrequentAccess?: Schema$TieredStorageRule;
+  }
+  /**
+   * Rule to specify what data is stored in a storage tier.
+   */
+  export interface Schema$TieredStorageRule {
+    /**
+     * Include cells older than the given age. For the infrequent access tier, this value must be at least 30 days.
+     */
+    includeIfOlderThan?: string | null;
   }
   /**
    * `Type` represents the type of data that is written to, read from, or stored in Bigtable. It is heavily based on the GoogleSQL standard to help maintain familiarity and consistency across products and features. For compatibility with Bigtable's existing untyped APIs, each `Type` includes an `Encoding` which describes how to convert to or from the underlying data. Each encoding can operate in one of two modes: - Sorted: In this mode, Bigtable guarantees that `Encode(X) <= Encode(Y)` if and only if `X <= Y`. This is useful anywhere sort order is important, for example when encoding keys. - Distinct: In this mode, Bigtable guarantees that if `X != Y` then `Encode(X) != Encode(Y)`. However, the converse is not guaranteed. For example, both "{'foo': '1', 'bar': '2'\}" and "{'bar': '2', 'foo': '1'\}" are valid encodings of the same JSON value. The API clearly documents which mode is used wherever an encoding can be configured. Each encoding also documents which values are supported in which modes. For example, when encoding INT64 as a numeric STRING, negative numbers cannot be encoded in sorted mode. This is because `INT64(1) \> INT64(-1)`, but `STRING("-00001") \> STRING("00001")`.
@@ -2044,7 +2066,345 @@ export namespace bigtableadmin_v2 {
     }
 
     /**
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/bigtable.admin.instance',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigtableadmin.operations.cancel({
+     *     // The name of the operation resource to be cancelled.
+     *     name: 'operations/.*',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    cancel(
+      params: Params$Resource$Operations$Cancel,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    cancel(
+      params?: Params$Resource$Operations$Cancel,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
+    cancel(
+      params: Params$Resource$Operations$Cancel,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    cancel(
+      params: Params$Resource$Operations$Cancel,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    cancel(
+      params: Params$Resource$Operations$Cancel,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    cancel(callback: BodyResponseCallback<Schema$Empty>): void;
+    cancel(
+      paramsOrCallback?:
+        | Params$Resource$Operations$Cancel
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Operations$Cancel;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Operations$Cancel;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://bigtableadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/bigtable.admin.instance',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigtableadmin.operations.delete({
+     *     // The name of the operation resource to be deleted.
+     *     name: 'operations/.*',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Operations$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Operations$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
+    delete(
+      params: Params$Resource$Operations$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Operations$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Operations$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Operations$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Operations$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Operations$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://bigtableadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
      * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/bigtable.admin.instance',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigtableadmin.operations.get({
+     *     // The name of the operation resource.
+     *     name: 'operations/.*',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2054,11 +2414,11 @@ export namespace bigtableadmin_v2 {
     get(
       params: Params$Resource$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     get(
       params: Params$Resource$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2087,7 +2447,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2129,6 +2492,20 @@ export namespace bigtableadmin_v2 {
     }
   }
 
+  export interface Params$Resource$Operations$Cancel
+    extends StandardParameters {
+    /**
+     * The name of the operation resource to be cancelled.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Operations$Delete
+    extends StandardParameters {
+    /**
+     * The name of the operation resource to be deleted.
+     */
+    name?: string;
+  }
   export interface Params$Resource$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
@@ -2155,6 +2532,67 @@ export namespace bigtableadmin_v2 {
 
     /**
      * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/bigtable.admin.instance',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigtableadmin.operations.projects.operations.list({
+     *     // The standard list filter.
+     *     filter: 'placeholder-value',
+     *     // The name of the operation's parent resource.
+     *     name: 'operations/projects/.*',
+     *     // The standard list page size.
+     *     pageSize: 'placeholder-value',
+     *     // The standard list page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "operations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2164,11 +2602,11 @@ export namespace bigtableadmin_v2 {
     list(
       params: Params$Resource$Operations$Projects$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Operations$Projects$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListOperationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>;
     list(
       params: Params$Resource$Operations$Projects$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2201,8 +2639,8 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListOperationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Operations$Projects$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2302,6 +2740,74 @@ export namespace bigtableadmin_v2 {
 
     /**
      * Create an instance within a project. Note that exactly one of Cluster.serve_nodes and Cluster.cluster_config.cluster_autoscaling_config can be set. If serve_nodes is set to non-zero, then the cluster is manually scaled. If cluster_config.cluster_autoscaling_config is non-empty, then autoscaling is enabled.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/bigtable.admin.instance',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigtableadmin.projects.instances.create({
+     *     // Required. The unique name of the project in which to create the new instance. Values are of the form `projects/{project\}`.
+     *     parent: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clusters": {},
+     *       //   "instance": {},
+     *       //   "instanceId": "my_instanceId",
+     *       //   "parent": "my_parent"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2311,11 +2817,11 @@ export namespace bigtableadmin_v2 {
     create(
       params: Params$Resource$Projects$Instances$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Instances$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Instances$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2344,7 +2850,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2391,6 +2900,57 @@ export namespace bigtableadmin_v2 {
 
     /**
      * Delete an instance from a project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/bigtable.admin.instance',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigtableadmin.projects.instances.delete({
+     *     // Required. The unique name of the instance to be deleted. Values are of the form `projects/{project\}/instances/{instance\}`.
+     *     name: 'projects/my-project/instances/my-instance',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2400,11 +2960,11 @@ export namespace bigtableadmin_v2 {
     delete(
       params: Params$Resource$Projects$Instances$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Instances$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Instances$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2433,7 +2993,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2477,6 +3040,67 @@ export namespace bigtableadmin_v2 {
 
     /**
      * Gets information about an instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/bigtable.admin.instance',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigtableadmin.projects.instances.get({
+     *     // Required. The unique name of the requested instance. Values are of the form `projects/{project\}/instances/{instance\}`.
+     *     name: 'projects/my-project/instances/my-instance',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "displayName": "my_displayName",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "satisfiesPzi": false,
+     *   //   "satisfiesPzs": false,
+     *   //   "state": "my_state",
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2486,11 +3110,11 @@ export namespace bigtableadmin_v2 {
     get(
       params: Params$Resource$Projects$Instances$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Instances$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Instance>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Instance>>;
     get(
       params: Params$Resource$Projects$Instances$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2519,7 +3143,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Instance>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Instance> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Instance>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2563,6 +3190,70 @@ export namespace bigtableadmin_v2 {
 
     /**
      * Gets the access control policy for an instance resource. Returns an empty policy if an instance exists but does not have a policy set.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/bigtable.admin.instance',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigtableadmin.projects.instances.getIamPolicy({
+     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource: 'projects/my-project/instances/my-instance',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "options": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2572,11 +3263,11 @@ export namespace bigtableadmin_v2 {
     getIamPolicy(
       params: Params$Resource$Projects$Instances$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Instances$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Instances$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2605,7 +3296,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2652,6 +3346,64 @@ export namespace bigtableadmin_v2 {
 
     /**
      * Lists information about instances in a project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/bigtable.admin.instance',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigtableadmin.projects.instances.list({
+     *     // DEPRECATED: This field is unused and ignored.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The unique name of the project for which a list of instances is requested. Values are of the form `projects/{project\}`.
+     *     parent: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "failedLocations": [],
+     *   //   "instances": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2661,11 +3413,11 @@ export namespace bigtableadmin_v2 {
     list(
       params: Params$Resource$Projects$Instances$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Instances$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListInstancesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListInstancesResponse>>;
     list(
       params: Params$Resource$Projects$Instances$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2698,8 +3450,8 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListInstancesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListInstancesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2746,6 +3498,80 @@ export namespace bigtableadmin_v2 {
 
     /**
      * Partially updates an instance within a project. This method can modify all fields of an Instance and is the preferred way to update an Instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/bigtable.admin.instance',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigtableadmin.projects.instances.partialUpdateInstance({
+     *     // The unique name of the instance. Values are of the form `projects/{project\}/instances/a-z+[a-z0-9]`.
+     *     name: 'projects/my-project/instances/my-instance',
+     *     // Required. The subset of Instance fields which should be replaced. Must be explicitly set.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "displayName": "my_displayName",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "satisfiesPzi": false,
+     *       //   "satisfiesPzs": false,
+     *       //   "state": "my_state",
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2755,11 +3581,11 @@ export namespace bigtableadmin_v2 {
     partialUpdateInstance(
       params: Params$Resource$Projects$Instances$Partialupdateinstance,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     partialUpdateInstance(
       params?: Params$Resource$Projects$Instances$Partialupdateinstance,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     partialUpdateInstance(
       params: Params$Resource$Projects$Instances$Partialupdateinstance,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2790,7 +3616,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Partialupdateinstance;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2834,6 +3663,71 @@ export namespace bigtableadmin_v2 {
 
     /**
      * Sets the access control policy on an instance resource. Replaces any existing policy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/bigtable.admin.instance',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigtableadmin.projects.instances.setIamPolicy({
+     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource: 'projects/my-project/instances/my-instance',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "policy": {},
+     *       //   "updateMask": "my_updateMask"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2843,11 +3737,11 @@ export namespace bigtableadmin_v2 {
     setIamPolicy(
       params: Params$Resource$Projects$Instances$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Instances$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Instances$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2876,7 +3770,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2923,6 +3820,67 @@ export namespace bigtableadmin_v2 {
 
     /**
      * Returns permissions that the caller has on the specified instance resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/bigtable.admin.instance',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigtableadmin.projects.instances.testIamPermissions({
+     *     // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource: 'projects/my-project/instances/my-instance',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "permissions": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2932,11 +3890,11 @@ export namespace bigtableadmin_v2 {
     testIamPermissions(
       params: Params$Resource$Projects$Instances$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Instances$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Instances$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2971,8 +3929,8 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3019,6 +3977,81 @@ export namespace bigtableadmin_v2 {
 
     /**
      * Updates an instance within a project. This method updates only the display name and type for an Instance. To update other Instance properties, such as labels, use PartialUpdateInstance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/bigtable.admin.instance',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigtableadmin.projects.instances.update({
+     *     // The unique name of the instance. Values are of the form `projects/{project\}/instances/a-z+[a-z0-9]`.
+     *     name: 'projects/my-project/instances/my-instance',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "displayName": "my_displayName",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "satisfiesPzi": false,
+     *       //   "satisfiesPzs": false,
+     *       //   "state": "my_state",
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "displayName": "my_displayName",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "satisfiesPzi": false,
+     *   //   "satisfiesPzs": false,
+     *   //   "state": "my_state",
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3028,11 +4061,11 @@ export namespace bigtableadmin_v2 {
     update(
       params: Params$Resource$Projects$Instances$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Projects$Instances$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Instance>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Instance>>;
     update(
       params: Params$Resource$Projects$Instances$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3061,7 +4094,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Instance>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Instance> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Instance>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3214,6 +4250,85 @@ export namespace bigtableadmin_v2 {
 
     /**
      * Creates an app profile within an instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/bigtable.admin.instance',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigtableadmin.projects.instances.appProfiles.create({
+     *     // Required. The ID to be used when referring to the new app profile within its instance, e.g., just `myprofile` rather than `projects/myproject/instances/myinstance/appProfiles/myprofile`.
+     *     appProfileId: 'placeholder-value',
+     *     // If true, ignore safety checks when creating the app profile.
+     *     ignoreWarnings: 'placeholder-value',
+     *     // Required. The unique name of the instance in which to create the new app profile. Values are of the form `projects/{project\}/instances/{instance\}`.
+     *     parent: 'projects/my-project/instances/my-instance',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "dataBoostIsolationReadOnly": {},
+     *       //   "description": "my_description",
+     *       //   "etag": "my_etag",
+     *       //   "multiClusterRoutingUseAny": {},
+     *       //   "name": "my_name",
+     *       //   "priority": "my_priority",
+     *       //   "singleClusterRouting": {},
+     *       //   "standardIsolation": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dataBoostIsolationReadOnly": {},
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "multiClusterRoutingUseAny": {},
+     *   //   "name": "my_name",
+     *   //   "priority": "my_priority",
+     *   //   "singleClusterRouting": {},
+     *   //   "standardIsolation": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3223,11 +4338,11 @@ export namespace bigtableadmin_v2 {
     create(
       params: Params$Resource$Projects$Instances$Appprofiles$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Instances$Appprofiles$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AppProfile>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AppProfile>>;
     create(
       params: Params$Resource$Projects$Instances$Appprofiles$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3256,7 +4371,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$AppProfile>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AppProfile> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$AppProfile>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Appprofiles$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3303,6 +4421,59 @@ export namespace bigtableadmin_v2 {
 
     /**
      * Deletes an app profile from an instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/bigtable.admin.instance',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigtableadmin.projects.instances.appProfiles.delete({
+     *     // Required. If true, ignore safety checks when deleting the app profile.
+     *     ignoreWarnings: 'placeholder-value',
+     *     // Required. The unique name of the app profile to be deleted. Values are of the form `projects/{project\}/instances/{instance\}/appProfiles/{app_profile\}`.
+     *     name: 'projects/my-project/instances/my-instance/appProfiles/my-appProfile',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3312,11 +4483,11 @@ export namespace bigtableadmin_v2 {
     delete(
       params: Params$Resource$Projects$Instances$Appprofiles$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Instances$Appprofiles$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Instances$Appprofiles$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3345,7 +4516,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Appprofiles$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3389,6 +4563,67 @@ export namespace bigtableadmin_v2 {
 
     /**
      * Gets information about an app profile.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/bigtable.admin.instance',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigtableadmin.projects.instances.appProfiles.get({
+     *     // Required. The unique name of the requested app profile. Values are of the form `projects/{project\}/instances/{instance\}/appProfiles/{app_profile\}`.
+     *     name: 'projects/my-project/instances/my-instance/appProfiles/my-appProfile',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dataBoostIsolationReadOnly": {},
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "multiClusterRoutingUseAny": {},
+     *   //   "name": "my_name",
+     *   //   "priority": "my_priority",
+     *   //   "singleClusterRouting": {},
+     *   //   "standardIsolation": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3398,11 +4633,11 @@ export namespace bigtableadmin_v2 {
     get(
       params: Params$Resource$Projects$Instances$Appprofiles$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Instances$Appprofiles$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AppProfile>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AppProfile>>;
     get(
       params: Params$Resource$Projects$Instances$Appprofiles$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3431,7 +4666,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$AppProfile>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AppProfile> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$AppProfile>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Appprofiles$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3475,6 +4713,65 @@ export namespace bigtableadmin_v2 {
 
     /**
      * Lists information about app profiles in an instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/bigtable.admin.instance',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigtableadmin.projects.instances.appProfiles.list({
+     *     // Maximum number of results per page. A page_size of zero lets the server choose the number of items to return. A page_size which is strictly positive will return at most that many items. A negative page_size will cause an error. Following the first request, subsequent paginated calls are not required to pass a page_size. If a page_size is set in subsequent calls, it must match the page_size given in the first request.
+     *     pageSize: 'placeholder-value',
+     *     // The value of `next_page_token` returned by a previous call.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The unique name of the instance for which a list of app profiles is requested. Values are of the form `projects/{project\}/instances/{instance\}`. Use `{instance\} = '-'` to list AppProfiles for all Instances in a project, e.g., `projects/myproject/instances/-`.
+     *     parent: 'projects/my-project/instances/my-instance',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appProfiles": [],
+     *   //   "failedLocations": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3484,11 +4781,11 @@ export namespace bigtableadmin_v2 {
     list(
       params: Params$Resource$Projects$Instances$Appprofiles$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Instances$Appprofiles$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAppProfilesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListAppProfilesResponse>>;
     list(
       params: Params$Resource$Projects$Instances$Appprofiles$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3521,8 +4818,8 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListAppProfilesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListAppProfilesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Appprofiles$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3569,6 +4866,82 @@ export namespace bigtableadmin_v2 {
 
     /**
      * Updates an app profile within an instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/bigtable.admin.instance',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigtableadmin.projects.instances.appProfiles.patch({
+     *     // If true, ignore safety checks when updating the app profile.
+     *     ignoreWarnings: 'placeholder-value',
+     *     // The unique name of the app profile, up to 50 characters long. Values are of the form `projects/{project\}/instances/{instance\}/appProfiles/_a-zA-Z0-9*`.
+     *     name: 'projects/my-project/instances/my-instance/appProfiles/my-appProfile',
+     *     // Required. The subset of app profile fields which should be replaced. If unset, all fields will be replaced.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "dataBoostIsolationReadOnly": {},
+     *       //   "description": "my_description",
+     *       //   "etag": "my_etag",
+     *       //   "multiClusterRoutingUseAny": {},
+     *       //   "name": "my_name",
+     *       //   "priority": "my_priority",
+     *       //   "singleClusterRouting": {},
+     *       //   "standardIsolation": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3578,11 +4951,11 @@ export namespace bigtableadmin_v2 {
     patch(
       params: Params$Resource$Projects$Instances$Appprofiles$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Instances$Appprofiles$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Instances$Appprofiles$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3611,7 +4984,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Appprofiles$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3744,6 +5120,80 @@ export namespace bigtableadmin_v2 {
 
     /**
      * Creates a cluster within an instance. Note that exactly one of Cluster.serve_nodes and Cluster.cluster_config.cluster_autoscaling_config can be set. If serve_nodes is set to non-zero, then the cluster is manually scaled. If cluster_config.cluster_autoscaling_config is non-empty, then autoscaling is enabled.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/bigtable.admin.instance',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigtableadmin.projects.instances.clusters.create({
+     *     // Required. The ID to be used when referring to the new cluster within its instance, e.g., just `mycluster` rather than `projects/myproject/instances/myinstance/clusters/mycluster`.
+     *     clusterId: 'placeholder-value',
+     *     // Required. The unique name of the instance in which to create the new cluster. Values are of the form `projects/{project\}/instances/{instance\}`.
+     *     parent: 'projects/my-project/instances/my-instance',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clusterConfig": {},
+     *       //   "defaultStorageType": "my_defaultStorageType",
+     *       //   "encryptionConfig": {},
+     *       //   "location": "my_location",
+     *       //   "name": "my_name",
+     *       //   "nodeScalingFactor": "my_nodeScalingFactor",
+     *       //   "serveNodes": 0,
+     *       //   "state": "my_state"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3753,11 +5203,11 @@ export namespace bigtableadmin_v2 {
     create(
       params: Params$Resource$Projects$Instances$Clusters$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Instances$Clusters$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Instances$Clusters$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3786,7 +5236,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Clusters$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3833,6 +5286,57 @@ export namespace bigtableadmin_v2 {
 
     /**
      * Deletes a cluster from an instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/bigtable.admin.instance',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigtableadmin.projects.instances.clusters.delete({
+     *     // Required. The unique name of the cluster to be deleted. Values are of the form `projects/{project\}/instances/{instance\}/clusters/{cluster\}`.
+     *     name: 'projects/my-project/instances/my-instance/clusters/my-cluster',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3842,11 +5346,11 @@ export namespace bigtableadmin_v2 {
     delete(
       params: Params$Resource$Projects$Instances$Clusters$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Instances$Clusters$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Instances$Clusters$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3875,7 +5379,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Clusters$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3919,6 +5426,67 @@ export namespace bigtableadmin_v2 {
 
     /**
      * Gets information about a cluster.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/bigtable.admin.instance',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigtableadmin.projects.instances.clusters.get({
+     *     // Required. The unique name of the requested cluster. Values are of the form `projects/{project\}/instances/{instance\}/clusters/{cluster\}`.
+     *     name: 'projects/my-project/instances/my-instance/clusters/my-cluster',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConfig": {},
+     *   //   "defaultStorageType": "my_defaultStorageType",
+     *   //   "encryptionConfig": {},
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodeScalingFactor": "my_nodeScalingFactor",
+     *   //   "serveNodes": 0,
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3928,11 +5496,11 @@ export namespace bigtableadmin_v2 {
     get(
       params: Params$Resource$Projects$Instances$Clusters$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Instances$Clusters$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Cluster>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Cluster>>;
     get(
       params: Params$Resource$Projects$Instances$Clusters$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3961,7 +5529,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Cluster>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Cluster> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Cluster>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Clusters$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4005,6 +5576,64 @@ export namespace bigtableadmin_v2 {
 
     /**
      * Lists information about clusters in an instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/bigtable.admin.instance',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigtableadmin.projects.instances.clusters.list({
+     *     // DEPRECATED: This field is unused and ignored.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The unique name of the instance for which a list of clusters is requested. Values are of the form `projects/{project\}/instances/{instance\}`. Use `{instance\} = '-'` to list Clusters for all Instances in a project, e.g., `projects/myproject/instances/-`.
+     *     parent: 'projects/my-project/instances/my-instance',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusters": [],
+     *   //   "failedLocations": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4014,11 +5643,11 @@ export namespace bigtableadmin_v2 {
     list(
       params: Params$Resource$Projects$Instances$Clusters$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Instances$Clusters$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListClustersResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListClustersResponse>>;
     list(
       params: Params$Resource$Projects$Instances$Clusters$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4051,8 +5680,8 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListClustersResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListClustersResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Clusters$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4099,6 +5728,81 @@ export namespace bigtableadmin_v2 {
 
     /**
      * Partially updates a cluster within a project. This method is the preferred way to update a Cluster. To enable and update autoscaling, set cluster_config.cluster_autoscaling_config. When autoscaling is enabled, serve_nodes is treated as an OUTPUT_ONLY field, meaning that updates to it are ignored. Note that an update cannot simultaneously set serve_nodes to non-zero and cluster_config.cluster_autoscaling_config to non-empty, and also specify both in the update_mask. To disable autoscaling, clear cluster_config.cluster_autoscaling_config, and explicitly set a serve_node count via the update_mask.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/bigtable.admin.instance',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await bigtableadmin.projects.instances.clusters.partialUpdateCluster({
+     *       // The unique name of the cluster. Values are of the form `projects/{project\}/instances/{instance\}/clusters/a-z*`.
+     *       name: 'projects/my-project/instances/my-instance/clusters/my-cluster',
+     *       // Required. The subset of Cluster fields which should be replaced.
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "clusterConfig": {},
+     *         //   "defaultStorageType": "my_defaultStorageType",
+     *         //   "encryptionConfig": {},
+     *         //   "location": "my_location",
+     *         //   "name": "my_name",
+     *         //   "nodeScalingFactor": "my_nodeScalingFactor",
+     *         //   "serveNodes": 0,
+     *         //   "state": "my_state"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4108,11 +5812,11 @@ export namespace bigtableadmin_v2 {
     partialUpdateCluster(
       params: Params$Resource$Projects$Instances$Clusters$Partialupdatecluster,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     partialUpdateCluster(
       params?: Params$Resource$Projects$Instances$Clusters$Partialupdatecluster,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     partialUpdateCluster(
       params: Params$Resource$Projects$Instances$Clusters$Partialupdatecluster,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4143,7 +5847,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Clusters$Partialupdatecluster;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4188,6 +5895,78 @@ export namespace bigtableadmin_v2 {
 
     /**
      * Updates a cluster within an instance. Note that UpdateCluster does not support updating cluster_config.cluster_autoscaling_config. In order to update it, you must use PartialUpdateCluster.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/bigtable.admin.instance',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigtableadmin.projects.instances.clusters.update({
+     *     // The unique name of the cluster. Values are of the form `projects/{project\}/instances/{instance\}/clusters/a-z*`.
+     *     name: 'projects/my-project/instances/my-instance/clusters/my-cluster',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clusterConfig": {},
+     *       //   "defaultStorageType": "my_defaultStorageType",
+     *       //   "encryptionConfig": {},
+     *       //   "location": "my_location",
+     *       //   "name": "my_name",
+     *       //   "nodeScalingFactor": "my_nodeScalingFactor",
+     *       //   "serveNodes": 0,
+     *       //   "state": "my_state"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4197,11 +5976,11 @@ export namespace bigtableadmin_v2 {
     update(
       params: Params$Resource$Projects$Instances$Clusters$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Projects$Instances$Clusters$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     update(
       params: Params$Resource$Projects$Instances$Clusters$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4230,7 +6009,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Clusters$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4351,6 +6133,72 @@ export namespace bigtableadmin_v2 {
 
     /**
      * Copy a Cloud Bigtable backup to a new backup in the destination cluster located in the destination instance and project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigtableadmin.projects.instances.clusters.backups.copy({
+     *     // Required. The name of the destination cluster that will contain the backup copy. The cluster must already exist. Values are of the form: `projects/{project\}/instances/{instance\}/clusters/{cluster\}`.
+     *     parent: 'projects/my-project/instances/my-instance/clusters/my-cluster',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "backupId": "my_backupId",
+     *       //   "expireTime": "my_expireTime",
+     *       //   "sourceBackup": "my_sourceBackup"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4360,11 +6208,11 @@ export namespace bigtableadmin_v2 {
     copy(
       params: Params$Resource$Projects$Instances$Clusters$Backups$Copy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     copy(
       params?: Params$Resource$Projects$Instances$Clusters$Backups$Copy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     copy(
       params: Params$Resource$Projects$Instances$Clusters$Backups$Copy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4393,7 +6241,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Clusters$Backups$Copy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4440,6 +6291,82 @@ export namespace bigtableadmin_v2 {
 
     /**
      * Starts creating a new Cloud Bigtable Backup. The returned backup long-running operation can be used to track creation of the backup. The metadata field type is CreateBackupMetadata. The response field type is Backup, if successful. Cancelling the returned operation will stop the creation and delete the backup.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigtableadmin.projects.instances.clusters.backups.create({
+     *     // Required. The id of the backup to be created. The `backup_id` along with the parent `parent` are combined as {parent\}/backups/{backup_id\} to create the full backup name, of the form: `projects/{project\}/instances/{instance\}/clusters/{cluster\}/backups/{backup_id\}`. This string must be between 1 and 50 characters in length and match the regex _a-zA-Z0-9*.
+     *     backupId: 'placeholder-value',
+     *     // Required. This must be one of the clusters in the instance in which this table is located. The backup will be stored in this cluster. Values are of the form `projects/{project\}/instances/{instance\}/clusters/{cluster\}`.
+     *     parent: 'projects/my-project/instances/my-instance/clusters/my-cluster',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "backupType": "my_backupType",
+     *       //   "encryptionInfo": {},
+     *       //   "endTime": "my_endTime",
+     *       //   "expireTime": "my_expireTime",
+     *       //   "hotToStandardTime": "my_hotToStandardTime",
+     *       //   "name": "my_name",
+     *       //   "sizeBytes": "my_sizeBytes",
+     *       //   "sourceBackup": "my_sourceBackup",
+     *       //   "sourceTable": "my_sourceTable",
+     *       //   "startTime": "my_startTime",
+     *       //   "state": "my_state"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4449,11 +6376,11 @@ export namespace bigtableadmin_v2 {
     create(
       params: Params$Resource$Projects$Instances$Clusters$Backups$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Instances$Clusters$Backups$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Instances$Clusters$Backups$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4482,7 +6409,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Clusters$Backups$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4530,6 +6460,56 @@ export namespace bigtableadmin_v2 {
 
     /**
      * Deletes a pending or completed Cloud Bigtable backup.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigtableadmin.projects.instances.clusters.backups.delete({
+     *     // Required. Name of the backup to delete. Values are of the form `projects/{project\}/instances/{instance\}/clusters/{cluster\}/backups/{backup\}`.
+     *     name: 'projects/my-project/instances/my-instance/clusters/my-cluster/backups/my-backup',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4539,11 +6519,11 @@ export namespace bigtableadmin_v2 {
     delete(
       params: Params$Resource$Projects$Instances$Clusters$Backups$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Instances$Clusters$Backups$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Instances$Clusters$Backups$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4572,7 +6552,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Clusters$Backups$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4617,6 +6600,68 @@ export namespace bigtableadmin_v2 {
 
     /**
      * Gets metadata on a pending or completed Cloud Bigtable Backup.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigtableadmin.projects.instances.clusters.backups.get({
+     *     // Required. Name of the backup. Values are of the form `projects/{project\}/instances/{instance\}/clusters/{cluster\}/backups/{backup\}`.
+     *     name: 'projects/my-project/instances/my-instance/clusters/my-cluster/backups/my-backup',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "backupType": "my_backupType",
+     *   //   "encryptionInfo": {},
+     *   //   "endTime": "my_endTime",
+     *   //   "expireTime": "my_expireTime",
+     *   //   "hotToStandardTime": "my_hotToStandardTime",
+     *   //   "name": "my_name",
+     *   //   "sizeBytes": "my_sizeBytes",
+     *   //   "sourceBackup": "my_sourceBackup",
+     *   //   "sourceTable": "my_sourceTable",
+     *   //   "startTime": "my_startTime",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4626,11 +6671,11 @@ export namespace bigtableadmin_v2 {
     get(
       params: Params$Resource$Projects$Instances$Clusters$Backups$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Instances$Clusters$Backups$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Backup>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Backup>>;
     get(
       params: Params$Resource$Projects$Instances$Clusters$Backups$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4659,7 +6704,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Backup>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Backup> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Backup>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Clusters$Backups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4703,6 +6751,71 @@ export namespace bigtableadmin_v2 {
 
     /**
      * Gets the access control policy for a Bigtable resource. Returns an empty policy if the resource exists but does not have a policy set.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await bigtableadmin.projects.instances.clusters.backups.getIamPolicy({
+     *       // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/instances/my-instance/clusters/my-cluster/backups/my-backup',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "options": {}
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4712,11 +6825,11 @@ export namespace bigtableadmin_v2 {
     getIamPolicy(
       params: Params$Resource$Projects$Instances$Clusters$Backups$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Instances$Clusters$Backups$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Instances$Clusters$Backups$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4745,7 +6858,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Clusters$Backups$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4793,6 +6909,67 @@ export namespace bigtableadmin_v2 {
 
     /**
      * Lists Cloud Bigtable backups. Returns both completed and pending backups.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigtableadmin.projects.instances.clusters.backups.list({
+     *     // A filter expression that filters backups listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be <, \>, <=, \>=, !=, =, or :. Colon ':' represents a HAS operator which is roughly synonymous with equality. Filter rules are case insensitive. The fields eligible for filtering are: * `name` * `source_table` * `state` * `start_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ) * `end_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ) * `expire_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ) * `size_bytes` To filter on multiple expressions, provide each separate expression within parentheses. By default, each expression is an AND expression. However, you can include AND, OR, and NOT expressions explicitly. Some examples of using filters are: * `name:"exact"` --\> The backup's name is the string "exact". * `name:howl` --\> The backup's name contains the string "howl". * `source_table:prod` --\> The source_table's name contains the string "prod". * `state:CREATING` --\> The backup is pending creation. * `state:READY` --\> The backup is fully created and ready for use. * `(name:howl) AND (start_time < \"2018-03-28T14:50:00Z\")` --\> The backup name contains the string "howl" and start_time of the backup is before 2018-03-28T14:50:00Z. * `size_bytes \> 10000000000` --\> The backup's size is greater than 10GB
+     *     filter: 'placeholder-value',
+     *     // An expression for specifying the sort order of the results of the request. The string value should specify one or more fields in Backup. The full syntax is described at https://aip.dev/132#ordering. Fields supported are: * name * source_table * expire_time * start_time * end_time * size_bytes * state For example, "start_time". The default sorting order is ascending. To specify descending order for the field, a suffix " desc" should be appended to the field name. For example, "start_time desc". Redundant space characters in the syntax are insigificant. If order_by is empty, results will be sorted by `start_time` in descending order starting from the most recently created backup.
+     *     orderBy: 'placeholder-value',
+     *     // Number of backups to be returned in the response. If 0 or less, defaults to the server's maximum allowed page size.
+     *     pageSize: 'placeholder-value',
+     *     // If non-empty, `page_token` should contain a next_page_token from a previous ListBackupsResponse to the same `parent` and with the same `filter`.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The cluster to list backups from. Values are of the form `projects/{project\}/instances/{instance\}/clusters/{cluster\}`. Use `{cluster\} = '-'` to list backups for all clusters in an instance, e.g., `projects/{project\}/instances/{instance\}/clusters/-`.
+     *     parent: 'projects/my-project/instances/my-instance/clusters/my-cluster',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "backups": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4802,11 +6979,11 @@ export namespace bigtableadmin_v2 {
     list(
       params: Params$Resource$Projects$Instances$Clusters$Backups$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Instances$Clusters$Backups$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListBackupsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListBackupsResponse>>;
     list(
       params: Params$Resource$Projects$Instances$Clusters$Backups$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4837,8 +7014,8 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListBackupsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListBackupsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Clusters$Backups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4885,6 +7062,88 @@ export namespace bigtableadmin_v2 {
 
     /**
      * Updates a pending or completed Cloud Bigtable Backup.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigtableadmin.projects.instances.clusters.backups.patch({
+     *     // A globally unique identifier for the backup which cannot be changed. Values are of the form `projects/{project\}/instances/{instance\}/clusters/{cluster\}/ backups/_a-zA-Z0-9*` The final segment of the name must be between 1 and 50 characters in length. The backup is stored in the cluster identified by the prefix of the backup name of the form `projects/{project\}/instances/{instance\}/clusters/{cluster\}`.
+     *     name: 'projects/my-project/instances/my-instance/clusters/my-cluster/backups/my-backup',
+     *     // Required. A mask specifying which fields (e.g. `expire_time`) in the Backup resource should be updated. This mask is relative to the Backup resource, not to the request message. The field mask must always be specified; this prevents any future fields from being erased accidentally by clients that do not know about them.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "backupType": "my_backupType",
+     *       //   "encryptionInfo": {},
+     *       //   "endTime": "my_endTime",
+     *       //   "expireTime": "my_expireTime",
+     *       //   "hotToStandardTime": "my_hotToStandardTime",
+     *       //   "name": "my_name",
+     *       //   "sizeBytes": "my_sizeBytes",
+     *       //   "sourceBackup": "my_sourceBackup",
+     *       //   "sourceTable": "my_sourceTable",
+     *       //   "startTime": "my_startTime",
+     *       //   "state": "my_state"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "backupType": "my_backupType",
+     *   //   "encryptionInfo": {},
+     *   //   "endTime": "my_endTime",
+     *   //   "expireTime": "my_expireTime",
+     *   //   "hotToStandardTime": "my_hotToStandardTime",
+     *   //   "name": "my_name",
+     *   //   "sizeBytes": "my_sizeBytes",
+     *   //   "sourceBackup": "my_sourceBackup",
+     *   //   "sourceTable": "my_sourceTable",
+     *   //   "startTime": "my_startTime",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4894,11 +7153,11 @@ export namespace bigtableadmin_v2 {
     patch(
       params: Params$Resource$Projects$Instances$Clusters$Backups$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Instances$Clusters$Backups$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Backup>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Backup>>;
     patch(
       params: Params$Resource$Projects$Instances$Clusters$Backups$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4927,7 +7186,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Backup>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Backup> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Backup>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Clusters$Backups$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4972,6 +7234,72 @@ export namespace bigtableadmin_v2 {
 
     /**
      * Sets the access control policy on a Bigtable resource. Replaces any existing policy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await bigtableadmin.projects.instances.clusters.backups.setIamPolicy({
+     *       // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/instances/my-instance/clusters/my-cluster/backups/my-backup',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "policy": {},
+     *         //   "updateMask": "my_updateMask"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4981,11 +7309,11 @@ export namespace bigtableadmin_v2 {
     setIamPolicy(
       params: Params$Resource$Projects$Instances$Clusters$Backups$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Instances$Clusters$Backups$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Instances$Clusters$Backups$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5014,7 +7342,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Clusters$Backups$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5062,6 +7393,68 @@ export namespace bigtableadmin_v2 {
 
     /**
      * Returns permissions that the caller has on the specified Bigtable resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await bigtableadmin.projects.instances.clusters.backups.testIamPermissions({
+     *       // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/instances/my-instance/clusters/my-cluster/backups/my-backup',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "permissions": []
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5071,11 +7464,11 @@ export namespace bigtableadmin_v2 {
     testIamPermissions(
       params: Params$Resource$Projects$Instances$Clusters$Backups$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Instances$Clusters$Backups$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Instances$Clusters$Backups$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5110,8 +7503,8 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Clusters$Backups$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5284,6 +7677,68 @@ export namespace bigtableadmin_v2 {
 
     /**
      * Lists hot tablets in a cluster, within the time range provided. Hot tablets are ordered based on CPU usage.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/bigtable.admin.instance',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigtableadmin.projects.instances.clusters.hotTablets.list({
+     *     // The end time to list hot tablets.
+     *     endTime: 'placeholder-value',
+     *     // Maximum number of results per page. A page_size that is empty or zero lets the server choose the number of items to return. A page_size which is strictly positive will return at most that many items. A negative page_size will cause an error. Following the first request, subsequent paginated calls do not need a page_size field. If a page_size is set in subsequent calls, it must match the page_size given in the first request.
+     *     pageSize: 'placeholder-value',
+     *     // The value of `next_page_token` returned by a previous call.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The cluster name to list hot tablets. Value is in the following form: `projects/{project\}/instances/{instance\}/clusters/{cluster\}`.
+     *     parent: 'projects/my-project/instances/my-instance/clusters/my-cluster',
+     *     // The start time to list hot tablets. The hot tablets in the response will have start times between the requested start time and end time. Start time defaults to Now if it is unset, and end time defaults to Now - 24 hours if it is unset. The start time should be less than the end time, and the maximum allowed time range between start time and end time is 48 hours. Start time and end time should have values between Now and Now - 14 days.
+     *     startTime: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "hotTablets": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5293,11 +7748,11 @@ export namespace bigtableadmin_v2 {
     list(
       params: Params$Resource$Projects$Instances$Clusters$Hottablets$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Instances$Clusters$Hottablets$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListHotTabletsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListHotTabletsResponse>>;
     list(
       params: Params$Resource$Projects$Instances$Clusters$Hottablets$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5330,8 +7785,8 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListHotTabletsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListHotTabletsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Clusters$Hottablets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5410,6 +7865,76 @@ export namespace bigtableadmin_v2 {
 
     /**
      * Creates a logical view within an instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/bigtable.admin.instance',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigtableadmin.projects.instances.logicalViews.create({
+     *     // Required. The ID to use for the logical view, which will become the final component of the logical view's resource name.
+     *     logicalViewId: 'placeholder-value',
+     *     // Required. The parent instance where this logical view will be created. Format: `projects/{project\}/instances/{instance\}`.
+     *     parent: 'projects/my-project/instances/my-instance',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "deletionProtection": false,
+     *       //   "etag": "my_etag",
+     *       //   "name": "my_name",
+     *       //   "query": "my_query"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5419,11 +7944,11 @@ export namespace bigtableadmin_v2 {
     create(
       params: Params$Resource$Projects$Instances$Logicalviews$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Instances$Logicalviews$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Instances$Logicalviews$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5452,7 +7977,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Logicalviews$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5499,6 +8027,59 @@ export namespace bigtableadmin_v2 {
 
     /**
      * Deletes a logical view from an instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/bigtable.admin.instance',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigtableadmin.projects.instances.logicalViews.delete({
+     *     // Optional. The current etag of the logical view. If an etag is provided and does not match the current etag of the logical view, deletion will be blocked and an ABORTED error will be returned.
+     *     etag: 'placeholder-value',
+     *     // Required. The unique name of the logical view to be deleted. Format: `projects/{project\}/instances/{instance\}/logicalViews/{logical_view\}`.
+     *     name: 'projects/my-project/instances/my-instance/logicalViews/my-logicalView',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5508,11 +8089,11 @@ export namespace bigtableadmin_v2 {
     delete(
       params: Params$Resource$Projects$Instances$Logicalviews$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Instances$Logicalviews$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Instances$Logicalviews$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5541,7 +8122,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Logicalviews$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5585,6 +8169,62 @@ export namespace bigtableadmin_v2 {
 
     /**
      * Gets information about a logical view.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/bigtable.admin.instance',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigtableadmin.projects.instances.logicalViews.get({
+     *     // Required. The unique name of the requested logical view. Values are of the form `projects/{project\}/instances/{instance\}/logicalViews/{logical_view\}`.
+     *     name: 'projects/my-project/instances/my-instance/logicalViews/my-logicalView',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deletionProtection": false,
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "query": "my_query"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5594,11 +8234,11 @@ export namespace bigtableadmin_v2 {
     get(
       params: Params$Resource$Projects$Instances$Logicalviews$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Instances$Logicalviews$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LogicalView>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LogicalView>>;
     get(
       params: Params$Resource$Projects$Instances$Logicalviews$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5627,7 +8267,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$LogicalView>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LogicalView> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$LogicalView>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Logicalviews$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5671,6 +8314,71 @@ export namespace bigtableadmin_v2 {
 
     /**
      * Gets the access control policy for an instance resource. Returns an empty policy if an instance exists but does not have a policy set.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/bigtable.admin.instance',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigtableadmin.projects.instances.logicalViews.getIamPolicy({
+     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource:
+     *       'projects/my-project/instances/my-instance/logicalViews/my-logicalView',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "options": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5680,11 +8388,11 @@ export namespace bigtableadmin_v2 {
     getIamPolicy(
       params: Params$Resource$Projects$Instances$Logicalviews$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Instances$Logicalviews$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Instances$Logicalviews$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5713,7 +8421,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Logicalviews$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5761,6 +8472,64 @@ export namespace bigtableadmin_v2 {
 
     /**
      * Lists information about logical views in an instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/bigtable.admin.instance',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigtableadmin.projects.instances.logicalViews.list({
+     *     // Optional. The maximum number of logical views to return. The service may return fewer than this value
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous `ListLogicalViews` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListLogicalViews` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The unique name of the instance for which the list of logical views is requested. Values are of the form `projects/{project\}/instances/{instance\}`.
+     *     parent: 'projects/my-project/instances/my-instance',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "logicalViews": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5770,11 +8539,11 @@ export namespace bigtableadmin_v2 {
     list(
       params: Params$Resource$Projects$Instances$Logicalviews$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Instances$Logicalviews$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListLogicalViewsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListLogicalViewsResponse>>;
     list(
       params: Params$Resource$Projects$Instances$Logicalviews$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5807,8 +8576,8 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListLogicalViewsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListLogicalViewsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Logicalviews$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5855,6 +8624,76 @@ export namespace bigtableadmin_v2 {
 
     /**
      * Updates a logical view within an instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/bigtable.admin.instance',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigtableadmin.projects.instances.logicalViews.patch({
+     *     // Identifier. The unique name of the logical view. Format: `projects/{project\}/instances/{instance\}/logicalViews/{logical_view\}`
+     *     name: 'projects/my-project/instances/my-instance/logicalViews/my-logicalView',
+     *     // Optional. The list of fields to update.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "deletionProtection": false,
+     *       //   "etag": "my_etag",
+     *       //   "name": "my_name",
+     *       //   "query": "my_query"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5864,11 +8703,11 @@ export namespace bigtableadmin_v2 {
     patch(
       params: Params$Resource$Projects$Instances$Logicalviews$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Instances$Logicalviews$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Instances$Logicalviews$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5897,7 +8736,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Logicalviews$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5941,6 +8783,72 @@ export namespace bigtableadmin_v2 {
 
     /**
      * Sets the access control policy on an instance resource. Replaces any existing policy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/bigtable.admin.instance',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigtableadmin.projects.instances.logicalViews.setIamPolicy({
+     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource:
+     *       'projects/my-project/instances/my-instance/logicalViews/my-logicalView',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "policy": {},
+     *       //   "updateMask": "my_updateMask"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5950,11 +8858,11 @@ export namespace bigtableadmin_v2 {
     setIamPolicy(
       params: Params$Resource$Projects$Instances$Logicalviews$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Instances$Logicalviews$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Instances$Logicalviews$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5983,7 +8891,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Logicalviews$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6031,6 +8942,69 @@ export namespace bigtableadmin_v2 {
 
     /**
      * Returns permissions that the caller has on the specified instance resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/bigtable.admin.instance',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await bigtableadmin.projects.instances.logicalViews.testIamPermissions({
+     *       // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/instances/my-instance/logicalViews/my-logicalView',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "permissions": []
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6040,11 +9014,11 @@ export namespace bigtableadmin_v2 {
     testIamPermissions(
       params: Params$Resource$Projects$Instances$Logicalviews$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Instances$Logicalviews$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Instances$Logicalviews$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6079,8 +9053,8 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Logicalviews$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6237,6 +9211,76 @@ export namespace bigtableadmin_v2 {
 
     /**
      * Creates a materialized view within an instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/bigtable.admin.instance',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigtableadmin.projects.instances.materializedViews.create({
+     *     // Required. The ID to use for the materialized view, which will become the final component of the materialized view's resource name.
+     *     materializedViewId: 'placeholder-value',
+     *     // Required. The parent instance where this materialized view will be created. Format: `projects/{project\}/instances/{instance\}`.
+     *     parent: 'projects/my-project/instances/my-instance',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "deletionProtection": false,
+     *       //   "etag": "my_etag",
+     *       //   "name": "my_name",
+     *       //   "query": "my_query"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6246,11 +9290,11 @@ export namespace bigtableadmin_v2 {
     create(
       params: Params$Resource$Projects$Instances$Materializedviews$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Instances$Materializedviews$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Instances$Materializedviews$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6279,7 +9323,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Materializedviews$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6327,6 +9374,59 @@ export namespace bigtableadmin_v2 {
 
     /**
      * Deletes a materialized view from an instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/bigtable.admin.instance',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigtableadmin.projects.instances.materializedViews.delete({
+     *     // Optional. The current etag of the materialized view. If an etag is provided and does not match the current etag of the materialized view, deletion will be blocked and an ABORTED error will be returned.
+     *     etag: 'placeholder-value',
+     *     // Required. The unique name of the materialized view to be deleted. Format: `projects/{project\}/instances/{instance\}/materializedViews/{materialized_view\}`.
+     *     name: 'projects/my-project/instances/my-instance/materializedViews/my-materializedView',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6336,11 +9436,11 @@ export namespace bigtableadmin_v2 {
     delete(
       params: Params$Resource$Projects$Instances$Materializedviews$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Instances$Materializedviews$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Instances$Materializedviews$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6369,7 +9469,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Materializedviews$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6414,6 +9517,62 @@ export namespace bigtableadmin_v2 {
 
     /**
      * Gets information about a materialized view.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/bigtable.admin.instance',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigtableadmin.projects.instances.materializedViews.get({
+     *     // Required. The unique name of the requested materialized view. Values are of the form `projects/{project\}/instances/{instance\}/materializedViews/{materialized_view\}`.
+     *     name: 'projects/my-project/instances/my-instance/materializedViews/my-materializedView',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deletionProtection": false,
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "query": "my_query"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6423,11 +9582,11 @@ export namespace bigtableadmin_v2 {
     get(
       params: Params$Resource$Projects$Instances$Materializedviews$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Instances$Materializedviews$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$MaterializedView>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$MaterializedView>>;
     get(
       params: Params$Resource$Projects$Instances$Materializedviews$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6456,7 +9615,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$MaterializedView>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$MaterializedView> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$MaterializedView>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Materializedviews$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6500,6 +9662,72 @@ export namespace bigtableadmin_v2 {
 
     /**
      * Gets the access control policy for an instance resource. Returns an empty policy if an instance exists but does not have a policy set.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/bigtable.admin.instance',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await bigtableadmin.projects.instances.materializedViews.getIamPolicy({
+     *       // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/instances/my-instance/materializedViews/my-materializedView',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "options": {}
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6509,11 +9737,11 @@ export namespace bigtableadmin_v2 {
     getIamPolicy(
       params: Params$Resource$Projects$Instances$Materializedviews$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Instances$Materializedviews$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Instances$Materializedviews$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6542,7 +9770,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Materializedviews$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6590,6 +9821,64 @@ export namespace bigtableadmin_v2 {
 
     /**
      * Lists information about materialized views in an instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/bigtable.admin.instance',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigtableadmin.projects.instances.materializedViews.list({
+     *     // Optional. The maximum number of materialized views to return. The service may return fewer than this value
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous `ListMaterializedViews` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListMaterializedViews` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The unique name of the instance for which the list of materialized views is requested. Values are of the form `projects/{project\}/instances/{instance\}`.
+     *     parent: 'projects/my-project/instances/my-instance',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "materializedViews": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6599,11 +9888,11 @@ export namespace bigtableadmin_v2 {
     list(
       params: Params$Resource$Projects$Instances$Materializedviews$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Instances$Materializedviews$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListMaterializedViewsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListMaterializedViewsResponse>>;
     list(
       params: Params$Resource$Projects$Instances$Materializedviews$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6638,8 +9927,8 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListMaterializedViewsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListMaterializedViewsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Materializedviews$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6689,6 +9978,76 @@ export namespace bigtableadmin_v2 {
 
     /**
      * Updates a materialized view within an instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/bigtable.admin.instance',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigtableadmin.projects.instances.materializedViews.patch({
+     *     // Identifier. The unique name of the materialized view. Format: `projects/{project\}/instances/{instance\}/materializedViews/{materialized_view\}`
+     *     name: 'projects/my-project/instances/my-instance/materializedViews/my-materializedView',
+     *     // Optional. The list of fields to update.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "deletionProtection": false,
+     *       //   "etag": "my_etag",
+     *       //   "name": "my_name",
+     *       //   "query": "my_query"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6698,11 +10057,11 @@ export namespace bigtableadmin_v2 {
     patch(
       params: Params$Resource$Projects$Instances$Materializedviews$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Instances$Materializedviews$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Instances$Materializedviews$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6731,7 +10090,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Materializedviews$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6776,6 +10138,73 @@ export namespace bigtableadmin_v2 {
 
     /**
      * Sets the access control policy on an instance resource. Replaces any existing policy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/bigtable.admin.instance',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await bigtableadmin.projects.instances.materializedViews.setIamPolicy({
+     *       // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/instances/my-instance/materializedViews/my-materializedView',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "policy": {},
+     *         //   "updateMask": "my_updateMask"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6785,11 +10214,11 @@ export namespace bigtableadmin_v2 {
     setIamPolicy(
       params: Params$Resource$Projects$Instances$Materializedviews$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Instances$Materializedviews$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Instances$Materializedviews$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6818,7 +10247,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Materializedviews$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6866,6 +10298,71 @@ export namespace bigtableadmin_v2 {
 
     /**
      * Returns permissions that the caller has on the specified instance resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/bigtable.admin.instance',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await bigtableadmin.projects.instances.materializedViews.testIamPermissions(
+     *       {
+     *         // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *         resource:
+     *           'projects/my-project/instances/my-instance/materializedViews/my-materializedView',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "permissions": []
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6875,11 +10372,11 @@ export namespace bigtableadmin_v2 {
     testIamPermissions(
       params: Params$Resource$Projects$Instances$Materializedviews$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Instances$Materializedviews$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Instances$Materializedviews$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6914,8 +10411,8 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Materializedviews$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7075,6 +10572,68 @@ export namespace bigtableadmin_v2 {
 
     /**
      * Checks replication consistency based on a consistency token, that is, if replication has caught up based on the conditions specified in the token and the check request.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigtableadmin.projects.instances.tables.checkConsistency({
+     *     // Required. The unique name of the Table for which to check replication consistency. Values are of the form `projects/{project\}/instances/{instance\}/tables/{table\}`.
+     *     name: 'projects/my-project/instances/my-instance/tables/my-table',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "consistencyToken": "my_consistencyToken",
+     *       //   "dataBoostReadLocalWrites": {},
+     *       //   "standardReadRemoteWrites": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "consistent": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7084,11 +10643,11 @@ export namespace bigtableadmin_v2 {
     checkConsistency(
       params: Params$Resource$Projects$Instances$Tables$Checkconsistency,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     checkConsistency(
       params?: Params$Resource$Projects$Instances$Tables$Checkconsistency,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CheckConsistencyResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CheckConsistencyResponse>>;
     checkConsistency(
       params: Params$Resource$Projects$Instances$Tables$Checkconsistency,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7123,8 +10682,8 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CheckConsistencyResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CheckConsistencyResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Tables$Checkconsistency;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7172,6 +10731,78 @@ export namespace bigtableadmin_v2 {
 
     /**
      * Creates a new table in the specified instance. The table can be created with a full set of initial column families, specified in the request.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigtableadmin.projects.instances.tables.create({
+     *     // Required. The unique name of the instance in which to create the table. Values are of the form `projects/{project\}/instances/{instance\}`.
+     *     parent: 'projects/my-project/instances/my-instance',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "initialSplits": [],
+     *       //   "table": {},
+     *       //   "tableId": "my_tableId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "automatedBackupPolicy": {},
+     *   //   "changeStreamConfig": {},
+     *   //   "clusterStates": {},
+     *   //   "columnFamilies": {},
+     *   //   "deletionProtection": false,
+     *   //   "granularity": "my_granularity",
+     *   //   "name": "my_name",
+     *   //   "restoreInfo": {},
+     *   //   "rowKeySchema": {},
+     *   //   "stats": {},
+     *   //   "tieredStorageConfig": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7181,11 +10812,11 @@ export namespace bigtableadmin_v2 {
     create(
       params: Params$Resource$Projects$Instances$Tables$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Instances$Tables$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Table>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Table>>;
     create(
       params: Params$Resource$Projects$Instances$Tables$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7214,7 +10845,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Table>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Table> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Table>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Tables$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7261,6 +10895,56 @@ export namespace bigtableadmin_v2 {
 
     /**
      * Permanently deletes a specified table and all of its data.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigtableadmin.projects.instances.tables.delete({
+     *     // Required. The unique name of the table to be deleted. Values are of the form `projects/{project\}/instances/{instance\}/tables/{table\}`.
+     *     name: 'projects/my-project/instances/my-instance/tables/my-table',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7270,11 +10954,11 @@ export namespace bigtableadmin_v2 {
     delete(
       params: Params$Resource$Projects$Instances$Tables$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Instances$Tables$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Instances$Tables$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7303,7 +10987,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Tables$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7347,6 +11034,65 @@ export namespace bigtableadmin_v2 {
 
     /**
      * Permanently drop/delete a row range from a specified table. The request can specify whether to delete all rows in a table, or only those that match a particular prefix. Note that row key prefixes used here are treated as service data. For more information about how service data is handled, see the [Google Cloud Privacy Notice](https://cloud.google.com/terms/cloud-privacy-notice).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigtableadmin.projects.instances.tables.dropRowRange({
+     *     // Required. The unique name of the table on which to drop a range of rows. Values are of the form `projects/{project\}/instances/{instance\}/tables/{table\}`.
+     *     name: 'projects/my-project/instances/my-instance/tables/my-table',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "deleteAllDataFromTable": false,
+     *       //   "rowKeyPrefix": "my_rowKeyPrefix"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7356,11 +11102,11 @@ export namespace bigtableadmin_v2 {
     dropRowRange(
       params: Params$Resource$Projects$Instances$Tables$Droprowrange,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     dropRowRange(
       params?: Params$Resource$Projects$Instances$Tables$Droprowrange,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     dropRowRange(
       params: Params$Resource$Projects$Instances$Tables$Droprowrange,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7389,7 +11135,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Tables$Droprowrange;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7436,6 +11185,65 @@ export namespace bigtableadmin_v2 {
 
     /**
      * Generates a consistency token for a Table, which can be used in CheckConsistency to check whether mutations to the table that finished before this call started have been replicated. The tokens will be available for 90 days.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await bigtableadmin.projects.instances.tables.generateConsistencyToken({
+     *       // Required. The unique name of the Table for which to create a consistency token. Values are of the form `projects/{project\}/instances/{instance\}/tables/{table\}`.
+     *       name: 'projects/my-project/instances/my-instance/tables/my-table',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {}
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "consistencyToken": "my_consistencyToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7445,11 +11253,13 @@ export namespace bigtableadmin_v2 {
     generateConsistencyToken(
       params: Params$Resource$Projects$Instances$Tables$Generateconsistencytoken,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     generateConsistencyToken(
       params?: Params$Resource$Projects$Instances$Tables$Generateconsistencytoken,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GenerateConsistencyTokenResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GenerateConsistencyTokenResponse>
+    >;
     generateConsistencyToken(
       params: Params$Resource$Projects$Instances$Tables$Generateconsistencytoken,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7484,8 +11294,10 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GenerateConsistencyTokenResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GenerateConsistencyTokenResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Tables$Generateconsistencytoken;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7535,6 +11347,71 @@ export namespace bigtableadmin_v2 {
 
     /**
      * Gets metadata information about the specified table.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigtableadmin.projects.instances.tables.get({
+     *     // Required. The unique name of the requested table. Values are of the form `projects/{project\}/instances/{instance\}/tables/{table\}`.
+     *     name: 'projects/my-project/instances/my-instance/tables/my-table',
+     *     // The view to be applied to the returned table's fields. Defaults to `SCHEMA_VIEW` if unspecified.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "automatedBackupPolicy": {},
+     *   //   "changeStreamConfig": {},
+     *   //   "clusterStates": {},
+     *   //   "columnFamilies": {},
+     *   //   "deletionProtection": false,
+     *   //   "granularity": "my_granularity",
+     *   //   "name": "my_name",
+     *   //   "restoreInfo": {},
+     *   //   "rowKeySchema": {},
+     *   //   "stats": {},
+     *   //   "tieredStorageConfig": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7544,11 +11421,11 @@ export namespace bigtableadmin_v2 {
     get(
       params: Params$Resource$Projects$Instances$Tables$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Instances$Tables$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Table>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Table>>;
     get(
       params: Params$Resource$Projects$Instances$Tables$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7577,7 +11454,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Table>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Table> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Table>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Tables$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7621,6 +11501,69 @@ export namespace bigtableadmin_v2 {
 
     /**
      * Gets the access control policy for a Bigtable resource. Returns an empty policy if the resource exists but does not have a policy set.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigtableadmin.projects.instances.tables.getIamPolicy({
+     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource: 'projects/my-project/instances/my-instance/tables/my-table',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "options": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7630,11 +11573,11 @@ export namespace bigtableadmin_v2 {
     getIamPolicy(
       params: Params$Resource$Projects$Instances$Tables$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Instances$Tables$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Instances$Tables$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7663,7 +11606,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Tables$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7710,6 +11656,66 @@ export namespace bigtableadmin_v2 {
 
     /**
      * Lists all tables served from a specified instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigtableadmin.projects.instances.tables.list({
+     *     // Maximum number of results per page. A page_size of zero lets the server choose the number of items to return. A page_size which is strictly positive will return at most that many items. A negative page_size will cause an error. Following the first request, subsequent paginated calls are not required to pass a page_size. If a page_size is set in subsequent calls, it must match the page_size given in the first request.
+     *     pageSize: 'placeholder-value',
+     *     // The value of `next_page_token` returned by a previous call.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The unique name of the instance for which tables should be listed. Values are of the form `projects/{project\}/instances/{instance\}`.
+     *     parent: 'projects/my-project/instances/my-instance',
+     *     // The view to be applied to the returned tables' fields. Only NAME_ONLY view (default), REPLICATION_VIEW and ENCRYPTION_VIEW are supported.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "tables": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7719,11 +11725,11 @@ export namespace bigtableadmin_v2 {
     list(
       params: Params$Resource$Projects$Instances$Tables$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Instances$Tables$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListTablesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListTablesResponse>>;
     list(
       params: Params$Resource$Projects$Instances$Tables$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7754,8 +11760,8 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListTablesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListTablesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Tables$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7802,6 +11808,78 @@ export namespace bigtableadmin_v2 {
 
     /**
      * Performs a series of column family modifications on the specified table. Either all or none of the modifications will occur before this method returns, but data requests received prior to that point may see a table where only some modifications have taken effect.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await bigtableadmin.projects.instances.tables.modifyColumnFamilies({
+     *       // Required. The unique name of the table whose families should be modified. Values are of the form `projects/{project\}/instances/{instance\}/tables/{table\}`.
+     *       name: 'projects/my-project/instances/my-instance/tables/my-table',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "ignoreWarnings": false,
+     *         //   "modifications": []
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "automatedBackupPolicy": {},
+     *   //   "changeStreamConfig": {},
+     *   //   "clusterStates": {},
+     *   //   "columnFamilies": {},
+     *   //   "deletionProtection": false,
+     *   //   "granularity": "my_granularity",
+     *   //   "name": "my_name",
+     *   //   "restoreInfo": {},
+     *   //   "rowKeySchema": {},
+     *   //   "stats": {},
+     *   //   "tieredStorageConfig": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7811,11 +11889,11 @@ export namespace bigtableadmin_v2 {
     modifyColumnFamilies(
       params: Params$Resource$Projects$Instances$Tables$Modifycolumnfamilies,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     modifyColumnFamilies(
       params?: Params$Resource$Projects$Instances$Tables$Modifycolumnfamilies,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Table>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Table>>;
     modifyColumnFamilies(
       params: Params$Resource$Projects$Instances$Tables$Modifycolumnfamilies,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7844,7 +11922,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Table>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Table> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Table>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Tables$Modifycolumnfamilies;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7892,6 +11973,84 @@ export namespace bigtableadmin_v2 {
 
     /**
      * Updates a specified table.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigtableadmin.projects.instances.tables.patch({
+     *     // Optional. If true, ignore safety checks when updating the table.
+     *     ignoreWarnings: 'placeholder-value',
+     *     // The unique name of the table. Values are of the form `projects/{project\}/instances/{instance\}/tables/_a-zA-Z0-9*`. Views: `NAME_ONLY`, `SCHEMA_VIEW`, `REPLICATION_VIEW`, `STATS_VIEW`, `FULL`
+     *     name: 'projects/my-project/instances/my-instance/tables/my-table',
+     *     // Required. The list of fields to update. A mask specifying which fields (e.g. `change_stream_config`) in the `table` field should be updated. This mask is relative to the `table` field, not to the request message. The wildcard (*) path is currently not supported. Currently UpdateTable is only supported for the following fields: * `change_stream_config` * `change_stream_config.retention_period` * `deletion_protection` * `automated_backup_policy` * `automated_backup_policy.retention_period` * `automated_backup_policy.frequency` * `row_key_schema` If `column_families` is set in `update_mask`, it will return an UNIMPLEMENTED error.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "automatedBackupPolicy": {},
+     *       //   "changeStreamConfig": {},
+     *       //   "clusterStates": {},
+     *       //   "columnFamilies": {},
+     *       //   "deletionProtection": false,
+     *       //   "granularity": "my_granularity",
+     *       //   "name": "my_name",
+     *       //   "restoreInfo": {},
+     *       //   "rowKeySchema": {},
+     *       //   "stats": {},
+     *       //   "tieredStorageConfig": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7901,11 +12060,11 @@ export namespace bigtableadmin_v2 {
     patch(
       params: Params$Resource$Projects$Instances$Tables$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Instances$Tables$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Instances$Tables$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7934,7 +12093,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Tables$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7978,6 +12140,71 @@ export namespace bigtableadmin_v2 {
 
     /**
      * Create a new table by restoring from a completed backup. The returned table long-running operation can be used to track the progress of the operation, and to cancel it. The metadata field type is RestoreTableMetadata. The response type is Table, if successful.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigtableadmin.projects.instances.tables.restore({
+     *     // Required. The name of the instance in which to create the restored table. Values are of the form `projects//instances/`.
+     *     parent: 'projects/my-project/instances/my-instance',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "backup": "my_backup",
+     *       //   "tableId": "my_tableId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7987,11 +12214,11 @@ export namespace bigtableadmin_v2 {
     restore(
       params: Params$Resource$Projects$Instances$Tables$Restore,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     restore(
       params?: Params$Resource$Projects$Instances$Tables$Restore,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     restore(
       params: Params$Resource$Projects$Instances$Tables$Restore,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8020,7 +12247,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Tables$Restore;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8067,6 +12297,70 @@ export namespace bigtableadmin_v2 {
 
     /**
      * Sets the access control policy on a Bigtable resource. Replaces any existing policy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigtableadmin.projects.instances.tables.setIamPolicy({
+     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource: 'projects/my-project/instances/my-instance/tables/my-table',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "policy": {},
+     *       //   "updateMask": "my_updateMask"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8076,11 +12370,11 @@ export namespace bigtableadmin_v2 {
     setIamPolicy(
       params: Params$Resource$Projects$Instances$Tables$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Instances$Tables$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Instances$Tables$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8109,7 +12403,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Tables$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8156,6 +12453,66 @@ export namespace bigtableadmin_v2 {
 
     /**
      * Returns permissions that the caller has on the specified Bigtable resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigtableadmin.projects.instances.tables.testIamPermissions({
+     *     // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource: 'projects/my-project/instances/my-instance/tables/my-table',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "permissions": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8165,11 +12522,11 @@ export namespace bigtableadmin_v2 {
     testIamPermissions(
       params: Params$Resource$Projects$Instances$Tables$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Instances$Tables$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Instances$Tables$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8204,8 +12561,8 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Tables$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8253,6 +12610,68 @@ export namespace bigtableadmin_v2 {
 
     /**
      * Restores a specified table which was accidentally deleted.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigtableadmin.projects.instances.tables.undelete({
+     *     // Required. The unique name of the table to be restored. Values are of the form `projects/{project\}/instances/{instance\}/tables/{table\}`.
+     *     name: 'projects/my-project/instances/my-instance/tables/my-table',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8262,11 +12681,11 @@ export namespace bigtableadmin_v2 {
     undelete(
       params: Params$Resource$Projects$Instances$Tables$Undelete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     undelete(
       params?: Params$Resource$Projects$Instances$Tables$Undelete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     undelete(
       params: Params$Resource$Projects$Instances$Tables$Undelete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8295,7 +12714,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Tables$Undelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8527,6 +12949,76 @@ export namespace bigtableadmin_v2 {
 
     /**
      * Creates a new AuthorizedView in a table.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await bigtableadmin.projects.instances.tables.authorizedViews.create({
+     *       // Required. The id of the AuthorizedView to create. This AuthorizedView must not already exist. The `authorized_view_id` appended to `parent` forms the full AuthorizedView name of the form `projects/{project\}/instances/{instance\}/tables/{table\}/authorizedView/{authorized_view\}`.
+     *       authorizedViewId: 'placeholder-value',
+     *       // Required. This is the name of the table the AuthorizedView belongs to. Values are of the form `projects/{project\}/instances/{instance\}/tables/{table\}`.
+     *       parent: 'projects/my-project/instances/my-instance/tables/my-table',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "deletionProtection": false,
+     *         //   "etag": "my_etag",
+     *         //   "name": "my_name",
+     *         //   "subsetView": {}
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8536,11 +13028,11 @@ export namespace bigtableadmin_v2 {
     create(
       params: Params$Resource$Projects$Instances$Tables$Authorizedviews$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Instances$Tables$Authorizedviews$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Instances$Tables$Authorizedviews$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8569,7 +13061,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Tables$Authorizedviews$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8617,6 +13112,59 @@ export namespace bigtableadmin_v2 {
 
     /**
      * Permanently deletes a specified AuthorizedView.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await bigtableadmin.projects.instances.tables.authorizedViews.delete({
+     *       // Optional. The current etag of the AuthorizedView. If an etag is provided and does not match the current etag of the AuthorizedView, deletion will be blocked and an ABORTED error will be returned.
+     *       etag: 'placeholder-value',
+     *       // Required. The unique name of the AuthorizedView to be deleted. Values are of the form `projects/{project\}/instances/{instance\}/tables/{table\}/authorizedViews/{authorized_view\}`.
+     *       name: 'projects/my-project/instances/my-instance/tables/my-table/authorizedViews/my-authorizedView',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8626,11 +13174,11 @@ export namespace bigtableadmin_v2 {
     delete(
       params: Params$Resource$Projects$Instances$Tables$Authorizedviews$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Instances$Tables$Authorizedviews$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Instances$Tables$Authorizedviews$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8659,7 +13207,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Tables$Authorizedviews$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8704,6 +13255,65 @@ export namespace bigtableadmin_v2 {
 
     /**
      * Gets information from a specified AuthorizedView.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigtableadmin.projects.instances.tables.authorizedViews.get(
+     *     {
+     *       // Required. The unique name of the requested AuthorizedView. Values are of the form `projects/{project\}/instances/{instance\}/tables/{table\}/authorizedViews/{authorized_view\}`.
+     *       name: 'projects/my-project/instances/my-instance/tables/my-table/authorizedViews/my-authorizedView',
+     *       // Optional. The resource_view to be applied to the returned AuthorizedView's fields. Default to BASIC.
+     *       view: 'placeholder-value',
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deletionProtection": false,
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "subsetView": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8713,11 +13323,11 @@ export namespace bigtableadmin_v2 {
     get(
       params: Params$Resource$Projects$Instances$Tables$Authorizedviews$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Instances$Tables$Authorizedviews$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AuthorizedView>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AuthorizedView>>;
     get(
       params: Params$Resource$Projects$Instances$Tables$Authorizedviews$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8746,7 +13356,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$AuthorizedView>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AuthorizedView> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$AuthorizedView>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Tables$Authorizedviews$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8791,6 +13404,71 @@ export namespace bigtableadmin_v2 {
 
     /**
      * Gets the access control policy for a Bigtable resource. Returns an empty policy if the resource exists but does not have a policy set.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await bigtableadmin.projects.instances.tables.authorizedViews.getIamPolicy({
+     *       // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/instances/my-instance/tables/my-table/authorizedViews/my-authorizedView',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "options": {}
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8800,11 +13478,11 @@ export namespace bigtableadmin_v2 {
     getIamPolicy(
       params: Params$Resource$Projects$Instances$Tables$Authorizedviews$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Instances$Tables$Authorizedviews$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Instances$Tables$Authorizedviews$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8833,7 +13511,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Tables$Authorizedviews$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8881,6 +13562,66 @@ export namespace bigtableadmin_v2 {
 
     /**
      * Lists all AuthorizedViews from a specific table.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await bigtableadmin.projects.instances.tables.authorizedViews.list({
+     *       // Optional. Maximum number of results per page. A page_size of zero lets the server choose the number of items to return. A page_size which is strictly positive will return at most that many items. A negative page_size will cause an error. Following the first request, subsequent paginated calls are not required to pass a page_size. If a page_size is set in subsequent calls, it must match the page_size given in the first request.
+     *       pageSize: 'placeholder-value',
+     *       // Optional. The value of `next_page_token` returned by a previous call.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The unique name of the table for which AuthorizedViews should be listed. Values are of the form `projects/{project\}/instances/{instance\}/tables/{table\}`.
+     *       parent: 'projects/my-project/instances/my-instance/tables/my-table',
+     *       // Optional. The resource_view to be applied to the returned AuthorizedViews' fields. Default to NAME_ONLY.
+     *       view: 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "authorizedViews": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8890,11 +13631,11 @@ export namespace bigtableadmin_v2 {
     list(
       params: Params$Resource$Projects$Instances$Tables$Authorizedviews$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Instances$Tables$Authorizedviews$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAuthorizedViewsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListAuthorizedViewsResponse>>;
     list(
       params: Params$Resource$Projects$Instances$Tables$Authorizedviews$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8929,8 +13670,8 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListAuthorizedViewsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListAuthorizedViewsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Tables$Authorizedviews$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8978,6 +13719,78 @@ export namespace bigtableadmin_v2 {
 
     /**
      * Updates an AuthorizedView in a table.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await bigtableadmin.projects.instances.tables.authorizedViews.patch({
+     *       // Optional. If true, ignore the safety checks when updating the AuthorizedView.
+     *       ignoreWarnings: 'placeholder-value',
+     *       // Identifier. The name of this AuthorizedView. Values are of the form `projects/{project\}/instances/{instance\}/tables/{table\}/authorizedViews/{authorized_view\}`
+     *       name: 'projects/my-project/instances/my-instance/tables/my-table/authorizedViews/my-authorizedView',
+     *       // Optional. The list of fields to update. A mask specifying which fields in the AuthorizedView resource should be updated. This mask is relative to the AuthorizedView resource, not to the request message. A field will be overwritten if it is in the mask. If empty, all fields set in the request will be overwritten. A special value `*` means to overwrite all fields (including fields not set in the request).
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "deletionProtection": false,
+     *         //   "etag": "my_etag",
+     *         //   "name": "my_name",
+     *         //   "subsetView": {}
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8987,11 +13800,11 @@ export namespace bigtableadmin_v2 {
     patch(
       params: Params$Resource$Projects$Instances$Tables$Authorizedviews$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Instances$Tables$Authorizedviews$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Instances$Tables$Authorizedviews$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9020,7 +13833,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Tables$Authorizedviews$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9065,6 +13881,72 @@ export namespace bigtableadmin_v2 {
 
     /**
      * Sets the access control policy on a Bigtable resource. Replaces any existing policy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await bigtableadmin.projects.instances.tables.authorizedViews.setIamPolicy({
+     *       // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/instances/my-instance/tables/my-table/authorizedViews/my-authorizedView',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "policy": {},
+     *         //   "updateMask": "my_updateMask"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9074,11 +13956,11 @@ export namespace bigtableadmin_v2 {
     setIamPolicy(
       params: Params$Resource$Projects$Instances$Tables$Authorizedviews$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Instances$Tables$Authorizedviews$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Instances$Tables$Authorizedviews$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9107,7 +13989,10 @@ export namespace bigtableadmin_v2 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Tables$Authorizedviews$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9155,6 +14040,70 @@ export namespace bigtableadmin_v2 {
 
     /**
      * Returns permissions that the caller has on the specified Bigtable resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await bigtableadmin.projects.instances.tables.authorizedViews.testIamPermissions(
+     *       {
+     *         // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *         resource:
+     *           'projects/my-project/instances/my-instance/tables/my-table/authorizedViews/my-authorizedView',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "permissions": []
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9164,11 +14113,11 @@ export namespace bigtableadmin_v2 {
     testIamPermissions(
       params: Params$Resource$Projects$Instances$Tables$Authorizedviews$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Instances$Tables$Authorizedviews$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Instances$Tables$Authorizedviews$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9203,8 +14152,8 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Tables$Authorizedviews$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9372,7 +14321,217 @@ export namespace bigtableadmin_v2 {
     }
 
     /**
+     * Gets information about a location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/bigtable.admin.instance',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigtableadmin.projects.locations.get({
+     *     // Resource name for the location.
+     *     name: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "labels": {},
+     *   //   "locationId": "my_locationId",
+     *   //   "metadata": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Location>>;
+    get(
+      params: Params$Resource$Projects$Locations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Location>,
+      callback: BodyResponseCallback<Schema$Location>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Get,
+      callback: BodyResponseCallback<Schema$Location>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Location>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Get
+        | BodyResponseCallback<Schema$Location>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Location>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Location>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://bigtableadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Location>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Location>(parameters);
+      }
+    }
+
+    /**
      * Lists information about the supported locations for this service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/bigtable.admin.instance',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigtableadmin.projects.locations.list({
+     *     // Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     *     extraLocationTypes: 'placeholder-value',
+     *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
+     *     filter: 'placeholder-value',
+     *     // The resource that owns the locations collection, if applicable.
+     *     name: 'projects/my-project',
+     *     // The maximum number of results to return. If not set, the service selects a default.
+     *     pageSize: 'placeholder-value',
+     *     // A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "locations": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9382,11 +14541,11 @@ export namespace bigtableadmin_v2 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListLocationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9419,8 +14578,8 @@ export namespace bigtableadmin_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListLocationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9466,6 +14625,13 @@ export namespace bigtableadmin_v2 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Get
+    extends StandardParameters {
+    /**
+     * Resource name for the location.
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**

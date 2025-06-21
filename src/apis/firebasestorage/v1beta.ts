@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -192,6 +192,53 @@ export namespace firebasestorage_v1beta {
 
     /**
      * Unlinks and deletes the default bucket.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebasestorage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebasestorage = google.firebasestorage('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebasestorage.projects.deleteDefaultBucket({
+     *     // Required. The name of the default bucket to delete, `projects/{project_id_or_number\}/defaultBucket`.
+     *     name: 'projects/my-project/defaultBucket',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -201,11 +248,11 @@ export namespace firebasestorage_v1beta {
     deleteDefaultBucket(
       params: Params$Resource$Projects$Deletedefaultbucket,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     deleteDefaultBucket(
       params?: Params$Resource$Projects$Deletedefaultbucket,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     deleteDefaultBucket(
       params: Params$Resource$Projects$Deletedefaultbucket,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -234,7 +281,10 @@ export namespace firebasestorage_v1beta {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Deletedefaultbucket;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -278,6 +328,58 @@ export namespace firebasestorage_v1beta {
 
     /**
      * Gets the default bucket.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebasestorage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebasestorage = google.firebasestorage('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebasestorage.projects.getDefaultBucket({
+     *     // Required. The name of the default bucket to retrieve, `projects/{project_id_or_number\}/defaultBucket`.
+     *     name: 'projects/my-project/defaultBucket',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bucket": {},
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "storageClass": "my_storageClass"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -287,11 +389,11 @@ export namespace firebasestorage_v1beta {
     getDefaultBucket(
       params: Params$Resource$Projects$Getdefaultbucket,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getDefaultBucket(
       params?: Params$Resource$Projects$Getdefaultbucket,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DefaultBucket>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DefaultBucket>>;
     getDefaultBucket(
       params: Params$Resource$Projects$Getdefaultbucket,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -322,7 +424,10 @@ export namespace firebasestorage_v1beta {
       callback?:
         | BodyResponseCallback<Schema$DefaultBucket>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$DefaultBucket> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$DefaultBucket>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Getdefaultbucket;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -388,6 +493,61 @@ export namespace firebasestorage_v1beta {
 
     /**
      * Links a Google Cloud Storage bucket to a Firebase project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebasestorage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebasestorage = google.firebasestorage('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebasestorage.projects.buckets.addFirebase({
+     *     // Required. Resource name of the bucket, mirrors the ID of the underlying Google Cloud Storage bucket, `projects/{project_id_or_number\}/buckets/{bucket_id\}`.
+     *     bucket: 'projects/my-project/buckets/my-bucket',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -397,11 +557,11 @@ export namespace firebasestorage_v1beta {
     addFirebase(
       params: Params$Resource$Projects$Buckets$Addfirebase,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     addFirebase(
       params?: Params$Resource$Projects$Buckets$Addfirebase,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Bucket>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Bucket>>;
     addFirebase(
       params: Params$Resource$Projects$Buckets$Addfirebase,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -430,7 +590,10 @@ export namespace firebasestorage_v1beta {
       callback?:
         | BodyResponseCallback<Schema$Bucket>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Bucket> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Bucket>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Buckets$Addfirebase;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -477,6 +640,55 @@ export namespace firebasestorage_v1beta {
 
     /**
      * Gets a single linked storage bucket.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebasestorage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebasestorage = google.firebasestorage('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebasestorage.projects.buckets.get({
+     *     // Required. Resource name of the bucket, mirrors the ID of the underlying Google Cloud Storage bucket, `projects/{project_id_or_number\}/buckets/{bucket_id\}`.
+     *     name: 'projects/my-project/buckets/my-bucket',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -486,11 +698,11 @@ export namespace firebasestorage_v1beta {
     get(
       params: Params$Resource$Projects$Buckets$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Buckets$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Bucket>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Bucket>>;
     get(
       params: Params$Resource$Projects$Buckets$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -519,7 +731,10 @@ export namespace firebasestorage_v1beta {
       callback?:
         | BodyResponseCallback<Schema$Bucket>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Bucket> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Bucket>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Buckets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -563,6 +778,60 @@ export namespace firebasestorage_v1beta {
 
     /**
      * Lists the linked storage buckets for a project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebasestorage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebasestorage = google.firebasestorage('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebasestorage.projects.buckets.list({
+     *     // The maximum number of buckets to return. If not set, the server will use a reasonable default.
+     *     pageSize: 'placeholder-value',
+     *     // A page token, received from a previous `ListBuckets` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListBuckets` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Resource name of the parent Firebase project, `projects/{project_id_or_number\}`.
+     *     parent: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "buckets": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -572,11 +841,11 @@ export namespace firebasestorage_v1beta {
     list(
       params: Params$Resource$Projects$Buckets$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Buckets$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListBucketsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListBucketsResponse>>;
     list(
       params: Params$Resource$Projects$Buckets$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -607,8 +876,8 @@ export namespace firebasestorage_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListBucketsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListBucketsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Buckets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -655,6 +924,59 @@ export namespace firebasestorage_v1beta {
 
     /**
      * Unlinks a linked Google Cloud Storage bucket from a Firebase project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebasestorage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebasestorage = google.firebasestorage('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebasestorage.projects.buckets.removeFirebase({
+     *     // Required. Resource name of the bucket, mirrors the ID of the underlying Google Cloud Storage bucket, `projects/{project_id_or_number\}/buckets/{bucket_id\}`.
+     *     bucket: 'projects/my-project/buckets/my-bucket',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -664,11 +986,11 @@ export namespace firebasestorage_v1beta {
     removeFirebase(
       params: Params$Resource$Projects$Buckets$Removefirebase,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     removeFirebase(
       params?: Params$Resource$Projects$Buckets$Removefirebase,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     removeFirebase(
       params: Params$Resource$Projects$Buckets$Removefirebase,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -697,7 +1019,10 @@ export namespace firebasestorage_v1beta {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Buckets$Removefirebase;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -798,6 +1123,69 @@ export namespace firebasestorage_v1beta {
 
     /**
      * Creates a Spark tier-eligible Cloud Storage bucket and links it to your Firebase project. If the default bucket already exists, this method will re-link it to your Firebase project. See https://firebase.google.com/pricing for pricing details.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebasestorage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebasestorage = google.firebasestorage('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebasestorage.projects.defaultBucket.create({
+     *     // Required. The parent resource where the default bucket will be created, `projects/{project_id_or_number\}`.
+     *     parent: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bucket": {},
+     *       //   "location": "my_location",
+     *       //   "name": "my_name",
+     *       //   "storageClass": "my_storageClass"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bucket": {},
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "storageClass": "my_storageClass"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -807,11 +1195,11 @@ export namespace firebasestorage_v1beta {
     create(
       params: Params$Resource$Projects$Defaultbucket$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Defaultbucket$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DefaultBucket>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DefaultBucket>>;
     create(
       params: Params$Resource$Projects$Defaultbucket$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -840,7 +1228,10 @@ export namespace firebasestorage_v1beta {
       callback?:
         | BodyResponseCallback<Schema$DefaultBucket>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$DefaultBucket> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$DefaultBucket>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Defaultbucket$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;

@@ -276,9 +276,9 @@
               ],
               "enumDescriptions": [
                 "The default value. Default to the FULL view.",
-                "Includes metadata information for the dataset, such as location, etag, lastModifiedTime, etc.",
-                "Includes ACL information for the dataset, which defines dataset access for one or more entities.",
-                "Includes both dataset metadata and ACL information."
+                "Updates metadata information for the dataset, such as friendlyName, description, labels, etc.",
+                "Updates ACL information for the dataset, which defines dataset access for one or more entities.",
+                "Updates both dataset metadata and ACL information."
               ],
               "location": "query",
               "type": "string"
@@ -413,6 +413,23 @@
               "pattern": "^[^/]+$",
               "required": true,
               "type": "string"
+            },
+            "updateMode": {
+              "description": "Optional. Specifies the fields of dataset that update/patch operation is targeting By default, both metadata and ACL fields are updated.",
+              "enum": [
+                "UPDATE_MODE_UNSPECIFIED",
+                "UPDATE_METADATA",
+                "UPDATE_ACL",
+                "UPDATE_FULL"
+              ],
+              "enumDescriptions": [
+                "The default value. Default to the UPDATE_FULL.",
+                "Includes metadata information for the dataset, such as friendlyName, description, labels, etc.",
+                "Includes ACL information for the dataset, which defines dataset access for one or more entities.",
+                "Includes both dataset metadata and ACL information."
+              ],
+              "location": "query",
+              "type": "string"
             }
           },
           "path": "projects/{+projectId}/datasets/{+datasetId}",
@@ -492,6 +509,23 @@
               "location": "path",
               "pattern": "^[^/]+$",
               "required": true,
+              "type": "string"
+            },
+            "updateMode": {
+              "description": "Optional. Specifies the fields of dataset that update/patch operation is targeting By default, both metadata and ACL fields are updated.",
+              "enum": [
+                "UPDATE_MODE_UNSPECIFIED",
+                "UPDATE_METADATA",
+                "UPDATE_ACL",
+                "UPDATE_FULL"
+              ],
+              "enumDescriptions": [
+                "The default value. Default to the UPDATE_FULL.",
+                "Includes metadata information for the dataset, such as friendlyName, description, labels, etc.",
+                "Includes ACL information for the dataset, which defines dataset access for one or more entities.",
+                "Includes both dataset metadata and ACL information."
+              ],
+              "location": "query",
               "type": "string"
             }
           },
@@ -2256,7 +2290,7 @@
       }
     }
   },
-  "revision": "20250404",
+  "revision": "20250511",
   "rootUrl": "https://bigquery.googleapis.com/",
   "schemas": {
     "AggregateClassificationMetrics": {
@@ -3728,6 +3762,11 @@
               "datasetReference": {
                 "$ref": "DatasetReference",
                 "description": "The dataset reference. Use this property to access specific parts of the dataset's ID, such as project ID or dataset ID."
+              },
+              "externalDatasetReference": {
+                "$ref": "ExternalDatasetReference",
+                "description": "Output only. Reference to a read-only external dataset defined in data catalogs outside of BigQuery. Filled out when the dataset type is EXTERNAL.",
+                "readOnly": true
               },
               "friendlyName": {
                 "description": "An alternate name for the dataset. The friendly name is purely decorative in nature.",
@@ -5577,7 +5616,7 @@
           "description": "Time-based partitioning specification for the destination table. Only one of timePartitioning and rangePartitioning should be specified."
         },
         "timeZone": {
-          "description": "Optional. [Experimental] Default time zone that will apply when parsing timestamp values that have no specific time zone.",
+          "description": "Optional. Default time zone that will apply when parsing timestamp values that have no specific time zone.",
           "type": "string"
         },
         "timestampFormat": {
@@ -5589,7 +5628,7 @@
           "type": "boolean"
         },
         "writeDisposition": {
-          "description": "Optional. Specifies the action that occurs if the destination table already exists. The following values are supported: * WRITE_TRUNCATE: If the table already exists, BigQuery overwrites the data, removes the constraints and uses the schema from the load job. * WRITE_APPEND: If the table already exists, BigQuery appends the data to the table. * WRITE_EMPTY: If the table already exists and contains data, a 'duplicate' error is returned in the job result. The default value is WRITE_APPEND. Each action is atomic and only occurs if BigQuery is able to complete the job successfully. Creation, truncation and append actions occur as one atomic update upon job completion.",
+          "description": "Optional. Specifies the action that occurs if the destination table already exists. The following values are supported: * WRITE_TRUNCATE: If the table already exists, BigQuery overwrites the data, removes the constraints and uses the schema from the load job. * WRITE_TRUNCATE_DATA: If the table already exists, BigQuery overwrites the data, but keeps the constraints and schema of the existing table. * WRITE_APPEND: If the table already exists, BigQuery appends the data to the table. * WRITE_EMPTY: If the table already exists and contains data, a 'duplicate' error is returned in the job result. The default value is WRITE_APPEND. Each action is atomic and only occurs if BigQuery is able to complete the job successfully. Creation, truncation and append actions occur as one atomic update upon job completion.",
           "type": "string"
         }
       },
@@ -5727,7 +5766,7 @@
           "type": "array"
         },
         "writeDisposition": {
-          "description": "Optional. Specifies the action that occurs if the destination table already exists. The following values are supported: * WRITE_TRUNCATE: If the table already exists, BigQuery overwrites the data, removes the constraints, and uses the schema from the query result. * WRITE_APPEND: If the table already exists, BigQuery appends the data to the table. * WRITE_EMPTY: If the table already exists and contains data, a 'duplicate' error is returned in the job result. The default value is WRITE_EMPTY. Each action is atomic and only occurs if BigQuery is able to complete the job successfully. Creation, truncation and append actions occur as one atomic update upon job completion.",
+          "description": "Optional. Specifies the action that occurs if the destination table already exists. The following values are supported: * WRITE_TRUNCATE: If the table already exists, BigQuery overwrites the data, removes the constraints, and uses the schema from the query result. * WRITE_TRUNCATE_DATA: If the table already exists, BigQuery overwrites the data, but keeps the constraints and schema of the existing table. * WRITE_APPEND: If the table already exists, BigQuery appends the data to the table. * WRITE_EMPTY: If the table already exists and contains data, a 'duplicate' error is returned in the job result. The default value is WRITE_EMPTY. Each action is atomic and only occurs if BigQuery is able to complete the job successfully. Creation, truncation and append actions occur as one atomic update upon job completion.",
           "type": "string"
         },
         "writeIncrementalResults": {
@@ -6235,7 +6274,7 @@
           "type": "array"
         },
         "referencedTables": {
-          "description": "Output only. Referenced tables for the job. Queries that reference more than 50 tables will not have a complete list.",
+          "description": "Output only. Referenced tables for the job.",
           "items": {
             "$ref": "TableReference"
           },
@@ -7779,6 +7818,11 @@
           "description": "Total units of work remaining for the query. This number can be revised (increased or decreased) while the query is running.",
           "format": "int64",
           "type": "string"
+        },
+        "shuffleRamUsageRatio": {
+          "description": "Total shuffle usage ratio in shuffle RAM per reservation of this query. This will be provided for reservation customers only.",
+          "format": "double",
+          "type": "number"
         },
         "totalSlotMs": {
           "description": "Cumulative slot-ms consumed by the query.",

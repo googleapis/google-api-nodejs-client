@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -1047,6 +1047,66 @@ export namespace driveactivity_v2 {
 
     /**
      * Query past activity in Google Drive.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/driveactivity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const driveactivity = google.driveactivity('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive.activity',
+     *       'https://www.googleapis.com/auth/drive.activity.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await driveactivity.activity.query({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "ancestorName": "my_ancestorName",
+     *       //   "consolidationStrategy": {},
+     *       //   "filter": "my_filter",
+     *       //   "itemName": "my_itemName",
+     *       //   "pageSize": 0,
+     *       //   "pageToken": "my_pageToken"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activities": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1056,11 +1116,11 @@ export namespace driveactivity_v2 {
     query(
       params: Params$Resource$Activity$Query,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     query(
       params?: Params$Resource$Activity$Query,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$QueryDriveActivityResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$QueryDriveActivityResponse>>;
     query(
       params: Params$Resource$Activity$Query,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1095,8 +1155,8 @@ export namespace driveactivity_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$QueryDriveActivityResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$QueryDriveActivityResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Activity$Query;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

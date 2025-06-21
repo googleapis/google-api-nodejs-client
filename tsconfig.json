@@ -15,6 +15,7 @@
   ],
   "exclude": [
     "node_modules",
-    "test/fixtures"
+    "test/fixtures",
+    "samples/**"
   ]
 }

@@ -62,7 +62,7 @@ export async function main() {
           './node_modules/.bin/jsdoc',
           '-c',
           '.jsdoc.js',
-        ])
+        ]),
       )
       .then(() => {
         i++;
@@ -73,5 +73,7 @@ export async function main() {
 }
 
 if (require.main === module) {
-  main();
+  main().catch(err => {
+    throw err;
+  });
 }

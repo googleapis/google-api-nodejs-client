@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -221,7 +221,7 @@ export namespace mybusinessverifications_v1 {
     verifications?: Schema$Verification[];
   }
   /**
-   * Represents a postal address (for example, for postal delivery or payments addresses). Given a postal address, a postal service can deliver items to a premise, P.O. box or similar. It is not intended to model geographical locations (roads, towns, mountains). In typical usage, an address would be created by user input or from importing existing data, depending on the type of process. Advice on address input or editing: - Use an internationalization-ready address widget such as https://github.com/google/libaddressinput. - Users should not be presented with UI elements for input or editing of fields outside countries where that field is used. For more guidance on how to use this schema, see: https://support.google.com/business/answer/6397478.
+   * Represents a postal address, such as for postal delivery or payments addresses. With a postal address, a postal service can deliver items to a premise, P.O. box, or similar. A postal address is not intended to model geographical locations like roads, towns, or mountains. In typical usage, an address would be created by user input or from importing existing data, depending on the type of process. Advice on address input or editing: - Use an internationalization-ready address widget such as https://github.com/google/libaddressinput. - Users should not be presented with UI elements for input or editing of fields outside countries where that field is used. For more guidance on how to use this schema, see: https://support.google.com/business/answer/6397478.
    */
   export interface Schema$PostalAddress {
     /**
@@ -436,6 +436,61 @@ export namespace mybusinessverifications_v1 {
 
     /**
      * Reports all eligible verification options for a location in a specific language.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/mybusinessverifications.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const mybusinessverifications = google.mybusinessverifications('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await mybusinessverifications.locations.fetchVerificationOptions({
+     *     // Required. The location to verify.
+     *     location: 'locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "context": {},
+     *       //   "languageCode": "my_languageCode"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "options": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -445,11 +500,13 @@ export namespace mybusinessverifications_v1 {
     fetchVerificationOptions(
       params: Params$Resource$Locations$Fetchverificationoptions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     fetchVerificationOptions(
       params?: Params$Resource$Locations$Fetchverificationoptions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FetchVerificationOptionsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$FetchVerificationOptionsResponse>
+    >;
     fetchVerificationOptions(
       params: Params$Resource$Locations$Fetchverificationoptions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -484,8 +541,10 @@ export namespace mybusinessverifications_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$FetchVerificationOptionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$FetchVerificationOptionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Fetchverificationoptions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -534,6 +593,57 @@ export namespace mybusinessverifications_v1 {
 
     /**
      * Gets the VoiceOfMerchant state.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/mybusinessverifications.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const mybusinessverifications = google.mybusinessverifications('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await mybusinessverifications.locations.getVoiceOfMerchantState({
+     *     // Required. Resource name of the location.
+     *     name: 'locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "complyWithGuidelines": {},
+     *   //   "hasBusinessAuthority": false,
+     *   //   "hasVoiceOfMerchant": false,
+     *   //   "resolveOwnershipConflict": {},
+     *   //   "verify": {},
+     *   //   "waitForVoiceOfMerchant": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -543,11 +653,11 @@ export namespace mybusinessverifications_v1 {
     getVoiceOfMerchantState(
       params: Params$Resource$Locations$Getvoiceofmerchantstate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getVoiceOfMerchantState(
       params?: Params$Resource$Locations$Getvoiceofmerchantstate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$VoiceOfMerchantState>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$VoiceOfMerchantState>>;
     getVoiceOfMerchantState(
       params: Params$Resource$Locations$Getvoiceofmerchantstate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -582,8 +692,8 @@ export namespace mybusinessverifications_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$VoiceOfMerchantState>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$VoiceOfMerchantState>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Getvoiceofmerchantstate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -630,6 +740,66 @@ export namespace mybusinessverifications_v1 {
 
     /**
      * Starts the verification process for a location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/mybusinessverifications.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const mybusinessverifications = google.mybusinessverifications('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await mybusinessverifications.locations.verify({
+     *     // Required. Resource name of the location to verify.
+     *     name: 'locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "context": {},
+     *       //   "emailAddress": "my_emailAddress",
+     *       //   "languageCode": "my_languageCode",
+     *       //   "mailerContact": "my_mailerContact",
+     *       //   "method": "my_method",
+     *       //   "phoneNumber": "my_phoneNumber",
+     *       //   "token": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "verification": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -639,11 +809,11 @@ export namespace mybusinessverifications_v1 {
     verify(
       params: Params$Resource$Locations$Verify,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     verify(
       params?: Params$Resource$Locations$Verify,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$VerifyLocationResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$VerifyLocationResponse>>;
     verify(
       params: Params$Resource$Locations$Verify,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -676,8 +846,8 @@ export namespace mybusinessverifications_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$VerifyLocationResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$VerifyLocationResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Locations$Verify;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -758,6 +928,60 @@ export namespace mybusinessverifications_v1 {
 
     /**
      * Completes a `PENDING` verification. It is only necessary for non `AUTO` verification methods. `AUTO` verification request is instantly `VERIFIED` upon creation.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/mybusinessverifications.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const mybusinessverifications = google.mybusinessverifications('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await mybusinessverifications.locations.verifications.complete({
+     *     // Required. Resource name of the verification to complete.
+     *     name: 'locations/my-location/verifications/my-verification',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "pin": "my_pin"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "verification": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -767,11 +991,11 @@ export namespace mybusinessverifications_v1 {
     complete(
       params: Params$Resource$Locations$Verifications$Complete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     complete(
       params?: Params$Resource$Locations$Verifications$Complete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CompleteVerificationResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CompleteVerificationResponse>>;
     complete(
       params: Params$Resource$Locations$Verifications$Complete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -806,8 +1030,8 @@ export namespace mybusinessverifications_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CompleteVerificationResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CompleteVerificationResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Verifications$Complete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -856,6 +1080,57 @@ export namespace mybusinessverifications_v1 {
 
     /**
      * List verifications of a location, ordered by create time.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/mybusinessverifications.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const mybusinessverifications = google.mybusinessverifications('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await mybusinessverifications.locations.verifications.list({
+     *     // How many verification to include per page. Minimum is 1, and the default and maximum page size is 100.
+     *     pageSize: 'placeholder-value',
+     *     // If specified, returns the next page of verifications.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Resource name of the location that verification requests belong to.
+     *     parent: 'locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "verifications": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -865,11 +1140,11 @@ export namespace mybusinessverifications_v1 {
     list(
       params: Params$Resource$Locations$Verifications$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Locations$Verifications$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListVerificationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListVerificationsResponse>>;
     list(
       params: Params$Resource$Locations$Verifications$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -904,8 +1179,8 @@ export namespace mybusinessverifications_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListVerificationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListVerificationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Verifications$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

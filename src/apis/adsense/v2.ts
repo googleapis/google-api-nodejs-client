@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -597,7 +597,7 @@ export namespace adsense_v2 {
    */
   export interface Schema$PolicyTopic {
     /**
-     * Required. Deprecated. Policy topics no longer have a "must-fix" classification.
+     * Required. Deprecated. Always set to false.
      */
     mustFix?: boolean | null;
     /**
@@ -744,6 +744,61 @@ export namespace adsense_v2 {
 
     /**
      * Gets information about the selected AdSense account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.get({
+     *     // Required. Account to get information about. Format: accounts/{account\}
+     *     name: 'accounts/my-account',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "pendingTasks": [],
+     *   //   "premium": false,
+     *   //   "state": "my_state",
+     *   //   "timeZone": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -753,11 +808,11 @@ export namespace adsense_v2 {
     get(
       params: Params$Resource$Accounts$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Accounts$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Account>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Account>>;
     get(
       params: Params$Resource$Accounts$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -786,7 +841,10 @@ export namespace adsense_v2 {
       callback?:
         | BodyResponseCallback<Schema$Account>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Account> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Account>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -828,6 +886,56 @@ export namespace adsense_v2 {
 
     /**
      * Gets the ad blocking recovery tag of an account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.getAdBlockingRecoveryTag({
+     *     // Required. The name of the account to get the tag for. Format: accounts/{account\}
+     *     name: 'accounts/my-account',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "errorProtectionCode": "my_errorProtectionCode",
+     *   //   "tag": "my_tag"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -837,11 +945,11 @@ export namespace adsense_v2 {
     getAdBlockingRecoveryTag(
       params: Params$Resource$Accounts$Getadblockingrecoverytag,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getAdBlockingRecoveryTag(
       params?: Params$Resource$Accounts$Getadblockingrecoverytag,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AdBlockingRecoveryTag>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AdBlockingRecoveryTag>>;
     getAdBlockingRecoveryTag(
       params: Params$Resource$Accounts$Getadblockingrecoverytag,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -876,8 +984,8 @@ export namespace adsense_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AdBlockingRecoveryTag>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AdBlockingRecoveryTag>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Getadblockingrecoverytag;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -923,6 +1031,58 @@ export namespace adsense_v2 {
 
     /**
      * Lists all accounts available to this user.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.list({
+     *     // The maximum number of accounts to include in the response, used for paging. If unspecified, at most 10000 accounts will be returned. The maximum value is 10000; values above 10000 will be coerced to 10000.
+     *     pageSize: 'placeholder-value',
+     *     // A page token, received from a previous `ListAccounts` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListAccounts` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accounts": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -932,11 +1092,11 @@ export namespace adsense_v2 {
     list(
       params: Params$Resource$Accounts$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Accounts$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAccountsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListAccountsResponse>>;
     list(
       params: Params$Resource$Accounts$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -969,8 +1129,8 @@ export namespace adsense_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListAccountsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListAccountsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1012,6 +1172,60 @@ export namespace adsense_v2 {
 
     /**
      * Lists all accounts directly managed by the given AdSense account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.listChildAccounts({
+     *     // The maximum number of accounts to include in the response, used for paging. If unspecified, at most 10000 accounts will be returned. The maximum value is 10000; values above 10000 will be coerced to 10000.
+     *     pageSize: 'placeholder-value',
+     *     // A page token, received from a previous `ListChildAccounts` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListChildAccounts` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent account, which owns the child accounts. Format: accounts/{account\}
+     *     parent: 'accounts/my-account',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accounts": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1021,11 +1235,11 @@ export namespace adsense_v2 {
     listChildAccounts(
       params: Params$Resource$Accounts$Listchildaccounts,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     listChildAccounts(
       params?: Params$Resource$Accounts$Listchildaccounts,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListChildAccountsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListChildAccountsResponse>>;
     listChildAccounts(
       params: Params$Resource$Accounts$Listchildaccounts,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1060,8 +1274,8 @@ export namespace adsense_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListChildAccountsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListChildAccountsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Listchildaccounts;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1163,6 +1377,58 @@ export namespace adsense_v2 {
 
     /**
      * Gets the ad client from the given resource name.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.adclients.get({
+     *     // Required. The name of the ad client to retrieve. Format: accounts/{account\}/adclients/{adclient\}
+     *     name: 'accounts/my-account/adclients/my-adclient',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "productCode": "my_productCode",
+     *   //   "reportingDimensionId": "my_reportingDimensionId",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1172,11 +1438,11 @@ export namespace adsense_v2 {
     get(
       params: Params$Resource$Accounts$Adclients$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Accounts$Adclients$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AdClient>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AdClient>>;
     get(
       params: Params$Resource$Accounts$Adclients$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1205,7 +1471,10 @@ export namespace adsense_v2 {
       callback?:
         | BodyResponseCallback<Schema$AdClient>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AdClient> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$AdClient>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Adclients$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1248,6 +1517,57 @@ export namespace adsense_v2 {
 
     /**
      * Gets the AdSense code for a given ad client. This returns what was previously known as the 'auto ad code'. This is only supported for ad clients with a product_code of AFC. For more information, see [About the AdSense code](https://support.google.com/adsense/answer/9274634).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.adclients.getAdcode({
+     *     // Required. Name of the ad client for which to get the adcode. Format: accounts/{account\}/adclients/{adclient\}
+     *     name: 'accounts/my-account/adclients/my-adclient',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "adCode": "my_adCode",
+     *   //   "ampBody": "my_ampBody",
+     *   //   "ampHead": "my_ampHead"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1257,11 +1577,11 @@ export namespace adsense_v2 {
     getAdcode(
       params: Params$Resource$Accounts$Adclients$Getadcode,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getAdcode(
       params?: Params$Resource$Accounts$Adclients$Getadcode,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AdClientAdCode>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AdClientAdCode>>;
     getAdcode(
       params: Params$Resource$Accounts$Adclients$Getadcode,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1290,7 +1610,10 @@ export namespace adsense_v2 {
       callback?:
         | BodyResponseCallback<Schema$AdClientAdCode>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AdClientAdCode> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$AdClientAdCode>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Adclients$Getadcode;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1333,6 +1656,60 @@ export namespace adsense_v2 {
 
     /**
      * Lists all the ad clients available in an account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.adclients.list({
+     *     // The maximum number of ad clients to include in the response, used for paging. If unspecified, at most 10000 ad clients will be returned. The maximum value is 10000; values above 10000 will be coerced to 10000.
+     *     pageSize: 'placeholder-value',
+     *     // A page token, received from a previous `ListAdClients` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListAdClients` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The account which owns the collection of ad clients. Format: accounts/{account\}
+     *     parent: 'accounts/my-account',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "adClients": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1342,11 +1719,11 @@ export namespace adsense_v2 {
     list(
       params: Params$Resource$Accounts$Adclients$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Accounts$Adclients$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAdClientsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListAdClientsResponse>>;
     list(
       params: Params$Resource$Accounts$Adclients$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1379,8 +1756,8 @@ export namespace adsense_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListAdClientsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListAdClientsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Adclients$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1463,6 +1840,68 @@ export namespace adsense_v2 {
 
     /**
      * Creates an ad unit. This method can be called only by a restricted set of projects, which are usually owned by [AdSense for Platforms](https://developers.google.com/adsense/platforms/) publishers. Contact your account manager if you need to use this method. Note that ad units can only be created for ad clients with an "AFC" product code. For more info see the [AdClient resource](/adsense/management/reference/rest/v2/accounts.adclients). For now, this method can only be used to create `DISPLAY` ad units. See: https://support.google.com/adsense/answer/9183566
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adsense'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.adclients.adunits.create({
+     *     // Required. Ad client to create an ad unit under. Format: accounts/{account\}/adclients/{adclient\}
+     *     parent: 'accounts/my-account/adclients/my-adclient',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "contentAdsSettings": {},
+     *       //   "displayName": "my_displayName",
+     *       //   "name": "my_name",
+     *       //   "reportingDimensionId": "my_reportingDimensionId",
+     *       //   "state": "my_state"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contentAdsSettings": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "reportingDimensionId": "my_reportingDimensionId",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1472,11 +1911,11 @@ export namespace adsense_v2 {
     create(
       params: Params$Resource$Accounts$Adclients$Adunits$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Accounts$Adclients$Adunits$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AdUnit>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AdUnit>>;
     create(
       params: Params$Resource$Accounts$Adclients$Adunits$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1505,7 +1944,10 @@ export namespace adsense_v2 {
       callback?:
         | BodyResponseCallback<Schema$AdUnit>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AdUnit> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$AdUnit>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Adclients$Adunits$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1551,6 +1993,59 @@ export namespace adsense_v2 {
 
     /**
      * Gets an ad unit from a specified account and ad client.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.adclients.adunits.get({
+     *     // Required. AdUnit to get information about. Format: accounts/{account\}/adclients/{adclient\}/adunits/{adunit\}
+     *     name: 'accounts/my-account/adclients/my-adclient/adunits/my-adunit',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contentAdsSettings": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "reportingDimensionId": "my_reportingDimensionId",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1560,11 +2055,11 @@ export namespace adsense_v2 {
     get(
       params: Params$Resource$Accounts$Adclients$Adunits$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Accounts$Adclients$Adunits$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AdUnit>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AdUnit>>;
     get(
       params: Params$Resource$Accounts$Adclients$Adunits$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1593,7 +2088,10 @@ export namespace adsense_v2 {
       callback?:
         | BodyResponseCallback<Schema$AdUnit>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AdUnit> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$AdUnit>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Adclients$Adunits$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1636,6 +2134,55 @@ export namespace adsense_v2 {
 
     /**
      * Gets the ad unit code for a given ad unit. For more information, see [About the AdSense code](https://support.google.com/adsense/answer/9274634) and [Where to place the ad code in your HTML](https://support.google.com/adsense/answer/9190028).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.adclients.adunits.getAdcode({
+     *     // Required. Name of the adunit for which to get the adcode. Format: accounts/{account\}/adclients/{adclient\}/adunits/{adunit\}
+     *     name: 'accounts/my-account/adclients/my-adclient/adunits/my-adunit',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "adCode": "my_adCode"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1645,11 +2192,11 @@ export namespace adsense_v2 {
     getAdcode(
       params: Params$Resource$Accounts$Adclients$Adunits$Getadcode,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getAdcode(
       params?: Params$Resource$Accounts$Adclients$Adunits$Getadcode,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AdUnitAdCode>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AdUnitAdCode>>;
     getAdcode(
       params: Params$Resource$Accounts$Adclients$Adunits$Getadcode,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1678,7 +2225,10 @@ export namespace adsense_v2 {
       callback?:
         | BodyResponseCallback<Schema$AdUnitAdCode>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AdUnitAdCode> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$AdUnitAdCode>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Adclients$Adunits$Getadcode;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1721,6 +2271,60 @@ export namespace adsense_v2 {
 
     /**
      * Lists all ad units under a specified account and ad client.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.adclients.adunits.list({
+     *     // The maximum number of ad units to include in the response, used for paging. If unspecified, at most 10000 ad units will be returned. The maximum value is 10000; values above 10000 will be coerced to 10000.
+     *     pageSize: 'placeholder-value',
+     *     // A page token, received from a previous `ListAdUnits` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListAdUnits` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The ad client which owns the collection of ad units. Format: accounts/{account\}/adclients/{adclient\}
+     *     parent: 'accounts/my-account/adclients/my-adclient',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "adUnits": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1730,11 +2334,11 @@ export namespace adsense_v2 {
     list(
       params: Params$Resource$Accounts$Adclients$Adunits$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Accounts$Adclients$Adunits$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAdUnitsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListAdUnitsResponse>>;
     list(
       params: Params$Resource$Accounts$Adclients$Adunits$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1765,8 +2369,8 @@ export namespace adsense_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListAdUnitsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListAdUnitsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Adclients$Adunits$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1812,6 +2416,62 @@ export namespace adsense_v2 {
 
     /**
      * Lists all the custom channels available for an ad unit.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.adclients.adunits.listLinkedCustomChannels(
+     *     {
+     *       // The maximum number of custom channels to include in the response, used for paging. If unspecified, at most 10000 custom channels will be returned. The maximum value is 10000; values above 10000 will be coerced to 10000.
+     *       pageSize: 'placeholder-value',
+     *       // A page token, received from a previous `ListLinkedCustomChannels` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListLinkedCustomChannels` must match the call that provided the page token.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The ad unit which owns the collection of custom channels. Format: accounts/{account\}/adclients/{adclient\}/adunits/{adunit\}
+     *       parent: 'accounts/my-account/adclients/my-adclient/adunits/my-adunit',
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "customChannels": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1821,11 +2481,13 @@ export namespace adsense_v2 {
     listLinkedCustomChannels(
       params: Params$Resource$Accounts$Adclients$Adunits$Listlinkedcustomchannels,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     listLinkedCustomChannels(
       params?: Params$Resource$Accounts$Adclients$Adunits$Listlinkedcustomchannels,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListLinkedCustomChannelsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListLinkedCustomChannelsResponse>
+    >;
     listLinkedCustomChannels(
       params: Params$Resource$Accounts$Adclients$Adunits$Listlinkedcustomchannels,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1860,8 +2522,10 @@ export namespace adsense_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListLinkedCustomChannelsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListLinkedCustomChannelsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Adclients$Adunits$Listlinkedcustomchannels;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1910,6 +2574,70 @@ export namespace adsense_v2 {
 
     /**
      * Updates an ad unit. This method can be called only by a restricted set of projects, which are usually owned by [AdSense for Platforms](https://developers.google.com/adsense/platforms/) publishers. Contact your account manager if you need to use this method. For now, this method can only be used to update `DISPLAY` ad units. See: https://support.google.com/adsense/answer/9183566
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adsense'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.adclients.adunits.patch({
+     *     // Output only. Resource name of the ad unit. Format: accounts/{account\}/adclients/{adclient\}/adunits/{adunit\}
+     *     name: 'accounts/my-account/adclients/my-adclient/adunits/my-adunit',
+     *     // The list of fields to update. If empty, a full update is performed.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "contentAdsSettings": {},
+     *       //   "displayName": "my_displayName",
+     *       //   "name": "my_name",
+     *       //   "reportingDimensionId": "my_reportingDimensionId",
+     *       //   "state": "my_state"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contentAdsSettings": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "reportingDimensionId": "my_reportingDimensionId",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1919,11 +2647,11 @@ export namespace adsense_v2 {
     patch(
       params: Params$Resource$Accounts$Adclients$Adunits$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Accounts$Adclients$Adunits$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AdUnit>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AdUnit>>;
     patch(
       params: Params$Resource$Accounts$Adclients$Adunits$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1952,7 +2680,10 @@ export namespace adsense_v2 {
       callback?:
         | BodyResponseCallback<Schema$AdUnit>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AdUnit> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$AdUnit>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Adclients$Adunits$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2075,6 +2806,66 @@ export namespace adsense_v2 {
 
     /**
      * Creates a custom channel. This method can be called only by a restricted set of projects, which are usually owned by [AdSense for Platforms](https://developers.google.com/adsense/platforms/) publishers. Contact your account manager if you need to use this method.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adsense'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.adclients.customchannels.create({
+     *     // Required. The ad client to create a custom channel under. Format: accounts/{account\}/adclients/{adclient\}
+     *     parent: 'accounts/my-account/adclients/my-adclient',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "active": false,
+     *       //   "displayName": "my_displayName",
+     *       //   "name": "my_name",
+     *       //   "reportingDimensionId": "my_reportingDimensionId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "active": false,
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "reportingDimensionId": "my_reportingDimensionId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2084,11 +2875,11 @@ export namespace adsense_v2 {
     create(
       params: Params$Resource$Accounts$Adclients$Customchannels$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Accounts$Adclients$Customchannels$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CustomChannel>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CustomChannel>>;
     create(
       params: Params$Resource$Accounts$Adclients$Customchannels$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2117,7 +2908,10 @@ export namespace adsense_v2 {
       callback?:
         | BodyResponseCallback<Schema$CustomChannel>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CustomChannel> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$CustomChannel>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Adclients$Customchannels$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2163,6 +2957,50 @@ export namespace adsense_v2 {
 
     /**
      * Deletes a custom channel. This method can be called only by a restricted set of projects, which are usually owned by [AdSense for Platforms](https://developers.google.com/adsense/platforms/) publishers. Contact your account manager if you need to use this method.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adsense'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.adclients.customchannels.delete({
+     *     // Required. Name of the custom channel to delete. Format: accounts/{account\}/adclients/{adclient\}/customchannels/{customchannel\}
+     *     name: 'accounts/my-account/adclients/my-adclient/customchannels/my-customchannel',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2172,11 +3010,11 @@ export namespace adsense_v2 {
     delete(
       params: Params$Resource$Accounts$Adclients$Customchannels$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Accounts$Adclients$Customchannels$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Accounts$Adclients$Customchannels$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2205,7 +3043,10 @@ export namespace adsense_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Adclients$Customchannels$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2248,6 +3089,58 @@ export namespace adsense_v2 {
 
     /**
      * Gets information about the selected custom channel.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.adclients.customchannels.get({
+     *     // Required. Name of the custom channel. Format: accounts/{account\}/adclients/{adclient\}/customchannels/{customchannel\}
+     *     name: 'accounts/my-account/adclients/my-adclient/customchannels/my-customchannel',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "active": false,
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "reportingDimensionId": "my_reportingDimensionId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2257,11 +3150,11 @@ export namespace adsense_v2 {
     get(
       params: Params$Resource$Accounts$Adclients$Customchannels$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Accounts$Adclients$Customchannels$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CustomChannel>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CustomChannel>>;
     get(
       params: Params$Resource$Accounts$Adclients$Customchannels$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2290,7 +3183,10 @@ export namespace adsense_v2 {
       callback?:
         | BodyResponseCallback<Schema$CustomChannel>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CustomChannel> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$CustomChannel>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Adclients$Customchannels$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2333,6 +3229,60 @@ export namespace adsense_v2 {
 
     /**
      * Lists all the custom channels available in an ad client.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.adclients.customchannels.list({
+     *     // The maximum number of custom channels to include in the response, used for paging. If unspecified, at most 10000 custom channels will be returned. The maximum value is 10000; values above 10000 will be coerced to 10000.
+     *     pageSize: 'placeholder-value',
+     *     // A page token, received from a previous `ListCustomChannels` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListCustomChannels` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The ad client which owns the collection of custom channels. Format: accounts/{account\}/adclients/{adclient\}
+     *     parent: 'accounts/my-account/adclients/my-adclient',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "customChannels": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2342,11 +3292,11 @@ export namespace adsense_v2 {
     list(
       params: Params$Resource$Accounts$Adclients$Customchannels$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Accounts$Adclients$Customchannels$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListCustomChannelsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListCustomChannelsResponse>>;
     list(
       params: Params$Resource$Accounts$Adclients$Customchannels$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2381,8 +3331,8 @@ export namespace adsense_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListCustomChannelsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListCustomChannelsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Adclients$Customchannels$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2428,6 +3378,63 @@ export namespace adsense_v2 {
 
     /**
      * Lists all the ad units available for a custom channel.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.adclients.customchannels.listLinkedAdUnits(
+     *     {
+     *       // The maximum number of ad units to include in the response, used for paging. If unspecified, at most 10000 ad units will be returned. The maximum value is 10000; values above 10000 will be coerced to 10000.
+     *       pageSize: 'placeholder-value',
+     *       // A page token, received from a previous `ListLinkedAdUnits` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListLinkedAdUnits` must match the call that provided the page token.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The custom channel which owns the collection of ad units. Format: accounts/{account\}/adclients/{adclient\}/customchannels/{customchannel\}
+     *       parent:
+     *         'accounts/my-account/adclients/my-adclient/customchannels/my-customchannel',
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "adUnits": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2437,11 +3444,11 @@ export namespace adsense_v2 {
     listLinkedAdUnits(
       params: Params$Resource$Accounts$Adclients$Customchannels$Listlinkedadunits,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     listLinkedAdUnits(
       params?: Params$Resource$Accounts$Adclients$Customchannels$Listlinkedadunits,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListLinkedAdUnitsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListLinkedAdUnitsResponse>>;
     listLinkedAdUnits(
       params: Params$Resource$Accounts$Adclients$Customchannels$Listlinkedadunits,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2476,8 +3483,8 @@ export namespace adsense_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListLinkedAdUnitsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListLinkedAdUnitsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Adclients$Customchannels$Listlinkedadunits;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2524,6 +3531,68 @@ export namespace adsense_v2 {
 
     /**
      * Updates a custom channel. This method can be called only by a restricted set of projects, which are usually owned by [AdSense for Platforms](https://developers.google.com/adsense/platforms/) publishers. Contact your account manager if you need to use this method.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adsense'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.adclients.customchannels.patch({
+     *     // Output only. Resource name of the custom channel. Format: accounts/{account\}/adclients/{adclient\}/customchannels/{customchannel\}
+     *     name: 'accounts/my-account/adclients/my-adclient/customchannels/my-customchannel',
+     *     // The list of fields to update. If empty, a full update is performed.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "active": false,
+     *       //   "displayName": "my_displayName",
+     *       //   "name": "my_name",
+     *       //   "reportingDimensionId": "my_reportingDimensionId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "active": false,
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "reportingDimensionId": "my_reportingDimensionId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2533,11 +3602,11 @@ export namespace adsense_v2 {
     patch(
       params: Params$Resource$Accounts$Adclients$Customchannels$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Accounts$Adclients$Customchannels$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CustomChannel>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CustomChannel>>;
     patch(
       params: Params$Resource$Accounts$Adclients$Customchannels$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2566,7 +3635,10 @@ export namespace adsense_v2 {
       callback?:
         | BodyResponseCallback<Schema$CustomChannel>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CustomChannel> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$CustomChannel>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Adclients$Customchannels$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2689,6 +3761,57 @@ export namespace adsense_v2 {
 
     /**
      * Gets information about the selected url channel.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.adclients.urlchannels.get({
+     *     // Required. The name of the url channel to retrieve. Format: accounts/{account\}/adclients/{adclient\}/urlchannels/{urlchannel\}
+     *     name: 'accounts/my-account/adclients/my-adclient/urlchannels/my-urlchannel',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "reportingDimensionId": "my_reportingDimensionId",
+     *   //   "uriPattern": "my_uriPattern"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2698,11 +3821,11 @@ export namespace adsense_v2 {
     get(
       params: Params$Resource$Accounts$Adclients$Urlchannels$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Accounts$Adclients$Urlchannels$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$UrlChannel>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$UrlChannel>>;
     get(
       params: Params$Resource$Accounts$Adclients$Urlchannels$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2731,7 +3854,10 @@ export namespace adsense_v2 {
       callback?:
         | BodyResponseCallback<Schema$UrlChannel>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$UrlChannel> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$UrlChannel>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Adclients$Urlchannels$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2774,6 +3900,60 @@ export namespace adsense_v2 {
 
     /**
      * Lists active url channels.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.adclients.urlchannels.list({
+     *     // The maximum number of url channels to include in the response, used for paging. If unspecified, at most 10000 url channels will be returned. The maximum value is 10000; values above 10000 will be coerced to 10000.
+     *     pageSize: 'placeholder-value',
+     *     // A page token, received from a previous `ListUrlChannels` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListUrlChannels` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The ad client which owns the collection of url channels. Format: accounts/{account\}/adclients/{adclient\}
+     *     parent: 'accounts/my-account/adclients/my-adclient',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "urlChannels": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2783,11 +3963,11 @@ export namespace adsense_v2 {
     list(
       params: Params$Resource$Accounts$Adclients$Urlchannels$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Accounts$Adclients$Urlchannels$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListUrlChannelsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListUrlChannelsResponse>>;
     list(
       params: Params$Resource$Accounts$Adclients$Urlchannels$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2820,8 +4000,8 @@ export namespace adsense_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListUrlChannelsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListUrlChannelsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Adclients$Urlchannels$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2897,6 +4077,57 @@ export namespace adsense_v2 {
 
     /**
      * Lists all the alerts available in an account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.alerts.list({
+     *     // The language to use for translating alert messages. If unspecified, this defaults to the user's display language. If the given language is not supported, alerts will be returned in English. The language is specified as an [IETF BCP-47 language code](https://en.wikipedia.org/wiki/IETF_language_tag).
+     *     languageCode: 'placeholder-value',
+     *     // Required. The account which owns the collection of alerts. Format: accounts/{account\}
+     *     parent: 'accounts/my-account',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "alerts": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2906,11 +4137,11 @@ export namespace adsense_v2 {
     list(
       params: Params$Resource$Accounts$Alerts$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Accounts$Alerts$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAlertsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListAlertsResponse>>;
     list(
       params: Params$Resource$Accounts$Alerts$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2941,8 +4172,8 @@ export namespace adsense_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListAlertsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListAlertsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Alerts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3007,6 +4238,55 @@ export namespace adsense_v2 {
 
     /**
      * Lists all the payments available for an account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.payments.list({
+     *     // Required. The account which owns the collection of payments. Format: accounts/{account\}
+     *     parent: 'accounts/my-account',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "payments": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3016,11 +4296,11 @@ export namespace adsense_v2 {
     list(
       params: Params$Resource$Accounts$Payments$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Accounts$Payments$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListPaymentsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListPaymentsResponse>>;
     list(
       params: Params$Resource$Accounts$Payments$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3053,8 +4333,8 @@ export namespace adsense_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListPaymentsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListPaymentsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Payments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3115,6 +4395,66 @@ export namespace adsense_v2 {
 
     /**
      * Gets information about the selected policy issue.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.policyIssues.get({
+     *     // Required. Name of the policy issue. Format: accounts/{account\}/policyIssues/{policy_issue\}
+     *     name: 'accounts/my-account/policyIssues/my-policyIssue',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "action": "my_action",
+     *   //   "adClients": [],
+     *   //   "adRequestCount": "my_adRequestCount",
+     *   //   "entityType": "my_entityType",
+     *   //   "firstDetectedDate": {},
+     *   //   "lastDetectedDate": {},
+     *   //   "name": "my_name",
+     *   //   "policyTopics": [],
+     *   //   "site": "my_site",
+     *   //   "siteSection": "my_siteSection",
+     *   //   "uri": "my_uri",
+     *   //   "warningEscalationDate": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3124,11 +4464,11 @@ export namespace adsense_v2 {
     get(
       params: Params$Resource$Accounts$Policyissues$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Accounts$Policyissues$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PolicyIssue>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PolicyIssue>>;
     get(
       params: Params$Resource$Accounts$Policyissues$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3157,7 +4497,10 @@ export namespace adsense_v2 {
       callback?:
         | BodyResponseCallback<Schema$PolicyIssue>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$PolicyIssue> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$PolicyIssue>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Policyissues$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3200,6 +4543,60 @@ export namespace adsense_v2 {
 
     /**
      * Lists all the policy issues where the specified account is involved, both directly and through any AFP child accounts.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.policyIssues.list({
+     *     // The maximum number of policy issues to include in the response, used for paging. If unspecified, at most 10000 policy issues will be returned. The maximum value is 10000; values above 10000 will be coerced to 10000.
+     *     pageSize: 'placeholder-value',
+     *     // A page token, received from a previous `ListPolicyIssues` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListPolicyIssues` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The account for which policy issues are being retrieved. Format: accounts/{account\}
+     *     parent: 'accounts/my-account',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "policyIssues": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3209,11 +4606,11 @@ export namespace adsense_v2 {
     list(
       params: Params$Resource$Accounts$Policyissues$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Accounts$Policyissues$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListPolicyIssuesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListPolicyIssuesResponse>>;
     list(
       params: Params$Resource$Accounts$Policyissues$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3246,8 +4643,8 @@ export namespace adsense_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListPolicyIssuesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListPolicyIssuesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Policyissues$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3325,6 +4722,92 @@ export namespace adsense_v2 {
 
     /**
      * Generates an ad hoc report.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.reports.generate({
+     *     // Required. The account which owns the collection of reports. Format: accounts/{account\}
+     *     account: 'accounts/my-account',
+     *     // The [ISO-4217 currency code](https://en.wikipedia.org/wiki/ISO_4217) to use when reporting on monetary metrics. Defaults to the account's currency if not set.
+     *     currencyCode: 'placeholder-value',
+     *     // Date range of the report, if unset the range will be considered CUSTOM.
+     *     dateRange: 'placeholder-value',
+     *     // Dimensions to base the report on.
+     *     dimensions: 'placeholder-value',
+     *     // Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
+     *     'endDate.day': 'placeholder-value',
+     *     // Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
+     *     'endDate.month': 'placeholder-value',
+     *     // Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
+     *     'endDate.year': 'placeholder-value',
+     *     // A list of [filters](/adsense/management/reporting/filtering) to apply to the report. All provided filters must match in order for the data to be included in the report.
+     *     filters: 'placeholder-value',
+     *     // The language to use for translating report output. If unspecified, this defaults to English ("en"). If the given language is not supported, report output will be returned in English. The language is specified as an [IETF BCP-47 language code](https://en.wikipedia.org/wiki/IETF_language_tag).
+     *     languageCode: 'placeholder-value',
+     *     // The maximum number of rows of report data to return. Reports producing more rows than the requested limit will be truncated. If unset, this defaults to 100,000 rows for `Reports.GenerateReport` and 1,000,000 rows for `Reports.GenerateCsvReport`, which are also the maximum values permitted here. Report truncation can be identified (for `Reports.GenerateReport` only) by comparing the number of rows returned to the value returned in `total_matched_rows`.
+     *     limit: 'placeholder-value',
+     *     // Required. Reporting metrics.
+     *     metrics: 'placeholder-value',
+     *     // The name of a dimension or metric to sort the resulting report on, can be prefixed with "+" to sort ascending or "-" to sort descending. If no prefix is specified, the column is sorted ascending.
+     *     orderBy: 'placeholder-value',
+     *     // Timezone in which to generate the report. If unspecified, this defaults to the account timezone. For more information, see [changing the time zone of your reports](https://support.google.com/adsense/answer/9830725).
+     *     reportingTimeZone: 'placeholder-value',
+     *     // Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
+     *     'startDate.day': 'placeholder-value',
+     *     // Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
+     *     'startDate.month': 'placeholder-value',
+     *     // Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
+     *     'startDate.year': 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "averages": {},
+     *   //   "endDate": {},
+     *   //   "headers": [],
+     *   //   "rows": [],
+     *   //   "startDate": {},
+     *   //   "totalMatchedRows": "my_totalMatchedRows",
+     *   //   "totals": {},
+     *   //   "warnings": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3334,11 +4817,11 @@ export namespace adsense_v2 {
     generate(
       params: Params$Resource$Accounts$Reports$Generate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     generate(
       params?: Params$Resource$Accounts$Reports$Generate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ReportResult>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ReportResult>>;
     generate(
       params: Params$Resource$Accounts$Reports$Generate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3367,7 +4850,10 @@ export namespace adsense_v2 {
       callback?:
         | BodyResponseCallback<Schema$ReportResult>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ReportResult> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ReportResult>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Reports$Generate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3413,6 +4899,87 @@ export namespace adsense_v2 {
 
     /**
      * Generates a csv formatted ad hoc report.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.reports.generateCsv({
+     *     // Required. The account which owns the collection of reports. Format: accounts/{account\}
+     *     account: 'accounts/my-account',
+     *     // The [ISO-4217 currency code](https://en.wikipedia.org/wiki/ISO_4217) to use when reporting on monetary metrics. Defaults to the account's currency if not set.
+     *     currencyCode: 'placeholder-value',
+     *     // Date range of the report, if unset the range will be considered CUSTOM.
+     *     dateRange: 'placeholder-value',
+     *     // Dimensions to base the report on.
+     *     dimensions: 'placeholder-value',
+     *     // Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
+     *     'endDate.day': 'placeholder-value',
+     *     // Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
+     *     'endDate.month': 'placeholder-value',
+     *     // Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
+     *     'endDate.year': 'placeholder-value',
+     *     // A list of [filters](/adsense/management/reporting/filtering) to apply to the report. All provided filters must match in order for the data to be included in the report.
+     *     filters: 'placeholder-value',
+     *     // The language to use for translating report output. If unspecified, this defaults to English ("en"). If the given language is not supported, report output will be returned in English. The language is specified as an [IETF BCP-47 language code](https://en.wikipedia.org/wiki/IETF_language_tag).
+     *     languageCode: 'placeholder-value',
+     *     // The maximum number of rows of report data to return. Reports producing more rows than the requested limit will be truncated. If unset, this defaults to 100,000 rows for `Reports.GenerateReport` and 1,000,000 rows for `Reports.GenerateCsvReport`, which are also the maximum values permitted here. Report truncation can be identified (for `Reports.GenerateReport` only) by comparing the number of rows returned to the value returned in `total_matched_rows`.
+     *     limit: 'placeholder-value',
+     *     // Required. Reporting metrics.
+     *     metrics: 'placeholder-value',
+     *     // The name of a dimension or metric to sort the resulting report on, can be prefixed with "+" to sort ascending or "-" to sort descending. If no prefix is specified, the column is sorted ascending.
+     *     orderBy: 'placeholder-value',
+     *     // Timezone in which to generate the report. If unspecified, this defaults to the account timezone. For more information, see [changing the time zone of your reports](https://support.google.com/adsense/answer/9830725).
+     *     reportingTimeZone: 'placeholder-value',
+     *     // Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
+     *     'startDate.day': 'placeholder-value',
+     *     // Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
+     *     'startDate.month': 'placeholder-value',
+     *     // Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
+     *     'startDate.year': 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contentType": "my_contentType",
+     *   //   "data": "my_data",
+     *   //   "extensions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3422,11 +4989,11 @@ export namespace adsense_v2 {
     generateCsv(
       params: Params$Resource$Accounts$Reports$Generatecsv,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     generateCsv(
       params?: Params$Resource$Accounts$Reports$Generatecsv,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$HttpBody>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>;
     generateCsv(
       params: Params$Resource$Accounts$Reports$Generatecsv,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3455,7 +5022,10 @@ export namespace adsense_v2 {
       callback?:
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$HttpBody> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Reports$Generatecsv;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3501,6 +5071,56 @@ export namespace adsense_v2 {
 
     /**
      * Gets the saved report from the given resource name.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.reports.getSaved({
+     *     // Required. The name of the saved report to retrieve. Format: accounts/{account\}/reports/{report\}
+     *     name: 'accounts/my-account/reports/my-report',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "title": "my_title"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3510,11 +5130,11 @@ export namespace adsense_v2 {
     getSaved(
       params: Params$Resource$Accounts$Reports$Getsaved,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getSaved(
       params?: Params$Resource$Accounts$Reports$Getsaved,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SavedReport>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SavedReport>>;
     getSaved(
       params: Params$Resource$Accounts$Reports$Getsaved,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3543,7 +5163,10 @@ export namespace adsense_v2 {
       callback?:
         | BodyResponseCallback<Schema$SavedReport>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SavedReport> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SavedReport>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Reports$Getsaved;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3735,6 +5358,82 @@ export namespace adsense_v2 {
 
     /**
      * Generates a saved report.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.reports.saved.generate({
+     *     // The [ISO-4217 currency code](https://en.wikipedia.org/wiki/ISO_4217) to use when reporting on monetary metrics. Defaults to the account's currency if not set.
+     *     currencyCode: 'placeholder-value',
+     *     // Date range of the report, if unset the range will be considered CUSTOM.
+     *     dateRange: 'placeholder-value',
+     *     // Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
+     *     'endDate.day': 'placeholder-value',
+     *     // Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
+     *     'endDate.month': 'placeholder-value',
+     *     // Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
+     *     'endDate.year': 'placeholder-value',
+     *     // The language to use for translating report output. If unspecified, this defaults to English ("en"). If the given language is not supported, report output will be returned in English. The language is specified as an [IETF BCP-47 language code](https://en.wikipedia.org/wiki/IETF_language_tag).
+     *     languageCode: 'placeholder-value',
+     *     // Required. Name of the saved report. Format: accounts/{account\}/reports/{report\}
+     *     name: 'accounts/my-account/reports/my-report',
+     *     // Timezone in which to generate the report. If unspecified, this defaults to the account timezone. For more information, see [changing the time zone of your reports](https://support.google.com/adsense/answer/9830725).
+     *     reportingTimeZone: 'placeholder-value',
+     *     // Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
+     *     'startDate.day': 'placeholder-value',
+     *     // Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
+     *     'startDate.month': 'placeholder-value',
+     *     // Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
+     *     'startDate.year': 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "averages": {},
+     *   //   "endDate": {},
+     *   //   "headers": [],
+     *   //   "rows": [],
+     *   //   "startDate": {},
+     *   //   "totalMatchedRows": "my_totalMatchedRows",
+     *   //   "totals": {},
+     *   //   "warnings": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3744,11 +5443,11 @@ export namespace adsense_v2 {
     generate(
       params: Params$Resource$Accounts$Reports$Saved$Generate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     generate(
       params?: Params$Resource$Accounts$Reports$Saved$Generate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ReportResult>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ReportResult>>;
     generate(
       params: Params$Resource$Accounts$Reports$Saved$Generate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3777,7 +5476,10 @@ export namespace adsense_v2 {
       callback?:
         | BodyResponseCallback<Schema$ReportResult>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ReportResult> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ReportResult>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Reports$Saved$Generate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3823,6 +5525,77 @@ export namespace adsense_v2 {
 
     /**
      * Generates a csv formatted saved report.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.reports.saved.generateCsv({
+     *     // The [ISO-4217 currency code](https://en.wikipedia.org/wiki/ISO_4217) to use when reporting on monetary metrics. Defaults to the account's currency if not set.
+     *     currencyCode: 'placeholder-value',
+     *     // Date range of the report, if unset the range will be considered CUSTOM.
+     *     dateRange: 'placeholder-value',
+     *     // Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
+     *     'endDate.day': 'placeholder-value',
+     *     // Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
+     *     'endDate.month': 'placeholder-value',
+     *     // Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
+     *     'endDate.year': 'placeholder-value',
+     *     // The language to use for translating report output. If unspecified, this defaults to English ("en"). If the given language is not supported, report output will be returned in English. The language is specified as an [IETF BCP-47 language code](https://en.wikipedia.org/wiki/IETF_language_tag).
+     *     languageCode: 'placeholder-value',
+     *     // Required. Name of the saved report. Format: accounts/{account\}/reports/{report\}
+     *     name: 'accounts/my-account/reports/my-report',
+     *     // Timezone in which to generate the report. If unspecified, this defaults to the account timezone. For more information, see [changing the time zone of your reports](https://support.google.com/adsense/answer/9830725).
+     *     reportingTimeZone: 'placeholder-value',
+     *     // Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
+     *     'startDate.day': 'placeholder-value',
+     *     // Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
+     *     'startDate.month': 'placeholder-value',
+     *     // Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
+     *     'startDate.year': 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contentType": "my_contentType",
+     *   //   "data": "my_data",
+     *   //   "extensions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3832,11 +5605,11 @@ export namespace adsense_v2 {
     generateCsv(
       params: Params$Resource$Accounts$Reports$Saved$Generatecsv,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     generateCsv(
       params?: Params$Resource$Accounts$Reports$Saved$Generatecsv,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$HttpBody>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>;
     generateCsv(
       params: Params$Resource$Accounts$Reports$Saved$Generatecsv,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3865,7 +5638,10 @@ export namespace adsense_v2 {
       callback?:
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$HttpBody> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Reports$Saved$Generatecsv;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3911,6 +5687,60 @@ export namespace adsense_v2 {
 
     /**
      * Lists saved reports.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.reports.saved.list({
+     *     // The maximum number of reports to include in the response, used for paging. If unspecified, at most 10000 reports will be returned. The maximum value is 10000; values above 10000 will be coerced to 10000.
+     *     pageSize: 'placeholder-value',
+     *     // A page token, received from a previous `ListSavedReports` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListSavedReports` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The account which owns the collection of reports. Format: accounts/{account\}
+     *     parent: 'accounts/my-account',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "savedReports": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3920,11 +5750,11 @@ export namespace adsense_v2 {
     list(
       params: Params$Resource$Accounts$Reports$Saved$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Accounts$Reports$Saved$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListSavedReportsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListSavedReportsResponse>>;
     list(
       params: Params$Resource$Accounts$Reports$Saved$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3957,8 +5787,8 @@ export namespace adsense_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListSavedReportsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListSavedReportsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Reports$Saved$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4121,6 +5951,59 @@ export namespace adsense_v2 {
 
     /**
      * Gets information about the selected site.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.sites.get({
+     *     // Required. Name of the site. Format: accounts/{account\}/sites/{site\}
+     *     name: 'accounts/my-account/sites/my-site',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "autoAdsEnabled": false,
+     *   //   "domain": "my_domain",
+     *   //   "name": "my_name",
+     *   //   "reportingDimensionId": "my_reportingDimensionId",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4130,11 +6013,11 @@ export namespace adsense_v2 {
     get(
       params: Params$Resource$Accounts$Sites$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Accounts$Sites$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Site>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Site>>;
     get(
       params: Params$Resource$Accounts$Sites$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4163,7 +6046,10 @@ export namespace adsense_v2 {
       callback?:
         | BodyResponseCallback<Schema$Site>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Site> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Site>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Sites$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4206,6 +6092,60 @@ export namespace adsense_v2 {
 
     /**
      * Lists all the sites available in an account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.sites.list({
+     *     // The maximum number of sites to include in the response, used for paging. If unspecified, at most 10000 sites will be returned. The maximum value is 10000; values above 10000 will be coerced to 10000.
+     *     pageSize: 'placeholder-value',
+     *     // A page token, received from a previous `ListSites` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListSites` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The account which owns the collection of sites. Format: accounts/{account\}
+     *     parent: 'accounts/my-account',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "sites": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4215,11 +6155,11 @@ export namespace adsense_v2 {
     list(
       params: Params$Resource$Accounts$Sites$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Accounts$Sites$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListSitesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListSitesResponse>>;
     list(
       params: Params$Resource$Accounts$Sites$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4250,8 +6190,8 @@ export namespace adsense_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListSitesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListSitesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Sites$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

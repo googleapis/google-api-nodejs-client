@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -438,6 +438,57 @@ export namespace adsenseplatform_v1alpha {
 
     /**
      * Gets a platform.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsenseplatform.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const adsenseplatform = google.adsenseplatform('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsenseplatform.accounts.platforms.get({
+     *     // Required. The name of the platform to retrieve. Format: accounts/{account\}/platforms/{platform\}
+     *     name: 'accounts/my-account/platforms/my-platform',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "defaultPlatformGroup": "my_defaultPlatformGroup",
+     *   //   "description": "my_description",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -447,11 +498,11 @@ export namespace adsenseplatform_v1alpha {
     get(
       params: Params$Resource$Accounts$Platforms$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Accounts$Platforms$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Platform>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Platform>>;
     get(
       params: Params$Resource$Accounts$Platforms$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -480,7 +531,10 @@ export namespace adsenseplatform_v1alpha {
       callback?:
         | BodyResponseCallback<Schema$Platform>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Platform> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Platform>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Platforms$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -524,6 +578,60 @@ export namespace adsenseplatform_v1alpha {
 
     /**
      * Lists platforms for a specified account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsenseplatform.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const adsenseplatform = google.adsenseplatform('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsenseplatform.accounts.platforms.list({
+     *     // Optional. The maximum number of platforms to include in the response, used for paging. If unspecified, at most 10000 platforms will be returned. The maximum value is 10000; values above 10000 will be coerced to 10000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous `ListPlatforms` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListPlatforms` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The account which owns the platforms. Format: accounts/{account\}
+     *     parent: 'accounts/my-account',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "platforms": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -533,11 +641,11 @@ export namespace adsenseplatform_v1alpha {
     list(
       params: Params$Resource$Accounts$Platforms$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Accounts$Platforms$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListPlatformsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListPlatformsResponse>>;
     list(
       params: Params$Resource$Accounts$Platforms$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -570,8 +678,8 @@ export namespace adsenseplatform_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListPlatformsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListPlatformsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Platforms$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -658,7 +766,202 @@ export namespace adsenseplatform_v1alpha {
     }
 
     /**
+     * Gets a Platform Child Site for a specified Platform Child Account and site.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsenseplatform.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const adsenseplatform = google.adsenseplatform('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adsense'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsenseplatform.accounts.platforms.childAccounts.sites.get({
+     *     // Required. The name of the platform child site to retrieve. Format: accounts/{account\}/platforms/{platform\}/childAccounts/{child_account\}/sites/{platform_child_site\}
+     *     name: 'accounts/my-account/platforms/my-platform/childAccounts/my-childAccount/sites/my-site',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "domain": "my_domain",
+     *   //   "name": "my_name",
+     *   //   "platformGroup": "my_platformGroup"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Accounts$Platforms$Childaccounts$Sites$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Accounts$Platforms$Childaccounts$Sites$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PlatformChildSite>>;
+    get(
+      params: Params$Resource$Accounts$Platforms$Childaccounts$Sites$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Accounts$Platforms$Childaccounts$Sites$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$PlatformChildSite>,
+      callback: BodyResponseCallback<Schema$PlatformChildSite>
+    ): void;
+    get(
+      params: Params$Resource$Accounts$Platforms$Childaccounts$Sites$Get,
+      callback: BodyResponseCallback<Schema$PlatformChildSite>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$PlatformChildSite>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Platforms$Childaccounts$Sites$Get
+        | BodyResponseCallback<Schema$PlatformChildSite>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PlatformChildSite>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PlatformChildSite>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$PlatformChildSite>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Platforms$Childaccounts$Sites$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Accounts$Platforms$Childaccounts$Sites$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://adsenseplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$PlatformChildSite>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$PlatformChildSite>(parameters);
+      }
+    }
+
+    /**
      * Lists Platform Child Sites for a specified Platform Child Account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsenseplatform.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const adsenseplatform = google.adsenseplatform('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsenseplatform.accounts.platforms.childAccounts.sites.list(
+     *     {
+     *       // Optional. The maximum number of children to include in the response, used for paging. If unspecified, at most 10000 platforms will be returned. The maximum value is 10000; values above 10000 will be coerced to 10000.
+     *       pageSize: 'placeholder-value',
+     *       // Optional. A page token, received from a previous `ListPlatformChildren` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListPlatformChildren` must match the call that provided the page token.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The name of the child account under the given platform which owns the platform child sites. Format: accounts/{account\}/platforms/{platform\}/childAccounts/{child_account\}
+     *       parent:
+     *         'accounts/my-account/platforms/my-platform/childAccounts/my-childAccount',
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "platformChildSites": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -668,11 +971,11 @@ export namespace adsenseplatform_v1alpha {
     list(
       params: Params$Resource$Accounts$Platforms$Childaccounts$Sites$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Accounts$Platforms$Childaccounts$Sites$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListPlatformChildSitesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListPlatformChildSitesResponse>>;
     list(
       params: Params$Resource$Accounts$Platforms$Childaccounts$Sites$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -707,8 +1010,8 @@ export namespace adsenseplatform_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListPlatformChildSitesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListPlatformChildSitesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Platforms$Childaccounts$Sites$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -758,6 +1061,67 @@ export namespace adsenseplatform_v1alpha {
 
     /**
      * Update a Platform Child Site.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsenseplatform.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const adsenseplatform = google.adsenseplatform('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adsense'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await adsenseplatform.accounts.platforms.childAccounts.sites.patch({
+     *       // Identifier. Format: accounts/{account\}/platforms/{platform\}/childAccounts/{child_account\}/sites/{platform_child_site\}
+     *       name: 'accounts/my-account/platforms/my-platform/childAccounts/my-childAccount/sites/my-site',
+     *       // Optional. The list of fields to update - currently only supports updating the `platform_group` field.
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "domain": "my_domain",
+     *         //   "name": "my_name",
+     *         //   "platformGroup": "my_platformGroup"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "domain": "my_domain",
+     *   //   "name": "my_name",
+     *   //   "platformGroup": "my_platformGroup"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -767,11 +1131,11 @@ export namespace adsenseplatform_v1alpha {
     patch(
       params: Params$Resource$Accounts$Platforms$Childaccounts$Sites$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Accounts$Platforms$Childaccounts$Sites$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PlatformChildSite>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PlatformChildSite>>;
     patch(
       params: Params$Resource$Accounts$Platforms$Childaccounts$Sites$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -802,8 +1166,8 @@ export namespace adsenseplatform_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$PlatformChildSite>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$PlatformChildSite>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Platforms$Childaccounts$Sites$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -847,6 +1211,13 @@ export namespace adsenseplatform_v1alpha {
     }
   }
 
+  export interface Params$Resource$Accounts$Platforms$Childaccounts$Sites$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the platform child site to retrieve. Format: accounts/{account\}/platforms/{platform\}/childAccounts/{child_account\}/sites/{platform_child_site\}
+     */
+    name?: string;
+  }
   export interface Params$Resource$Accounts$Platforms$Childaccounts$Sites$List
     extends StandardParameters {
     /**
@@ -886,7 +1257,198 @@ export namespace adsenseplatform_v1alpha {
     }
 
     /**
+     * Gets a Platform Group for a specified Platform and group.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsenseplatform.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const adsenseplatform = google.adsenseplatform('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adsense'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsenseplatform.accounts.platforms.groups.get({
+     *     // Required. The name of the platform group to retrieve. Format: accounts/{account\}/platforms/{platform\}/groups/{group\}
+     *     name: 'accounts/my-account/platforms/my-platform/groups/my-group',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "description": "my_description",
+     *   //   "name": "my_name",
+     *   //   "revshareMillipercent": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Accounts$Platforms$Groups$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Accounts$Platforms$Groups$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PlatformGroup>>;
+    get(
+      params: Params$Resource$Accounts$Platforms$Groups$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Accounts$Platforms$Groups$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$PlatformGroup>,
+      callback: BodyResponseCallback<Schema$PlatformGroup>
+    ): void;
+    get(
+      params: Params$Resource$Accounts$Platforms$Groups$Get,
+      callback: BodyResponseCallback<Schema$PlatformGroup>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$PlatformGroup>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Platforms$Groups$Get
+        | BodyResponseCallback<Schema$PlatformGroup>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PlatformGroup>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PlatformGroup>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$PlatformGroup>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Platforms$Groups$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Platforms$Groups$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://adsenseplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$PlatformGroup>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$PlatformGroup>(parameters);
+      }
+    }
+
+    /**
      * Lists Platform Groups for a specified Platform.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsenseplatform.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const adsenseplatform = google.adsenseplatform('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsenseplatform.accounts.platforms.groups.list({
+     *     // Optional. The maximum number of groups to include in the response, used for paging. If unspecified, at most 10000 groups will be returned. The maximum value is 10000; values above 10000 will be coerced to 10000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous `ListPlatformGroups` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListPlatformGroups` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The name of the platform to retrieve. Format: accounts/{account\}/platforms/{platform\}
+     *     parent: 'accounts/my-account/platforms/my-platform',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "platformGroups": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -896,11 +1458,11 @@ export namespace adsenseplatform_v1alpha {
     list(
       params: Params$Resource$Accounts$Platforms$Groups$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Accounts$Platforms$Groups$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListPlatformGroupsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListPlatformGroupsResponse>>;
     list(
       params: Params$Resource$Accounts$Platforms$Groups$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -935,8 +1497,8 @@ export namespace adsenseplatform_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListPlatformGroupsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListPlatformGroupsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Platforms$Groups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -982,6 +1544,13 @@ export namespace adsenseplatform_v1alpha {
     }
   }
 
+  export interface Params$Resource$Accounts$Platforms$Groups$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the platform group to retrieve. Format: accounts/{account\}/platforms/{platform\}/groups/{group\}
+     */
+    name?: string;
+  }
   export interface Params$Resource$Accounts$Platforms$Groups$List
     extends StandardParameters {
     /**
@@ -1019,6 +1588,56 @@ export namespace adsenseplatform_v1alpha {
 
     /**
      * Closes a sub-account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsenseplatform.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const adsenseplatform = google.adsenseplatform('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adsense'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsenseplatform.platforms.accounts.close({
+     *     // Required. Account to close. Format: platforms/{platform\}/accounts/{account_id\}
+     *     name: 'platforms/my-platform/accounts/my-account',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1028,11 +1647,11 @@ export namespace adsenseplatform_v1alpha {
     close(
       params: Params$Resource$Platforms$Accounts$Close,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     close(
       params?: Params$Resource$Platforms$Accounts$Close,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CloseAccountResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CloseAccountResponse>>;
     close(
       params: Params$Resource$Platforms$Accounts$Close,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1065,8 +1684,8 @@ export namespace adsenseplatform_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CloseAccountResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CloseAccountResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Platforms$Accounts$Close;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1113,6 +1732,72 @@ export namespace adsenseplatform_v1alpha {
 
     /**
      * Creates a sub-account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsenseplatform.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const adsenseplatform = google.adsenseplatform('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adsense'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsenseplatform.platforms.accounts.create({
+     *     // Required. Platform to create an account for. Format: platforms/{platform\}
+     *     parent: 'platforms/my-platform',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "creationRequestId": "my_creationRequestId",
+     *       //   "displayName": "my_displayName",
+     *       //   "name": "my_name",
+     *       //   "regionCode": "my_regionCode",
+     *       //   "state": "my_state",
+     *       //   "timeZone": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "creationRequestId": "my_creationRequestId",
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "regionCode": "my_regionCode",
+     *   //   "state": "my_state",
+     *   //   "timeZone": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1122,11 +1807,11 @@ export namespace adsenseplatform_v1alpha {
     create(
       params: Params$Resource$Platforms$Accounts$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Platforms$Accounts$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Account>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Account>>;
     create(
       params: Params$Resource$Platforms$Accounts$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1155,7 +1840,10 @@ export namespace adsenseplatform_v1alpha {
       callback?:
         | BodyResponseCallback<Schema$Account>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Account> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Account>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Platforms$Accounts$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1202,6 +1890,61 @@ export namespace adsenseplatform_v1alpha {
 
     /**
      * Gets information about the selected sub-account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsenseplatform.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const adsenseplatform = google.adsenseplatform('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsenseplatform.platforms.accounts.get({
+     *     // Required. Account to get information about. Format: platforms/{platform\}/accounts/{account_id\}
+     *     name: 'platforms/my-platform/accounts/my-account',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "creationRequestId": "my_creationRequestId",
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "regionCode": "my_regionCode",
+     *   //   "state": "my_state",
+     *   //   "timeZone": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1211,11 +1954,11 @@ export namespace adsenseplatform_v1alpha {
     get(
       params: Params$Resource$Platforms$Accounts$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Platforms$Accounts$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Account>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Account>>;
     get(
       params: Params$Resource$Platforms$Accounts$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1244,7 +1987,10 @@ export namespace adsenseplatform_v1alpha {
       callback?:
         | BodyResponseCallback<Schema$Account>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Account> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Account>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Platforms$Accounts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1288,6 +2034,60 @@ export namespace adsenseplatform_v1alpha {
 
     /**
      * Lists a partial view of sub-accounts for a specific parent account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsenseplatform.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const adsenseplatform = google.adsenseplatform('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsenseplatform.platforms.accounts.list({
+     *     // Optional. The maximum number of accounts to include in the response, used for paging. If unspecified, at most 10000 accounts will be returned. The maximum value is 10000; values above 10000 will be coerced to 10000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous `ListAccounts` call. Provide this to retrieve the subsequent page.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Platform who parents the accounts. Format: platforms/{platform\}
+     *     parent: 'platforms/my-platform',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accounts": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1297,11 +2097,11 @@ export namespace adsenseplatform_v1alpha {
     list(
       params: Params$Resource$Platforms$Accounts$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Platforms$Accounts$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAccountsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListAccountsResponse>>;
     list(
       params: Params$Resource$Platforms$Accounts$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1334,8 +2134,8 @@ export namespace adsenseplatform_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListAccountsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListAccountsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Platforms$Accounts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1382,6 +2182,57 @@ export namespace adsenseplatform_v1alpha {
 
     /**
      * Looks up information about a sub-account for a specified creation_request_id. If no account exists for the given creation_request_id, returns 404.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsenseplatform.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const adsenseplatform = google.adsenseplatform('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsenseplatform.platforms.accounts.lookup({
+     *     // Optional. The creation_request_id provided when calling createAccount.
+     *     creationRequestId: 'placeholder-value',
+     *     // Required. Platform who parents the account. Format: platforms/{platform\}
+     *     parent: 'platforms/my-platform',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1391,11 +2242,11 @@ export namespace adsenseplatform_v1alpha {
     lookup(
       params: Params$Resource$Platforms$Accounts$Lookup,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     lookup(
       params?: Params$Resource$Platforms$Accounts$Lookup,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LookupAccountResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LookupAccountResponse>>;
     lookup(
       params: Params$Resource$Platforms$Accounts$Lookup,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1428,8 +2279,8 @@ export namespace adsenseplatform_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$LookupAccountResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$LookupAccountResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Platforms$Accounts$Lookup;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1541,6 +2392,64 @@ export namespace adsenseplatform_v1alpha {
 
     /**
      * Creates an account event.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsenseplatform.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const adsenseplatform = google.adsenseplatform('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adsense'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsenseplatform.platforms.accounts.events.create({
+     *     // Required. Account to log events about. Format: platforms/{platform\}/accounts/{account\}
+     *     parent: 'platforms/my-platform/accounts/my-account',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "eventInfo": {},
+     *       //   "eventTime": "my_eventTime",
+     *       //   "eventType": "my_eventType"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "eventInfo": {},
+     *   //   "eventTime": "my_eventTime",
+     *   //   "eventType": "my_eventType"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1550,11 +2459,11 @@ export namespace adsenseplatform_v1alpha {
     create(
       params: Params$Resource$Platforms$Accounts$Events$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Platforms$Accounts$Events$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Event>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Event>>;
     create(
       params: Params$Resource$Platforms$Accounts$Events$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1583,7 +2492,10 @@ export namespace adsenseplatform_v1alpha {
       callback?:
         | BodyResponseCallback<Schema$Event>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Event> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Event>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Platforms$Accounts$Events$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1650,6 +2562,64 @@ export namespace adsenseplatform_v1alpha {
 
     /**
      * Creates a site for a specified account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsenseplatform.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const adsenseplatform = google.adsenseplatform('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adsense'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsenseplatform.platforms.accounts.sites.create({
+     *     // Required. Account to create site. Format: platforms/{platform\}/accounts/{account_id\}
+     *     parent: 'platforms/my-platform/accounts/my-account',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "domain": "my_domain",
+     *       //   "name": "my_name",
+     *       //   "state": "my_state"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "domain": "my_domain",
+     *   //   "name": "my_name",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1659,11 +2629,11 @@ export namespace adsenseplatform_v1alpha {
     create(
       params: Params$Resource$Platforms$Accounts$Sites$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Platforms$Accounts$Sites$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Site>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Site>>;
     create(
       params: Params$Resource$Platforms$Accounts$Sites$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1692,7 +2662,10 @@ export namespace adsenseplatform_v1alpha {
       callback?:
         | BodyResponseCallback<Schema$Site>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Site> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Site>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Platforms$Accounts$Sites$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1739,6 +2712,50 @@ export namespace adsenseplatform_v1alpha {
 
     /**
      * Deletes a site from a specified account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsenseplatform.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const adsenseplatform = google.adsenseplatform('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adsense'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsenseplatform.platforms.accounts.sites.delete({
+     *     // Required. The name of the site to delete. Format: platforms/{platform\}/accounts/{account\}/sites/{site\}
+     *     name: 'platforms/my-platform/accounts/my-account/sites/my-site',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1748,11 +2765,11 @@ export namespace adsenseplatform_v1alpha {
     delete(
       params: Params$Resource$Platforms$Accounts$Sites$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Platforms$Accounts$Sites$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Platforms$Accounts$Sites$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1781,7 +2798,10 @@ export namespace adsenseplatform_v1alpha {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Platforms$Accounts$Sites$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1825,6 +2845,57 @@ export namespace adsenseplatform_v1alpha {
 
     /**
      * Gets a site from a specified sub-account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsenseplatform.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const adsenseplatform = google.adsenseplatform('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsenseplatform.platforms.accounts.sites.get({
+     *     // Required. The name of the site to retrieve. Format: platforms/{platform\}/accounts/{account\}/sites/{site\}
+     *     name: 'platforms/my-platform/accounts/my-account/sites/my-site',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "domain": "my_domain",
+     *   //   "name": "my_name",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1834,11 +2905,11 @@ export namespace adsenseplatform_v1alpha {
     get(
       params: Params$Resource$Platforms$Accounts$Sites$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Platforms$Accounts$Sites$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Site>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Site>>;
     get(
       params: Params$Resource$Platforms$Accounts$Sites$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1867,7 +2938,10 @@ export namespace adsenseplatform_v1alpha {
       callback?:
         | BodyResponseCallback<Schema$Site>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Site> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Site>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Platforms$Accounts$Sites$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1911,6 +2985,60 @@ export namespace adsenseplatform_v1alpha {
 
     /**
      * Lists sites for a specific account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsenseplatform.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const adsenseplatform = google.adsenseplatform('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsenseplatform.platforms.accounts.sites.list({
+     *     // The maximum number of sites to include in the response, used for paging. If unspecified, at most 10000 sites will be returned. The maximum value is 10000; values above 10000 will be coerced to 10000.
+     *     pageSize: 'placeholder-value',
+     *     // A page token, received from a previous `ListSites` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListSites` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The account which owns the sites. Format: platforms/{platform\}/accounts/{account\}
+     *     parent: 'platforms/my-platform/accounts/my-account',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "sites": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1920,11 +3048,11 @@ export namespace adsenseplatform_v1alpha {
     list(
       params: Params$Resource$Platforms$Accounts$Sites$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Platforms$Accounts$Sites$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListSitesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListSitesResponse>>;
     list(
       params: Params$Resource$Platforms$Accounts$Sites$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1955,8 +3083,8 @@ export namespace adsenseplatform_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListSitesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListSitesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Platforms$Accounts$Sites$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2003,6 +3131,50 @@ export namespace adsenseplatform_v1alpha {
 
     /**
      * Requests the review of a site. The site should be in REQUIRES_REVIEW or NEEDS_ATTENTION state. Note: Make sure you place an [ad tag](https://developers.google.com/adsense/platforms/direct/ad-tags) on your site before requesting a review.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsenseplatform.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const adsenseplatform = google.adsenseplatform('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adsense'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsenseplatform.platforms.accounts.sites.requestReview({
+     *     // Required. The name of the site to submit for review. Format: platforms/{platform\}/accounts/{account\}/sites/{site\}
+     *     name: 'platforms/my-platform/accounts/my-account/sites/my-site',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2012,11 +3184,11 @@ export namespace adsenseplatform_v1alpha {
     requestReview(
       params: Params$Resource$Platforms$Accounts$Sites$Requestreview,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     requestReview(
       params?: Params$Resource$Platforms$Accounts$Sites$Requestreview,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RequestSiteReviewResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$RequestSiteReviewResponse>>;
     requestReview(
       params: Params$Resource$Platforms$Accounts$Sites$Requestreview,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2051,8 +3223,8 @@ export namespace adsenseplatform_v1alpha {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$RequestSiteReviewResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$RequestSiteReviewResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Platforms$Accounts$Sites$Requestreview;
       let options = (optionsOrCallback || {}) as MethodOptions;

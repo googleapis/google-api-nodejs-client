@@ -1,5 +1,30 @@
 # Changelog
 
+## [7.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/pubsub-v7.0.0...pubsub-v7.0.1) (2025-06-04)
+
+
+### Bug Fixes
+
+* **deps:** upgrade googleapis-common to 8.0.2-rc ([f4b0990](https://github.com/googleapis/google-api-nodejs-client/commit/f4b099071040cfbcfe4a2e7d487d45ee93b369e0))
+
+## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/pubsub-v6.4.0...pubsub-v7.0.0) (2025-05-29)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to node 18
+
+### Features
+
+* upgrade to node 18 ([682fbb8](https://github.com/googleapis/google-api-nodejs-client/commit/682fbb869189ae92b3e9a194d37d0548af0c1f92))
+
+## [6.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/pubsub-v6.3.0...pubsub-v6.4.0) (2025-05-05)
+
+
+### Features
+
+* **pubsub:** update the API ([bde826a](https://github.com/googleapis/google-api-nodejs-client/commit/bde826aadd33f10b8ec0542f1d453de6a684651f))
+
 ## [6.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/pubsub-v6.2.0...pubsub-v6.3.0) (2025-03-18)
 
 

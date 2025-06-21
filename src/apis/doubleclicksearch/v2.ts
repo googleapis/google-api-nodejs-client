@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -577,6 +577,75 @@ export namespace doubleclicksearch_v2 {
 
     /**
      * Retrieves a list of conversions from a DoubleClick Search engine account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/doubleclicksearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const doubleclicksearch = google.doubleclicksearch('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/doubleclicksearch'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await doubleclicksearch.conversion.get({
+     *     // Numeric ID of the ad group.
+     *     adGroupId: 'placeholder-value',
+     *     // Numeric ID of the ad.
+     *     adId: 'placeholder-value',
+     *     // Numeric ID of the advertiser.
+     *     advertiserId: 'placeholder-value',
+     *     // Numeric ID of the agency.
+     *     agencyId: 'placeholder-value',
+     *     // Numeric ID of the campaign.
+     *     campaignId: 'placeholder-value',
+     *     // Numeric ID of the criterion.
+     *     criterionId: 'placeholder-value',
+     *     // Customer ID of a client account in the new Search Ads 360 experience.
+     *     customerId: 'placeholder-value',
+     *     // Last date (inclusive) on which to retrieve conversions. Format is yyyymmdd.
+     *     endDate: 'placeholder-value',
+     *     // Numeric ID of the engine account.
+     *     engineAccountId: 'placeholder-value',
+     *     // The number of conversions to return per call.
+     *     rowCount: 'placeholder-value',
+     *     // First date (inclusive) on which to retrieve conversions. Format is yyyymmdd.
+     *     startDate: 'placeholder-value',
+     *     // The 0-based starting index for retrieving conversions results.
+     *     startRow: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "conversion": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -586,11 +655,11 @@ export namespace doubleclicksearch_v2 {
     get(
       params: Params$Resource$Conversion$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Conversion$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ConversionList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ConversionList>>;
     get(
       params: Params$Resource$Conversion$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -619,7 +688,10 @@ export namespace doubleclicksearch_v2 {
       callback?:
         | BodyResponseCallback<Schema$ConversionList>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ConversionList> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ConversionList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Conversion$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -673,6 +745,75 @@ export namespace doubleclicksearch_v2 {
 
     /**
      * Retrieves a list of conversions from a DoubleClick Search engine account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/doubleclicksearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const doubleclicksearch = google.doubleclicksearch('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/doubleclicksearch'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await doubleclicksearch.conversion.getByCustomerId({
+     *     // Numeric ID of the ad group.
+     *     adGroupId: 'placeholder-value',
+     *     // Numeric ID of the ad.
+     *     adId: 'placeholder-value',
+     *     // Numeric ID of the advertiser.
+     *     advertiserId: 'placeholder-value',
+     *     // Numeric ID of the agency.
+     *     agencyId: 'placeholder-value',
+     *     // Numeric ID of the campaign.
+     *     campaignId: 'placeholder-value',
+     *     // Numeric ID of the criterion.
+     *     criterionId: 'placeholder-value',
+     *     // Customer ID of a client account in the new Search Ads 360 experience.
+     *     customerId: 'placeholder-value',
+     *     // Last date (inclusive) on which to retrieve conversions. Format is yyyymmdd.
+     *     endDate: 'placeholder-value',
+     *     // Numeric ID of the engine account.
+     *     engineAccountId: 'placeholder-value',
+     *     // The number of conversions to return per call.
+     *     rowCount: 'placeholder-value',
+     *     // First date (inclusive) on which to retrieve conversions. Format is yyyymmdd.
+     *     startDate: 'placeholder-value',
+     *     // The 0-based starting index for retrieving conversions results.
+     *     startRow: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "conversion": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -682,11 +823,11 @@ export namespace doubleclicksearch_v2 {
     getByCustomerId(
       params: Params$Resource$Conversion$Getbycustomerid,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getByCustomerId(
       params?: Params$Resource$Conversion$Getbycustomerid,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ConversionList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ConversionList>>;
     getByCustomerId(
       params: Params$Resource$Conversion$Getbycustomerid,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -717,7 +858,10 @@ export namespace doubleclicksearch_v2 {
       callback?:
         | BodyResponseCallback<Schema$ConversionList>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ConversionList> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ConversionList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Conversion$Getbycustomerid;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -769,6 +913,59 @@ export namespace doubleclicksearch_v2 {
 
     /**
      * Inserts a batch of new conversions into DoubleClick Search.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/doubleclicksearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const doubleclicksearch = google.doubleclicksearch('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/doubleclicksearch'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await doubleclicksearch.conversion.insert({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "conversion": [],
+     *       //   "kind": "my_kind"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "conversion": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -778,11 +975,11 @@ export namespace doubleclicksearch_v2 {
     insert(
       params: Params$Resource$Conversion$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Conversion$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ConversionList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ConversionList>>;
     insert(
       params: Params$Resource$Conversion$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -811,7 +1008,10 @@ export namespace doubleclicksearch_v2 {
       callback?:
         | BodyResponseCallback<Schema$ConversionList>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ConversionList> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ConversionList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Conversion$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -858,6 +1058,59 @@ export namespace doubleclicksearch_v2 {
 
     /**
      * Updates a batch of conversions in DoubleClick Search.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/doubleclicksearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const doubleclicksearch = google.doubleclicksearch('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/doubleclicksearch'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await doubleclicksearch.conversion.update({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "conversion": [],
+     *       //   "kind": "my_kind"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "conversion": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -867,11 +1120,11 @@ export namespace doubleclicksearch_v2 {
     update(
       params: Params$Resource$Conversion$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Conversion$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ConversionList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ConversionList>>;
     update(
       params: Params$Resource$Conversion$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -900,7 +1153,10 @@ export namespace doubleclicksearch_v2 {
       callback?:
         | BodyResponseCallback<Schema$ConversionList>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ConversionList> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ConversionList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Conversion$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -947,6 +1203,57 @@ export namespace doubleclicksearch_v2 {
 
     /**
      * Updates the availabilities of a batch of floodlight activities in DoubleClick Search.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/doubleclicksearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const doubleclicksearch = google.doubleclicksearch('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/doubleclicksearch'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await doubleclicksearch.conversion.updateAvailability({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "availabilities": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "availabilities": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -956,11 +1263,11 @@ export namespace doubleclicksearch_v2 {
     updateAvailability(
       params: Params$Resource$Conversion$Updateavailability,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     updateAvailability(
       params?: Params$Resource$Conversion$Updateavailability,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$UpdateAvailabilityResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$UpdateAvailabilityResponse>>;
     updateAvailability(
       params: Params$Resource$Conversion$Updateavailability,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -995,8 +1302,8 @@ export namespace doubleclicksearch_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$UpdateAvailabilityResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$UpdateAvailabilityResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Conversion$Updateavailability;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1172,6 +1479,78 @@ export namespace doubleclicksearch_v2 {
 
     /**
      * Generates and returns a report immediately.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/doubleclicksearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const doubleclicksearch = google.doubleclicksearch('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/doubleclicksearch'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await doubleclicksearch.reports.generate({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "columns": [],
+     *       //   "downloadFormat": "my_downloadFormat",
+     *       //   "filters": [],
+     *       //   "includeDeletedEntities": false,
+     *       //   "includeRemovedEntities": false,
+     *       //   "maxRowsPerFile": 0,
+     *       //   "orderBy": [],
+     *       //   "reportScope": {},
+     *       //   "reportType": "my_reportType",
+     *       //   "rowCount": 0,
+     *       //   "startRow": 0,
+     *       //   "statisticsCurrency": "my_statisticsCurrency",
+     *       //   "timeRange": {},
+     *       //   "verifySingleTimeZone": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "files": [],
+     *   //   "id": "my_id",
+     *   //   "isReportReady": false,
+     *   //   "kind": "my_kind",
+     *   //   "request": {},
+     *   //   "rowCount": 0,
+     *   //   "rows": [],
+     *   //   "statisticsCurrencyCode": "my_statisticsCurrencyCode",
+     *   //   "statisticsTimeZone": "my_statisticsTimeZone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1181,11 +1560,11 @@ export namespace doubleclicksearch_v2 {
     generate(
       params: Params$Resource$Reports$Generate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     generate(
       params?: Params$Resource$Reports$Generate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Report>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Report>>;
     generate(
       params: Params$Resource$Reports$Generate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1214,7 +1593,10 @@ export namespace doubleclicksearch_v2 {
       callback?:
         | BodyResponseCallback<Schema$Report>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Report> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Report>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reports$Generate;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1260,6 +1642,60 @@ export namespace doubleclicksearch_v2 {
 
     /**
      * Polls for the status of a report request.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/doubleclicksearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const doubleclicksearch = google.doubleclicksearch('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/doubleclicksearch'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await doubleclicksearch.reports.get({
+     *     // ID of the report request being polled.
+     *     reportId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "files": [],
+     *   //   "id": "my_id",
+     *   //   "isReportReady": false,
+     *   //   "kind": "my_kind",
+     *   //   "request": {},
+     *   //   "rowCount": 0,
+     *   //   "rows": [],
+     *   //   "statisticsCurrencyCode": "my_statisticsCurrencyCode",
+     *   //   "statisticsTimeZone": "my_statisticsTimeZone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1269,11 +1705,11 @@ export namespace doubleclicksearch_v2 {
     get(
       params: Params$Resource$Reports$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Reports$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Report>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Report>>;
     get(
       params: Params$Resource$Reports$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1302,7 +1738,10 @@ export namespace doubleclicksearch_v2 {
       callback?:
         | BodyResponseCallback<Schema$Report>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Report> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Report>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reports$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1348,6 +1787,49 @@ export namespace doubleclicksearch_v2 {
 
     /**
      * Downloads a report file encoded in UTF-8.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/doubleclicksearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const doubleclicksearch = google.doubleclicksearch('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/doubleclicksearch'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await doubleclicksearch.reports.getFile({
+     *     // The index of the report fragment to download.
+     *     reportFragment: 'placeholder-value',
+     *     // ID of the report.
+     *     reportId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1357,11 +1839,11 @@ export namespace doubleclicksearch_v2 {
     getFile(
       params: Params$Resource$Reports$Getfile,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getFile(
       params?: Params$Resource$Reports$Getfile,
       options?: MethodOptions
-    ): GaxiosPromise<unknown>;
+    ): Promise<GaxiosResponseWithHTTP2<unknown>>;
     getFile(
       params: Params$Resource$Reports$Getfile,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1388,7 +1870,10 @@ export namespace doubleclicksearch_v2 {
         | BodyResponseCallback<unknown>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<unknown> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<unknown> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<unknown>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reports$Getfile;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1434,6 +1919,52 @@ export namespace doubleclicksearch_v2 {
 
     /**
      * Downloads a csv file(encoded in UTF-8) that contains ID mappings between legacy SA360 and new SA360. The file includes all children entities of the given advertiser(e.g. engine accounts, campaigns, ad groups, etc.) that exist in both legacy SA360 and new SA360.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/doubleclicksearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const doubleclicksearch = google.doubleclicksearch('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/doubleclicksearch'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await doubleclicksearch.reports.getIdMappingFile({
+     *     // Legacy SA360 advertiser ID.
+     *     advertiserId: 'placeholder-value',
+     *     // Legacy SA360 agency ID.
+     *     agencyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1443,11 +1974,11 @@ export namespace doubleclicksearch_v2 {
     getIdMappingFile(
       params: Params$Resource$Reports$Getidmappingfile,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIdMappingFile(
       params?: Params$Resource$Reports$Getidmappingfile,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$IdMappingFile>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$IdMappingFile>>;
     getIdMappingFile(
       params: Params$Resource$Reports$Getidmappingfile,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1478,7 +2009,10 @@ export namespace doubleclicksearch_v2 {
       callback?:
         | BodyResponseCallback<Schema$IdMappingFile>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$IdMappingFile> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$IdMappingFile>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Reports$Getidmappingfile;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1525,6 +2059,78 @@ export namespace doubleclicksearch_v2 {
 
     /**
      * Inserts a report request into the reporting system.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/doubleclicksearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const doubleclicksearch = google.doubleclicksearch('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/doubleclicksearch'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await doubleclicksearch.reports.request({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "columns": [],
+     *       //   "downloadFormat": "my_downloadFormat",
+     *       //   "filters": [],
+     *       //   "includeDeletedEntities": false,
+     *       //   "includeRemovedEntities": false,
+     *       //   "maxRowsPerFile": 0,
+     *       //   "orderBy": [],
+     *       //   "reportScope": {},
+     *       //   "reportType": "my_reportType",
+     *       //   "rowCount": 0,
+     *       //   "startRow": 0,
+     *       //   "statisticsCurrency": "my_statisticsCurrency",
+     *       //   "timeRange": {},
+     *       //   "verifySingleTimeZone": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "files": [],
+     *   //   "id": "my_id",
+     *   //   "isReportReady": false,
+     *   //   "kind": "my_kind",
+     *   //   "request": {},
+     *   //   "rowCount": 0,
+     *   //   "rows": [],
+     *   //   "statisticsCurrencyCode": "my_statisticsCurrencyCode",
+     *   //   "statisticsTimeZone": "my_statisticsTimeZone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1534,11 +2140,11 @@ export namespace doubleclicksearch_v2 {
     request(
       params: Params$Resource$Reports$Request,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     request(
       params?: Params$Resource$Reports$Request,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Report>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Report>>;
     request(
       params: Params$Resource$Reports$Request,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1567,7 +2173,10 @@ export namespace doubleclicksearch_v2 {
       callback?:
         | BodyResponseCallback<Schema$Report>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Report> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Report>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reports$Request;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1660,6 +2269,55 @@ export namespace doubleclicksearch_v2 {
 
     /**
      * Retrieve the list of saved columns for a specified advertiser.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/doubleclicksearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const doubleclicksearch = google.doubleclicksearch('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/doubleclicksearch'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await doubleclicksearch.savedColumns.list({
+     *     // DS ID of the advertiser.
+     *     advertiserId: 'placeholder-value',
+     *     // DS ID of the agency.
+     *     agencyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1669,11 +2327,11 @@ export namespace doubleclicksearch_v2 {
     list(
       params: Params$Resource$Savedcolumns$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Savedcolumns$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SavedColumnList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SavedColumnList>>;
     list(
       params: Params$Resource$Savedcolumns$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1702,7 +2360,10 @@ export namespace doubleclicksearch_v2 {
       callback?:
         | BodyResponseCallback<Schema$SavedColumnList>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SavedColumnList> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SavedColumnList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Savedcolumns$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

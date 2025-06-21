@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -176,6 +176,70 @@ export namespace playcustomapp_v1 {
 
     /**
      * Creates a new custom app.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/playcustomapp.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const playcustomapp = google.playcustomapp('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await playcustomapp.accounts.customApps.create({
+     *     // Developer account ID.
+     *     account: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "languageCode": "my_languageCode",
+     *       //   "organizations": [],
+     *       //   "packageName": "my_packageName",
+     *       //   "title": "my_title"
+     *       // }
+     *     },
+     *     media: {
+     *       mimeType: 'placeholder-value',
+     *       body: 'placeholder-value',
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "languageCode": "my_languageCode",
+     *   //   "organizations": [],
+     *   //   "packageName": "my_packageName",
+     *   //   "title": "my_title"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -185,11 +249,11 @@ export namespace playcustomapp_v1 {
     create(
       params: Params$Resource$Accounts$Customapps$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Accounts$Customapps$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CustomApp>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CustomApp>>;
     create(
       params: Params$Resource$Accounts$Customapps$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -218,7 +282,10 @@ export namespace playcustomapp_v1 {
       callback?:
         | BodyResponseCallback<Schema$CustomApp>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CustomApp> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$CustomApp>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Customapps$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;

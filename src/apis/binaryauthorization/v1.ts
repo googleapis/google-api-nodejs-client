@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -920,6 +920,62 @@ export namespace binaryauthorization_v1 {
 
     /**
      * A policy specifies the attestors that must attest to a container image, before the project is allowed to deploy that image. There is at most one policy per project. All image admission requests are permitted if a project has no policy. Gets the policy for this project. Returns a default policy if the project does not have one.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/binaryauthorization.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const binaryauthorization = google.binaryauthorization('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await binaryauthorization.projects.getPolicy({
+     *     // Required. The resource name of the policy to retrieve, in the format `projects/x/policy`.
+     *     name: 'projects/my-project/policy',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "admissionWhitelistPatterns": [],
+     *   //   "clusterAdmissionRules": {},
+     *   //   "defaultAdmissionRule": {},
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "globalPolicyEvaluationMode": "my_globalPolicyEvaluationMode",
+     *   //   "istioServiceIdentityAdmissionRules": {},
+     *   //   "kubernetesNamespaceAdmissionRules": {},
+     *   //   "kubernetesServiceAccountAdmissionRules": {},
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -929,11 +985,11 @@ export namespace binaryauthorization_v1 {
     getPolicy(
       params: Params$Resource$Projects$Getpolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getPolicy(
       params?: Params$Resource$Projects$Getpolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getPolicy(
       params: Params$Resource$Projects$Getpolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -962,7 +1018,10 @@ export namespace binaryauthorization_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Getpolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1006,6 +1065,80 @@ export namespace binaryauthorization_v1 {
 
     /**
      * Creates or updates a project's policy, and returns a copy of the new policy. A policy is always updated as a whole, to avoid race conditions with concurrent policy enforcement (or management!) requests. Returns `NOT_FOUND` if the project does not exist, `INVALID_ARGUMENT` if the request is malformed.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/binaryauthorization.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const binaryauthorization = google.binaryauthorization('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await binaryauthorization.projects.updatePolicy({
+     *     // Output only. The resource name, in the format `projects/x/policy`. There is at most one policy per project.
+     *     name: 'projects/my-project/policy',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "admissionWhitelistPatterns": [],
+     *       //   "clusterAdmissionRules": {},
+     *       //   "defaultAdmissionRule": {},
+     *       //   "description": "my_description",
+     *       //   "etag": "my_etag",
+     *       //   "globalPolicyEvaluationMode": "my_globalPolicyEvaluationMode",
+     *       //   "istioServiceIdentityAdmissionRules": {},
+     *       //   "kubernetesNamespaceAdmissionRules": {},
+     *       //   "kubernetesServiceAccountAdmissionRules": {},
+     *       //   "name": "my_name",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "admissionWhitelistPatterns": [],
+     *   //   "clusterAdmissionRules": {},
+     *   //   "defaultAdmissionRule": {},
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "globalPolicyEvaluationMode": "my_globalPolicyEvaluationMode",
+     *   //   "istioServiceIdentityAdmissionRules": {},
+     *   //   "kubernetesNamespaceAdmissionRules": {},
+     *   //   "kubernetesServiceAccountAdmissionRules": {},
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1015,11 +1148,11 @@ export namespace binaryauthorization_v1 {
     updatePolicy(
       params: Params$Resource$Projects$Updatepolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     updatePolicy(
       params?: Params$Resource$Projects$Updatepolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     updatePolicy(
       params: Params$Resource$Projects$Updatepolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1048,7 +1181,10 @@ export namespace binaryauthorization_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Updatepolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1119,6 +1255,70 @@ export namespace binaryauthorization_v1 {
 
     /**
      * Creates an attestor, and returns a copy of the new attestor. Returns `NOT_FOUND` if the project does not exist, `INVALID_ARGUMENT` if the request is malformed, `ALREADY_EXISTS` if the attestor already exists.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/binaryauthorization.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const binaryauthorization = google.binaryauthorization('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await binaryauthorization.projects.attestors.create({
+     *     // Required. The attestors ID.
+     *     attestorId: 'placeholder-value',
+     *     // Required. The parent of this attestor.
+     *     parent: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "description": "my_description",
+     *       //   "etag": "my_etag",
+     *       //   "name": "my_name",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "userOwnedGrafeasNote": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "userOwnedGrafeasNote": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1128,11 +1328,11 @@ export namespace binaryauthorization_v1 {
     create(
       params: Params$Resource$Projects$Attestors$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Attestors$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Attestor>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Attestor>>;
     create(
       params: Params$Resource$Projects$Attestors$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1161,7 +1361,10 @@ export namespace binaryauthorization_v1 {
       callback?:
         | BodyResponseCallback<Schema$Attestor>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Attestor> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Attestor>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Attestors$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1208,6 +1411,50 @@ export namespace binaryauthorization_v1 {
 
     /**
      * Deletes an attestor. Returns `NOT_FOUND` if the attestor does not exist.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/binaryauthorization.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const binaryauthorization = google.binaryauthorization('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await binaryauthorization.projects.attestors.delete({
+     *     // Required. The name of the attestors to delete, in the format `projects/x/attestors/x`.
+     *     name: 'projects/my-project/attestors/my-attestor',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1217,11 +1464,11 @@ export namespace binaryauthorization_v1 {
     delete(
       params: Params$Resource$Projects$Attestors$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Attestors$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Attestors$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1250,7 +1497,10 @@ export namespace binaryauthorization_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Attestors$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1294,6 +1544,56 @@ export namespace binaryauthorization_v1 {
 
     /**
      * Gets an attestor. Returns `NOT_FOUND` if the attestor does not exist.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/binaryauthorization.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const binaryauthorization = google.binaryauthorization('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await binaryauthorization.projects.attestors.get({
+     *     // Required. The name of the attestor to retrieve, in the format `projects/x/attestors/x`.
+     *     name: 'projects/my-project/attestors/my-attestor',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "userOwnedGrafeasNote": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1303,11 +1603,11 @@ export namespace binaryauthorization_v1 {
     get(
       params: Params$Resource$Projects$Attestors$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Attestors$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Attestor>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Attestor>>;
     get(
       params: Params$Resource$Projects$Attestors$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1336,7 +1636,10 @@ export namespace binaryauthorization_v1 {
       callback?:
         | BodyResponseCallback<Schema$Attestor>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Attestor> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Attestor>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Attestors$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1380,6 +1683,56 @@ export namespace binaryauthorization_v1 {
 
     /**
      * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/binaryauthorization.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const binaryauthorization = google.binaryauthorization('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await binaryauthorization.projects.attestors.getIamPolicy({
+     *     // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     *     'options.requestedPolicyVersion': 'placeholder-value',
+     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource: 'projects/my-project/attestors/my-attestor',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1389,11 +1742,11 @@ export namespace binaryauthorization_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Attestors$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Attestors$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$IamPolicy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$IamPolicy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Attestors$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1422,7 +1775,10 @@ export namespace binaryauthorization_v1 {
       callback?:
         | BodyResponseCallback<Schema$IamPolicy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$IamPolicy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$IamPolicy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Attestors$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1469,6 +1825,57 @@ export namespace binaryauthorization_v1 {
 
     /**
      * Lists attestors. Returns `INVALID_ARGUMENT` if the project does not exist.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/binaryauthorization.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const binaryauthorization = google.binaryauthorization('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await binaryauthorization.projects.attestors.list({
+     *     // Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results the server should return. Typically, this is the value of ListAttestorsResponse.next_page_token returned from the previous call to the `ListAttestors` method.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name of the project associated with the attestors, in the format `projects/x`.
+     *     parent: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attestors": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1478,11 +1885,11 @@ export namespace binaryauthorization_v1 {
     list(
       params: Params$Resource$Projects$Attestors$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Attestors$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAttestorsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListAttestorsResponse>>;
     list(
       params: Params$Resource$Projects$Attestors$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1515,8 +1922,8 @@ export namespace binaryauthorization_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListAttestorsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListAttestorsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Attestors$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1563,6 +1970,62 @@ export namespace binaryauthorization_v1 {
 
     /**
      * Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/binaryauthorization.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const binaryauthorization = google.binaryauthorization('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await binaryauthorization.projects.attestors.setIamPolicy({
+     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource: 'projects/my-project/attestors/my-attestor',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "policy": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1572,11 +2035,11 @@ export namespace binaryauthorization_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Attestors$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Attestors$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$IamPolicy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$IamPolicy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Attestors$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1605,7 +2068,10 @@ export namespace binaryauthorization_v1 {
       callback?:
         | BodyResponseCallback<Schema$IamPolicy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$IamPolicy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$IamPolicy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Attestors$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1652,6 +2118,60 @@ export namespace binaryauthorization_v1 {
 
     /**
      * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/binaryauthorization.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const binaryauthorization = google.binaryauthorization('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await binaryauthorization.projects.attestors.testIamPermissions({
+     *     // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource: 'projects/my-project/attestors/my-attestor',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "permissions": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1661,11 +2181,11 @@ export namespace binaryauthorization_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Attestors$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Attestors$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Attestors$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1700,8 +2220,8 @@ export namespace binaryauthorization_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Attestors$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1748,6 +2268,68 @@ export namespace binaryauthorization_v1 {
 
     /**
      * Updates an attestor. Returns `NOT_FOUND` if the attestor does not exist.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/binaryauthorization.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const binaryauthorization = google.binaryauthorization('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await binaryauthorization.projects.attestors.update({
+     *     // Required. The resource name, in the format: `projects/x/attestors/x`. This field may not be updated.
+     *     name: 'projects/my-project/attestors/my-attestor',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "description": "my_description",
+     *       //   "etag": "my_etag",
+     *       //   "name": "my_name",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "userOwnedGrafeasNote": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "userOwnedGrafeasNote": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1757,11 +2339,11 @@ export namespace binaryauthorization_v1 {
     update(
       params: Params$Resource$Projects$Attestors$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Projects$Attestors$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Attestor>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Attestor>>;
     update(
       params: Params$Resource$Projects$Attestors$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1790,7 +2372,10 @@ export namespace binaryauthorization_v1 {
       callback?:
         | BodyResponseCallback<Schema$Attestor>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Attestor> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Attestor>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Attestors$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1834,6 +2419,64 @@ export namespace binaryauthorization_v1 {
 
     /**
      * Returns whether the given `Attestation` for the given image URI was signed by the given `Attestor`
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/binaryauthorization.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const binaryauthorization = google.binaryauthorization('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await binaryauthorization.projects.attestors.validateAttestationOccurrence({
+     *       // Required. The resource name of the Attestor of the occurrence, in the format `projects/x/attestors/x`.
+     *       attestor: 'projects/my-project/attestors/my-attestor',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "attestation": {},
+     *         //   "occurrenceNote": "my_occurrenceNote",
+     *         //   "occurrenceResourceUri": "my_occurrenceResourceUri"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "denialReason": "my_denialReason",
+     *   //   "result": "my_result"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1843,11 +2486,13 @@ export namespace binaryauthorization_v1 {
     validateAttestationOccurrence(
       params: Params$Resource$Projects$Attestors$Validateattestationoccurrence,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     validateAttestationOccurrence(
       params?: Params$Resource$Projects$Attestors$Validateattestationoccurrence,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ValidateAttestationOccurrenceResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ValidateAttestationOccurrenceResponse>
+    >;
     validateAttestationOccurrence(
       params: Params$Resource$Projects$Attestors$Validateattestationoccurrence,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1882,8 +2527,10 @@ export namespace binaryauthorization_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ValidateAttestationOccurrenceResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ValidateAttestationOccurrenceResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Attestors$Validateattestationoccurrence;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2066,6 +2713,62 @@ export namespace binaryauthorization_v1 {
 
     /**
      * Evaluates a Kubernetes object versus a GKE platform policy. Returns `NOT_FOUND` if the policy doesn't exist, `INVALID_ARGUMENT` if the policy or request is malformed and `PERMISSION_DENIED` if the client does not have sufficient permissions.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/binaryauthorization.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const binaryauthorization = google.binaryauthorization('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await binaryauthorization.projects.platforms.gke.policies.evaluate({
+     *       // Required. The name of the platform policy to evaluate in the format `projects/x/platforms/x/policies/x`.
+     *       name: 'projects/my-project/platforms/gke/policies/my-policie',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "resource": {}
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "results": [],
+     *   //   "verdict": "my_verdict"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2075,11 +2778,11 @@ export namespace binaryauthorization_v1 {
     evaluate(
       params: Params$Resource$Projects$Platforms$Gke$Policies$Evaluate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     evaluate(
       params?: Params$Resource$Projects$Platforms$Gke$Policies$Evaluate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$EvaluateGkePolicyResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$EvaluateGkePolicyResponse>>;
     evaluate(
       params: Params$Resource$Projects$Platforms$Gke$Policies$Evaluate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2114,8 +2817,8 @@ export namespace binaryauthorization_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$EvaluateGkePolicyResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$EvaluateGkePolicyResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Platforms$Gke$Policies$Evaluate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2182,6 +2885,70 @@ export namespace binaryauthorization_v1 {
 
     /**
      * Creates a platform policy, and returns a copy of it. Returns `NOT_FOUND` if the project or platform doesn't exist, `INVALID_ARGUMENT` if the request is malformed, `ALREADY_EXISTS` if the policy already exists, and `INVALID_ARGUMENT` if the policy contains a platform-specific policy that does not match the platform value specified in the URL.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/binaryauthorization.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const binaryauthorization = google.binaryauthorization('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await binaryauthorization.projects.platforms.policies.create({
+     *     // Required. The parent of this platform policy.
+     *     parent: 'projects/my-project/platforms/my-platform',
+     *     // Required. The platform policy ID.
+     *     policyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "description": "my_description",
+     *       //   "etag": "my_etag",
+     *       //   "gkePolicy": {},
+     *       //   "name": "my_name",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "gkePolicy": {},
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2191,11 +2958,11 @@ export namespace binaryauthorization_v1 {
     create(
       params: Params$Resource$Projects$Platforms$Policies$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Platforms$Policies$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PlatformPolicy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PlatformPolicy>>;
     create(
       params: Params$Resource$Projects$Platforms$Policies$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2224,7 +2991,10 @@ export namespace binaryauthorization_v1 {
       callback?:
         | BodyResponseCallback<Schema$PlatformPolicy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$PlatformPolicy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$PlatformPolicy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Platforms$Policies$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2271,6 +3041,52 @@ export namespace binaryauthorization_v1 {
 
     /**
      * Deletes a platform policy. Returns `NOT_FOUND` if the policy doesn't exist.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/binaryauthorization.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const binaryauthorization = google.binaryauthorization('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await binaryauthorization.projects.platforms.policies.delete({
+     *     // Optional. Used to prevent deleting the policy when another request has updated it since it was retrieved.
+     *     etag: 'placeholder-value',
+     *     // Required. The name of the platform policy to delete, in the format `projects/x/platforms/x/policies/x`.
+     *     name: 'projects/my-project/platforms/my-platform/policies/my-policie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2280,11 +3096,11 @@ export namespace binaryauthorization_v1 {
     delete(
       params: Params$Resource$Projects$Platforms$Policies$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Platforms$Policies$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Platforms$Policies$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2313,7 +3129,10 @@ export namespace binaryauthorization_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Platforms$Policies$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2357,6 +3176,56 @@ export namespace binaryauthorization_v1 {
 
     /**
      * Gets a platform policy. Returns `NOT_FOUND` if the policy doesn't exist.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/binaryauthorization.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const binaryauthorization = google.binaryauthorization('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await binaryauthorization.projects.platforms.policies.get({
+     *     // Required. The name of the platform policy to retrieve in the format `projects/x/platforms/x/policies/x`.
+     *     name: 'projects/my-project/platforms/my-platform/policies/my-policie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "gkePolicy": {},
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2366,11 +3235,11 @@ export namespace binaryauthorization_v1 {
     get(
       params: Params$Resource$Projects$Platforms$Policies$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Platforms$Policies$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PlatformPolicy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PlatformPolicy>>;
     get(
       params: Params$Resource$Projects$Platforms$Policies$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2399,7 +3268,10 @@ export namespace binaryauthorization_v1 {
       callback?:
         | BodyResponseCallback<Schema$PlatformPolicy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$PlatformPolicy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$PlatformPolicy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Platforms$Policies$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2443,6 +3315,57 @@ export namespace binaryauthorization_v1 {
 
     /**
      * Lists platform policies owned by a project in the specified platform. Returns `INVALID_ARGUMENT` if the project or the platform doesn't exist.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/binaryauthorization.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const binaryauthorization = google.binaryauthorization('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await binaryauthorization.projects.platforms.policies.list({
+     *     // Requested page size. The server may return fewer results than requested. If unspecified, the server picks an appropriate default.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results the server should return. Typically, this is the value of ListPlatformPoliciesResponse.next_page_token returned from the previous call to the `ListPlatformPolicies` method.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name of the platform associated with the platform policies using the format `projects/x/platforms/x`.
+     *     parent: 'projects/my-project/platforms/my-platform',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "platformPolicies": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2452,11 +3375,11 @@ export namespace binaryauthorization_v1 {
     list(
       params: Params$Resource$Projects$Platforms$Policies$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Platforms$Policies$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListPlatformPoliciesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListPlatformPoliciesResponse>>;
     list(
       params: Params$Resource$Projects$Platforms$Policies$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2491,8 +3414,8 @@ export namespace binaryauthorization_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListPlatformPoliciesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListPlatformPoliciesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Platforms$Policies$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2541,6 +3464,71 @@ export namespace binaryauthorization_v1 {
 
     /**
      * Replaces a platform policy. Returns `NOT_FOUND` if the policy doesn't exist.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/binaryauthorization.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const binaryauthorization = google.binaryauthorization('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await binaryauthorization.projects.platforms.policies.replacePlatformPolicy(
+     *       {
+     *         // Output only. The relative resource name of the Binary Authorization platform policy, in the form of `projects/x/platforms/x/policies/x`.
+     *         name: 'projects/my-project/platforms/my-platform/policies/my-policie',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "description": "my_description",
+     *           //   "etag": "my_etag",
+     *           //   "gkePolicy": {},
+     *           //   "name": "my_name",
+     *           //   "updateTime": "my_updateTime"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "gkePolicy": {},
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2550,11 +3538,11 @@ export namespace binaryauthorization_v1 {
     replacePlatformPolicy(
       params: Params$Resource$Projects$Platforms$Policies$Replaceplatformpolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     replacePlatformPolicy(
       params?: Params$Resource$Projects$Platforms$Policies$Replaceplatformpolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PlatformPolicy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PlatformPolicy>>;
     replacePlatformPolicy(
       params: Params$Resource$Projects$Platforms$Policies$Replaceplatformpolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2585,7 +3573,10 @@ export namespace binaryauthorization_v1 {
       callback?:
         | BodyResponseCallback<Schema$PlatformPolicy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$PlatformPolicy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$PlatformPolicy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Platforms$Policies$Replaceplatformpolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2699,6 +3690,56 @@ export namespace binaryauthorization_v1 {
 
     /**
      * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/binaryauthorization.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const binaryauthorization = google.binaryauthorization('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await binaryauthorization.projects.policy.getIamPolicy({
+     *     // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     *     'options.requestedPolicyVersion': 'placeholder-value',
+     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource: 'projects/my-project/policy',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2708,11 +3749,11 @@ export namespace binaryauthorization_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Policy$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Policy$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$IamPolicy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$IamPolicy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Policy$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2741,7 +3782,10 @@ export namespace binaryauthorization_v1 {
       callback?:
         | BodyResponseCallback<Schema$IamPolicy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$IamPolicy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$IamPolicy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Policy$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2788,6 +3832,62 @@ export namespace binaryauthorization_v1 {
 
     /**
      * Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/binaryauthorization.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const binaryauthorization = google.binaryauthorization('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await binaryauthorization.projects.policy.setIamPolicy({
+     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource: 'projects/my-project/policy',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "policy": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2797,11 +3897,11 @@ export namespace binaryauthorization_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Policy$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Policy$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$IamPolicy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$IamPolicy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Policy$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2830,7 +3930,10 @@ export namespace binaryauthorization_v1 {
       callback?:
         | BodyResponseCallback<Schema$IamPolicy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$IamPolicy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$IamPolicy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Policy$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2877,6 +3980,60 @@ export namespace binaryauthorization_v1 {
 
     /**
      * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/binaryauthorization.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const binaryauthorization = google.binaryauthorization('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await binaryauthorization.projects.policy.testIamPermissions({
+     *     // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource: 'projects/my-project/policy',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "permissions": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2886,11 +4043,11 @@ export namespace binaryauthorization_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Policy$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Policy$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Policy$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2925,8 +4082,8 @@ export namespace binaryauthorization_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Policy$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3016,6 +4173,62 @@ export namespace binaryauthorization_v1 {
 
     /**
      * Gets the current system policy in the specified location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/binaryauthorization.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const binaryauthorization = google.binaryauthorization('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await binaryauthorization.systempolicy.getPolicy({
+     *     // Required. The resource name, in the format `locations/x/policy`. Note that the system policy is not associated with a project.
+     *     name: 'locations/my-location/policy',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "admissionWhitelistPatterns": [],
+     *   //   "clusterAdmissionRules": {},
+     *   //   "defaultAdmissionRule": {},
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "globalPolicyEvaluationMode": "my_globalPolicyEvaluationMode",
+     *   //   "istioServiceIdentityAdmissionRules": {},
+     *   //   "kubernetesNamespaceAdmissionRules": {},
+     *   //   "kubernetesServiceAccountAdmissionRules": {},
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3025,11 +4238,11 @@ export namespace binaryauthorization_v1 {
     getPolicy(
       params: Params$Resource$Systempolicy$Getpolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getPolicy(
       params?: Params$Resource$Systempolicy$Getpolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getPolicy(
       params: Params$Resource$Systempolicy$Getpolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3058,7 +4271,10 @@ export namespace binaryauthorization_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Systempolicy$Getpolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;

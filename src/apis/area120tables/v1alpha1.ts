@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -436,6 +436,65 @@ export namespace area120tables_v1alpha1 {
 
     /**
      * Gets a table. Returns NOT_FOUND if the table does not exist.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/area120tables.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const area120tables = google.area120tables('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *       'https://www.googleapis.com/auth/spreadsheets',
+     *       'https://www.googleapis.com/auth/spreadsheets.readonly',
+     *       'https://www.googleapis.com/auth/tables',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await area120tables.tables.get({
+     *     // Required. The name of the table to retrieve. Format: tables/{table\}
+     *     name: 'tables/my-table',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "columns": [],
+     *   //   "createTime": "my_createTime",
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "savedViews": [],
+     *   //   "timeZone": "my_timeZone",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -445,11 +504,11 @@ export namespace area120tables_v1alpha1 {
     get(
       params: Params$Resource$Tables$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Tables$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Table>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Table>>;
     get(
       params: Params$Resource$Tables$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -478,7 +537,10 @@ export namespace area120tables_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$Table>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Table> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Table>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tables$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -521,6 +583,64 @@ export namespace area120tables_v1alpha1 {
 
     /**
      * Lists tables for the user.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/area120tables.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const area120tables = google.area120tables('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *       'https://www.googleapis.com/auth/spreadsheets',
+     *       'https://www.googleapis.com/auth/spreadsheets.readonly',
+     *       'https://www.googleapis.com/auth/tables',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await area120tables.tables.list({
+     *     // Optional. Sorting order for the list of tables on createTime/updateTime.
+     *     orderBy: 'placeholder-value',
+     *     // The maximum number of tables to return. The service may return fewer than this value. If unspecified, at most 20 tables are returned. The maximum value is 100; values above 100 are coerced to 100.
+     *     pageSize: 'placeholder-value',
+     *     // A page token, received from a previous `ListTables` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListTables` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "tables": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -530,11 +650,11 @@ export namespace area120tables_v1alpha1 {
     list(
       params: Params$Resource$Tables$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Tables$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListTablesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListTablesResponse>>;
     list(
       params: Params$Resource$Tables$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -565,8 +685,8 @@ export namespace area120tables_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListTablesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListTablesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tables$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -637,6 +757,65 @@ export namespace area120tables_v1alpha1 {
 
     /**
      * Creates multiple rows.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/area120tables.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const area120tables = google.area120tables('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/spreadsheets',
+     *       'https://www.googleapis.com/auth/tables',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await area120tables.tables.rows.batchCreate({
+     *     // Required. The parent table where the rows will be created. Format: tables/{table\}
+     *     parent: 'tables/my-table',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "requests": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "rows": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -646,11 +825,11 @@ export namespace area120tables_v1alpha1 {
     batchCreate(
       params: Params$Resource$Tables$Rows$Batchcreate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     batchCreate(
       params?: Params$Resource$Tables$Rows$Batchcreate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BatchCreateRowsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BatchCreateRowsResponse>>;
     batchCreate(
       params: Params$Resource$Tables$Rows$Batchcreate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -685,8 +864,8 @@ export namespace area120tables_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BatchCreateRowsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$BatchCreateRowsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Tables$Rows$Batchcreate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -733,6 +912,63 @@ export namespace area120tables_v1alpha1 {
 
     /**
      * Deletes multiple rows.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/area120tables.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const area120tables = google.area120tables('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/spreadsheets',
+     *       'https://www.googleapis.com/auth/tables',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await area120tables.tables.rows.batchDelete({
+     *     // Required. The parent table shared by all rows being deleted. Format: tables/{table\}
+     *     parent: 'tables/my-table',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "names": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -742,11 +978,11 @@ export namespace area120tables_v1alpha1 {
     batchDelete(
       params: Params$Resource$Tables$Rows$Batchdelete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     batchDelete(
       params?: Params$Resource$Tables$Rows$Batchdelete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     batchDelete(
       params: Params$Resource$Tables$Rows$Batchdelete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -775,7 +1011,10 @@ export namespace area120tables_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Tables$Rows$Batchdelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -822,6 +1061,65 @@ export namespace area120tables_v1alpha1 {
 
     /**
      * Updates multiple rows.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/area120tables.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const area120tables = google.area120tables('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/spreadsheets',
+     *       'https://www.googleapis.com/auth/tables',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await area120tables.tables.rows.batchUpdate({
+     *     // Required. The parent table shared by all rows being updated. Format: tables/{table\}
+     *     parent: 'tables/my-table',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "requests": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "rows": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -831,11 +1129,11 @@ export namespace area120tables_v1alpha1 {
     batchUpdate(
       params: Params$Resource$Tables$Rows$Batchupdate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     batchUpdate(
       params?: Params$Resource$Tables$Rows$Batchupdate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BatchUpdateRowsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BatchUpdateRowsResponse>>;
     batchUpdate(
       params: Params$Resource$Tables$Rows$Batchupdate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -870,8 +1168,8 @@ export namespace area120tables_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BatchUpdateRowsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$BatchUpdateRowsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Tables$Rows$Batchupdate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -918,6 +1216,73 @@ export namespace area120tables_v1alpha1 {
 
     /**
      * Creates a row.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/area120tables.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const area120tables = google.area120tables('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/spreadsheets',
+     *       'https://www.googleapis.com/auth/tables',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await area120tables.tables.rows.create({
+     *     // Required. The parent table where this row will be created. Format: tables/{table\}
+     *     parent: 'tables/my-table',
+     *     // Optional. Column key to use for values in the row. Defaults to user entered name.
+     *     view: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "name": "my_name",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "values": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "values": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -927,11 +1292,11 @@ export namespace area120tables_v1alpha1 {
     create(
       params: Params$Resource$Tables$Rows$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Tables$Rows$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Row>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Row>>;
     create(
       params: Params$Resource$Tables$Rows$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -960,7 +1325,10 @@ export namespace area120tables_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$Row>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Row> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Row>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Tables$Rows$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1007,6 +1375,55 @@ export namespace area120tables_v1alpha1 {
 
     /**
      * Deletes a row.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/area120tables.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const area120tables = google.area120tables('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/spreadsheets',
+     *       'https://www.googleapis.com/auth/tables',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await area120tables.tables.rows.delete({
+     *     // Required. The name of the row to delete. Format: tables/{table\}/rows/{row\}
+     *     name: 'tables/my-table/rows/my-row',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1016,11 +1433,11 @@ export namespace area120tables_v1alpha1 {
     delete(
       params: Params$Resource$Tables$Rows$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Tables$Rows$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Tables$Rows$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1049,7 +1466,10 @@ export namespace area120tables_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Tables$Rows$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1093,6 +1513,64 @@ export namespace area120tables_v1alpha1 {
 
     /**
      * Gets a row. Returns NOT_FOUND if the row does not exist in the table.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/area120tables.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const area120tables = google.area120tables('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *       'https://www.googleapis.com/auth/spreadsheets',
+     *       'https://www.googleapis.com/auth/spreadsheets.readonly',
+     *       'https://www.googleapis.com/auth/tables',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await area120tables.tables.rows.get({
+     *     // Required. The name of the row to retrieve. Format: tables/{table\}/rows/{row\}
+     *     name: 'tables/my-table/rows/my-row',
+     *     // Optional. Column key to use for values in the row. Defaults to user entered name.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "values": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1102,11 +1580,11 @@ export namespace area120tables_v1alpha1 {
     get(
       params: Params$Resource$Tables$Rows$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Tables$Rows$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Row>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Row>>;
     get(
       params: Params$Resource$Tables$Rows$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1135,7 +1613,10 @@ export namespace area120tables_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$Row>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Row> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Row>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tables$Rows$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1178,6 +1659,70 @@ export namespace area120tables_v1alpha1 {
 
     /**
      * Lists rows in a table. Returns NOT_FOUND if the table does not exist.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/area120tables.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const area120tables = google.area120tables('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *       'https://www.googleapis.com/auth/spreadsheets',
+     *       'https://www.googleapis.com/auth/spreadsheets.readonly',
+     *       'https://www.googleapis.com/auth/tables',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await area120tables.tables.rows.list({
+     *     // Optional. Filter to only include resources matching the requirements. For more information, see [Filtering list results](https://support.google.com/area120-tables/answer/10503371).
+     *     filter: 'placeholder-value',
+     *     // Optional. Sorting order for the list of rows on createTime/updateTime.
+     *     orderBy: 'placeholder-value',
+     *     // The maximum number of rows to return. The service may return fewer than this value. If unspecified, at most 50 rows are returned. The maximum value is 1,000; values above 1,000 are coerced to 1,000.
+     *     pageSize: 'placeholder-value',
+     *     // A page token, received from a previous `ListRows` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListRows` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent table. Format: tables/{table\}
+     *     parent: 'tables/my-table',
+     *     // Optional. Column key to use for values in the row. Defaults to user entered name.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "rows": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1187,11 +1732,11 @@ export namespace area120tables_v1alpha1 {
     list(
       params: Params$Resource$Tables$Rows$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Tables$Rows$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListRowsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListRowsResponse>>;
     list(
       params: Params$Resource$Tables$Rows$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1220,7 +1765,10 @@ export namespace area120tables_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$ListRowsResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ListRowsResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListRowsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tables$Rows$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1266,6 +1814,75 @@ export namespace area120tables_v1alpha1 {
 
     /**
      * Updates a row.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/area120tables.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const area120tables = google.area120tables('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/spreadsheets',
+     *       'https://www.googleapis.com/auth/tables',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await area120tables.tables.rows.patch({
+     *     // The resource name of the row. Row names have the form `tables/{table\}/rows/{row\}`. The name is ignored when creating a row.
+     *     name: 'tables/my-table/rows/my-row',
+     *     // The list of fields to update.
+     *     updateMask: 'placeholder-value',
+     *     // Optional. Column key to use for values in the row. Defaults to user entered name.
+     *     view: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "name": "my_name",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "values": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "values": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1275,11 +1892,11 @@ export namespace area120tables_v1alpha1 {
     patch(
       params: Params$Resource$Tables$Rows$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Tables$Rows$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Row>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Row>>;
     patch(
       params: Params$Resource$Tables$Rows$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1308,7 +1925,10 @@ export namespace area120tables_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$Row>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Row> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Row>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Tables$Rows$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1475,6 +2095,63 @@ export namespace area120tables_v1alpha1 {
 
     /**
      * Gets a workspace. Returns NOT_FOUND if the workspace does not exist.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/area120tables.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const area120tables = google.area120tables('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *       'https://www.googleapis.com/auth/spreadsheets',
+     *       'https://www.googleapis.com/auth/spreadsheets.readonly',
+     *       'https://www.googleapis.com/auth/tables',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await area120tables.workspaces.get({
+     *     // Required. The name of the workspace to retrieve. Format: workspaces/{workspace\}
+     *     name: 'workspaces/my-workspace',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "tables": [],
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1484,11 +2161,11 @@ export namespace area120tables_v1alpha1 {
     get(
       params: Params$Resource$Workspaces$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Workspaces$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Workspace>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Workspace>>;
     get(
       params: Params$Resource$Workspaces$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1517,7 +2194,10 @@ export namespace area120tables_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$Workspace>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Workspace> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Workspace>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Workspaces$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1560,6 +2240,62 @@ export namespace area120tables_v1alpha1 {
 
     /**
      * Lists workspaces for the user.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/area120tables.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const area120tables = google.area120tables('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *       'https://www.googleapis.com/auth/spreadsheets',
+     *       'https://www.googleapis.com/auth/spreadsheets.readonly',
+     *       'https://www.googleapis.com/auth/tables',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await area120tables.workspaces.list({
+     *     // The maximum number of workspaces to return. The service may return fewer than this value. If unspecified, at most 10 workspaces are returned. The maximum value is 25; values above 25 are coerced to 25.
+     *     pageSize: 'placeholder-value',
+     *     // A page token, received from a previous `ListWorkspaces` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListWorkspaces` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "workspaces": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1569,11 +2305,11 @@ export namespace area120tables_v1alpha1 {
     list(
       params: Params$Resource$Workspaces$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Workspaces$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListWorkspacesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListWorkspacesResponse>>;
     list(
       params: Params$Resource$Workspaces$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1606,8 +2342,8 @@ export namespace area120tables_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListWorkspacesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListWorkspacesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Workspaces$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

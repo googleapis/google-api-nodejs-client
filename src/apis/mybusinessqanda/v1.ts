@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -274,6 +274,74 @@ export namespace mybusinessqanda_v1 {
 
     /**
      * Adds a question for the specified location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/mybusinessqanda.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const mybusinessqanda = google.mybusinessqanda('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await mybusinessqanda.locations.questions.create({
+     *     // Required. The name of the location to write a question for.
+     *     parent: 'locations/my-location/questions',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "author": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "name": "my_name",
+     *       //   "text": "my_text",
+     *       //   "topAnswers": [],
+     *       //   "totalAnswerCount": 0,
+     *       //   "updateTime": "my_updateTime",
+     *       //   "upvoteCount": 0
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "author": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "name": "my_name",
+     *   //   "text": "my_text",
+     *   //   "topAnswers": [],
+     *   //   "totalAnswerCount": 0,
+     *   //   "updateTime": "my_updateTime",
+     *   //   "upvoteCount": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -283,11 +351,11 @@ export namespace mybusinessqanda_v1 {
     create(
       params: Params$Resource$Locations$Questions$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Locations$Questions$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Question>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Question>>;
     create(
       params: Params$Resource$Locations$Questions$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -316,7 +384,10 @@ export namespace mybusinessqanda_v1 {
       callback?:
         | BodyResponseCallback<Schema$Question>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Question> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Question>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Questions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -360,6 +431,50 @@ export namespace mybusinessqanda_v1 {
 
     /**
      * Deletes a specific question written by the current user.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/mybusinessqanda.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const mybusinessqanda = google.mybusinessqanda('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await mybusinessqanda.locations.questions.delete({
+     *     // Required. The name of the question to delete.
+     *     name: 'locations/my-location/questions/my-question',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -369,11 +484,11 @@ export namespace mybusinessqanda_v1 {
     delete(
       params: Params$Resource$Locations$Questions$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Locations$Questions$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Locations$Questions$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -402,7 +517,10 @@ export namespace mybusinessqanda_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Questions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -446,6 +564,64 @@ export namespace mybusinessqanda_v1 {
 
     /**
      * Returns the paginated list of questions and some of its answers for a specified location. This operation is only valid if the specified location is verified.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/mybusinessqanda.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const mybusinessqanda = google.mybusinessqanda('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await mybusinessqanda.locations.questions.list({
+     *     // Optional. How many answers to fetch per question. The default and maximum `answers_per_question` values are 10.
+     *     answersPerQuestion: 'placeholder-value',
+     *     // Optional. A filter constraining the questions to return. The only filter currently supported is "ignore_answered=true"
+     *     filter: 'placeholder-value',
+     *     // Optional. The order to return the questions. Valid options include 'update_time desc' and 'upvote_count desc', which will return the questions sorted descendingly by the requested field. The default sort order is 'update_time desc'.
+     *     orderBy: 'placeholder-value',
+     *     // Optional. How many questions to fetch per page. The default and maximum `page_size` values are 10.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. If specified, the next page of questions is retrieved.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The name of the location to fetch questions for.
+     *     parent: 'locations/my-location/questions',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "questions": [],
+     *   //   "totalSize": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -455,11 +631,11 @@ export namespace mybusinessqanda_v1 {
     list(
       params: Params$Resource$Locations$Questions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Locations$Questions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListQuestionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListQuestionsResponse>>;
     list(
       params: Params$Resource$Locations$Questions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -492,8 +668,8 @@ export namespace mybusinessqanda_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListQuestionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListQuestionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Questions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -537,6 +713,76 @@ export namespace mybusinessqanda_v1 {
 
     /**
      * Updates a specific question written by the current user.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/mybusinessqanda.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const mybusinessqanda = google.mybusinessqanda('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await mybusinessqanda.locations.questions.patch({
+     *     // Immutable. The unique name for the question. locations/x/questions/x This field will be ignored if set during question creation.
+     *     name: 'locations/my-location/questions/my-question',
+     *     // Required. The specific fields to update. Only question text can be updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "author": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "name": "my_name",
+     *       //   "text": "my_text",
+     *       //   "topAnswers": [],
+     *       //   "totalAnswerCount": 0,
+     *       //   "updateTime": "my_updateTime",
+     *       //   "upvoteCount": 0
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "author": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "name": "my_name",
+     *   //   "text": "my_text",
+     *   //   "topAnswers": [],
+     *   //   "totalAnswerCount": 0,
+     *   //   "updateTime": "my_updateTime",
+     *   //   "upvoteCount": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -546,11 +792,11 @@ export namespace mybusinessqanda_v1 {
     patch(
       params: Params$Resource$Locations$Questions$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Locations$Questions$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Question>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Question>>;
     patch(
       params: Params$Resource$Locations$Questions$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -579,7 +825,10 @@ export namespace mybusinessqanda_v1 {
       callback?:
         | BodyResponseCallback<Schema$Question>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Question> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Question>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Questions$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -693,6 +942,50 @@ export namespace mybusinessqanda_v1 {
 
     /**
      * Deletes the answer written by the current user to a question.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/mybusinessqanda.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const mybusinessqanda = google.mybusinessqanda('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await mybusinessqanda.locations.questions.answers.delete({
+     *     // Required. The name of the question to delete an answer for.
+     *     name: 'locations/my-location/questions/my-question',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -702,11 +995,11 @@ export namespace mybusinessqanda_v1 {
     delete(
       params: Params$Resource$Locations$Questions$Answers$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Locations$Questions$Answers$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Locations$Questions$Answers$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -735,7 +1028,10 @@ export namespace mybusinessqanda_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Questions$Answers$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -782,6 +1078,60 @@ export namespace mybusinessqanda_v1 {
 
     /**
      * Returns the paginated list of answers for a specified question.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/mybusinessqanda.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const mybusinessqanda = google.mybusinessqanda('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await mybusinessqanda.locations.questions.answers.list({
+     *     // Optional. The order to return the answers. Valid options include 'update_time desc' and 'upvote_count desc', which will return the answers sorted descendingly by the requested field. The default sort order is 'update_time desc'.
+     *     orderBy: 'placeholder-value',
+     *     // Optional. How many answers to fetch per page. The default and maximum `page_size` values are 10.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. If specified, the next page of answers is retrieved.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The name of the question to fetch answers for.
+     *     parent: 'locations/my-location/questions/my-question',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "answers": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "totalSize": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -791,11 +1141,11 @@ export namespace mybusinessqanda_v1 {
     list(
       params: Params$Resource$Locations$Questions$Answers$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Locations$Questions$Answers$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAnswersResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListAnswersResponse>>;
     list(
       params: Params$Resource$Locations$Questions$Answers$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -826,8 +1176,8 @@ export namespace mybusinessqanda_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListAnswersResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListAnswersResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Questions$Answers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -874,6 +1224,65 @@ export namespace mybusinessqanda_v1 {
 
     /**
      * Creates an answer or updates the existing answer written by the user for the specified question. A user can only create one answer per question.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/mybusinessqanda.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const mybusinessqanda = google.mybusinessqanda('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await mybusinessqanda.locations.questions.answers.upsert({
+     *     // Required. The name of the question to write an answer for.
+     *     parent: 'locations/my-location/questions/my-question',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "answer": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "author": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "name": "my_name",
+     *   //   "text": "my_text",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "upvoteCount": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -883,11 +1292,11 @@ export namespace mybusinessqanda_v1 {
     upsert(
       params: Params$Resource$Locations$Questions$Answers$Upsert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     upsert(
       params?: Params$Resource$Locations$Questions$Answers$Upsert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Answer>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Answer>>;
     upsert(
       params: Params$Resource$Locations$Questions$Answers$Upsert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -916,7 +1325,10 @@ export namespace mybusinessqanda_v1 {
       callback?:
         | BodyResponseCallback<Schema$Answer>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Answer> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Answer>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Questions$Answers$Upsert;
       let options = (optionsOrCallback || {}) as MethodOptions;

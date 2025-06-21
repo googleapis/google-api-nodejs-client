@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -162,7 +162,7 @@ export namespace gmail_v1 {
     removeLabelIds?: string[] | null;
   }
   /**
-   * The client-side encryption (CSE) configuration for the email address of an authenticated user. Gmail uses CSE configurations to save drafts of client-side encrypted email messages, and to sign and send encrypted email messages.
+   * The client-side encryption (CSE) configuration for the email address of an authenticated user. Gmail uses CSE configurations to save drafts of client-side encrypted email messages, and to sign and send encrypted email messages. For administrators managing identities and keypairs for users in their organization, requests require authorization with a [service account](https://developers.google.com/identity/protocols/OAuth2ServiceAccount) that has [domain-wide delegation authority](https://developers.google.com/identity/protocols/OAuth2ServiceAccount#delegatingauthority) to impersonate users with the `https://www.googleapis.com/auth/gmail.settings.basic` scope. For users managing their own identities and keypairs, requests require [hardware key encryption](https://support.google.com/a/answer/14153163) turned on and configured.
    */
   export interface Schema$CseIdentity {
     /**
@@ -179,7 +179,7 @@ export namespace gmail_v1 {
     signAndEncryptKeyPairs?: Schema$SignAndEncryptKeyPairs;
   }
   /**
-   * A client-side encryption S/MIME key pair, which is comprised of a public key, its certificate chain, and metadata for its paired private key. Gmail uses the key pair to complete the following tasks: - Sign outgoing client-side encrypted messages. - Save and reopen drafts of client-side encrypted messages. - Save and reopen sent messages. - Decrypt incoming or archived S/MIME messages.
+   * A client-side encryption S/MIME key pair, which is comprised of a public key, its certificate chain, and metadata for its paired private key. Gmail uses the key pair to complete the following tasks: - Sign outgoing client-side encrypted messages. - Save and reopen drafts of client-side encrypted messages. - Save and reopen sent messages. - Decrypt incoming or archived S/MIME messages. For administrators managing identities and keypairs for users in their organization, requests require authorization with a [service account](https://developers.google.com/identity/protocols/OAuth2ServiceAccount) that has [domain-wide delegation authority](https://developers.google.com/identity/protocols/OAuth2ServiceAccount#delegatingauthority) to impersonate users with the `https://www.googleapis.com/auth/gmail.settings.basic` scope. For users managing their own identities and keypairs, requests require [hardware key encryption](https://support.google.com/a/answer/14153163) turned on and configured.
    */
   export interface Schema$CseKeyPair {
     /**
@@ -351,7 +351,7 @@ export namespace gmail_v1 {
     verificationStatus?: string | null;
   }
   /**
-   * Metadata for hardware keys.
+   * Metadata for hardware keys. If [hardware key encryption](https://support.google.com/a/answer/14153163) is set up for the Google Workspace organization, users can optionally store their private key on their smart card and use it to sign and decrypt email messages in Gmail by inserting their smart card into a reader attached to their Windows device.
    */
   export interface Schema$HardwareKeyMetadata {
     /**
@@ -1010,6 +1010,61 @@ export namespace gmail_v1 {
 
     /**
      * Gets the current user's Gmail profile.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.compose',
+     *       'https://www.googleapis.com/auth/gmail.metadata',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *       'https://www.googleapis.com/auth/gmail.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.getProfile({
+     *     // The user's email address. The special value `me` can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "emailAddress": "my_emailAddress",
+     *   //   "historyId": "my_historyId",
+     *   //   "messagesTotal": 0,
+     *   //   "threadsTotal": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1019,11 +1074,11 @@ export namespace gmail_v1 {
     getProfile(
       params: Params$Resource$Users$Getprofile,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getProfile(
       params?: Params$Resource$Users$Getprofile,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Profile>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Profile>>;
     getProfile(
       params: Params$Resource$Users$Getprofile,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1052,7 +1107,10 @@ export namespace gmail_v1 {
       callback?:
         | BodyResponseCallback<Schema$Profile>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Profile> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Profile>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Getprofile;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1097,6 +1155,52 @@ export namespace gmail_v1 {
 
     /**
      * Stop receiving push notifications for the given user mailbox.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.metadata',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *       'https://www.googleapis.com/auth/gmail.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.stop({
+     *     // The user's email address. The special value `me` can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1106,11 +1210,11 @@ export namespace gmail_v1 {
     stop(
       params: Params$Resource$Users$Stop,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     stop(
       params?: Params$Resource$Users$Stop,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     stop(
       params: Params$Resource$Users$Stop,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1137,7 +1241,10 @@ export namespace gmail_v1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Stop;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1182,6 +1289,69 @@ export namespace gmail_v1 {
 
     /**
      * Set up or update a push notification watch on the given user mailbox.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.metadata',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *       'https://www.googleapis.com/auth/gmail.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.watch({
+     *     // The user's email address. The special value `me` can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "labelFilterAction": "my_labelFilterAction",
+     *       //   "labelFilterBehavior": "my_labelFilterBehavior",
+     *       //   "labelIds": [],
+     *       //   "topicName": "my_topicName"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "expiration": "my_expiration",
+     *   //   "historyId": "my_historyId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1191,11 +1361,11 @@ export namespace gmail_v1 {
     watch(
       params: Params$Resource$Users$Watch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     watch(
       params?: Params$Resource$Users$Watch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$WatchResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$WatchResponse>>;
     watch(
       params: Params$Resource$Users$Watch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1224,7 +1394,10 @@ export namespace gmail_v1 {
       callback?:
         | BodyResponseCallback<Schema$WatchResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$WatchResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$WatchResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Watch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1300,6 +1473,71 @@ export namespace gmail_v1 {
 
     /**
      * Creates a new draft with the `DRAFT` label.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.addons.current.action.compose',
+     *       'https://www.googleapis.com/auth/gmail.compose',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.drafts.create({
+     *     // The user's email address. The special value `me` can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "id": "my_id",
+     *       //   "message": {}
+     *       // }
+     *     },
+     *     media: {
+     *       mimeType: 'placeholder-value',
+     *       body: 'placeholder-value',
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "id": "my_id",
+     *   //   "message": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1309,11 +1547,11 @@ export namespace gmail_v1 {
     create(
       params: Params$Resource$Users$Drafts$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Users$Drafts$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Draft>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Draft>>;
     create(
       params: Params$Resource$Users$Drafts$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1342,7 +1580,10 @@ export namespace gmail_v1 {
       callback?:
         | BodyResponseCallback<Schema$Draft>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Draft> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Draft>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Drafts$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1392,6 +1633,54 @@ export namespace gmail_v1 {
 
     /**
      * Immediately and permanently deletes the specified draft. Does not simply trash it.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.addons.current.action.compose',
+     *       'https://www.googleapis.com/auth/gmail.compose',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.drafts.delete({
+     *     // The ID of the draft to delete.
+     *     id: 'placeholder-value',
+     *     // The user's email address. The special value `me` can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1401,11 +1690,11 @@ export namespace gmail_v1 {
     delete(
       params: Params$Resource$Users$Drafts$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Users$Drafts$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Users$Drafts$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1432,7 +1721,10 @@ export namespace gmail_v1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Drafts$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1478,6 +1770,62 @@ export namespace gmail_v1 {
 
     /**
      * Gets the specified draft.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.compose',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *       'https://www.googleapis.com/auth/gmail.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.drafts.get({
+     *     // The format to return the draft in.
+     *     format: 'placeholder-value',
+     *     // The ID of the draft to retrieve.
+     *     id: 'placeholder-value',
+     *     // The user's email address. The special value `me` can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "id": "my_id",
+     *   //   "message": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1487,11 +1835,11 @@ export namespace gmail_v1 {
     get(
       params: Params$Resource$Users$Drafts$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Users$Drafts$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Draft>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Draft>>;
     get(
       params: Params$Resource$Users$Drafts$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1520,7 +1868,10 @@ export namespace gmail_v1 {
       callback?:
         | BodyResponseCallback<Schema$Draft>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Draft> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Draft>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Drafts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1565,6 +1916,67 @@ export namespace gmail_v1 {
 
     /**
      * Lists the drafts in the user's mailbox.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.compose',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *       'https://www.googleapis.com/auth/gmail.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.drafts.list({
+     *     // Include drafts from `SPAM` and `TRASH` in the results.
+     *     includeSpamTrash: 'placeholder-value',
+     *     // Maximum number of drafts to return. This field defaults to 100. The maximum allowed value for this field is 500.
+     *     maxResults: 'placeholder-value',
+     *     // Page token to retrieve a specific page of results in the list.
+     *     pageToken: 'placeholder-value',
+     *     // Only return draft messages matching the specified query. Supports the same query format as the Gmail search box. For example, `"from:someuser@example.com rfc822msgid: is:unread"`.
+     *     q: 'placeholder-value',
+     *     // The user's email address. The special value `me` can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "drafts": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "resultSizeEstimate": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1574,11 +1986,11 @@ export namespace gmail_v1 {
     list(
       params: Params$Resource$Users$Drafts$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Users$Drafts$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListDraftsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListDraftsResponse>>;
     list(
       params: Params$Resource$Users$Drafts$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1609,8 +2021,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListDraftsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListDraftsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Drafts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1656,6 +2068,78 @@ export namespace gmail_v1 {
 
     /**
      * Sends the specified, existing draft to the recipients in the `To`, `Cc`, and `Bcc` headers.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.addons.current.action.compose',
+     *       'https://www.googleapis.com/auth/gmail.compose',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.drafts.send({
+     *     // The user's email address. The special value `me` can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "id": "my_id",
+     *       //   "message": {}
+     *       // }
+     *     },
+     *     media: {
+     *       mimeType: 'placeholder-value',
+     *       body: 'placeholder-value',
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "historyId": "my_historyId",
+     *   //   "id": "my_id",
+     *   //   "internalDate": "my_internalDate",
+     *   //   "labelIds": [],
+     *   //   "payload": {},
+     *   //   "raw": "my_raw",
+     *   //   "sizeEstimate": 0,
+     *   //   "snippet": "my_snippet",
+     *   //   "threadId": "my_threadId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1665,11 +2149,11 @@ export namespace gmail_v1 {
     send(
       params: Params$Resource$Users$Drafts$Send,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     send(
       params?: Params$Resource$Users$Drafts$Send,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Message>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Message>>;
     send(
       params: Params$Resource$Users$Drafts$Send,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1698,7 +2182,10 @@ export namespace gmail_v1 {
       callback?:
         | BodyResponseCallback<Schema$Message>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Message> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Message>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Drafts$Send;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1747,6 +2234,73 @@ export namespace gmail_v1 {
 
     /**
      * Replaces a draft's content.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.addons.current.action.compose',
+     *       'https://www.googleapis.com/auth/gmail.compose',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.drafts.update({
+     *     // The ID of the draft to update.
+     *     id: 'placeholder-value',
+     *     // The user's email address. The special value `me` can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "id": "my_id",
+     *       //   "message": {}
+     *       // }
+     *     },
+     *     media: {
+     *       mimeType: 'placeholder-value',
+     *       body: 'placeholder-value',
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "id": "my_id",
+     *   //   "message": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1756,11 +2310,11 @@ export namespace gmail_v1 {
     update(
       params: Params$Resource$Users$Drafts$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Users$Drafts$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Draft>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Draft>>;
     update(
       params: Params$Resource$Users$Drafts$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1789,7 +2343,10 @@ export namespace gmail_v1 {
       callback?:
         | BodyResponseCallback<Schema$Draft>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Draft> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Draft>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Drafts$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1979,6 +2536,69 @@ export namespace gmail_v1 {
 
     /**
      * Lists the history of all changes to the given mailbox. History results are returned in chronological order (increasing `historyId`).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.metadata',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *       'https://www.googleapis.com/auth/gmail.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.history.list({
+     *     // History types to be returned by the function
+     *     historyTypes: 'placeholder-value',
+     *     // Only return messages with a label matching the ID.
+     *     labelId: 'placeholder-value',
+     *     // Maximum number of history records to return. This field defaults to 100. The maximum allowed value for this field is 500.
+     *     maxResults: 'placeholder-value',
+     *     // Page token to retrieve a specific page of results in the list.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Returns history records after the specified `startHistoryId`. The supplied `startHistoryId` should be obtained from the `historyId` of a message, thread, or previous `list` response. History IDs increase chronologically but are not contiguous with random gaps in between valid IDs. Supplying an invalid or out of date `startHistoryId` typically returns an `HTTP 404` error code. A `historyId` is typically valid for at least a week, but in some rare circumstances may be valid for only a few hours. If you receive an `HTTP 404` error response, your application should perform a full sync. If you receive no `nextPageToken` in the response, there are no updates to retrieve and you can store the returned `historyId` for a future request.
+     *     startHistoryId: 'placeholder-value',
+     *     // The user's email address. The special value `me` can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "history": [],
+     *   //   "historyId": "my_historyId",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1988,11 +2608,11 @@ export namespace gmail_v1 {
     list(
       params: Params$Resource$Users$History$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Users$History$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListHistoryResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListHistoryResponse>>;
     list(
       params: Params$Resource$Users$History$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2023,8 +2643,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListHistoryResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListHistoryResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$History$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2105,6 +2725,82 @@ export namespace gmail_v1 {
 
     /**
      * Creates a new label.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.labels',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.labels.create({
+     *     // The user's email address. The special value `me` can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "color": {},
+     *       //   "id": "my_id",
+     *       //   "labelListVisibility": "my_labelListVisibility",
+     *       //   "messageListVisibility": "my_messageListVisibility",
+     *       //   "messagesTotal": 0,
+     *       //   "messagesUnread": 0,
+     *       //   "name": "my_name",
+     *       //   "threadsTotal": 0,
+     *       //   "threadsUnread": 0,
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "color": {},
+     *   //   "id": "my_id",
+     *   //   "labelListVisibility": "my_labelListVisibility",
+     *   //   "messageListVisibility": "my_messageListVisibility",
+     *   //   "messagesTotal": 0,
+     *   //   "messagesUnread": 0,
+     *   //   "name": "my_name",
+     *   //   "threadsTotal": 0,
+     *   //   "threadsUnread": 0,
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2114,11 +2810,11 @@ export namespace gmail_v1 {
     create(
       params: Params$Resource$Users$Labels$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Users$Labels$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Label>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Label>>;
     create(
       params: Params$Resource$Users$Labels$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2147,7 +2843,10 @@ export namespace gmail_v1 {
       callback?:
         | BodyResponseCallback<Schema$Label>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Label> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Label>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Labels$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2193,6 +2892,53 @@ export namespace gmail_v1 {
 
     /**
      * Immediately and permanently deletes the specified label and removes it from any messages and threads that it is applied to.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.labels',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.labels.delete({
+     *     // The ID of the label to delete.
+     *     id: 'placeholder-value',
+     *     // The user's email address. The special value `me` can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2202,11 +2948,11 @@ export namespace gmail_v1 {
     delete(
       params: Params$Resource$Users$Labels$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Users$Labels$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Users$Labels$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2233,7 +2979,10 @@ export namespace gmail_v1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Labels$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2279,6 +3028,69 @@ export namespace gmail_v1 {
 
     /**
      * Gets the specified label.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.labels',
+     *       'https://www.googleapis.com/auth/gmail.metadata',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *       'https://www.googleapis.com/auth/gmail.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.labels.get({
+     *     // The ID of the label to retrieve.
+     *     id: 'placeholder-value',
+     *     // The user's email address. The special value `me` can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "color": {},
+     *   //   "id": "my_id",
+     *   //   "labelListVisibility": "my_labelListVisibility",
+     *   //   "messageListVisibility": "my_messageListVisibility",
+     *   //   "messagesTotal": 0,
+     *   //   "messagesUnread": 0,
+     *   //   "name": "my_name",
+     *   //   "threadsTotal": 0,
+     *   //   "threadsUnread": 0,
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2288,11 +3100,11 @@ export namespace gmail_v1 {
     get(
       params: Params$Resource$Users$Labels$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Users$Labels$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Label>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Label>>;
     get(
       params: Params$Resource$Users$Labels$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2321,7 +3133,10 @@ export namespace gmail_v1 {
       callback?:
         | BodyResponseCallback<Schema$Label>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Label> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Label>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Labels$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2366,6 +3181,58 @@ export namespace gmail_v1 {
 
     /**
      * Lists all labels in the user's mailbox.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.labels',
+     *       'https://www.googleapis.com/auth/gmail.metadata',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *       'https://www.googleapis.com/auth/gmail.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.labels.list({
+     *     // The user's email address. The special value `me` can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "labels": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2375,11 +3242,11 @@ export namespace gmail_v1 {
     list(
       params: Params$Resource$Users$Labels$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Users$Labels$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListLabelsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListLabelsResponse>>;
     list(
       params: Params$Resource$Users$Labels$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2410,8 +3277,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListLabelsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListLabelsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Labels$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2457,6 +3324,84 @@ export namespace gmail_v1 {
 
     /**
      * Patch the specified label.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.labels',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.labels.patch({
+     *     // The ID of the label to update.
+     *     id: 'placeholder-value',
+     *     // The user's email address. The special value `me` can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "color": {},
+     *       //   "id": "my_id",
+     *       //   "labelListVisibility": "my_labelListVisibility",
+     *       //   "messageListVisibility": "my_messageListVisibility",
+     *       //   "messagesTotal": 0,
+     *       //   "messagesUnread": 0,
+     *       //   "name": "my_name",
+     *       //   "threadsTotal": 0,
+     *       //   "threadsUnread": 0,
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "color": {},
+     *   //   "id": "my_id",
+     *   //   "labelListVisibility": "my_labelListVisibility",
+     *   //   "messageListVisibility": "my_messageListVisibility",
+     *   //   "messagesTotal": 0,
+     *   //   "messagesUnread": 0,
+     *   //   "name": "my_name",
+     *   //   "threadsTotal": 0,
+     *   //   "threadsUnread": 0,
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2466,11 +3411,11 @@ export namespace gmail_v1 {
     patch(
       params: Params$Resource$Users$Labels$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Users$Labels$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Label>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Label>>;
     patch(
       params: Params$Resource$Users$Labels$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2499,7 +3444,10 @@ export namespace gmail_v1 {
       callback?:
         | BodyResponseCallback<Schema$Label>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Label> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Label>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Labels$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2545,6 +3493,84 @@ export namespace gmail_v1 {
 
     /**
      * Updates the specified label.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.labels',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.labels.update({
+     *     // The ID of the label to update.
+     *     id: 'placeholder-value',
+     *     // The user's email address. The special value `me` can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "color": {},
+     *       //   "id": "my_id",
+     *       //   "labelListVisibility": "my_labelListVisibility",
+     *       //   "messageListVisibility": "my_messageListVisibility",
+     *       //   "messagesTotal": 0,
+     *       //   "messagesUnread": 0,
+     *       //   "name": "my_name",
+     *       //   "threadsTotal": 0,
+     *       //   "threadsUnread": 0,
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "color": {},
+     *   //   "id": "my_id",
+     *   //   "labelListVisibility": "my_labelListVisibility",
+     *   //   "messageListVisibility": "my_messageListVisibility",
+     *   //   "messagesTotal": 0,
+     *   //   "messagesUnread": 0,
+     *   //   "name": "my_name",
+     *   //   "threadsTotal": 0,
+     *   //   "threadsUnread": 0,
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2554,11 +3580,11 @@ export namespace gmail_v1 {
     update(
       params: Params$Resource$Users$Labels$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Users$Labels$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Label>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Label>>;
     update(
       params: Params$Resource$Users$Labels$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2587,7 +3613,10 @@ export namespace gmail_v1 {
       callback?:
         | BodyResponseCallback<Schema$Label>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Label> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Label>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Labels$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2715,6 +3744,55 @@ export namespace gmail_v1 {
 
     /**
      * Deletes many messages by message ID. Provides no guarantees that messages were not already deleted or even existed at all.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://mail.google.com/'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.messages.batchDelete({
+     *     // The user's email address. The special value `me` can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "ids": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2724,11 +3802,11 @@ export namespace gmail_v1 {
     batchDelete(
       params: Params$Resource$Users$Messages$Batchdelete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     batchDelete(
       params?: Params$Resource$Users$Messages$Batchdelete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     batchDelete(
       params: Params$Resource$Users$Messages$Batchdelete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2755,7 +3833,10 @@ export namespace gmail_v1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Messages$Batchdelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2800,6 +3881,60 @@ export namespace gmail_v1 {
 
     /**
      * Modifies the labels on the specified messages.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.messages.batchModify({
+     *     // The user's email address. The special value `me` can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "addLabelIds": [],
+     *       //   "ids": [],
+     *       //   "removeLabelIds": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2809,11 +3944,11 @@ export namespace gmail_v1 {
     batchModify(
       params: Params$Resource$Users$Messages$Batchmodify,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     batchModify(
       params?: Params$Resource$Users$Messages$Batchmodify,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     batchModify(
       params: Params$Resource$Users$Messages$Batchmodify,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2840,7 +3975,10 @@ export namespace gmail_v1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Messages$Batchmodify;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2885,6 +4023,49 @@ export namespace gmail_v1 {
 
     /**
      * Immediately and permanently deletes the specified message. This operation cannot be undone. Prefer `messages.trash` instead.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://mail.google.com/'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.messages.delete({
+     *     // The ID of the message to delete.
+     *     id: 'placeholder-value',
+     *     // The user's email address. The special value `me` can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2894,11 +4075,11 @@ export namespace gmail_v1 {
     delete(
       params: Params$Resource$Users$Messages$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Users$Messages$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Users$Messages$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2925,7 +4106,10 @@ export namespace gmail_v1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Messages$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2971,6 +4155,74 @@ export namespace gmail_v1 {
 
     /**
      * Gets the specified message.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.addons.current.message.action',
+     *       'https://www.googleapis.com/auth/gmail.addons.current.message.metadata',
+     *       'https://www.googleapis.com/auth/gmail.addons.current.message.readonly',
+     *       'https://www.googleapis.com/auth/gmail.metadata',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *       'https://www.googleapis.com/auth/gmail.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.messages.get({
+     *     // The format to return the message in.
+     *     format: 'placeholder-value',
+     *     // The ID of the message to retrieve. This ID is usually retrieved using `messages.list`. The ID is also contained in the result when a message is inserted (`messages.insert`) or imported (`messages.import`).
+     *     id: 'placeholder-value',
+     *     // When given and format is `METADATA`, only include headers specified.
+     *     metadataHeaders: 'placeholder-value',
+     *     // The user's email address. The special value `me` can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "historyId": "my_historyId",
+     *   //   "id": "my_id",
+     *   //   "internalDate": "my_internalDate",
+     *   //   "labelIds": [],
+     *   //   "payload": {},
+     *   //   "raw": "my_raw",
+     *   //   "sizeEstimate": 0,
+     *   //   "snippet": "my_snippet",
+     *   //   "threadId": "my_threadId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2980,11 +4232,11 @@ export namespace gmail_v1 {
     get(
       params: Params$Resource$Users$Messages$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Users$Messages$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Message>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Message>>;
     get(
       params: Params$Resource$Users$Messages$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3013,7 +4265,10 @@ export namespace gmail_v1 {
       callback?:
         | BodyResponseCallback<Schema$Message>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Message> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Message>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Messages$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3059,6 +4314,92 @@ export namespace gmail_v1 {
 
     /**
      * Imports a message into only this user's mailbox, with standard email delivery scanning and classification similar to receiving via SMTP. This method doesn't perform SPF checks, so it might not work for some spam messages, such as those attempting to perform domain spoofing. This method does not send a message.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.insert',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.messages.import({
+     *     // Mark the email as permanently deleted (not TRASH) and only visible in Google Vault to a Vault administrator. Only used for Google Workspace accounts.
+     *     deleted: 'placeholder-value',
+     *     // Source for Gmail's internal date of the message.
+     *     internalDateSource: 'placeholder-value',
+     *     // Ignore the Gmail spam classifier decision and never mark this email as SPAM in the mailbox.
+     *     neverMarkSpam: 'placeholder-value',
+     *     // Process calendar invites in the email and add any extracted meetings to the Google Calendar for this user.
+     *     processForCalendar: 'placeholder-value',
+     *     // The user's email address. The special value `me` can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "historyId": "my_historyId",
+     *       //   "id": "my_id",
+     *       //   "internalDate": "my_internalDate",
+     *       //   "labelIds": [],
+     *       //   "payload": {},
+     *       //   "raw": "my_raw",
+     *       //   "sizeEstimate": 0,
+     *       //   "snippet": "my_snippet",
+     *       //   "threadId": "my_threadId"
+     *       // }
+     *     },
+     *     media: {
+     *       mimeType: 'placeholder-value',
+     *       body: 'placeholder-value',
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "historyId": "my_historyId",
+     *   //   "id": "my_id",
+     *   //   "internalDate": "my_internalDate",
+     *   //   "labelIds": [],
+     *   //   "payload": {},
+     *   //   "raw": "my_raw",
+     *   //   "sizeEstimate": 0,
+     *   //   "snippet": "my_snippet",
+     *   //   "threadId": "my_threadId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3068,11 +4409,11 @@ export namespace gmail_v1 {
     import(
       params: Params$Resource$Users$Messages$Import,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     import(
       params?: Params$Resource$Users$Messages$Import,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Message>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Message>>;
     import(
       params: Params$Resource$Users$Messages$Import,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3101,7 +4442,10 @@ export namespace gmail_v1 {
       callback?:
         | BodyResponseCallback<Schema$Message>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Message> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Message>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Messages$Import;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3150,6 +4494,88 @@ export namespace gmail_v1 {
 
     /**
      * Directly inserts a message into only this user's mailbox similar to `IMAP APPEND`, bypassing most scanning and classification. Does not send a message.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.insert',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.messages.insert({
+     *     // Mark the email as permanently deleted (not TRASH) and only visible in Google Vault to a Vault administrator. Only used for Google Workspace accounts.
+     *     deleted: 'placeholder-value',
+     *     // Source for Gmail's internal date of the message.
+     *     internalDateSource: 'placeholder-value',
+     *     // The user's email address. The special value `me` can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "historyId": "my_historyId",
+     *       //   "id": "my_id",
+     *       //   "internalDate": "my_internalDate",
+     *       //   "labelIds": [],
+     *       //   "payload": {},
+     *       //   "raw": "my_raw",
+     *       //   "sizeEstimate": 0,
+     *       //   "snippet": "my_snippet",
+     *       //   "threadId": "my_threadId"
+     *       // }
+     *     },
+     *     media: {
+     *       mimeType: 'placeholder-value',
+     *       body: 'placeholder-value',
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "historyId": "my_historyId",
+     *   //   "id": "my_id",
+     *   //   "internalDate": "my_internalDate",
+     *   //   "labelIds": [],
+     *   //   "payload": {},
+     *   //   "raw": "my_raw",
+     *   //   "sizeEstimate": 0,
+     *   //   "snippet": "my_snippet",
+     *   //   "threadId": "my_threadId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3159,11 +4585,11 @@ export namespace gmail_v1 {
     insert(
       params: Params$Resource$Users$Messages$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Users$Messages$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Message>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Message>>;
     insert(
       params: Params$Resource$Users$Messages$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3192,7 +4618,10 @@ export namespace gmail_v1 {
       callback?:
         | BodyResponseCallback<Schema$Message>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Message> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Message>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Messages$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3241,6 +4670,69 @@ export namespace gmail_v1 {
 
     /**
      * Lists the messages in the user's mailbox.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.metadata',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *       'https://www.googleapis.com/auth/gmail.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.messages.list({
+     *     // Include messages from `SPAM` and `TRASH` in the results.
+     *     includeSpamTrash: 'placeholder-value',
+     *     // Only return messages with labels that match all of the specified label IDs. Messages in a thread might have labels that other messages in the same thread don't have. To learn more, see [Manage labels on messages and threads](https://developers.google.com/workspace/gmail/api/guides/labels#manage_labels_on_messages_threads).
+     *     labelIds: 'placeholder-value',
+     *     // Maximum number of messages to return. This field defaults to 100. The maximum allowed value for this field is 500.
+     *     maxResults: 'placeholder-value',
+     *     // Page token to retrieve a specific page of results in the list.
+     *     pageToken: 'placeholder-value',
+     *     // Only return messages matching the specified query. Supports the same query format as the Gmail search box. For example, `"from:someuser@example.com rfc822msgid: is:unread"`. Parameter cannot be used when accessing the api using the gmail.metadata scope.
+     *     q: 'placeholder-value',
+     *     // The user's email address. The special value `me` can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "messages": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "resultSizeEstimate": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3250,11 +4742,11 @@ export namespace gmail_v1 {
     list(
       params: Params$Resource$Users$Messages$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Users$Messages$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListMessagesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListMessagesResponse>>;
     list(
       params: Params$Resource$Users$Messages$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3287,8 +4779,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListMessagesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListMessagesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Messages$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3334,6 +4826,74 @@ export namespace gmail_v1 {
 
     /**
      * Modifies the labels on the specified message.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.messages.modify({
+     *     // The ID of the message to modify.
+     *     id: 'placeholder-value',
+     *     // The user's email address. The special value `me` can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "addLabelIds": [],
+     *       //   "removeLabelIds": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "historyId": "my_historyId",
+     *   //   "id": "my_id",
+     *   //   "internalDate": "my_internalDate",
+     *   //   "labelIds": [],
+     *   //   "payload": {},
+     *   //   "raw": "my_raw",
+     *   //   "sizeEstimate": 0,
+     *   //   "snippet": "my_snippet",
+     *   //   "threadId": "my_threadId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3343,11 +4903,11 @@ export namespace gmail_v1 {
     modify(
       params: Params$Resource$Users$Messages$Modify,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     modify(
       params?: Params$Resource$Users$Messages$Modify,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Message>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Message>>;
     modify(
       params: Params$Resource$Users$Messages$Modify,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3376,7 +4936,10 @@ export namespace gmail_v1 {
       callback?:
         | BodyResponseCallback<Schema$Message>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Message> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Message>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Messages$Modify;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3421,6 +4984,86 @@ export namespace gmail_v1 {
 
     /**
      * Sends the specified message to the recipients in the `To`, `Cc`, and `Bcc` headers. For example usage, see [Sending email](https://developers.google.com/workspace/gmail/api/guides/sending).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.addons.current.action.compose',
+     *       'https://www.googleapis.com/auth/gmail.compose',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *       'https://www.googleapis.com/auth/gmail.send',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.messages.send({
+     *     // The user's email address. The special value `me` can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "historyId": "my_historyId",
+     *       //   "id": "my_id",
+     *       //   "internalDate": "my_internalDate",
+     *       //   "labelIds": [],
+     *       //   "payload": {},
+     *       //   "raw": "my_raw",
+     *       //   "sizeEstimate": 0,
+     *       //   "snippet": "my_snippet",
+     *       //   "threadId": "my_threadId"
+     *       // }
+     *     },
+     *     media: {
+     *       mimeType: 'placeholder-value',
+     *       body: 'placeholder-value',
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "historyId": "my_historyId",
+     *   //   "id": "my_id",
+     *   //   "internalDate": "my_internalDate",
+     *   //   "labelIds": [],
+     *   //   "payload": {},
+     *   //   "raw": "my_raw",
+     *   //   "sizeEstimate": 0,
+     *   //   "snippet": "my_snippet",
+     *   //   "threadId": "my_threadId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3430,11 +5073,11 @@ export namespace gmail_v1 {
     send(
       params: Params$Resource$Users$Messages$Send,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     send(
       params?: Params$Resource$Users$Messages$Send,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Message>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Message>>;
     send(
       params: Params$Resource$Users$Messages$Send,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3463,7 +5106,10 @@ export namespace gmail_v1 {
       callback?:
         | BodyResponseCallback<Schema$Message>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Message> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Message>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Messages$Send;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3512,6 +5158,65 @@ export namespace gmail_v1 {
 
     /**
      * Moves the specified message to the trash.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.messages.trash({
+     *     // The ID of the message to Trash.
+     *     id: 'placeholder-value',
+     *     // The user's email address. The special value `me` can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "historyId": "my_historyId",
+     *   //   "id": "my_id",
+     *   //   "internalDate": "my_internalDate",
+     *   //   "labelIds": [],
+     *   //   "payload": {},
+     *   //   "raw": "my_raw",
+     *   //   "sizeEstimate": 0,
+     *   //   "snippet": "my_snippet",
+     *   //   "threadId": "my_threadId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3521,11 +5226,11 @@ export namespace gmail_v1 {
     trash(
       params: Params$Resource$Users$Messages$Trash,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     trash(
       params?: Params$Resource$Users$Messages$Trash,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Message>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Message>>;
     trash(
       params: Params$Resource$Users$Messages$Trash,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3554,7 +5259,10 @@ export namespace gmail_v1 {
       callback?:
         | BodyResponseCallback<Schema$Message>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Message> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Message>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Messages$Trash;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3599,6 +5307,65 @@ export namespace gmail_v1 {
 
     /**
      * Removes the specified message from the trash.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.messages.untrash({
+     *     // The ID of the message to remove from Trash.
+     *     id: 'placeholder-value',
+     *     // The user's email address. The special value `me` can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "historyId": "my_historyId",
+     *   //   "id": "my_id",
+     *   //   "internalDate": "my_internalDate",
+     *   //   "labelIds": [],
+     *   //   "payload": {},
+     *   //   "raw": "my_raw",
+     *   //   "sizeEstimate": 0,
+     *   //   "snippet": "my_snippet",
+     *   //   "threadId": "my_threadId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3608,11 +5375,11 @@ export namespace gmail_v1 {
     untrash(
       params: Params$Resource$Users$Messages$Untrash,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     untrash(
       params?: Params$Resource$Users$Messages$Untrash,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Message>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Message>>;
     untrash(
       params: Params$Resource$Users$Messages$Untrash,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3641,7 +5408,10 @@ export namespace gmail_v1 {
       callback?:
         | BodyResponseCallback<Schema$Message>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Message> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Message>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Messages$Untrash;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3918,6 +5688,64 @@ export namespace gmail_v1 {
 
     /**
      * Gets the specified message attachment.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.addons.current.message.action',
+     *       'https://www.googleapis.com/auth/gmail.addons.current.message.readonly',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *       'https://www.googleapis.com/auth/gmail.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.messages.attachments.get({
+     *     // The ID of the attachment.
+     *     id: 'placeholder-value',
+     *     // The ID of the message containing the attachment.
+     *     messageId: 'placeholder-value',
+     *     // The user's email address. The special value `me` can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attachmentId": "my_attachmentId",
+     *   //   "data": "my_data",
+     *   //   "size": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3927,11 +5755,11 @@ export namespace gmail_v1 {
     get(
       params: Params$Resource$Users$Messages$Attachments$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Users$Messages$Attachments$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$MessagePartBody>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$MessagePartBody>>;
     get(
       params: Params$Resource$Users$Messages$Attachments$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3960,7 +5788,10 @@ export namespace gmail_v1 {
       callback?:
         | BodyResponseCallback<Schema$MessagePartBody>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$MessagePartBody> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$MessagePartBody>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Messages$Attachments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4040,6 +5871,59 @@ export namespace gmail_v1 {
 
     /**
      * Gets the auto-forwarding setting for the specified account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *       'https://www.googleapis.com/auth/gmail.readonly',
+     *       'https://www.googleapis.com/auth/gmail.settings.basic',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.getAutoForwarding({
+     *     // User's email address. The special value "me" can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "disposition": "my_disposition",
+     *   //   "emailAddress": "my_emailAddress",
+     *   //   "enabled": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4049,11 +5933,11 @@ export namespace gmail_v1 {
     getAutoForwarding(
       params: Params$Resource$Users$Settings$Getautoforwarding,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getAutoForwarding(
       params?: Params$Resource$Users$Settings$Getautoforwarding,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AutoForwarding>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AutoForwarding>>;
     getAutoForwarding(
       params: Params$Resource$Users$Settings$Getautoforwarding,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4084,7 +5968,10 @@ export namespace gmail_v1 {
       callback?:
         | BodyResponseCallback<Schema$AutoForwarding>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AutoForwarding> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$AutoForwarding>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Getautoforwarding;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4129,6 +6016,60 @@ export namespace gmail_v1 {
 
     /**
      * Gets IMAP settings.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *       'https://www.googleapis.com/auth/gmail.readonly',
+     *       'https://www.googleapis.com/auth/gmail.settings.basic',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.getImap({
+     *     // User's email address. The special value "me" can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "autoExpunge": false,
+     *   //   "enabled": false,
+     *   //   "expungeBehavior": "my_expungeBehavior",
+     *   //   "maxFolderSize": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4138,11 +6079,11 @@ export namespace gmail_v1 {
     getImap(
       params: Params$Resource$Users$Settings$Getimap,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getImap(
       params?: Params$Resource$Users$Settings$Getimap,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ImapSettings>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ImapSettings>>;
     getImap(
       params: Params$Resource$Users$Settings$Getimap,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4171,7 +6112,10 @@ export namespace gmail_v1 {
       callback?:
         | BodyResponseCallback<Schema$ImapSettings>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ImapSettings> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ImapSettings>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Getimap;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4217,6 +6161,57 @@ export namespace gmail_v1 {
 
     /**
      * Gets language settings.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *       'https://www.googleapis.com/auth/gmail.readonly',
+     *       'https://www.googleapis.com/auth/gmail.settings.basic',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.getLanguage({
+     *     // User's email address. The special value "me" can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayLanguage": "my_displayLanguage"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4226,11 +6221,11 @@ export namespace gmail_v1 {
     getLanguage(
       params: Params$Resource$Users$Settings$Getlanguage,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getLanguage(
       params?: Params$Resource$Users$Settings$Getlanguage,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LanguageSettings>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LanguageSettings>>;
     getLanguage(
       params: Params$Resource$Users$Settings$Getlanguage,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4259,7 +6254,10 @@ export namespace gmail_v1 {
       callback?:
         | BodyResponseCallback<Schema$LanguageSettings>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LanguageSettings> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$LanguageSettings>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Getlanguage;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4304,6 +6302,58 @@ export namespace gmail_v1 {
 
     /**
      * Gets POP settings.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *       'https://www.googleapis.com/auth/gmail.readonly',
+     *       'https://www.googleapis.com/auth/gmail.settings.basic',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.getPop({
+     *     // User's email address. The special value "me" can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accessWindow": "my_accessWindow",
+     *   //   "disposition": "my_disposition"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4313,11 +6363,11 @@ export namespace gmail_v1 {
     getPop(
       params: Params$Resource$Users$Settings$Getpop,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getPop(
       params?: Params$Resource$Users$Settings$Getpop,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PopSettings>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PopSettings>>;
     getPop(
       params: Params$Resource$Users$Settings$Getpop,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4346,7 +6396,10 @@ export namespace gmail_v1 {
       callback?:
         | BodyResponseCallback<Schema$PopSettings>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$PopSettings> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$PopSettings>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Getpop;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4392,6 +6445,64 @@ export namespace gmail_v1 {
 
     /**
      * Gets vacation responder settings.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *       'https://www.googleapis.com/auth/gmail.readonly',
+     *       'https://www.googleapis.com/auth/gmail.settings.basic',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.getVacation({
+     *     // User's email address. The special value "me" can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "enableAutoReply": false,
+     *   //   "endTime": "my_endTime",
+     *   //   "responseBodyHtml": "my_responseBodyHtml",
+     *   //   "responseBodyPlainText": "my_responseBodyPlainText",
+     *   //   "responseSubject": "my_responseSubject",
+     *   //   "restrictToContacts": false,
+     *   //   "restrictToDomain": false,
+     *   //   "startTime": "my_startTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4401,11 +6512,11 @@ export namespace gmail_v1 {
     getVacation(
       params: Params$Resource$Users$Settings$Getvacation,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getVacation(
       params?: Params$Resource$Users$Settings$Getvacation,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$VacationSettings>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$VacationSettings>>;
     getVacation(
       params: Params$Resource$Users$Settings$Getvacation,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4434,7 +6545,10 @@ export namespace gmail_v1 {
       callback?:
         | BodyResponseCallback<Schema$VacationSettings>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$VacationSettings> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$VacationSettings>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Getvacation;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4479,6 +6593,64 @@ export namespace gmail_v1 {
 
     /**
      * Updates the auto-forwarding setting for the specified account. A verified forwarding address must be specified when auto-forwarding is enabled. This method is only available to service account clients that have been delegated domain-wide authority.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/gmail.settings.sharing'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.updateAutoForwarding({
+     *     // User's email address. The special value "me" can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "disposition": "my_disposition",
+     *       //   "emailAddress": "my_emailAddress",
+     *       //   "enabled": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "disposition": "my_disposition",
+     *   //   "emailAddress": "my_emailAddress",
+     *   //   "enabled": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4488,11 +6660,11 @@ export namespace gmail_v1 {
     updateAutoForwarding(
       params: Params$Resource$Users$Settings$Updateautoforwarding,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     updateAutoForwarding(
       params?: Params$Resource$Users$Settings$Updateautoforwarding,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AutoForwarding>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AutoForwarding>>;
     updateAutoForwarding(
       params: Params$Resource$Users$Settings$Updateautoforwarding,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4523,7 +6695,10 @@ export namespace gmail_v1 {
       callback?:
         | BodyResponseCallback<Schema$AutoForwarding>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AutoForwarding> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$AutoForwarding>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Updateautoforwarding;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4568,6 +6743,66 @@ export namespace gmail_v1 {
 
     /**
      * Updates IMAP settings.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/gmail.settings.basic'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.updateImap({
+     *     // User's email address. The special value "me" can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "autoExpunge": false,
+     *       //   "enabled": false,
+     *       //   "expungeBehavior": "my_expungeBehavior",
+     *       //   "maxFolderSize": 0
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "autoExpunge": false,
+     *   //   "enabled": false,
+     *   //   "expungeBehavior": "my_expungeBehavior",
+     *   //   "maxFolderSize": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4577,11 +6812,11 @@ export namespace gmail_v1 {
     updateImap(
       params: Params$Resource$Users$Settings$Updateimap,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     updateImap(
       params?: Params$Resource$Users$Settings$Updateimap,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ImapSettings>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ImapSettings>>;
     updateImap(
       params: Params$Resource$Users$Settings$Updateimap,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4610,7 +6845,10 @@ export namespace gmail_v1 {
       callback?:
         | BodyResponseCallback<Schema$ImapSettings>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ImapSettings> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ImapSettings>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Updateimap;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4656,6 +6894,60 @@ export namespace gmail_v1 {
 
     /**
      * Updates language settings. If successful, the return object contains the `displayLanguage` that was saved for the user, which may differ from the value passed into the request. This is because the requested `displayLanguage` may not be directly supported by Gmail but have a close variant that is, and so the variant may be chosen and saved instead.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/gmail.settings.basic'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.updateLanguage({
+     *     // User's email address. The special value "me" can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "displayLanguage": "my_displayLanguage"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayLanguage": "my_displayLanguage"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4665,11 +6957,11 @@ export namespace gmail_v1 {
     updateLanguage(
       params: Params$Resource$Users$Settings$Updatelanguage,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     updateLanguage(
       params?: Params$Resource$Users$Settings$Updatelanguage,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LanguageSettings>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LanguageSettings>>;
     updateLanguage(
       params: Params$Resource$Users$Settings$Updatelanguage,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4700,7 +6992,10 @@ export namespace gmail_v1 {
       callback?:
         | BodyResponseCallback<Schema$LanguageSettings>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LanguageSettings> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$LanguageSettings>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Updatelanguage;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4745,6 +7040,62 @@ export namespace gmail_v1 {
 
     /**
      * Updates POP settings.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/gmail.settings.basic'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.updatePop({
+     *     // User's email address. The special value "me" can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accessWindow": "my_accessWindow",
+     *       //   "disposition": "my_disposition"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accessWindow": "my_accessWindow",
+     *   //   "disposition": "my_disposition"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4754,11 +7105,11 @@ export namespace gmail_v1 {
     updatePop(
       params: Params$Resource$Users$Settings$Updatepop,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     updatePop(
       params?: Params$Resource$Users$Settings$Updatepop,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PopSettings>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PopSettings>>;
     updatePop(
       params: Params$Resource$Users$Settings$Updatepop,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4787,7 +7138,10 @@ export namespace gmail_v1 {
       callback?:
         | BodyResponseCallback<Schema$PopSettings>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$PopSettings> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$PopSettings>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Updatepop;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4833,6 +7187,74 @@ export namespace gmail_v1 {
 
     /**
      * Updates vacation responder settings.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/gmail.settings.basic'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.updateVacation({
+     *     // User's email address. The special value "me" can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "enableAutoReply": false,
+     *       //   "endTime": "my_endTime",
+     *       //   "responseBodyHtml": "my_responseBodyHtml",
+     *       //   "responseBodyPlainText": "my_responseBodyPlainText",
+     *       //   "responseSubject": "my_responseSubject",
+     *       //   "restrictToContacts": false,
+     *       //   "restrictToDomain": false,
+     *       //   "startTime": "my_startTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "enableAutoReply": false,
+     *   //   "endTime": "my_endTime",
+     *   //   "responseBodyHtml": "my_responseBodyHtml",
+     *   //   "responseBodyPlainText": "my_responseBodyPlainText",
+     *   //   "responseSubject": "my_responseSubject",
+     *   //   "restrictToContacts": false,
+     *   //   "restrictToDomain": false,
+     *   //   "startTime": "my_startTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4842,11 +7264,11 @@ export namespace gmail_v1 {
     updateVacation(
       params: Params$Resource$Users$Settings$Updatevacation,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     updateVacation(
       params?: Params$Resource$Users$Settings$Updatevacation,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$VacationSettings>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$VacationSettings>>;
     updateVacation(
       params: Params$Resource$Users$Settings$Updatevacation,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4877,7 +7299,10 @@ export namespace gmail_v1 {
       callback?:
         | BodyResponseCallback<Schema$VacationSettings>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$VacationSettings> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$VacationSettings>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Updatevacation;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5037,7 +7462,68 @@ export namespace gmail_v1 {
     }
 
     /**
-     * Creates and configures a client-side encryption identity that's authorized to send mail from the user account. Google publishes the S/MIME certificate to a shared domain-wide directory so that people within a Google Workspace organization can encrypt and send mail to the identity.
+     * Creates and configures a client-side encryption identity that's authorized to send mail from the user account. Google publishes the S/MIME certificate to a shared domain-wide directory so that people within a Google Workspace organization can encrypt and send mail to the identity. For administrators managing identities and keypairs for users in their organization, requests require authorization with a [service account](https://developers.google.com/identity/protocols/OAuth2ServiceAccount) that has [domain-wide delegation authority](https://developers.google.com/identity/protocols/OAuth2ServiceAccount#delegatingauthority) to impersonate users with the `https://www.googleapis.com/auth/gmail.settings.basic` scope. For users managing their own identities and keypairs, requests require [hardware key encryption](https://support.google.com/a/answer/14153163) turned on and configured.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/gmail.settings.basic',
+     *       'https://www.googleapis.com/auth/gmail.settings.sharing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.cse.identities.create({
+     *     // The requester's primary email address. To indicate the authenticated user, you can use the special value `me`.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "emailAddress": "my_emailAddress",
+     *       //   "primaryKeyPairId": "my_primaryKeyPairId",
+     *       //   "signAndEncryptKeyPairs": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "emailAddress": "my_emailAddress",
+     *   //   "primaryKeyPairId": "my_primaryKeyPairId",
+     *   //   "signAndEncryptKeyPairs": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5047,11 +7533,11 @@ export namespace gmail_v1 {
     create(
       params: Params$Resource$Users$Settings$Cse$Identities$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Users$Settings$Cse$Identities$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CseIdentity>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CseIdentity>>;
     create(
       params: Params$Resource$Users$Settings$Cse$Identities$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5080,7 +7566,10 @@ export namespace gmail_v1 {
       callback?:
         | BodyResponseCallback<Schema$CseIdentity>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CseIdentity> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$CseIdentity>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Cse$Identities$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5124,7 +7613,53 @@ export namespace gmail_v1 {
     }
 
     /**
-     * Deletes a client-side encryption identity. The authenticated user can no longer use the identity to send encrypted messages. You cannot restore the identity after you delete it. Instead, use the CreateCseIdentity method to create another identity with the same configuration.
+     * Deletes a client-side encryption identity. The authenticated user can no longer use the identity to send encrypted messages. You cannot restore the identity after you delete it. Instead, use the CreateCseIdentity method to create another identity with the same configuration. For administrators managing identities and keypairs for users in their organization, requests require authorization with a [service account](https://developers.google.com/identity/protocols/OAuth2ServiceAccount) that has [domain-wide delegation authority](https://developers.google.com/identity/protocols/OAuth2ServiceAccount#delegatingauthority) to impersonate users with the `https://www.googleapis.com/auth/gmail.settings.basic` scope. For users managing their own identities and keypairs, requests require [hardware key encryption](https://support.google.com/a/answer/14153163) turned on and configured.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/gmail.settings.basic',
+     *       'https://www.googleapis.com/auth/gmail.settings.sharing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.cse.identities.delete({
+     *     // The primary email address associated with the client-side encryption identity configuration that's removed.
+     *     cseEmailAddress: 'placeholder-value',
+     *     // The requester's primary email address. To indicate the authenticated user, you can use the special value `me`.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5134,11 +7669,11 @@ export namespace gmail_v1 {
     delete(
       params: Params$Resource$Users$Settings$Cse$Identities$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Users$Settings$Cse$Identities$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Users$Settings$Cse$Identities$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5165,7 +7700,10 @@ export namespace gmail_v1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Cse$Identities$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5210,7 +7748,63 @@ export namespace gmail_v1 {
     }
 
     /**
-     * Retrieves a client-side encryption identity configuration.
+     * Retrieves a client-side encryption identity configuration. For administrators managing identities and keypairs for users in their organization, requests require authorization with a [service account](https://developers.google.com/identity/protocols/OAuth2ServiceAccount) that has [domain-wide delegation authority](https://developers.google.com/identity/protocols/OAuth2ServiceAccount#delegatingauthority) to impersonate users with the `https://www.googleapis.com/auth/gmail.settings.basic` scope. For users managing their own identities and keypairs, requests require [hardware key encryption](https://support.google.com/a/answer/14153163) turned on and configured.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *       'https://www.googleapis.com/auth/gmail.readonly',
+     *       'https://www.googleapis.com/auth/gmail.settings.basic',
+     *       'https://www.googleapis.com/auth/gmail.settings.sharing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.cse.identities.get({
+     *     // The primary email address associated with the client-side encryption identity configuration that's retrieved.
+     *     cseEmailAddress: 'placeholder-value',
+     *     // The requester's primary email address. To indicate the authenticated user, you can use the special value `me`.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "emailAddress": "my_emailAddress",
+     *   //   "primaryKeyPairId": "my_primaryKeyPairId",
+     *   //   "signAndEncryptKeyPairs": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5220,11 +7814,11 @@ export namespace gmail_v1 {
     get(
       params: Params$Resource$Users$Settings$Cse$Identities$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Users$Settings$Cse$Identities$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CseIdentity>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CseIdentity>>;
     get(
       params: Params$Resource$Users$Settings$Cse$Identities$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5253,7 +7847,10 @@ export namespace gmail_v1 {
       callback?:
         | BodyResponseCallback<Schema$CseIdentity>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CseIdentity> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$CseIdentity>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Cse$Identities$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5298,7 +7895,64 @@ export namespace gmail_v1 {
     }
 
     /**
-     * Lists the client-side encrypted identities for an authenticated user.
+     * Lists the client-side encrypted identities for an authenticated user. For administrators managing identities and keypairs for users in their organization, requests require authorization with a [service account](https://developers.google.com/identity/protocols/OAuth2ServiceAccount) that has [domain-wide delegation authority](https://developers.google.com/identity/protocols/OAuth2ServiceAccount#delegatingauthority) to impersonate users with the `https://www.googleapis.com/auth/gmail.settings.basic` scope. For users managing their own identities and keypairs, requests require [hardware key encryption](https://support.google.com/a/answer/14153163) turned on and configured.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *       'https://www.googleapis.com/auth/gmail.readonly',
+     *       'https://www.googleapis.com/auth/gmail.settings.basic',
+     *       'https://www.googleapis.com/auth/gmail.settings.sharing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.cse.identities.list({
+     *     // The number of identities to return. If not provided, the page size will default to 20 entries.
+     *     pageSize: 'placeholder-value',
+     *     // Pagination token indicating which page of identities to return. If the token is not supplied, then the API will return the first page of results.
+     *     pageToken: 'placeholder-value',
+     *     // The requester's primary email address. To indicate the authenticated user, you can use the special value `me`.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cseIdentities": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5308,11 +7962,11 @@ export namespace gmail_v1 {
     list(
       params: Params$Resource$Users$Settings$Cse$Identities$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Users$Settings$Cse$Identities$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListCseIdentitiesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListCseIdentitiesResponse>>;
     list(
       params: Params$Resource$Users$Settings$Cse$Identities$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5347,8 +8001,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListCseIdentitiesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListCseIdentitiesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Cse$Identities$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5392,7 +8046,70 @@ export namespace gmail_v1 {
     }
 
     /**
-     * Associates a different key pair with an existing client-side encryption identity. The updated key pair must validate against Google's [S/MIME certificate profiles](https://support.google.com/a/answer/7300887).
+     * Associates a different key pair with an existing client-side encryption identity. The updated key pair must validate against Google's [S/MIME certificate profiles](https://support.google.com/a/answer/7300887). For administrators managing identities and keypairs for users in their organization, requests require authorization with a [service account](https://developers.google.com/identity/protocols/OAuth2ServiceAccount) that has [domain-wide delegation authority](https://developers.google.com/identity/protocols/OAuth2ServiceAccount#delegatingauthority) to impersonate users with the `https://www.googleapis.com/auth/gmail.settings.basic` scope. For users managing their own identities and keypairs, requests require [hardware key encryption](https://support.google.com/a/answer/14153163) turned on and configured.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/gmail.settings.basic',
+     *       'https://www.googleapis.com/auth/gmail.settings.sharing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.cse.identities.patch({
+     *     // The email address of the client-side encryption identity to update.
+     *     emailAddress: 'placeholder-value',
+     *     // The requester's primary email address. To indicate the authenticated user, you can use the special value `me`.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "emailAddress": "my_emailAddress",
+     *       //   "primaryKeyPairId": "my_primaryKeyPairId",
+     *       //   "signAndEncryptKeyPairs": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "emailAddress": "my_emailAddress",
+     *   //   "primaryKeyPairId": "my_primaryKeyPairId",
+     *   //   "signAndEncryptKeyPairs": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5402,11 +8119,11 @@ export namespace gmail_v1 {
     patch(
       params: Params$Resource$Users$Settings$Cse$Identities$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Users$Settings$Cse$Identities$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CseIdentity>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CseIdentity>>;
     patch(
       params: Params$Resource$Users$Settings$Cse$Identities$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5435,7 +8152,10 @@ export namespace gmail_v1 {
       callback?:
         | BodyResponseCallback<Schema$CseIdentity>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CseIdentity> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$CseIdentity>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Cse$Identities$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5553,7 +8273,76 @@ export namespace gmail_v1 {
     }
 
     /**
-     * Creates and uploads a client-side encryption S/MIME public key certificate chain and private key metadata for the authenticated user.
+     * Creates and uploads a client-side encryption S/MIME public key certificate chain and private key metadata for the authenticated user. For administrators managing identities and keypairs for users in their organization, requests require authorization with a [service account](https://developers.google.com/identity/protocols/OAuth2ServiceAccount) that has [domain-wide delegation authority](https://developers.google.com/identity/protocols/OAuth2ServiceAccount#delegatingauthority) to impersonate users with the `https://www.googleapis.com/auth/gmail.settings.basic` scope. For users managing their own identities and keypairs, requests require [hardware key encryption](https://support.google.com/a/answer/14153163) turned on and configured.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/gmail.settings.basic',
+     *       'https://www.googleapis.com/auth/gmail.settings.sharing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.cse.keypairs.create({
+     *     // The requester's primary email address. To indicate the authenticated user, you can use the special value `me`.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "disableTime": "my_disableTime",
+     *       //   "enablementState": "my_enablementState",
+     *       //   "keyPairId": "my_keyPairId",
+     *       //   "pem": "my_pem",
+     *       //   "pkcs7": "my_pkcs7",
+     *       //   "privateKeyMetadata": [],
+     *       //   "subjectEmailAddresses": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "disableTime": "my_disableTime",
+     *   //   "enablementState": "my_enablementState",
+     *   //   "keyPairId": "my_keyPairId",
+     *   //   "pem": "my_pem",
+     *   //   "pkcs7": "my_pkcs7",
+     *   //   "privateKeyMetadata": [],
+     *   //   "subjectEmailAddresses": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5563,11 +8352,11 @@ export namespace gmail_v1 {
     create(
       params: Params$Resource$Users$Settings$Cse$Keypairs$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Users$Settings$Cse$Keypairs$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CseKeyPair>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CseKeyPair>>;
     create(
       params: Params$Resource$Users$Settings$Cse$Keypairs$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5596,7 +8385,10 @@ export namespace gmail_v1 {
       callback?:
         | BodyResponseCallback<Schema$CseKeyPair>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CseKeyPair> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$CseKeyPair>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Cse$Keypairs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5640,7 +8432,70 @@ export namespace gmail_v1 {
     }
 
     /**
-     * Turns off a client-side encryption key pair. The authenticated user can no longer use the key pair to decrypt incoming CSE message texts or sign outgoing CSE mail. To regain access, use the EnableCseKeyPair to turn on the key pair. After 30 days, you can permanently delete the key pair by using the ObliterateCseKeyPair method.
+     * Turns off a client-side encryption key pair. The authenticated user can no longer use the key pair to decrypt incoming CSE message texts or sign outgoing CSE mail. To regain access, use the EnableCseKeyPair to turn on the key pair. After 30 days, you can permanently delete the key pair by using the ObliterateCseKeyPair method. For administrators managing identities and keypairs for users in their organization, requests require authorization with a [service account](https://developers.google.com/identity/protocols/OAuth2ServiceAccount) that has [domain-wide delegation authority](https://developers.google.com/identity/protocols/OAuth2ServiceAccount#delegatingauthority) to impersonate users with the `https://www.googleapis.com/auth/gmail.settings.basic` scope. For users managing their own identities and keypairs, requests require [hardware key encryption](https://support.google.com/a/answer/14153163) turned on and configured.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/gmail.settings.basic',
+     *       'https://www.googleapis.com/auth/gmail.settings.sharing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.cse.keypairs.disable({
+     *     // The identifier of the key pair to turn off.
+     *     keyPairId: 'placeholder-value',
+     *     // The requester's primary email address. To indicate the authenticated user, you can use the special value `me`.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "disableTime": "my_disableTime",
+     *   //   "enablementState": "my_enablementState",
+     *   //   "keyPairId": "my_keyPairId",
+     *   //   "pem": "my_pem",
+     *   //   "pkcs7": "my_pkcs7",
+     *   //   "privateKeyMetadata": [],
+     *   //   "subjectEmailAddresses": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5650,11 +8505,11 @@ export namespace gmail_v1 {
     disable(
       params: Params$Resource$Users$Settings$Cse$Keypairs$Disable,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     disable(
       params?: Params$Resource$Users$Settings$Cse$Keypairs$Disable,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CseKeyPair>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CseKeyPair>>;
     disable(
       params: Params$Resource$Users$Settings$Cse$Keypairs$Disable,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5683,7 +8538,10 @@ export namespace gmail_v1 {
       callback?:
         | BodyResponseCallback<Schema$CseKeyPair>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CseKeyPair> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$CseKeyPair>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Cse$Keypairs$Disable;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5728,7 +8586,70 @@ export namespace gmail_v1 {
     }
 
     /**
-     * Turns on a client-side encryption key pair that was turned off. The key pair becomes active again for any associated client-side encryption identities.
+     * Turns on a client-side encryption key pair that was turned off. The key pair becomes active again for any associated client-side encryption identities. For administrators managing identities and keypairs for users in their organization, requests require authorization with a [service account](https://developers.google.com/identity/protocols/OAuth2ServiceAccount) that has [domain-wide delegation authority](https://developers.google.com/identity/protocols/OAuth2ServiceAccount#delegatingauthority) to impersonate users with the `https://www.googleapis.com/auth/gmail.settings.basic` scope. For users managing their own identities and keypairs, requests require [hardware key encryption](https://support.google.com/a/answer/14153163) turned on and configured.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/gmail.settings.basic',
+     *       'https://www.googleapis.com/auth/gmail.settings.sharing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.cse.keypairs.enable({
+     *     // The identifier of the key pair to turn on.
+     *     keyPairId: 'placeholder-value',
+     *     // The requester's primary email address. To indicate the authenticated user, you can use the special value `me`.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "disableTime": "my_disableTime",
+     *   //   "enablementState": "my_enablementState",
+     *   //   "keyPairId": "my_keyPairId",
+     *   //   "pem": "my_pem",
+     *   //   "pkcs7": "my_pkcs7",
+     *   //   "privateKeyMetadata": [],
+     *   //   "subjectEmailAddresses": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5738,11 +8659,11 @@ export namespace gmail_v1 {
     enable(
       params: Params$Resource$Users$Settings$Cse$Keypairs$Enable,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     enable(
       params?: Params$Resource$Users$Settings$Cse$Keypairs$Enable,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CseKeyPair>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CseKeyPair>>;
     enable(
       params: Params$Resource$Users$Settings$Cse$Keypairs$Enable,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5771,7 +8692,10 @@ export namespace gmail_v1 {
       callback?:
         | BodyResponseCallback<Schema$CseKeyPair>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CseKeyPair> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$CseKeyPair>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Cse$Keypairs$Enable;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5816,7 +8740,67 @@ export namespace gmail_v1 {
     }
 
     /**
-     * Retrieves an existing client-side encryption key pair.
+     * Retrieves an existing client-side encryption key pair. For administrators managing identities and keypairs for users in their organization, requests require authorization with a [service account](https://developers.google.com/identity/protocols/OAuth2ServiceAccount) that has [domain-wide delegation authority](https://developers.google.com/identity/protocols/OAuth2ServiceAccount#delegatingauthority) to impersonate users with the `https://www.googleapis.com/auth/gmail.settings.basic` scope. For users managing their own identities and keypairs, requests require [hardware key encryption](https://support.google.com/a/answer/14153163) turned on and configured.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *       'https://www.googleapis.com/auth/gmail.readonly',
+     *       'https://www.googleapis.com/auth/gmail.settings.basic',
+     *       'https://www.googleapis.com/auth/gmail.settings.sharing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.cse.keypairs.get({
+     *     // The identifier of the key pair to retrieve.
+     *     keyPairId: 'placeholder-value',
+     *     // The requester's primary email address. To indicate the authenticated user, you can use the special value `me`.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "disableTime": "my_disableTime",
+     *   //   "enablementState": "my_enablementState",
+     *   //   "keyPairId": "my_keyPairId",
+     *   //   "pem": "my_pem",
+     *   //   "pkcs7": "my_pkcs7",
+     *   //   "privateKeyMetadata": [],
+     *   //   "subjectEmailAddresses": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5826,11 +8810,11 @@ export namespace gmail_v1 {
     get(
       params: Params$Resource$Users$Settings$Cse$Keypairs$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Users$Settings$Cse$Keypairs$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CseKeyPair>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CseKeyPair>>;
     get(
       params: Params$Resource$Users$Settings$Cse$Keypairs$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5859,7 +8843,10 @@ export namespace gmail_v1 {
       callback?:
         | BodyResponseCallback<Schema$CseKeyPair>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CseKeyPair> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$CseKeyPair>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Cse$Keypairs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5904,7 +8891,64 @@ export namespace gmail_v1 {
     }
 
     /**
-     * Lists client-side encryption key pairs for an authenticated user.
+     * Lists client-side encryption key pairs for an authenticated user. For administrators managing identities and keypairs for users in their organization, requests require authorization with a [service account](https://developers.google.com/identity/protocols/OAuth2ServiceAccount) that has [domain-wide delegation authority](https://developers.google.com/identity/protocols/OAuth2ServiceAccount#delegatingauthority) to impersonate users with the `https://www.googleapis.com/auth/gmail.settings.basic` scope. For users managing their own identities and keypairs, requests require [hardware key encryption](https://support.google.com/a/answer/14153163) turned on and configured.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *       'https://www.googleapis.com/auth/gmail.readonly',
+     *       'https://www.googleapis.com/auth/gmail.settings.basic',
+     *       'https://www.googleapis.com/auth/gmail.settings.sharing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.cse.keypairs.list({
+     *     // The number of key pairs to return. If not provided, the page size will default to 20 entries.
+     *     pageSize: 'placeholder-value',
+     *     // Pagination token indicating which page of key pairs to return. If the token is not supplied, then the API will return the first page of results.
+     *     pageToken: 'placeholder-value',
+     *     // The requester's primary email address. To indicate the authenticated user, you can use the special value `me`.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cseKeyPairs": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5914,11 +8958,11 @@ export namespace gmail_v1 {
     list(
       params: Params$Resource$Users$Settings$Cse$Keypairs$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Users$Settings$Cse$Keypairs$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListCseKeyPairsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListCseKeyPairsResponse>>;
     list(
       params: Params$Resource$Users$Settings$Cse$Keypairs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5951,8 +8995,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListCseKeyPairsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListCseKeyPairsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Cse$Keypairs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5996,7 +9040,59 @@ export namespace gmail_v1 {
     }
 
     /**
-     * Deletes a client-side encryption key pair permanently and immediately. You can only permanently delete key pairs that have been turned off for more than 30 days. To turn off a key pair, use the DisableCseKeyPair method. Gmail can't restore or decrypt any messages that were encrypted by an obliterated key. Authenticated users and Google Workspace administrators lose access to reading the encrypted messages.
+     * Deletes a client-side encryption key pair permanently and immediately. You can only permanently delete key pairs that have been turned off for more than 30 days. To turn off a key pair, use the DisableCseKeyPair method. Gmail can't restore or decrypt any messages that were encrypted by an obliterated key. Authenticated users and Google Workspace administrators lose access to reading the encrypted messages. For administrators managing identities and keypairs for users in their organization, requests require authorization with a [service account](https://developers.google.com/identity/protocols/OAuth2ServiceAccount) that has [domain-wide delegation authority](https://developers.google.com/identity/protocols/OAuth2ServiceAccount#delegatingauthority) to impersonate users with the `https://www.googleapis.com/auth/gmail.settings.basic` scope. For users managing their own identities and keypairs, requests require [hardware key encryption](https://support.google.com/a/answer/14153163) turned on and configured.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/gmail.settings.basic',
+     *       'https://www.googleapis.com/auth/gmail.settings.sharing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.cse.keypairs.obliterate({
+     *     // The identifier of the key pair to obliterate.
+     *     keyPairId: 'placeholder-value',
+     *     // The requester's primary email address. To indicate the authenticated user, you can use the special value `me`.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6006,11 +9102,11 @@ export namespace gmail_v1 {
     obliterate(
       params: Params$Resource$Users$Settings$Cse$Keypairs$Obliterate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     obliterate(
       params?: Params$Resource$Users$Settings$Cse$Keypairs$Obliterate,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     obliterate(
       params: Params$Resource$Users$Settings$Cse$Keypairs$Obliterate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6037,7 +9133,10 @@ export namespace gmail_v1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Cse$Keypairs$Obliterate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6177,6 +9276,62 @@ export namespace gmail_v1 {
 
     /**
      * Adds a delegate with its verification status set directly to `accepted`, without sending any verification email. The delegate user must be a member of the same Google Workspace organization as the delegator user. Gmail imposes limitations on the number of delegates and delegators each user in a Google Workspace organization can have. These limits depend on your organization, but in general each user can have up to 25 delegates and up to 10 delegators. Note that a delegate user must be referred to by their primary email address, and not an email alias. Also note that when a new delegate is created, there may be up to a one minute delay before the new delegate is available for use. This method is only available to service account clients that have been delegated domain-wide authority.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/gmail.settings.sharing'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.delegates.create({
+     *     // User's email address. The special value "me" can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "delegateEmail": "my_delegateEmail",
+     *       //   "verificationStatus": "my_verificationStatus"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "delegateEmail": "my_delegateEmail",
+     *   //   "verificationStatus": "my_verificationStatus"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6186,11 +9341,11 @@ export namespace gmail_v1 {
     create(
       params: Params$Resource$Users$Settings$Delegates$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Users$Settings$Delegates$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Delegate>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Delegate>>;
     create(
       params: Params$Resource$Users$Settings$Delegates$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6219,7 +9374,10 @@ export namespace gmail_v1 {
       callback?:
         | BodyResponseCallback<Schema$Delegate>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Delegate> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Delegate>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Delegates$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6264,6 +9422,49 @@ export namespace gmail_v1 {
 
     /**
      * Removes the specified delegate (which can be of any verification status), and revokes any verification that may have been required for using it. Note that a delegate user must be referred to by their primary email address, and not an email alias. This method is only available to service account clients that have been delegated domain-wide authority.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/gmail.settings.sharing'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.delegates.delete({
+     *     // The email address of the user to be removed as a delegate.
+     *     delegateEmail: 'placeholder-value',
+     *     // User's email address. The special value "me" can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6273,11 +9474,11 @@ export namespace gmail_v1 {
     delete(
       params: Params$Resource$Users$Settings$Delegates$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Users$Settings$Delegates$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Users$Settings$Delegates$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6304,7 +9505,10 @@ export namespace gmail_v1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Delegates$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6350,6 +9554,60 @@ export namespace gmail_v1 {
 
     /**
      * Gets the specified delegate. Note that a delegate user must be referred to by their primary email address, and not an email alias. This method is only available to service account clients that have been delegated domain-wide authority.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *       'https://www.googleapis.com/auth/gmail.readonly',
+     *       'https://www.googleapis.com/auth/gmail.settings.basic',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.delegates.get({
+     *     // The email address of the user whose delegate relationship is to be retrieved.
+     *     delegateEmail: 'placeholder-value',
+     *     // User's email address. The special value "me" can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "delegateEmail": "my_delegateEmail",
+     *   //   "verificationStatus": "my_verificationStatus"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6359,11 +9617,11 @@ export namespace gmail_v1 {
     get(
       params: Params$Resource$Users$Settings$Delegates$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Users$Settings$Delegates$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Delegate>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Delegate>>;
     get(
       params: Params$Resource$Users$Settings$Delegates$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6392,7 +9650,10 @@ export namespace gmail_v1 {
       callback?:
         | BodyResponseCallback<Schema$Delegate>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Delegate> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Delegate>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Delegates$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6438,6 +9699,57 @@ export namespace gmail_v1 {
 
     /**
      * Lists the delegates for the specified account. This method is only available to service account clients that have been delegated domain-wide authority.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *       'https://www.googleapis.com/auth/gmail.readonly',
+     *       'https://www.googleapis.com/auth/gmail.settings.basic',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.delegates.list({
+     *     // User's email address. The special value "me" can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "delegates": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6447,11 +9759,11 @@ export namespace gmail_v1 {
     list(
       params: Params$Resource$Users$Settings$Delegates$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Users$Settings$Delegates$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListDelegatesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListDelegatesResponse>>;
     list(
       params: Params$Resource$Users$Settings$Delegates$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6484,8 +9796,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListDelegatesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListDelegatesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Delegates$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6579,6 +9891,64 @@ export namespace gmail_v1 {
 
     /**
      * Creates a filter. Note: you can only create a maximum of 1,000 filters.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/gmail.settings.basic'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.filters.create({
+     *     // User's email address. The special value "me" can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "action": {},
+     *       //   "criteria": {},
+     *       //   "id": "my_id"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "action": {},
+     *   //   "criteria": {},
+     *   //   "id": "my_id"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6588,11 +9958,11 @@ export namespace gmail_v1 {
     create(
       params: Params$Resource$Users$Settings$Filters$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Users$Settings$Filters$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Filter>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Filter>>;
     create(
       params: Params$Resource$Users$Settings$Filters$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6621,7 +9991,10 @@ export namespace gmail_v1 {
       callback?:
         | BodyResponseCallback<Schema$Filter>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Filter> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Filter>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Filters$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6666,6 +10039,49 @@ export namespace gmail_v1 {
 
     /**
      * Immediately and permanently deletes the specified filter.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/gmail.settings.basic'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.filters.delete({
+     *     // The ID of the filter to be deleted.
+     *     id: 'placeholder-value',
+     *     // User's email address. The special value "me" can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6675,11 +10091,11 @@ export namespace gmail_v1 {
     delete(
       params: Params$Resource$Users$Settings$Filters$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Users$Settings$Filters$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Users$Settings$Filters$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6706,7 +10122,10 @@ export namespace gmail_v1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Filters$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6751,6 +10170,61 @@ export namespace gmail_v1 {
 
     /**
      * Gets a filter.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *       'https://www.googleapis.com/auth/gmail.readonly',
+     *       'https://www.googleapis.com/auth/gmail.settings.basic',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.filters.get({
+     *     // The ID of the filter to be fetched.
+     *     id: 'placeholder-value',
+     *     // User's email address. The special value "me" can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "action": {},
+     *   //   "criteria": {},
+     *   //   "id": "my_id"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6760,11 +10234,11 @@ export namespace gmail_v1 {
     get(
       params: Params$Resource$Users$Settings$Filters$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Users$Settings$Filters$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Filter>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Filter>>;
     get(
       params: Params$Resource$Users$Settings$Filters$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6793,7 +10267,10 @@ export namespace gmail_v1 {
       callback?:
         | BodyResponseCallback<Schema$Filter>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Filter> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Filter>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Filters$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6838,6 +10315,57 @@ export namespace gmail_v1 {
 
     /**
      * Lists the message filters of a Gmail user.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *       'https://www.googleapis.com/auth/gmail.readonly',
+     *       'https://www.googleapis.com/auth/gmail.settings.basic',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.filters.list({
+     *     // User's email address. The special value "me" can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "filter": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6847,11 +10375,11 @@ export namespace gmail_v1 {
     list(
       params: Params$Resource$Users$Settings$Filters$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Users$Settings$Filters$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListFiltersResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListFiltersResponse>>;
     list(
       params: Params$Resource$Users$Settings$Filters$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6882,8 +10410,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListFiltersResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListFiltersResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Filters$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6977,6 +10505,62 @@ export namespace gmail_v1 {
 
     /**
      * Creates a forwarding address. If ownership verification is required, a message will be sent to the recipient and the resource's verification status will be set to `pending`; otherwise, the resource will be created with verification status set to `accepted`. This method is only available to service account clients that have been delegated domain-wide authority.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/gmail.settings.sharing'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.forwardingAddresses.create({
+     *     // User's email address. The special value "me" can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "forwardingEmail": "my_forwardingEmail",
+     *       //   "verificationStatus": "my_verificationStatus"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "forwardingEmail": "my_forwardingEmail",
+     *   //   "verificationStatus": "my_verificationStatus"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6986,11 +10570,11 @@ export namespace gmail_v1 {
     create(
       params: Params$Resource$Users$Settings$Forwardingaddresses$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Users$Settings$Forwardingaddresses$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ForwardingAddress>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ForwardingAddress>>;
     create(
       params: Params$Resource$Users$Settings$Forwardingaddresses$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7021,8 +10605,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ForwardingAddress>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ForwardingAddress>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Forwardingaddresses$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7068,6 +10652,49 @@ export namespace gmail_v1 {
 
     /**
      * Deletes the specified forwarding address and revokes any verification that may have been required. This method is only available to service account clients that have been delegated domain-wide authority.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/gmail.settings.sharing'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.forwardingAddresses.delete({
+     *     // The forwarding address to be deleted.
+     *     forwardingEmail: 'placeholder-value',
+     *     // User's email address. The special value "me" can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7077,11 +10704,11 @@ export namespace gmail_v1 {
     delete(
       params: Params$Resource$Users$Settings$Forwardingaddresses$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Users$Settings$Forwardingaddresses$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Users$Settings$Forwardingaddresses$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7108,7 +10735,10 @@ export namespace gmail_v1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Forwardingaddresses$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7155,6 +10785,60 @@ export namespace gmail_v1 {
 
     /**
      * Gets the specified forwarding address.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *       'https://www.googleapis.com/auth/gmail.readonly',
+     *       'https://www.googleapis.com/auth/gmail.settings.basic',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.forwardingAddresses.get({
+     *     // The forwarding address to be retrieved.
+     *     forwardingEmail: 'placeholder-value',
+     *     // User's email address. The special value "me" can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "forwardingEmail": "my_forwardingEmail",
+     *   //   "verificationStatus": "my_verificationStatus"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7164,11 +10848,11 @@ export namespace gmail_v1 {
     get(
       params: Params$Resource$Users$Settings$Forwardingaddresses$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Users$Settings$Forwardingaddresses$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ForwardingAddress>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ForwardingAddress>>;
     get(
       params: Params$Resource$Users$Settings$Forwardingaddresses$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7199,8 +10883,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ForwardingAddress>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ForwardingAddress>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Forwardingaddresses$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7246,6 +10930,57 @@ export namespace gmail_v1 {
 
     /**
      * Lists the forwarding addresses for the specified account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *       'https://www.googleapis.com/auth/gmail.readonly',
+     *       'https://www.googleapis.com/auth/gmail.settings.basic',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.forwardingAddresses.list({
+     *     // User's email address. The special value "me" can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "forwardingAddresses": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7255,11 +10990,11 @@ export namespace gmail_v1 {
     list(
       params: Params$Resource$Users$Settings$Forwardingaddresses$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Users$Settings$Forwardingaddresses$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListForwardingAddressesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListForwardingAddressesResponse>>;
     list(
       params: Params$Resource$Users$Settings$Forwardingaddresses$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7294,8 +11029,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListForwardingAddressesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListForwardingAddressesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Forwardingaddresses$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7395,6 +11130,76 @@ export namespace gmail_v1 {
 
     /**
      * Creates a custom "from" send-as alias. If an SMTP MSA is specified, Gmail will attempt to connect to the SMTP service to validate the configuration before creating the alias. If ownership verification is required for the alias, a message will be sent to the email address and the resource's verification status will be set to `pending`; otherwise, the resource will be created with verification status set to `accepted`. If a signature is provided, Gmail will sanitize the HTML before saving it with the alias. This method is only available to service account clients that have been delegated domain-wide authority.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/gmail.settings.sharing'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.sendAs.create({
+     *     // User's email address. The special value "me" can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "displayName": "my_displayName",
+     *       //   "isDefault": false,
+     *       //   "isPrimary": false,
+     *       //   "replyToAddress": "my_replyToAddress",
+     *       //   "sendAsEmail": "my_sendAsEmail",
+     *       //   "signature": "my_signature",
+     *       //   "smtpMsa": {},
+     *       //   "treatAsAlias": false,
+     *       //   "verificationStatus": "my_verificationStatus"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "isDefault": false,
+     *   //   "isPrimary": false,
+     *   //   "replyToAddress": "my_replyToAddress",
+     *   //   "sendAsEmail": "my_sendAsEmail",
+     *   //   "signature": "my_signature",
+     *   //   "smtpMsa": {},
+     *   //   "treatAsAlias": false,
+     *   //   "verificationStatus": "my_verificationStatus"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7404,11 +11209,11 @@ export namespace gmail_v1 {
     create(
       params: Params$Resource$Users$Settings$Sendas$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Users$Settings$Sendas$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SendAs>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SendAs>>;
     create(
       params: Params$Resource$Users$Settings$Sendas$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7437,7 +11242,10 @@ export namespace gmail_v1 {
       callback?:
         | BodyResponseCallback<Schema$SendAs>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SendAs> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SendAs>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Sendas$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7483,6 +11291,49 @@ export namespace gmail_v1 {
 
     /**
      * Deletes the specified send-as alias. Revokes any verification that may have been required for using it. This method is only available to service account clients that have been delegated domain-wide authority.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/gmail.settings.sharing'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.sendAs.delete({
+     *     // The send-as alias to be deleted.
+     *     sendAsEmail: 'placeholder-value',
+     *     // User's email address. The special value "me" can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7492,11 +11343,11 @@ export namespace gmail_v1 {
     delete(
       params: Params$Resource$Users$Settings$Sendas$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Users$Settings$Sendas$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Users$Settings$Sendas$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7523,7 +11374,10 @@ export namespace gmail_v1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Sendas$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7568,6 +11422,67 @@ export namespace gmail_v1 {
 
     /**
      * Gets the specified send-as alias. Fails with an HTTP 404 error if the specified address is not a member of the collection.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *       'https://www.googleapis.com/auth/gmail.readonly',
+     *       'https://www.googleapis.com/auth/gmail.settings.basic',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.sendAs.get({
+     *     // The send-as alias to be retrieved.
+     *     sendAsEmail: 'placeholder-value',
+     *     // User's email address. The special value "me" can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "isDefault": false,
+     *   //   "isPrimary": false,
+     *   //   "replyToAddress": "my_replyToAddress",
+     *   //   "sendAsEmail": "my_sendAsEmail",
+     *   //   "signature": "my_signature",
+     *   //   "smtpMsa": {},
+     *   //   "treatAsAlias": false,
+     *   //   "verificationStatus": "my_verificationStatus"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7577,11 +11492,11 @@ export namespace gmail_v1 {
     get(
       params: Params$Resource$Users$Settings$Sendas$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Users$Settings$Sendas$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SendAs>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SendAs>>;
     get(
       params: Params$Resource$Users$Settings$Sendas$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7610,7 +11525,10 @@ export namespace gmail_v1 {
       callback?:
         | BodyResponseCallback<Schema$SendAs>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SendAs> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SendAs>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Sendas$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7655,6 +11573,57 @@ export namespace gmail_v1 {
 
     /**
      * Lists the send-as aliases for the specified account. The result includes the primary send-as address associated with the account as well as any custom "from" aliases.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *       'https://www.googleapis.com/auth/gmail.readonly',
+     *       'https://www.googleapis.com/auth/gmail.settings.basic',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.sendAs.list({
+     *     // User's email address. The special value "me" can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "sendAs": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7664,11 +11633,11 @@ export namespace gmail_v1 {
     list(
       params: Params$Resource$Users$Settings$Sendas$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Users$Settings$Sendas$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListSendAsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListSendAsResponse>>;
     list(
       params: Params$Resource$Users$Settings$Sendas$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7699,8 +11668,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListSendAsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListSendAsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Sendas$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7746,6 +11715,81 @@ export namespace gmail_v1 {
 
     /**
      * Patch the specified send-as alias.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/gmail.settings.basic',
+     *       'https://www.googleapis.com/auth/gmail.settings.sharing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.sendAs.patch({
+     *     // The send-as alias to be updated.
+     *     sendAsEmail: 'placeholder-value',
+     *     // User's email address. The special value "me" can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "displayName": "my_displayName",
+     *       //   "isDefault": false,
+     *       //   "isPrimary": false,
+     *       //   "replyToAddress": "my_replyToAddress",
+     *       //   "sendAsEmail": "my_sendAsEmail",
+     *       //   "signature": "my_signature",
+     *       //   "smtpMsa": {},
+     *       //   "treatAsAlias": false,
+     *       //   "verificationStatus": "my_verificationStatus"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "isDefault": false,
+     *   //   "isPrimary": false,
+     *   //   "replyToAddress": "my_replyToAddress",
+     *   //   "sendAsEmail": "my_sendAsEmail",
+     *   //   "signature": "my_signature",
+     *   //   "smtpMsa": {},
+     *   //   "treatAsAlias": false,
+     *   //   "verificationStatus": "my_verificationStatus"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7755,11 +11799,11 @@ export namespace gmail_v1 {
     patch(
       params: Params$Resource$Users$Settings$Sendas$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Users$Settings$Sendas$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SendAs>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SendAs>>;
     patch(
       params: Params$Resource$Users$Settings$Sendas$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7788,7 +11832,10 @@ export namespace gmail_v1 {
       callback?:
         | BodyResponseCallback<Schema$SendAs>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SendAs> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SendAs>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Sendas$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7833,6 +11880,81 @@ export namespace gmail_v1 {
 
     /**
      * Updates a send-as alias. If a signature is provided, Gmail will sanitize the HTML before saving it with the alias. Addresses other than the primary address for the account can only be updated by service account clients that have been delegated domain-wide authority.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/gmail.settings.basic',
+     *       'https://www.googleapis.com/auth/gmail.settings.sharing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.sendAs.update({
+     *     // The send-as alias to be updated.
+     *     sendAsEmail: 'placeholder-value',
+     *     // User's email address. The special value "me" can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "displayName": "my_displayName",
+     *       //   "isDefault": false,
+     *       //   "isPrimary": false,
+     *       //   "replyToAddress": "my_replyToAddress",
+     *       //   "sendAsEmail": "my_sendAsEmail",
+     *       //   "signature": "my_signature",
+     *       //   "smtpMsa": {},
+     *       //   "treatAsAlias": false,
+     *       //   "verificationStatus": "my_verificationStatus"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "isDefault": false,
+     *   //   "isPrimary": false,
+     *   //   "replyToAddress": "my_replyToAddress",
+     *   //   "sendAsEmail": "my_sendAsEmail",
+     *   //   "signature": "my_signature",
+     *   //   "smtpMsa": {},
+     *   //   "treatAsAlias": false,
+     *   //   "verificationStatus": "my_verificationStatus"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7842,11 +11964,11 @@ export namespace gmail_v1 {
     update(
       params: Params$Resource$Users$Settings$Sendas$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Users$Settings$Sendas$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SendAs>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SendAs>>;
     update(
       params: Params$Resource$Users$Settings$Sendas$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7875,7 +11997,10 @@ export namespace gmail_v1 {
       callback?:
         | BodyResponseCallback<Schema$SendAs>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SendAs> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SendAs>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Sendas$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7920,6 +12045,49 @@ export namespace gmail_v1 {
 
     /**
      * Sends a verification email to the specified send-as alias address. The verification status must be `pending`. This method is only available to service account clients that have been delegated domain-wide authority.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/gmail.settings.sharing'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.sendAs.verify({
+     *     // The send-as alias to be verified.
+     *     sendAsEmail: 'placeholder-value',
+     *     // User's email address. The special value "me" can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7929,11 +12097,11 @@ export namespace gmail_v1 {
     verify(
       params: Params$Resource$Users$Settings$Sendas$Verify,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     verify(
       params?: Params$Resource$Users$Settings$Sendas$Verify,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     verify(
       params: Params$Resource$Users$Settings$Sendas$Verify,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7960,7 +12128,10 @@ export namespace gmail_v1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Sendas$Verify;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8098,6 +12269,54 @@ export namespace gmail_v1 {
 
     /**
      * Deletes the specified S/MIME config for the specified send-as alias.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/gmail.settings.basic',
+     *       'https://www.googleapis.com/auth/gmail.settings.sharing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.sendAs.smimeInfo.delete({
+     *     // The immutable ID for the SmimeInfo.
+     *     id: 'placeholder-value',
+     *     // The email address that appears in the "From:" header for mail sent using this alias.
+     *     sendAsEmail: 'placeholder-value',
+     *     // The user's email address. The special value `me` can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8107,11 +12326,11 @@ export namespace gmail_v1 {
     delete(
       params: Params$Resource$Users$Settings$Sendas$Smimeinfo$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Users$Settings$Sendas$Smimeinfo$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Users$Settings$Sendas$Smimeinfo$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8138,7 +12357,10 @@ export namespace gmail_v1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Sendas$Smimeinfo$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8184,6 +12406,68 @@ export namespace gmail_v1 {
 
     /**
      * Gets the specified S/MIME config for the specified send-as alias.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *       'https://www.googleapis.com/auth/gmail.readonly',
+     *       'https://www.googleapis.com/auth/gmail.settings.basic',
+     *       'https://www.googleapis.com/auth/gmail.settings.sharing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.sendAs.smimeInfo.get({
+     *     // The immutable ID for the SmimeInfo.
+     *     id: 'placeholder-value',
+     *     // The email address that appears in the "From:" header for mail sent using this alias.
+     *     sendAsEmail: 'placeholder-value',
+     *     // The user's email address. The special value `me` can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "encryptedKeyPassword": "my_encryptedKeyPassword",
+     *   //   "expiration": "my_expiration",
+     *   //   "id": "my_id",
+     *   //   "isDefault": false,
+     *   //   "issuerCn": "my_issuerCn",
+     *   //   "pem": "my_pem",
+     *   //   "pkcs12": "my_pkcs12"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8193,11 +12477,11 @@ export namespace gmail_v1 {
     get(
       params: Params$Resource$Users$Settings$Sendas$Smimeinfo$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Users$Settings$Sendas$Smimeinfo$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SmimeInfo>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SmimeInfo>>;
     get(
       params: Params$Resource$Users$Settings$Sendas$Smimeinfo$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8226,7 +12510,10 @@ export namespace gmail_v1 {
       callback?:
         | BodyResponseCallback<Schema$SmimeInfo>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SmimeInfo> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SmimeInfo>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Sendas$Smimeinfo$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8272,6 +12559,77 @@ export namespace gmail_v1 {
 
     /**
      * Insert (upload) the given S/MIME config for the specified send-as alias. Note that pkcs12 format is required for the key.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/gmail.settings.basic',
+     *       'https://www.googleapis.com/auth/gmail.settings.sharing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.sendAs.smimeInfo.insert({
+     *     // The email address that appears in the "From:" header for mail sent using this alias.
+     *     sendAsEmail: 'placeholder-value',
+     *     // The user's email address. The special value `me` can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "encryptedKeyPassword": "my_encryptedKeyPassword",
+     *       //   "expiration": "my_expiration",
+     *       //   "id": "my_id",
+     *       //   "isDefault": false,
+     *       //   "issuerCn": "my_issuerCn",
+     *       //   "pem": "my_pem",
+     *       //   "pkcs12": "my_pkcs12"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "encryptedKeyPassword": "my_encryptedKeyPassword",
+     *   //   "expiration": "my_expiration",
+     *   //   "id": "my_id",
+     *   //   "isDefault": false,
+     *   //   "issuerCn": "my_issuerCn",
+     *   //   "pem": "my_pem",
+     *   //   "pkcs12": "my_pkcs12"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8281,11 +12639,11 @@ export namespace gmail_v1 {
     insert(
       params: Params$Resource$Users$Settings$Sendas$Smimeinfo$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Users$Settings$Sendas$Smimeinfo$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SmimeInfo>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SmimeInfo>>;
     insert(
       params: Params$Resource$Users$Settings$Sendas$Smimeinfo$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8314,7 +12672,10 @@ export namespace gmail_v1 {
       callback?:
         | BodyResponseCallback<Schema$SmimeInfo>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SmimeInfo> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SmimeInfo>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Sendas$Smimeinfo$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8360,6 +12721,60 @@ export namespace gmail_v1 {
 
     /**
      * Lists S/MIME configs for the specified send-as alias.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *       'https://www.googleapis.com/auth/gmail.readonly',
+     *       'https://www.googleapis.com/auth/gmail.settings.basic',
+     *       'https://www.googleapis.com/auth/gmail.settings.sharing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.sendAs.smimeInfo.list({
+     *     // The email address that appears in the "From:" header for mail sent using this alias.
+     *     sendAsEmail: 'placeholder-value',
+     *     // The user's email address. The special value `me` can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "smimeInfo": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8369,11 +12784,11 @@ export namespace gmail_v1 {
     list(
       params: Params$Resource$Users$Settings$Sendas$Smimeinfo$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Users$Settings$Sendas$Smimeinfo$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListSmimeInfoResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListSmimeInfoResponse>>;
     list(
       params: Params$Resource$Users$Settings$Sendas$Smimeinfo$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8406,8 +12821,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListSmimeInfoResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListSmimeInfoResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Sendas$Smimeinfo$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8453,6 +12868,54 @@ export namespace gmail_v1 {
 
     /**
      * Sets the default S/MIME config for the specified send-as alias.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/gmail.settings.basic',
+     *       'https://www.googleapis.com/auth/gmail.settings.sharing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.sendAs.smimeInfo.setDefault({
+     *     // The immutable ID for the SmimeInfo.
+     *     id: 'placeholder-value',
+     *     // The email address that appears in the "From:" header for mail sent using this alias.
+     *     sendAsEmail: 'placeholder-value',
+     *     // The user's email address. The special value `me` can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8462,11 +12925,11 @@ export namespace gmail_v1 {
     setDefault(
       params: Params$Resource$Users$Settings$Sendas$Smimeinfo$Setdefault,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setDefault(
       params?: Params$Resource$Users$Settings$Sendas$Smimeinfo$Setdefault,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     setDefault(
       params: Params$Resource$Users$Settings$Sendas$Smimeinfo$Setdefault,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8493,7 +12956,10 @@ export namespace gmail_v1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Sendas$Smimeinfo$Setdefault;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8620,6 +13086,49 @@ export namespace gmail_v1 {
 
     /**
      * Immediately and permanently deletes the specified thread. Any messages that belong to the thread are also deleted. This operation cannot be undone. Prefer `threads.trash` instead.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://mail.google.com/'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.threads.delete({
+     *     // ID of the Thread to delete.
+     *     id: 'placeholder-value',
+     *     // The user's email address. The special value `me` can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8629,11 +13138,11 @@ export namespace gmail_v1 {
     delete(
       params: Params$Resource$Users$Threads$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Users$Threads$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Users$Threads$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8660,7 +13169,10 @@ export namespace gmail_v1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Threads$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8706,6 +13218,69 @@ export namespace gmail_v1 {
 
     /**
      * Gets the specified thread.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.addons.current.message.action',
+     *       'https://www.googleapis.com/auth/gmail.addons.current.message.metadata',
+     *       'https://www.googleapis.com/auth/gmail.addons.current.message.readonly',
+     *       'https://www.googleapis.com/auth/gmail.metadata',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *       'https://www.googleapis.com/auth/gmail.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.threads.get({
+     *     // The format to return the messages in.
+     *     format: 'placeholder-value',
+     *     // The ID of the thread to retrieve.
+     *     id: 'placeholder-value',
+     *     // When given and format is METADATA, only include headers specified.
+     *     metadataHeaders: 'placeholder-value',
+     *     // The user's email address. The special value `me` can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "historyId": "my_historyId",
+     *   //   "id": "my_id",
+     *   //   "messages": [],
+     *   //   "snippet": "my_snippet"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8715,11 +13290,11 @@ export namespace gmail_v1 {
     get(
       params: Params$Resource$Users$Threads$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Users$Threads$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Thread>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Thread>>;
     get(
       params: Params$Resource$Users$Threads$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8748,7 +13323,10 @@ export namespace gmail_v1 {
       callback?:
         | BodyResponseCallback<Schema$Thread>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Thread> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Thread>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Threads$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8794,6 +13372,69 @@ export namespace gmail_v1 {
 
     /**
      * Lists the threads in the user's mailbox.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.metadata',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *       'https://www.googleapis.com/auth/gmail.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.threads.list({
+     *     // Include threads from `SPAM` and `TRASH` in the results.
+     *     includeSpamTrash: 'placeholder-value',
+     *     // Only return threads with labels that match all of the specified label IDs.
+     *     labelIds: 'placeholder-value',
+     *     // Maximum number of threads to return. This field defaults to 100. The maximum allowed value for this field is 500.
+     *     maxResults: 'placeholder-value',
+     *     // Page token to retrieve a specific page of results in the list.
+     *     pageToken: 'placeholder-value',
+     *     // Only return threads matching the specified query. Supports the same query format as the Gmail search box. For example, `"from:someuser@example.com rfc822msgid: is:unread"`. Parameter cannot be used when accessing the api using the gmail.metadata scope.
+     *     q: 'placeholder-value',
+     *     // The user's email address. The special value `me` can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "resultSizeEstimate": 0,
+     *   //   "threads": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8803,11 +13444,11 @@ export namespace gmail_v1 {
     list(
       params: Params$Resource$Users$Threads$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Users$Threads$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListThreadsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListThreadsResponse>>;
     list(
       params: Params$Resource$Users$Threads$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8838,8 +13479,8 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListThreadsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListThreadsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Threads$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8885,6 +13526,69 @@ export namespace gmail_v1 {
 
     /**
      * Modifies the labels applied to the thread. This applies to all messages in the thread.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.threads.modify({
+     *     // The ID of the thread to modify.
+     *     id: 'placeholder-value',
+     *     // The user's email address. The special value `me` can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "addLabelIds": [],
+     *       //   "removeLabelIds": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "historyId": "my_historyId",
+     *   //   "id": "my_id",
+     *   //   "messages": [],
+     *   //   "snippet": "my_snippet"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8894,11 +13598,11 @@ export namespace gmail_v1 {
     modify(
       params: Params$Resource$Users$Threads$Modify,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     modify(
       params?: Params$Resource$Users$Threads$Modify,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Thread>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Thread>>;
     modify(
       params: Params$Resource$Users$Threads$Modify,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8927,7 +13631,10 @@ export namespace gmail_v1 {
       callback?:
         | BodyResponseCallback<Schema$Thread>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Thread> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Thread>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Threads$Modify;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8972,6 +13679,60 @@ export namespace gmail_v1 {
 
     /**
      * Moves the specified thread to the trash. Any messages that belong to the thread are also moved to the trash.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.threads.trash({
+     *     // The ID of the thread to Trash.
+     *     id: 'placeholder-value',
+     *     // The user's email address. The special value `me` can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "historyId": "my_historyId",
+     *   //   "id": "my_id",
+     *   //   "messages": [],
+     *   //   "snippet": "my_snippet"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8981,11 +13742,11 @@ export namespace gmail_v1 {
     trash(
       params: Params$Resource$Users$Threads$Trash,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     trash(
       params?: Params$Resource$Users$Threads$Trash,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Thread>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Thread>>;
     trash(
       params: Params$Resource$Users$Threads$Trash,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9014,7 +13775,10 @@ export namespace gmail_v1 {
       callback?:
         | BodyResponseCallback<Schema$Thread>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Thread> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Thread>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Threads$Trash;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9059,6 +13823,60 @@ export namespace gmail_v1 {
 
     /**
      * Removes the specified thread from the trash. Any messages that belong to the thread are also removed from the trash.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.threads.untrash({
+     *     // The ID of the thread to remove from Trash.
+     *     id: 'placeholder-value',
+     *     // The user's email address. The special value `me` can be used to indicate the authenticated user.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "historyId": "my_historyId",
+     *   //   "id": "my_id",
+     *   //   "messages": [],
+     *   //   "snippet": "my_snippet"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9068,11 +13886,11 @@ export namespace gmail_v1 {
     untrash(
       params: Params$Resource$Users$Threads$Untrash,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     untrash(
       params?: Params$Resource$Users$Threads$Untrash,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Thread>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Thread>>;
     untrash(
       params: Params$Resource$Users$Threads$Untrash,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9101,7 +13919,10 @@ export namespace gmail_v1 {
       callback?:
         | BodyResponseCallback<Schema$Thread>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Thread> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Thread>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Threads$Untrash;
       let options = (optionsOrCallback || {}) as MethodOptions;

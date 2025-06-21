@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -513,11 +513,11 @@ export namespace datalineage_v1 {
     batchSearchLinkProcesses(
       params: Params$Resource$Projects$Locations$Batchsearchlinkprocesses,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     batchSearchLinkProcesses(
       params?: Params$Resource$Projects$Locations$Batchsearchlinkprocesses,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDatacatalogLineageV1BatchSearchLinkProcessesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogLineageV1BatchSearchLinkProcessesResponse>>;
     batchSearchLinkProcesses(
       params: Params$Resource$Projects$Locations$Batchsearchlinkprocesses,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -552,8 +552,8 @@ export namespace datalineage_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDatacatalogLineageV1BatchSearchLinkProcessesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogLineageV1BatchSearchLinkProcessesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Batchsearchlinkprocesses;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -610,11 +610,11 @@ export namespace datalineage_v1 {
     searchLinks(
       params: Params$Resource$Projects$Locations$Searchlinks,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     searchLinks(
       params?: Params$Resource$Projects$Locations$Searchlinks,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDatacatalogLineageV1SearchLinksResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogLineageV1SearchLinksResponse>>;
     searchLinks(
       params: Params$Resource$Projects$Locations$Searchlinks,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -649,8 +649,8 @@ export namespace datalineage_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDatacatalogLineageV1SearchLinksResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogLineageV1SearchLinksResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Searchlinks;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -738,11 +738,11 @@ export namespace datalineage_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     cancel(
       params?: Params$Resource$Projects$Locations$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -773,8 +773,8 @@ export namespace datalineage_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -825,11 +825,11 @@ export namespace datalineage_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -860,8 +860,8 @@ export namespace datalineage_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -912,11 +912,11 @@ export namespace datalineage_v1 {
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -951,8 +951,8 @@ export namespace datalineage_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1003,11 +1003,11 @@ export namespace datalineage_v1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1042,8 +1042,8 @@ export namespace datalineage_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1154,11 +1154,11 @@ export namespace datalineage_v1 {
     create(
       params: Params$Resource$Projects$Locations$Processes$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Processes$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDatacatalogLineageV1Process>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogLineageV1Process>>;
     create(
       params: Params$Resource$Projects$Locations$Processes$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1193,8 +1193,8 @@ export namespace datalineage_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDatacatalogLineageV1Process>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogLineageV1Process>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Processes$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1250,11 +1250,11 @@ export namespace datalineage_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Processes$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Processes$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     delete(
       params: Params$Resource$Projects$Locations$Processes$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1289,8 +1289,8 @@ export namespace datalineage_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Processes$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1341,11 +1341,11 @@ export namespace datalineage_v1 {
     get(
       params: Params$Resource$Projects$Locations$Processes$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Processes$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDatacatalogLineageV1Process>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogLineageV1Process>>;
     get(
       params: Params$Resource$Projects$Locations$Processes$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1380,8 +1380,8 @@ export namespace datalineage_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDatacatalogLineageV1Process>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogLineageV1Process>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Processes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1434,11 +1434,11 @@ export namespace datalineage_v1 {
     list(
       params: Params$Resource$Projects$Locations$Processes$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Processes$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDatacatalogLineageV1ListProcessesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogLineageV1ListProcessesResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Processes$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1473,8 +1473,8 @@ export namespace datalineage_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDatacatalogLineageV1ListProcessesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogLineageV1ListProcessesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Processes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1530,11 +1530,11 @@ export namespace datalineage_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Processes$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Processes$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDatacatalogLineageV1Process>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogLineageV1Process>>;
     patch(
       params: Params$Resource$Projects$Locations$Processes$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1569,8 +1569,8 @@ export namespace datalineage_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDatacatalogLineageV1Process>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogLineageV1Process>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Processes$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1705,11 +1705,11 @@ export namespace datalineage_v1 {
     create(
       params: Params$Resource$Projects$Locations$Processes$Runs$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Processes$Runs$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDatacatalogLineageV1Run>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogLineageV1Run>>;
     create(
       params: Params$Resource$Projects$Locations$Processes$Runs$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1744,8 +1744,8 @@ export namespace datalineage_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDatacatalogLineageV1Run>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogLineageV1Run>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Processes$Runs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1798,11 +1798,11 @@ export namespace datalineage_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Processes$Runs$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Processes$Runs$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     delete(
       params: Params$Resource$Projects$Locations$Processes$Runs$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1837,8 +1837,8 @@ export namespace datalineage_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Processes$Runs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1889,11 +1889,11 @@ export namespace datalineage_v1 {
     get(
       params: Params$Resource$Projects$Locations$Processes$Runs$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Processes$Runs$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDatacatalogLineageV1Run>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogLineageV1Run>>;
     get(
       params: Params$Resource$Projects$Locations$Processes$Runs$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1928,8 +1928,8 @@ export namespace datalineage_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDatacatalogLineageV1Run>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogLineageV1Run>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Processes$Runs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1982,11 +1982,11 @@ export namespace datalineage_v1 {
     list(
       params: Params$Resource$Projects$Locations$Processes$Runs$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Processes$Runs$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDatacatalogLineageV1ListRunsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogLineageV1ListRunsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Processes$Runs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2021,8 +2021,8 @@ export namespace datalineage_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDatacatalogLineageV1ListRunsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogLineageV1ListRunsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Processes$Runs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2075,11 +2075,11 @@ export namespace datalineage_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Processes$Runs$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Processes$Runs$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDatacatalogLineageV1Run>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogLineageV1Run>>;
     patch(
       params: Params$Resource$Projects$Locations$Processes$Runs$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2114,8 +2114,8 @@ export namespace datalineage_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDatacatalogLineageV1Run>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogLineageV1Run>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Processes$Runs$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2245,11 +2245,11 @@ export namespace datalineage_v1 {
     create(
       params: Params$Resource$Projects$Locations$Processes$Runs$Lineageevents$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Processes$Runs$Lineageevents$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDatacatalogLineageV1LineageEvent>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogLineageV1LineageEvent>>;
     create(
       params: Params$Resource$Projects$Locations$Processes$Runs$Lineageevents$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2284,8 +2284,8 @@ export namespace datalineage_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDatacatalogLineageV1LineageEvent>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogLineageV1LineageEvent>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Processes$Runs$Lineageevents$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2342,11 +2342,11 @@ export namespace datalineage_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Processes$Runs$Lineageevents$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Processes$Runs$Lineageevents$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     delete(
       params: Params$Resource$Projects$Locations$Processes$Runs$Lineageevents$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2377,8 +2377,8 @@ export namespace datalineage_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Processes$Runs$Lineageevents$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2430,11 +2430,11 @@ export namespace datalineage_v1 {
     get(
       params: Params$Resource$Projects$Locations$Processes$Runs$Lineageevents$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Processes$Runs$Lineageevents$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDatacatalogLineageV1LineageEvent>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogLineageV1LineageEvent>>;
     get(
       params: Params$Resource$Projects$Locations$Processes$Runs$Lineageevents$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2469,8 +2469,8 @@ export namespace datalineage_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDatacatalogLineageV1LineageEvent>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogLineageV1LineageEvent>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Processes$Runs$Lineageevents$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2524,11 +2524,11 @@ export namespace datalineage_v1 {
     list(
       params: Params$Resource$Projects$Locations$Processes$Runs$Lineageevents$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Processes$Runs$Lineageevents$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDatacatalogLineageV1ListLineageEventsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogLineageV1ListLineageEventsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Processes$Runs$Lineageevents$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2563,8 +2563,8 @@ export namespace datalineage_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDatacatalogLineageV1ListLineageEventsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDatacatalogLineageV1ListLineageEventsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Processes$Runs$Lineageevents$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

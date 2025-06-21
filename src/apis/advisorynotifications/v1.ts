@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -311,6 +311,54 @@ export namespace advisorynotifications_v1 {
 
     /**
      * Get notification settings.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/advisorynotifications.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const advisorynotifications = google.advisorynotifications('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await advisorynotifications.organizations.locations.getSettings({
+     *     // Required. The resource name of the settings to retrieve. Format: organizations/{organization\}/locations/{location\}/settings or projects/{projects\}/locations/{location\}/settings.
+     *     name: 'organizations/my-organization/locations/my-location/settings',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "notificationSettings": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -320,11 +368,13 @@ export namespace advisorynotifications_v1 {
     getSettings(
       params: Params$Resource$Organizations$Locations$Getsettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getSettings(
       params?: Params$Resource$Organizations$Locations$Getsettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAdvisorynotificationsV1Settings>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudAdvisorynotificationsV1Settings>
+    >;
     getSettings(
       params: Params$Resource$Organizations$Locations$Getsettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -359,8 +409,10 @@ export namespace advisorynotifications_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudAdvisorynotificationsV1Settings>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudAdvisorynotificationsV1Settings>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Getsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -406,6 +458,65 @@ export namespace advisorynotifications_v1 {
 
     /**
      * Update notification settings.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/advisorynotifications.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const advisorynotifications = google.advisorynotifications('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await advisorynotifications.organizations.locations.updateSettings({
+     *       // Identifier. The resource name of the settings to retrieve. Format: organizations/{organization\}/locations/{location\}/settings or projects/{projects\}/locations/{location\}/settings.
+     *       name: 'organizations/my-organization/locations/my-location/settings',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "etag": "my_etag",
+     *         //   "name": "my_name",
+     *         //   "notificationSettings": {}
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "notificationSettings": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -415,11 +526,13 @@ export namespace advisorynotifications_v1 {
     updateSettings(
       params: Params$Resource$Organizations$Locations$Updatesettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     updateSettings(
       params?: Params$Resource$Organizations$Locations$Updatesettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAdvisorynotificationsV1Settings>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudAdvisorynotificationsV1Settings>
+    >;
     updateSettings(
       params: Params$Resource$Organizations$Locations$Updatesettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -454,8 +567,10 @@ export namespace advisorynotifications_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudAdvisorynotificationsV1Settings>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudAdvisorynotificationsV1Settings>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Updatesettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -528,6 +643,59 @@ export namespace advisorynotifications_v1 {
 
     /**
      * Gets a notification.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/advisorynotifications.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const advisorynotifications = google.advisorynotifications('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await advisorynotifications.organizations.locations.notifications.get({
+     *       // ISO code for requested localization language. If unset, will be interpereted as "en". If the requested language is valid, but not supported for this notification, English will be returned with an "Not applicable" LocalizationState. If the ISO code is invalid (i.e. not a real language), this RPC will throw an error.
+     *       languageCode: 'placeholder-value',
+     *       // Required. A name of the notification to retrieve. Format: organizations/{organization\}/locations/{location\}/notifications/{notification\} or projects/{projects\}/locations/{location\}/notifications/{notification\}.
+     *       name: 'organizations/my-organization/locations/my-location/notifications/my-notification',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "messages": [],
+     *   //   "name": "my_name",
+     *   //   "notificationType": "my_notificationType",
+     *   //   "subject": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -537,11 +705,13 @@ export namespace advisorynotifications_v1 {
     get(
       params: Params$Resource$Organizations$Locations$Notifications$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Organizations$Locations$Notifications$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAdvisorynotificationsV1Notification>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudAdvisorynotificationsV1Notification>
+    >;
     get(
       params: Params$Resource$Organizations$Locations$Notifications$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -576,8 +746,10 @@ export namespace advisorynotifications_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudAdvisorynotificationsV1Notification>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudAdvisorynotificationsV1Notification>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Notifications$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -624,6 +796,63 @@ export namespace advisorynotifications_v1 {
 
     /**
      * Lists notifications under a given parent.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/advisorynotifications.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const advisorynotifications = google.advisorynotifications('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await advisorynotifications.organizations.locations.notifications.list({
+     *       // ISO code for requested localization language. If unset, will be interpereted as "en". If the requested language is valid, but not supported for this notification, English will be returned with an "Not applicable" LocalizationState. If the ISO code is invalid (i.e. not a real language), this RPC will throw an error.
+     *       languageCode: 'placeholder-value',
+     *       // The maximum number of notifications to return. The service may return fewer than this value. If unspecified or equal to 0, at most 50 notifications will be returned. The maximum value is 50; values above 50 will be coerced to 50.
+     *       pageSize: 'placeholder-value',
+     *       // A page token returned from a previous request. When paginating, all other parameters provided in the request must match the call that returned the page token.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The parent, which owns this collection of notifications. Must be of the form "organizations/{organization\}/locations/{location\}" or "projects/{project\}/locations/{location\}".
+     *       parent: 'organizations/my-organization/locations/my-location',
+     *       // Specifies which parts of the notification resource should be returned in the response.
+     *       view: 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "notifications": [],
+     *   //   "totalSize": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -633,11 +862,13 @@ export namespace advisorynotifications_v1 {
     list(
       params: Params$Resource$Organizations$Locations$Notifications$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Organizations$Locations$Notifications$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAdvisorynotificationsV1ListNotificationsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudAdvisorynotificationsV1ListNotificationsResponse>
+    >;
     list(
       params: Params$Resource$Organizations$Locations$Notifications$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -672,8 +903,10 @@ export namespace advisorynotifications_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudAdvisorynotificationsV1ListNotificationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudAdvisorynotificationsV1ListNotificationsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Notifications$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -778,6 +1011,54 @@ export namespace advisorynotifications_v1 {
 
     /**
      * Get notification settings.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/advisorynotifications.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const advisorynotifications = google.advisorynotifications('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await advisorynotifications.projects.locations.getSettings({
+     *     // Required. The resource name of the settings to retrieve. Format: organizations/{organization\}/locations/{location\}/settings or projects/{projects\}/locations/{location\}/settings.
+     *     name: 'projects/my-project/locations/my-location/settings',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "notificationSettings": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -787,11 +1068,13 @@ export namespace advisorynotifications_v1 {
     getSettings(
       params: Params$Resource$Projects$Locations$Getsettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getSettings(
       params?: Params$Resource$Projects$Locations$Getsettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAdvisorynotificationsV1Settings>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudAdvisorynotificationsV1Settings>
+    >;
     getSettings(
       params: Params$Resource$Projects$Locations$Getsettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -826,8 +1109,10 @@ export namespace advisorynotifications_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudAdvisorynotificationsV1Settings>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudAdvisorynotificationsV1Settings>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Getsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -873,6 +1158,64 @@ export namespace advisorynotifications_v1 {
 
     /**
      * Update notification settings.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/advisorynotifications.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const advisorynotifications = google.advisorynotifications('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await advisorynotifications.projects.locations.updateSettings({
+     *     // Identifier. The resource name of the settings to retrieve. Format: organizations/{organization\}/locations/{location\}/settings or projects/{projects\}/locations/{location\}/settings.
+     *     name: 'projects/my-project/locations/my-location/settings',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "etag": "my_etag",
+     *       //   "name": "my_name",
+     *       //   "notificationSettings": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "notificationSettings": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -882,11 +1225,13 @@ export namespace advisorynotifications_v1 {
     updateSettings(
       params: Params$Resource$Projects$Locations$Updatesettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     updateSettings(
       params?: Params$Resource$Projects$Locations$Updatesettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAdvisorynotificationsV1Settings>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudAdvisorynotificationsV1Settings>
+    >;
     updateSettings(
       params: Params$Resource$Projects$Locations$Updatesettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -921,8 +1266,10 @@ export namespace advisorynotifications_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudAdvisorynotificationsV1Settings>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudAdvisorynotificationsV1Settings>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Updatesettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -995,6 +1342,58 @@ export namespace advisorynotifications_v1 {
 
     /**
      * Gets a notification.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/advisorynotifications.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const advisorynotifications = google.advisorynotifications('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await advisorynotifications.projects.locations.notifications.get({
+     *     // ISO code for requested localization language. If unset, will be interpereted as "en". If the requested language is valid, but not supported for this notification, English will be returned with an "Not applicable" LocalizationState. If the ISO code is invalid (i.e. not a real language), this RPC will throw an error.
+     *     languageCode: 'placeholder-value',
+     *     // Required. A name of the notification to retrieve. Format: organizations/{organization\}/locations/{location\}/notifications/{notification\} or projects/{projects\}/locations/{location\}/notifications/{notification\}.
+     *     name: 'projects/my-project/locations/my-location/notifications/my-notification',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "messages": [],
+     *   //   "name": "my_name",
+     *   //   "notificationType": "my_notificationType",
+     *   //   "subject": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1004,11 +1403,13 @@ export namespace advisorynotifications_v1 {
     get(
       params: Params$Resource$Projects$Locations$Notifications$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Notifications$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAdvisorynotificationsV1Notification>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudAdvisorynotificationsV1Notification>
+    >;
     get(
       params: Params$Resource$Projects$Locations$Notifications$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1043,8 +1444,10 @@ export namespace advisorynotifications_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudAdvisorynotificationsV1Notification>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudAdvisorynotificationsV1Notification>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Notifications$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1090,6 +1493,64 @@ export namespace advisorynotifications_v1 {
 
     /**
      * Lists notifications under a given parent.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/advisorynotifications.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const advisorynotifications = google.advisorynotifications('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await advisorynotifications.projects.locations.notifications.list(
+     *     {
+     *       // ISO code for requested localization language. If unset, will be interpereted as "en". If the requested language is valid, but not supported for this notification, English will be returned with an "Not applicable" LocalizationState. If the ISO code is invalid (i.e. not a real language), this RPC will throw an error.
+     *       languageCode: 'placeholder-value',
+     *       // The maximum number of notifications to return. The service may return fewer than this value. If unspecified or equal to 0, at most 50 notifications will be returned. The maximum value is 50; values above 50 will be coerced to 50.
+     *       pageSize: 'placeholder-value',
+     *       // A page token returned from a previous request. When paginating, all other parameters provided in the request must match the call that returned the page token.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The parent, which owns this collection of notifications. Must be of the form "organizations/{organization\}/locations/{location\}" or "projects/{project\}/locations/{location\}".
+     *       parent: 'projects/my-project/locations/my-location',
+     *       // Specifies which parts of the notification resource should be returned in the response.
+     *       view: 'placeholder-value',
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "notifications": [],
+     *   //   "totalSize": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1099,11 +1560,13 @@ export namespace advisorynotifications_v1 {
     list(
       params: Params$Resource$Projects$Locations$Notifications$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Notifications$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAdvisorynotificationsV1ListNotificationsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudAdvisorynotificationsV1ListNotificationsResponse>
+    >;
     list(
       params: Params$Resource$Projects$Locations$Notifications$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1138,8 +1601,10 @@ export namespace advisorynotifications_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudAdvisorynotificationsV1ListNotificationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudAdvisorynotificationsV1ListNotificationsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Notifications$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

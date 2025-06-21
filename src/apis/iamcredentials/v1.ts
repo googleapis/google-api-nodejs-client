@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -271,6 +271,55 @@ export namespace iamcredentials_v1 {
 
     /**
      * Returns the trust boundary info for a given workforce pool.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iamcredentials.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const iamcredentials = google.iamcredentials('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await iamcredentials.locations.workforcePools.getAllowedLocations(
+     *     {
+     *       // Required. Resource name of workforce pool.
+     *       name: 'locations/my-location/workforcePools/my-workforcePool',
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "encodedLocations": "my_encodedLocations",
+     *   //   "locations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -280,11 +329,11 @@ export namespace iamcredentials_v1 {
     getAllowedLocations(
       params: Params$Resource$Locations$Workforcepools$Getallowedlocations,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getAllowedLocations(
       params?: Params$Resource$Locations$Workforcepools$Getallowedlocations,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$WorkforcePoolAllowedLocations>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$WorkforcePoolAllowedLocations>>;
     getAllowedLocations(
       params: Params$Resource$Locations$Workforcepools$Getallowedlocations,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -319,8 +368,8 @@ export namespace iamcredentials_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$WorkforcePoolAllowedLocations>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$WorkforcePoolAllowedLocations>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Workforcepools$Getallowedlocations;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -408,6 +457,56 @@ export namespace iamcredentials_v1 {
 
     /**
      * Returns the trust boundary info for a given workload identity pool.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iamcredentials.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const iamcredentials = google.iamcredentials('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await iamcredentials.projects.locations.workloadIdentityPools.getAllowedLocations(
+     *       {
+     *         // Required. Resource name of workload identity pool.
+     *         name: 'projects/my-project/locations/my-location/workloadIdentityPools/my-workloadIdentityPool',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "encodedLocations": "my_encodedLocations",
+     *   //   "locations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -417,11 +516,13 @@ export namespace iamcredentials_v1 {
     getAllowedLocations(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Getallowedlocations,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getAllowedLocations(
       params?: Params$Resource$Projects$Locations$Workloadidentitypools$Getallowedlocations,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$WorkloadIdentityPoolAllowedLocations>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$WorkloadIdentityPoolAllowedLocations>
+    >;
     getAllowedLocations(
       params: Params$Resource$Projects$Locations$Workloadidentitypools$Getallowedlocations,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -456,8 +557,10 @@ export namespace iamcredentials_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$WorkloadIdentityPoolAllowedLocations>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$WorkloadIdentityPoolAllowedLocations>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workloadidentitypools$Getallowedlocations;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -522,6 +625,65 @@ export namespace iamcredentials_v1 {
 
     /**
      * Generates an OAuth 2.0 access token for a service account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iamcredentials.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const iamcredentials = google.iamcredentials('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await iamcredentials.projects.serviceAccounts.generateAccessToken(
+     *     {
+     *       // Required. The resource name of the service account for which the credentials are requested, in the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID\}`. The `-` wildcard character is required; replacing it with a project ID is invalid.
+     *       name: 'projects/my-project/serviceAccounts/my-serviceAccount',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "delegates": [],
+     *         //   "lifetime": "my_lifetime",
+     *         //   "scope": []
+     *         // }
+     *       },
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accessToken": "my_accessToken",
+     *   //   "expireTime": "my_expireTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -531,11 +693,11 @@ export namespace iamcredentials_v1 {
     generateAccessToken(
       params: Params$Resource$Projects$Serviceaccounts$Generateaccesstoken,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     generateAccessToken(
       params?: Params$Resource$Projects$Serviceaccounts$Generateaccesstoken,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GenerateAccessTokenResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GenerateAccessTokenResponse>>;
     generateAccessToken(
       params: Params$Resource$Projects$Serviceaccounts$Generateaccesstoken,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -570,8 +732,8 @@ export namespace iamcredentials_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GenerateAccessTokenResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GenerateAccessTokenResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Serviceaccounts$Generateaccesstoken;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -619,6 +781,63 @@ export namespace iamcredentials_v1 {
 
     /**
      * Generates an OpenID Connect ID token for a service account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iamcredentials.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const iamcredentials = google.iamcredentials('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await iamcredentials.projects.serviceAccounts.generateIdToken({
+     *     // Required. The resource name of the service account for which the credentials are requested, in the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID\}`. The `-` wildcard character is required; replacing it with a project ID is invalid.
+     *     name: 'projects/my-project/serviceAccounts/my-serviceAccount',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "audience": "my_audience",
+     *       //   "delegates": [],
+     *       //   "includeEmail": false,
+     *       //   "organizationNumberIncluded": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "token": "my_token"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -628,11 +847,11 @@ export namespace iamcredentials_v1 {
     generateIdToken(
       params: Params$Resource$Projects$Serviceaccounts$Generateidtoken,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     generateIdToken(
       params?: Params$Resource$Projects$Serviceaccounts$Generateidtoken,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GenerateIdTokenResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GenerateIdTokenResponse>>;
     generateIdToken(
       params: Params$Resource$Projects$Serviceaccounts$Generateidtoken,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -667,8 +886,8 @@ export namespace iamcredentials_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GenerateIdTokenResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GenerateIdTokenResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Serviceaccounts$Generateidtoken;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -715,6 +934,55 @@ export namespace iamcredentials_v1 {
 
     /**
      * Returns the trust boundary info for a given service account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iamcredentials.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const iamcredentials = google.iamcredentials('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await iamcredentials.projects.serviceAccounts.getAllowedLocations(
+     *     {
+     *       // Required. Resource name of service account.
+     *       name: 'projects/my-project/serviceAccounts/my-serviceAccount',
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "encodedLocations": "my_encodedLocations",
+     *   //   "locations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -724,11 +992,11 @@ export namespace iamcredentials_v1 {
     getAllowedLocations(
       params: Params$Resource$Projects$Serviceaccounts$Getallowedlocations,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getAllowedLocations(
       params?: Params$Resource$Projects$Serviceaccounts$Getallowedlocations,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ServiceAccountAllowedLocations>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ServiceAccountAllowedLocations>>;
     getAllowedLocations(
       params: Params$Resource$Projects$Serviceaccounts$Getallowedlocations,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -763,8 +1031,8 @@ export namespace iamcredentials_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ServiceAccountAllowedLocations>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ServiceAccountAllowedLocations>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Serviceaccounts$Getallowedlocations;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -814,6 +1082,62 @@ export namespace iamcredentials_v1 {
 
     /**
      * Signs a blob using a service account's system-managed private key.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iamcredentials.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const iamcredentials = google.iamcredentials('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await iamcredentials.projects.serviceAccounts.signBlob({
+     *     // Required. The resource name of the service account for which the credentials are requested, in the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID\}`. The `-` wildcard character is required; replacing it with a project ID is invalid.
+     *     name: 'projects/my-project/serviceAccounts/my-serviceAccount',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "delegates": [],
+     *       //   "payload": "my_payload"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "keyId": "my_keyId",
+     *   //   "signedBlob": "my_signedBlob"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -823,11 +1147,11 @@ export namespace iamcredentials_v1 {
     signBlob(
       params: Params$Resource$Projects$Serviceaccounts$Signblob,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     signBlob(
       params?: Params$Resource$Projects$Serviceaccounts$Signblob,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SignBlobResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SignBlobResponse>>;
     signBlob(
       params: Params$Resource$Projects$Serviceaccounts$Signblob,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -856,7 +1180,10 @@ export namespace iamcredentials_v1 {
       callback?:
         | BodyResponseCallback<Schema$SignBlobResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SignBlobResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SignBlobResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Serviceaccounts$Signblob;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -903,6 +1230,62 @@ export namespace iamcredentials_v1 {
 
     /**
      * Signs a JWT using a service account's system-managed private key.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iamcredentials.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const iamcredentials = google.iamcredentials('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await iamcredentials.projects.serviceAccounts.signJwt({
+     *     // Required. The resource name of the service account for which the credentials are requested, in the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID\}`. The `-` wildcard character is required; replacing it with a project ID is invalid.
+     *     name: 'projects/my-project/serviceAccounts/my-serviceAccount',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "delegates": [],
+     *       //   "payload": "my_payload"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "keyId": "my_keyId",
+     *   //   "signedJwt": "my_signedJwt"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -912,11 +1295,11 @@ export namespace iamcredentials_v1 {
     signJwt(
       params: Params$Resource$Projects$Serviceaccounts$Signjwt,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     signJwt(
       params?: Params$Resource$Projects$Serviceaccounts$Signjwt,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SignJwtResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SignJwtResponse>>;
     signJwt(
       params: Params$Resource$Projects$Serviceaccounts$Signjwt,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -945,7 +1328,10 @@ export namespace iamcredentials_v1 {
       callback?:
         | BodyResponseCallback<Schema$SignJwtResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SignJwtResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SignJwtResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Serviceaccounts$Signjwt;
       let options = (optionsOrCallback || {}) as MethodOptions;

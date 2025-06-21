@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -201,6 +201,56 @@ export namespace verifiedaccess_v1 {
 
     /**
      * CreateChallenge API
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/verifiedaccess.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const verifiedaccess = google.verifiedaccess('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/verifiedaccess'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await verifiedaccess.challenge.create({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "alternativeChallenge": {},
+     *   //   "challenge": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -210,11 +260,11 @@ export namespace verifiedaccess_v1 {
     create(
       params: Params$Resource$Challenge$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Challenge$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Challenge>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Challenge>>;
     create(
       params: Params$Resource$Challenge$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -243,7 +293,10 @@ export namespace verifiedaccess_v1 {
       callback?:
         | BodyResponseCallback<Schema$Challenge>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Challenge> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Challenge>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Challenge$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -286,6 +339,62 @@ export namespace verifiedaccess_v1 {
 
     /**
      * VerifyChallengeResponse API
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/verifiedaccess.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const verifiedaccess = google.verifiedaccess('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/verifiedaccess'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await verifiedaccess.challenge.verify({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "challengeResponse": {},
+     *       //   "expectedIdentity": "my_expectedIdentity"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attestedDeviceId": "my_attestedDeviceId",
+     *   //   "deviceEnrollmentId": "my_deviceEnrollmentId",
+     *   //   "devicePermanentId": "my_devicePermanentId",
+     *   //   "signedPublicKeyAndChallenge": "my_signedPublicKeyAndChallenge",
+     *   //   "verificationOutput": "my_verificationOutput"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -295,11 +404,11 @@ export namespace verifiedaccess_v1 {
     verify(
       params: Params$Resource$Challenge$Verify,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     verify(
       params?: Params$Resource$Challenge$Verify,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$VerifyChallengeResponseResult>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$VerifyChallengeResponseResult>>;
     verify(
       params: Params$Resource$Challenge$Verify,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -334,8 +443,8 @@ export namespace verifiedaccess_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$VerifyChallengeResponseResult>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$VerifyChallengeResponseResult>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Challenge$Verify;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

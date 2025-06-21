@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -189,11 +189,11 @@ export namespace acmedns_v1 {
     get(
       params: Params$Resource$Acmechallengesets$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Acmechallengesets$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AcmeChallengeSet>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AcmeChallengeSet>>;
     get(
       params: Params$Resource$Acmechallengesets$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -222,7 +222,7 @@ export namespace acmedns_v1 {
       callback?:
         | BodyResponseCallback<Schema$AcmeChallengeSet>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AcmeChallengeSet> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$AcmeChallengeSet>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Acmechallengesets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -277,11 +277,11 @@ export namespace acmedns_v1 {
     rotateChallenges(
       params: Params$Resource$Acmechallengesets$Rotatechallenges,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     rotateChallenges(
       params?: Params$Resource$Acmechallengesets$Rotatechallenges,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AcmeChallengeSet>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AcmeChallengeSet>>;
     rotateChallenges(
       params: Params$Resource$Acmechallengesets$Rotatechallenges,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -312,7 +312,7 @@ export namespace acmedns_v1 {
       callback?:
         | BodyResponseCallback<Schema$AcmeChallengeSet>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AcmeChallengeSet> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$AcmeChallengeSet>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Acmechallengesets$Rotatechallenges;
       let options = (optionsOrCallback || {}) as MethodOptions;

@@ -128,7 +128,7 @@
       }
     }
   },
-  "revision": "20250423",
+  "revision": "20250516",
   "rootUrl": "https://trafficdirector.googleapis.com/",
   "schemas": {
     "Address": {
@@ -1226,7 +1226,7 @@
       "id": "StringMatcher",
       "properties": {
         "contains": {
-          "description": "The input string must have the substring specified here. Note: empty contains match is not allowed, please use regex instead. Examples: * ``abc`` matches the value ``xyz.abc.def``",
+          "description": "The input string must have the substring specified here. .. note:: Empty contains match is not allowed, please use ``safe_regex`` instead. Examples: * ``abc`` matches the value ``xyz.abc.def``",
           "type": "string"
         },
         "custom": {
@@ -1238,11 +1238,11 @@
           "type": "string"
         },
         "ignoreCase": {
-          "description": "If true, indicates the exact/prefix/suffix/contains matching should be case insensitive. This has no effect for the safe_regex match. For example, the matcher ``data`` will match both input string ``Data`` and ``data`` if set to true.",
+          "description": "If ``true``, indicates the exact/prefix/suffix/contains matching should be case insensitive. This has no effect for the ``safe_regex`` match. For example, the matcher ``data`` will match both input string ``Data`` and ``data`` if this option is set to ``true``.",
           "type": "boolean"
         },
         "prefix": {
-          "description": "The input string must have the prefix specified here. Note: empty prefix is not allowed, please use regex instead. Examples: * ``abc`` matches the value ``abc.xyz``",
+          "description": "The input string must have the prefix specified here. .. note:: Empty prefix match is not allowed, please use ``safe_regex`` instead. Examples: * ``abc`` matches the value ``abc.xyz``",
           "type": "string"
         },
         "safeRegex": {
@@ -1250,7 +1250,7 @@
           "description": "The input string must match the regular expression specified here."
         },
         "suffix": {
-          "description": "The input string must have the suffix specified here. Note: empty prefix is not allowed, please use regex instead. Examples: * ``abc`` matches the value ``xyz.abc``",
+          "description": "The input string must have the suffix specified here. .. note:: Empty suffix match is not allowed, please use ``safe_regex`` instead. Examples: * ``abc`` matches the value ``xyz.abc``",
           "type": "string"
         }
       },

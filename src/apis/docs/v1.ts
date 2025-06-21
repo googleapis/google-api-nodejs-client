@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -3504,6 +3504,67 @@ export namespace docs_v1 {
 
     /**
      * Applies one or more updates to the document. Each request is validated before being applied. If any request is not valid, then the entire request will fail and nothing will be applied. Some requests have replies to give you some information about how they are applied. Other requests do not need to return information; these each return an empty reply. The order of replies matches that of the requests. For example, suppose you call batchUpdate with four updates, and only the third one returns information. The response would have two empty replies, the reply to the third request, and another empty reply, in that order. Because other users may be editing the document, the document might not exactly reflect your changes: your changes may be altered with respect to collaborator changes. If there are no collaborators, the document should reflect your changes. In any case, the updates in your request are guaranteed to be applied together atomically.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/docs.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const docs = google.docs('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/documents',
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await docs.documents.batchUpdate({
+     *     // The ID of the document to update.
+     *     documentId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "requests": [],
+     *       //   "writeControl": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "documentId": "my_documentId",
+     *   //   "replies": [],
+     *   //   "writeControl": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3513,11 +3574,11 @@ export namespace docs_v1 {
     batchUpdate(
       params: Params$Resource$Documents$Batchupdate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     batchUpdate(
       params?: Params$Resource$Documents$Batchupdate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BatchUpdateDocumentResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BatchUpdateDocumentResponse>>;
     batchUpdate(
       params: Params$Resource$Documents$Batchupdate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3552,8 +3613,8 @@ export namespace docs_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BatchUpdateDocumentResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$BatchUpdateDocumentResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Documents$Batchupdate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3599,6 +3660,93 @@ export namespace docs_v1 {
 
     /**
      * Creates a blank document using the title given in the request. Other fields in the request, including any provided content, are ignored. Returns the created document.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/docs.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const docs = google.docs('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/documents',
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await docs.documents.create({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "body": {},
+     *       //   "documentId": "my_documentId",
+     *       //   "documentStyle": {},
+     *       //   "footers": {},
+     *       //   "footnotes": {},
+     *       //   "headers": {},
+     *       //   "inlineObjects": {},
+     *       //   "lists": {},
+     *       //   "namedRanges": {},
+     *       //   "namedStyles": {},
+     *       //   "positionedObjects": {},
+     *       //   "revisionId": "my_revisionId",
+     *       //   "suggestedDocumentStyleChanges": {},
+     *       //   "suggestedNamedStylesChanges": {},
+     *       //   "suggestionsViewMode": "my_suggestionsViewMode",
+     *       //   "tabs": [],
+     *       //   "title": "my_title"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "body": {},
+     *   //   "documentId": "my_documentId",
+     *   //   "documentStyle": {},
+     *   //   "footers": {},
+     *   //   "footnotes": {},
+     *   //   "headers": {},
+     *   //   "inlineObjects": {},
+     *   //   "lists": {},
+     *   //   "namedRanges": {},
+     *   //   "namedStyles": {},
+     *   //   "positionedObjects": {},
+     *   //   "revisionId": "my_revisionId",
+     *   //   "suggestedDocumentStyleChanges": {},
+     *   //   "suggestedNamedStylesChanges": {},
+     *   //   "suggestionsViewMode": "my_suggestionsViewMode",
+     *   //   "tabs": [],
+     *   //   "title": "my_title"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3608,11 +3756,11 @@ export namespace docs_v1 {
     create(
       params: Params$Resource$Documents$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Documents$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Document>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Document>>;
     create(
       params: Params$Resource$Documents$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3641,7 +3789,10 @@ export namespace docs_v1 {
       callback?:
         | BodyResponseCallback<Schema$Document>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Document> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Document>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Documents$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3683,6 +3834,78 @@ export namespace docs_v1 {
 
     /**
      * Gets the latest version of the specified document.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/docs.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const docs = google.docs('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/documents',
+     *       'https://www.googleapis.com/auth/documents.readonly',
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await docs.documents.get({
+     *     // The ID of the document to retrieve.
+     *     documentId: 'placeholder-value',
+     *     // Whether to populate the Document.tabs field instead of the text content fields like `body` and `documentStyle` on Document. - When `True`: Document content populates in the Document.tabs field instead of the text content fields in Document. - When `False`: The content of the document's first tab populates the content fields in Document excluding Document.tabs. If a document has only one tab, then that tab is used to populate the document content. Document.tabs will be empty.
+     *     includeTabsContent: 'placeholder-value',
+     *     // The suggestions view mode to apply to the document. This allows viewing the document with all suggestions inline, accepted or rejected. If one is not specified, DEFAULT_FOR_CURRENT_ACCESS is used.
+     *     suggestionsViewMode: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "body": {},
+     *   //   "documentId": "my_documentId",
+     *   //   "documentStyle": {},
+     *   //   "footers": {},
+     *   //   "footnotes": {},
+     *   //   "headers": {},
+     *   //   "inlineObjects": {},
+     *   //   "lists": {},
+     *   //   "namedRanges": {},
+     *   //   "namedStyles": {},
+     *   //   "positionedObjects": {},
+     *   //   "revisionId": "my_revisionId",
+     *   //   "suggestedDocumentStyleChanges": {},
+     *   //   "suggestedNamedStylesChanges": {},
+     *   //   "suggestionsViewMode": "my_suggestionsViewMode",
+     *   //   "tabs": [],
+     *   //   "title": "my_title"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3692,11 +3915,11 @@ export namespace docs_v1 {
     get(
       params: Params$Resource$Documents$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Documents$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Document>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Document>>;
     get(
       params: Params$Resource$Documents$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3725,7 +3948,10 @@ export namespace docs_v1 {
       callback?:
         | BodyResponseCallback<Schema$Document>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Document> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Document>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Documents$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

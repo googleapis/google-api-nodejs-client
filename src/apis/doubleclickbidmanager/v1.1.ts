@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -598,11 +598,11 @@ export namespace doubleclickbidmanager_v1_1 {
     createquery(
       params: Params$Resource$Queries$Createquery,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     createquery(
       params?: Params$Resource$Queries$Createquery,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Query>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Query>>;
     createquery(
       params: Params$Resource$Queries$Createquery,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -631,7 +631,7 @@ export namespace doubleclickbidmanager_v1_1 {
       callback?:
         | BodyResponseCallback<Schema$Query>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Query> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Query>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Queries$Createquery;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -723,11 +723,11 @@ export namespace doubleclickbidmanager_v1_1 {
     deletequery(
       params: Params$Resource$Queries$Deletequery,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     deletequery(
       params?: Params$Resource$Queries$Deletequery,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     deletequery(
       params: Params$Resource$Queries$Deletequery,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -754,7 +754,7 @@ export namespace doubleclickbidmanager_v1_1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<void>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Queries$Deletequery;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -857,11 +857,11 @@ export namespace doubleclickbidmanager_v1_1 {
     getquery(
       params: Params$Resource$Queries$Getquery,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getquery(
       params?: Params$Resource$Queries$Getquery,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Query>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Query>>;
     getquery(
       params: Params$Resource$Queries$Getquery,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -890,7 +890,7 @@ export namespace doubleclickbidmanager_v1_1 {
       callback?:
         | BodyResponseCallback<Schema$Query>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Query> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Query>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Queries$Getquery;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -989,11 +989,11 @@ export namespace doubleclickbidmanager_v1_1 {
     listqueries(
       params: Params$Resource$Queries$Listqueries,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     listqueries(
       params?: Params$Resource$Queries$Listqueries,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListQueriesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListQueriesResponse>>;
     listqueries(
       params: Params$Resource$Queries$Listqueries,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1026,8 +1026,8 @@ export namespace doubleclickbidmanager_v1_1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListQueriesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListQueriesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Queries$Listqueries;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1132,11 +1132,11 @@ export namespace doubleclickbidmanager_v1_1 {
     runquery(
       params: Params$Resource$Queries$Runquery,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     runquery(
       params?: Params$Resource$Queries$Runquery,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     runquery(
       params: Params$Resource$Queries$Runquery,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1163,7 +1163,7 @@ export namespace doubleclickbidmanager_v1_1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<void>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Queries$Runquery;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1323,11 +1323,11 @@ export namespace doubleclickbidmanager_v1_1 {
     listreports(
       params: Params$Resource$Reports$Listreports,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     listreports(
       params?: Params$Resource$Reports$Listreports,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListReportsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListReportsResponse>>;
     listreports(
       params: Params$Resource$Reports$Listreports,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1360,8 +1360,8 @@ export namespace doubleclickbidmanager_v1_1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListReportsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListReportsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Reports$Listreports;
       let options = (optionsOrCallback || {}) as MethodOptions;

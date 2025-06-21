@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -914,7 +914,7 @@ export namespace chromepolicy_v1 {
    */
   export interface Schema$Proto2FileDescriptorProto {
     /**
-     * BEGIN GOOGLE-INTERNAL TODO(b/297898292) Deprecate and remove this field in favor of enums. END GOOGLE-INTERNAL
+     * copybara:strip_begin TODO(b/297898292) Deprecate and remove this field in favor of enums. copybara:strip_end
      */
     editionDeprecated?: string | null;
     enumType?: Schema$Proto2EnumDescriptorProto[];
@@ -971,6 +971,67 @@ export namespace chromepolicy_v1 {
 
     /**
      * Gets the resolved policy values for a list of policies that match a search query.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromepolicy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromepolicy = google.chromepolicy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chrome.management.policy',
+     *       'https://www.googleapis.com/auth/chrome.management.policy.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chromepolicy.customers.policies.resolve({
+     *     // ID of the G Suite account or literal "my_customer" for the customer associated to the request.
+     *     customer: 'customers/my-customer',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "pageSize": 0,
+     *       //   "pageToken": "my_pageToken",
+     *       //   "policySchemaFilter": "my_policySchemaFilter",
+     *       //   "policyTargetKey": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "resolvedPolicies": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -980,11 +1041,13 @@ export namespace chromepolicy_v1 {
     resolve(
       params: Params$Resource$Customers$Policies$Resolve,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     resolve(
       params?: Params$Resource$Customers$Policies$Resolve,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleChromePolicyVersionsV1ResolveResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleChromePolicyVersionsV1ResolveResponse>
+    >;
     resolve(
       params: Params$Resource$Customers$Policies$Resolve,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1019,8 +1082,10 @@ export namespace chromepolicy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleChromePolicyVersionsV1ResolveResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleChromePolicyVersionsV1ResolveResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Policies$Resolve;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1088,6 +1153,58 @@ export namespace chromepolicy_v1 {
 
     /**
      * Delete multiple policy values that are applied to a specific group. All targets must have the same target format. That is to say that they must point to the same target resource and must have the same keys specified in `additionalTargetKeyNames`, though the values for those keys may be different. On failure the request will return the error details as part of the google.rpc.Status.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromepolicy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromepolicy = google.chromepolicy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/chrome.management.policy'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chromepolicy.customers.policies.groups.batchDelete({
+     *     // ID of the Google Workspace account or literal "my_customer" for the customer associated to the request.
+     *     customer: 'customers/my-customer',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "requests": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1097,11 +1214,11 @@ export namespace chromepolicy_v1 {
     batchDelete(
       params: Params$Resource$Customers$Policies$Groups$Batchdelete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     batchDelete(
       params?: Params$Resource$Customers$Policies$Groups$Batchdelete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     batchDelete(
       params: Params$Resource$Customers$Policies$Groups$Batchdelete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1134,8 +1251,8 @@ export namespace chromepolicy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Policies$Groups$Batchdelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1180,6 +1297,58 @@ export namespace chromepolicy_v1 {
 
     /**
      * Modify multiple policy values that are applied to a specific group. All targets must have the same target format. That is to say that they must point to the same target resource and must have the same keys specified in `additionalTargetKeyNames`, though the values for those keys may be different. On failure the request will return the error details as part of the google.rpc.Status.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromepolicy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromepolicy = google.chromepolicy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/chrome.management.policy'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chromepolicy.customers.policies.groups.batchModify({
+     *     // ID of the Google Workspace account or literal "my_customer" for the customer associated to the request.
+     *     customer: 'customers/my-customer',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "requests": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1189,11 +1358,11 @@ export namespace chromepolicy_v1 {
     batchModify(
       params: Params$Resource$Customers$Policies$Groups$Batchmodify,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     batchModify(
       params?: Params$Resource$Customers$Policies$Groups$Batchmodify,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     batchModify(
       params: Params$Resource$Customers$Policies$Groups$Batchmodify,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1226,8 +1395,8 @@ export namespace chromepolicy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Policies$Groups$Batchmodify;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1272,6 +1441,69 @@ export namespace chromepolicy_v1 {
 
     /**
      * Retrieve a group priority ordering for an app. The target app must be supplied in `additionalTargetKeyNames` in the PolicyTargetKey. On failure the request will return the error details as part of the google.rpc.Status.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromepolicy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromepolicy = google.chromepolicy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chrome.management.policy',
+     *       'https://www.googleapis.com/auth/chrome.management.policy.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await chromepolicy.customers.policies.groups.listGroupPriorityOrdering({
+     *       // Required. ID of the Google Workspace account or literal "my_customer" for the customer associated to the request.
+     *       customer: 'customers/my-customer',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "policyNamespace": "my_policyNamespace",
+     *         //   "policySchema": "my_policySchema",
+     *         //   "policyTargetKey": {}
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "groupIds": [],
+     *   //   "policyNamespace": "my_policyNamespace",
+     *   //   "policySchema": "my_policySchema",
+     *   //   "policyTargetKey": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1281,11 +1513,13 @@ export namespace chromepolicy_v1 {
     listGroupPriorityOrdering(
       params: Params$Resource$Customers$Policies$Groups$Listgrouppriorityordering,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     listGroupPriorityOrdering(
       params?: Params$Resource$Customers$Policies$Groups$Listgrouppriorityordering,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleChromePolicyVersionsV1ListGroupPriorityOrderingResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleChromePolicyVersionsV1ListGroupPriorityOrderingResponse>
+    >;
     listGroupPriorityOrdering(
       params: Params$Resource$Customers$Policies$Groups$Listgrouppriorityordering,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1320,8 +1554,10 @@ export namespace chromepolicy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleChromePolicyVersionsV1ListGroupPriorityOrderingResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleChromePolicyVersionsV1ListGroupPriorityOrderingResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Policies$Groups$Listgrouppriorityordering;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1370,6 +1606,62 @@ export namespace chromepolicy_v1 {
 
     /**
      * Update a group priority ordering for an app. The target app must be supplied in `additionalTargetKeyNames` in the PolicyTargetKey. On failure the request will return the error details as part of the google.rpc.Status.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromepolicy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromepolicy = google.chromepolicy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/chrome.management.policy'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await chromepolicy.customers.policies.groups.updateGroupPriorityOrdering({
+     *       // Required. ID of the Google Workspace account or literal "my_customer" for the customer associated to the request.
+     *       customer: 'customers/my-customer',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "groupIds": [],
+     *         //   "policyNamespace": "my_policyNamespace",
+     *         //   "policySchema": "my_policySchema",
+     *         //   "policyTargetKey": {}
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1379,11 +1671,11 @@ export namespace chromepolicy_v1 {
     updateGroupPriorityOrdering(
       params: Params$Resource$Customers$Policies$Groups$Updategrouppriorityordering,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     updateGroupPriorityOrdering(
       params?: Params$Resource$Customers$Policies$Groups$Updategrouppriorityordering,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     updateGroupPriorityOrdering(
       params: Params$Resource$Customers$Policies$Groups$Updategrouppriorityordering,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1416,8 +1708,8 @@ export namespace chromepolicy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Policies$Groups$Updategrouppriorityordering;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1520,6 +1812,65 @@ export namespace chromepolicy_v1 {
 
     /**
      * Creates a certificate at a specified OU for a customer.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromepolicy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromepolicy = google.chromepolicy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/chrome.management.policy'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chromepolicy.customers.policies.networks.defineCertificate({
+     *     // Required. The customer for which the certificate will apply.
+     *     customer: 'customers/my-customer',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "ceritificateName": "my_ceritificateName",
+     *       //   "certificate": "my_certificate",
+     *       //   "settings": [],
+     *       //   "targetResource": "my_targetResource"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "networkId": "my_networkId",
+     *   //   "settings": [],
+     *   //   "targetResource": "my_targetResource"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1529,11 +1880,13 @@ export namespace chromepolicy_v1 {
     defineCertificate(
       params: Params$Resource$Customers$Policies$Networks$Definecertificate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     defineCertificate(
       params?: Params$Resource$Customers$Policies$Networks$Definecertificate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleChromePolicyVersionsV1DefineCertificateResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleChromePolicyVersionsV1DefineCertificateResponse>
+    >;
     defineCertificate(
       params: Params$Resource$Customers$Policies$Networks$Definecertificate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1568,8 +1921,10 @@ export namespace chromepolicy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleChromePolicyVersionsV1DefineCertificateResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleChromePolicyVersionsV1DefineCertificateResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Policies$Networks$Definecertificate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1617,6 +1972,64 @@ export namespace chromepolicy_v1 {
 
     /**
      * Define a new network.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromepolicy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromepolicy = google.chromepolicy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/chrome.management.policy'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chromepolicy.customers.policies.networks.defineNetwork({
+     *     // Required. The customer who will own this new network.
+     *     customer: 'customers/my-customer',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "name": "my_name",
+     *       //   "settings": [],
+     *       //   "targetResource": "my_targetResource"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "networkId": "my_networkId",
+     *   //   "settings": [],
+     *   //   "targetResource": "my_targetResource"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1626,11 +2039,13 @@ export namespace chromepolicy_v1 {
     defineNetwork(
       params: Params$Resource$Customers$Policies$Networks$Definenetwork,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     defineNetwork(
       params?: Params$Resource$Customers$Policies$Networks$Definenetwork,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleChromePolicyVersionsV1DefineNetworkResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleChromePolicyVersionsV1DefineNetworkResponse>
+    >;
     defineNetwork(
       params: Params$Resource$Customers$Policies$Networks$Definenetwork,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1665,8 +2080,10 @@ export namespace chromepolicy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleChromePolicyVersionsV1DefineNetworkResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleChromePolicyVersionsV1DefineNetworkResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Policies$Networks$Definenetwork;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1714,6 +2131,59 @@ export namespace chromepolicy_v1 {
 
     /**
      * Remove an existing certificate by guid.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromepolicy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromepolicy = google.chromepolicy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/chrome.management.policy'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chromepolicy.customers.policies.networks.removeCertificate({
+     *     // Required. The customer whose certificate will be removed.
+     *     customer: 'customers/my-customer',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "networkId": "my_networkId",
+     *       //   "targetResource": "my_targetResource"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1723,11 +2193,13 @@ export namespace chromepolicy_v1 {
     removeCertificate(
       params: Params$Resource$Customers$Policies$Networks$Removecertificate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     removeCertificate(
       params?: Params$Resource$Customers$Policies$Networks$Removecertificate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleChromePolicyVersionsV1RemoveCertificateResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleChromePolicyVersionsV1RemoveCertificateResponse>
+    >;
     removeCertificate(
       params: Params$Resource$Customers$Policies$Networks$Removecertificate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1762,8 +2234,10 @@ export namespace chromepolicy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleChromePolicyVersionsV1RemoveCertificateResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleChromePolicyVersionsV1RemoveCertificateResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Policies$Networks$Removecertificate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1811,6 +2285,59 @@ export namespace chromepolicy_v1 {
 
     /**
      * Remove an existing network by guid.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromepolicy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromepolicy = google.chromepolicy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/chrome.management.policy'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chromepolicy.customers.policies.networks.removeNetwork({
+     *     // Required. The customer whose network will be removed.
+     *     customer: 'customers/my-customer',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "networkId": "my_networkId",
+     *       //   "targetResource": "my_targetResource"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1820,11 +2347,13 @@ export namespace chromepolicy_v1 {
     removeNetwork(
       params: Params$Resource$Customers$Policies$Networks$Removenetwork,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     removeNetwork(
       params?: Params$Resource$Customers$Policies$Networks$Removenetwork,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleChromePolicyVersionsV1RemoveNetworkResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleChromePolicyVersionsV1RemoveNetworkResponse>
+    >;
     removeNetwork(
       params: Params$Resource$Customers$Policies$Networks$Removenetwork,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1859,8 +2388,10 @@ export namespace chromepolicy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleChromePolicyVersionsV1RemoveNetworkResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleChromePolicyVersionsV1RemoveNetworkResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Policies$Networks$Removenetwork;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1964,6 +2495,58 @@ export namespace chromepolicy_v1 {
 
     /**
      * Modify multiple policy values that are applied to a specific org unit so that they now inherit the value from a parent (if applicable). All targets must have the same target format. That is to say that they must point to the same target resource and must have the same keys specified in `additionalTargetKeyNames`, though the values for those keys may be different. On failure the request will return the error details as part of the google.rpc.Status.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromepolicy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromepolicy = google.chromepolicy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/chrome.management.policy'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chromepolicy.customers.policies.orgunits.batchInherit({
+     *     // ID of the G Suite account or literal "my_customer" for the customer associated to the request.
+     *     customer: 'customers/my-customer',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "requests": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1973,11 +2556,11 @@ export namespace chromepolicy_v1 {
     batchInherit(
       params: Params$Resource$Customers$Policies$Orgunits$Batchinherit,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     batchInherit(
       params?: Params$Resource$Customers$Policies$Orgunits$Batchinherit,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     batchInherit(
       params: Params$Resource$Customers$Policies$Orgunits$Batchinherit,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2010,8 +2593,8 @@ export namespace chromepolicy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Policies$Orgunits$Batchinherit;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2056,6 +2639,58 @@ export namespace chromepolicy_v1 {
 
     /**
      * Modify multiple policy values that are applied to a specific org unit. All targets must have the same target format. That is to say that they must point to the same target resource and must have the same keys specified in `additionalTargetKeyNames`, though the values for those keys may be different. On failure the request will return the error details as part of the google.rpc.Status.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromepolicy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromepolicy = google.chromepolicy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/chrome.management.policy'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chromepolicy.customers.policies.orgunits.batchModify({
+     *     // ID of the G Suite account or literal "my_customer" for the customer associated to the request.
+     *     customer: 'customers/my-customer',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "requests": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2065,11 +2700,11 @@ export namespace chromepolicy_v1 {
     batchModify(
       params: Params$Resource$Customers$Policies$Orgunits$Batchmodify,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     batchModify(
       params?: Params$Resource$Customers$Policies$Orgunits$Batchmodify,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     batchModify(
       params: Params$Resource$Customers$Policies$Orgunits$Batchmodify,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2102,8 +2737,8 @@ export namespace chromepolicy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Policies$Orgunits$Batchmodify;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2180,6 +2815,67 @@ export namespace chromepolicy_v1 {
 
     /**
      * Get a specific policy schema for a customer by its resource name.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromepolicy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromepolicy = google.chromepolicy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chrome.management.policy',
+     *       'https://www.googleapis.com/auth/chrome.management.policy.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chromepolicy.customers.policySchemas.get({
+     *     // Required. The policy schema resource name to query.
+     *     name: 'customers/my-customer/policySchemas/.*',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accessRestrictions": [],
+     *   //   "additionalTargetKeyNames": [],
+     *   //   "categoryTitle": "my_categoryTitle",
+     *   //   "definition": {},
+     *   //   "fieldDescriptions": [],
+     *   //   "name": "my_name",
+     *   //   "notices": [],
+     *   //   "policyApiLifecycle": {},
+     *   //   "policyDescription": "my_policyDescription",
+     *   //   "schemaName": "my_schemaName",
+     *   //   "supportUri": "my_supportUri",
+     *   //   "supportedPlatforms": [],
+     *   //   "validTargetResources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2189,11 +2885,13 @@ export namespace chromepolicy_v1 {
     get(
       params: Params$Resource$Customers$Policyschemas$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Customers$Policyschemas$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleChromePolicyVersionsV1PolicySchema>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleChromePolicyVersionsV1PolicySchema>
+    >;
     get(
       params: Params$Resource$Customers$Policyschemas$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2228,8 +2926,10 @@ export namespace chromepolicy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleChromePolicyVersionsV1PolicySchema>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleChromePolicyVersionsV1PolicySchema>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Policyschemas$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2274,6 +2974,62 @@ export namespace chromepolicy_v1 {
 
     /**
      * Gets a list of policy schemas that match a specified filter value for a given customer.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromepolicy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromepolicy = google.chromepolicy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chrome.management.policy',
+     *       'https://www.googleapis.com/auth/chrome.management.policy.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chromepolicy.customers.policySchemas.list({
+     *     // The schema filter used to find a particular schema based on fields like its resource name, description and `additionalTargetKeyNames`.
+     *     filter: 'placeholder-value',
+     *     // The maximum number of policy schemas to return, defaults to 100 and has a maximum of 1000.
+     *     pageSize: 'placeholder-value',
+     *     // The page token used to retrieve a specific page of the listing request.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The customer for which the listing request will apply.
+     *     parent: 'customers/my-customer',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "policySchemas": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2283,11 +3039,13 @@ export namespace chromepolicy_v1 {
     list(
       params: Params$Resource$Customers$Policyschemas$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Customers$Policyschemas$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleChromePolicyVersionsV1ListPolicySchemasResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleChromePolicyVersionsV1ListPolicySchemasResponse>
+    >;
     list(
       params: Params$Resource$Customers$Policyschemas$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2322,8 +3080,10 @@ export namespace chromepolicy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleChromePolicyVersionsV1ListPolicySchemasResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleChromePolicyVersionsV1ListPolicySchemasResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Policyschemas$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2405,6 +3165,64 @@ export namespace chromepolicy_v1 {
 
     /**
      * Creates an enterprise file from the content provided by user. Returns a public download url for end user.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromepolicy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromepolicy = google.chromepolicy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/chrome.management.policy'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chromepolicy.media.upload({
+     *     // Required. The customer for which the file upload will apply.
+     *     customer: 'customers/my-customer',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "policyField": "my_policyField"
+     *       // }
+     *     },
+     *     media: {
+     *       mimeType: 'placeholder-value',
+     *       body: 'placeholder-value',
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "downloadUri": "my_downloadUri"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2414,11 +3232,13 @@ export namespace chromepolicy_v1 {
     upload(
       params: Params$Resource$Media$Upload,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     upload(
       params?: Params$Resource$Media$Upload,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleChromePolicyVersionsV1UploadPolicyFileResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleChromePolicyVersionsV1UploadPolicyFileResponse>
+    >;
     upload(
       params: Params$Resource$Media$Upload,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2453,8 +3273,10 @@ export namespace chromepolicy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleChromePolicyVersionsV1UploadPolicyFileResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleChromePolicyVersionsV1UploadPolicyFileResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Media$Upload;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

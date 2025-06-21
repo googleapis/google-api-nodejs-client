@@ -1,5 +1,30 @@
 # Changelog
 
+## [8.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/tasks-v8.0.0...tasks-v8.0.1) (2025-06-04)
+
+
+### Bug Fixes
+
+* **deps:** upgrade googleapis-common to 8.0.2-rc ([f4b0990](https://github.com/googleapis/google-api-nodejs-client/commit/f4b099071040cfbcfe4a2e7d487d45ee93b369e0))
+
+## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/tasks-v7.0.4...tasks-v8.0.0) (2025-05-29)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to node 18
+
+### Features
+
+* upgrade to node 18 ([682fbb8](https://github.com/googleapis/google-api-nodejs-client/commit/682fbb869189ae92b3e9a194d37d0548af0c1f92))
+
+## [7.0.4](https://github.com/googleapis/google-api-nodejs-client/compare/tasks-v7.0.3...tasks-v7.0.4) (2025-05-05)
+
+
+### Bug Fixes
+
+* **tasks:** update the API ([a68eb91](https://github.com/googleapis/google-api-nodejs-client/commit/a68eb91724df65681d2b65d8f73844b98264cd6a))
+
 ## [7.0.3](https://github.com/googleapis/google-api-nodejs-client/compare/tasks-v7.0.2...tasks-v7.0.3) (2025-03-18)
 
 

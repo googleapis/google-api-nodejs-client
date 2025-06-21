@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -410,7 +410,7 @@ export namespace orgpolicy_v2 {
      */
     denyAll?: boolean | null;
     /**
-     * If `true`, then the policy is enforced. If `false`, then any configuration is acceptable. This field can be set only in policies for boolean constraints.
+     * If `true`, then the policy is enforced. If `false`, then any configuration is acceptable. This field can be set in policies for boolean constraints, custom constraints and managed constraints.
      */
     enforce?: boolean | null;
     /**
@@ -480,6 +480,57 @@ export namespace orgpolicy_v2 {
 
     /**
      * Lists constraints that could be applied on the specified resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/orgpolicy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const orgpolicy = google.orgpolicy('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await orgpolicy.folders.constraints.list({
+     *     // Size of the pages to be returned. This is currently unsupported and will be ignored. The server may at any point start using this field to limit page size.
+     *     pageSize: 'placeholder-value',
+     *     // Page token used to retrieve the next page. This is currently unsupported and will be ignored. The server may at any point start using this field.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The Google Cloud resource that parents the constraint. Must be in one of the following forms: * `projects/{project_number\}` * `projects/{project_id\}` * `folders/{folder_id\}` * `organizations/{organization_id\}`
+     *     parent: 'folders/my-folder',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "constraints": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -489,11 +540,13 @@ export namespace orgpolicy_v2 {
     list(
       params: Params$Resource$Folders$Constraints$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Folders$Constraints$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudOrgpolicyV2ListConstraintsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2ListConstraintsResponse>
+    >;
     list(
       params: Params$Resource$Folders$Constraints$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -528,8 +581,10 @@ export namespace orgpolicy_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudOrgpolicyV2ListConstraintsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2ListConstraintsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Constraints$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -600,6 +655,68 @@ export namespace orgpolicy_v2 {
 
     /**
      * Creates a policy. Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the constraint does not exist. Returns a `google.rpc.Status` with `google.rpc.Code.ALREADY_EXISTS` if the policy already exists on the given Google Cloud resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/orgpolicy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const orgpolicy = google.orgpolicy('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await orgpolicy.folders.policies.create({
+     *     // Required. The Google Cloud resource that will parent the new policy. Must be in one of the following forms: * `projects/{project_number\}` * `projects/{project_id\}` * `folders/{folder_id\}` * `organizations/{organization_id\}`
+     *     parent: 'folders/my-folder',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "alternate": {},
+     *       //   "dryRunSpec": {},
+     *       //   "etag": "my_etag",
+     *       //   "name": "my_name",
+     *       //   "spec": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "alternate": {},
+     *   //   "dryRunSpec": {},
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "spec": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -609,11 +726,11 @@ export namespace orgpolicy_v2 {
     create(
       params: Params$Resource$Folders$Policies$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Folders$Policies$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudOrgpolicyV2Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2Policy>>;
     create(
       params: Params$Resource$Folders$Policies$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -648,8 +765,8 @@ export namespace orgpolicy_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudOrgpolicyV2Policy>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Policies$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -697,6 +814,52 @@ export namespace orgpolicy_v2 {
 
     /**
      * Deletes a policy. Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the constraint or organization policy does not exist.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/orgpolicy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const orgpolicy = google.orgpolicy('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await orgpolicy.folders.policies.delete({
+     *     // Optional. The current etag of policy. If an etag is provided and does not match the current etag of the policy, deletion will be blocked and an ABORTED error will be returned.
+     *     etag: 'placeholder-value',
+     *     // Required. Name of the policy to delete. See the policy entry for naming rules.
+     *     name: 'folders/my-folder/policies/my-policie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -706,11 +869,11 @@ export namespace orgpolicy_v2 {
     delete(
       params: Params$Resource$Folders$Policies$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Folders$Policies$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     delete(
       params: Params$Resource$Folders$Policies$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -741,8 +904,8 @@ export namespace orgpolicy_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Policies$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -785,6 +948,56 @@ export namespace orgpolicy_v2 {
 
     /**
      * Gets a policy on a resource. If no policy is set on the resource, `NOT_FOUND` is returned. The `etag` value can be used with `UpdatePolicy()` to update a policy during read-modify-write.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/orgpolicy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const orgpolicy = google.orgpolicy('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await orgpolicy.folders.policies.get({
+     *     // Required. Resource name of the policy. See Policy for naming requirements.
+     *     name: 'folders/my-folder/policies/my-policie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "alternate": {},
+     *   //   "dryRunSpec": {},
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "spec": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -794,11 +1007,11 @@ export namespace orgpolicy_v2 {
     get(
       params: Params$Resource$Folders$Policies$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Folders$Policies$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudOrgpolicyV2Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2Policy>>;
     get(
       params: Params$Resource$Folders$Policies$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -833,8 +1046,8 @@ export namespace orgpolicy_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudOrgpolicyV2Policy>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Policies$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -879,6 +1092,56 @@ export namespace orgpolicy_v2 {
 
     /**
      * Gets the effective policy on a resource. This is the result of merging policies in the resource hierarchy and evaluating conditions. The returned policy will not have an `etag` or `condition` set because it is an evaluated policy across multiple resources. Subtrees of Resource Manager resource hierarchy with 'under:' prefix will not be expanded.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/orgpolicy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const orgpolicy = google.orgpolicy('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await orgpolicy.folders.policies.getEffectivePolicy({
+     *     // Required. The effective policy to compute. See Policy for naming requirements.
+     *     name: 'folders/my-folder/policies/my-policie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "alternate": {},
+     *   //   "dryRunSpec": {},
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "spec": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -888,11 +1151,11 @@ export namespace orgpolicy_v2 {
     getEffectivePolicy(
       params: Params$Resource$Folders$Policies$Geteffectivepolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getEffectivePolicy(
       params?: Params$Resource$Folders$Policies$Geteffectivepolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudOrgpolicyV2Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2Policy>>;
     getEffectivePolicy(
       params: Params$Resource$Folders$Policies$Geteffectivepolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -927,8 +1190,8 @@ export namespace orgpolicy_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudOrgpolicyV2Policy>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Policies$Geteffectivepolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -976,6 +1239,57 @@ export namespace orgpolicy_v2 {
 
     /**
      * Retrieves all of the policies that exist on a particular resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/orgpolicy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const orgpolicy = google.orgpolicy('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await orgpolicy.folders.policies.list({
+     *     // Size of the pages to be returned. This is currently unsupported and will be ignored. The server may at any point start using this field to limit page size.
+     *     pageSize: 'placeholder-value',
+     *     // Page token used to retrieve the next page. This is currently unsupported and will be ignored. The server may at any point start using this field.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The target Google Cloud resource that parents the set of constraints and policies that will be returned from this call. Must be in one of the following forms: * `projects/{project_number\}` * `projects/{project_id\}` * `folders/{folder_id\}` * `organizations/{organization_id\}`
+     *     parent: 'folders/my-folder',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "policies": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -985,11 +1299,13 @@ export namespace orgpolicy_v2 {
     list(
       params: Params$Resource$Folders$Policies$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Folders$Policies$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudOrgpolicyV2ListPoliciesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2ListPoliciesResponse>
+    >;
     list(
       params: Params$Resource$Folders$Policies$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1024,8 +1340,10 @@ export namespace orgpolicy_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudOrgpolicyV2ListPoliciesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2ListPoliciesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Policies$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1073,6 +1391,70 @@ export namespace orgpolicy_v2 {
 
     /**
      * Updates a policy. Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the constraint or the policy do not exist. Returns a `google.rpc.Status` with `google.rpc.Code.ABORTED` if the etag supplied in the request does not match the persisted etag of the policy Note: the supplied policy will perform a full overwrite of all fields.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/orgpolicy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const orgpolicy = google.orgpolicy('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await orgpolicy.folders.policies.patch({
+     *     // Immutable. The resource name of the policy. Must be one of the following forms, where `constraint_name` is the name of the constraint which this policy configures: * `projects/{project_number\}/policies/{constraint_name\}` * `folders/{folder_id\}/policies/{constraint_name\}` * `organizations/{organization_id\}/policies/{constraint_name\}` For example, `projects/123/policies/compute.disableSerialPortAccess`. Note: `projects/{project_id\}/policies/{constraint_name\}` is also an acceptable name for API requests, but responses will return the name using the equivalent project number.
+     *     name: 'folders/my-folder/policies/my-policie',
+     *     // Field mask used to specify the fields to be overwritten in the policy by the set. The fields specified in the update_mask are relative to the policy, not the full request.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "alternate": {},
+     *       //   "dryRunSpec": {},
+     *       //   "etag": "my_etag",
+     *       //   "name": "my_name",
+     *       //   "spec": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "alternate": {},
+     *   //   "dryRunSpec": {},
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "spec": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1082,11 +1464,11 @@ export namespace orgpolicy_v2 {
     patch(
       params: Params$Resource$Folders$Policies$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Folders$Policies$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudOrgpolicyV2Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2Policy>>;
     patch(
       params: Params$Resource$Folders$Policies$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1121,8 +1503,8 @@ export namespace orgpolicy_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudOrgpolicyV2Policy>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Policies$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1258,6 +1640,57 @@ export namespace orgpolicy_v2 {
 
     /**
      * Lists constraints that could be applied on the specified resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/orgpolicy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const orgpolicy = google.orgpolicy('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await orgpolicy.organizations.constraints.list({
+     *     // Size of the pages to be returned. This is currently unsupported and will be ignored. The server may at any point start using this field to limit page size.
+     *     pageSize: 'placeholder-value',
+     *     // Page token used to retrieve the next page. This is currently unsupported and will be ignored. The server may at any point start using this field.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The Google Cloud resource that parents the constraint. Must be in one of the following forms: * `projects/{project_number\}` * `projects/{project_id\}` * `folders/{folder_id\}` * `organizations/{organization_id\}`
+     *     parent: 'organizations/my-organization',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "constraints": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1267,11 +1700,13 @@ export namespace orgpolicy_v2 {
     list(
       params: Params$Resource$Organizations$Constraints$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Organizations$Constraints$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudOrgpolicyV2ListConstraintsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2ListConstraintsResponse>
+    >;
     list(
       params: Params$Resource$Organizations$Constraints$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1306,8 +1741,10 @@ export namespace orgpolicy_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudOrgpolicyV2ListConstraintsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2ListConstraintsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Constraints$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1378,6 +1815,74 @@ export namespace orgpolicy_v2 {
 
     /**
      * Creates a custom constraint. Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the organization does not exist. Returns a `google.rpc.Status` with `google.rpc.Code.ALREADY_EXISTS` if the constraint already exists on the given organization.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/orgpolicy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const orgpolicy = google.orgpolicy('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await orgpolicy.organizations.customConstraints.create({
+     *     // Required. Must be in the following form: * `organizations/{organization_id\}`
+     *     parent: 'organizations/my-organization',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "actionType": "my_actionType",
+     *       //   "condition": "my_condition",
+     *       //   "description": "my_description",
+     *       //   "displayName": "my_displayName",
+     *       //   "methodTypes": [],
+     *       //   "name": "my_name",
+     *       //   "resourceTypes": [],
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "actionType": "my_actionType",
+     *   //   "condition": "my_condition",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "methodTypes": [],
+     *   //   "name": "my_name",
+     *   //   "resourceTypes": [],
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1387,11 +1892,13 @@ export namespace orgpolicy_v2 {
     create(
       params: Params$Resource$Organizations$Customconstraints$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Organizations$Customconstraints$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudOrgpolicyV2CustomConstraint>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2CustomConstraint>
+    >;
     create(
       params: Params$Resource$Organizations$Customconstraints$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1426,8 +1933,10 @@ export namespace orgpolicy_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudOrgpolicyV2CustomConstraint>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2CustomConstraint>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Customconstraints$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1475,6 +1984,50 @@ export namespace orgpolicy_v2 {
 
     /**
      * Deletes a custom constraint. Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the constraint does not exist.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/orgpolicy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const orgpolicy = google.orgpolicy('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await orgpolicy.organizations.customConstraints.delete({
+     *     // Required. Name of the custom constraint to delete. See the custom constraint entry for naming rules.
+     *     name: 'organizations/my-organization/customConstraints/my-customConstraint',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1484,11 +2037,11 @@ export namespace orgpolicy_v2 {
     delete(
       params: Params$Resource$Organizations$Customconstraints$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Organizations$Customconstraints$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     delete(
       params: Params$Resource$Organizations$Customconstraints$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1519,8 +2072,8 @@ export namespace orgpolicy_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Customconstraints$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1563,6 +2116,59 @@ export namespace orgpolicy_v2 {
 
     /**
      * Gets a custom or managed constraint. Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the custom or managed constraint does not exist.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/orgpolicy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const orgpolicy = google.orgpolicy('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await orgpolicy.organizations.customConstraints.get({
+     *     // Required. Resource name of the custom or managed constraint. See the custom constraint entry for naming requirements.
+     *     name: 'organizations/my-organization/customConstraints/my-customConstraint',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "actionType": "my_actionType",
+     *   //   "condition": "my_condition",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "methodTypes": [],
+     *   //   "name": "my_name",
+     *   //   "resourceTypes": [],
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1572,11 +2178,13 @@ export namespace orgpolicy_v2 {
     get(
       params: Params$Resource$Organizations$Customconstraints$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Organizations$Customconstraints$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudOrgpolicyV2CustomConstraint>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2CustomConstraint>
+    >;
     get(
       params: Params$Resource$Organizations$Customconstraints$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1611,8 +2219,10 @@ export namespace orgpolicy_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudOrgpolicyV2CustomConstraint>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2CustomConstraint>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Customconstraints$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1657,6 +2267,57 @@ export namespace orgpolicy_v2 {
 
     /**
      * Retrieves all of the custom constraints that exist on a particular organization resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/orgpolicy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const orgpolicy = google.orgpolicy('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await orgpolicy.organizations.customConstraints.list({
+     *     // Size of the pages to be returned. This is currently unsupported and will be ignored. The server may at any point start using this field to limit page size.
+     *     pageSize: 'placeholder-value',
+     *     // Page token used to retrieve the next page. This is currently unsupported and will be ignored. The server may at any point start using this field.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The target Google Cloud resource that parents the set of custom constraints that will be returned from this call. Must be in one of the following forms: * `organizations/{organization_id\}`
+     *     parent: 'organizations/my-organization',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "customConstraints": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1666,11 +2327,13 @@ export namespace orgpolicy_v2 {
     list(
       params: Params$Resource$Organizations$Customconstraints$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Organizations$Customconstraints$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudOrgpolicyV2ListCustomConstraintsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2ListCustomConstraintsResponse>
+    >;
     list(
       params: Params$Resource$Organizations$Customconstraints$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1705,8 +2368,10 @@ export namespace orgpolicy_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudOrgpolicyV2ListCustomConstraintsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2ListCustomConstraintsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Customconstraints$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1754,6 +2419,74 @@ export namespace orgpolicy_v2 {
 
     /**
      * Updates a custom constraint. Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the constraint does not exist. Note: the supplied policy will perform a full overwrite of all fields.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/orgpolicy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const orgpolicy = google.orgpolicy('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await orgpolicy.organizations.customConstraints.patch({
+     *     // Immutable. Name of the constraint. This is unique within the organization. Format of the name should be * `organizations/{organization_id\}/customConstraints/{custom_constraint_id\}` Example: `organizations/123/customConstraints/custom.createOnlyE2TypeVms` The max length is 70 characters and the minimum length is 1. Note that the prefix `organizations/{organization_id\}/customConstraints/` is not counted.
+     *     name: 'organizations/my-organization/customConstraints/my-customConstraint',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "actionType": "my_actionType",
+     *       //   "condition": "my_condition",
+     *       //   "description": "my_description",
+     *       //   "displayName": "my_displayName",
+     *       //   "methodTypes": [],
+     *       //   "name": "my_name",
+     *       //   "resourceTypes": [],
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "actionType": "my_actionType",
+     *   //   "condition": "my_condition",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "methodTypes": [],
+     *   //   "name": "my_name",
+     *   //   "resourceTypes": [],
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1763,11 +2496,13 @@ export namespace orgpolicy_v2 {
     patch(
       params: Params$Resource$Organizations$Customconstraints$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Organizations$Customconstraints$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudOrgpolicyV2CustomConstraint>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2CustomConstraint>
+    >;
     patch(
       params: Params$Resource$Organizations$Customconstraints$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1802,8 +2537,10 @@ export namespace orgpolicy_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudOrgpolicyV2CustomConstraint>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2CustomConstraint>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Customconstraints$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1909,6 +2646,68 @@ export namespace orgpolicy_v2 {
 
     /**
      * Creates a policy. Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the constraint does not exist. Returns a `google.rpc.Status` with `google.rpc.Code.ALREADY_EXISTS` if the policy already exists on the given Google Cloud resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/orgpolicy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const orgpolicy = google.orgpolicy('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await orgpolicy.organizations.policies.create({
+     *     // Required. The Google Cloud resource that will parent the new policy. Must be in one of the following forms: * `projects/{project_number\}` * `projects/{project_id\}` * `folders/{folder_id\}` * `organizations/{organization_id\}`
+     *     parent: 'organizations/my-organization',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "alternate": {},
+     *       //   "dryRunSpec": {},
+     *       //   "etag": "my_etag",
+     *       //   "name": "my_name",
+     *       //   "spec": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "alternate": {},
+     *   //   "dryRunSpec": {},
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "spec": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1918,11 +2717,11 @@ export namespace orgpolicy_v2 {
     create(
       params: Params$Resource$Organizations$Policies$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Organizations$Policies$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudOrgpolicyV2Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2Policy>>;
     create(
       params: Params$Resource$Organizations$Policies$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1957,8 +2756,8 @@ export namespace orgpolicy_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudOrgpolicyV2Policy>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Policies$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2006,6 +2805,52 @@ export namespace orgpolicy_v2 {
 
     /**
      * Deletes a policy. Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the constraint or organization policy does not exist.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/orgpolicy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const orgpolicy = google.orgpolicy('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await orgpolicy.organizations.policies.delete({
+     *     // Optional. The current etag of policy. If an etag is provided and does not match the current etag of the policy, deletion will be blocked and an ABORTED error will be returned.
+     *     etag: 'placeholder-value',
+     *     // Required. Name of the policy to delete. See the policy entry for naming rules.
+     *     name: 'organizations/my-organization/policies/my-policie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2015,11 +2860,11 @@ export namespace orgpolicy_v2 {
     delete(
       params: Params$Resource$Organizations$Policies$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Organizations$Policies$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     delete(
       params: Params$Resource$Organizations$Policies$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2050,8 +2895,8 @@ export namespace orgpolicy_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Policies$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2094,6 +2939,56 @@ export namespace orgpolicy_v2 {
 
     /**
      * Gets a policy on a resource. If no policy is set on the resource, `NOT_FOUND` is returned. The `etag` value can be used with `UpdatePolicy()` to update a policy during read-modify-write.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/orgpolicy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const orgpolicy = google.orgpolicy('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await orgpolicy.organizations.policies.get({
+     *     // Required. Resource name of the policy. See Policy for naming requirements.
+     *     name: 'organizations/my-organization/policies/my-policie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "alternate": {},
+     *   //   "dryRunSpec": {},
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "spec": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2103,11 +2998,11 @@ export namespace orgpolicy_v2 {
     get(
       params: Params$Resource$Organizations$Policies$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Organizations$Policies$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudOrgpolicyV2Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2Policy>>;
     get(
       params: Params$Resource$Organizations$Policies$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2142,8 +3037,8 @@ export namespace orgpolicy_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudOrgpolicyV2Policy>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Policies$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2188,6 +3083,56 @@ export namespace orgpolicy_v2 {
 
     /**
      * Gets the effective policy on a resource. This is the result of merging policies in the resource hierarchy and evaluating conditions. The returned policy will not have an `etag` or `condition` set because it is an evaluated policy across multiple resources. Subtrees of Resource Manager resource hierarchy with 'under:' prefix will not be expanded.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/orgpolicy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const orgpolicy = google.orgpolicy('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await orgpolicy.organizations.policies.getEffectivePolicy({
+     *     // Required. The effective policy to compute. See Policy for naming requirements.
+     *     name: 'organizations/my-organization/policies/my-policie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "alternate": {},
+     *   //   "dryRunSpec": {},
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "spec": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2197,11 +3142,11 @@ export namespace orgpolicy_v2 {
     getEffectivePolicy(
       params: Params$Resource$Organizations$Policies$Geteffectivepolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getEffectivePolicy(
       params?: Params$Resource$Organizations$Policies$Geteffectivepolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudOrgpolicyV2Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2Policy>>;
     getEffectivePolicy(
       params: Params$Resource$Organizations$Policies$Geteffectivepolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2236,8 +3181,8 @@ export namespace orgpolicy_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudOrgpolicyV2Policy>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Policies$Geteffectivepolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2286,6 +3231,57 @@ export namespace orgpolicy_v2 {
 
     /**
      * Retrieves all of the policies that exist on a particular resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/orgpolicy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const orgpolicy = google.orgpolicy('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await orgpolicy.organizations.policies.list({
+     *     // Size of the pages to be returned. This is currently unsupported and will be ignored. The server may at any point start using this field to limit page size.
+     *     pageSize: 'placeholder-value',
+     *     // Page token used to retrieve the next page. This is currently unsupported and will be ignored. The server may at any point start using this field.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The target Google Cloud resource that parents the set of constraints and policies that will be returned from this call. Must be in one of the following forms: * `projects/{project_number\}` * `projects/{project_id\}` * `folders/{folder_id\}` * `organizations/{organization_id\}`
+     *     parent: 'organizations/my-organization',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "policies": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2295,11 +3291,13 @@ export namespace orgpolicy_v2 {
     list(
       params: Params$Resource$Organizations$Policies$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Organizations$Policies$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudOrgpolicyV2ListPoliciesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2ListPoliciesResponse>
+    >;
     list(
       params: Params$Resource$Organizations$Policies$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2334,8 +3332,10 @@ export namespace orgpolicy_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudOrgpolicyV2ListPoliciesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2ListPoliciesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Policies$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2383,6 +3383,70 @@ export namespace orgpolicy_v2 {
 
     /**
      * Updates a policy. Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the constraint or the policy do not exist. Returns a `google.rpc.Status` with `google.rpc.Code.ABORTED` if the etag supplied in the request does not match the persisted etag of the policy Note: the supplied policy will perform a full overwrite of all fields.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/orgpolicy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const orgpolicy = google.orgpolicy('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await orgpolicy.organizations.policies.patch({
+     *     // Immutable. The resource name of the policy. Must be one of the following forms, where `constraint_name` is the name of the constraint which this policy configures: * `projects/{project_number\}/policies/{constraint_name\}` * `folders/{folder_id\}/policies/{constraint_name\}` * `organizations/{organization_id\}/policies/{constraint_name\}` For example, `projects/123/policies/compute.disableSerialPortAccess`. Note: `projects/{project_id\}/policies/{constraint_name\}` is also an acceptable name for API requests, but responses will return the name using the equivalent project number.
+     *     name: 'organizations/my-organization/policies/my-policie',
+     *     // Field mask used to specify the fields to be overwritten in the policy by the set. The fields specified in the update_mask are relative to the policy, not the full request.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "alternate": {},
+     *       //   "dryRunSpec": {},
+     *       //   "etag": "my_etag",
+     *       //   "name": "my_name",
+     *       //   "spec": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "alternate": {},
+     *   //   "dryRunSpec": {},
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "spec": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2392,11 +3456,11 @@ export namespace orgpolicy_v2 {
     patch(
       params: Params$Resource$Organizations$Policies$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Organizations$Policies$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudOrgpolicyV2Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2Policy>>;
     patch(
       params: Params$Resource$Organizations$Policies$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2431,8 +3495,8 @@ export namespace orgpolicy_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudOrgpolicyV2Policy>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Policies$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2564,6 +3628,57 @@ export namespace orgpolicy_v2 {
 
     /**
      * Lists constraints that could be applied on the specified resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/orgpolicy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const orgpolicy = google.orgpolicy('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await orgpolicy.projects.constraints.list({
+     *     // Size of the pages to be returned. This is currently unsupported and will be ignored. The server may at any point start using this field to limit page size.
+     *     pageSize: 'placeholder-value',
+     *     // Page token used to retrieve the next page. This is currently unsupported and will be ignored. The server may at any point start using this field.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The Google Cloud resource that parents the constraint. Must be in one of the following forms: * `projects/{project_number\}` * `projects/{project_id\}` * `folders/{folder_id\}` * `organizations/{organization_id\}`
+     *     parent: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "constraints": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2573,11 +3688,13 @@ export namespace orgpolicy_v2 {
     list(
       params: Params$Resource$Projects$Constraints$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Constraints$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudOrgpolicyV2ListConstraintsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2ListConstraintsResponse>
+    >;
     list(
       params: Params$Resource$Projects$Constraints$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2612,8 +3729,10 @@ export namespace orgpolicy_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudOrgpolicyV2ListConstraintsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2ListConstraintsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Constraints$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2684,6 +3803,68 @@ export namespace orgpolicy_v2 {
 
     /**
      * Creates a policy. Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the constraint does not exist. Returns a `google.rpc.Status` with `google.rpc.Code.ALREADY_EXISTS` if the policy already exists on the given Google Cloud resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/orgpolicy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const orgpolicy = google.orgpolicy('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await orgpolicy.projects.policies.create({
+     *     // Required. The Google Cloud resource that will parent the new policy. Must be in one of the following forms: * `projects/{project_number\}` * `projects/{project_id\}` * `folders/{folder_id\}` * `organizations/{organization_id\}`
+     *     parent: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "alternate": {},
+     *       //   "dryRunSpec": {},
+     *       //   "etag": "my_etag",
+     *       //   "name": "my_name",
+     *       //   "spec": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "alternate": {},
+     *   //   "dryRunSpec": {},
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "spec": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2693,11 +3874,11 @@ export namespace orgpolicy_v2 {
     create(
       params: Params$Resource$Projects$Policies$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Policies$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudOrgpolicyV2Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2Policy>>;
     create(
       params: Params$Resource$Projects$Policies$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2732,8 +3913,8 @@ export namespace orgpolicy_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudOrgpolicyV2Policy>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Policies$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2781,6 +3962,52 @@ export namespace orgpolicy_v2 {
 
     /**
      * Deletes a policy. Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the constraint or organization policy does not exist.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/orgpolicy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const orgpolicy = google.orgpolicy('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await orgpolicy.projects.policies.delete({
+     *     // Optional. The current etag of policy. If an etag is provided and does not match the current etag of the policy, deletion will be blocked and an ABORTED error will be returned.
+     *     etag: 'placeholder-value',
+     *     // Required. Name of the policy to delete. See the policy entry for naming rules.
+     *     name: 'projects/my-project/policies/my-policie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2790,11 +4017,11 @@ export namespace orgpolicy_v2 {
     delete(
       params: Params$Resource$Projects$Policies$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Policies$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     delete(
       params: Params$Resource$Projects$Policies$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2825,8 +4052,8 @@ export namespace orgpolicy_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Policies$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2869,6 +4096,56 @@ export namespace orgpolicy_v2 {
 
     /**
      * Gets a policy on a resource. If no policy is set on the resource, `NOT_FOUND` is returned. The `etag` value can be used with `UpdatePolicy()` to update a policy during read-modify-write.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/orgpolicy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const orgpolicy = google.orgpolicy('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await orgpolicy.projects.policies.get({
+     *     // Required. Resource name of the policy. See Policy for naming requirements.
+     *     name: 'projects/my-project/policies/my-policie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "alternate": {},
+     *   //   "dryRunSpec": {},
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "spec": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2878,11 +4155,11 @@ export namespace orgpolicy_v2 {
     get(
       params: Params$Resource$Projects$Policies$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Policies$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudOrgpolicyV2Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2Policy>>;
     get(
       params: Params$Resource$Projects$Policies$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2917,8 +4194,8 @@ export namespace orgpolicy_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudOrgpolicyV2Policy>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Policies$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2963,6 +4240,56 @@ export namespace orgpolicy_v2 {
 
     /**
      * Gets the effective policy on a resource. This is the result of merging policies in the resource hierarchy and evaluating conditions. The returned policy will not have an `etag` or `condition` set because it is an evaluated policy across multiple resources. Subtrees of Resource Manager resource hierarchy with 'under:' prefix will not be expanded.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/orgpolicy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const orgpolicy = google.orgpolicy('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await orgpolicy.projects.policies.getEffectivePolicy({
+     *     // Required. The effective policy to compute. See Policy for naming requirements.
+     *     name: 'projects/my-project/policies/my-policie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "alternate": {},
+     *   //   "dryRunSpec": {},
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "spec": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2972,11 +4299,11 @@ export namespace orgpolicy_v2 {
     getEffectivePolicy(
       params: Params$Resource$Projects$Policies$Geteffectivepolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getEffectivePolicy(
       params?: Params$Resource$Projects$Policies$Geteffectivepolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudOrgpolicyV2Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2Policy>>;
     getEffectivePolicy(
       params: Params$Resource$Projects$Policies$Geteffectivepolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3011,8 +4338,8 @@ export namespace orgpolicy_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudOrgpolicyV2Policy>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Policies$Geteffectivepolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3060,6 +4387,57 @@ export namespace orgpolicy_v2 {
 
     /**
      * Retrieves all of the policies that exist on a particular resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/orgpolicy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const orgpolicy = google.orgpolicy('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await orgpolicy.projects.policies.list({
+     *     // Size of the pages to be returned. This is currently unsupported and will be ignored. The server may at any point start using this field to limit page size.
+     *     pageSize: 'placeholder-value',
+     *     // Page token used to retrieve the next page. This is currently unsupported and will be ignored. The server may at any point start using this field.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The target Google Cloud resource that parents the set of constraints and policies that will be returned from this call. Must be in one of the following forms: * `projects/{project_number\}` * `projects/{project_id\}` * `folders/{folder_id\}` * `organizations/{organization_id\}`
+     *     parent: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "policies": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3069,11 +4447,13 @@ export namespace orgpolicy_v2 {
     list(
       params: Params$Resource$Projects$Policies$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Policies$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudOrgpolicyV2ListPoliciesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2ListPoliciesResponse>
+    >;
     list(
       params: Params$Resource$Projects$Policies$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3108,8 +4488,10 @@ export namespace orgpolicy_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudOrgpolicyV2ListPoliciesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2ListPoliciesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Policies$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3157,6 +4539,70 @@ export namespace orgpolicy_v2 {
 
     /**
      * Updates a policy. Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the constraint or the policy do not exist. Returns a `google.rpc.Status` with `google.rpc.Code.ABORTED` if the etag supplied in the request does not match the persisted etag of the policy Note: the supplied policy will perform a full overwrite of all fields.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/orgpolicy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const orgpolicy = google.orgpolicy('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await orgpolicy.projects.policies.patch({
+     *     // Immutable. The resource name of the policy. Must be one of the following forms, where `constraint_name` is the name of the constraint which this policy configures: * `projects/{project_number\}/policies/{constraint_name\}` * `folders/{folder_id\}/policies/{constraint_name\}` * `organizations/{organization_id\}/policies/{constraint_name\}` For example, `projects/123/policies/compute.disableSerialPortAccess`. Note: `projects/{project_id\}/policies/{constraint_name\}` is also an acceptable name for API requests, but responses will return the name using the equivalent project number.
+     *     name: 'projects/my-project/policies/my-policie',
+     *     // Field mask used to specify the fields to be overwritten in the policy by the set. The fields specified in the update_mask are relative to the policy, not the full request.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "alternate": {},
+     *       //   "dryRunSpec": {},
+     *       //   "etag": "my_etag",
+     *       //   "name": "my_name",
+     *       //   "spec": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "alternate": {},
+     *   //   "dryRunSpec": {},
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "spec": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3166,11 +4612,11 @@ export namespace orgpolicy_v2 {
     patch(
       params: Params$Resource$Projects$Policies$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Policies$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudOrgpolicyV2Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2Policy>>;
     patch(
       params: Params$Resource$Projects$Policies$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3205,8 +4651,8 @@ export namespace orgpolicy_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudOrgpolicyV2Policy>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudOrgpolicyV2Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Policies$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;

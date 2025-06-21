@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -135,7 +135,7 @@ export namespace admin_datatransfer_v1 {
      */
     etag?: string | null;
     /**
-     * The application's ID. Retrievable by using the [`applications.list()`](/admin-sdk/data-transfer/reference/rest/v1/applications/list) method.
+     * The application's ID. Retrievable by using the [`applications.list()`](https://developers.google.com/workspace/admin/data-transfer/reference/rest/v1/applications/list) method.
      */
     id?: string | null;
     /**
@@ -160,7 +160,7 @@ export namespace admin_datatransfer_v1 {
      */
     applicationId?: string | null;
     /**
-     * The transfer parameters for the application. These parameters are used to select the data which will get transferred in context of this application. For more information about the specific values available for each application, see the [Transfer parameters](/admin-sdk/data-transfer/v1/parameters) reference.
+     * The transfer parameters for the application. These parameters are used to select the data which will get transferred in context of this application. For more information about the specific values available for each application, see the [Transfer parameters](https://developers.google.com/workspace/admin/data-transfer/v1/parameters) reference.
      */
     applicationTransferParams?: Schema$ApplicationTransferParam[];
     /**
@@ -269,6 +269,59 @@ export namespace admin_datatransfer_v1 {
 
     /**
      * Retrieves information about an application for the given application ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('datatransfer_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/admin.datatransfer',
+     *       'https://www.googleapis.com/auth/admin.datatransfer.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await datatransfer.applications.get({
+     *     // ID of the application resource to be retrieved.
+     *     applicationId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "transferParams": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -278,11 +331,11 @@ export namespace admin_datatransfer_v1 {
     get(
       params: Params$Resource$Applications$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Applications$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Application>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Application>>;
     get(
       params: Params$Resource$Applications$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -311,7 +364,10 @@ export namespace admin_datatransfer_v1 {
       callback?:
         | BodyResponseCallback<Schema$Application>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Application> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Application>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Applications$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -355,6 +411,62 @@ export namespace admin_datatransfer_v1 {
 
     /**
      * Lists the applications available for data transfer for a customer.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('datatransfer_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/admin.datatransfer',
+     *       'https://www.googleapis.com/auth/admin.datatransfer.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await datatransfer.applications.list({
+     *     // Immutable ID of the Google Workspace account.
+     *     customerId: 'placeholder-value',
+     *     // Maximum number of results to return. Default is 100.
+     *     maxResults: 'placeholder-value',
+     *     // Token to specify next page in the list.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "applications": [],
+     *   //   "etag": "my_etag",
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -364,11 +476,11 @@ export namespace admin_datatransfer_v1 {
     list(
       params: Params$Resource$Applications$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Applications$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ApplicationsListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ApplicationsListResponse>>;
     list(
       params: Params$Resource$Applications$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -401,8 +513,8 @@ export namespace admin_datatransfer_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ApplicationsListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ApplicationsListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Applications$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -477,6 +589,62 @@ export namespace admin_datatransfer_v1 {
 
     /**
      * Retrieves a data transfer request by its resource ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('datatransfer_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/admin.datatransfer',
+     *       'https://www.googleapis.com/auth/admin.datatransfer.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await datatransfer.transfers.get({
+     *     // ID of the resource to be retrieved. This is returned in the response from the insert method.
+     *     dataTransferId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "applicationDataTransfers": [],
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "newOwnerUserId": "my_newOwnerUserId",
+     *   //   "oldOwnerUserId": "my_oldOwnerUserId",
+     *   //   "overallTransferStatusCode": "my_overallTransferStatusCode",
+     *   //   "requestTime": "my_requestTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -486,11 +654,11 @@ export namespace admin_datatransfer_v1 {
     get(
       params: Params$Resource$Transfers$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Transfers$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DataTransfer>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DataTransfer>>;
     get(
       params: Params$Resource$Transfers$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -519,7 +687,10 @@ export namespace admin_datatransfer_v1 {
       callback?:
         | BodyResponseCallback<Schema$DataTransfer>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$DataTransfer> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$DataTransfer>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Transfers$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -562,7 +733,72 @@ export namespace admin_datatransfer_v1 {
     }
 
     /**
-     * Inserts a data transfer request. See the [Transfer parameters](/admin-sdk/data-transfer/v1/parameters) reference for specific application requirements.
+     * Inserts a data transfer request. See the [Transfer parameters](https://developers.google.com/workspace/admin/data-transfer/v1/parameters) reference for specific application requirements.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('datatransfer_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/admin.datatransfer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await datatransfer.transfers.insert({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "applicationDataTransfers": [],
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "newOwnerUserId": "my_newOwnerUserId",
+     *       //   "oldOwnerUserId": "my_oldOwnerUserId",
+     *       //   "overallTransferStatusCode": "my_overallTransferStatusCode",
+     *       //   "requestTime": "my_requestTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "applicationDataTransfers": [],
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "newOwnerUserId": "my_newOwnerUserId",
+     *   //   "oldOwnerUserId": "my_oldOwnerUserId",
+     *   //   "overallTransferStatusCode": "my_overallTransferStatusCode",
+     *   //   "requestTime": "my_requestTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -572,11 +808,11 @@ export namespace admin_datatransfer_v1 {
     insert(
       params: Params$Resource$Transfers$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Transfers$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DataTransfer>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DataTransfer>>;
     insert(
       params: Params$Resource$Transfers$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -605,7 +841,10 @@ export namespace admin_datatransfer_v1 {
       callback?:
         | BodyResponseCallback<Schema$DataTransfer>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$DataTransfer> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$DataTransfer>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Transfers$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -650,6 +889,68 @@ export namespace admin_datatransfer_v1 {
 
     /**
      * Lists the transfers for a customer by source user, destination user, or status.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('datatransfer_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/admin.datatransfer',
+     *       'https://www.googleapis.com/auth/admin.datatransfer.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await datatransfer.transfers.list({
+     *     // Immutable ID of the Google Workspace account.
+     *     customerId: 'placeholder-value',
+     *     // Maximum number of results to return. Default is 100.
+     *     maxResults: 'placeholder-value',
+     *     // Destination user's profile ID.
+     *     newOwnerUserId: 'placeholder-value',
+     *     // Source user's profile ID.
+     *     oldOwnerUserId: 'placeholder-value',
+     *     // Token to specify the next page in the list.
+     *     pageToken: 'placeholder-value',
+     *     // Status of the transfer.
+     *     status: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dataTransfers": [],
+     *   //   "etag": "my_etag",
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -659,11 +960,11 @@ export namespace admin_datatransfer_v1 {
     list(
       params: Params$Resource$Transfers$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Transfers$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DataTransfersListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DataTransfersListResponse>>;
     list(
       params: Params$Resource$Transfers$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -698,8 +999,8 @@ export namespace admin_datatransfer_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$DataTransfersListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$DataTransfersListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Transfers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

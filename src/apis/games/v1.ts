@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -1785,6 +1785,54 @@ export namespace games_v1 {
 
     /**
      * Generates a Play Grouping API token for the PGS user identified by the attached credential.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.accesstokens.generatePlayGroupingApiToken({
+     *     // Required. App package name to generate the token for (e.g. com.example.mygame).
+     *     packageName: 'placeholder-value',
+     *     // Required. Persona to associate with the token. Persona is a developer-provided stable identifier of the user. Must be deterministically generated (e.g. as a one-way hash) from the user account ID and user profile ID (if the app has the concept), according to the developer's own user identity system.
+     *     persona: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "token": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1794,11 +1842,13 @@ export namespace games_v1 {
     generatePlayGroupingApiToken(
       params: Params$Resource$Accesstokens$Generateplaygroupingapitoken,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     generatePlayGroupingApiToken(
       params?: Params$Resource$Accesstokens$Generateplaygroupingapitoken,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GeneratePlayGroupingApiTokenResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GeneratePlayGroupingApiTokenResponse>
+    >;
     generatePlayGroupingApiToken(
       params: Params$Resource$Accesstokens$Generateplaygroupingapitoken,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1833,8 +1883,10 @@ export namespace games_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GeneratePlayGroupingApiTokenResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GeneratePlayGroupingApiTokenResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accesstokens$Generateplaygroupingapitoken;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1882,6 +1934,56 @@ export namespace games_v1 {
 
     /**
      * Generates a Play Grouping API token for the PGS user identified by the Recall session ID provided in the request.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.accesstokens.generateRecallPlayGroupingApiToken({
+     *     // Required. App package name to generate the token for (e.g. com.example.mygame).
+     *     packageName: 'placeholder-value',
+     *     // Required. Persona to associate with the token. Persona is a developer-provided stable identifier of the user. Must be deterministically generated (e.g. as a one-way hash) from the user account ID and user profile ID (if the app has the concept), according to the developer's own user identity system.
+     *     persona: 'placeholder-value',
+     *     // Required. Opaque server-generated string that encodes all the necessary information to identify the PGS player / Google user and application. See https://developer.android.com/games/pgs/recall/recall-setup on how to integrate with Recall and get session ID.
+     *     recallSessionId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "token": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1891,11 +1993,13 @@ export namespace games_v1 {
     generateRecallPlayGroupingApiToken(
       params: Params$Resource$Accesstokens$Generaterecallplaygroupingapitoken,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     generateRecallPlayGroupingApiToken(
       params?: Params$Resource$Accesstokens$Generaterecallplaygroupingapitoken,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GenerateRecallPlayGroupingApiTokenResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GenerateRecallPlayGroupingApiTokenResponse>
+    >;
     generateRecallPlayGroupingApiToken(
       params: Params$Resource$Accesstokens$Generaterecallplaygroupingapitoken,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1930,8 +2034,10 @@ export namespace games_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GenerateRecallPlayGroupingApiTokenResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GenerateRecallPlayGroupingApiTokenResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accesstokens$Generaterecallplaygroupingapitoken;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2014,6 +2120,58 @@ export namespace games_v1 {
 
     /**
      * Lists all the achievement definitions for your application.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.achievementDefinitions.list({
+     *     // The preferred language to use for strings returned by this method.
+     *     language: 'placeholder-value',
+     *     // The maximum number of achievement resources to return in the response, used for paging. For any response, the actual number of achievement resources returned may be less than the specified `maxResults`.
+     *     maxResults: 'placeholder-value',
+     *     // The token returned by the previous request.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2023,11 +2181,13 @@ export namespace games_v1 {
     list(
       params: Params$Resource$Achievementdefinitions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Achievementdefinitions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AchievementDefinitionsListResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$AchievementDefinitionsListResponse>
+    >;
     list(
       params: Params$Resource$Achievementdefinitions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2062,8 +2222,10 @@ export namespace games_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AchievementDefinitionsListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$AchievementDefinitionsListResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Achievementdefinitions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2134,6 +2296,58 @@ export namespace games_v1 {
 
     /**
      * Increments the steps of the achievement with the given ID for the currently authenticated player.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.achievements.increment({
+     *     // The ID of the achievement used by this method.
+     *     achievementId: 'placeholder-value',
+     *     // A randomly generated numeric ID for each request specified by the caller. This number is used at the server to ensure that the request is handled correctly across retries.
+     *     requestId: 'placeholder-value',
+     *     // Required. The number of steps to increment.
+     *     stepsToIncrement: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "currentSteps": 0,
+     *   //   "kind": "my_kind",
+     *   //   "newlyUnlocked": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2143,11 +2357,11 @@ export namespace games_v1 {
     increment(
       params: Params$Resource$Achievements$Increment,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     increment(
       params?: Params$Resource$Achievements$Increment,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AchievementIncrementResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AchievementIncrementResponse>>;
     increment(
       params: Params$Resource$Achievements$Increment,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2182,8 +2396,8 @@ export namespace games_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AchievementIncrementResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AchievementIncrementResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Achievements$Increment;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2230,6 +2444,62 @@ export namespace games_v1 {
 
     /**
      * Lists the progress for all your application's achievements for the currently authenticated player.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.achievements.list({
+     *     // The preferred language to use for strings returned by this method.
+     *     language: 'placeholder-value',
+     *     // The maximum number of achievement resources to return in the response, used for paging. For any response, the actual number of achievement resources returned may be less than the specified `maxResults`.
+     *     maxResults: 'placeholder-value',
+     *     // The token returned by the previous request.
+     *     pageToken: 'placeholder-value',
+     *     // A player ID. A value of `me` may be used in place of the authenticated player's ID.
+     *     playerId: 'placeholder-value',
+     *     // Tells the server to return only achievements with the specified state. If this parameter isn't specified, all achievements are returned.
+     *     state: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2239,11 +2509,11 @@ export namespace games_v1 {
     list(
       params: Params$Resource$Achievements$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Achievements$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PlayerAchievementListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PlayerAchievementListResponse>>;
     list(
       params: Params$Resource$Achievements$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2278,8 +2548,8 @@ export namespace games_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$PlayerAchievementListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$PlayerAchievementListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Achievements$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2326,6 +2596,53 @@ export namespace games_v1 {
 
     /**
      * Sets the state of the achievement with the given ID to `REVEALED` for the currently authenticated player.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.achievements.reveal({
+     *     // The ID of the achievement used by this method.
+     *     achievementId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "currentState": "my_currentState",
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2335,11 +2652,11 @@ export namespace games_v1 {
     reveal(
       params: Params$Resource$Achievements$Reveal,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     reveal(
       params?: Params$Resource$Achievements$Reveal,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AchievementRevealResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AchievementRevealResponse>>;
     reveal(
       params: Params$Resource$Achievements$Reveal,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2374,8 +2691,8 @@ export namespace games_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AchievementRevealResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AchievementRevealResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Achievements$Reveal;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2420,6 +2737,56 @@ export namespace games_v1 {
 
     /**
      * Sets the steps for the currently authenticated player towards unlocking an achievement. If the steps parameter is less than the current number of steps that the player already gained for the achievement, the achievement is not modified.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.achievements.setStepsAtLeast({
+     *     // The ID of the achievement used by this method.
+     *     achievementId: 'placeholder-value',
+     *     // Required. The minimum value to set the steps to.
+     *     steps: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "currentSteps": 0,
+     *   //   "kind": "my_kind",
+     *   //   "newlyUnlocked": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2429,11 +2796,13 @@ export namespace games_v1 {
     setStepsAtLeast(
       params: Params$Resource$Achievements$Setstepsatleast,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setStepsAtLeast(
       params?: Params$Resource$Achievements$Setstepsatleast,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AchievementSetStepsAtLeastResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$AchievementSetStepsAtLeastResponse>
+    >;
     setStepsAtLeast(
       params: Params$Resource$Achievements$Setstepsatleast,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2468,8 +2837,10 @@ export namespace games_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AchievementSetStepsAtLeastResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$AchievementSetStepsAtLeastResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Achievements$Setstepsatleast;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2516,6 +2887,53 @@ export namespace games_v1 {
 
     /**
      * Unlocks this achievement for the currently authenticated player.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.achievements.unlock({
+     *     // The ID of the achievement used by this method.
+     *     achievementId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "newlyUnlocked": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2525,11 +2943,11 @@ export namespace games_v1 {
     unlock(
       params: Params$Resource$Achievements$Unlock,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     unlock(
       params?: Params$Resource$Achievements$Unlock,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AchievementUnlockResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AchievementUnlockResponse>>;
     unlock(
       params: Params$Resource$Achievements$Unlock,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2564,8 +2982,8 @@ export namespace games_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AchievementUnlockResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AchievementUnlockResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Achievements$Unlock;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2610,6 +3028,59 @@ export namespace games_v1 {
 
     /**
      * Updates multiple achievements for the currently authenticated player.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.achievements.updateMultiple({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "kind": "my_kind",
+     *       //   "updates": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "updatedAchievements": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2619,11 +3090,13 @@ export namespace games_v1 {
     updateMultiple(
       params: Params$Resource$Achievements$Updatemultiple,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     updateMultiple(
       params?: Params$Resource$Achievements$Updatemultiple,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AchievementUpdateMultipleResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$AchievementUpdateMultipleResponse>
+    >;
     updateMultiple(
       params: Params$Resource$Achievements$Updatemultiple,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2658,8 +3131,10 @@ export namespace games_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AchievementUpdateMultipleResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$AchievementUpdateMultipleResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Achievements$Updatemultiple;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2785,6 +3260,68 @@ export namespace games_v1 {
 
     /**
      * Retrieves the metadata of the application with the given ID. If the requested application is not available for the specified `platformType`, the returned response will not include any instance data.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.applications.get({
+     *     // The application ID from the Google Play developer console.
+     *     applicationId: 'placeholder-value',
+     *     // The preferred language to use for strings returned by this method.
+     *     language: 'placeholder-value',
+     *     // Restrict application details returned to the specific platform.
+     *     platformType: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "achievement_count": 0,
+     *   //   "assets": [],
+     *   //   "author": "my_author",
+     *   //   "category": {},
+     *   //   "description": "my_description",
+     *   //   "enabledFeatures": [],
+     *   //   "id": "my_id",
+     *   //   "instances": [],
+     *   //   "kind": "my_kind",
+     *   //   "lastUpdatedTimestamp": "my_lastUpdatedTimestamp",
+     *   //   "leaderboard_count": 0,
+     *   //   "name": "my_name",
+     *   //   "themeColor": "my_themeColor"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2794,11 +3331,11 @@ export namespace games_v1 {
     get(
       params: Params$Resource$Applications$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Applications$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Application>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Application>>;
     get(
       params: Params$Resource$Applications$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2827,7 +3364,10 @@ export namespace games_v1 {
       callback?:
         | BodyResponseCallback<Schema$Application>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Application> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Application>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Applications$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2872,6 +3412,54 @@ export namespace games_v1 {
 
     /**
      * Returns a URL for the requested end point type.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.applications.getEndPoint({
+     *     // The application ID from the Google Play developer console.
+     *     applicationId: 'placeholder-value',
+     *     // Type of endpoint being requested.
+     *     endPointType: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "url": "my_url"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2881,11 +3469,11 @@ export namespace games_v1 {
     getEndPoint(
       params: Params$Resource$Applications$Getendpoint,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getEndPoint(
       params?: Params$Resource$Applications$Getendpoint,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$EndPoint>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$EndPoint>>;
     getEndPoint(
       params: Params$Resource$Applications$Getendpoint,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2914,7 +3502,10 @@ export namespace games_v1 {
       callback?:
         | BodyResponseCallback<Schema$EndPoint>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$EndPoint> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$EndPoint>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Applications$Getendpoint;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2960,6 +3551,44 @@ export namespace games_v1 {
 
     /**
      * Indicate that the currently authenticated user is playing your application.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.applications.played({});
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2969,11 +3598,11 @@ export namespace games_v1 {
     played(
       params: Params$Resource$Applications$Played,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     played(
       params?: Params$Resource$Applications$Played,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     played(
       params: Params$Resource$Applications$Played,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3000,7 +3629,10 @@ export namespace games_v1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Applications$Played;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3046,6 +3678,54 @@ export namespace games_v1 {
 
     /**
      * Verifies the auth token provided with this request is for the application with the specified ID, and returns the ID of the player it was granted for.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.applications.verify({
+     *     // The application ID from the Google Play developer console.
+     *     applicationId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "alternate_player_id": "my_alternate_player_id",
+     *   //   "kind": "my_kind",
+     *   //   "player_id": "my_player_id"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3055,11 +3735,11 @@ export namespace games_v1 {
     verify(
       params: Params$Resource$Applications$Verify,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     verify(
       params?: Params$Resource$Applications$Verify,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ApplicationVerifyResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ApplicationVerifyResponse>>;
     verify(
       params: Params$Resource$Applications$Verify,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3094,8 +3774,8 @@ export namespace games_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ApplicationVerifyResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ApplicationVerifyResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Applications$Verify;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3182,6 +3862,58 @@ export namespace games_v1 {
 
     /**
      * Returns a list showing the current progress on events in this application for the currently authenticated user.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.events.listByPlayer({
+     *     // The preferred language to use for strings returned by this method.
+     *     language: 'placeholder-value',
+     *     // The maximum number of events to return in the response, used for paging. For any response, the actual number of events to return may be less than the specified maxResults.
+     *     maxResults: 'placeholder-value',
+     *     // The token returned by the previous request.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3191,11 +3923,11 @@ export namespace games_v1 {
     listByPlayer(
       params: Params$Resource$Events$Listbyplayer,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     listByPlayer(
       params?: Params$Resource$Events$Listbyplayer,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PlayerEventListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PlayerEventListResponse>>;
     listByPlayer(
       params: Params$Resource$Events$Listbyplayer,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3230,8 +3962,8 @@ export namespace games_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$PlayerEventListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$PlayerEventListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Events$Listbyplayer;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3274,6 +4006,58 @@ export namespace games_v1 {
 
     /**
      * Returns a list of the event definitions in this application.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.events.listDefinitions({
+     *     // The preferred language to use for strings returned by this method.
+     *     language: 'placeholder-value',
+     *     // The maximum number of event definitions to return in the response, used for paging. For any response, the actual number of event definitions to return may be less than the specified `maxResults`.
+     *     maxResults: 'placeholder-value',
+     *     // The token returned by the previous request.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3283,11 +4067,11 @@ export namespace games_v1 {
     listDefinitions(
       params: Params$Resource$Events$Listdefinitions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     listDefinitions(
       params?: Params$Resource$Events$Listdefinitions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$EventDefinitionListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$EventDefinitionListResponse>>;
     listDefinitions(
       params: Params$Resource$Events$Listdefinitions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3322,8 +4106,8 @@ export namespace games_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$EventDefinitionListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$EventDefinitionListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Events$Listdefinitions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3369,6 +4153,66 @@ export namespace games_v1 {
 
     /**
      * Records a batch of changes to the number of times events have occurred for the currently authenticated user of this application.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.events.record({
+     *     // The preferred language to use for strings returned by this method.
+     *     language: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "currentTimeMillis": "my_currentTimeMillis",
+     *       //   "kind": "my_kind",
+     *       //   "requestId": "my_requestId",
+     *       //   "timePeriods": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "batchFailures": [],
+     *   //   "eventFailures": [],
+     *   //   "kind": "my_kind",
+     *   //   "playerEvents": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3378,11 +4222,11 @@ export namespace games_v1 {
     record(
       params: Params$Resource$Events$Record,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     record(
       params?: Params$Resource$Events$Record,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$EventUpdateResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$EventUpdateResponse>>;
     record(
       params: Params$Resource$Events$Record,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3413,8 +4257,8 @@ export namespace games_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$EventUpdateResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$EventUpdateResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Events$Record;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3505,6 +4349,59 @@ export namespace games_v1 {
 
     /**
      * Retrieves the metadata of the leaderboard with the given ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.leaderboards.get({
+     *     // The preferred language to use for strings returned by this method.
+     *     language: 'placeholder-value',
+     *     // The ID of the leaderboard.
+     *     leaderboardId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "iconUrl": "my_iconUrl",
+     *   //   "id": "my_id",
+     *   //   "isIconUrlDefault": false,
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "order": "my_order"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3514,11 +4411,11 @@ export namespace games_v1 {
     get(
       params: Params$Resource$Leaderboards$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Leaderboards$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Leaderboard>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Leaderboard>>;
     get(
       params: Params$Resource$Leaderboards$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3547,7 +4444,10 @@ export namespace games_v1 {
       callback?:
         | BodyResponseCallback<Schema$Leaderboard>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Leaderboard> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Leaderboard>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Leaderboards$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3592,6 +4492,58 @@ export namespace games_v1 {
 
     /**
      * Lists all the leaderboard metadata for your application.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.leaderboards.list({
+     *     // The preferred language to use for strings returned by this method.
+     *     language: 'placeholder-value',
+     *     // The maximum number of leaderboards to return in the response. For any response, the actual number of leaderboards returned may be less than the specified `maxResults`.
+     *     maxResults: 'placeholder-value',
+     *     // The token returned by the previous request.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3601,11 +4553,11 @@ export namespace games_v1 {
     list(
       params: Params$Resource$Leaderboards$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Leaderboards$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LeaderboardListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LeaderboardListResponse>>;
     list(
       params: Params$Resource$Leaderboards$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3638,8 +4590,8 @@ export namespace games_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$LeaderboardListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$LeaderboardListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Leaderboards$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3718,6 +4670,51 @@ export namespace games_v1 {
 
     /**
      * Return the metagame configuration data for the calling application.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.metagame.getMetagameConfig({});
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "currentVersion": 0,
+     *   //   "kind": "my_kind",
+     *   //   "playerLevels": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3727,11 +4724,11 @@ export namespace games_v1 {
     getMetagameConfig(
       params: Params$Resource$Metagame$Getmetagameconfig,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getMetagameConfig(
       params?: Params$Resource$Metagame$Getmetagameconfig,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$MetagameConfig>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$MetagameConfig>>;
     getMetagameConfig(
       params: Params$Resource$Metagame$Getmetagameconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3762,7 +4759,10 @@ export namespace games_v1 {
       callback?:
         | BodyResponseCallback<Schema$MetagameConfig>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$MetagameConfig> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$MetagameConfig>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Metagame$Getmetagameconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3808,6 +4808,62 @@ export namespace games_v1 {
 
     /**
      * List play data aggregated per category for the player corresponding to `playerId`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.metagame.listCategoriesByPlayer({
+     *     // The collection of categories for which data will be returned.
+     *     collection: 'placeholder-value',
+     *     // The preferred language to use for strings returned by this method.
+     *     language: 'placeholder-value',
+     *     // The maximum number of category resources to return in the response, used for paging. For any response, the actual number of category resources returned may be less than the specified `maxResults`.
+     *     maxResults: 'placeholder-value',
+     *     // The token returned by the previous request.
+     *     pageToken: 'placeholder-value',
+     *     // A player ID. A value of `me` may be used in place of the authenticated player's ID.
+     *     playerId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3817,11 +4873,11 @@ export namespace games_v1 {
     listCategoriesByPlayer(
       params: Params$Resource$Metagame$Listcategoriesbyplayer,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     listCategoriesByPlayer(
       params?: Params$Resource$Metagame$Listcategoriesbyplayer,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CategoryListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CategoryListResponse>>;
     listCategoriesByPlayer(
       params: Params$Resource$Metagame$Listcategoriesbyplayer,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3856,8 +4912,8 @@ export namespace games_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CategoryListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CategoryListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Metagame$Listcategoriesbyplayer;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3935,6 +4991,68 @@ export namespace games_v1 {
 
     /**
      * Retrieves the Player resource with the given ID. To retrieve the player for the currently authenticated user, set `playerId` to `me`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.players.get({
+     *     // The preferred language to use for strings returned by this method.
+     *     language: 'placeholder-value',
+     *     // A player ID. A value of `me` may be used in place of the authenticated player's ID.
+     *     playerId: 'placeholder-value',
+     *     // Consistency token of the player id. The call returns a 'not found' result when the token is present and invalid. Empty value is ignored. See also GlobalPlayerIdConsistencyTokenProto
+     *     playerIdConsistencyToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "avatarImageUrl": "my_avatarImageUrl",
+     *   //   "bannerUrlLandscape": "my_bannerUrlLandscape",
+     *   //   "bannerUrlPortrait": "my_bannerUrlPortrait",
+     *   //   "displayName": "my_displayName",
+     *   //   "experienceInfo": {},
+     *   //   "friendStatus": "my_friendStatus",
+     *   //   "gamePlayerId": "my_gamePlayerId",
+     *   //   "kind": "my_kind",
+     *   //   "name": {},
+     *   //   "originalPlayerId": "my_originalPlayerId",
+     *   //   "playerId": "my_playerId",
+     *   //   "profileSettings": {},
+     *   //   "title": "my_title"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3944,11 +5062,11 @@ export namespace games_v1 {
     get(
       params: Params$Resource$Players$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Players$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Player>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Player>>;
     get(
       params: Params$Resource$Players$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3977,7 +5095,10 @@ export namespace games_v1 {
       callback?:
         | BodyResponseCallback<Schema$Player>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Player> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Player>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Players$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4022,6 +5143,52 @@ export namespace games_v1 {
 
     /**
      * Get the application player ids for the currently authenticated player across all requested games by the same developer as the calling application. This will only return ids for players that actually have an id (scoped or otherwise) with that game.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.players.getMultipleApplicationPlayerIds({
+     *     // Required. The application IDs from the Google Play developer console for the games to return scoped ids for.
+     *     applicationIds: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "playerIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4031,11 +5198,13 @@ export namespace games_v1 {
     getMultipleApplicationPlayerIds(
       params: Params$Resource$Players$Getmultipleapplicationplayerids,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getMultipleApplicationPlayerIds(
       params?: Params$Resource$Players$Getmultipleapplicationplayerids,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GetMultipleApplicationPlayerIdsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GetMultipleApplicationPlayerIdsResponse>
+    >;
     getMultipleApplicationPlayerIds(
       params: Params$Resource$Players$Getmultipleapplicationplayerids,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4070,8 +5239,10 @@ export namespace games_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GetMultipleApplicationPlayerIdsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GetMultipleApplicationPlayerIdsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Players$Getmultipleapplicationplayerids;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4118,6 +5289,50 @@ export namespace games_v1 {
 
     /**
      * Retrieves scoped player identifiers for currently authenticated user.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.players.getScopedPlayerIds({});
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "developerPlayerKey": "my_developerPlayerKey",
+     *   //   "gamePlayerId": "my_gamePlayerId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4127,11 +5342,11 @@ export namespace games_v1 {
     getScopedPlayerIds(
       params: Params$Resource$Players$Getscopedplayerids,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getScopedPlayerIds(
       params?: Params$Resource$Players$Getscopedplayerids,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ScopedPlayerIds>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ScopedPlayerIds>>;
     getScopedPlayerIds(
       params: Params$Resource$Players$Getscopedplayerids,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4162,7 +5377,10 @@ export namespace games_v1 {
       callback?:
         | BodyResponseCallback<Schema$ScopedPlayerIds>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ScopedPlayerIds> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ScopedPlayerIds>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Players$Getscopedplayerids;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4208,6 +5426,60 @@ export namespace games_v1 {
 
     /**
      * Get the collection of players for the currently authenticated user.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.players.list({
+     *     // Collection of players being retrieved
+     *     collection: 'placeholder-value',
+     *     // The preferred language to use for strings returned by this method.
+     *     language: 'placeholder-value',
+     *     // The maximum number of player resources to return in the response, used for paging. For any response, the actual number of player resources returned may be less than the specified `maxResults`.
+     *     maxResults: 'placeholder-value',
+     *     // The token returned by the previous request.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4217,11 +5489,11 @@ export namespace games_v1 {
     list(
       params: Params$Resource$Players$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Players$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PlayerListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PlayerListResponse>>;
     list(
       params: Params$Resource$Players$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4252,8 +5524,8 @@ export namespace games_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$PlayerListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$PlayerListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Players$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4346,6 +5618,54 @@ export namespace games_v1 {
 
     /**
      * Retrieve the Recall tokens from all requested games that is associated with the PGS Player encoded in the provided recall session id. The API is only available for users that have an active PGS Player profile.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.recall.gamesPlayerTokens({
+     *     // Required. The application IDs from the Google Play developer console for the games to return scoped ids for.
+     *     applicationIds: 'placeholder-value',
+     *     // Required. Opaque server-generated string that encodes all the necessary information to identify the PGS player / Google user and application.
+     *     sessionId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "gamePlayerTokens": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4355,11 +5675,13 @@ export namespace games_v1 {
     gamesPlayerTokens(
       params: Params$Resource$Recall$Gamesplayertokens,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     gamesPlayerTokens(
       params?: Params$Resource$Recall$Gamesplayertokens,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RetrieveGamesPlayerTokensResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$RetrieveGamesPlayerTokensResponse>
+    >;
     gamesPlayerTokens(
       params: Params$Resource$Recall$Gamesplayertokens,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4394,8 +5716,10 @@ export namespace games_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$RetrieveGamesPlayerTokensResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$RetrieveGamesPlayerTokensResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Recall$Gamesplayertokens;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4442,6 +5766,52 @@ export namespace games_v1 {
 
     /**
      * Retrieve the last Recall token from all developer games that is associated with the PGS Player encoded in the provided recall session id. The API is only available for users that have active PGS Player profile.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.recall.lastTokenFromAllDeveloperGames({
+     *     // Required. Opaque server-generated string that encodes all the necessary information to identify the PGS player / Google user and application.
+     *     sessionId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "gamePlayerToken": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4451,11 +5821,13 @@ export namespace games_v1 {
     lastTokenFromAllDeveloperGames(
       params: Params$Resource$Recall$Lasttokenfromalldevelopergames,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     lastTokenFromAllDeveloperGames(
       params?: Params$Resource$Recall$Lasttokenfromalldevelopergames,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RetrieveDeveloperGamesLastPlayerTokenResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$RetrieveDeveloperGamesLastPlayerTokenResponse>
+    >;
     lastTokenFromAllDeveloperGames(
       params: Params$Resource$Recall$Lasttokenfromalldevelopergames,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4490,8 +5862,10 @@ export namespace games_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$RetrieveDeveloperGamesLastPlayerTokenResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$RetrieveDeveloperGamesLastPlayerTokenResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Recall$Lasttokenfromalldevelopergames;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4539,6 +5913,63 @@ export namespace games_v1 {
 
     /**
      * Associate the PGS Player principal encoded in the provided recall session id with an in-game account
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.recall.linkPersona({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "cardinalityConstraint": "my_cardinalityConstraint",
+     *       //   "conflictingLinksResolutionPolicy": "my_conflictingLinksResolutionPolicy",
+     *       //   "expireTime": "my_expireTime",
+     *       //   "persona": "my_persona",
+     *       //   "sessionId": "my_sessionId",
+     *       //   "token": "my_token",
+     *       //   "ttl": "my_ttl"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4548,11 +5979,11 @@ export namespace games_v1 {
     linkPersona(
       params: Params$Resource$Recall$Linkpersona,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     linkPersona(
       params?: Params$Resource$Recall$Linkpersona,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LinkPersonaResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LinkPersonaResponse>>;
     linkPersona(
       params: Params$Resource$Recall$Linkpersona,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4585,8 +6016,8 @@ export namespace games_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$LinkPersonaResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$LinkPersonaResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Recall$Linkpersona;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4632,6 +6063,57 @@ export namespace games_v1 {
 
     /**
      * Delete all Recall tokens linking the given persona to any player (with or without a profile).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.recall.resetPersona({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "persona": "my_persona"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "unlinked": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4641,11 +6123,11 @@ export namespace games_v1 {
     resetPersona(
       params: Params$Resource$Recall$Resetpersona,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     resetPersona(
       params?: Params$Resource$Recall$Resetpersona,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ResetPersonaResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ResetPersonaResponse>>;
     resetPersona(
       params: Params$Resource$Recall$Resetpersona,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4680,8 +6162,8 @@ export namespace games_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ResetPersonaResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ResetPersonaResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Recall$Resetpersona;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4727,6 +6209,52 @@ export namespace games_v1 {
 
     /**
      * Retrieve all Recall tokens associated with the PGS Player encoded in the provided recall session id. The API is only available for users that have active PGS Player profile.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.recall.retrieveTokens({
+     *     // Required. Opaque server-generated string that encodes all the necessary information to identify the PGS player / Google user and application.
+     *     sessionId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "tokens": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4736,11 +6264,11 @@ export namespace games_v1 {
     retrieveTokens(
       params: Params$Resource$Recall$Retrievetokens,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     retrieveTokens(
       params?: Params$Resource$Recall$Retrievetokens,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RetrievePlayerTokensResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$RetrievePlayerTokensResponse>>;
     retrieveTokens(
       params: Params$Resource$Recall$Retrievetokens,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4775,8 +6303,8 @@ export namespace games_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$RetrievePlayerTokensResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$RetrievePlayerTokensResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Recall$Retrievetokens;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4824,6 +6352,59 @@ export namespace games_v1 {
 
     /**
      * Delete a Recall token linking the PGS Player principal identified by the Recall session and an in-game account identified either by the 'persona' or by the token value.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.recall.unlinkPersona({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "persona": "my_persona",
+     *       //   "sessionId": "my_sessionId",
+     *       //   "token": "my_token"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "unlinked": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4833,11 +6414,11 @@ export namespace games_v1 {
     unlinkPersona(
       params: Params$Resource$Recall$Unlinkpersona,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     unlinkPersona(
       params?: Params$Resource$Recall$Unlinkpersona,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$UnlinkPersonaResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$UnlinkPersonaResponse>>;
     unlinkPersona(
       params: Params$Resource$Recall$Unlinkpersona,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4872,8 +6453,8 @@ export namespace games_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$UnlinkPersonaResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$UnlinkPersonaResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Recall$Unlinkpersona;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4973,6 +6554,54 @@ export namespace games_v1 {
 
     /**
      * Checks whether the games client is out of date.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.revisions.check({
+     *     // Required. The revision of the client SDK used by your application. Format: `[PLATFORM_TYPE]:[VERSION_NUMBER]`. Possible values of `PLATFORM_TYPE` are: * `ANDROID` - Client is running the Android SDK. * `IOS` - Client is running the iOS SDK. * `WEB_APP` - Client is running as a Web App.
+     *     clientRevision: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "kind": "my_kind",
+     *   //   "revisionStatus": "my_revisionStatus"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4982,11 +6611,11 @@ export namespace games_v1 {
     check(
       params: Params$Resource$Revisions$Check,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     check(
       params?: Params$Resource$Revisions$Check,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RevisionCheckResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$RevisionCheckResponse>>;
     check(
       params: Params$Resource$Revisions$Check,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5019,8 +6648,8 @@ export namespace games_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$RevisionCheckResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$RevisionCheckResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Revisions$Check;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5079,6 +6708,67 @@ export namespace games_v1 {
 
     /**
      * Get high scores, and optionally ranks, in leaderboards for the currently authenticated player. For a specific time span, `leaderboardId` can be set to `ALL` to retrieve data for all leaderboards in a given time span. `NOTE: You cannot ask for 'ALL' leaderboards and 'ALL' timeSpans in the same request; only one parameter may be set to 'ALL'.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.scores.get({
+     *     // The types of ranks to return. If the parameter is omitted, no ranks will be returned.
+     *     includeRankType: 'placeholder-value',
+     *     // The preferred language to use for strings returned by this method.
+     *     language: 'placeholder-value',
+     *     // The ID of the leaderboard. Can be set to 'ALL' to retrieve data for all leaderboards for this application.
+     *     leaderboardId: 'placeholder-value',
+     *     // The maximum number of leaderboard scores to return in the response. For any response, the actual number of leaderboard scores returned may be less than the specified `maxResults`.
+     *     maxResults: 'placeholder-value',
+     *     // The token returned by the previous request.
+     *     pageToken: 'placeholder-value',
+     *     // A player ID. A value of `me` may be used in place of the authenticated player's ID.
+     *     playerId: 'placeholder-value',
+     *     // The time span for the scores and ranks you're requesting.
+     *     timeSpan: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "player": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5088,11 +6778,13 @@ export namespace games_v1 {
     get(
       params: Params$Resource$Scores$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Scores$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PlayerLeaderboardScoreListResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$PlayerLeaderboardScoreListResponse>
+    >;
     get(
       params: Params$Resource$Scores$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5127,8 +6819,10 @@ export namespace games_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$PlayerLeaderboardScoreListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$PlayerLeaderboardScoreListResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Scores$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5175,6 +6869,67 @@ export namespace games_v1 {
 
     /**
      * Lists the scores in a leaderboard, starting from the top.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.scores.list({
+     *     // The collection of scores you're requesting.
+     *     collection: 'placeholder-value',
+     *     // The preferred language to use for strings returned by this method.
+     *     language: 'placeholder-value',
+     *     // The ID of the leaderboard.
+     *     leaderboardId: 'placeholder-value',
+     *     // The maximum number of leaderboard scores to return in the response. For any response, the actual number of leaderboard scores returned may be less than the specified `maxResults`.
+     *     maxResults: 'placeholder-value',
+     *     // The token returned by the previous request.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The time span for the scores and ranks you're requesting.
+     *     timeSpan: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "numScores": "my_numScores",
+     *   //   "playerScore": {},
+     *   //   "prevPageToken": "my_prevPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5184,11 +6939,11 @@ export namespace games_v1 {
     list(
       params: Params$Resource$Scores$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Scores$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LeaderboardScores>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LeaderboardScores>>;
     list(
       params: Params$Resource$Scores$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5219,8 +6974,8 @@ export namespace games_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$LeaderboardScores>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$LeaderboardScores>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Scores$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5265,6 +7020,71 @@ export namespace games_v1 {
 
     /**
      * Lists the scores in a leaderboard around (and including) a player's score.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.scores.listWindow({
+     *     // The collection of scores you're requesting.
+     *     collection: 'placeholder-value',
+     *     // The preferred language to use for strings returned by this method.
+     *     language: 'placeholder-value',
+     *     // The ID of the leaderboard.
+     *     leaderboardId: 'placeholder-value',
+     *     // The maximum number of leaderboard scores to return in the response. For any response, the actual number of leaderboard scores returned may be less than the specified `maxResults`.
+     *     maxResults: 'placeholder-value',
+     *     // The token returned by the previous request.
+     *     pageToken: 'placeholder-value',
+     *     // The preferred number of scores to return above the player's score. More scores may be returned if the player is at the bottom of the leaderboard; fewer may be returned if the player is at the top. Must be less than or equal to maxResults.
+     *     resultsAbove: 'placeholder-value',
+     *     // True if the top scores should be returned when the player is not in the leaderboard. Defaults to true.
+     *     returnTopIfAbsent: 'placeholder-value',
+     *     // Required. The time span for the scores and ranks you're requesting.
+     *     timeSpan: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "numScores": "my_numScores",
+     *   //   "playerScore": {},
+     *   //   "prevPageToken": "my_prevPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5274,11 +7094,11 @@ export namespace games_v1 {
     listWindow(
       params: Params$Resource$Scores$Listwindow,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     listWindow(
       params?: Params$Resource$Scores$Listwindow,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LeaderboardScores>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LeaderboardScores>>;
     listWindow(
       params: Params$Resource$Scores$Listwindow,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5309,8 +7129,8 @@ export namespace games_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$LeaderboardScores>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$LeaderboardScores>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Scores$Listwindow;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5356,6 +7176,63 @@ export namespace games_v1 {
 
     /**
      * Submits a score to the specified leaderboard.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.scores.submit({
+     *     // The preferred language to use for strings returned by this method.
+     *     language: 'placeholder-value',
+     *     // The ID of the leaderboard.
+     *     leaderboardId: 'placeholder-value',
+     *     // Required. The score you're submitting. The submitted score is ignored if it is worse than a previously submitted score, where worse depends on the leaderboard sort order. The meaning of the score value depends on the leaderboard format type. For fixed-point, the score represents the raw value. For time, the score represents elapsed time in milliseconds. For currency, the score represents a value in micro units.
+     *     score: 'placeholder-value',
+     *     // Additional information about the score you're submitting. Values must contain no more than 64 URI-safe characters as defined by section 2.3 of RFC 3986.
+     *     scoreTag: '[a-zA-Z0-9-._~]{0,64}',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "beatenScoreTimeSpans": [],
+     *   //   "formattedScore": "my_formattedScore",
+     *   //   "kind": "my_kind",
+     *   //   "leaderboardId": "my_leaderboardId",
+     *   //   "scoreTag": "my_scoreTag",
+     *   //   "unbeatenScores": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5365,11 +7242,11 @@ export namespace games_v1 {
     submit(
       params: Params$Resource$Scores$Submit,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     submit(
       params?: Params$Resource$Scores$Submit,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PlayerScoreResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PlayerScoreResponse>>;
     submit(
       params: Params$Resource$Scores$Submit,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5400,8 +7277,8 @@ export namespace games_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$PlayerScoreResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$PlayerScoreResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Scores$Submit;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5445,6 +7322,62 @@ export namespace games_v1 {
 
     /**
      * Submits multiple scores to leaderboards.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.scores.submitMultiple({
+     *     // The preferred language to use for strings returned by this method.
+     *     language: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "kind": "my_kind",
+     *       //   "scores": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "submittedScores": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5454,11 +7387,11 @@ export namespace games_v1 {
     submitMultiple(
       params: Params$Resource$Scores$Submitmultiple,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     submitMultiple(
       params?: Params$Resource$Scores$Submitmultiple,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PlayerScoreListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PlayerScoreListResponse>>;
     submitMultiple(
       params: Params$Resource$Scores$Submitmultiple,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5493,8 +7426,8 @@ export namespace games_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$PlayerScoreListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$PlayerScoreListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Scores$Submitmultiple;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5669,6 +7602,67 @@ export namespace games_v1 {
 
     /**
      * Retrieves the metadata for a given snapshot ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/games',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.snapshots.get({
+     *     // The preferred language to use for strings returned by this method.
+     *     language: 'placeholder-value',
+     *     // The ID of the snapshot.
+     *     snapshotId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "coverImage": {},
+     *   //   "description": "my_description",
+     *   //   "driveId": "my_driveId",
+     *   //   "durationMillis": "my_durationMillis",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "lastModifiedMillis": "my_lastModifiedMillis",
+     *   //   "progressValue": "my_progressValue",
+     *   //   "title": "my_title",
+     *   //   "type": "my_type",
+     *   //   "uniqueName": "my_uniqueName"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5678,11 +7672,11 @@ export namespace games_v1 {
     get(
       params: Params$Resource$Snapshots$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Snapshots$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Snapshot>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Snapshot>>;
     get(
       params: Params$Resource$Snapshots$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5711,7 +7705,10 @@ export namespace games_v1 {
       callback?:
         | BodyResponseCallback<Schema$Snapshot>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Snapshot> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Snapshot>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Snapshots$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5756,6 +7753,63 @@ export namespace games_v1 {
 
     /**
      * Retrieves a list of snapshots created by your application for the player corresponding to the player ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/games',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.snapshots.list({
+     *     // The preferred language to use for strings returned by this method.
+     *     language: 'placeholder-value',
+     *     // The maximum number of snapshot resources to return in the response, used for paging. For any response, the actual number of snapshot resources returned may be less than the specified `maxResults`.
+     *     maxResults: 'placeholder-value',
+     *     // The token returned by the previous request.
+     *     pageToken: 'placeholder-value',
+     *     // A player ID. A value of `me` may be used in place of the authenticated player's ID.
+     *     playerId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5765,11 +7819,11 @@ export namespace games_v1 {
     list(
       params: Params$Resource$Snapshots$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Snapshots$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SnapshotListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SnapshotListResponse>>;
     list(
       params: Params$Resource$Snapshots$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5802,8 +7856,8 @@ export namespace games_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SnapshotListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SnapshotListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Snapshots$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5884,6 +7938,59 @@ export namespace games_v1 {
 
     /**
      * Returns engagement and spend statistics in this application for the currently authenticated user.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.stats.get({});
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "avg_session_length_minutes": {},
+     *   //   "churn_probability": {},
+     *   //   "days_since_last_played": 0,
+     *   //   "high_spender_probability": {},
+     *   //   "kind": "my_kind",
+     *   //   "num_purchases": 0,
+     *   //   "num_sessions": 0,
+     *   //   "num_sessions_percentile": {},
+     *   //   "spend_percentile": {},
+     *   //   "spend_probability": {},
+     *   //   "total_spend_next_28_days": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5893,11 +8000,11 @@ export namespace games_v1 {
     get(
       params: Params$Resource$Stats$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Stats$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$StatsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$StatsResponse>>;
     get(
       params: Params$Resource$Stats$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5926,7 +8033,10 @@ export namespace games_v1 {
       callback?:
         | BodyResponseCallback<Schema$StatsResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$StatsResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$StatsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Stats$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

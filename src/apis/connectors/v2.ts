@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -190,6 +190,10 @@ export namespace connectors_v2 {
      * OAuth redirect URI passed in during the auth code flow, required by some OAuth backends.
      */
     redirectUri?: string | null;
+    /**
+     * Scopes the connection will request when the user performs the auth code flow.
+     */
+    scopes?: string[] | null;
   }
   /**
    * Response containing status of the connector for readiness prober.
@@ -945,6 +949,51 @@ export namespace connectors_v2 {
 
     /**
      * Reports readiness status of the connector. Similar logic to GetStatus but modified for kubernetes health check to understand.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/connectors.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const connectors = google.connectors('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await connectors.projects.locations.connections.checkReadiness({
+     *     name: 'projects/my-project/locations/my-location/connections/my-connection',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "status": "my_status"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -954,11 +1003,11 @@ export namespace connectors_v2 {
     checkReadiness(
       params: Params$Resource$Projects$Locations$Connections$Checkreadiness,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     checkReadiness(
       params?: Params$Resource$Projects$Locations$Connections$Checkreadiness,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CheckReadinessResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CheckReadinessResponse>>;
     checkReadiness(
       params: Params$Resource$Projects$Locations$Connections$Checkreadiness,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -993,8 +1042,8 @@ export namespace connectors_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CheckReadinessResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CheckReadinessResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Checkreadiness;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1041,6 +1090,52 @@ export namespace connectors_v2 {
 
     /**
      * Reports the status of the connection. Note that when the connection is in a state that is not ACTIVE, the implementation of this RPC method must return a Status with the corresponding State instead of returning a gRPC status code that is not "OK", which indicates that ConnectionStatus itself, not the connection, failed.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/connectors.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const connectors = google.connectors('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await connectors.projects.locations.connections.checkStatus({
+     *     name: 'projects/my-project/locations/my-location/connections/my-connection',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "description": "my_description",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1050,11 +1145,11 @@ export namespace connectors_v2 {
     checkStatus(
       params: Params$Resource$Projects$Locations$Connections$Checkstatus,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     checkStatus(
       params?: Params$Resource$Projects$Locations$Connections$Checkstatus,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CheckStatusResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CheckStatusResponse>>;
     checkStatus(
       params: Params$Resource$Projects$Locations$Connections$Checkstatus,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1087,8 +1182,8 @@ export namespace connectors_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CheckStatusResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CheckStatusResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Checkstatus;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1135,6 +1230,59 @@ export namespace connectors_v2 {
 
     /**
      * ExchangeAuthCode exchanges the OAuth authorization code (and other necessary data) for an access token (and associated credentials).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/connectors.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const connectors = google.connectors('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await connectors.projects.locations.connections.exchangeAuthCode({
+     *     name: 'projects/my-project/locations/my-location/connections/my-connection',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "authCodeData": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accessCredentials": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1144,11 +1292,11 @@ export namespace connectors_v2 {
     exchangeAuthCode(
       params: Params$Resource$Projects$Locations$Connections$Exchangeauthcode,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     exchangeAuthCode(
       params?: Params$Resource$Projects$Locations$Connections$Exchangeauthcode,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ExchangeAuthCodeResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ExchangeAuthCodeResponse>>;
     exchangeAuthCode(
       params: Params$Resource$Projects$Locations$Connections$Exchangeauthcode,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1183,8 +1331,8 @@ export namespace connectors_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ExchangeAuthCodeResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ExchangeAuthCodeResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Exchangeauthcode;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1231,6 +1379,61 @@ export namespace connectors_v2 {
 
     /**
      * Executes a SQL statement specified in the body of the request. An example of this SQL statement in the case of Salesforce connector would be 'select * from Account a, Order o where a.Id = o.AccountId'.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/connectors.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const connectors = google.connectors('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await connectors.projects.locations.connections.executeSqlQuery({
+     *     // Required. Resource name of the Connection. Format: projects/{project\}/locations/{location\}/connections/{connection\}
+     *     connection:
+     *       'projects/my-project/locations/my-location/connections/my-connection',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "query": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "results": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1240,11 +1443,11 @@ export namespace connectors_v2 {
     executeSqlQuery(
       params: Params$Resource$Projects$Locations$Connections$Executesqlquery,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     executeSqlQuery(
       params?: Params$Resource$Projects$Locations$Connections$Executesqlquery,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ExecuteSqlQueryResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ExecuteSqlQueryResponse>>;
     executeSqlQuery(
       params: Params$Resource$Projects$Locations$Connections$Executesqlquery,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1279,8 +1482,8 @@ export namespace connectors_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ExecuteSqlQueryResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ExecuteSqlQueryResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Executesqlquery;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1327,6 +1530,60 @@ export namespace connectors_v2 {
 
     /**
      * RefreshAccessToken exchanges the OAuth refresh token (and other necessary data) for a new access token (and new associated credentials).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/connectors.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const connectors = google.connectors('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await connectors.projects.locations.connections.refreshAccessToken({
+     *       name: 'projects/my-project/locations/my-location/connections/my-connection',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "refreshToken": "my_refreshToken"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accessCredentials": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1336,11 +1593,11 @@ export namespace connectors_v2 {
     refreshAccessToken(
       params: Params$Resource$Projects$Locations$Connections$Refreshaccesstoken,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     refreshAccessToken(
       params?: Params$Resource$Projects$Locations$Connections$Refreshaccesstoken,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RefreshAccessTokenResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$RefreshAccessTokenResponse>>;
     refreshAccessToken(
       params: Params$Resource$Projects$Locations$Connections$Refreshaccesstoken,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1375,8 +1632,8 @@ export namespace connectors_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$RefreshAccessTokenResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$RefreshAccessTokenResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Refreshaccesstoken;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1481,6 +1738,60 @@ export namespace connectors_v2 {
 
     /**
      * Executes an action with the name specified in the request. The input parameters for executing the action are passed through the body of the ExecuteAction request.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/connectors.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const connectors = google.connectors('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await connectors.projects.locations.connections.actions.execute({
+     *     // Required. Resource name of the Action. Format: projects/{project\}/locations/{location\}/connections/{connection\}/actions/{action\}
+     *     name: 'projects/my-project/locations/my-location/connections/my-connection/actions/my-action',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "parameters": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "results": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1490,11 +1801,11 @@ export namespace connectors_v2 {
     execute(
       params: Params$Resource$Projects$Locations$Connections$Actions$Execute,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     execute(
       params?: Params$Resource$Projects$Locations$Connections$Actions$Execute,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ExecuteActionResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ExecuteActionResponse>>;
     execute(
       params: Params$Resource$Projects$Locations$Connections$Actions$Execute,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1527,8 +1838,8 @@ export namespace connectors_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ExecuteActionResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ExecuteActionResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Actions$Execute;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1575,6 +1886,60 @@ export namespace connectors_v2 {
 
     /**
      * Gets the schema of the given action.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/connectors.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const connectors = google.connectors('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await connectors.projects.locations.connections.actions.get({
+     *     // Required. Resource name of the Action. Format: projects/{project\}/locations/{location\}/connections/{connection\}/actions/{action\}
+     *     name: 'projects/my-project/locations/my-location/connections/my-connection/actions/my-action',
+     *     // Specified view of the action schema.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "inputJsonSchema": {},
+     *   //   "inputParameters": [],
+     *   //   "name": "my_name",
+     *   //   "resultJsonSchema": {},
+     *   //   "resultMetadata": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1584,11 +1949,11 @@ export namespace connectors_v2 {
     get(
       params: Params$Resource$Projects$Locations$Connections$Actions$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Connections$Actions$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Action>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Action>>;
     get(
       params: Params$Resource$Projects$Locations$Connections$Actions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1617,7 +1982,10 @@ export namespace connectors_v2 {
       callback?:
         | BodyResponseCallback<Schema$Action>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Action> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Action>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Actions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1661,6 +2029,61 @@ export namespace connectors_v2 {
 
     /**
      * Gets the schema of all the actions supported by the connector.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/connectors.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const connectors = google.connectors('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await connectors.projects.locations.connections.actions.list({
+     *     // Number of Actions to return. Defaults to 25.
+     *     pageSize: 'placeholder-value',
+     *     // Page token, return from a previous ListActions call, that can be used retrieve the next page of content. If unspecified, the request returns the first page of actions.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Parent resource name of the Action. Format: projects/{project\}/locations/{location\}/connections/{connection\}
+     *     parent:
+     *       'projects/my-project/locations/my-location/connections/my-connection',
+     *     // Specifies which fields of the Action are returned in the response.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "actions": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unsupportedActionNames": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1670,11 +2093,11 @@ export namespace connectors_v2 {
     list(
       params: Params$Resource$Projects$Locations$Connections$Actions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Connections$Actions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListActionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListActionsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Connections$Actions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1705,8 +2128,8 @@ export namespace connectors_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListActionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListActionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Actions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1808,6 +2231,57 @@ export namespace connectors_v2 {
 
     /**
      * Gets metadata of given entity type
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/connectors.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const connectors = google.connectors('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await connectors.projects.locations.connections.entityTypes.get({
+     *     // Required. Resource name of the Entity Type. Format: projects/{project\}/locations/{location\}/connections/{connection\}/entityTypes/{entityType\}
+     *     name: 'projects/my-project/locations/my-location/connections/my-connection/entityTypes/my-entityType',
+     *     // Specifies view for entity type schema.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "fields": [],
+     *   //   "jsonSchema": {},
+     *   //   "name": "my_name",
+     *   //   "operations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1817,11 +2291,11 @@ export namespace connectors_v2 {
     get(
       params: Params$Resource$Projects$Locations$Connections$Entitytypes$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Connections$Entitytypes$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$EntityType>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$EntityType>>;
     get(
       params: Params$Resource$Projects$Locations$Connections$Entitytypes$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1850,7 +2324,10 @@ export namespace connectors_v2 {
       callback?:
         | BodyResponseCallback<Schema$EntityType>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$EntityType> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$EntityType>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Entitytypes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1894,6 +2371,61 @@ export namespace connectors_v2 {
 
     /**
      * Lists metadata related to all entity types present in the external system.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/connectors.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const connectors = google.connectors('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await connectors.projects.locations.connections.entityTypes.list({
+     *     // Number of entity types to return. Defaults to 25.
+     *     pageSize: 'placeholder-value',
+     *     // Page token, return from a previous ListEntityTypes call, that can be used retrieve the next page of content. If unspecified, the request returns the first page of entity types.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Resource name of the Entity Type. Format: projects/{project\}/locations/{location\}/connections/{connection\}
+     *     parent:
+     *       'projects/my-project/locations/my-location/connections/my-connection',
+     *     // Specifies which fields of the Entity Type are returned in the response.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "types": [],
+     *   //   "unsupportedTypeNames": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1903,11 +2435,11 @@ export namespace connectors_v2 {
     list(
       params: Params$Resource$Projects$Locations$Connections$Entitytypes$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Connections$Entitytypes$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListEntityTypesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListEntityTypesResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Connections$Entitytypes$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1940,8 +2472,8 @@ export namespace connectors_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListEntityTypesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListEntityTypesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Entitytypes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2026,6 +2558,66 @@ export namespace connectors_v2 {
 
     /**
      * Creates a new entity row of the specified entity type in the external system. The field values for creating the row are contained in the body of the request. The response message contains a `Entity` message object returned as a response by the external system.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/connectors.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const connectors = google.connectors('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await connectors.projects.locations.connections.entityTypes.entities.create(
+     *       {
+     *         // Required. Resource name of the Entity Type. Format: projects/{project\}/locations/{location\}/connections/{connection\}/entityTypes/{type\}
+     *         parent:
+     *           'projects/my-project/locations/my-location/connections/my-connection/entityTypes/my-entityType',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "fields": {},
+     *           //   "name": "my_name"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "fields": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2035,11 +2627,11 @@ export namespace connectors_v2 {
     create(
       params: Params$Resource$Projects$Locations$Connections$Entitytypes$Entities$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Connections$Entitytypes$Entities$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Entity>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Entity>>;
     create(
       params: Params$Resource$Projects$Locations$Connections$Entitytypes$Entities$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2068,7 +2660,10 @@ export namespace connectors_v2 {
       callback?:
         | BodyResponseCallback<Schema$Entity>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Entity> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Entity>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Entitytypes$Entities$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2115,6 +2710,53 @@ export namespace connectors_v2 {
 
     /**
      * Deletes an existing entity row matching the entity type and entity id specified in the request.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/connectors.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const connectors = google.connectors('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await connectors.projects.locations.connections.entityTypes.entities.delete(
+     *       {
+     *         // Required. Resource name of the Entity Type. Format: projects/{project\}/locations/{location\}/connections/{connection\}/entityTypes/{type\}/entities/{id\}
+     *         name: 'projects/my-project/locations/my-location/connections/my-connection/entityTypes/my-entityType/entities/my-entitie',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2124,11 +2766,11 @@ export namespace connectors_v2 {
     delete(
       params: Params$Resource$Projects$Locations$Connections$Entitytypes$Entities$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Connections$Entitytypes$Entities$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Locations$Connections$Entitytypes$Entities$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2157,7 +2799,10 @@ export namespace connectors_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Entitytypes$Entities$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2201,6 +2846,56 @@ export namespace connectors_v2 {
 
     /**
      * Deletes entities based on conditions specified in the request and not on entity id.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/connectors.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const connectors = google.connectors('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await connectors.projects.locations.connections.entityTypes.entities.deleteEntitiesWithConditions(
+     *       {
+     *         // Required. Conditions to be used when deleting entities. From a proto standpoint, There are no restrictions on what can be passed using this field. The connector documentation should have information about what format of filters/conditions are supported. Note: If this conditions field is left empty, an exception is thrown. We don't want to consider 'empty conditions' to be a match-all case. Connector developers can determine and document what a match-all case constraint would be.
+     *         conditions: 'placeholder-value',
+     *         // Required. Resource name of the Entity Type. Format: projects/{project\}/locations/{location\}/connections/{connection\}/entityTypes/{type\}
+     *         entityType:
+     *           'projects/my-project/locations/my-location/connections/my-connection/entityTypes/my-entityType',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2210,11 +2905,11 @@ export namespace connectors_v2 {
     deleteEntitiesWithConditions(
       params: Params$Resource$Projects$Locations$Connections$Entitytypes$Entities$Deleteentitieswithconditions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     deleteEntitiesWithConditions(
       params?: Params$Resource$Projects$Locations$Connections$Entitytypes$Entities$Deleteentitieswithconditions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     deleteEntitiesWithConditions(
       params: Params$Resource$Projects$Locations$Connections$Entitytypes$Entities$Deleteentitieswithconditions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2245,7 +2940,10 @@ export namespace connectors_v2 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Entitytypes$Entities$Deleteentitieswithconditions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2292,6 +2990,54 @@ export namespace connectors_v2 {
 
     /**
      * Gets a single entity row matching the entity type and entity id specified in the request.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/connectors.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const connectors = google.connectors('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await connectors.projects.locations.connections.entityTypes.entities.get({
+     *       // Required. Resource name of the Entity Type. Format: projects/{project\}/locations/{location\}/connections/{connection\}/entityTypes/{type\}/entities/{id\}
+     *       name: 'projects/my-project/locations/my-location/connections/my-connection/entityTypes/my-entityType/entities/my-entitie',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "fields": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2301,11 +3047,11 @@ export namespace connectors_v2 {
     get(
       params: Params$Resource$Projects$Locations$Connections$Entitytypes$Entities$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Connections$Entitytypes$Entities$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Entity>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Entity>>;
     get(
       params: Params$Resource$Projects$Locations$Connections$Entitytypes$Entities$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2334,7 +3080,10 @@ export namespace connectors_v2 {
       callback?:
         | BodyResponseCallback<Schema$Entity>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Entity> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Entity>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Entitytypes$Entities$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2378,6 +3127,65 @@ export namespace connectors_v2 {
 
     /**
      * Lists entity rows of a particular entity type contained in the request. Note: 1. Currently, only max of one 'sort_by' column is supported. 2. If no 'sort_by' column is provided, the primary key of the table is used. If zero or more than one primary key is available, we default to the unpaginated list entities logic which only returns the first page. 3. The values of the 'sort_by' columns must uniquely identify an entity row, otherwise undefined behaviors may be observed during pagination. 4. Since transactions are not supported, any updates, inserts or deletes during pagination can lead to stale data being returned or other unexpected behaviors.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/connectors.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const connectors = google.connectors('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await connectors.projects.locations.connections.entityTypes.entities.list({
+     *       // Conditions to be used when listing entities. From a proto standpoint, There are no restrictions on what can be passed using this field. The connector documentation should have information about what format of filters/conditions are supported.
+     *       conditions: 'placeholder-value',
+     *       // Number of entity rows to return. Defaults page size = 25. Max page size = 200.
+     *       pageSize: 'placeholder-value',
+     *       // Page token value if available from a previous request.
+     *       pageToken: 'placeholder-value',
+     *       // Required. Resource name of the Entity Type. Format: projects/{project\}/locations/{location\}/connections/{connection\}/entityTypes/{type\}
+     *       parent:
+     *         'projects/my-project/locations/my-location/connections/my-connection/entityTypes/my-entityType',
+     *       // List of 'sort_by' columns to use when returning the results.
+     *       sortBy: 'placeholder-value',
+     *       // List of 'sort_order' columns to use when returning the results.
+     *       sortOrder: 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entities": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2387,11 +3195,11 @@ export namespace connectors_v2 {
     list(
       params: Params$Resource$Projects$Locations$Connections$Entitytypes$Entities$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Connections$Entitytypes$Entities$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListEntitiesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListEntitiesResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Connections$Entitytypes$Entities$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2424,8 +3232,8 @@ export namespace connectors_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListEntitiesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListEntitiesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Entitytypes$Entities$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2472,6 +3280,63 @@ export namespace connectors_v2 {
 
     /**
      * Updates an existing entity row matching the entity type and entity id specified in the request. The fields in the entity row that need to be modified are contained in the body of the request. All unspecified fields are left unchanged. The response message contains a `Entity` message object returned as a response by the external system.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/connectors.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const connectors = google.connectors('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await connectors.projects.locations.connections.entityTypes.entities.patch({
+     *       // Output only. Resource name of the Entity. Format: projects/{project\}/locations/{location\}/connections/{connection\}/entityTypes/{type\}/entities/{id\}
+     *       name: 'projects/my-project/locations/my-location/connections/my-connection/entityTypes/my-entityType/entities/my-entitie',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "fields": {},
+     *         //   "name": "my_name"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "fields": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2481,11 +3346,11 @@ export namespace connectors_v2 {
     patch(
       params: Params$Resource$Projects$Locations$Connections$Entitytypes$Entities$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Connections$Entitytypes$Entities$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Entity>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Entity>>;
     patch(
       params: Params$Resource$Projects$Locations$Connections$Entitytypes$Entities$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2514,7 +3379,10 @@ export namespace connectors_v2 {
       callback?:
         | BodyResponseCallback<Schema$Entity>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Entity> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Entity>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Entitytypes$Entities$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2558,6 +3426,67 @@ export namespace connectors_v2 {
 
     /**
      * Updates entities based on conditions specified in the request and not on entity id.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/connectors.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const connectors = google.connectors('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await connectors.projects.locations.connections.entityTypes.entities.updateEntitiesWithConditions(
+     *       {
+     *         // Required. Conditions to be used when updating entities. From a proto standpoint, There are no restrictions on what can be passed using this field. The connector documentation should have information about what format of filters/conditions are supported. Note: If this conditions field is left empty, an exception is thrown. We don't want to consider 'empty conditions' to be a match-all case. Connector developers can determine and document what a match-all case constraint would be.
+     *         conditions: 'placeholder-value',
+     *         // Required. Resource name of the Entity Type. Format: projects/{project\}/locations/{location\}/connections/{connection\}/entityTypes/{type\}
+     *         entityType:
+     *           'projects/my-project/locations/my-location/connections/my-connection/entityTypes/my-entityType',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "fields": {},
+     *           //   "name": "my_name"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2567,11 +3496,13 @@ export namespace connectors_v2 {
     updateEntitiesWithConditions(
       params: Params$Resource$Projects$Locations$Connections$Entitytypes$Entities$Updateentitieswithconditions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     updateEntitiesWithConditions(
       params?: Params$Resource$Projects$Locations$Connections$Entitytypes$Entities$Updateentitieswithconditions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$UpdateEntitiesWithConditionsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$UpdateEntitiesWithConditionsResponse>
+    >;
     updateEntitiesWithConditions(
       params: Params$Resource$Projects$Locations$Connections$Entitytypes$Entities$Updateentitieswithconditions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2606,8 +3537,10 @@ export namespace connectors_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$UpdateEntitiesWithConditionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$UpdateEntitiesWithConditionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Entitytypes$Entities$Updateentitieswithconditions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2714,6 +3647,10 @@ export namespace connectors_v2 {
      * List of 'sort_by' columns to use when returning the results.
      */
     sortBy?: string[];
+    /**
+     * List of 'sort_order' columns to use when returning the results.
+     */
+    sortOrder?: string[];
   }
   export interface Params$Resource$Projects$Locations$Connections$Entitytypes$Entities$Patch
     extends StandardParameters {

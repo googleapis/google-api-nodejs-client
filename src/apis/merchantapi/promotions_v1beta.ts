@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -414,7 +414,7 @@ export namespace merchantapi_promotions_v1beta {
      */
     eventTime?: string | null;
     /**
-     * Optional. The product expiration time. This field will not bet set if the notification is sent for a product deletion event.
+     * Optional. The product expiration time. This field will not be set if the notification is sent for a product deletion event.
      */
     expirationTime?: string | null;
     /**
@@ -518,6 +518,61 @@ export namespace merchantapi_promotions_v1beta {
 
     /**
      * Retrieves the promotion from your Merchant Center account. After inserting or updating a promotion input, it may take several minutes before the updated promotion can be retrieved.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('promotions_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.promotions.get({
+     *     // Required. The name of the promotion to retrieve. Format: `accounts/{account\}/promotions/{promotions\}`
+     *     name: 'accounts/my-account/promotions/my-promotion',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attributes": {},
+     *   //   "contentLanguage": "my_contentLanguage",
+     *   //   "customAttributes": [],
+     *   //   "dataSource": "my_dataSource",
+     *   //   "name": "my_name",
+     *   //   "promotionId": "my_promotionId",
+     *   //   "promotionStatus": {},
+     *   //   "redemptionChannel": [],
+     *   //   "targetCountry": "my_targetCountry",
+     *   //   "versionNumber": "my_versionNumber"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -527,11 +582,11 @@ export namespace merchantapi_promotions_v1beta {
     get(
       params: Params$Resource$Accounts$Promotions$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Accounts$Promotions$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Promotion>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Promotion>>;
     get(
       params: Params$Resource$Accounts$Promotions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -560,7 +615,10 @@ export namespace merchantapi_promotions_v1beta {
       callback?:
         | BodyResponseCallback<Schema$Promotion>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Promotion> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Promotion>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Promotions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -606,6 +664,70 @@ export namespace merchantapi_promotions_v1beta {
 
     /**
      * Inserts a promotion for your Merchant Center account. If the promotion already exists, then it updates the promotion instead.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('promotions_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.promotions.insert({
+     *     // Required. The account where the promotion will be inserted. Format: accounts/{account\}
+     *     parent: 'accounts/my-account',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "dataSource": "my_dataSource",
+     *       //   "promotion": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attributes": {},
+     *   //   "contentLanguage": "my_contentLanguage",
+     *   //   "customAttributes": [],
+     *   //   "dataSource": "my_dataSource",
+     *   //   "name": "my_name",
+     *   //   "promotionId": "my_promotionId",
+     *   //   "promotionStatus": {},
+     *   //   "redemptionChannel": [],
+     *   //   "targetCountry": "my_targetCountry",
+     *   //   "versionNumber": "my_versionNumber"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -615,11 +737,11 @@ export namespace merchantapi_promotions_v1beta {
     insert(
       params: Params$Resource$Accounts$Promotions$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Accounts$Promotions$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Promotion>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Promotion>>;
     insert(
       params: Params$Resource$Accounts$Promotions$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -648,7 +770,10 @@ export namespace merchantapi_promotions_v1beta {
       callback?:
         | BodyResponseCallback<Schema$Promotion>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Promotion> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Promotion>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Promotions$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -693,6 +818,57 @@ export namespace merchantapi_promotions_v1beta {
 
     /**
      * Lists the promotions in your Merchant Center account. The response might contain fewer items than specified by `pageSize`. Rely on `pageToken` to determine if there are more items to be requested. After inserting or updating a promotion, it may take several minutes before the updated processed promotion can be retrieved.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('promotions_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.promotions.list({
+     *     // Output only. The maximum number of promotions to return. The service may return fewer than this value. The maximum value is 250; values above 250 will be coerced to 250. If unspecified, the maximum number of promotions will be returned.
+     *     pageSize: 'placeholder-value',
+     *     // Output only. A page token, received from a previous `ListPromotions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListPromotions` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The account to list processed promotions for. Format: `accounts/{account\}`
+     *     parent: 'accounts/my-account',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "promotions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -702,11 +878,11 @@ export namespace merchantapi_promotions_v1beta {
     list(
       params: Params$Resource$Accounts$Promotions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Accounts$Promotions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListPromotionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListPromotionsResponse>>;
     list(
       params: Params$Resource$Accounts$Promotions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -739,8 +915,8 @@ export namespace merchantapi_promotions_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListPromotionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListPromotionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Promotions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

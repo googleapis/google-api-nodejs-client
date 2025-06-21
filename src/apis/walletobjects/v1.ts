@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -675,7 +675,7 @@ export namespace walletobjects_v1 {
    */
   export interface Schema$DiscoverableProgramMerchantSignupInfo {
     /**
-     *  User data that is sent in a POST request to the signup website URL. This information is encoded and then shared so that the merchant's website can prefill fields used to enroll the user for the discoverable program.
+     * User data that is sent in a POST request to the signup website URL. This information is encoded and then shared so that the merchant's website can prefill fields used to enroll the user for the discoverable program.
      */
     signupSharedDatas?: string[] | null;
     /**
@@ -4338,6 +4338,60 @@ export namespace walletobjects_v1 {
 
     /**
      * Adds a message to the event ticket class referenced by the given class ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.eventticketclass.addmessage({
+     *     // The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "message": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "resource": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4347,11 +4401,13 @@ export namespace walletobjects_v1 {
     addmessage(
       params: Params$Resource$Eventticketclass$Addmessage,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     addmessage(
       params?: Params$Resource$Eventticketclass$Addmessage,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$EventTicketClassAddMessageResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$EventTicketClassAddMessageResponse>
+    >;
     addmessage(
       params: Params$Resource$Eventticketclass$Addmessage,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4386,8 +4442,10 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$EventTicketClassAddMessageResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$EventTicketClassAddMessageResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Eventticketclass$Addmessage;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4436,6 +4494,98 @@ export namespace walletobjects_v1 {
 
     /**
      * Returns the event ticket class with the given class ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.eventticketclass.get({
+     *     // The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allowMultipleUsersPerObject": false,
+     *   //   "appLinkData": {},
+     *   //   "callbackOptions": {},
+     *   //   "classTemplateInfo": {},
+     *   //   "confirmationCodeLabel": "my_confirmationCodeLabel",
+     *   //   "countryCode": "my_countryCode",
+     *   //   "customConfirmationCodeLabel": {},
+     *   //   "customGateLabel": {},
+     *   //   "customRowLabel": {},
+     *   //   "customSeatLabel": {},
+     *   //   "customSectionLabel": {},
+     *   //   "dateTime": {},
+     *   //   "enableSmartTap": false,
+     *   //   "eventId": "my_eventId",
+     *   //   "eventName": {},
+     *   //   "finePrint": {},
+     *   //   "gateLabel": "my_gateLabel",
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "homepageUri": {},
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "issuerName": "my_issuerName",
+     *   //   "kind": "my_kind",
+     *   //   "linksModuleData": {},
+     *   //   "localizedIssuerName": {},
+     *   //   "locations": [],
+     *   //   "logo": {},
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "redemptionIssuers": [],
+     *   //   "review": {},
+     *   //   "reviewStatus": "my_reviewStatus",
+     *   //   "rowLabel": "my_rowLabel",
+     *   //   "seatLabel": "my_seatLabel",
+     *   //   "sectionLabel": "my_sectionLabel",
+     *   //   "securityAnimation": {},
+     *   //   "textModulesData": [],
+     *   //   "valueAddedModuleData": [],
+     *   //   "venue": {},
+     *   //   "version": "my_version",
+     *   //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *   //   "wideLogo": {},
+     *   //   "wordMark": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4445,11 +4595,11 @@ export namespace walletobjects_v1 {
     get(
       params: Params$Resource$Eventticketclass$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Eventticketclass$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$EventTicketClass>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$EventTicketClass>>;
     get(
       params: Params$Resource$Eventticketclass$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4478,7 +4628,10 @@ export namespace walletobjects_v1 {
       callback?:
         | BodyResponseCallback<Schema$EventTicketClass>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$EventTicketClass> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$EventTicketClass>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Eventticketclass$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4524,6 +4677,149 @@ export namespace walletobjects_v1 {
 
     /**
      * Inserts an event ticket class with the given ID and properties.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.eventticketclass.insert({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "allowMultipleUsersPerObject": false,
+     *       //   "appLinkData": {},
+     *       //   "callbackOptions": {},
+     *       //   "classTemplateInfo": {},
+     *       //   "confirmationCodeLabel": "my_confirmationCodeLabel",
+     *       //   "countryCode": "my_countryCode",
+     *       //   "customConfirmationCodeLabel": {},
+     *       //   "customGateLabel": {},
+     *       //   "customRowLabel": {},
+     *       //   "customSeatLabel": {},
+     *       //   "customSectionLabel": {},
+     *       //   "dateTime": {},
+     *       //   "enableSmartTap": false,
+     *       //   "eventId": "my_eventId",
+     *       //   "eventName": {},
+     *       //   "finePrint": {},
+     *       //   "gateLabel": "my_gateLabel",
+     *       //   "heroImage": {},
+     *       //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *       //   "homepageUri": {},
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "infoModuleData": {},
+     *       //   "issuerName": "my_issuerName",
+     *       //   "kind": "my_kind",
+     *       //   "linksModuleData": {},
+     *       //   "localizedIssuerName": {},
+     *       //   "locations": [],
+     *       //   "logo": {},
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *       //   "notifyPreference": "my_notifyPreference",
+     *       //   "redemptionIssuers": [],
+     *       //   "review": {},
+     *       //   "reviewStatus": "my_reviewStatus",
+     *       //   "rowLabel": "my_rowLabel",
+     *       //   "seatLabel": "my_seatLabel",
+     *       //   "sectionLabel": "my_sectionLabel",
+     *       //   "securityAnimation": {},
+     *       //   "textModulesData": [],
+     *       //   "valueAddedModuleData": [],
+     *       //   "venue": {},
+     *       //   "version": "my_version",
+     *       //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *       //   "wideLogo": {},
+     *       //   "wordMark": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allowMultipleUsersPerObject": false,
+     *   //   "appLinkData": {},
+     *   //   "callbackOptions": {},
+     *   //   "classTemplateInfo": {},
+     *   //   "confirmationCodeLabel": "my_confirmationCodeLabel",
+     *   //   "countryCode": "my_countryCode",
+     *   //   "customConfirmationCodeLabel": {},
+     *   //   "customGateLabel": {},
+     *   //   "customRowLabel": {},
+     *   //   "customSeatLabel": {},
+     *   //   "customSectionLabel": {},
+     *   //   "dateTime": {},
+     *   //   "enableSmartTap": false,
+     *   //   "eventId": "my_eventId",
+     *   //   "eventName": {},
+     *   //   "finePrint": {},
+     *   //   "gateLabel": "my_gateLabel",
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "homepageUri": {},
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "issuerName": "my_issuerName",
+     *   //   "kind": "my_kind",
+     *   //   "linksModuleData": {},
+     *   //   "localizedIssuerName": {},
+     *   //   "locations": [],
+     *   //   "logo": {},
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "redemptionIssuers": [],
+     *   //   "review": {},
+     *   //   "reviewStatus": "my_reviewStatus",
+     *   //   "rowLabel": "my_rowLabel",
+     *   //   "seatLabel": "my_seatLabel",
+     *   //   "sectionLabel": "my_sectionLabel",
+     *   //   "securityAnimation": {},
+     *   //   "textModulesData": [],
+     *   //   "valueAddedModuleData": [],
+     *   //   "venue": {},
+     *   //   "version": "my_version",
+     *   //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *   //   "wideLogo": {},
+     *   //   "wordMark": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4533,11 +4829,11 @@ export namespace walletobjects_v1 {
     insert(
       params: Params$Resource$Eventticketclass$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Eventticketclass$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$EventTicketClass>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$EventTicketClass>>;
     insert(
       params: Params$Resource$Eventticketclass$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4566,7 +4862,10 @@ export namespace walletobjects_v1 {
       callback?:
         | BodyResponseCallback<Schema$EventTicketClass>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$EventTicketClass> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$EventTicketClass>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Eventticketclass$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4613,6 +4912,57 @@ export namespace walletobjects_v1 {
 
     /**
      * Returns a list of all event ticket classes for a given issuer ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.eventticketclass.list({
+     *     // The ID of the issuer authorized to list classes.
+     *     issuerId: 'placeholder-value',
+     *     // Identifies the max number of results returned by a list. All results are returned if `maxResults` isn't defined.
+     *     maxResults: 'placeholder-value',
+     *     // Used to get the next set of results if `maxResults` is specified, but more than `maxResults` classes are available in a list. For example, if you have a list of 200 classes and you call list with `maxResults` set to 20, list will return the first 20 classes and a token. Call list again with `maxResults` set to 20 and the token to get the next 20 classes.
+     *     token: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "pagination": {},
+     *   //   "resources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4622,11 +4972,11 @@ export namespace walletobjects_v1 {
     list(
       params: Params$Resource$Eventticketclass$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Eventticketclass$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$EventTicketClassListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$EventTicketClassListResponse>>;
     list(
       params: Params$Resource$Eventticketclass$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4661,8 +5011,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$EventTicketClassListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$EventTicketClassListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Eventticketclass$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4711,6 +5061,152 @@ export namespace walletobjects_v1 {
 
     /**
      * Updates the event ticket class referenced by the given class ID. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.eventticketclass.patch({
+     *     // The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "allowMultipleUsersPerObject": false,
+     *       //   "appLinkData": {},
+     *       //   "callbackOptions": {},
+     *       //   "classTemplateInfo": {},
+     *       //   "confirmationCodeLabel": "my_confirmationCodeLabel",
+     *       //   "countryCode": "my_countryCode",
+     *       //   "customConfirmationCodeLabel": {},
+     *       //   "customGateLabel": {},
+     *       //   "customRowLabel": {},
+     *       //   "customSeatLabel": {},
+     *       //   "customSectionLabel": {},
+     *       //   "dateTime": {},
+     *       //   "enableSmartTap": false,
+     *       //   "eventId": "my_eventId",
+     *       //   "eventName": {},
+     *       //   "finePrint": {},
+     *       //   "gateLabel": "my_gateLabel",
+     *       //   "heroImage": {},
+     *       //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *       //   "homepageUri": {},
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "infoModuleData": {},
+     *       //   "issuerName": "my_issuerName",
+     *       //   "kind": "my_kind",
+     *       //   "linksModuleData": {},
+     *       //   "localizedIssuerName": {},
+     *       //   "locations": [],
+     *       //   "logo": {},
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *       //   "notifyPreference": "my_notifyPreference",
+     *       //   "redemptionIssuers": [],
+     *       //   "review": {},
+     *       //   "reviewStatus": "my_reviewStatus",
+     *       //   "rowLabel": "my_rowLabel",
+     *       //   "seatLabel": "my_seatLabel",
+     *       //   "sectionLabel": "my_sectionLabel",
+     *       //   "securityAnimation": {},
+     *       //   "textModulesData": [],
+     *       //   "valueAddedModuleData": [],
+     *       //   "venue": {},
+     *       //   "version": "my_version",
+     *       //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *       //   "wideLogo": {},
+     *       //   "wordMark": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allowMultipleUsersPerObject": false,
+     *   //   "appLinkData": {},
+     *   //   "callbackOptions": {},
+     *   //   "classTemplateInfo": {},
+     *   //   "confirmationCodeLabel": "my_confirmationCodeLabel",
+     *   //   "countryCode": "my_countryCode",
+     *   //   "customConfirmationCodeLabel": {},
+     *   //   "customGateLabel": {},
+     *   //   "customRowLabel": {},
+     *   //   "customSeatLabel": {},
+     *   //   "customSectionLabel": {},
+     *   //   "dateTime": {},
+     *   //   "enableSmartTap": false,
+     *   //   "eventId": "my_eventId",
+     *   //   "eventName": {},
+     *   //   "finePrint": {},
+     *   //   "gateLabel": "my_gateLabel",
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "homepageUri": {},
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "issuerName": "my_issuerName",
+     *   //   "kind": "my_kind",
+     *   //   "linksModuleData": {},
+     *   //   "localizedIssuerName": {},
+     *   //   "locations": [],
+     *   //   "logo": {},
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "redemptionIssuers": [],
+     *   //   "review": {},
+     *   //   "reviewStatus": "my_reviewStatus",
+     *   //   "rowLabel": "my_rowLabel",
+     *   //   "seatLabel": "my_seatLabel",
+     *   //   "sectionLabel": "my_sectionLabel",
+     *   //   "securityAnimation": {},
+     *   //   "textModulesData": [],
+     *   //   "valueAddedModuleData": [],
+     *   //   "venue": {},
+     *   //   "version": "my_version",
+     *   //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *   //   "wideLogo": {},
+     *   //   "wordMark": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4720,11 +5216,11 @@ export namespace walletobjects_v1 {
     patch(
       params: Params$Resource$Eventticketclass$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Eventticketclass$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$EventTicketClass>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$EventTicketClass>>;
     patch(
       params: Params$Resource$Eventticketclass$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4753,7 +5249,10 @@ export namespace walletobjects_v1 {
       callback?:
         | BodyResponseCallback<Schema$EventTicketClass>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$EventTicketClass> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$EventTicketClass>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Eventticketclass$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4799,6 +5298,152 @@ export namespace walletobjects_v1 {
 
     /**
      * Updates the event ticket class referenced by the given class ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.eventticketclass.update({
+     *     // The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "allowMultipleUsersPerObject": false,
+     *       //   "appLinkData": {},
+     *       //   "callbackOptions": {},
+     *       //   "classTemplateInfo": {},
+     *       //   "confirmationCodeLabel": "my_confirmationCodeLabel",
+     *       //   "countryCode": "my_countryCode",
+     *       //   "customConfirmationCodeLabel": {},
+     *       //   "customGateLabel": {},
+     *       //   "customRowLabel": {},
+     *       //   "customSeatLabel": {},
+     *       //   "customSectionLabel": {},
+     *       //   "dateTime": {},
+     *       //   "enableSmartTap": false,
+     *       //   "eventId": "my_eventId",
+     *       //   "eventName": {},
+     *       //   "finePrint": {},
+     *       //   "gateLabel": "my_gateLabel",
+     *       //   "heroImage": {},
+     *       //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *       //   "homepageUri": {},
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "infoModuleData": {},
+     *       //   "issuerName": "my_issuerName",
+     *       //   "kind": "my_kind",
+     *       //   "linksModuleData": {},
+     *       //   "localizedIssuerName": {},
+     *       //   "locations": [],
+     *       //   "logo": {},
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *       //   "notifyPreference": "my_notifyPreference",
+     *       //   "redemptionIssuers": [],
+     *       //   "review": {},
+     *       //   "reviewStatus": "my_reviewStatus",
+     *       //   "rowLabel": "my_rowLabel",
+     *       //   "seatLabel": "my_seatLabel",
+     *       //   "sectionLabel": "my_sectionLabel",
+     *       //   "securityAnimation": {},
+     *       //   "textModulesData": [],
+     *       //   "valueAddedModuleData": [],
+     *       //   "venue": {},
+     *       //   "version": "my_version",
+     *       //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *       //   "wideLogo": {},
+     *       //   "wordMark": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allowMultipleUsersPerObject": false,
+     *   //   "appLinkData": {},
+     *   //   "callbackOptions": {},
+     *   //   "classTemplateInfo": {},
+     *   //   "confirmationCodeLabel": "my_confirmationCodeLabel",
+     *   //   "countryCode": "my_countryCode",
+     *   //   "customConfirmationCodeLabel": {},
+     *   //   "customGateLabel": {},
+     *   //   "customRowLabel": {},
+     *   //   "customSeatLabel": {},
+     *   //   "customSectionLabel": {},
+     *   //   "dateTime": {},
+     *   //   "enableSmartTap": false,
+     *   //   "eventId": "my_eventId",
+     *   //   "eventName": {},
+     *   //   "finePrint": {},
+     *   //   "gateLabel": "my_gateLabel",
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "homepageUri": {},
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "issuerName": "my_issuerName",
+     *   //   "kind": "my_kind",
+     *   //   "linksModuleData": {},
+     *   //   "localizedIssuerName": {},
+     *   //   "locations": [],
+     *   //   "logo": {},
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "redemptionIssuers": [],
+     *   //   "review": {},
+     *   //   "reviewStatus": "my_reviewStatus",
+     *   //   "rowLabel": "my_rowLabel",
+     *   //   "seatLabel": "my_seatLabel",
+     *   //   "sectionLabel": "my_sectionLabel",
+     *   //   "securityAnimation": {},
+     *   //   "textModulesData": [],
+     *   //   "valueAddedModuleData": [],
+     *   //   "venue": {},
+     *   //   "version": "my_version",
+     *   //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *   //   "wideLogo": {},
+     *   //   "wordMark": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4808,11 +5453,11 @@ export namespace walletobjects_v1 {
     update(
       params: Params$Resource$Eventticketclass$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Eventticketclass$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$EventTicketClass>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$EventTicketClass>>;
     update(
       params: Params$Resource$Eventticketclass$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4841,7 +5486,10 @@ export namespace walletobjects_v1 {
       callback?:
         | BodyResponseCallback<Schema$EventTicketClass>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$EventTicketClass> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$EventTicketClass>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Eventticketclass$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4960,6 +5608,60 @@ export namespace walletobjects_v1 {
 
     /**
      * Adds a message to the event ticket object referenced by the given object ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.eventticketobject.addmessage({
+     *     // The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "message": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "resource": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4969,11 +5671,13 @@ export namespace walletobjects_v1 {
     addmessage(
       params: Params$Resource$Eventticketobject$Addmessage,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     addmessage(
       params?: Params$Resource$Eventticketobject$Addmessage,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$EventTicketObjectAddMessageResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$EventTicketObjectAddMessageResponse>
+    >;
     addmessage(
       params: Params$Resource$Eventticketobject$Addmessage,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5008,8 +5712,10 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$EventTicketObjectAddMessageResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$EventTicketObjectAddMessageResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Eventticketobject$Addmessage;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5058,6 +5764,87 @@ export namespace walletobjects_v1 {
 
     /**
      * Returns the event ticket object with the given object ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.eventticketobject.get({
+     *     // The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appLinkData": {},
+     *   //   "barcode": {},
+     *   //   "classId": "my_classId",
+     *   //   "classReference": {},
+     *   //   "disableExpirationNotification": false,
+     *   //   "faceValue": {},
+     *   //   "groupingInfo": {},
+     *   //   "hasLinkedDevice": false,
+     *   //   "hasUsers": false,
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "kind": "my_kind",
+     *   //   "linkedObjectIds": [],
+     *   //   "linkedOfferIds": [],
+     *   //   "linksModuleData": {},
+     *   //   "locations": [],
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "passConstraints": {},
+     *   //   "reservationInfo": {},
+     *   //   "rotatingBarcode": {},
+     *   //   "saveRestrictions": {},
+     *   //   "seatInfo": {},
+     *   //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *   //   "state": "my_state",
+     *   //   "textModulesData": [],
+     *   //   "ticketHolderName": "my_ticketHolderName",
+     *   //   "ticketNumber": "my_ticketNumber",
+     *   //   "ticketType": {},
+     *   //   "validTimeInterval": {},
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5067,11 +5854,11 @@ export namespace walletobjects_v1 {
     get(
       params: Params$Resource$Eventticketobject$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Eventticketobject$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$EventTicketObject>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$EventTicketObject>>;
     get(
       params: Params$Resource$Eventticketobject$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5102,8 +5889,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$EventTicketObject>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$EventTicketObject>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Eventticketobject$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5149,6 +5936,127 @@ export namespace walletobjects_v1 {
 
     /**
      * Inserts an event ticket object with the given ID and properties.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.eventticketobject.insert({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "appLinkData": {},
+     *       //   "barcode": {},
+     *       //   "classId": "my_classId",
+     *       //   "classReference": {},
+     *       //   "disableExpirationNotification": false,
+     *       //   "faceValue": {},
+     *       //   "groupingInfo": {},
+     *       //   "hasLinkedDevice": false,
+     *       //   "hasUsers": false,
+     *       //   "heroImage": {},
+     *       //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "infoModuleData": {},
+     *       //   "kind": "my_kind",
+     *       //   "linkedObjectIds": [],
+     *       //   "linkedOfferIds": [],
+     *       //   "linksModuleData": {},
+     *       //   "locations": [],
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "notifyPreference": "my_notifyPreference",
+     *       //   "passConstraints": {},
+     *       //   "reservationInfo": {},
+     *       //   "rotatingBarcode": {},
+     *       //   "saveRestrictions": {},
+     *       //   "seatInfo": {},
+     *       //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *       //   "state": "my_state",
+     *       //   "textModulesData": [],
+     *       //   "ticketHolderName": "my_ticketHolderName",
+     *       //   "ticketNumber": "my_ticketNumber",
+     *       //   "ticketType": {},
+     *       //   "validTimeInterval": {},
+     *       //   "valueAddedModuleData": [],
+     *       //   "version": "my_version"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appLinkData": {},
+     *   //   "barcode": {},
+     *   //   "classId": "my_classId",
+     *   //   "classReference": {},
+     *   //   "disableExpirationNotification": false,
+     *   //   "faceValue": {},
+     *   //   "groupingInfo": {},
+     *   //   "hasLinkedDevice": false,
+     *   //   "hasUsers": false,
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "kind": "my_kind",
+     *   //   "linkedObjectIds": [],
+     *   //   "linkedOfferIds": [],
+     *   //   "linksModuleData": {},
+     *   //   "locations": [],
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "passConstraints": {},
+     *   //   "reservationInfo": {},
+     *   //   "rotatingBarcode": {},
+     *   //   "saveRestrictions": {},
+     *   //   "seatInfo": {},
+     *   //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *   //   "state": "my_state",
+     *   //   "textModulesData": [],
+     *   //   "ticketHolderName": "my_ticketHolderName",
+     *   //   "ticketNumber": "my_ticketNumber",
+     *   //   "ticketType": {},
+     *   //   "validTimeInterval": {},
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5158,11 +6066,11 @@ export namespace walletobjects_v1 {
     insert(
       params: Params$Resource$Eventticketobject$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Eventticketobject$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$EventTicketObject>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$EventTicketObject>>;
     insert(
       params: Params$Resource$Eventticketobject$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5193,8 +6101,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$EventTicketObject>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$EventTicketObject>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Eventticketobject$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5241,6 +6149,57 @@ export namespace walletobjects_v1 {
 
     /**
      * Returns a list of all event ticket objects for a given issuer ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.eventticketobject.list({
+     *     // The ID of the class whose objects will be listed.
+     *     classId: 'placeholder-value',
+     *     // Identifies the max number of results returned by a list. All results are returned if `maxResults` isn't defined.
+     *     maxResults: 'placeholder-value',
+     *     // Used to get the next set of results if `maxResults` is specified, but more than `maxResults` objects are available in a list. For example, if you have a list of 200 objects and you call list with `maxResults` set to 20, list will return the first 20 objects and a token. Call list again with `maxResults` set to 20 and the token to get the next 20 objects.
+     *     token: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "pagination": {},
+     *   //   "resources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5250,11 +6209,11 @@ export namespace walletobjects_v1 {
     list(
       params: Params$Resource$Eventticketobject$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Eventticketobject$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$EventTicketObjectListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$EventTicketObjectListResponse>>;
     list(
       params: Params$Resource$Eventticketobject$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5289,8 +6248,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$EventTicketObjectListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$EventTicketObjectListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Eventticketobject$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5339,6 +6298,95 @@ export namespace walletobjects_v1 {
 
     /**
      * Modifies linked offer objects for the event ticket object with the given ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.eventticketobject.modifylinkedofferobjects({
+     *     // The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "linkedOfferObjectIds": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appLinkData": {},
+     *   //   "barcode": {},
+     *   //   "classId": "my_classId",
+     *   //   "classReference": {},
+     *   //   "disableExpirationNotification": false,
+     *   //   "faceValue": {},
+     *   //   "groupingInfo": {},
+     *   //   "hasLinkedDevice": false,
+     *   //   "hasUsers": false,
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "kind": "my_kind",
+     *   //   "linkedObjectIds": [],
+     *   //   "linkedOfferIds": [],
+     *   //   "linksModuleData": {},
+     *   //   "locations": [],
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "passConstraints": {},
+     *   //   "reservationInfo": {},
+     *   //   "rotatingBarcode": {},
+     *   //   "saveRestrictions": {},
+     *   //   "seatInfo": {},
+     *   //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *   //   "state": "my_state",
+     *   //   "textModulesData": [],
+     *   //   "ticketHolderName": "my_ticketHolderName",
+     *   //   "ticketNumber": "my_ticketNumber",
+     *   //   "ticketType": {},
+     *   //   "validTimeInterval": {},
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5348,11 +6396,11 @@ export namespace walletobjects_v1 {
     modifylinkedofferobjects(
       params: Params$Resource$Eventticketobject$Modifylinkedofferobjects,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     modifylinkedofferobjects(
       params?: Params$Resource$Eventticketobject$Modifylinkedofferobjects,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$EventTicketObject>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$EventTicketObject>>;
     modifylinkedofferobjects(
       params: Params$Resource$Eventticketobject$Modifylinkedofferobjects,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5385,8 +6433,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$EventTicketObject>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$EventTicketObject>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Eventticketobject$Modifylinkedofferobjects;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5434,6 +6482,130 @@ export namespace walletobjects_v1 {
 
     /**
      * Updates the event ticket object referenced by the given object ID. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.eventticketobject.patch({
+     *     // The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "appLinkData": {},
+     *       //   "barcode": {},
+     *       //   "classId": "my_classId",
+     *       //   "classReference": {},
+     *       //   "disableExpirationNotification": false,
+     *       //   "faceValue": {},
+     *       //   "groupingInfo": {},
+     *       //   "hasLinkedDevice": false,
+     *       //   "hasUsers": false,
+     *       //   "heroImage": {},
+     *       //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "infoModuleData": {},
+     *       //   "kind": "my_kind",
+     *       //   "linkedObjectIds": [],
+     *       //   "linkedOfferIds": [],
+     *       //   "linksModuleData": {},
+     *       //   "locations": [],
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "notifyPreference": "my_notifyPreference",
+     *       //   "passConstraints": {},
+     *       //   "reservationInfo": {},
+     *       //   "rotatingBarcode": {},
+     *       //   "saveRestrictions": {},
+     *       //   "seatInfo": {},
+     *       //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *       //   "state": "my_state",
+     *       //   "textModulesData": [],
+     *       //   "ticketHolderName": "my_ticketHolderName",
+     *       //   "ticketNumber": "my_ticketNumber",
+     *       //   "ticketType": {},
+     *       //   "validTimeInterval": {},
+     *       //   "valueAddedModuleData": [],
+     *       //   "version": "my_version"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appLinkData": {},
+     *   //   "barcode": {},
+     *   //   "classId": "my_classId",
+     *   //   "classReference": {},
+     *   //   "disableExpirationNotification": false,
+     *   //   "faceValue": {},
+     *   //   "groupingInfo": {},
+     *   //   "hasLinkedDevice": false,
+     *   //   "hasUsers": false,
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "kind": "my_kind",
+     *   //   "linkedObjectIds": [],
+     *   //   "linkedOfferIds": [],
+     *   //   "linksModuleData": {},
+     *   //   "locations": [],
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "passConstraints": {},
+     *   //   "reservationInfo": {},
+     *   //   "rotatingBarcode": {},
+     *   //   "saveRestrictions": {},
+     *   //   "seatInfo": {},
+     *   //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *   //   "state": "my_state",
+     *   //   "textModulesData": [],
+     *   //   "ticketHolderName": "my_ticketHolderName",
+     *   //   "ticketNumber": "my_ticketNumber",
+     *   //   "ticketType": {},
+     *   //   "validTimeInterval": {},
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5443,11 +6615,11 @@ export namespace walletobjects_v1 {
     patch(
       params: Params$Resource$Eventticketobject$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Eventticketobject$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$EventTicketObject>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$EventTicketObject>>;
     patch(
       params: Params$Resource$Eventticketobject$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5478,8 +6650,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$EventTicketObject>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$EventTicketObject>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Eventticketobject$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5525,6 +6697,130 @@ export namespace walletobjects_v1 {
 
     /**
      * Updates the event ticket object referenced by the given object ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.eventticketobject.update({
+     *     // The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "appLinkData": {},
+     *       //   "barcode": {},
+     *       //   "classId": "my_classId",
+     *       //   "classReference": {},
+     *       //   "disableExpirationNotification": false,
+     *       //   "faceValue": {},
+     *       //   "groupingInfo": {},
+     *       //   "hasLinkedDevice": false,
+     *       //   "hasUsers": false,
+     *       //   "heroImage": {},
+     *       //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "infoModuleData": {},
+     *       //   "kind": "my_kind",
+     *       //   "linkedObjectIds": [],
+     *       //   "linkedOfferIds": [],
+     *       //   "linksModuleData": {},
+     *       //   "locations": [],
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "notifyPreference": "my_notifyPreference",
+     *       //   "passConstraints": {},
+     *       //   "reservationInfo": {},
+     *       //   "rotatingBarcode": {},
+     *       //   "saveRestrictions": {},
+     *       //   "seatInfo": {},
+     *       //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *       //   "state": "my_state",
+     *       //   "textModulesData": [],
+     *       //   "ticketHolderName": "my_ticketHolderName",
+     *       //   "ticketNumber": "my_ticketNumber",
+     *       //   "ticketType": {},
+     *       //   "validTimeInterval": {},
+     *       //   "valueAddedModuleData": [],
+     *       //   "version": "my_version"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appLinkData": {},
+     *   //   "barcode": {},
+     *   //   "classId": "my_classId",
+     *   //   "classReference": {},
+     *   //   "disableExpirationNotification": false,
+     *   //   "faceValue": {},
+     *   //   "groupingInfo": {},
+     *   //   "hasLinkedDevice": false,
+     *   //   "hasUsers": false,
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "kind": "my_kind",
+     *   //   "linkedObjectIds": [],
+     *   //   "linkedOfferIds": [],
+     *   //   "linksModuleData": {},
+     *   //   "locations": [],
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "passConstraints": {},
+     *   //   "reservationInfo": {},
+     *   //   "rotatingBarcode": {},
+     *   //   "saveRestrictions": {},
+     *   //   "seatInfo": {},
+     *   //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *   //   "state": "my_state",
+     *   //   "textModulesData": [],
+     *   //   "ticketHolderName": "my_ticketHolderName",
+     *   //   "ticketNumber": "my_ticketNumber",
+     *   //   "ticketType": {},
+     *   //   "validTimeInterval": {},
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5534,11 +6830,11 @@ export namespace walletobjects_v1 {
     update(
       params: Params$Resource$Eventticketobject$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Eventticketobject$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$EventTicketObject>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$EventTicketObject>>;
     update(
       params: Params$Resource$Eventticketobject$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5569,8 +6865,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$EventTicketObject>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$EventTicketObject>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Eventticketobject$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5701,6 +6997,60 @@ export namespace walletobjects_v1 {
 
     /**
      * Adds a message to the flight class referenced by the given class ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.flightclass.addmessage({
+     *     // The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "message": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "resource": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5710,11 +7060,11 @@ export namespace walletobjects_v1 {
     addmessage(
       params: Params$Resource$Flightclass$Addmessage,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     addmessage(
       params?: Params$Resource$Flightclass$Addmessage,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FlightClassAddMessageResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FlightClassAddMessageResponse>>;
     addmessage(
       params: Params$Resource$Flightclass$Addmessage,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5749,8 +7099,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$FlightClassAddMessageResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$FlightClassAddMessageResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Flightclass$Addmessage;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5798,6 +7148,93 @@ export namespace walletobjects_v1 {
 
     /**
      * Returns the flight class with the given class ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.flightclass.get({
+     *     // The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allowMultipleUsersPerObject": false,
+     *   //   "appLinkData": {},
+     *   //   "boardingAndSeatingPolicy": {},
+     *   //   "callbackOptions": {},
+     *   //   "classTemplateInfo": {},
+     *   //   "countryCode": "my_countryCode",
+     *   //   "destination": {},
+     *   //   "enableSmartTap": false,
+     *   //   "flightHeader": {},
+     *   //   "flightStatus": "my_flightStatus",
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "homepageUri": {},
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "issuerName": "my_issuerName",
+     *   //   "kind": "my_kind",
+     *   //   "languageOverride": "my_languageOverride",
+     *   //   "linksModuleData": {},
+     *   //   "localBoardingDateTime": "my_localBoardingDateTime",
+     *   //   "localEstimatedOrActualArrivalDateTime": "my_localEstimatedOrActualArrivalDateTime",
+     *   //   "localEstimatedOrActualDepartureDateTime": "my_localEstimatedOrActualDepartureDateTime",
+     *   //   "localGateClosingDateTime": "my_localGateClosingDateTime",
+     *   //   "localScheduledArrivalDateTime": "my_localScheduledArrivalDateTime",
+     *   //   "localScheduledDepartureDateTime": "my_localScheduledDepartureDateTime",
+     *   //   "localizedIssuerName": {},
+     *   //   "locations": [],
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "origin": {},
+     *   //   "redemptionIssuers": [],
+     *   //   "review": {},
+     *   //   "reviewStatus": "my_reviewStatus",
+     *   //   "securityAnimation": {},
+     *   //   "textModulesData": [],
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version",
+     *   //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *   //   "wordMark": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5807,11 +7244,11 @@ export namespace walletobjects_v1 {
     get(
       params: Params$Resource$Flightclass$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Flightclass$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FlightClass>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FlightClass>>;
     get(
       params: Params$Resource$Flightclass$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5840,7 +7277,10 @@ export namespace walletobjects_v1 {
       callback?:
         | BodyResponseCallback<Schema$FlightClass>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$FlightClass> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$FlightClass>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Flightclass$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5885,6 +7325,139 @@ export namespace walletobjects_v1 {
 
     /**
      * Inserts an flight class with the given ID and properties.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.flightclass.insert({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "allowMultipleUsersPerObject": false,
+     *       //   "appLinkData": {},
+     *       //   "boardingAndSeatingPolicy": {},
+     *       //   "callbackOptions": {},
+     *       //   "classTemplateInfo": {},
+     *       //   "countryCode": "my_countryCode",
+     *       //   "destination": {},
+     *       //   "enableSmartTap": false,
+     *       //   "flightHeader": {},
+     *       //   "flightStatus": "my_flightStatus",
+     *       //   "heroImage": {},
+     *       //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *       //   "homepageUri": {},
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "infoModuleData": {},
+     *       //   "issuerName": "my_issuerName",
+     *       //   "kind": "my_kind",
+     *       //   "languageOverride": "my_languageOverride",
+     *       //   "linksModuleData": {},
+     *       //   "localBoardingDateTime": "my_localBoardingDateTime",
+     *       //   "localEstimatedOrActualArrivalDateTime": "my_localEstimatedOrActualArrivalDateTime",
+     *       //   "localEstimatedOrActualDepartureDateTime": "my_localEstimatedOrActualDepartureDateTime",
+     *       //   "localGateClosingDateTime": "my_localGateClosingDateTime",
+     *       //   "localScheduledArrivalDateTime": "my_localScheduledArrivalDateTime",
+     *       //   "localScheduledDepartureDateTime": "my_localScheduledDepartureDateTime",
+     *       //   "localizedIssuerName": {},
+     *       //   "locations": [],
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *       //   "notifyPreference": "my_notifyPreference",
+     *       //   "origin": {},
+     *       //   "redemptionIssuers": [],
+     *       //   "review": {},
+     *       //   "reviewStatus": "my_reviewStatus",
+     *       //   "securityAnimation": {},
+     *       //   "textModulesData": [],
+     *       //   "valueAddedModuleData": [],
+     *       //   "version": "my_version",
+     *       //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *       //   "wordMark": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allowMultipleUsersPerObject": false,
+     *   //   "appLinkData": {},
+     *   //   "boardingAndSeatingPolicy": {},
+     *   //   "callbackOptions": {},
+     *   //   "classTemplateInfo": {},
+     *   //   "countryCode": "my_countryCode",
+     *   //   "destination": {},
+     *   //   "enableSmartTap": false,
+     *   //   "flightHeader": {},
+     *   //   "flightStatus": "my_flightStatus",
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "homepageUri": {},
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "issuerName": "my_issuerName",
+     *   //   "kind": "my_kind",
+     *   //   "languageOverride": "my_languageOverride",
+     *   //   "linksModuleData": {},
+     *   //   "localBoardingDateTime": "my_localBoardingDateTime",
+     *   //   "localEstimatedOrActualArrivalDateTime": "my_localEstimatedOrActualArrivalDateTime",
+     *   //   "localEstimatedOrActualDepartureDateTime": "my_localEstimatedOrActualDepartureDateTime",
+     *   //   "localGateClosingDateTime": "my_localGateClosingDateTime",
+     *   //   "localScheduledArrivalDateTime": "my_localScheduledArrivalDateTime",
+     *   //   "localScheduledDepartureDateTime": "my_localScheduledDepartureDateTime",
+     *   //   "localizedIssuerName": {},
+     *   //   "locations": [],
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "origin": {},
+     *   //   "redemptionIssuers": [],
+     *   //   "review": {},
+     *   //   "reviewStatus": "my_reviewStatus",
+     *   //   "securityAnimation": {},
+     *   //   "textModulesData": [],
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version",
+     *   //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *   //   "wordMark": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5894,11 +7467,11 @@ export namespace walletobjects_v1 {
     insert(
       params: Params$Resource$Flightclass$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Flightclass$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FlightClass>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FlightClass>>;
     insert(
       params: Params$Resource$Flightclass$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5927,7 +7500,10 @@ export namespace walletobjects_v1 {
       callback?:
         | BodyResponseCallback<Schema$FlightClass>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$FlightClass> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$FlightClass>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Flightclass$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5974,6 +7550,57 @@ export namespace walletobjects_v1 {
 
     /**
      * Returns a list of all flight classes for a given issuer ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.flightclass.list({
+     *     // The ID of the issuer authorized to list classes.
+     *     issuerId: 'placeholder-value',
+     *     // Identifies the max number of results returned by a list. All results are returned if `maxResults` isn't defined.
+     *     maxResults: 'placeholder-value',
+     *     // Used to get the next set of results if `maxResults` is specified, but more than `maxResults` classes are available in a list. For example, if you have a list of 200 classes and you call list with `maxResults` set to 20, list will return the first 20 classes and a token. Call list again with `maxResults` set to 20 and the token to get the next 20 classes.
+     *     token: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "pagination": {},
+     *   //   "resources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5983,11 +7610,11 @@ export namespace walletobjects_v1 {
     list(
       params: Params$Resource$Flightclass$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Flightclass$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FlightClassListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FlightClassListResponse>>;
     list(
       params: Params$Resource$Flightclass$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6020,8 +7647,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$FlightClassListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$FlightClassListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Flightclass$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6067,6 +7694,142 @@ export namespace walletobjects_v1 {
 
     /**
      * Updates the flight class referenced by the given class ID. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.flightclass.patch({
+     *     // The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "allowMultipleUsersPerObject": false,
+     *       //   "appLinkData": {},
+     *       //   "boardingAndSeatingPolicy": {},
+     *       //   "callbackOptions": {},
+     *       //   "classTemplateInfo": {},
+     *       //   "countryCode": "my_countryCode",
+     *       //   "destination": {},
+     *       //   "enableSmartTap": false,
+     *       //   "flightHeader": {},
+     *       //   "flightStatus": "my_flightStatus",
+     *       //   "heroImage": {},
+     *       //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *       //   "homepageUri": {},
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "infoModuleData": {},
+     *       //   "issuerName": "my_issuerName",
+     *       //   "kind": "my_kind",
+     *       //   "languageOverride": "my_languageOverride",
+     *       //   "linksModuleData": {},
+     *       //   "localBoardingDateTime": "my_localBoardingDateTime",
+     *       //   "localEstimatedOrActualArrivalDateTime": "my_localEstimatedOrActualArrivalDateTime",
+     *       //   "localEstimatedOrActualDepartureDateTime": "my_localEstimatedOrActualDepartureDateTime",
+     *       //   "localGateClosingDateTime": "my_localGateClosingDateTime",
+     *       //   "localScheduledArrivalDateTime": "my_localScheduledArrivalDateTime",
+     *       //   "localScheduledDepartureDateTime": "my_localScheduledDepartureDateTime",
+     *       //   "localizedIssuerName": {},
+     *       //   "locations": [],
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *       //   "notifyPreference": "my_notifyPreference",
+     *       //   "origin": {},
+     *       //   "redemptionIssuers": [],
+     *       //   "review": {},
+     *       //   "reviewStatus": "my_reviewStatus",
+     *       //   "securityAnimation": {},
+     *       //   "textModulesData": [],
+     *       //   "valueAddedModuleData": [],
+     *       //   "version": "my_version",
+     *       //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *       //   "wordMark": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allowMultipleUsersPerObject": false,
+     *   //   "appLinkData": {},
+     *   //   "boardingAndSeatingPolicy": {},
+     *   //   "callbackOptions": {},
+     *   //   "classTemplateInfo": {},
+     *   //   "countryCode": "my_countryCode",
+     *   //   "destination": {},
+     *   //   "enableSmartTap": false,
+     *   //   "flightHeader": {},
+     *   //   "flightStatus": "my_flightStatus",
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "homepageUri": {},
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "issuerName": "my_issuerName",
+     *   //   "kind": "my_kind",
+     *   //   "languageOverride": "my_languageOverride",
+     *   //   "linksModuleData": {},
+     *   //   "localBoardingDateTime": "my_localBoardingDateTime",
+     *   //   "localEstimatedOrActualArrivalDateTime": "my_localEstimatedOrActualArrivalDateTime",
+     *   //   "localEstimatedOrActualDepartureDateTime": "my_localEstimatedOrActualDepartureDateTime",
+     *   //   "localGateClosingDateTime": "my_localGateClosingDateTime",
+     *   //   "localScheduledArrivalDateTime": "my_localScheduledArrivalDateTime",
+     *   //   "localScheduledDepartureDateTime": "my_localScheduledDepartureDateTime",
+     *   //   "localizedIssuerName": {},
+     *   //   "locations": [],
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "origin": {},
+     *   //   "redemptionIssuers": [],
+     *   //   "review": {},
+     *   //   "reviewStatus": "my_reviewStatus",
+     *   //   "securityAnimation": {},
+     *   //   "textModulesData": [],
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version",
+     *   //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *   //   "wordMark": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6076,11 +7839,11 @@ export namespace walletobjects_v1 {
     patch(
       params: Params$Resource$Flightclass$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Flightclass$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FlightClass>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FlightClass>>;
     patch(
       params: Params$Resource$Flightclass$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6109,7 +7872,10 @@ export namespace walletobjects_v1 {
       callback?:
         | BodyResponseCallback<Schema$FlightClass>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$FlightClass> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$FlightClass>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Flightclass$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6155,6 +7921,142 @@ export namespace walletobjects_v1 {
 
     /**
      * Updates the flight class referenced by the given class ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.flightclass.update({
+     *     // The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "allowMultipleUsersPerObject": false,
+     *       //   "appLinkData": {},
+     *       //   "boardingAndSeatingPolicy": {},
+     *       //   "callbackOptions": {},
+     *       //   "classTemplateInfo": {},
+     *       //   "countryCode": "my_countryCode",
+     *       //   "destination": {},
+     *       //   "enableSmartTap": false,
+     *       //   "flightHeader": {},
+     *       //   "flightStatus": "my_flightStatus",
+     *       //   "heroImage": {},
+     *       //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *       //   "homepageUri": {},
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "infoModuleData": {},
+     *       //   "issuerName": "my_issuerName",
+     *       //   "kind": "my_kind",
+     *       //   "languageOverride": "my_languageOverride",
+     *       //   "linksModuleData": {},
+     *       //   "localBoardingDateTime": "my_localBoardingDateTime",
+     *       //   "localEstimatedOrActualArrivalDateTime": "my_localEstimatedOrActualArrivalDateTime",
+     *       //   "localEstimatedOrActualDepartureDateTime": "my_localEstimatedOrActualDepartureDateTime",
+     *       //   "localGateClosingDateTime": "my_localGateClosingDateTime",
+     *       //   "localScheduledArrivalDateTime": "my_localScheduledArrivalDateTime",
+     *       //   "localScheduledDepartureDateTime": "my_localScheduledDepartureDateTime",
+     *       //   "localizedIssuerName": {},
+     *       //   "locations": [],
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *       //   "notifyPreference": "my_notifyPreference",
+     *       //   "origin": {},
+     *       //   "redemptionIssuers": [],
+     *       //   "review": {},
+     *       //   "reviewStatus": "my_reviewStatus",
+     *       //   "securityAnimation": {},
+     *       //   "textModulesData": [],
+     *       //   "valueAddedModuleData": [],
+     *       //   "version": "my_version",
+     *       //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *       //   "wordMark": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allowMultipleUsersPerObject": false,
+     *   //   "appLinkData": {},
+     *   //   "boardingAndSeatingPolicy": {},
+     *   //   "callbackOptions": {},
+     *   //   "classTemplateInfo": {},
+     *   //   "countryCode": "my_countryCode",
+     *   //   "destination": {},
+     *   //   "enableSmartTap": false,
+     *   //   "flightHeader": {},
+     *   //   "flightStatus": "my_flightStatus",
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "homepageUri": {},
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "issuerName": "my_issuerName",
+     *   //   "kind": "my_kind",
+     *   //   "languageOverride": "my_languageOverride",
+     *   //   "linksModuleData": {},
+     *   //   "localBoardingDateTime": "my_localBoardingDateTime",
+     *   //   "localEstimatedOrActualArrivalDateTime": "my_localEstimatedOrActualArrivalDateTime",
+     *   //   "localEstimatedOrActualDepartureDateTime": "my_localEstimatedOrActualDepartureDateTime",
+     *   //   "localGateClosingDateTime": "my_localGateClosingDateTime",
+     *   //   "localScheduledArrivalDateTime": "my_localScheduledArrivalDateTime",
+     *   //   "localScheduledDepartureDateTime": "my_localScheduledDepartureDateTime",
+     *   //   "localizedIssuerName": {},
+     *   //   "locations": [],
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "origin": {},
+     *   //   "redemptionIssuers": [],
+     *   //   "review": {},
+     *   //   "reviewStatus": "my_reviewStatus",
+     *   //   "securityAnimation": {},
+     *   //   "textModulesData": [],
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version",
+     *   //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *   //   "wordMark": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6164,11 +8066,11 @@ export namespace walletobjects_v1 {
     update(
       params: Params$Resource$Flightclass$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Flightclass$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FlightClass>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FlightClass>>;
     update(
       params: Params$Resource$Flightclass$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6197,7 +8099,10 @@ export namespace walletobjects_v1 {
       callback?:
         | BodyResponseCallback<Schema$FlightClass>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$FlightClass> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$FlightClass>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Flightclass$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6314,6 +8219,60 @@ export namespace walletobjects_v1 {
 
     /**
      * Adds a message to the flight object referenced by the given object ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.flightobject.addmessage({
+     *     // The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "message": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "resource": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6323,11 +8282,11 @@ export namespace walletobjects_v1 {
     addmessage(
       params: Params$Resource$Flightobject$Addmessage,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     addmessage(
       params?: Params$Resource$Flightobject$Addmessage,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FlightObjectAddMessageResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FlightObjectAddMessageResponse>>;
     addmessage(
       params: Params$Resource$Flightobject$Addmessage,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6362,8 +8321,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$FlightObjectAddMessageResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$FlightObjectAddMessageResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Flightobject$Addmessage;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6411,6 +8370,84 @@ export namespace walletobjects_v1 {
 
     /**
      * Returns the flight object with the given object ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.flightobject.get({
+     *     // The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appLinkData": {},
+     *   //   "barcode": {},
+     *   //   "boardingAndSeatingInfo": {},
+     *   //   "classId": "my_classId",
+     *   //   "classReference": {},
+     *   //   "disableExpirationNotification": false,
+     *   //   "groupingInfo": {},
+     *   //   "hasLinkedDevice": false,
+     *   //   "hasUsers": false,
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "kind": "my_kind",
+     *   //   "linkedObjectIds": [],
+     *   //   "linksModuleData": {},
+     *   //   "locations": [],
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "passConstraints": {},
+     *   //   "passengerName": "my_passengerName",
+     *   //   "reservationInfo": {},
+     *   //   "rotatingBarcode": {},
+     *   //   "saveRestrictions": {},
+     *   //   "securityProgramLogo": {},
+     *   //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *   //   "state": "my_state",
+     *   //   "textModulesData": [],
+     *   //   "validTimeInterval": {},
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6420,11 +8457,11 @@ export namespace walletobjects_v1 {
     get(
       params: Params$Resource$Flightobject$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Flightobject$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FlightObject>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FlightObject>>;
     get(
       params: Params$Resource$Flightobject$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6453,7 +8490,10 @@ export namespace walletobjects_v1 {
       callback?:
         | BodyResponseCallback<Schema$FlightObject>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$FlightObject> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$FlightObject>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Flightobject$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6498,6 +8538,121 @@ export namespace walletobjects_v1 {
 
     /**
      * Inserts an flight object with the given ID and properties.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.flightobject.insert({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "appLinkData": {},
+     *       //   "barcode": {},
+     *       //   "boardingAndSeatingInfo": {},
+     *       //   "classId": "my_classId",
+     *       //   "classReference": {},
+     *       //   "disableExpirationNotification": false,
+     *       //   "groupingInfo": {},
+     *       //   "hasLinkedDevice": false,
+     *       //   "hasUsers": false,
+     *       //   "heroImage": {},
+     *       //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "infoModuleData": {},
+     *       //   "kind": "my_kind",
+     *       //   "linkedObjectIds": [],
+     *       //   "linksModuleData": {},
+     *       //   "locations": [],
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "notifyPreference": "my_notifyPreference",
+     *       //   "passConstraints": {},
+     *       //   "passengerName": "my_passengerName",
+     *       //   "reservationInfo": {},
+     *       //   "rotatingBarcode": {},
+     *       //   "saveRestrictions": {},
+     *       //   "securityProgramLogo": {},
+     *       //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *       //   "state": "my_state",
+     *       //   "textModulesData": [],
+     *       //   "validTimeInterval": {},
+     *       //   "valueAddedModuleData": [],
+     *       //   "version": "my_version"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appLinkData": {},
+     *   //   "barcode": {},
+     *   //   "boardingAndSeatingInfo": {},
+     *   //   "classId": "my_classId",
+     *   //   "classReference": {},
+     *   //   "disableExpirationNotification": false,
+     *   //   "groupingInfo": {},
+     *   //   "hasLinkedDevice": false,
+     *   //   "hasUsers": false,
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "kind": "my_kind",
+     *   //   "linkedObjectIds": [],
+     *   //   "linksModuleData": {},
+     *   //   "locations": [],
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "passConstraints": {},
+     *   //   "passengerName": "my_passengerName",
+     *   //   "reservationInfo": {},
+     *   //   "rotatingBarcode": {},
+     *   //   "saveRestrictions": {},
+     *   //   "securityProgramLogo": {},
+     *   //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *   //   "state": "my_state",
+     *   //   "textModulesData": [],
+     *   //   "validTimeInterval": {},
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6507,11 +8662,11 @@ export namespace walletobjects_v1 {
     insert(
       params: Params$Resource$Flightobject$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Flightobject$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FlightObject>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FlightObject>>;
     insert(
       params: Params$Resource$Flightobject$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6540,7 +8695,10 @@ export namespace walletobjects_v1 {
       callback?:
         | BodyResponseCallback<Schema$FlightObject>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$FlightObject> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$FlightObject>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Flightobject$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6587,6 +8745,57 @@ export namespace walletobjects_v1 {
 
     /**
      * Returns a list of all flight objects for a given issuer ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.flightobject.list({
+     *     // The ID of the class whose objects will be listed.
+     *     classId: 'placeholder-value',
+     *     // Identifies the max number of results returned by a list. All results are returned if `maxResults` isn't defined.
+     *     maxResults: 'placeholder-value',
+     *     // Used to get the next set of results if `maxResults` is specified, but more than `maxResults` objects are available in a list. For example, if you have a list of 200 objects and you call list with `maxResults` set to 20, list will return the first 20 objects and a token. Call list again with `maxResults` set to 20 and the token to get the next 20 objects.
+     *     token: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "pagination": {},
+     *   //   "resources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6596,11 +8805,11 @@ export namespace walletobjects_v1 {
     list(
       params: Params$Resource$Flightobject$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Flightobject$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FlightObjectListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FlightObjectListResponse>>;
     list(
       params: Params$Resource$Flightobject$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6633,8 +8842,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$FlightObjectListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$FlightObjectListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Flightobject$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6681,6 +8890,124 @@ export namespace walletobjects_v1 {
 
     /**
      * Updates the flight object referenced by the given object ID. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.flightobject.patch({
+     *     // The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "appLinkData": {},
+     *       //   "barcode": {},
+     *       //   "boardingAndSeatingInfo": {},
+     *       //   "classId": "my_classId",
+     *       //   "classReference": {},
+     *       //   "disableExpirationNotification": false,
+     *       //   "groupingInfo": {},
+     *       //   "hasLinkedDevice": false,
+     *       //   "hasUsers": false,
+     *       //   "heroImage": {},
+     *       //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "infoModuleData": {},
+     *       //   "kind": "my_kind",
+     *       //   "linkedObjectIds": [],
+     *       //   "linksModuleData": {},
+     *       //   "locations": [],
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "notifyPreference": "my_notifyPreference",
+     *       //   "passConstraints": {},
+     *       //   "passengerName": "my_passengerName",
+     *       //   "reservationInfo": {},
+     *       //   "rotatingBarcode": {},
+     *       //   "saveRestrictions": {},
+     *       //   "securityProgramLogo": {},
+     *       //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *       //   "state": "my_state",
+     *       //   "textModulesData": [],
+     *       //   "validTimeInterval": {},
+     *       //   "valueAddedModuleData": [],
+     *       //   "version": "my_version"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appLinkData": {},
+     *   //   "barcode": {},
+     *   //   "boardingAndSeatingInfo": {},
+     *   //   "classId": "my_classId",
+     *   //   "classReference": {},
+     *   //   "disableExpirationNotification": false,
+     *   //   "groupingInfo": {},
+     *   //   "hasLinkedDevice": false,
+     *   //   "hasUsers": false,
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "kind": "my_kind",
+     *   //   "linkedObjectIds": [],
+     *   //   "linksModuleData": {},
+     *   //   "locations": [],
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "passConstraints": {},
+     *   //   "passengerName": "my_passengerName",
+     *   //   "reservationInfo": {},
+     *   //   "rotatingBarcode": {},
+     *   //   "saveRestrictions": {},
+     *   //   "securityProgramLogo": {},
+     *   //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *   //   "state": "my_state",
+     *   //   "textModulesData": [],
+     *   //   "validTimeInterval": {},
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6690,11 +9017,11 @@ export namespace walletobjects_v1 {
     patch(
       params: Params$Resource$Flightobject$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Flightobject$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FlightObject>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FlightObject>>;
     patch(
       params: Params$Resource$Flightobject$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6723,7 +9050,10 @@ export namespace walletobjects_v1 {
       callback?:
         | BodyResponseCallback<Schema$FlightObject>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$FlightObject> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$FlightObject>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Flightobject$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6769,6 +9099,124 @@ export namespace walletobjects_v1 {
 
     /**
      * Updates the flight object referenced by the given object ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.flightobject.update({
+     *     // The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "appLinkData": {},
+     *       //   "barcode": {},
+     *       //   "boardingAndSeatingInfo": {},
+     *       //   "classId": "my_classId",
+     *       //   "classReference": {},
+     *       //   "disableExpirationNotification": false,
+     *       //   "groupingInfo": {},
+     *       //   "hasLinkedDevice": false,
+     *       //   "hasUsers": false,
+     *       //   "heroImage": {},
+     *       //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "infoModuleData": {},
+     *       //   "kind": "my_kind",
+     *       //   "linkedObjectIds": [],
+     *       //   "linksModuleData": {},
+     *       //   "locations": [],
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "notifyPreference": "my_notifyPreference",
+     *       //   "passConstraints": {},
+     *       //   "passengerName": "my_passengerName",
+     *       //   "reservationInfo": {},
+     *       //   "rotatingBarcode": {},
+     *       //   "saveRestrictions": {},
+     *       //   "securityProgramLogo": {},
+     *       //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *       //   "state": "my_state",
+     *       //   "textModulesData": [],
+     *       //   "validTimeInterval": {},
+     *       //   "valueAddedModuleData": [],
+     *       //   "version": "my_version"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appLinkData": {},
+     *   //   "barcode": {},
+     *   //   "boardingAndSeatingInfo": {},
+     *   //   "classId": "my_classId",
+     *   //   "classReference": {},
+     *   //   "disableExpirationNotification": false,
+     *   //   "groupingInfo": {},
+     *   //   "hasLinkedDevice": false,
+     *   //   "hasUsers": false,
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "kind": "my_kind",
+     *   //   "linkedObjectIds": [],
+     *   //   "linksModuleData": {},
+     *   //   "locations": [],
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "passConstraints": {},
+     *   //   "passengerName": "my_passengerName",
+     *   //   "reservationInfo": {},
+     *   //   "rotatingBarcode": {},
+     *   //   "saveRestrictions": {},
+     *   //   "securityProgramLogo": {},
+     *   //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *   //   "state": "my_state",
+     *   //   "textModulesData": [],
+     *   //   "validTimeInterval": {},
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6778,11 +9226,11 @@ export namespace walletobjects_v1 {
     update(
       params: Params$Resource$Flightobject$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Flightobject$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FlightObject>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FlightObject>>;
     update(
       params: Params$Resource$Flightobject$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6811,7 +9259,10 @@ export namespace walletobjects_v1 {
       callback?:
         | BodyResponseCallback<Schema$FlightObject>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$FlightObject> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$FlightObject>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Flightobject$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6929,6 +9380,60 @@ export namespace walletobjects_v1 {
 
     /**
      * Adds a message to the generic class referenced by the given class ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.genericclass.addmessage({
+     *     // The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "message": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "resource": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6938,11 +9443,11 @@ export namespace walletobjects_v1 {
     addmessage(
       params: Params$Resource$Genericclass$Addmessage,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     addmessage(
       params?: Params$Resource$Genericclass$Addmessage,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GenericClassAddMessageResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GenericClassAddMessageResponse>>;
     addmessage(
       params: Params$Resource$Genericclass$Addmessage,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6977,8 +9482,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GenericClassAddMessageResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GenericClassAddMessageResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Genericclass$Addmessage;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7026,6 +9531,66 @@ export namespace walletobjects_v1 {
 
     /**
      * Returns the generic class with the given class ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.genericclass.get({
+     *     // The unique identifier for a class. This ID must be unique across all classes from an issuer. This value needs to follow the format `issuerID.identifier` where `issuerID` is issued by Google and `identifier` is chosen by you. The unique identifier can only include alphanumeric characters, `.`, `_`, or `-`.
+     *     resourceId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appLinkData": {},
+     *   //   "callbackOptions": {},
+     *   //   "classTemplateInfo": {},
+     *   //   "enableSmartTap": false,
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "linksModuleData": {},
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *   //   "redemptionIssuers": [],
+     *   //   "securityAnimation": {},
+     *   //   "textModulesData": [],
+     *   //   "valueAddedModuleData": [],
+     *   //   "viewUnlockRequirement": "my_viewUnlockRequirement"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7035,11 +9600,11 @@ export namespace walletobjects_v1 {
     get(
       params: Params$Resource$Genericclass$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Genericclass$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GenericClass>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GenericClass>>;
     get(
       params: Params$Resource$Genericclass$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7068,7 +9633,10 @@ export namespace walletobjects_v1 {
       callback?:
         | BodyResponseCallback<Schema$GenericClass>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$GenericClass> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GenericClass>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Genericclass$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7113,6 +9681,85 @@ export namespace walletobjects_v1 {
 
     /**
      * Inserts a generic class with the given ID and properties.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.genericclass.insert({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "appLinkData": {},
+     *       //   "callbackOptions": {},
+     *       //   "classTemplateInfo": {},
+     *       //   "enableSmartTap": false,
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "linksModuleData": {},
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *       //   "redemptionIssuers": [],
+     *       //   "securityAnimation": {},
+     *       //   "textModulesData": [],
+     *       //   "valueAddedModuleData": [],
+     *       //   "viewUnlockRequirement": "my_viewUnlockRequirement"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appLinkData": {},
+     *   //   "callbackOptions": {},
+     *   //   "classTemplateInfo": {},
+     *   //   "enableSmartTap": false,
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "linksModuleData": {},
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *   //   "redemptionIssuers": [],
+     *   //   "securityAnimation": {},
+     *   //   "textModulesData": [],
+     *   //   "valueAddedModuleData": [],
+     *   //   "viewUnlockRequirement": "my_viewUnlockRequirement"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7122,11 +9769,11 @@ export namespace walletobjects_v1 {
     insert(
       params: Params$Resource$Genericclass$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Genericclass$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GenericClass>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GenericClass>>;
     insert(
       params: Params$Resource$Genericclass$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7155,7 +9802,10 @@ export namespace walletobjects_v1 {
       callback?:
         | BodyResponseCallback<Schema$GenericClass>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$GenericClass> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GenericClass>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Genericclass$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7202,6 +9852,57 @@ export namespace walletobjects_v1 {
 
     /**
      * Returns a list of all generic classes for a given issuer ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.genericclass.list({
+     *     // The ID of the issuer authorized to list classes.
+     *     issuerId: 'placeholder-value',
+     *     // Identifies the max number of results returned by a list. All results are returned if `maxResults` isn't defined.
+     *     maxResults: 'placeholder-value',
+     *     // Used to get the next set of results if `maxResults` is specified, but more than `maxResults` classes are available in a list. For example, if you have a list of 200 classes and you call list with `maxResults` set to 20, list will return the first 20 classes and a token. Call list again with `maxResults` set to 20 and the token to get the next 20 classes.
+     *     token: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "pagination": {},
+     *   //   "resources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7211,11 +9912,11 @@ export namespace walletobjects_v1 {
     list(
       params: Params$Resource$Genericclass$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Genericclass$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GenericClassListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GenericClassListResponse>>;
     list(
       params: Params$Resource$Genericclass$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7248,8 +9949,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GenericClassListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GenericClassListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Genericclass$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7296,6 +9997,88 @@ export namespace walletobjects_v1 {
 
     /**
      * Updates the generic class referenced by the given class ID. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.genericclass.patch({
+     *     // The unique identifier for a class. This ID must be unique across all classes from an issuer. This value needs to follow the format `issuerID.identifier` where `issuerID` is issued by Google and `identifier` is chosen by you. The unique identifier can only include alphanumeric characters, `.`, `_`, or `-`.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "appLinkData": {},
+     *       //   "callbackOptions": {},
+     *       //   "classTemplateInfo": {},
+     *       //   "enableSmartTap": false,
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "linksModuleData": {},
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *       //   "redemptionIssuers": [],
+     *       //   "securityAnimation": {},
+     *       //   "textModulesData": [],
+     *       //   "valueAddedModuleData": [],
+     *       //   "viewUnlockRequirement": "my_viewUnlockRequirement"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appLinkData": {},
+     *   //   "callbackOptions": {},
+     *   //   "classTemplateInfo": {},
+     *   //   "enableSmartTap": false,
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "linksModuleData": {},
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *   //   "redemptionIssuers": [],
+     *   //   "securityAnimation": {},
+     *   //   "textModulesData": [],
+     *   //   "valueAddedModuleData": [],
+     *   //   "viewUnlockRequirement": "my_viewUnlockRequirement"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7305,11 +10088,11 @@ export namespace walletobjects_v1 {
     patch(
       params: Params$Resource$Genericclass$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Genericclass$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GenericClass>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GenericClass>>;
     patch(
       params: Params$Resource$Genericclass$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7338,7 +10121,10 @@ export namespace walletobjects_v1 {
       callback?:
         | BodyResponseCallback<Schema$GenericClass>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$GenericClass> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GenericClass>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Genericclass$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7384,6 +10170,88 @@ export namespace walletobjects_v1 {
 
     /**
      * Updates the Generic class referenced by the given class ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.genericclass.update({
+     *     // The unique identifier for a class. This ID must be unique across all classes from an issuer. This value needs to follow the format `issuerID.identifier` where `issuerID` is issued by Google and `identifier` is chosen by you. The unique identifier can only include alphanumeric characters, `.`, `_`, or `-`.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "appLinkData": {},
+     *       //   "callbackOptions": {},
+     *       //   "classTemplateInfo": {},
+     *       //   "enableSmartTap": false,
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "linksModuleData": {},
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *       //   "redemptionIssuers": [],
+     *       //   "securityAnimation": {},
+     *       //   "textModulesData": [],
+     *       //   "valueAddedModuleData": [],
+     *       //   "viewUnlockRequirement": "my_viewUnlockRequirement"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appLinkData": {},
+     *   //   "callbackOptions": {},
+     *   //   "classTemplateInfo": {},
+     *   //   "enableSmartTap": false,
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "linksModuleData": {},
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *   //   "redemptionIssuers": [],
+     *   //   "securityAnimation": {},
+     *   //   "textModulesData": [],
+     *   //   "valueAddedModuleData": [],
+     *   //   "viewUnlockRequirement": "my_viewUnlockRequirement"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7393,11 +10261,11 @@ export namespace walletobjects_v1 {
     update(
       params: Params$Resource$Genericclass$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Genericclass$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GenericClass>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GenericClass>>;
     update(
       params: Params$Resource$Genericclass$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7426,7 +10294,10 @@ export namespace walletobjects_v1 {
       callback?:
         | BodyResponseCallback<Schema$GenericClass>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$GenericClass> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GenericClass>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Genericclass$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7544,6 +10415,60 @@ export namespace walletobjects_v1 {
 
     /**
      * Adds a message to the generic object referenced by the given object ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.genericobject.addmessage({
+     *     // The unique identifier for an object. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "message": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "resource": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7553,11 +10478,11 @@ export namespace walletobjects_v1 {
     addmessage(
       params: Params$Resource$Genericobject$Addmessage,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     addmessage(
       params?: Params$Resource$Genericobject$Addmessage,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GenericObjectAddMessageResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GenericObjectAddMessageResponse>>;
     addmessage(
       params: Params$Resource$Genericobject$Addmessage,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7592,8 +10517,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GenericObjectAddMessageResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GenericObjectAddMessageResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Genericobject$Addmessage;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7642,6 +10567,79 @@ export namespace walletobjects_v1 {
 
     /**
      * Returns the generic object with the given object ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.genericobject.get({
+     *     // The unique identifier for an object. This ID must be unique across all objects from an issuer. This value needs to follow the format `issuerID.identifier` where `issuerID` is issued by Google and `identifier` is chosen by you. The unique identifier can only include alphanumeric characters, `.`, `_`, or `-`.
+     *     resourceId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appLinkData": {},
+     *   //   "barcode": {},
+     *   //   "cardTitle": {},
+     *   //   "classId": "my_classId",
+     *   //   "genericType": "my_genericType",
+     *   //   "groupingInfo": {},
+     *   //   "hasUsers": false,
+     *   //   "header": {},
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "linkedObjectIds": [],
+     *   //   "linksModuleData": {},
+     *   //   "logo": {},
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "notifications": {},
+     *   //   "passConstraints": {},
+     *   //   "rotatingBarcode": {},
+     *   //   "saveRestrictions": {},
+     *   //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *   //   "state": "my_state",
+     *   //   "subheader": {},
+     *   //   "textModulesData": [],
+     *   //   "validTimeInterval": {},
+     *   //   "valueAddedModuleData": [],
+     *   //   "wideLogo": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7651,11 +10649,11 @@ export namespace walletobjects_v1 {
     get(
       params: Params$Resource$Genericobject$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Genericobject$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GenericObject>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GenericObject>>;
     get(
       params: Params$Resource$Genericobject$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7684,7 +10682,10 @@ export namespace walletobjects_v1 {
       callback?:
         | BodyResponseCallback<Schema$GenericObject>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$GenericObject> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GenericObject>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Genericobject$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7730,6 +10731,111 @@ export namespace walletobjects_v1 {
 
     /**
      * Inserts a generic object with the given ID and properties.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.genericobject.insert({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "appLinkData": {},
+     *       //   "barcode": {},
+     *       //   "cardTitle": {},
+     *       //   "classId": "my_classId",
+     *       //   "genericType": "my_genericType",
+     *       //   "groupingInfo": {},
+     *       //   "hasUsers": false,
+     *       //   "header": {},
+     *       //   "heroImage": {},
+     *       //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "linkedObjectIds": [],
+     *       //   "linksModuleData": {},
+     *       //   "logo": {},
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "notifications": {},
+     *       //   "passConstraints": {},
+     *       //   "rotatingBarcode": {},
+     *       //   "saveRestrictions": {},
+     *       //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *       //   "state": "my_state",
+     *       //   "subheader": {},
+     *       //   "textModulesData": [],
+     *       //   "validTimeInterval": {},
+     *       //   "valueAddedModuleData": [],
+     *       //   "wideLogo": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appLinkData": {},
+     *   //   "barcode": {},
+     *   //   "cardTitle": {},
+     *   //   "classId": "my_classId",
+     *   //   "genericType": "my_genericType",
+     *   //   "groupingInfo": {},
+     *   //   "hasUsers": false,
+     *   //   "header": {},
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "linkedObjectIds": [],
+     *   //   "linksModuleData": {},
+     *   //   "logo": {},
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "notifications": {},
+     *   //   "passConstraints": {},
+     *   //   "rotatingBarcode": {},
+     *   //   "saveRestrictions": {},
+     *   //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *   //   "state": "my_state",
+     *   //   "subheader": {},
+     *   //   "textModulesData": [],
+     *   //   "validTimeInterval": {},
+     *   //   "valueAddedModuleData": [],
+     *   //   "wideLogo": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7739,11 +10845,11 @@ export namespace walletobjects_v1 {
     insert(
       params: Params$Resource$Genericobject$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Genericobject$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GenericObject>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GenericObject>>;
     insert(
       params: Params$Resource$Genericobject$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7772,7 +10878,10 @@ export namespace walletobjects_v1 {
       callback?:
         | BodyResponseCallback<Schema$GenericObject>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$GenericObject> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GenericObject>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Genericobject$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7819,6 +10928,57 @@ export namespace walletobjects_v1 {
 
     /**
      * Returns a list of all generic objects for a given issuer ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.genericobject.list({
+     *     // The ID of the class whose objects will be listed.
+     *     classId: 'placeholder-value',
+     *     // Identifies the max number of results returned by a list. All results are returned if `maxResults` isn't defined.
+     *     maxResults: 'placeholder-value',
+     *     // Used to get the next set of results if `maxResults` is specified, but more than `maxResults` objects are available in a list. For example, if you have a list of 200 objects and you call list with `maxResults` set to 20, list will return the first 20 objects and a token. Call list again with `maxResults` set to 20 and the token to get the next 20 objects.
+     *     token: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "pagination": {},
+     *   //   "resources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7828,11 +10988,11 @@ export namespace walletobjects_v1 {
     list(
       params: Params$Resource$Genericobject$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Genericobject$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GenericObjectListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GenericObjectListResponse>>;
     list(
       params: Params$Resource$Genericobject$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7867,8 +11027,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GenericObjectListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GenericObjectListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Genericobject$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7915,6 +11075,114 @@ export namespace walletobjects_v1 {
 
     /**
      * Updates the generic object referenced by the given object ID. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.genericobject.patch({
+     *     // The unique identifier for an object. This ID must be unique across all objects from an issuer. This value needs to follow the format `issuerID.identifier` where `issuerID` is issued by Google and `identifier` is chosen by you. The unique identifier can only include alphanumeric characters, `.`, `_`, or `-`.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "appLinkData": {},
+     *       //   "barcode": {},
+     *       //   "cardTitle": {},
+     *       //   "classId": "my_classId",
+     *       //   "genericType": "my_genericType",
+     *       //   "groupingInfo": {},
+     *       //   "hasUsers": false,
+     *       //   "header": {},
+     *       //   "heroImage": {},
+     *       //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "linkedObjectIds": [],
+     *       //   "linksModuleData": {},
+     *       //   "logo": {},
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "notifications": {},
+     *       //   "passConstraints": {},
+     *       //   "rotatingBarcode": {},
+     *       //   "saveRestrictions": {},
+     *       //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *       //   "state": "my_state",
+     *       //   "subheader": {},
+     *       //   "textModulesData": [],
+     *       //   "validTimeInterval": {},
+     *       //   "valueAddedModuleData": [],
+     *       //   "wideLogo": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appLinkData": {},
+     *   //   "barcode": {},
+     *   //   "cardTitle": {},
+     *   //   "classId": "my_classId",
+     *   //   "genericType": "my_genericType",
+     *   //   "groupingInfo": {},
+     *   //   "hasUsers": false,
+     *   //   "header": {},
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "linkedObjectIds": [],
+     *   //   "linksModuleData": {},
+     *   //   "logo": {},
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "notifications": {},
+     *   //   "passConstraints": {},
+     *   //   "rotatingBarcode": {},
+     *   //   "saveRestrictions": {},
+     *   //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *   //   "state": "my_state",
+     *   //   "subheader": {},
+     *   //   "textModulesData": [],
+     *   //   "validTimeInterval": {},
+     *   //   "valueAddedModuleData": [],
+     *   //   "wideLogo": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7924,11 +11192,11 @@ export namespace walletobjects_v1 {
     patch(
       params: Params$Resource$Genericobject$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Genericobject$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GenericObject>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GenericObject>>;
     patch(
       params: Params$Resource$Genericobject$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7957,7 +11225,10 @@ export namespace walletobjects_v1 {
       callback?:
         | BodyResponseCallback<Schema$GenericObject>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$GenericObject> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GenericObject>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Genericobject$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8003,6 +11274,114 @@ export namespace walletobjects_v1 {
 
     /**
      * Updates the generic object referenced by the given object ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.genericobject.update({
+     *     // The unique identifier for an object. This ID must be unique across all objects from an issuer. This value needs to follow the format `issuerID.identifier` where `issuerID` is issued by Google and `identifier` is chosen by you. The unique identifier can only include alphanumeric characters, `.`, `_`, or `-`.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "appLinkData": {},
+     *       //   "barcode": {},
+     *       //   "cardTitle": {},
+     *       //   "classId": "my_classId",
+     *       //   "genericType": "my_genericType",
+     *       //   "groupingInfo": {},
+     *       //   "hasUsers": false,
+     *       //   "header": {},
+     *       //   "heroImage": {},
+     *       //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "linkedObjectIds": [],
+     *       //   "linksModuleData": {},
+     *       //   "logo": {},
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "notifications": {},
+     *       //   "passConstraints": {},
+     *       //   "rotatingBarcode": {},
+     *       //   "saveRestrictions": {},
+     *       //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *       //   "state": "my_state",
+     *       //   "subheader": {},
+     *       //   "textModulesData": [],
+     *       //   "validTimeInterval": {},
+     *       //   "valueAddedModuleData": [],
+     *       //   "wideLogo": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appLinkData": {},
+     *   //   "barcode": {},
+     *   //   "cardTitle": {},
+     *   //   "classId": "my_classId",
+     *   //   "genericType": "my_genericType",
+     *   //   "groupingInfo": {},
+     *   //   "hasUsers": false,
+     *   //   "header": {},
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "linkedObjectIds": [],
+     *   //   "linksModuleData": {},
+     *   //   "logo": {},
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "notifications": {},
+     *   //   "passConstraints": {},
+     *   //   "rotatingBarcode": {},
+     *   //   "saveRestrictions": {},
+     *   //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *   //   "state": "my_state",
+     *   //   "subheader": {},
+     *   //   "textModulesData": [],
+     *   //   "validTimeInterval": {},
+     *   //   "valueAddedModuleData": [],
+     *   //   "wideLogo": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8012,11 +11391,11 @@ export namespace walletobjects_v1 {
     update(
       params: Params$Resource$Genericobject$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Genericobject$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GenericObject>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GenericObject>>;
     update(
       params: Params$Resource$Genericobject$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8045,7 +11424,10 @@ export namespace walletobjects_v1 {
       callback?:
         | BodyResponseCallback<Schema$GenericObject>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$GenericObject> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GenericObject>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Genericobject$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8164,6 +11546,60 @@ export namespace walletobjects_v1 {
 
     /**
      * Adds a message to the gift card class referenced by the given class ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.giftcardclass.addmessage({
+     *     // The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "message": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "resource": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8173,11 +11609,11 @@ export namespace walletobjects_v1 {
     addmessage(
       params: Params$Resource$Giftcardclass$Addmessage,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     addmessage(
       params?: Params$Resource$Giftcardclass$Addmessage,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GiftCardClassAddMessageResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GiftCardClassAddMessageResponse>>;
     addmessage(
       params: Params$Resource$Giftcardclass$Addmessage,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8212,8 +11648,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GiftCardClassAddMessageResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GiftCardClassAddMessageResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Giftcardclass$Addmessage;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8262,6 +11698,92 @@ export namespace walletobjects_v1 {
 
     /**
      * Returns the gift card class with the given class ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.giftcardclass.get({
+     *     // The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allowBarcodeRedemption": false,
+     *   //   "allowMultipleUsersPerObject": false,
+     *   //   "appLinkData": {},
+     *   //   "callbackOptions": {},
+     *   //   "cardNumberLabel": "my_cardNumberLabel",
+     *   //   "classTemplateInfo": {},
+     *   //   "countryCode": "my_countryCode",
+     *   //   "enableSmartTap": false,
+     *   //   "eventNumberLabel": "my_eventNumberLabel",
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "homepageUri": {},
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "issuerName": "my_issuerName",
+     *   //   "kind": "my_kind",
+     *   //   "linksModuleData": {},
+     *   //   "localizedCardNumberLabel": {},
+     *   //   "localizedEventNumberLabel": {},
+     *   //   "localizedIssuerName": {},
+     *   //   "localizedMerchantName": {},
+     *   //   "localizedPinLabel": {},
+     *   //   "locations": [],
+     *   //   "merchantLocations": [],
+     *   //   "merchantName": "my_merchantName",
+     *   //   "messages": [],
+     *   //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "pinLabel": "my_pinLabel",
+     *   //   "programLogo": {},
+     *   //   "redemptionIssuers": [],
+     *   //   "review": {},
+     *   //   "reviewStatus": "my_reviewStatus",
+     *   //   "securityAnimation": {},
+     *   //   "textModulesData": [],
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version",
+     *   //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *   //   "wideProgramLogo": {},
+     *   //   "wordMark": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8271,11 +11793,11 @@ export namespace walletobjects_v1 {
     get(
       params: Params$Resource$Giftcardclass$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Giftcardclass$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GiftCardClass>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GiftCardClass>>;
     get(
       params: Params$Resource$Giftcardclass$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8304,7 +11826,10 @@ export namespace walletobjects_v1 {
       callback?:
         | BodyResponseCallback<Schema$GiftCardClass>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$GiftCardClass> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GiftCardClass>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Giftcardclass$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8350,6 +11875,137 @@ export namespace walletobjects_v1 {
 
     /**
      * Inserts an gift card class with the given ID and properties.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.giftcardclass.insert({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "allowBarcodeRedemption": false,
+     *       //   "allowMultipleUsersPerObject": false,
+     *       //   "appLinkData": {},
+     *       //   "callbackOptions": {},
+     *       //   "cardNumberLabel": "my_cardNumberLabel",
+     *       //   "classTemplateInfo": {},
+     *       //   "countryCode": "my_countryCode",
+     *       //   "enableSmartTap": false,
+     *       //   "eventNumberLabel": "my_eventNumberLabel",
+     *       //   "heroImage": {},
+     *       //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *       //   "homepageUri": {},
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "infoModuleData": {},
+     *       //   "issuerName": "my_issuerName",
+     *       //   "kind": "my_kind",
+     *       //   "linksModuleData": {},
+     *       //   "localizedCardNumberLabel": {},
+     *       //   "localizedEventNumberLabel": {},
+     *       //   "localizedIssuerName": {},
+     *       //   "localizedMerchantName": {},
+     *       //   "localizedPinLabel": {},
+     *       //   "locations": [],
+     *       //   "merchantLocations": [],
+     *       //   "merchantName": "my_merchantName",
+     *       //   "messages": [],
+     *       //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *       //   "notifyPreference": "my_notifyPreference",
+     *       //   "pinLabel": "my_pinLabel",
+     *       //   "programLogo": {},
+     *       //   "redemptionIssuers": [],
+     *       //   "review": {},
+     *       //   "reviewStatus": "my_reviewStatus",
+     *       //   "securityAnimation": {},
+     *       //   "textModulesData": [],
+     *       //   "valueAddedModuleData": [],
+     *       //   "version": "my_version",
+     *       //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *       //   "wideProgramLogo": {},
+     *       //   "wordMark": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allowBarcodeRedemption": false,
+     *   //   "allowMultipleUsersPerObject": false,
+     *   //   "appLinkData": {},
+     *   //   "callbackOptions": {},
+     *   //   "cardNumberLabel": "my_cardNumberLabel",
+     *   //   "classTemplateInfo": {},
+     *   //   "countryCode": "my_countryCode",
+     *   //   "enableSmartTap": false,
+     *   //   "eventNumberLabel": "my_eventNumberLabel",
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "homepageUri": {},
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "issuerName": "my_issuerName",
+     *   //   "kind": "my_kind",
+     *   //   "linksModuleData": {},
+     *   //   "localizedCardNumberLabel": {},
+     *   //   "localizedEventNumberLabel": {},
+     *   //   "localizedIssuerName": {},
+     *   //   "localizedMerchantName": {},
+     *   //   "localizedPinLabel": {},
+     *   //   "locations": [],
+     *   //   "merchantLocations": [],
+     *   //   "merchantName": "my_merchantName",
+     *   //   "messages": [],
+     *   //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "pinLabel": "my_pinLabel",
+     *   //   "programLogo": {},
+     *   //   "redemptionIssuers": [],
+     *   //   "review": {},
+     *   //   "reviewStatus": "my_reviewStatus",
+     *   //   "securityAnimation": {},
+     *   //   "textModulesData": [],
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version",
+     *   //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *   //   "wideProgramLogo": {},
+     *   //   "wordMark": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8359,11 +12015,11 @@ export namespace walletobjects_v1 {
     insert(
       params: Params$Resource$Giftcardclass$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Giftcardclass$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GiftCardClass>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GiftCardClass>>;
     insert(
       params: Params$Resource$Giftcardclass$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8392,7 +12048,10 @@ export namespace walletobjects_v1 {
       callback?:
         | BodyResponseCallback<Schema$GiftCardClass>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$GiftCardClass> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GiftCardClass>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Giftcardclass$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8439,6 +12098,57 @@ export namespace walletobjects_v1 {
 
     /**
      * Returns a list of all gift card classes for a given issuer ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.giftcardclass.list({
+     *     // The ID of the issuer authorized to list classes.
+     *     issuerId: 'placeholder-value',
+     *     // Identifies the max number of results returned by a list. All results are returned if `maxResults` isn't defined.
+     *     maxResults: 'placeholder-value',
+     *     // Used to get the next set of results if `maxResults` is specified, but more than `maxResults` classes are available in a list. For example, if you have a list of 200 classes and you call list with `maxResults` set to 20, list will return the first 20 classes and a token. Call list again with `maxResults` set to 20 and the token to get the next 20 classes.
+     *     token: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "pagination": {},
+     *   //   "resources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8448,11 +12158,11 @@ export namespace walletobjects_v1 {
     list(
       params: Params$Resource$Giftcardclass$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Giftcardclass$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GiftCardClassListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GiftCardClassListResponse>>;
     list(
       params: Params$Resource$Giftcardclass$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8487,8 +12197,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GiftCardClassListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GiftCardClassListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Giftcardclass$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8535,6 +12245,140 @@ export namespace walletobjects_v1 {
 
     /**
      * Updates the gift card class referenced by the given class ID. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.giftcardclass.patch({
+     *     // The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "allowBarcodeRedemption": false,
+     *       //   "allowMultipleUsersPerObject": false,
+     *       //   "appLinkData": {},
+     *       //   "callbackOptions": {},
+     *       //   "cardNumberLabel": "my_cardNumberLabel",
+     *       //   "classTemplateInfo": {},
+     *       //   "countryCode": "my_countryCode",
+     *       //   "enableSmartTap": false,
+     *       //   "eventNumberLabel": "my_eventNumberLabel",
+     *       //   "heroImage": {},
+     *       //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *       //   "homepageUri": {},
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "infoModuleData": {},
+     *       //   "issuerName": "my_issuerName",
+     *       //   "kind": "my_kind",
+     *       //   "linksModuleData": {},
+     *       //   "localizedCardNumberLabel": {},
+     *       //   "localizedEventNumberLabel": {},
+     *       //   "localizedIssuerName": {},
+     *       //   "localizedMerchantName": {},
+     *       //   "localizedPinLabel": {},
+     *       //   "locations": [],
+     *       //   "merchantLocations": [],
+     *       //   "merchantName": "my_merchantName",
+     *       //   "messages": [],
+     *       //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *       //   "notifyPreference": "my_notifyPreference",
+     *       //   "pinLabel": "my_pinLabel",
+     *       //   "programLogo": {},
+     *       //   "redemptionIssuers": [],
+     *       //   "review": {},
+     *       //   "reviewStatus": "my_reviewStatus",
+     *       //   "securityAnimation": {},
+     *       //   "textModulesData": [],
+     *       //   "valueAddedModuleData": [],
+     *       //   "version": "my_version",
+     *       //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *       //   "wideProgramLogo": {},
+     *       //   "wordMark": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allowBarcodeRedemption": false,
+     *   //   "allowMultipleUsersPerObject": false,
+     *   //   "appLinkData": {},
+     *   //   "callbackOptions": {},
+     *   //   "cardNumberLabel": "my_cardNumberLabel",
+     *   //   "classTemplateInfo": {},
+     *   //   "countryCode": "my_countryCode",
+     *   //   "enableSmartTap": false,
+     *   //   "eventNumberLabel": "my_eventNumberLabel",
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "homepageUri": {},
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "issuerName": "my_issuerName",
+     *   //   "kind": "my_kind",
+     *   //   "linksModuleData": {},
+     *   //   "localizedCardNumberLabel": {},
+     *   //   "localizedEventNumberLabel": {},
+     *   //   "localizedIssuerName": {},
+     *   //   "localizedMerchantName": {},
+     *   //   "localizedPinLabel": {},
+     *   //   "locations": [],
+     *   //   "merchantLocations": [],
+     *   //   "merchantName": "my_merchantName",
+     *   //   "messages": [],
+     *   //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "pinLabel": "my_pinLabel",
+     *   //   "programLogo": {},
+     *   //   "redemptionIssuers": [],
+     *   //   "review": {},
+     *   //   "reviewStatus": "my_reviewStatus",
+     *   //   "securityAnimation": {},
+     *   //   "textModulesData": [],
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version",
+     *   //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *   //   "wideProgramLogo": {},
+     *   //   "wordMark": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8544,11 +12388,11 @@ export namespace walletobjects_v1 {
     patch(
       params: Params$Resource$Giftcardclass$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Giftcardclass$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GiftCardClass>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GiftCardClass>>;
     patch(
       params: Params$Resource$Giftcardclass$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8577,7 +12421,10 @@ export namespace walletobjects_v1 {
       callback?:
         | BodyResponseCallback<Schema$GiftCardClass>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$GiftCardClass> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GiftCardClass>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Giftcardclass$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8623,6 +12470,140 @@ export namespace walletobjects_v1 {
 
     /**
      * Updates the gift card class referenced by the given class ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.giftcardclass.update({
+     *     // The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "allowBarcodeRedemption": false,
+     *       //   "allowMultipleUsersPerObject": false,
+     *       //   "appLinkData": {},
+     *       //   "callbackOptions": {},
+     *       //   "cardNumberLabel": "my_cardNumberLabel",
+     *       //   "classTemplateInfo": {},
+     *       //   "countryCode": "my_countryCode",
+     *       //   "enableSmartTap": false,
+     *       //   "eventNumberLabel": "my_eventNumberLabel",
+     *       //   "heroImage": {},
+     *       //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *       //   "homepageUri": {},
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "infoModuleData": {},
+     *       //   "issuerName": "my_issuerName",
+     *       //   "kind": "my_kind",
+     *       //   "linksModuleData": {},
+     *       //   "localizedCardNumberLabel": {},
+     *       //   "localizedEventNumberLabel": {},
+     *       //   "localizedIssuerName": {},
+     *       //   "localizedMerchantName": {},
+     *       //   "localizedPinLabel": {},
+     *       //   "locations": [],
+     *       //   "merchantLocations": [],
+     *       //   "merchantName": "my_merchantName",
+     *       //   "messages": [],
+     *       //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *       //   "notifyPreference": "my_notifyPreference",
+     *       //   "pinLabel": "my_pinLabel",
+     *       //   "programLogo": {},
+     *       //   "redemptionIssuers": [],
+     *       //   "review": {},
+     *       //   "reviewStatus": "my_reviewStatus",
+     *       //   "securityAnimation": {},
+     *       //   "textModulesData": [],
+     *       //   "valueAddedModuleData": [],
+     *       //   "version": "my_version",
+     *       //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *       //   "wideProgramLogo": {},
+     *       //   "wordMark": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allowBarcodeRedemption": false,
+     *   //   "allowMultipleUsersPerObject": false,
+     *   //   "appLinkData": {},
+     *   //   "callbackOptions": {},
+     *   //   "cardNumberLabel": "my_cardNumberLabel",
+     *   //   "classTemplateInfo": {},
+     *   //   "countryCode": "my_countryCode",
+     *   //   "enableSmartTap": false,
+     *   //   "eventNumberLabel": "my_eventNumberLabel",
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "homepageUri": {},
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "issuerName": "my_issuerName",
+     *   //   "kind": "my_kind",
+     *   //   "linksModuleData": {},
+     *   //   "localizedCardNumberLabel": {},
+     *   //   "localizedEventNumberLabel": {},
+     *   //   "localizedIssuerName": {},
+     *   //   "localizedMerchantName": {},
+     *   //   "localizedPinLabel": {},
+     *   //   "locations": [],
+     *   //   "merchantLocations": [],
+     *   //   "merchantName": "my_merchantName",
+     *   //   "messages": [],
+     *   //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "pinLabel": "my_pinLabel",
+     *   //   "programLogo": {},
+     *   //   "redemptionIssuers": [],
+     *   //   "review": {},
+     *   //   "reviewStatus": "my_reviewStatus",
+     *   //   "securityAnimation": {},
+     *   //   "textModulesData": [],
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version",
+     *   //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *   //   "wideProgramLogo": {},
+     *   //   "wordMark": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8632,11 +12613,11 @@ export namespace walletobjects_v1 {
     update(
       params: Params$Resource$Giftcardclass$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Giftcardclass$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GiftCardClass>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GiftCardClass>>;
     update(
       params: Params$Resource$Giftcardclass$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8665,7 +12646,10 @@ export namespace walletobjects_v1 {
       callback?:
         | BodyResponseCallback<Schema$GiftCardClass>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$GiftCardClass> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GiftCardClass>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Giftcardclass$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8784,6 +12768,60 @@ export namespace walletobjects_v1 {
 
     /**
      * Adds a message to the gift card object referenced by the given object ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.giftcardobject.addmessage({
+     *     // The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "message": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "resource": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8793,11 +12831,13 @@ export namespace walletobjects_v1 {
     addmessage(
       params: Params$Resource$Giftcardobject$Addmessage,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     addmessage(
       params?: Params$Resource$Giftcardobject$Addmessage,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GiftCardObjectAddMessageResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GiftCardObjectAddMessageResponse>
+    >;
     addmessage(
       params: Params$Resource$Giftcardobject$Addmessage,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8832,8 +12872,10 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GiftCardObjectAddMessageResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GiftCardObjectAddMessageResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Giftcardobject$Addmessage;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8882,6 +12924,84 @@ export namespace walletobjects_v1 {
 
     /**
      * Returns the gift card object with the given object ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.giftcardobject.get({
+     *     // The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appLinkData": {},
+     *   //   "balance": {},
+     *   //   "balanceUpdateTime": {},
+     *   //   "barcode": {},
+     *   //   "cardNumber": "my_cardNumber",
+     *   //   "classId": "my_classId",
+     *   //   "classReference": {},
+     *   //   "disableExpirationNotification": false,
+     *   //   "eventNumber": "my_eventNumber",
+     *   //   "groupingInfo": {},
+     *   //   "hasLinkedDevice": false,
+     *   //   "hasUsers": false,
+     *   //   "heroImage": {},
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "kind": "my_kind",
+     *   //   "linkedObjectIds": [],
+     *   //   "linksModuleData": {},
+     *   //   "locations": [],
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "passConstraints": {},
+     *   //   "pin": "my_pin",
+     *   //   "rotatingBarcode": {},
+     *   //   "saveRestrictions": {},
+     *   //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *   //   "state": "my_state",
+     *   //   "textModulesData": [],
+     *   //   "validTimeInterval": {},
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8891,11 +13011,11 @@ export namespace walletobjects_v1 {
     get(
       params: Params$Resource$Giftcardobject$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Giftcardobject$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GiftCardObject>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GiftCardObject>>;
     get(
       params: Params$Resource$Giftcardobject$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8924,7 +13044,10 @@ export namespace walletobjects_v1 {
       callback?:
         | BodyResponseCallback<Schema$GiftCardObject>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$GiftCardObject> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GiftCardObject>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Giftcardobject$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8970,6 +13093,121 @@ export namespace walletobjects_v1 {
 
     /**
      * Inserts an gift card object with the given ID and properties.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.giftcardobject.insert({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "appLinkData": {},
+     *       //   "balance": {},
+     *       //   "balanceUpdateTime": {},
+     *       //   "barcode": {},
+     *       //   "cardNumber": "my_cardNumber",
+     *       //   "classId": "my_classId",
+     *       //   "classReference": {},
+     *       //   "disableExpirationNotification": false,
+     *       //   "eventNumber": "my_eventNumber",
+     *       //   "groupingInfo": {},
+     *       //   "hasLinkedDevice": false,
+     *       //   "hasUsers": false,
+     *       //   "heroImage": {},
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "infoModuleData": {},
+     *       //   "kind": "my_kind",
+     *       //   "linkedObjectIds": [],
+     *       //   "linksModuleData": {},
+     *       //   "locations": [],
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "notifyPreference": "my_notifyPreference",
+     *       //   "passConstraints": {},
+     *       //   "pin": "my_pin",
+     *       //   "rotatingBarcode": {},
+     *       //   "saveRestrictions": {},
+     *       //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *       //   "state": "my_state",
+     *       //   "textModulesData": [],
+     *       //   "validTimeInterval": {},
+     *       //   "valueAddedModuleData": [],
+     *       //   "version": "my_version"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appLinkData": {},
+     *   //   "balance": {},
+     *   //   "balanceUpdateTime": {},
+     *   //   "barcode": {},
+     *   //   "cardNumber": "my_cardNumber",
+     *   //   "classId": "my_classId",
+     *   //   "classReference": {},
+     *   //   "disableExpirationNotification": false,
+     *   //   "eventNumber": "my_eventNumber",
+     *   //   "groupingInfo": {},
+     *   //   "hasLinkedDevice": false,
+     *   //   "hasUsers": false,
+     *   //   "heroImage": {},
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "kind": "my_kind",
+     *   //   "linkedObjectIds": [],
+     *   //   "linksModuleData": {},
+     *   //   "locations": [],
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "passConstraints": {},
+     *   //   "pin": "my_pin",
+     *   //   "rotatingBarcode": {},
+     *   //   "saveRestrictions": {},
+     *   //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *   //   "state": "my_state",
+     *   //   "textModulesData": [],
+     *   //   "validTimeInterval": {},
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8979,11 +13217,11 @@ export namespace walletobjects_v1 {
     insert(
       params: Params$Resource$Giftcardobject$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Giftcardobject$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GiftCardObject>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GiftCardObject>>;
     insert(
       params: Params$Resource$Giftcardobject$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9012,7 +13250,10 @@ export namespace walletobjects_v1 {
       callback?:
         | BodyResponseCallback<Schema$GiftCardObject>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$GiftCardObject> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GiftCardObject>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Giftcardobject$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9059,6 +13300,57 @@ export namespace walletobjects_v1 {
 
     /**
      * Returns a list of all gift card objects for a given issuer ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.giftcardobject.list({
+     *     // The ID of the class whose objects will be listed.
+     *     classId: 'placeholder-value',
+     *     // Identifies the max number of results returned by a list. All results are returned if `maxResults` isn't defined.
+     *     maxResults: 'placeholder-value',
+     *     // Used to get the next set of results if `maxResults` is specified, but more than `maxResults` objects are available in a list. For example, if you have a list of 200 objects and you call list with `maxResults` set to 20, list will return the first 20 objects and a token. Call list again with `maxResults` set to 20 and the token to get the next 20 objects.
+     *     token: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "pagination": {},
+     *   //   "resources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9068,11 +13360,11 @@ export namespace walletobjects_v1 {
     list(
       params: Params$Resource$Giftcardobject$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Giftcardobject$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GiftCardObjectListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GiftCardObjectListResponse>>;
     list(
       params: Params$Resource$Giftcardobject$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9107,8 +13399,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GiftCardObjectListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GiftCardObjectListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Giftcardobject$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9155,6 +13447,124 @@ export namespace walletobjects_v1 {
 
     /**
      * Updates the gift card object referenced by the given object ID. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.giftcardobject.patch({
+     *     // The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "appLinkData": {},
+     *       //   "balance": {},
+     *       //   "balanceUpdateTime": {},
+     *       //   "barcode": {},
+     *       //   "cardNumber": "my_cardNumber",
+     *       //   "classId": "my_classId",
+     *       //   "classReference": {},
+     *       //   "disableExpirationNotification": false,
+     *       //   "eventNumber": "my_eventNumber",
+     *       //   "groupingInfo": {},
+     *       //   "hasLinkedDevice": false,
+     *       //   "hasUsers": false,
+     *       //   "heroImage": {},
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "infoModuleData": {},
+     *       //   "kind": "my_kind",
+     *       //   "linkedObjectIds": [],
+     *       //   "linksModuleData": {},
+     *       //   "locations": [],
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "notifyPreference": "my_notifyPreference",
+     *       //   "passConstraints": {},
+     *       //   "pin": "my_pin",
+     *       //   "rotatingBarcode": {},
+     *       //   "saveRestrictions": {},
+     *       //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *       //   "state": "my_state",
+     *       //   "textModulesData": [],
+     *       //   "validTimeInterval": {},
+     *       //   "valueAddedModuleData": [],
+     *       //   "version": "my_version"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appLinkData": {},
+     *   //   "balance": {},
+     *   //   "balanceUpdateTime": {},
+     *   //   "barcode": {},
+     *   //   "cardNumber": "my_cardNumber",
+     *   //   "classId": "my_classId",
+     *   //   "classReference": {},
+     *   //   "disableExpirationNotification": false,
+     *   //   "eventNumber": "my_eventNumber",
+     *   //   "groupingInfo": {},
+     *   //   "hasLinkedDevice": false,
+     *   //   "hasUsers": false,
+     *   //   "heroImage": {},
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "kind": "my_kind",
+     *   //   "linkedObjectIds": [],
+     *   //   "linksModuleData": {},
+     *   //   "locations": [],
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "passConstraints": {},
+     *   //   "pin": "my_pin",
+     *   //   "rotatingBarcode": {},
+     *   //   "saveRestrictions": {},
+     *   //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *   //   "state": "my_state",
+     *   //   "textModulesData": [],
+     *   //   "validTimeInterval": {},
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9164,11 +13574,11 @@ export namespace walletobjects_v1 {
     patch(
       params: Params$Resource$Giftcardobject$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Giftcardobject$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GiftCardObject>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GiftCardObject>>;
     patch(
       params: Params$Resource$Giftcardobject$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9197,7 +13607,10 @@ export namespace walletobjects_v1 {
       callback?:
         | BodyResponseCallback<Schema$GiftCardObject>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$GiftCardObject> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GiftCardObject>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Giftcardobject$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9243,6 +13656,124 @@ export namespace walletobjects_v1 {
 
     /**
      * Updates the gift card object referenced by the given object ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.giftcardobject.update({
+     *     // The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "appLinkData": {},
+     *       //   "balance": {},
+     *       //   "balanceUpdateTime": {},
+     *       //   "barcode": {},
+     *       //   "cardNumber": "my_cardNumber",
+     *       //   "classId": "my_classId",
+     *       //   "classReference": {},
+     *       //   "disableExpirationNotification": false,
+     *       //   "eventNumber": "my_eventNumber",
+     *       //   "groupingInfo": {},
+     *       //   "hasLinkedDevice": false,
+     *       //   "hasUsers": false,
+     *       //   "heroImage": {},
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "infoModuleData": {},
+     *       //   "kind": "my_kind",
+     *       //   "linkedObjectIds": [],
+     *       //   "linksModuleData": {},
+     *       //   "locations": [],
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "notifyPreference": "my_notifyPreference",
+     *       //   "passConstraints": {},
+     *       //   "pin": "my_pin",
+     *       //   "rotatingBarcode": {},
+     *       //   "saveRestrictions": {},
+     *       //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *       //   "state": "my_state",
+     *       //   "textModulesData": [],
+     *       //   "validTimeInterval": {},
+     *       //   "valueAddedModuleData": [],
+     *       //   "version": "my_version"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appLinkData": {},
+     *   //   "balance": {},
+     *   //   "balanceUpdateTime": {},
+     *   //   "barcode": {},
+     *   //   "cardNumber": "my_cardNumber",
+     *   //   "classId": "my_classId",
+     *   //   "classReference": {},
+     *   //   "disableExpirationNotification": false,
+     *   //   "eventNumber": "my_eventNumber",
+     *   //   "groupingInfo": {},
+     *   //   "hasLinkedDevice": false,
+     *   //   "hasUsers": false,
+     *   //   "heroImage": {},
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "kind": "my_kind",
+     *   //   "linkedObjectIds": [],
+     *   //   "linksModuleData": {},
+     *   //   "locations": [],
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "passConstraints": {},
+     *   //   "pin": "my_pin",
+     *   //   "rotatingBarcode": {},
+     *   //   "saveRestrictions": {},
+     *   //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *   //   "state": "my_state",
+     *   //   "textModulesData": [],
+     *   //   "validTimeInterval": {},
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9252,11 +13783,11 @@ export namespace walletobjects_v1 {
     update(
       params: Params$Resource$Giftcardobject$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Giftcardobject$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GiftCardObject>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GiftCardObject>>;
     update(
       params: Params$Resource$Giftcardobject$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9285,7 +13816,10 @@ export namespace walletobjects_v1 {
       callback?:
         | BodyResponseCallback<Schema$GiftCardObject>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$GiftCardObject> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GiftCardObject>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Giftcardobject$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9404,6 +13938,57 @@ export namespace walletobjects_v1 {
 
     /**
      * Returns the issuer with the given issuer ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.issuer.get({
+     *     // The unique identifier for an issuer.
+     *     resourceId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "callbackOptions": {},
+     *   //   "contactInfo": {},
+     *   //   "homepageUrl": "my_homepageUrl",
+     *   //   "issuerId": "my_issuerId",
+     *   //   "name": "my_name",
+     *   //   "smartTapMerchantData": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9413,11 +13998,11 @@ export namespace walletobjects_v1 {
     get(
       params: Params$Resource$Issuer$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Issuer$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Issuer>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Issuer>>;
     get(
       params: Params$Resource$Issuer$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9446,7 +14031,10 @@ export namespace walletobjects_v1 {
       callback?:
         | BodyResponseCallback<Schema$Issuer>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Issuer> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Issuer>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Issuer$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9492,6 +14080,67 @@ export namespace walletobjects_v1 {
 
     /**
      * Inserts an issuer with the given ID and properties.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.issuer.insert({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "callbackOptions": {},
+     *       //   "contactInfo": {},
+     *       //   "homepageUrl": "my_homepageUrl",
+     *       //   "issuerId": "my_issuerId",
+     *       //   "name": "my_name",
+     *       //   "smartTapMerchantData": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "callbackOptions": {},
+     *   //   "contactInfo": {},
+     *   //   "homepageUrl": "my_homepageUrl",
+     *   //   "issuerId": "my_issuerId",
+     *   //   "name": "my_name",
+     *   //   "smartTapMerchantData": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9501,11 +14150,11 @@ export namespace walletobjects_v1 {
     insert(
       params: Params$Resource$Issuer$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Issuer$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Issuer>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Issuer>>;
     insert(
       params: Params$Resource$Issuer$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9534,7 +14183,10 @@ export namespace walletobjects_v1 {
       callback?:
         | BodyResponseCallback<Schema$Issuer>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Issuer> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Issuer>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Issuer$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9580,6 +14232,49 @@ export namespace walletobjects_v1 {
 
     /**
      * Returns a list of all issuers shared to the caller.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.issuer.list({});
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "resources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9589,11 +14284,11 @@ export namespace walletobjects_v1 {
     list(
       params: Params$Resource$Issuer$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Issuer$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$IssuerListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$IssuerListResponse>>;
     list(
       params: Params$Resource$Issuer$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9624,8 +14319,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$IssuerListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$IssuerListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Issuer$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9671,6 +14366,70 @@ export namespace walletobjects_v1 {
 
     /**
      * Updates the issuer referenced by the given issuer ID. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.issuer.patch({
+     *     // The unique identifier for an issuer.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "callbackOptions": {},
+     *       //   "contactInfo": {},
+     *       //   "homepageUrl": "my_homepageUrl",
+     *       //   "issuerId": "my_issuerId",
+     *       //   "name": "my_name",
+     *       //   "smartTapMerchantData": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "callbackOptions": {},
+     *   //   "contactInfo": {},
+     *   //   "homepageUrl": "my_homepageUrl",
+     *   //   "issuerId": "my_issuerId",
+     *   //   "name": "my_name",
+     *   //   "smartTapMerchantData": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9680,11 +14439,11 @@ export namespace walletobjects_v1 {
     patch(
       params: Params$Resource$Issuer$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Issuer$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Issuer>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Issuer>>;
     patch(
       params: Params$Resource$Issuer$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9713,7 +14472,10 @@ export namespace walletobjects_v1 {
       callback?:
         | BodyResponseCallback<Schema$Issuer>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Issuer> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Issuer>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Issuer$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9759,6 +14521,70 @@ export namespace walletobjects_v1 {
 
     /**
      * Updates the issuer referenced by the given issuer ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.issuer.update({
+     *     // The unique identifier for an issuer.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "callbackOptions": {},
+     *       //   "contactInfo": {},
+     *       //   "homepageUrl": "my_homepageUrl",
+     *       //   "issuerId": "my_issuerId",
+     *       //   "name": "my_name",
+     *       //   "smartTapMerchantData": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "callbackOptions": {},
+     *   //   "contactInfo": {},
+     *   //   "homepageUrl": "my_homepageUrl",
+     *   //   "issuerId": "my_issuerId",
+     *   //   "name": "my_name",
+     *   //   "smartTapMerchantData": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9768,11 +14594,11 @@ export namespace walletobjects_v1 {
     update(
       params: Params$Resource$Issuer$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Issuer$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Issuer>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Issuer>>;
     update(
       params: Params$Resource$Issuer$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9801,7 +14627,10 @@ export namespace walletobjects_v1 {
       callback?:
         | BodyResponseCallback<Schema$Issuer>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Issuer> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Issuer>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Issuer$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9890,6 +14719,58 @@ export namespace walletobjects_v1 {
 
     /**
      * Inserts the resources in the JWT.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.jwt.insert({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "jwt": "my_jwt"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "resources": {},
+     *   //   "saveUri": "my_saveUri"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9899,11 +14780,11 @@ export namespace walletobjects_v1 {
     insert(
       params: Params$Resource$Jwt$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Jwt$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$JwtInsertResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$JwtInsertResponse>>;
     insert(
       params: Params$Resource$Jwt$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9934,8 +14815,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$JwtInsertResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$JwtInsertResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Jwt$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9995,6 +14876,60 @@ export namespace walletobjects_v1 {
 
     /**
      * Adds a message to the loyalty class referenced by the given class ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.loyaltyclass.addmessage({
+     *     // The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "message": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "resource": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10004,11 +14939,11 @@ export namespace walletobjects_v1 {
     addmessage(
       params: Params$Resource$Loyaltyclass$Addmessage,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     addmessage(
       params?: Params$Resource$Loyaltyclass$Addmessage,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LoyaltyClassAddMessageResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LoyaltyClassAddMessageResponse>>;
     addmessage(
       params: Params$Resource$Loyaltyclass$Addmessage,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10043,8 +14978,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$LoyaltyClassAddMessageResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$LoyaltyClassAddMessageResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Loyaltyclass$Addmessage;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10092,6 +15027,98 @@ export namespace walletobjects_v1 {
 
     /**
      * Returns the loyalty class with the given class ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.loyaltyclass.get({
+     *     // The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountIdLabel": "my_accountIdLabel",
+     *   //   "accountNameLabel": "my_accountNameLabel",
+     *   //   "allowMultipleUsersPerObject": false,
+     *   //   "appLinkData": {},
+     *   //   "callbackOptions": {},
+     *   //   "classTemplateInfo": {},
+     *   //   "countryCode": "my_countryCode",
+     *   //   "discoverableProgram": {},
+     *   //   "enableSmartTap": false,
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "homepageUri": {},
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "issuerName": "my_issuerName",
+     *   //   "kind": "my_kind",
+     *   //   "linksModuleData": {},
+     *   //   "localizedAccountIdLabel": {},
+     *   //   "localizedAccountNameLabel": {},
+     *   //   "localizedIssuerName": {},
+     *   //   "localizedProgramName": {},
+     *   //   "localizedRewardsTier": {},
+     *   //   "localizedRewardsTierLabel": {},
+     *   //   "localizedSecondaryRewardsTier": {},
+     *   //   "localizedSecondaryRewardsTierLabel": {},
+     *   //   "locations": [],
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "programLogo": {},
+     *   //   "programName": "my_programName",
+     *   //   "redemptionIssuers": [],
+     *   //   "review": {},
+     *   //   "reviewStatus": "my_reviewStatus",
+     *   //   "rewardsTier": "my_rewardsTier",
+     *   //   "rewardsTierLabel": "my_rewardsTierLabel",
+     *   //   "secondaryRewardsTier": "my_secondaryRewardsTier",
+     *   //   "secondaryRewardsTierLabel": "my_secondaryRewardsTierLabel",
+     *   //   "securityAnimation": {},
+     *   //   "textModulesData": [],
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version",
+     *   //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *   //   "wideProgramLogo": {},
+     *   //   "wordMark": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10101,11 +15128,11 @@ export namespace walletobjects_v1 {
     get(
       params: Params$Resource$Loyaltyclass$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Loyaltyclass$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LoyaltyClass>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LoyaltyClass>>;
     get(
       params: Params$Resource$Loyaltyclass$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10134,7 +15161,10 @@ export namespace walletobjects_v1 {
       callback?:
         | BodyResponseCallback<Schema$LoyaltyClass>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LoyaltyClass> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$LoyaltyClass>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Loyaltyclass$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -10179,6 +15209,149 @@ export namespace walletobjects_v1 {
 
     /**
      * Inserts an loyalty class with the given ID and properties.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.loyaltyclass.insert({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountIdLabel": "my_accountIdLabel",
+     *       //   "accountNameLabel": "my_accountNameLabel",
+     *       //   "allowMultipleUsersPerObject": false,
+     *       //   "appLinkData": {},
+     *       //   "callbackOptions": {},
+     *       //   "classTemplateInfo": {},
+     *       //   "countryCode": "my_countryCode",
+     *       //   "discoverableProgram": {},
+     *       //   "enableSmartTap": false,
+     *       //   "heroImage": {},
+     *       //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *       //   "homepageUri": {},
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "infoModuleData": {},
+     *       //   "issuerName": "my_issuerName",
+     *       //   "kind": "my_kind",
+     *       //   "linksModuleData": {},
+     *       //   "localizedAccountIdLabel": {},
+     *       //   "localizedAccountNameLabel": {},
+     *       //   "localizedIssuerName": {},
+     *       //   "localizedProgramName": {},
+     *       //   "localizedRewardsTier": {},
+     *       //   "localizedRewardsTierLabel": {},
+     *       //   "localizedSecondaryRewardsTier": {},
+     *       //   "localizedSecondaryRewardsTierLabel": {},
+     *       //   "locations": [],
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *       //   "notifyPreference": "my_notifyPreference",
+     *       //   "programLogo": {},
+     *       //   "programName": "my_programName",
+     *       //   "redemptionIssuers": [],
+     *       //   "review": {},
+     *       //   "reviewStatus": "my_reviewStatus",
+     *       //   "rewardsTier": "my_rewardsTier",
+     *       //   "rewardsTierLabel": "my_rewardsTierLabel",
+     *       //   "secondaryRewardsTier": "my_secondaryRewardsTier",
+     *       //   "secondaryRewardsTierLabel": "my_secondaryRewardsTierLabel",
+     *       //   "securityAnimation": {},
+     *       //   "textModulesData": [],
+     *       //   "valueAddedModuleData": [],
+     *       //   "version": "my_version",
+     *       //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *       //   "wideProgramLogo": {},
+     *       //   "wordMark": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountIdLabel": "my_accountIdLabel",
+     *   //   "accountNameLabel": "my_accountNameLabel",
+     *   //   "allowMultipleUsersPerObject": false,
+     *   //   "appLinkData": {},
+     *   //   "callbackOptions": {},
+     *   //   "classTemplateInfo": {},
+     *   //   "countryCode": "my_countryCode",
+     *   //   "discoverableProgram": {},
+     *   //   "enableSmartTap": false,
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "homepageUri": {},
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "issuerName": "my_issuerName",
+     *   //   "kind": "my_kind",
+     *   //   "linksModuleData": {},
+     *   //   "localizedAccountIdLabel": {},
+     *   //   "localizedAccountNameLabel": {},
+     *   //   "localizedIssuerName": {},
+     *   //   "localizedProgramName": {},
+     *   //   "localizedRewardsTier": {},
+     *   //   "localizedRewardsTierLabel": {},
+     *   //   "localizedSecondaryRewardsTier": {},
+     *   //   "localizedSecondaryRewardsTierLabel": {},
+     *   //   "locations": [],
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "programLogo": {},
+     *   //   "programName": "my_programName",
+     *   //   "redemptionIssuers": [],
+     *   //   "review": {},
+     *   //   "reviewStatus": "my_reviewStatus",
+     *   //   "rewardsTier": "my_rewardsTier",
+     *   //   "rewardsTierLabel": "my_rewardsTierLabel",
+     *   //   "secondaryRewardsTier": "my_secondaryRewardsTier",
+     *   //   "secondaryRewardsTierLabel": "my_secondaryRewardsTierLabel",
+     *   //   "securityAnimation": {},
+     *   //   "textModulesData": [],
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version",
+     *   //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *   //   "wideProgramLogo": {},
+     *   //   "wordMark": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10188,11 +15361,11 @@ export namespace walletobjects_v1 {
     insert(
       params: Params$Resource$Loyaltyclass$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Loyaltyclass$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LoyaltyClass>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LoyaltyClass>>;
     insert(
       params: Params$Resource$Loyaltyclass$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10221,7 +15394,10 @@ export namespace walletobjects_v1 {
       callback?:
         | BodyResponseCallback<Schema$LoyaltyClass>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LoyaltyClass> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$LoyaltyClass>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Loyaltyclass$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10268,6 +15444,57 @@ export namespace walletobjects_v1 {
 
     /**
      * Returns a list of all loyalty classes for a given issuer ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.loyaltyclass.list({
+     *     // The ID of the issuer authorized to list classes.
+     *     issuerId: 'placeholder-value',
+     *     // Identifies the max number of results returned by a list. All results are returned if `maxResults` isn't defined.
+     *     maxResults: 'placeholder-value',
+     *     // Used to get the next set of results if `maxResults` is specified, but more than `maxResults` classes are available in a list. For example, if you have a list of 200 classes and you call list with `maxResults` set to 20, list will return the first 20 classes and a token. Call list again with `maxResults` set to 20 and the token to get the next 20 classes.
+     *     token: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "pagination": {},
+     *   //   "resources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10277,11 +15504,11 @@ export namespace walletobjects_v1 {
     list(
       params: Params$Resource$Loyaltyclass$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Loyaltyclass$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LoyaltyClassListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LoyaltyClassListResponse>>;
     list(
       params: Params$Resource$Loyaltyclass$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10314,8 +15541,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$LoyaltyClassListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$LoyaltyClassListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Loyaltyclass$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10362,6 +15589,152 @@ export namespace walletobjects_v1 {
 
     /**
      * Updates the loyalty class referenced by the given class ID. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.loyaltyclass.patch({
+     *     // The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountIdLabel": "my_accountIdLabel",
+     *       //   "accountNameLabel": "my_accountNameLabel",
+     *       //   "allowMultipleUsersPerObject": false,
+     *       //   "appLinkData": {},
+     *       //   "callbackOptions": {},
+     *       //   "classTemplateInfo": {},
+     *       //   "countryCode": "my_countryCode",
+     *       //   "discoverableProgram": {},
+     *       //   "enableSmartTap": false,
+     *       //   "heroImage": {},
+     *       //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *       //   "homepageUri": {},
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "infoModuleData": {},
+     *       //   "issuerName": "my_issuerName",
+     *       //   "kind": "my_kind",
+     *       //   "linksModuleData": {},
+     *       //   "localizedAccountIdLabel": {},
+     *       //   "localizedAccountNameLabel": {},
+     *       //   "localizedIssuerName": {},
+     *       //   "localizedProgramName": {},
+     *       //   "localizedRewardsTier": {},
+     *       //   "localizedRewardsTierLabel": {},
+     *       //   "localizedSecondaryRewardsTier": {},
+     *       //   "localizedSecondaryRewardsTierLabel": {},
+     *       //   "locations": [],
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *       //   "notifyPreference": "my_notifyPreference",
+     *       //   "programLogo": {},
+     *       //   "programName": "my_programName",
+     *       //   "redemptionIssuers": [],
+     *       //   "review": {},
+     *       //   "reviewStatus": "my_reviewStatus",
+     *       //   "rewardsTier": "my_rewardsTier",
+     *       //   "rewardsTierLabel": "my_rewardsTierLabel",
+     *       //   "secondaryRewardsTier": "my_secondaryRewardsTier",
+     *       //   "secondaryRewardsTierLabel": "my_secondaryRewardsTierLabel",
+     *       //   "securityAnimation": {},
+     *       //   "textModulesData": [],
+     *       //   "valueAddedModuleData": [],
+     *       //   "version": "my_version",
+     *       //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *       //   "wideProgramLogo": {},
+     *       //   "wordMark": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountIdLabel": "my_accountIdLabel",
+     *   //   "accountNameLabel": "my_accountNameLabel",
+     *   //   "allowMultipleUsersPerObject": false,
+     *   //   "appLinkData": {},
+     *   //   "callbackOptions": {},
+     *   //   "classTemplateInfo": {},
+     *   //   "countryCode": "my_countryCode",
+     *   //   "discoverableProgram": {},
+     *   //   "enableSmartTap": false,
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "homepageUri": {},
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "issuerName": "my_issuerName",
+     *   //   "kind": "my_kind",
+     *   //   "linksModuleData": {},
+     *   //   "localizedAccountIdLabel": {},
+     *   //   "localizedAccountNameLabel": {},
+     *   //   "localizedIssuerName": {},
+     *   //   "localizedProgramName": {},
+     *   //   "localizedRewardsTier": {},
+     *   //   "localizedRewardsTierLabel": {},
+     *   //   "localizedSecondaryRewardsTier": {},
+     *   //   "localizedSecondaryRewardsTierLabel": {},
+     *   //   "locations": [],
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "programLogo": {},
+     *   //   "programName": "my_programName",
+     *   //   "redemptionIssuers": [],
+     *   //   "review": {},
+     *   //   "reviewStatus": "my_reviewStatus",
+     *   //   "rewardsTier": "my_rewardsTier",
+     *   //   "rewardsTierLabel": "my_rewardsTierLabel",
+     *   //   "secondaryRewardsTier": "my_secondaryRewardsTier",
+     *   //   "secondaryRewardsTierLabel": "my_secondaryRewardsTierLabel",
+     *   //   "securityAnimation": {},
+     *   //   "textModulesData": [],
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version",
+     *   //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *   //   "wideProgramLogo": {},
+     *   //   "wordMark": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10371,11 +15744,11 @@ export namespace walletobjects_v1 {
     patch(
       params: Params$Resource$Loyaltyclass$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Loyaltyclass$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LoyaltyClass>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LoyaltyClass>>;
     patch(
       params: Params$Resource$Loyaltyclass$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10404,7 +15777,10 @@ export namespace walletobjects_v1 {
       callback?:
         | BodyResponseCallback<Schema$LoyaltyClass>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LoyaltyClass> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$LoyaltyClass>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Loyaltyclass$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10450,6 +15826,152 @@ export namespace walletobjects_v1 {
 
     /**
      * Updates the loyalty class referenced by the given class ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.loyaltyclass.update({
+     *     // The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountIdLabel": "my_accountIdLabel",
+     *       //   "accountNameLabel": "my_accountNameLabel",
+     *       //   "allowMultipleUsersPerObject": false,
+     *       //   "appLinkData": {},
+     *       //   "callbackOptions": {},
+     *       //   "classTemplateInfo": {},
+     *       //   "countryCode": "my_countryCode",
+     *       //   "discoverableProgram": {},
+     *       //   "enableSmartTap": false,
+     *       //   "heroImage": {},
+     *       //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *       //   "homepageUri": {},
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "infoModuleData": {},
+     *       //   "issuerName": "my_issuerName",
+     *       //   "kind": "my_kind",
+     *       //   "linksModuleData": {},
+     *       //   "localizedAccountIdLabel": {},
+     *       //   "localizedAccountNameLabel": {},
+     *       //   "localizedIssuerName": {},
+     *       //   "localizedProgramName": {},
+     *       //   "localizedRewardsTier": {},
+     *       //   "localizedRewardsTierLabel": {},
+     *       //   "localizedSecondaryRewardsTier": {},
+     *       //   "localizedSecondaryRewardsTierLabel": {},
+     *       //   "locations": [],
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *       //   "notifyPreference": "my_notifyPreference",
+     *       //   "programLogo": {},
+     *       //   "programName": "my_programName",
+     *       //   "redemptionIssuers": [],
+     *       //   "review": {},
+     *       //   "reviewStatus": "my_reviewStatus",
+     *       //   "rewardsTier": "my_rewardsTier",
+     *       //   "rewardsTierLabel": "my_rewardsTierLabel",
+     *       //   "secondaryRewardsTier": "my_secondaryRewardsTier",
+     *       //   "secondaryRewardsTierLabel": "my_secondaryRewardsTierLabel",
+     *       //   "securityAnimation": {},
+     *       //   "textModulesData": [],
+     *       //   "valueAddedModuleData": [],
+     *       //   "version": "my_version",
+     *       //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *       //   "wideProgramLogo": {},
+     *       //   "wordMark": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountIdLabel": "my_accountIdLabel",
+     *   //   "accountNameLabel": "my_accountNameLabel",
+     *   //   "allowMultipleUsersPerObject": false,
+     *   //   "appLinkData": {},
+     *   //   "callbackOptions": {},
+     *   //   "classTemplateInfo": {},
+     *   //   "countryCode": "my_countryCode",
+     *   //   "discoverableProgram": {},
+     *   //   "enableSmartTap": false,
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "homepageUri": {},
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "issuerName": "my_issuerName",
+     *   //   "kind": "my_kind",
+     *   //   "linksModuleData": {},
+     *   //   "localizedAccountIdLabel": {},
+     *   //   "localizedAccountNameLabel": {},
+     *   //   "localizedIssuerName": {},
+     *   //   "localizedProgramName": {},
+     *   //   "localizedRewardsTier": {},
+     *   //   "localizedRewardsTierLabel": {},
+     *   //   "localizedSecondaryRewardsTier": {},
+     *   //   "localizedSecondaryRewardsTierLabel": {},
+     *   //   "locations": [],
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "programLogo": {},
+     *   //   "programName": "my_programName",
+     *   //   "redemptionIssuers": [],
+     *   //   "review": {},
+     *   //   "reviewStatus": "my_reviewStatus",
+     *   //   "rewardsTier": "my_rewardsTier",
+     *   //   "rewardsTierLabel": "my_rewardsTierLabel",
+     *   //   "secondaryRewardsTier": "my_secondaryRewardsTier",
+     *   //   "secondaryRewardsTierLabel": "my_secondaryRewardsTierLabel",
+     *   //   "securityAnimation": {},
+     *   //   "textModulesData": [],
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version",
+     *   //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *   //   "wideProgramLogo": {},
+     *   //   "wordMark": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10459,11 +15981,11 @@ export namespace walletobjects_v1 {
     update(
       params: Params$Resource$Loyaltyclass$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Loyaltyclass$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LoyaltyClass>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LoyaltyClass>>;
     update(
       params: Params$Resource$Loyaltyclass$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10492,7 +16014,10 @@ export namespace walletobjects_v1 {
       callback?:
         | BodyResponseCallback<Schema$LoyaltyClass>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LoyaltyClass> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$LoyaltyClass>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Loyaltyclass$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10610,6 +16135,60 @@ export namespace walletobjects_v1 {
 
     /**
      * Adds a message to the loyalty object referenced by the given object ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.loyaltyobject.addmessage({
+     *     // The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "message": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "resource": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10619,11 +16198,11 @@ export namespace walletobjects_v1 {
     addmessage(
       params: Params$Resource$Loyaltyobject$Addmessage,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     addmessage(
       params?: Params$Resource$Loyaltyobject$Addmessage,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LoyaltyObjectAddMessageResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LoyaltyObjectAddMessageResponse>>;
     addmessage(
       params: Params$Resource$Loyaltyobject$Addmessage,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10658,8 +16237,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$LoyaltyObjectAddMessageResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$LoyaltyObjectAddMessageResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Loyaltyobject$Addmessage;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10708,6 +16287,84 @@ export namespace walletobjects_v1 {
 
     /**
      * Returns the loyalty object with the given object ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.loyaltyobject.get({
+     *     // The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "accountName": "my_accountName",
+     *   //   "appLinkData": {},
+     *   //   "barcode": {},
+     *   //   "classId": "my_classId",
+     *   //   "classReference": {},
+     *   //   "disableExpirationNotification": false,
+     *   //   "groupingInfo": {},
+     *   //   "hasLinkedDevice": false,
+     *   //   "hasUsers": false,
+     *   //   "heroImage": {},
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "kind": "my_kind",
+     *   //   "linkedObjectIds": [],
+     *   //   "linkedOfferIds": [],
+     *   //   "linksModuleData": {},
+     *   //   "locations": [],
+     *   //   "loyaltyPoints": {},
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "passConstraints": {},
+     *   //   "rotatingBarcode": {},
+     *   //   "saveRestrictions": {},
+     *   //   "secondaryLoyaltyPoints": {},
+     *   //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *   //   "state": "my_state",
+     *   //   "textModulesData": [],
+     *   //   "validTimeInterval": {},
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10717,11 +16374,11 @@ export namespace walletobjects_v1 {
     get(
       params: Params$Resource$Loyaltyobject$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Loyaltyobject$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LoyaltyObject>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LoyaltyObject>>;
     get(
       params: Params$Resource$Loyaltyobject$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10750,7 +16407,10 @@ export namespace walletobjects_v1 {
       callback?:
         | BodyResponseCallback<Schema$LoyaltyObject>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LoyaltyObject> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$LoyaltyObject>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Loyaltyobject$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10796,6 +16456,121 @@ export namespace walletobjects_v1 {
 
     /**
      * Inserts an loyalty object with the given ID and properties.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.loyaltyobject.insert({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "accountName": "my_accountName",
+     *       //   "appLinkData": {},
+     *       //   "barcode": {},
+     *       //   "classId": "my_classId",
+     *       //   "classReference": {},
+     *       //   "disableExpirationNotification": false,
+     *       //   "groupingInfo": {},
+     *       //   "hasLinkedDevice": false,
+     *       //   "hasUsers": false,
+     *       //   "heroImage": {},
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "infoModuleData": {},
+     *       //   "kind": "my_kind",
+     *       //   "linkedObjectIds": [],
+     *       //   "linkedOfferIds": [],
+     *       //   "linksModuleData": {},
+     *       //   "locations": [],
+     *       //   "loyaltyPoints": {},
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "notifyPreference": "my_notifyPreference",
+     *       //   "passConstraints": {},
+     *       //   "rotatingBarcode": {},
+     *       //   "saveRestrictions": {},
+     *       //   "secondaryLoyaltyPoints": {},
+     *       //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *       //   "state": "my_state",
+     *       //   "textModulesData": [],
+     *       //   "validTimeInterval": {},
+     *       //   "valueAddedModuleData": [],
+     *       //   "version": "my_version"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "accountName": "my_accountName",
+     *   //   "appLinkData": {},
+     *   //   "barcode": {},
+     *   //   "classId": "my_classId",
+     *   //   "classReference": {},
+     *   //   "disableExpirationNotification": false,
+     *   //   "groupingInfo": {},
+     *   //   "hasLinkedDevice": false,
+     *   //   "hasUsers": false,
+     *   //   "heroImage": {},
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "kind": "my_kind",
+     *   //   "linkedObjectIds": [],
+     *   //   "linkedOfferIds": [],
+     *   //   "linksModuleData": {},
+     *   //   "locations": [],
+     *   //   "loyaltyPoints": {},
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "passConstraints": {},
+     *   //   "rotatingBarcode": {},
+     *   //   "saveRestrictions": {},
+     *   //   "secondaryLoyaltyPoints": {},
+     *   //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *   //   "state": "my_state",
+     *   //   "textModulesData": [],
+     *   //   "validTimeInterval": {},
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10805,11 +16580,11 @@ export namespace walletobjects_v1 {
     insert(
       params: Params$Resource$Loyaltyobject$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Loyaltyobject$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LoyaltyObject>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LoyaltyObject>>;
     insert(
       params: Params$Resource$Loyaltyobject$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10838,7 +16613,10 @@ export namespace walletobjects_v1 {
       callback?:
         | BodyResponseCallback<Schema$LoyaltyObject>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LoyaltyObject> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$LoyaltyObject>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Loyaltyobject$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10885,6 +16663,57 @@ export namespace walletobjects_v1 {
 
     /**
      * Returns a list of all loyalty objects for a given issuer ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.loyaltyobject.list({
+     *     // The ID of the class whose objects will be listed.
+     *     classId: 'placeholder-value',
+     *     // Identifies the max number of results returned by a list. All results are returned if `maxResults` isn't defined.
+     *     maxResults: 'placeholder-value',
+     *     // Used to get the next set of results if `maxResults` is specified, but more than `maxResults` objects are available in a list. For example, if you have a list of 200 objects and you call list with `maxResults` set to 20, list will return the first 20 objects and a token. Call list again with `maxResults` set to 20 and the token to get the next 20 objects.
+     *     token: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "pagination": {},
+     *   //   "resources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10894,11 +16723,11 @@ export namespace walletobjects_v1 {
     list(
       params: Params$Resource$Loyaltyobject$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Loyaltyobject$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LoyaltyObjectListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LoyaltyObjectListResponse>>;
     list(
       params: Params$Resource$Loyaltyobject$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10933,8 +16762,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$LoyaltyObjectListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$LoyaltyObjectListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Loyaltyobject$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10981,6 +16810,92 @@ export namespace walletobjects_v1 {
 
     /**
      * Modifies linked offer objects for the loyalty object with the given ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.loyaltyobject.modifylinkedofferobjects({
+     *     // The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "linkedOfferObjectIds": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "accountName": "my_accountName",
+     *   //   "appLinkData": {},
+     *   //   "barcode": {},
+     *   //   "classId": "my_classId",
+     *   //   "classReference": {},
+     *   //   "disableExpirationNotification": false,
+     *   //   "groupingInfo": {},
+     *   //   "hasLinkedDevice": false,
+     *   //   "hasUsers": false,
+     *   //   "heroImage": {},
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "kind": "my_kind",
+     *   //   "linkedObjectIds": [],
+     *   //   "linkedOfferIds": [],
+     *   //   "linksModuleData": {},
+     *   //   "locations": [],
+     *   //   "loyaltyPoints": {},
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "passConstraints": {},
+     *   //   "rotatingBarcode": {},
+     *   //   "saveRestrictions": {},
+     *   //   "secondaryLoyaltyPoints": {},
+     *   //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *   //   "state": "my_state",
+     *   //   "textModulesData": [],
+     *   //   "validTimeInterval": {},
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10990,11 +16905,11 @@ export namespace walletobjects_v1 {
     modifylinkedofferobjects(
       params: Params$Resource$Loyaltyobject$Modifylinkedofferobjects,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     modifylinkedofferobjects(
       params?: Params$Resource$Loyaltyobject$Modifylinkedofferobjects,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LoyaltyObject>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LoyaltyObject>>;
     modifylinkedofferobjects(
       params: Params$Resource$Loyaltyobject$Modifylinkedofferobjects,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11025,7 +16940,10 @@ export namespace walletobjects_v1 {
       callback?:
         | BodyResponseCallback<Schema$LoyaltyObject>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LoyaltyObject> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$LoyaltyObject>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Loyaltyobject$Modifylinkedofferobjects;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11072,6 +16990,124 @@ export namespace walletobjects_v1 {
 
     /**
      * Updates the loyalty object referenced by the given object ID. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.loyaltyobject.patch({
+     *     // The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "accountName": "my_accountName",
+     *       //   "appLinkData": {},
+     *       //   "barcode": {},
+     *       //   "classId": "my_classId",
+     *       //   "classReference": {},
+     *       //   "disableExpirationNotification": false,
+     *       //   "groupingInfo": {},
+     *       //   "hasLinkedDevice": false,
+     *       //   "hasUsers": false,
+     *       //   "heroImage": {},
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "infoModuleData": {},
+     *       //   "kind": "my_kind",
+     *       //   "linkedObjectIds": [],
+     *       //   "linkedOfferIds": [],
+     *       //   "linksModuleData": {},
+     *       //   "locations": [],
+     *       //   "loyaltyPoints": {},
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "notifyPreference": "my_notifyPreference",
+     *       //   "passConstraints": {},
+     *       //   "rotatingBarcode": {},
+     *       //   "saveRestrictions": {},
+     *       //   "secondaryLoyaltyPoints": {},
+     *       //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *       //   "state": "my_state",
+     *       //   "textModulesData": [],
+     *       //   "validTimeInterval": {},
+     *       //   "valueAddedModuleData": [],
+     *       //   "version": "my_version"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "accountName": "my_accountName",
+     *   //   "appLinkData": {},
+     *   //   "barcode": {},
+     *   //   "classId": "my_classId",
+     *   //   "classReference": {},
+     *   //   "disableExpirationNotification": false,
+     *   //   "groupingInfo": {},
+     *   //   "hasLinkedDevice": false,
+     *   //   "hasUsers": false,
+     *   //   "heroImage": {},
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "kind": "my_kind",
+     *   //   "linkedObjectIds": [],
+     *   //   "linkedOfferIds": [],
+     *   //   "linksModuleData": {},
+     *   //   "locations": [],
+     *   //   "loyaltyPoints": {},
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "passConstraints": {},
+     *   //   "rotatingBarcode": {},
+     *   //   "saveRestrictions": {},
+     *   //   "secondaryLoyaltyPoints": {},
+     *   //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *   //   "state": "my_state",
+     *   //   "textModulesData": [],
+     *   //   "validTimeInterval": {},
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11081,11 +17117,11 @@ export namespace walletobjects_v1 {
     patch(
       params: Params$Resource$Loyaltyobject$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Loyaltyobject$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LoyaltyObject>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LoyaltyObject>>;
     patch(
       params: Params$Resource$Loyaltyobject$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11114,7 +17150,10 @@ export namespace walletobjects_v1 {
       callback?:
         | BodyResponseCallback<Schema$LoyaltyObject>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LoyaltyObject> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$LoyaltyObject>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Loyaltyobject$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11160,6 +17199,124 @@ export namespace walletobjects_v1 {
 
     /**
      * Updates the loyalty object referenced by the given object ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.loyaltyobject.update({
+     *     // The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "accountName": "my_accountName",
+     *       //   "appLinkData": {},
+     *       //   "barcode": {},
+     *       //   "classId": "my_classId",
+     *       //   "classReference": {},
+     *       //   "disableExpirationNotification": false,
+     *       //   "groupingInfo": {},
+     *       //   "hasLinkedDevice": false,
+     *       //   "hasUsers": false,
+     *       //   "heroImage": {},
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "infoModuleData": {},
+     *       //   "kind": "my_kind",
+     *       //   "linkedObjectIds": [],
+     *       //   "linkedOfferIds": [],
+     *       //   "linksModuleData": {},
+     *       //   "locations": [],
+     *       //   "loyaltyPoints": {},
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "notifyPreference": "my_notifyPreference",
+     *       //   "passConstraints": {},
+     *       //   "rotatingBarcode": {},
+     *       //   "saveRestrictions": {},
+     *       //   "secondaryLoyaltyPoints": {},
+     *       //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *       //   "state": "my_state",
+     *       //   "textModulesData": [],
+     *       //   "validTimeInterval": {},
+     *       //   "valueAddedModuleData": [],
+     *       //   "version": "my_version"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "accountName": "my_accountName",
+     *   //   "appLinkData": {},
+     *   //   "barcode": {},
+     *   //   "classId": "my_classId",
+     *   //   "classReference": {},
+     *   //   "disableExpirationNotification": false,
+     *   //   "groupingInfo": {},
+     *   //   "hasLinkedDevice": false,
+     *   //   "hasUsers": false,
+     *   //   "heroImage": {},
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "kind": "my_kind",
+     *   //   "linkedObjectIds": [],
+     *   //   "linkedOfferIds": [],
+     *   //   "linksModuleData": {},
+     *   //   "locations": [],
+     *   //   "loyaltyPoints": {},
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "passConstraints": {},
+     *   //   "rotatingBarcode": {},
+     *   //   "saveRestrictions": {},
+     *   //   "secondaryLoyaltyPoints": {},
+     *   //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *   //   "state": "my_state",
+     *   //   "textModulesData": [],
+     *   //   "validTimeInterval": {},
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11169,11 +17326,11 @@ export namespace walletobjects_v1 {
     update(
       params: Params$Resource$Loyaltyobject$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Loyaltyobject$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LoyaltyObject>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LoyaltyObject>>;
     update(
       params: Params$Resource$Loyaltyobject$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11202,7 +17359,10 @@ export namespace walletobjects_v1 {
       callback?:
         | BodyResponseCallback<Schema$LoyaltyObject>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LoyaltyObject> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$LoyaltyObject>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Loyaltyobject$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11333,6 +17493,81 @@ export namespace walletobjects_v1 {
 
     /**
      * Downloads rotating barcode values for the transit object referenced by the given object ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.media.download({
+     *     // The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "algorithm": "my_algorithm",
+     *   //   "bigstoreObjectRef": "my_bigstoreObjectRef",
+     *   //   "blobRef": "my_blobRef",
+     *   //   "blobstore2Info": {},
+     *   //   "compositeMedia": [],
+     *   //   "contentType": "my_contentType",
+     *   //   "contentTypeInfo": {},
+     *   //   "cosmoBinaryReference": "my_cosmoBinaryReference",
+     *   //   "crc32cHash": 0,
+     *   //   "diffChecksumsResponse": {},
+     *   //   "diffDownloadResponse": {},
+     *   //   "diffUploadRequest": {},
+     *   //   "diffUploadResponse": {},
+     *   //   "diffVersionResponse": {},
+     *   //   "downloadParameters": {},
+     *   //   "filename": "my_filename",
+     *   //   "hash": "my_hash",
+     *   //   "hashVerified": false,
+     *   //   "inline": "my_inline",
+     *   //   "isPotentialRetry": false,
+     *   //   "length": "my_length",
+     *   //   "md5Hash": "my_md5Hash",
+     *   //   "mediaId": "my_mediaId",
+     *   //   "objectId": {},
+     *   //   "path": "my_path",
+     *   //   "referenceType": "my_referenceType",
+     *   //   "sha1Hash": "my_sha1Hash",
+     *   //   "sha256Hash": "my_sha256Hash",
+     *   //   "timestamp": "my_timestamp",
+     *   //   "token": "my_token"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11342,11 +17577,11 @@ export namespace walletobjects_v1 {
     download(
       params: Params$Resource$Media$Download,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     download(
       params?: Params$Resource$Media$Download,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Media>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Media>>;
     download(
       params: Params$Resource$Media$Download,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11375,7 +17610,10 @@ export namespace walletobjects_v1 {
       callback?:
         | BodyResponseCallback<Schema$Media>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Media> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Media>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Media$Download;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -11421,6 +17659,63 @@ export namespace walletobjects_v1 {
 
     /**
      * Uploads rotating barcode values for the transit object referenced by the given object ID. Note the max upload size is specified in google3/production/config/cdd/apps-upload/customers/payments-consumer-passes/config.gcl and enforced by Scotty.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.media.upload({
+     *     // The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "blob": {},
+     *       //   "mediaRequestInfo": {}
+     *       // }
+     *     },
+     *     media: {
+     *       mimeType: 'placeholder-value',
+     *       body: 'placeholder-value',
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11430,11 +17725,13 @@ export namespace walletobjects_v1 {
     upload(
       params: Params$Resource$Media$Upload,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     upload(
       params?: Params$Resource$Media$Upload,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TransitObjectUploadRotatingBarcodeValuesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$TransitObjectUploadRotatingBarcodeValuesResponse>
+    >;
     upload(
       params: Params$Resource$Media$Upload,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11469,8 +17766,10 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TransitObjectUploadRotatingBarcodeValuesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$TransitObjectUploadRotatingBarcodeValuesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Media$Upload;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -11562,6 +17861,60 @@ export namespace walletobjects_v1 {
 
     /**
      * Adds a message to the offer class referenced by the given class ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.offerclass.addmessage({
+     *     // The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "message": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "resource": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11571,11 +17924,11 @@ export namespace walletobjects_v1 {
     addmessage(
       params: Params$Resource$Offerclass$Addmessage,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     addmessage(
       params?: Params$Resource$Offerclass$Addmessage,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$OfferClassAddMessageResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$OfferClassAddMessageResponse>>;
     addmessage(
       params: Params$Resource$Offerclass$Addmessage,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11610,8 +17963,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$OfferClassAddMessageResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$OfferClassAddMessageResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Offerclass$Addmessage;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11659,6 +18012,95 @@ export namespace walletobjects_v1 {
 
     /**
      * Returns the offer class with the given class ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.offerclass.get({
+     *     // The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allowMultipleUsersPerObject": false,
+     *   //   "appLinkData": {},
+     *   //   "callbackOptions": {},
+     *   //   "classTemplateInfo": {},
+     *   //   "countryCode": "my_countryCode",
+     *   //   "details": "my_details",
+     *   //   "enableSmartTap": false,
+     *   //   "finePrint": "my_finePrint",
+     *   //   "helpUri": {},
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "homepageUri": {},
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "issuerName": "my_issuerName",
+     *   //   "kind": "my_kind",
+     *   //   "linksModuleData": {},
+     *   //   "localizedDetails": {},
+     *   //   "localizedFinePrint": {},
+     *   //   "localizedIssuerName": {},
+     *   //   "localizedProvider": {},
+     *   //   "localizedShortTitle": {},
+     *   //   "localizedTitle": {},
+     *   //   "locations": [],
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "provider": "my_provider",
+     *   //   "redemptionChannel": "my_redemptionChannel",
+     *   //   "redemptionIssuers": [],
+     *   //   "review": {},
+     *   //   "reviewStatus": "my_reviewStatus",
+     *   //   "securityAnimation": {},
+     *   //   "shortTitle": "my_shortTitle",
+     *   //   "textModulesData": [],
+     *   //   "title": "my_title",
+     *   //   "titleImage": {},
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version",
+     *   //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *   //   "wideTitleImage": {},
+     *   //   "wordMark": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11668,11 +18110,11 @@ export namespace walletobjects_v1 {
     get(
       params: Params$Resource$Offerclass$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Offerclass$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$OfferClass>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$OfferClass>>;
     get(
       params: Params$Resource$Offerclass$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11701,7 +18143,10 @@ export namespace walletobjects_v1 {
       callback?:
         | BodyResponseCallback<Schema$OfferClass>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$OfferClass> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$OfferClass>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Offerclass$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -11746,6 +18191,143 @@ export namespace walletobjects_v1 {
 
     /**
      * Inserts an offer class with the given ID and properties.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.offerclass.insert({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "allowMultipleUsersPerObject": false,
+     *       //   "appLinkData": {},
+     *       //   "callbackOptions": {},
+     *       //   "classTemplateInfo": {},
+     *       //   "countryCode": "my_countryCode",
+     *       //   "details": "my_details",
+     *       //   "enableSmartTap": false,
+     *       //   "finePrint": "my_finePrint",
+     *       //   "helpUri": {},
+     *       //   "heroImage": {},
+     *       //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *       //   "homepageUri": {},
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "infoModuleData": {},
+     *       //   "issuerName": "my_issuerName",
+     *       //   "kind": "my_kind",
+     *       //   "linksModuleData": {},
+     *       //   "localizedDetails": {},
+     *       //   "localizedFinePrint": {},
+     *       //   "localizedIssuerName": {},
+     *       //   "localizedProvider": {},
+     *       //   "localizedShortTitle": {},
+     *       //   "localizedTitle": {},
+     *       //   "locations": [],
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *       //   "notifyPreference": "my_notifyPreference",
+     *       //   "provider": "my_provider",
+     *       //   "redemptionChannel": "my_redemptionChannel",
+     *       //   "redemptionIssuers": [],
+     *       //   "review": {},
+     *       //   "reviewStatus": "my_reviewStatus",
+     *       //   "securityAnimation": {},
+     *       //   "shortTitle": "my_shortTitle",
+     *       //   "textModulesData": [],
+     *       //   "title": "my_title",
+     *       //   "titleImage": {},
+     *       //   "valueAddedModuleData": [],
+     *       //   "version": "my_version",
+     *       //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *       //   "wideTitleImage": {},
+     *       //   "wordMark": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allowMultipleUsersPerObject": false,
+     *   //   "appLinkData": {},
+     *   //   "callbackOptions": {},
+     *   //   "classTemplateInfo": {},
+     *   //   "countryCode": "my_countryCode",
+     *   //   "details": "my_details",
+     *   //   "enableSmartTap": false,
+     *   //   "finePrint": "my_finePrint",
+     *   //   "helpUri": {},
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "homepageUri": {},
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "issuerName": "my_issuerName",
+     *   //   "kind": "my_kind",
+     *   //   "linksModuleData": {},
+     *   //   "localizedDetails": {},
+     *   //   "localizedFinePrint": {},
+     *   //   "localizedIssuerName": {},
+     *   //   "localizedProvider": {},
+     *   //   "localizedShortTitle": {},
+     *   //   "localizedTitle": {},
+     *   //   "locations": [],
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "provider": "my_provider",
+     *   //   "redemptionChannel": "my_redemptionChannel",
+     *   //   "redemptionIssuers": [],
+     *   //   "review": {},
+     *   //   "reviewStatus": "my_reviewStatus",
+     *   //   "securityAnimation": {},
+     *   //   "shortTitle": "my_shortTitle",
+     *   //   "textModulesData": [],
+     *   //   "title": "my_title",
+     *   //   "titleImage": {},
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version",
+     *   //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *   //   "wideTitleImage": {},
+     *   //   "wordMark": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11755,11 +18337,11 @@ export namespace walletobjects_v1 {
     insert(
       params: Params$Resource$Offerclass$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Offerclass$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$OfferClass>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$OfferClass>>;
     insert(
       params: Params$Resource$Offerclass$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11788,7 +18370,10 @@ export namespace walletobjects_v1 {
       callback?:
         | BodyResponseCallback<Schema$OfferClass>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$OfferClass> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$OfferClass>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Offerclass$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11835,6 +18420,57 @@ export namespace walletobjects_v1 {
 
     /**
      * Returns a list of all offer classes for a given issuer ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.offerclass.list({
+     *     // The ID of the issuer authorized to list classes.
+     *     issuerId: 'placeholder-value',
+     *     // Identifies the max number of results returned by a list. All results are returned if `maxResults` isn't defined.
+     *     maxResults: 'placeholder-value',
+     *     // Used to get the next set of results if `maxResults` is specified, but more than `maxResults` classes are available in a list. For example, if you have a list of 200 classes and you call list with `maxResults` set to 20, list will return the first 20 classes and a token. Call list again with `maxResults` set to 20 and the token to get the next 20 classes.
+     *     token: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "pagination": {},
+     *   //   "resources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11844,11 +18480,11 @@ export namespace walletobjects_v1 {
     list(
       params: Params$Resource$Offerclass$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Offerclass$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$OfferClassListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$OfferClassListResponse>>;
     list(
       params: Params$Resource$Offerclass$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11881,8 +18517,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$OfferClassListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$OfferClassListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Offerclass$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -11928,6 +18564,146 @@ export namespace walletobjects_v1 {
 
     /**
      * Updates the offer class referenced by the given class ID. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.offerclass.patch({
+     *     // The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "allowMultipleUsersPerObject": false,
+     *       //   "appLinkData": {},
+     *       //   "callbackOptions": {},
+     *       //   "classTemplateInfo": {},
+     *       //   "countryCode": "my_countryCode",
+     *       //   "details": "my_details",
+     *       //   "enableSmartTap": false,
+     *       //   "finePrint": "my_finePrint",
+     *       //   "helpUri": {},
+     *       //   "heroImage": {},
+     *       //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *       //   "homepageUri": {},
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "infoModuleData": {},
+     *       //   "issuerName": "my_issuerName",
+     *       //   "kind": "my_kind",
+     *       //   "linksModuleData": {},
+     *       //   "localizedDetails": {},
+     *       //   "localizedFinePrint": {},
+     *       //   "localizedIssuerName": {},
+     *       //   "localizedProvider": {},
+     *       //   "localizedShortTitle": {},
+     *       //   "localizedTitle": {},
+     *       //   "locations": [],
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *       //   "notifyPreference": "my_notifyPreference",
+     *       //   "provider": "my_provider",
+     *       //   "redemptionChannel": "my_redemptionChannel",
+     *       //   "redemptionIssuers": [],
+     *       //   "review": {},
+     *       //   "reviewStatus": "my_reviewStatus",
+     *       //   "securityAnimation": {},
+     *       //   "shortTitle": "my_shortTitle",
+     *       //   "textModulesData": [],
+     *       //   "title": "my_title",
+     *       //   "titleImage": {},
+     *       //   "valueAddedModuleData": [],
+     *       //   "version": "my_version",
+     *       //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *       //   "wideTitleImage": {},
+     *       //   "wordMark": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allowMultipleUsersPerObject": false,
+     *   //   "appLinkData": {},
+     *   //   "callbackOptions": {},
+     *   //   "classTemplateInfo": {},
+     *   //   "countryCode": "my_countryCode",
+     *   //   "details": "my_details",
+     *   //   "enableSmartTap": false,
+     *   //   "finePrint": "my_finePrint",
+     *   //   "helpUri": {},
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "homepageUri": {},
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "issuerName": "my_issuerName",
+     *   //   "kind": "my_kind",
+     *   //   "linksModuleData": {},
+     *   //   "localizedDetails": {},
+     *   //   "localizedFinePrint": {},
+     *   //   "localizedIssuerName": {},
+     *   //   "localizedProvider": {},
+     *   //   "localizedShortTitle": {},
+     *   //   "localizedTitle": {},
+     *   //   "locations": [],
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "provider": "my_provider",
+     *   //   "redemptionChannel": "my_redemptionChannel",
+     *   //   "redemptionIssuers": [],
+     *   //   "review": {},
+     *   //   "reviewStatus": "my_reviewStatus",
+     *   //   "securityAnimation": {},
+     *   //   "shortTitle": "my_shortTitle",
+     *   //   "textModulesData": [],
+     *   //   "title": "my_title",
+     *   //   "titleImage": {},
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version",
+     *   //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *   //   "wideTitleImage": {},
+     *   //   "wordMark": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11937,11 +18713,11 @@ export namespace walletobjects_v1 {
     patch(
       params: Params$Resource$Offerclass$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Offerclass$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$OfferClass>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$OfferClass>>;
     patch(
       params: Params$Resource$Offerclass$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11970,7 +18746,10 @@ export namespace walletobjects_v1 {
       callback?:
         | BodyResponseCallback<Schema$OfferClass>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$OfferClass> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$OfferClass>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Offerclass$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -12015,6 +18794,146 @@ export namespace walletobjects_v1 {
 
     /**
      * Updates the offer class referenced by the given class ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.offerclass.update({
+     *     // The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "allowMultipleUsersPerObject": false,
+     *       //   "appLinkData": {},
+     *       //   "callbackOptions": {},
+     *       //   "classTemplateInfo": {},
+     *       //   "countryCode": "my_countryCode",
+     *       //   "details": "my_details",
+     *       //   "enableSmartTap": false,
+     *       //   "finePrint": "my_finePrint",
+     *       //   "helpUri": {},
+     *       //   "heroImage": {},
+     *       //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *       //   "homepageUri": {},
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "infoModuleData": {},
+     *       //   "issuerName": "my_issuerName",
+     *       //   "kind": "my_kind",
+     *       //   "linksModuleData": {},
+     *       //   "localizedDetails": {},
+     *       //   "localizedFinePrint": {},
+     *       //   "localizedIssuerName": {},
+     *       //   "localizedProvider": {},
+     *       //   "localizedShortTitle": {},
+     *       //   "localizedTitle": {},
+     *       //   "locations": [],
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *       //   "notifyPreference": "my_notifyPreference",
+     *       //   "provider": "my_provider",
+     *       //   "redemptionChannel": "my_redemptionChannel",
+     *       //   "redemptionIssuers": [],
+     *       //   "review": {},
+     *       //   "reviewStatus": "my_reviewStatus",
+     *       //   "securityAnimation": {},
+     *       //   "shortTitle": "my_shortTitle",
+     *       //   "textModulesData": [],
+     *       //   "title": "my_title",
+     *       //   "titleImage": {},
+     *       //   "valueAddedModuleData": [],
+     *       //   "version": "my_version",
+     *       //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *       //   "wideTitleImage": {},
+     *       //   "wordMark": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allowMultipleUsersPerObject": false,
+     *   //   "appLinkData": {},
+     *   //   "callbackOptions": {},
+     *   //   "classTemplateInfo": {},
+     *   //   "countryCode": "my_countryCode",
+     *   //   "details": "my_details",
+     *   //   "enableSmartTap": false,
+     *   //   "finePrint": "my_finePrint",
+     *   //   "helpUri": {},
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "homepageUri": {},
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "issuerName": "my_issuerName",
+     *   //   "kind": "my_kind",
+     *   //   "linksModuleData": {},
+     *   //   "localizedDetails": {},
+     *   //   "localizedFinePrint": {},
+     *   //   "localizedIssuerName": {},
+     *   //   "localizedProvider": {},
+     *   //   "localizedShortTitle": {},
+     *   //   "localizedTitle": {},
+     *   //   "locations": [],
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "provider": "my_provider",
+     *   //   "redemptionChannel": "my_redemptionChannel",
+     *   //   "redemptionIssuers": [],
+     *   //   "review": {},
+     *   //   "reviewStatus": "my_reviewStatus",
+     *   //   "securityAnimation": {},
+     *   //   "shortTitle": "my_shortTitle",
+     *   //   "textModulesData": [],
+     *   //   "title": "my_title",
+     *   //   "titleImage": {},
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version",
+     *   //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *   //   "wideTitleImage": {},
+     *   //   "wordMark": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12024,11 +18943,11 @@ export namespace walletobjects_v1 {
     update(
       params: Params$Resource$Offerclass$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Offerclass$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$OfferClass>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$OfferClass>>;
     update(
       params: Params$Resource$Offerclass$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12057,7 +18976,10 @@ export namespace walletobjects_v1 {
       callback?:
         | BodyResponseCallback<Schema$OfferClass>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$OfferClass> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$OfferClass>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Offerclass$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12173,6 +19095,60 @@ export namespace walletobjects_v1 {
 
     /**
      * Adds a message to the offer object referenced by the given object ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.offerobject.addmessage({
+     *     // The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "message": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "resource": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12182,11 +19158,11 @@ export namespace walletobjects_v1 {
     addmessage(
       params: Params$Resource$Offerobject$Addmessage,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     addmessage(
       params?: Params$Resource$Offerobject$Addmessage,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$OfferObjectAddMessageResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$OfferObjectAddMessageResponse>>;
     addmessage(
       params: Params$Resource$Offerobject$Addmessage,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12221,8 +19197,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$OfferObjectAddMessageResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$OfferObjectAddMessageResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Offerobject$Addmessage;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12270,6 +19246,79 @@ export namespace walletobjects_v1 {
 
     /**
      * Returns the offer object with the given object ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.offerobject.get({
+     *     // The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appLinkData": {},
+     *   //   "barcode": {},
+     *   //   "classId": "my_classId",
+     *   //   "classReference": {},
+     *   //   "disableExpirationNotification": false,
+     *   //   "groupingInfo": {},
+     *   //   "hasLinkedDevice": false,
+     *   //   "hasUsers": false,
+     *   //   "heroImage": {},
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "kind": "my_kind",
+     *   //   "linkedObjectIds": [],
+     *   //   "linksModuleData": {},
+     *   //   "locations": [],
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "passConstraints": {},
+     *   //   "rotatingBarcode": {},
+     *   //   "saveRestrictions": {},
+     *   //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *   //   "state": "my_state",
+     *   //   "textModulesData": [],
+     *   //   "validTimeInterval": {},
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12279,11 +19328,11 @@ export namespace walletobjects_v1 {
     get(
       params: Params$Resource$Offerobject$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Offerobject$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$OfferObject>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$OfferObject>>;
     get(
       params: Params$Resource$Offerobject$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12312,7 +19361,10 @@ export namespace walletobjects_v1 {
       callback?:
         | BodyResponseCallback<Schema$OfferObject>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$OfferObject> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$OfferObject>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Offerobject$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -12357,6 +19409,111 @@ export namespace walletobjects_v1 {
 
     /**
      * Inserts an offer object with the given ID and properties.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.offerobject.insert({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "appLinkData": {},
+     *       //   "barcode": {},
+     *       //   "classId": "my_classId",
+     *       //   "classReference": {},
+     *       //   "disableExpirationNotification": false,
+     *       //   "groupingInfo": {},
+     *       //   "hasLinkedDevice": false,
+     *       //   "hasUsers": false,
+     *       //   "heroImage": {},
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "infoModuleData": {},
+     *       //   "kind": "my_kind",
+     *       //   "linkedObjectIds": [],
+     *       //   "linksModuleData": {},
+     *       //   "locations": [],
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "notifyPreference": "my_notifyPreference",
+     *       //   "passConstraints": {},
+     *       //   "rotatingBarcode": {},
+     *       //   "saveRestrictions": {},
+     *       //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *       //   "state": "my_state",
+     *       //   "textModulesData": [],
+     *       //   "validTimeInterval": {},
+     *       //   "valueAddedModuleData": [],
+     *       //   "version": "my_version"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appLinkData": {},
+     *   //   "barcode": {},
+     *   //   "classId": "my_classId",
+     *   //   "classReference": {},
+     *   //   "disableExpirationNotification": false,
+     *   //   "groupingInfo": {},
+     *   //   "hasLinkedDevice": false,
+     *   //   "hasUsers": false,
+     *   //   "heroImage": {},
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "kind": "my_kind",
+     *   //   "linkedObjectIds": [],
+     *   //   "linksModuleData": {},
+     *   //   "locations": [],
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "passConstraints": {},
+     *   //   "rotatingBarcode": {},
+     *   //   "saveRestrictions": {},
+     *   //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *   //   "state": "my_state",
+     *   //   "textModulesData": [],
+     *   //   "validTimeInterval": {},
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12366,11 +19523,11 @@ export namespace walletobjects_v1 {
     insert(
       params: Params$Resource$Offerobject$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Offerobject$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$OfferObject>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$OfferObject>>;
     insert(
       params: Params$Resource$Offerobject$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12399,7 +19556,10 @@ export namespace walletobjects_v1 {
       callback?:
         | BodyResponseCallback<Schema$OfferObject>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$OfferObject> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$OfferObject>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Offerobject$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12446,6 +19606,57 @@ export namespace walletobjects_v1 {
 
     /**
      * Returns a list of all offer objects for a given issuer ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.offerobject.list({
+     *     // The ID of the class whose objects will be listed.
+     *     classId: 'placeholder-value',
+     *     // Identifies the max number of results returned by a list. All results are returned if `maxResults` isn't defined.
+     *     maxResults: 'placeholder-value',
+     *     // Used to get the next set of results if `maxResults` is specified, but more than `maxResults` objects are available in a list. For example, if you have a list of 200 objects and you call list with `maxResults` set to 20, list will return the first 20 objects and a token. Call list again with `maxResults` set to 20 and the token to get the next 20 objects.
+     *     token: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "pagination": {},
+     *   //   "resources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12455,11 +19666,11 @@ export namespace walletobjects_v1 {
     list(
       params: Params$Resource$Offerobject$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Offerobject$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$OfferObjectListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$OfferObjectListResponse>>;
     list(
       params: Params$Resource$Offerobject$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12492,8 +19703,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$OfferObjectListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$OfferObjectListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Offerobject$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -12539,6 +19750,114 @@ export namespace walletobjects_v1 {
 
     /**
      * Updates the offer object referenced by the given object ID. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.offerobject.patch({
+     *     // The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "appLinkData": {},
+     *       //   "barcode": {},
+     *       //   "classId": "my_classId",
+     *       //   "classReference": {},
+     *       //   "disableExpirationNotification": false,
+     *       //   "groupingInfo": {},
+     *       //   "hasLinkedDevice": false,
+     *       //   "hasUsers": false,
+     *       //   "heroImage": {},
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "infoModuleData": {},
+     *       //   "kind": "my_kind",
+     *       //   "linkedObjectIds": [],
+     *       //   "linksModuleData": {},
+     *       //   "locations": [],
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "notifyPreference": "my_notifyPreference",
+     *       //   "passConstraints": {},
+     *       //   "rotatingBarcode": {},
+     *       //   "saveRestrictions": {},
+     *       //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *       //   "state": "my_state",
+     *       //   "textModulesData": [],
+     *       //   "validTimeInterval": {},
+     *       //   "valueAddedModuleData": [],
+     *       //   "version": "my_version"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appLinkData": {},
+     *   //   "barcode": {},
+     *   //   "classId": "my_classId",
+     *   //   "classReference": {},
+     *   //   "disableExpirationNotification": false,
+     *   //   "groupingInfo": {},
+     *   //   "hasLinkedDevice": false,
+     *   //   "hasUsers": false,
+     *   //   "heroImage": {},
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "kind": "my_kind",
+     *   //   "linkedObjectIds": [],
+     *   //   "linksModuleData": {},
+     *   //   "locations": [],
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "passConstraints": {},
+     *   //   "rotatingBarcode": {},
+     *   //   "saveRestrictions": {},
+     *   //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *   //   "state": "my_state",
+     *   //   "textModulesData": [],
+     *   //   "validTimeInterval": {},
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12548,11 +19867,11 @@ export namespace walletobjects_v1 {
     patch(
       params: Params$Resource$Offerobject$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Offerobject$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$OfferObject>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$OfferObject>>;
     patch(
       params: Params$Resource$Offerobject$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12581,7 +19900,10 @@ export namespace walletobjects_v1 {
       callback?:
         | BodyResponseCallback<Schema$OfferObject>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$OfferObject> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$OfferObject>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Offerobject$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12627,6 +19949,114 @@ export namespace walletobjects_v1 {
 
     /**
      * Updates the offer object referenced by the given object ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.offerobject.update({
+     *     // The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "appLinkData": {},
+     *       //   "barcode": {},
+     *       //   "classId": "my_classId",
+     *       //   "classReference": {},
+     *       //   "disableExpirationNotification": false,
+     *       //   "groupingInfo": {},
+     *       //   "hasLinkedDevice": false,
+     *       //   "hasUsers": false,
+     *       //   "heroImage": {},
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "infoModuleData": {},
+     *       //   "kind": "my_kind",
+     *       //   "linkedObjectIds": [],
+     *       //   "linksModuleData": {},
+     *       //   "locations": [],
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "notifyPreference": "my_notifyPreference",
+     *       //   "passConstraints": {},
+     *       //   "rotatingBarcode": {},
+     *       //   "saveRestrictions": {},
+     *       //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *       //   "state": "my_state",
+     *       //   "textModulesData": [],
+     *       //   "validTimeInterval": {},
+     *       //   "valueAddedModuleData": [],
+     *       //   "version": "my_version"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appLinkData": {},
+     *   //   "barcode": {},
+     *   //   "classId": "my_classId",
+     *   //   "classReference": {},
+     *   //   "disableExpirationNotification": false,
+     *   //   "groupingInfo": {},
+     *   //   "hasLinkedDevice": false,
+     *   //   "hasUsers": false,
+     *   //   "heroImage": {},
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "kind": "my_kind",
+     *   //   "linkedObjectIds": [],
+     *   //   "linksModuleData": {},
+     *   //   "locations": [],
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "passConstraints": {},
+     *   //   "rotatingBarcode": {},
+     *   //   "saveRestrictions": {},
+     *   //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *   //   "state": "my_state",
+     *   //   "textModulesData": [],
+     *   //   "validTimeInterval": {},
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12636,11 +20066,11 @@ export namespace walletobjects_v1 {
     update(
       params: Params$Resource$Offerobject$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Offerobject$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$OfferObject>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$OfferObject>>;
     update(
       params: Params$Resource$Offerobject$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12669,7 +20099,10 @@ export namespace walletobjects_v1 {
       callback?:
         | BodyResponseCallback<Schema$OfferObject>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$OfferObject> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$OfferObject>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Offerobject$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12786,6 +20219,53 @@ export namespace walletobjects_v1 {
 
     /**
      * Returns the permissions for the given issuer id.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.permissions.get({
+     *     // The unique identifier for an issuer. This ID must be unique across all issuers.
+     *     resourceId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "issuerId": "my_issuerId",
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12795,11 +20275,11 @@ export namespace walletobjects_v1 {
     get(
       params: Params$Resource$Permissions$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Permissions$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Permissions>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Permissions>>;
     get(
       params: Params$Resource$Permissions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12828,7 +20308,10 @@ export namespace walletobjects_v1 {
       callback?:
         | BodyResponseCallback<Schema$Permissions>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Permissions> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Permissions>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Permissions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -12873,6 +20356,62 @@ export namespace walletobjects_v1 {
 
     /**
      * Updates the permissions for the given issuer.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.permissions.update({
+     *     // The unique identifier for an issuer. This ID must be unique across all issuers.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "issuerId": "my_issuerId",
+     *       //   "permissions": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "issuerId": "my_issuerId",
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12882,11 +20421,11 @@ export namespace walletobjects_v1 {
     update(
       params: Params$Resource$Permissions$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Permissions$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Permissions>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Permissions>>;
     update(
       params: Params$Resource$Permissions$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12915,7 +20454,10 @@ export namespace walletobjects_v1 {
       callback?:
         | BodyResponseCallback<Schema$Permissions>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Permissions> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Permissions>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Permissions$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12987,6 +20529,63 @@ export namespace walletobjects_v1 {
 
     /**
      * Inserts the smart tap.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.smarttap.insert({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "id": "my_id",
+     *       //   "infos": [],
+     *       //   "kind": "my_kind",
+     *       //   "merchantId": "my_merchantId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "id": "my_id",
+     *   //   "infos": [],
+     *   //   "kind": "my_kind",
+     *   //   "merchantId": "my_merchantId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12996,11 +20595,11 @@ export namespace walletobjects_v1 {
     insert(
       params: Params$Resource$Smarttap$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Smarttap$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SmartTap>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SmartTap>>;
     insert(
       params: Params$Resource$Smarttap$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13029,7 +20628,10 @@ export namespace walletobjects_v1 {
       callback?:
         | BodyResponseCallback<Schema$SmartTap>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SmartTap> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SmartTap>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Smarttap$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -13089,6 +20691,60 @@ export namespace walletobjects_v1 {
 
     /**
      * Adds a message to the transit class referenced by the given class ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.transitclass.addmessage({
+     *     // The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "message": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "resource": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13098,11 +20754,11 @@ export namespace walletobjects_v1 {
     addmessage(
       params: Params$Resource$Transitclass$Addmessage,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     addmessage(
       params?: Params$Resource$Transitclass$Addmessage,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TransitClassAddMessageResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TransitClassAddMessageResponse>>;
     addmessage(
       params: Params$Resource$Transitclass$Addmessage,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13137,8 +20793,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TransitClassAddMessageResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TransitClassAddMessageResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Transitclass$Addmessage;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13186,6 +20842,107 @@ export namespace walletobjects_v1 {
 
     /**
      * Returns the transit class with the given class ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.transitclass.get({
+     *     // The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activationOptions": {},
+     *   //   "allowMultipleUsersPerObject": false,
+     *   //   "appLinkData": {},
+     *   //   "callbackOptions": {},
+     *   //   "classTemplateInfo": {},
+     *   //   "countryCode": "my_countryCode",
+     *   //   "customCarriageLabel": {},
+     *   //   "customCoachLabel": {},
+     *   //   "customConcessionCategoryLabel": {},
+     *   //   "customConfirmationCodeLabel": {},
+     *   //   "customDiscountMessageLabel": {},
+     *   //   "customFareClassLabel": {},
+     *   //   "customFareNameLabel": {},
+     *   //   "customOtherRestrictionsLabel": {},
+     *   //   "customPlatformLabel": {},
+     *   //   "customPurchaseFaceValueLabel": {},
+     *   //   "customPurchasePriceLabel": {},
+     *   //   "customPurchaseReceiptNumberLabel": {},
+     *   //   "customRouteRestrictionsDetailsLabel": {},
+     *   //   "customRouteRestrictionsLabel": {},
+     *   //   "customSeatLabel": {},
+     *   //   "customTicketNumberLabel": {},
+     *   //   "customTimeRestrictionsLabel": {},
+     *   //   "customTransitTerminusNameLabel": {},
+     *   //   "customZoneLabel": {},
+     *   //   "enableSingleLegItinerary": false,
+     *   //   "enableSmartTap": false,
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "homepageUri": {},
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "issuerName": "my_issuerName",
+     *   //   "languageOverride": "my_languageOverride",
+     *   //   "linksModuleData": {},
+     *   //   "localizedIssuerName": {},
+     *   //   "locations": [],
+     *   //   "logo": {},
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "redemptionIssuers": [],
+     *   //   "review": {},
+     *   //   "reviewStatus": "my_reviewStatus",
+     *   //   "securityAnimation": {},
+     *   //   "textModulesData": [],
+     *   //   "transitOperatorName": {},
+     *   //   "transitType": "my_transitType",
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version",
+     *   //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *   //   "watermark": {},
+     *   //   "wideLogo": {},
+     *   //   "wordMark": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13195,11 +20952,11 @@ export namespace walletobjects_v1 {
     get(
       params: Params$Resource$Transitclass$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Transitclass$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TransitClass>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TransitClass>>;
     get(
       params: Params$Resource$Transitclass$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13228,7 +20985,10 @@ export namespace walletobjects_v1 {
       callback?:
         | BodyResponseCallback<Schema$TransitClass>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$TransitClass> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$TransitClass>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Transitclass$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -13273,6 +21033,167 @@ export namespace walletobjects_v1 {
 
     /**
      * Inserts a transit class with the given ID and properties.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.transitclass.insert({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "activationOptions": {},
+     *       //   "allowMultipleUsersPerObject": false,
+     *       //   "appLinkData": {},
+     *       //   "callbackOptions": {},
+     *       //   "classTemplateInfo": {},
+     *       //   "countryCode": "my_countryCode",
+     *       //   "customCarriageLabel": {},
+     *       //   "customCoachLabel": {},
+     *       //   "customConcessionCategoryLabel": {},
+     *       //   "customConfirmationCodeLabel": {},
+     *       //   "customDiscountMessageLabel": {},
+     *       //   "customFareClassLabel": {},
+     *       //   "customFareNameLabel": {},
+     *       //   "customOtherRestrictionsLabel": {},
+     *       //   "customPlatformLabel": {},
+     *       //   "customPurchaseFaceValueLabel": {},
+     *       //   "customPurchasePriceLabel": {},
+     *       //   "customPurchaseReceiptNumberLabel": {},
+     *       //   "customRouteRestrictionsDetailsLabel": {},
+     *       //   "customRouteRestrictionsLabel": {},
+     *       //   "customSeatLabel": {},
+     *       //   "customTicketNumberLabel": {},
+     *       //   "customTimeRestrictionsLabel": {},
+     *       //   "customTransitTerminusNameLabel": {},
+     *       //   "customZoneLabel": {},
+     *       //   "enableSingleLegItinerary": false,
+     *       //   "enableSmartTap": false,
+     *       //   "heroImage": {},
+     *       //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *       //   "homepageUri": {},
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "infoModuleData": {},
+     *       //   "issuerName": "my_issuerName",
+     *       //   "languageOverride": "my_languageOverride",
+     *       //   "linksModuleData": {},
+     *       //   "localizedIssuerName": {},
+     *       //   "locations": [],
+     *       //   "logo": {},
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *       //   "notifyPreference": "my_notifyPreference",
+     *       //   "redemptionIssuers": [],
+     *       //   "review": {},
+     *       //   "reviewStatus": "my_reviewStatus",
+     *       //   "securityAnimation": {},
+     *       //   "textModulesData": [],
+     *       //   "transitOperatorName": {},
+     *       //   "transitType": "my_transitType",
+     *       //   "valueAddedModuleData": [],
+     *       //   "version": "my_version",
+     *       //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *       //   "watermark": {},
+     *       //   "wideLogo": {},
+     *       //   "wordMark": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activationOptions": {},
+     *   //   "allowMultipleUsersPerObject": false,
+     *   //   "appLinkData": {},
+     *   //   "callbackOptions": {},
+     *   //   "classTemplateInfo": {},
+     *   //   "countryCode": "my_countryCode",
+     *   //   "customCarriageLabel": {},
+     *   //   "customCoachLabel": {},
+     *   //   "customConcessionCategoryLabel": {},
+     *   //   "customConfirmationCodeLabel": {},
+     *   //   "customDiscountMessageLabel": {},
+     *   //   "customFareClassLabel": {},
+     *   //   "customFareNameLabel": {},
+     *   //   "customOtherRestrictionsLabel": {},
+     *   //   "customPlatformLabel": {},
+     *   //   "customPurchaseFaceValueLabel": {},
+     *   //   "customPurchasePriceLabel": {},
+     *   //   "customPurchaseReceiptNumberLabel": {},
+     *   //   "customRouteRestrictionsDetailsLabel": {},
+     *   //   "customRouteRestrictionsLabel": {},
+     *   //   "customSeatLabel": {},
+     *   //   "customTicketNumberLabel": {},
+     *   //   "customTimeRestrictionsLabel": {},
+     *   //   "customTransitTerminusNameLabel": {},
+     *   //   "customZoneLabel": {},
+     *   //   "enableSingleLegItinerary": false,
+     *   //   "enableSmartTap": false,
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "homepageUri": {},
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "issuerName": "my_issuerName",
+     *   //   "languageOverride": "my_languageOverride",
+     *   //   "linksModuleData": {},
+     *   //   "localizedIssuerName": {},
+     *   //   "locations": [],
+     *   //   "logo": {},
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "redemptionIssuers": [],
+     *   //   "review": {},
+     *   //   "reviewStatus": "my_reviewStatus",
+     *   //   "securityAnimation": {},
+     *   //   "textModulesData": [],
+     *   //   "transitOperatorName": {},
+     *   //   "transitType": "my_transitType",
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version",
+     *   //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *   //   "watermark": {},
+     *   //   "wideLogo": {},
+     *   //   "wordMark": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13282,11 +21203,11 @@ export namespace walletobjects_v1 {
     insert(
       params: Params$Resource$Transitclass$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Transitclass$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TransitClass>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TransitClass>>;
     insert(
       params: Params$Resource$Transitclass$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13315,7 +21236,10 @@ export namespace walletobjects_v1 {
       callback?:
         | BodyResponseCallback<Schema$TransitClass>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$TransitClass> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$TransitClass>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Transitclass$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13362,6 +21286,57 @@ export namespace walletobjects_v1 {
 
     /**
      * Returns a list of all transit classes for a given issuer ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.transitclass.list({
+     *     // The ID of the issuer authorized to list classes.
+     *     issuerId: 'placeholder-value',
+     *     // Identifies the max number of results returned by a list. All results are returned if `maxResults` isn't defined.
+     *     maxResults: 'placeholder-value',
+     *     // Used to get the next set of results if `maxResults` is specified, but more than `maxResults` classes are available in a list. For example, if you have a list of 200 classes and you call list with `maxResults` set to 20, list will return the first 20 classes and a token. Call list again with `maxResults` set to 20 and the token to get the next 20 classes.
+     *     token: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "pagination": {},
+     *   //   "resources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13371,11 +21346,11 @@ export namespace walletobjects_v1 {
     list(
       params: Params$Resource$Transitclass$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Transitclass$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TransitClassListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TransitClassListResponse>>;
     list(
       params: Params$Resource$Transitclass$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13408,8 +21383,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TransitClassListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TransitClassListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Transitclass$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13456,6 +21431,170 @@ export namespace walletobjects_v1 {
 
     /**
      * Updates the transit class referenced by the given class ID. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.transitclass.patch({
+     *     // The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "activationOptions": {},
+     *       //   "allowMultipleUsersPerObject": false,
+     *       //   "appLinkData": {},
+     *       //   "callbackOptions": {},
+     *       //   "classTemplateInfo": {},
+     *       //   "countryCode": "my_countryCode",
+     *       //   "customCarriageLabel": {},
+     *       //   "customCoachLabel": {},
+     *       //   "customConcessionCategoryLabel": {},
+     *       //   "customConfirmationCodeLabel": {},
+     *       //   "customDiscountMessageLabel": {},
+     *       //   "customFareClassLabel": {},
+     *       //   "customFareNameLabel": {},
+     *       //   "customOtherRestrictionsLabel": {},
+     *       //   "customPlatformLabel": {},
+     *       //   "customPurchaseFaceValueLabel": {},
+     *       //   "customPurchasePriceLabel": {},
+     *       //   "customPurchaseReceiptNumberLabel": {},
+     *       //   "customRouteRestrictionsDetailsLabel": {},
+     *       //   "customRouteRestrictionsLabel": {},
+     *       //   "customSeatLabel": {},
+     *       //   "customTicketNumberLabel": {},
+     *       //   "customTimeRestrictionsLabel": {},
+     *       //   "customTransitTerminusNameLabel": {},
+     *       //   "customZoneLabel": {},
+     *       //   "enableSingleLegItinerary": false,
+     *       //   "enableSmartTap": false,
+     *       //   "heroImage": {},
+     *       //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *       //   "homepageUri": {},
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "infoModuleData": {},
+     *       //   "issuerName": "my_issuerName",
+     *       //   "languageOverride": "my_languageOverride",
+     *       //   "linksModuleData": {},
+     *       //   "localizedIssuerName": {},
+     *       //   "locations": [],
+     *       //   "logo": {},
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *       //   "notifyPreference": "my_notifyPreference",
+     *       //   "redemptionIssuers": [],
+     *       //   "review": {},
+     *       //   "reviewStatus": "my_reviewStatus",
+     *       //   "securityAnimation": {},
+     *       //   "textModulesData": [],
+     *       //   "transitOperatorName": {},
+     *       //   "transitType": "my_transitType",
+     *       //   "valueAddedModuleData": [],
+     *       //   "version": "my_version",
+     *       //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *       //   "watermark": {},
+     *       //   "wideLogo": {},
+     *       //   "wordMark": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activationOptions": {},
+     *   //   "allowMultipleUsersPerObject": false,
+     *   //   "appLinkData": {},
+     *   //   "callbackOptions": {},
+     *   //   "classTemplateInfo": {},
+     *   //   "countryCode": "my_countryCode",
+     *   //   "customCarriageLabel": {},
+     *   //   "customCoachLabel": {},
+     *   //   "customConcessionCategoryLabel": {},
+     *   //   "customConfirmationCodeLabel": {},
+     *   //   "customDiscountMessageLabel": {},
+     *   //   "customFareClassLabel": {},
+     *   //   "customFareNameLabel": {},
+     *   //   "customOtherRestrictionsLabel": {},
+     *   //   "customPlatformLabel": {},
+     *   //   "customPurchaseFaceValueLabel": {},
+     *   //   "customPurchasePriceLabel": {},
+     *   //   "customPurchaseReceiptNumberLabel": {},
+     *   //   "customRouteRestrictionsDetailsLabel": {},
+     *   //   "customRouteRestrictionsLabel": {},
+     *   //   "customSeatLabel": {},
+     *   //   "customTicketNumberLabel": {},
+     *   //   "customTimeRestrictionsLabel": {},
+     *   //   "customTransitTerminusNameLabel": {},
+     *   //   "customZoneLabel": {},
+     *   //   "enableSingleLegItinerary": false,
+     *   //   "enableSmartTap": false,
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "homepageUri": {},
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "issuerName": "my_issuerName",
+     *   //   "languageOverride": "my_languageOverride",
+     *   //   "linksModuleData": {},
+     *   //   "localizedIssuerName": {},
+     *   //   "locations": [],
+     *   //   "logo": {},
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "redemptionIssuers": [],
+     *   //   "review": {},
+     *   //   "reviewStatus": "my_reviewStatus",
+     *   //   "securityAnimation": {},
+     *   //   "textModulesData": [],
+     *   //   "transitOperatorName": {},
+     *   //   "transitType": "my_transitType",
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version",
+     *   //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *   //   "watermark": {},
+     *   //   "wideLogo": {},
+     *   //   "wordMark": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13465,11 +21604,11 @@ export namespace walletobjects_v1 {
     patch(
       params: Params$Resource$Transitclass$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Transitclass$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TransitClass>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TransitClass>>;
     patch(
       params: Params$Resource$Transitclass$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13498,7 +21637,10 @@ export namespace walletobjects_v1 {
       callback?:
         | BodyResponseCallback<Schema$TransitClass>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$TransitClass> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$TransitClass>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Transitclass$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13544,6 +21686,170 @@ export namespace walletobjects_v1 {
 
     /**
      * Updates the transit class referenced by the given class ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.transitclass.update({
+     *     // The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "activationOptions": {},
+     *       //   "allowMultipleUsersPerObject": false,
+     *       //   "appLinkData": {},
+     *       //   "callbackOptions": {},
+     *       //   "classTemplateInfo": {},
+     *       //   "countryCode": "my_countryCode",
+     *       //   "customCarriageLabel": {},
+     *       //   "customCoachLabel": {},
+     *       //   "customConcessionCategoryLabel": {},
+     *       //   "customConfirmationCodeLabel": {},
+     *       //   "customDiscountMessageLabel": {},
+     *       //   "customFareClassLabel": {},
+     *       //   "customFareNameLabel": {},
+     *       //   "customOtherRestrictionsLabel": {},
+     *       //   "customPlatformLabel": {},
+     *       //   "customPurchaseFaceValueLabel": {},
+     *       //   "customPurchasePriceLabel": {},
+     *       //   "customPurchaseReceiptNumberLabel": {},
+     *       //   "customRouteRestrictionsDetailsLabel": {},
+     *       //   "customRouteRestrictionsLabel": {},
+     *       //   "customSeatLabel": {},
+     *       //   "customTicketNumberLabel": {},
+     *       //   "customTimeRestrictionsLabel": {},
+     *       //   "customTransitTerminusNameLabel": {},
+     *       //   "customZoneLabel": {},
+     *       //   "enableSingleLegItinerary": false,
+     *       //   "enableSmartTap": false,
+     *       //   "heroImage": {},
+     *       //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *       //   "homepageUri": {},
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "infoModuleData": {},
+     *       //   "issuerName": "my_issuerName",
+     *       //   "languageOverride": "my_languageOverride",
+     *       //   "linksModuleData": {},
+     *       //   "localizedIssuerName": {},
+     *       //   "locations": [],
+     *       //   "logo": {},
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *       //   "notifyPreference": "my_notifyPreference",
+     *       //   "redemptionIssuers": [],
+     *       //   "review": {},
+     *       //   "reviewStatus": "my_reviewStatus",
+     *       //   "securityAnimation": {},
+     *       //   "textModulesData": [],
+     *       //   "transitOperatorName": {},
+     *       //   "transitType": "my_transitType",
+     *       //   "valueAddedModuleData": [],
+     *       //   "version": "my_version",
+     *       //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *       //   "watermark": {},
+     *       //   "wideLogo": {},
+     *       //   "wordMark": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activationOptions": {},
+     *   //   "allowMultipleUsersPerObject": false,
+     *   //   "appLinkData": {},
+     *   //   "callbackOptions": {},
+     *   //   "classTemplateInfo": {},
+     *   //   "countryCode": "my_countryCode",
+     *   //   "customCarriageLabel": {},
+     *   //   "customCoachLabel": {},
+     *   //   "customConcessionCategoryLabel": {},
+     *   //   "customConfirmationCodeLabel": {},
+     *   //   "customDiscountMessageLabel": {},
+     *   //   "customFareClassLabel": {},
+     *   //   "customFareNameLabel": {},
+     *   //   "customOtherRestrictionsLabel": {},
+     *   //   "customPlatformLabel": {},
+     *   //   "customPurchaseFaceValueLabel": {},
+     *   //   "customPurchasePriceLabel": {},
+     *   //   "customPurchaseReceiptNumberLabel": {},
+     *   //   "customRouteRestrictionsDetailsLabel": {},
+     *   //   "customRouteRestrictionsLabel": {},
+     *   //   "customSeatLabel": {},
+     *   //   "customTicketNumberLabel": {},
+     *   //   "customTimeRestrictionsLabel": {},
+     *   //   "customTransitTerminusNameLabel": {},
+     *   //   "customZoneLabel": {},
+     *   //   "enableSingleLegItinerary": false,
+     *   //   "enableSmartTap": false,
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "homepageUri": {},
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "issuerName": "my_issuerName",
+     *   //   "languageOverride": "my_languageOverride",
+     *   //   "linksModuleData": {},
+     *   //   "localizedIssuerName": {},
+     *   //   "locations": [],
+     *   //   "logo": {},
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "multipleDevicesAndHoldersAllowedStatus": "my_multipleDevicesAndHoldersAllowedStatus",
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "redemptionIssuers": [],
+     *   //   "review": {},
+     *   //   "reviewStatus": "my_reviewStatus",
+     *   //   "securityAnimation": {},
+     *   //   "textModulesData": [],
+     *   //   "transitOperatorName": {},
+     *   //   "transitType": "my_transitType",
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version",
+     *   //   "viewUnlockRequirement": "my_viewUnlockRequirement",
+     *   //   "watermark": {},
+     *   //   "wideLogo": {},
+     *   //   "wordMark": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13553,11 +21859,11 @@ export namespace walletobjects_v1 {
     update(
       params: Params$Resource$Transitclass$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Transitclass$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TransitClass>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TransitClass>>;
     update(
       params: Params$Resource$Transitclass$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13586,7 +21892,10 @@ export namespace walletobjects_v1 {
       callback?:
         | BodyResponseCallback<Schema$TransitClass>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$TransitClass> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$TransitClass>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Transitclass$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13704,6 +22013,60 @@ export namespace walletobjects_v1 {
 
     /**
      * Adds a message to the transit object referenced by the given object ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.transitobject.addmessage({
+     *     // The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "message": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "resource": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13713,11 +22076,11 @@ export namespace walletobjects_v1 {
     addmessage(
       params: Params$Resource$Transitobject$Addmessage,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     addmessage(
       params?: Params$Resource$Transitobject$Addmessage,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TransitObjectAddMessageResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TransitObjectAddMessageResponse>>;
     addmessage(
       params: Params$Resource$Transitobject$Addmessage,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13752,8 +22115,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TransitObjectAddMessageResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TransitObjectAddMessageResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Transitobject$Addmessage;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13802,6 +22165,94 @@ export namespace walletobjects_v1 {
 
     /**
      * Returns the transit object with the given object ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.transitobject.get({
+     *     // The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activationStatus": {},
+     *   //   "appLinkData": {},
+     *   //   "barcode": {},
+     *   //   "classId": "my_classId",
+     *   //   "classReference": {},
+     *   //   "concessionCategory": "my_concessionCategory",
+     *   //   "customConcessionCategory": {},
+     *   //   "customTicketStatus": {},
+     *   //   "deviceContext": {},
+     *   //   "disableExpirationNotification": false,
+     *   //   "groupingInfo": {},
+     *   //   "hasLinkedDevice": false,
+     *   //   "hasUsers": false,
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "linkedObjectIds": [],
+     *   //   "linksModuleData": {},
+     *   //   "locations": [],
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "passConstraints": {},
+     *   //   "passengerNames": "my_passengerNames",
+     *   //   "passengerType": "my_passengerType",
+     *   //   "purchaseDetails": {},
+     *   //   "rotatingBarcode": {},
+     *   //   "saveRestrictions": {},
+     *   //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *   //   "state": "my_state",
+     *   //   "textModulesData": [],
+     *   //   "ticketLeg": {},
+     *   //   "ticketLegs": [],
+     *   //   "ticketNumber": "my_ticketNumber",
+     *   //   "ticketRestrictions": {},
+     *   //   "ticketStatus": "my_ticketStatus",
+     *   //   "tripId": "my_tripId",
+     *   //   "tripType": "my_tripType",
+     *   //   "validTimeInterval": {},
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13811,11 +22262,11 @@ export namespace walletobjects_v1 {
     get(
       params: Params$Resource$Transitobject$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Transitobject$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TransitObject>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TransitObject>>;
     get(
       params: Params$Resource$Transitobject$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13844,7 +22295,10 @@ export namespace walletobjects_v1 {
       callback?:
         | BodyResponseCallback<Schema$TransitObject>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$TransitObject> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$TransitObject>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Transitobject$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13890,6 +22344,141 @@ export namespace walletobjects_v1 {
 
     /**
      * Inserts an transit object with the given ID and properties.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.transitobject.insert({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "activationStatus": {},
+     *       //   "appLinkData": {},
+     *       //   "barcode": {},
+     *       //   "classId": "my_classId",
+     *       //   "classReference": {},
+     *       //   "concessionCategory": "my_concessionCategory",
+     *       //   "customConcessionCategory": {},
+     *       //   "customTicketStatus": {},
+     *       //   "deviceContext": {},
+     *       //   "disableExpirationNotification": false,
+     *       //   "groupingInfo": {},
+     *       //   "hasLinkedDevice": false,
+     *       //   "hasUsers": false,
+     *       //   "heroImage": {},
+     *       //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "infoModuleData": {},
+     *       //   "linkedObjectIds": [],
+     *       //   "linksModuleData": {},
+     *       //   "locations": [],
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "notifyPreference": "my_notifyPreference",
+     *       //   "passConstraints": {},
+     *       //   "passengerNames": "my_passengerNames",
+     *       //   "passengerType": "my_passengerType",
+     *       //   "purchaseDetails": {},
+     *       //   "rotatingBarcode": {},
+     *       //   "saveRestrictions": {},
+     *       //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *       //   "state": "my_state",
+     *       //   "textModulesData": [],
+     *       //   "ticketLeg": {},
+     *       //   "ticketLegs": [],
+     *       //   "ticketNumber": "my_ticketNumber",
+     *       //   "ticketRestrictions": {},
+     *       //   "ticketStatus": "my_ticketStatus",
+     *       //   "tripId": "my_tripId",
+     *       //   "tripType": "my_tripType",
+     *       //   "validTimeInterval": {},
+     *       //   "valueAddedModuleData": [],
+     *       //   "version": "my_version"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activationStatus": {},
+     *   //   "appLinkData": {},
+     *   //   "barcode": {},
+     *   //   "classId": "my_classId",
+     *   //   "classReference": {},
+     *   //   "concessionCategory": "my_concessionCategory",
+     *   //   "customConcessionCategory": {},
+     *   //   "customTicketStatus": {},
+     *   //   "deviceContext": {},
+     *   //   "disableExpirationNotification": false,
+     *   //   "groupingInfo": {},
+     *   //   "hasLinkedDevice": false,
+     *   //   "hasUsers": false,
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "linkedObjectIds": [],
+     *   //   "linksModuleData": {},
+     *   //   "locations": [],
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "passConstraints": {},
+     *   //   "passengerNames": "my_passengerNames",
+     *   //   "passengerType": "my_passengerType",
+     *   //   "purchaseDetails": {},
+     *   //   "rotatingBarcode": {},
+     *   //   "saveRestrictions": {},
+     *   //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *   //   "state": "my_state",
+     *   //   "textModulesData": [],
+     *   //   "ticketLeg": {},
+     *   //   "ticketLegs": [],
+     *   //   "ticketNumber": "my_ticketNumber",
+     *   //   "ticketRestrictions": {},
+     *   //   "ticketStatus": "my_ticketStatus",
+     *   //   "tripId": "my_tripId",
+     *   //   "tripType": "my_tripType",
+     *   //   "validTimeInterval": {},
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13899,11 +22488,11 @@ export namespace walletobjects_v1 {
     insert(
       params: Params$Resource$Transitobject$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Transitobject$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TransitObject>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TransitObject>>;
     insert(
       params: Params$Resource$Transitobject$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13932,7 +22521,10 @@ export namespace walletobjects_v1 {
       callback?:
         | BodyResponseCallback<Schema$TransitObject>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$TransitObject> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$TransitObject>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Transitobject$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13979,6 +22571,57 @@ export namespace walletobjects_v1 {
 
     /**
      * Returns a list of all transit objects for a given issuer ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.transitobject.list({
+     *     // The ID of the class whose objects will be listed.
+     *     classId: 'placeholder-value',
+     *     // Identifies the max number of results returned by a list. All results are returned if `maxResults` isn't defined.
+     *     maxResults: 'placeholder-value',
+     *     // Used to get the next set of results if `maxResults` is specified, but more than `maxResults` objects are available in a list. For example, if you have a list of 200 objects and you call list with `maxResults` set to 20, list will return the first 20 objects and a token. Call list again with `maxResults` set to 20 and the token to get the next 20 objects.
+     *     token: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "pagination": {},
+     *   //   "resources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13988,11 +22631,11 @@ export namespace walletobjects_v1 {
     list(
       params: Params$Resource$Transitobject$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Transitobject$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TransitObjectListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TransitObjectListResponse>>;
     list(
       params: Params$Resource$Transitobject$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14027,8 +22670,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TransitObjectListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TransitObjectListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Transitobject$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14075,6 +22718,144 @@ export namespace walletobjects_v1 {
 
     /**
      * Updates the transit object referenced by the given object ID. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.transitobject.patch({
+     *     // The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "activationStatus": {},
+     *       //   "appLinkData": {},
+     *       //   "barcode": {},
+     *       //   "classId": "my_classId",
+     *       //   "classReference": {},
+     *       //   "concessionCategory": "my_concessionCategory",
+     *       //   "customConcessionCategory": {},
+     *       //   "customTicketStatus": {},
+     *       //   "deviceContext": {},
+     *       //   "disableExpirationNotification": false,
+     *       //   "groupingInfo": {},
+     *       //   "hasLinkedDevice": false,
+     *       //   "hasUsers": false,
+     *       //   "heroImage": {},
+     *       //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "infoModuleData": {},
+     *       //   "linkedObjectIds": [],
+     *       //   "linksModuleData": {},
+     *       //   "locations": [],
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "notifyPreference": "my_notifyPreference",
+     *       //   "passConstraints": {},
+     *       //   "passengerNames": "my_passengerNames",
+     *       //   "passengerType": "my_passengerType",
+     *       //   "purchaseDetails": {},
+     *       //   "rotatingBarcode": {},
+     *       //   "saveRestrictions": {},
+     *       //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *       //   "state": "my_state",
+     *       //   "textModulesData": [],
+     *       //   "ticketLeg": {},
+     *       //   "ticketLegs": [],
+     *       //   "ticketNumber": "my_ticketNumber",
+     *       //   "ticketRestrictions": {},
+     *       //   "ticketStatus": "my_ticketStatus",
+     *       //   "tripId": "my_tripId",
+     *       //   "tripType": "my_tripType",
+     *       //   "validTimeInterval": {},
+     *       //   "valueAddedModuleData": [],
+     *       //   "version": "my_version"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activationStatus": {},
+     *   //   "appLinkData": {},
+     *   //   "barcode": {},
+     *   //   "classId": "my_classId",
+     *   //   "classReference": {},
+     *   //   "concessionCategory": "my_concessionCategory",
+     *   //   "customConcessionCategory": {},
+     *   //   "customTicketStatus": {},
+     *   //   "deviceContext": {},
+     *   //   "disableExpirationNotification": false,
+     *   //   "groupingInfo": {},
+     *   //   "hasLinkedDevice": false,
+     *   //   "hasUsers": false,
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "linkedObjectIds": [],
+     *   //   "linksModuleData": {},
+     *   //   "locations": [],
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "passConstraints": {},
+     *   //   "passengerNames": "my_passengerNames",
+     *   //   "passengerType": "my_passengerType",
+     *   //   "purchaseDetails": {},
+     *   //   "rotatingBarcode": {},
+     *   //   "saveRestrictions": {},
+     *   //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *   //   "state": "my_state",
+     *   //   "textModulesData": [],
+     *   //   "ticketLeg": {},
+     *   //   "ticketLegs": [],
+     *   //   "ticketNumber": "my_ticketNumber",
+     *   //   "ticketRestrictions": {},
+     *   //   "ticketStatus": "my_ticketStatus",
+     *   //   "tripId": "my_tripId",
+     *   //   "tripType": "my_tripType",
+     *   //   "validTimeInterval": {},
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14084,11 +22865,11 @@ export namespace walletobjects_v1 {
     patch(
       params: Params$Resource$Transitobject$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Transitobject$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TransitObject>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TransitObject>>;
     patch(
       params: Params$Resource$Transitobject$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14117,7 +22898,10 @@ export namespace walletobjects_v1 {
       callback?:
         | BodyResponseCallback<Schema$TransitObject>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$TransitObject> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$TransitObject>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Transitobject$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14163,6 +22947,144 @@ export namespace walletobjects_v1 {
 
     /**
      * Updates the transit object referenced by the given object ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await walletobjects.transitobject.update({
+     *     // The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
+     *     resourceId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "activationStatus": {},
+     *       //   "appLinkData": {},
+     *       //   "barcode": {},
+     *       //   "classId": "my_classId",
+     *       //   "classReference": {},
+     *       //   "concessionCategory": "my_concessionCategory",
+     *       //   "customConcessionCategory": {},
+     *       //   "customTicketStatus": {},
+     *       //   "deviceContext": {},
+     *       //   "disableExpirationNotification": false,
+     *       //   "groupingInfo": {},
+     *       //   "hasLinkedDevice": false,
+     *       //   "hasUsers": false,
+     *       //   "heroImage": {},
+     *       //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *       //   "id": "my_id",
+     *       //   "imageModulesData": [],
+     *       //   "infoModuleData": {},
+     *       //   "linkedObjectIds": [],
+     *       //   "linksModuleData": {},
+     *       //   "locations": [],
+     *       //   "merchantLocations": [],
+     *       //   "messages": [],
+     *       //   "notifyPreference": "my_notifyPreference",
+     *       //   "passConstraints": {},
+     *       //   "passengerNames": "my_passengerNames",
+     *       //   "passengerType": "my_passengerType",
+     *       //   "purchaseDetails": {},
+     *       //   "rotatingBarcode": {},
+     *       //   "saveRestrictions": {},
+     *       //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *       //   "state": "my_state",
+     *       //   "textModulesData": [],
+     *       //   "ticketLeg": {},
+     *       //   "ticketLegs": [],
+     *       //   "ticketNumber": "my_ticketNumber",
+     *       //   "ticketRestrictions": {},
+     *       //   "ticketStatus": "my_ticketStatus",
+     *       //   "tripId": "my_tripId",
+     *       //   "tripType": "my_tripType",
+     *       //   "validTimeInterval": {},
+     *       //   "valueAddedModuleData": [],
+     *       //   "version": "my_version"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activationStatus": {},
+     *   //   "appLinkData": {},
+     *   //   "barcode": {},
+     *   //   "classId": "my_classId",
+     *   //   "classReference": {},
+     *   //   "concessionCategory": "my_concessionCategory",
+     *   //   "customConcessionCategory": {},
+     *   //   "customTicketStatus": {},
+     *   //   "deviceContext": {},
+     *   //   "disableExpirationNotification": false,
+     *   //   "groupingInfo": {},
+     *   //   "hasLinkedDevice": false,
+     *   //   "hasUsers": false,
+     *   //   "heroImage": {},
+     *   //   "hexBackgroundColor": "my_hexBackgroundColor",
+     *   //   "id": "my_id",
+     *   //   "imageModulesData": [],
+     *   //   "infoModuleData": {},
+     *   //   "linkedObjectIds": [],
+     *   //   "linksModuleData": {},
+     *   //   "locations": [],
+     *   //   "merchantLocations": [],
+     *   //   "messages": [],
+     *   //   "notifyPreference": "my_notifyPreference",
+     *   //   "passConstraints": {},
+     *   //   "passengerNames": "my_passengerNames",
+     *   //   "passengerType": "my_passengerType",
+     *   //   "purchaseDetails": {},
+     *   //   "rotatingBarcode": {},
+     *   //   "saveRestrictions": {},
+     *   //   "smartTapRedemptionValue": "my_smartTapRedemptionValue",
+     *   //   "state": "my_state",
+     *   //   "textModulesData": [],
+     *   //   "ticketLeg": {},
+     *   //   "ticketLegs": [],
+     *   //   "ticketNumber": "my_ticketNumber",
+     *   //   "ticketRestrictions": {},
+     *   //   "ticketStatus": "my_ticketStatus",
+     *   //   "tripId": "my_tripId",
+     *   //   "tripType": "my_tripType",
+     *   //   "validTimeInterval": {},
+     *   //   "valueAddedModuleData": [],
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14172,11 +23094,11 @@ export namespace walletobjects_v1 {
     update(
       params: Params$Resource$Transitobject$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Transitobject$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TransitObject>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TransitObject>>;
     update(
       params: Params$Resource$Transitobject$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14205,7 +23127,10 @@ export namespace walletobjects_v1 {
       callback?:
         | BodyResponseCallback<Schema$TransitObject>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$TransitObject> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$TransitObject>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Transitobject$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14344,6 +23269,58 @@ export namespace walletobjects_v1 {
 
     /**
      * Provide Google with information about awaiting private pass update. This will allow Google to provide the update notification to the device that currently holds this pass.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/walletobjects.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const walletobjects = google.walletobjects('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/wallet_object.issuer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await walletobjects.walletobjects.v1.privateContent.setPassUpdateNotice({
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "externalPassId": "my_externalPassId",
+     *         //   "updateUri": "my_updateUri",
+     *         //   "updatedPassJwtSignature": "my_updatedPassJwtSignature"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14353,11 +23330,11 @@ export namespace walletobjects_v1 {
     setPassUpdateNotice(
       params: Params$Resource$Walletobjects$V1$Privatecontent$Setpassupdatenotice,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setPassUpdateNotice(
       params?: Params$Resource$Walletobjects$V1$Privatecontent$Setpassupdatenotice,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SetPassUpdateNoticeResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SetPassUpdateNoticeResponse>>;
     setPassUpdateNotice(
       params: Params$Resource$Walletobjects$V1$Privatecontent$Setpassupdatenotice,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14392,8 +23369,8 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SetPassUpdateNoticeResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SetPassUpdateNoticeResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Walletobjects$V1$Privatecontent$Setpassupdatenotice;
       let options = (optionsOrCallback || {}) as MethodOptions;

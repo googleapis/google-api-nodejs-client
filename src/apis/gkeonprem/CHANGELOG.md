@@ -1,5 +1,31 @@
 # Changelog
 
+## [8.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/gkeonprem-v8.0.0...gkeonprem-v8.0.1) (2025-06-04)
+
+
+### Bug Fixes
+
+* **deps:** upgrade googleapis-common to 8.0.2-rc ([f4b0990](https://github.com/googleapis/google-api-nodejs-client/commit/f4b099071040cfbcfe4a2e7d487d45ee93b369e0))
+
+## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/gkeonprem-v7.3.0...gkeonprem-v8.0.0) (2025-05-29)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to node 18
+
+### Features
+
+* upgrade to node 18 ([682fbb8](https://github.com/googleapis/google-api-nodejs-client/commit/682fbb869189ae92b3e9a194d37d0548af0c1f92))
+
+## [7.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/gkeonprem-v7.2.1...gkeonprem-v7.3.0) (2025-05-05)
+
+
+### Features
+
+* **gkeonprem:** update the API ([d37f66d](https://github.com/googleapis/google-api-nodejs-client/commit/d37f66d1cac10411710966ffd474fd4c63ebcc06))
+* **gkeonprem:** update the API ([6e81af3](https://github.com/googleapis/google-api-nodejs-client/commit/6e81af3807b7b10d64ac0331d4571cc9b0d565de))
+
 ## [7.2.1](https://github.com/googleapis/google-api-nodejs-client/compare/gkeonprem-v7.2.0...gkeonprem-v7.2.1) (2025-03-18)
 
 

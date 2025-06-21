@@ -236,9 +236,24 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://storage.northamerica-northeast1.rep.googleapis.com/",
       "location": "northamerica-northeast1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://storage.europe-north2.rep.googleapis.com/",
+      "location": "europe-north2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://storage.us-west8.rep.googleapis.com/",
+      "location": "us-west8"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://storage.northamerica-south1.rep.googleapis.com/",
+      "location": "northamerica-south1"
     }
   ],
-  "etag": "\"38353737343034333936303735343633323432\"",
+  "etag": "\"36383730363437323837383838393538333732\"",
   "icons": {
     "x16": "https://www.google.com/images/icons/product/cloud_storage-16.png",
     "x32": "https://www.google.com/images/icons/product/cloud_storage-32.png"
@@ -4524,7 +4539,7 @@
       }
     }
   },
-  "revision": "20250424",
+  "revision": "20250605",
   "rootUrl": "https://storage.googleapis.com/",
   "schemas": {
     "AdvanceRelocateBucketOperationRequest": {
@@ -4816,6 +4831,14 @@
         "ipFilter": {
           "description": "The bucket's IP filter configuration. Specifies the network sources that are allowed to access the operations on the bucket, as well as its underlying objects. Only enforced when the mode is set to 'Enabled'.",
           "properties": {
+            "allowAllServiceAgentAccess": {
+              "description": "Whether to allow all service agents to access the bucket regardless of the IP filter configuration.",
+              "type": "boolean"
+            },
+            "allowCrossOrgVpcs": {
+              "description": "Whether to allow cross-org VPCs in the bucket's IP filter configuration.",
+              "type": "boolean"
+            },
             "mode": {
               "description": "The mode of the IP filter. Valid values are 'Enabled' and 'Disabled'.",
               "type": "string"

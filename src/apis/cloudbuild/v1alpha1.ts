@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -1699,11 +1699,11 @@ export namespace cloudbuild_v1alpha1 {
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     cancel(
       params?: Params$Resource$Projects$Locations$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1732,7 +1732,7 @@ export namespace cloudbuild_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Empty>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1832,11 +1832,11 @@ export namespace cloudbuild_v1alpha1 {
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1865,7 +1865,7 @@ export namespace cloudbuild_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Operation>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2011,11 +2011,11 @@ export namespace cloudbuild_v1alpha1 {
     create(
       params: Params$Resource$Projects$Workerpools$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Workerpools$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$WorkerPool>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$WorkerPool>>;
     create(
       params: Params$Resource$Projects$Workerpools$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2044,7 +2044,7 @@ export namespace cloudbuild_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$WorkerPool>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$WorkerPool> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$WorkerPool>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Workerpools$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2138,11 +2138,11 @@ export namespace cloudbuild_v1alpha1 {
     delete(
       params: Params$Resource$Projects$Workerpools$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Workerpools$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Workerpools$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2171,7 +2171,7 @@ export namespace cloudbuild_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$Empty>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Workerpools$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2273,11 +2273,11 @@ export namespace cloudbuild_v1alpha1 {
     get(
       params: Params$Resource$Projects$Workerpools$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Workerpools$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$WorkerPool>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$WorkerPool>>;
     get(
       params: Params$Resource$Projects$Workerpools$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2306,7 +2306,7 @@ export namespace cloudbuild_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$WorkerPool>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$WorkerPool> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$WorkerPool>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Workerpools$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2399,11 +2399,11 @@ export namespace cloudbuild_v1alpha1 {
     list(
       params: Params$Resource$Projects$Workerpools$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Workerpools$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListWorkerPoolsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListWorkerPoolsResponse>>;
     list(
       params: Params$Resource$Projects$Workerpools$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2436,8 +2436,8 @@ export namespace cloudbuild_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListWorkerPoolsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListWorkerPoolsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Workerpools$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2559,11 +2559,11 @@ export namespace cloudbuild_v1alpha1 {
     patch(
       params: Params$Resource$Projects$Workerpools$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Workerpools$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$WorkerPool>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$WorkerPool>>;
     patch(
       params: Params$Resource$Projects$Workerpools$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2592,7 +2592,7 @@ export namespace cloudbuild_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$WorkerPool>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$WorkerPool> | GaxiosPromise<Readable> {
+    ): void | Promise<GaxiosResponseWithHTTP2<Schema$WorkerPool>> | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Workerpools$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;

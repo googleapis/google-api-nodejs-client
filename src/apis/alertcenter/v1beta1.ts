@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -1447,6 +1447,59 @@ export namespace alertcenter_v1beta1 {
 
     /**
      * Performs batch delete operation on alerts.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/alertcenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const alertcenter = google.alertcenter('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/apps.alerts'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await alertcenter.alerts.batchDelete({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "alertId": [],
+     *       //   "customerId": "my_customerId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "failedAlertStatus": {},
+     *   //   "successAlertIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1456,11 +1509,11 @@ export namespace alertcenter_v1beta1 {
     batchDelete(
       params: Params$Resource$Alerts$Batchdelete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     batchDelete(
       params?: Params$Resource$Alerts$Batchdelete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BatchDeleteAlertsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BatchDeleteAlertsResponse>>;
     batchDelete(
       params: Params$Resource$Alerts$Batchdelete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1495,8 +1548,8 @@ export namespace alertcenter_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BatchDeleteAlertsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$BatchDeleteAlertsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Alerts$Batchdelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1542,6 +1595,59 @@ export namespace alertcenter_v1beta1 {
 
     /**
      * Performs batch undelete operation on alerts.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/alertcenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const alertcenter = google.alertcenter('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/apps.alerts'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await alertcenter.alerts.batchUndelete({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "alertId": [],
+     *       //   "customerId": "my_customerId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "failedAlertStatus": {},
+     *   //   "successAlertIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1551,11 +1657,11 @@ export namespace alertcenter_v1beta1 {
     batchUndelete(
       params: Params$Resource$Alerts$Batchundelete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     batchUndelete(
       params?: Params$Resource$Alerts$Batchundelete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BatchUndeleteAlertsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BatchUndeleteAlertsResponse>>;
     batchUndelete(
       params: Params$Resource$Alerts$Batchundelete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1590,8 +1696,8 @@ export namespace alertcenter_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BatchUndeleteAlertsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$BatchUndeleteAlertsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Alerts$Batchundelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1637,6 +1743,52 @@ export namespace alertcenter_v1beta1 {
 
     /**
      * Marks the specified alert for deletion. An alert that has been marked for deletion is removed from Alert Center after 30 days. Marking an alert for deletion has no effect on an alert which has already been marked for deletion. Attempting to mark a nonexistent alert for deletion results in a `NOT_FOUND` error.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/alertcenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const alertcenter = google.alertcenter('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/apps.alerts'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await alertcenter.alerts.delete({
+     *     // Required. The identifier of the alert to delete.
+     *     alertId: 'placeholder-value',
+     *     // Optional. The unique identifier of the Google Workspace account of the customer the alert is associated with. The `customer_id` must have the initial "C" stripped (for example, `046psxkn`). Inferred from the caller identity if not provided. [Find your customer ID](https://support.google.com/cloudidentity/answer/10070793).
+     *     customerId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1646,11 +1798,11 @@ export namespace alertcenter_v1beta1 {
     delete(
       params: Params$Resource$Alerts$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Alerts$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Alerts$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1679,7 +1831,10 @@ export namespace alertcenter_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Alerts$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1724,6 +1879,66 @@ export namespace alertcenter_v1beta1 {
 
     /**
      * Gets the specified alert. Attempting to get a nonexistent alert returns `NOT_FOUND` error.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/alertcenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const alertcenter = google.alertcenter('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/apps.alerts'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await alertcenter.alerts.get({
+     *     // Required. The identifier of the alert to retrieve.
+     *     alertId: 'placeholder-value',
+     *     // Optional. The unique identifier of the Google Workspace account of the customer the alert is associated with. The `customer_id` must have the initial "C" stripped (for example, `046psxkn`). Inferred from the caller identity if not provided. [Find your customer ID](https://support.google.com/cloudidentity/answer/10070793).
+     *     customerId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "alertId": "my_alertId",
+     *   //   "createTime": "my_createTime",
+     *   //   "customerId": "my_customerId",
+     *   //   "data": {},
+     *   //   "deleted": false,
+     *   //   "endTime": "my_endTime",
+     *   //   "etag": "my_etag",
+     *   //   "metadata": {},
+     *   //   "securityInvestigationToolLink": "my_securityInvestigationToolLink",
+     *   //   "source": "my_source",
+     *   //   "startTime": "my_startTime",
+     *   //   "type": "my_type",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1733,11 +1948,11 @@ export namespace alertcenter_v1beta1 {
     get(
       params: Params$Resource$Alerts$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Alerts$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Alert>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Alert>>;
     get(
       params: Params$Resource$Alerts$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1766,7 +1981,10 @@ export namespace alertcenter_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Alert>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Alert> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Alert>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Alerts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1811,6 +2029,60 @@ export namespace alertcenter_v1beta1 {
 
     /**
      * Returns the metadata of an alert. Attempting to get metadata for a non-existent alert returns `NOT_FOUND` error.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/alertcenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const alertcenter = google.alertcenter('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/apps.alerts'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await alertcenter.alerts.getMetadata({
+     *     // Required. The identifier of the alert this metadata belongs to.
+     *     alertId: 'placeholder-value',
+     *     // Optional. The unique identifier of the Google Workspace account of the customer the alert metadata is associated with. The `customer_id` must have the initial "C" stripped (for example, `046psxkn`). Inferred from the caller identity if not provided. [Find your customer ID](https://support.google.com/cloudidentity/answer/10070793).
+     *     customerId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "alertId": "my_alertId",
+     *   //   "assignee": "my_assignee",
+     *   //   "customerId": "my_customerId",
+     *   //   "etag": "my_etag",
+     *   //   "severity": "my_severity",
+     *   //   "status": "my_status",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1820,11 +2092,11 @@ export namespace alertcenter_v1beta1 {
     getMetadata(
       params: Params$Resource$Alerts$Getmetadata,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getMetadata(
       params?: Params$Resource$Alerts$Getmetadata,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AlertMetadata>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AlertMetadata>>;
     getMetadata(
       params: Params$Resource$Alerts$Getmetadata,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1853,7 +2125,10 @@ export namespace alertcenter_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$AlertMetadata>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AlertMetadata> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$AlertMetadata>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Alerts$Getmetadata;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1899,6 +2174,61 @@ export namespace alertcenter_v1beta1 {
 
     /**
      * Lists the alerts.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/alertcenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const alertcenter = google.alertcenter('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/apps.alerts'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await alertcenter.alerts.list({
+     *     // Optional. The unique identifier of the Google Workspace account of the customer the alerts are associated with. The `customer_id` must have the initial "C" stripped (for example, `046psxkn`). Inferred from the caller identity if not provided. [Find your customer ID](https://support.google.com/cloudidentity/answer/10070793).
+     *     customerId: 'placeholder-value',
+     *     // Optional. A query string for filtering alert results. For more details, see [Query filters](https://developers.google.com/workspace/admin/alertcenter/guides/query-filters) and [Supported query filter fields](https://developers.google.com/workspace/admin/alertcenter/reference/filter-fields#alerts.list).
+     *     filter: 'placeholder-value',
+     *     // Optional. The sort order of the list results. If not specified results may be returned in arbitrary order. You can sort the results in descending order based on the creation timestamp using `order_by="create_time desc"`. Currently, supported sorting are `create_time asc`, `create_time desc`, `update_time desc`
+     *     orderBy: 'placeholder-value',
+     *     // Optional. The requested page size. Server may return fewer items than requested. If unspecified, server picks an appropriate default.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A token identifying a page of results the server should return. If empty, a new iteration is started. To continue an iteration, pass in the value from the previous ListAlertsResponse's next_page_token field.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "alerts": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1908,11 +2238,11 @@ export namespace alertcenter_v1beta1 {
     list(
       params: Params$Resource$Alerts$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Alerts$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAlertsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListAlertsResponse>>;
     list(
       params: Params$Resource$Alerts$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1943,8 +2273,8 @@ export namespace alertcenter_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListAlertsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListAlertsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Alerts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1986,6 +2316,72 @@ export namespace alertcenter_v1beta1 {
 
     /**
      * Restores, or "undeletes", an alert that was marked for deletion within the past 30 days. Attempting to undelete an alert which was marked for deletion over 30 days ago (which has been removed from the Alert Center database) or a nonexistent alert returns a `NOT_FOUND` error. Attempting to undelete an alert which has not been marked for deletion has no effect.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/alertcenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const alertcenter = google.alertcenter('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/apps.alerts'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await alertcenter.alerts.undelete({
+     *     // Required. The identifier of the alert to undelete.
+     *     alertId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "customerId": "my_customerId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "alertId": "my_alertId",
+     *   //   "createTime": "my_createTime",
+     *   //   "customerId": "my_customerId",
+     *   //   "data": {},
+     *   //   "deleted": false,
+     *   //   "endTime": "my_endTime",
+     *   //   "etag": "my_etag",
+     *   //   "metadata": {},
+     *   //   "securityInvestigationToolLink": "my_securityInvestigationToolLink",
+     *   //   "source": "my_source",
+     *   //   "startTime": "my_startTime",
+     *   //   "type": "my_type",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1995,11 +2391,11 @@ export namespace alertcenter_v1beta1 {
     undelete(
       params: Params$Resource$Alerts$Undelete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     undelete(
       params?: Params$Resource$Alerts$Undelete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Alert>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Alert>>;
     undelete(
       params: Params$Resource$Alerts$Undelete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2028,7 +2424,10 @@ export namespace alertcenter_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Alert>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Alert> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Alert>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Alerts$Undelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2159,6 +2558,72 @@ export namespace alertcenter_v1beta1 {
 
     /**
      * Creates new feedback for an alert. Attempting to create a feedback for a non-existent alert returns `NOT_FOUND` error. Attempting to create a feedback for an alert that is marked for deletion returns `FAILED_PRECONDITION' error.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/alertcenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const alertcenter = google.alertcenter('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/apps.alerts'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await alertcenter.alerts.feedback.create({
+     *     // Required. The identifier of the alert this feedback belongs to.
+     *     alertId: 'placeholder-value',
+     *     // Optional. The unique identifier of the Google Workspace account of the customer the alert is associated with. The `customer_id` must have the initial "C" stripped (for example, `046psxkn`). Inferred from the caller identity if not provided. [Find your customer ID](https://support.google.com/cloudidentity/answer/10070793).
+     *     customerId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "alertId": "my_alertId",
+     *       //   "createTime": "my_createTime",
+     *       //   "customerId": "my_customerId",
+     *       //   "email": "my_email",
+     *       //   "feedbackId": "my_feedbackId",
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "alertId": "my_alertId",
+     *   //   "createTime": "my_createTime",
+     *   //   "customerId": "my_customerId",
+     *   //   "email": "my_email",
+     *   //   "feedbackId": "my_feedbackId",
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2168,11 +2633,11 @@ export namespace alertcenter_v1beta1 {
     create(
       params: Params$Resource$Alerts$Feedback$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Alerts$Feedback$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AlertFeedback>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AlertFeedback>>;
     create(
       params: Params$Resource$Alerts$Feedback$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2201,7 +2666,10 @@ export namespace alertcenter_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$AlertFeedback>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AlertFeedback> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$AlertFeedback>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Alerts$Feedback$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2247,6 +2715,56 @@ export namespace alertcenter_v1beta1 {
 
     /**
      * Lists all the feedback for an alert. Attempting to list feedbacks for a non-existent alert returns `NOT_FOUND` error.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/alertcenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const alertcenter = google.alertcenter('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/apps.alerts'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await alertcenter.alerts.feedback.list({
+     *     // Required. The alert identifier. The "-" wildcard could be used to represent all alerts.
+     *     alertId: 'placeholder-value',
+     *     // Optional. The unique identifier of the Google Workspace account of the customer the alert is associated with. The `customer_id` must have the initial "C" stripped (for example, `046psxkn`). Inferred from the caller identity if not provided. [Find your customer ID](https://support.google.com/cloudidentity/answer/10070793).
+     *     customerId: 'placeholder-value',
+     *     // Optional. A query string for filtering alert feedback results. For more details, see [Query filters](https://developers.google.com/workspace/admin/alertcenter/guides/query-filters) and [Supported query filter fields](https://developers.google.com/workspace/admin/alertcenter/reference/filter-fields#alerts.feedback.list).
+     *     filter: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "feedback": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2256,11 +2774,11 @@ export namespace alertcenter_v1beta1 {
     list(
       params: Params$Resource$Alerts$Feedback$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Alerts$Feedback$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAlertFeedbackResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListAlertFeedbackResponse>>;
     list(
       params: Params$Resource$Alerts$Feedback$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2295,8 +2813,8 @@ export namespace alertcenter_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListAlertFeedbackResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListAlertFeedbackResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Alerts$Feedback$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2381,6 +2899,52 @@ export namespace alertcenter_v1beta1 {
 
     /**
      * Returns customer-level settings.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/alertcenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const alertcenter = google.alertcenter('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/apps.alerts'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await alertcenter.getSettings({
+     *     // Optional. The unique identifier of the Google Workspace account of the customer the alert settings are associated with. The `customer_id` must/ have the initial "C" stripped (for example, `046psxkn`). Inferred from the caller identity if not provided. [Find your customer ID](https://support.google.com/cloudidentity/answer/10070793).
+     *     customerId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "notifications": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2390,11 +2954,11 @@ export namespace alertcenter_v1beta1 {
     getSettings(
       params: Params$Resource$V1beta1$Getsettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getSettings(
       params?: Params$Resource$V1beta1$Getsettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Settings>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Settings>>;
     getSettings(
       params: Params$Resource$V1beta1$Getsettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2423,7 +2987,10 @@ export namespace alertcenter_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Settings>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Settings> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Settings>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$V1beta1$Getsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2466,6 +3033,60 @@ export namespace alertcenter_v1beta1 {
 
     /**
      * Updates the customer-level settings.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/alertcenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const alertcenter = google.alertcenter('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/apps.alerts'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await alertcenter.updateSettings({
+     *     // Optional. The unique identifier of the Google Workspace account of the customer the alert settings are associated with. The `customer_id` must have the initial "C" stripped (for example, `046psxkn`). Inferred from the caller identity if not provided. [Find your customer ID](https://support.google.com/cloudidentity/answer/10070793).
+     *     customerId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "notifications": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "notifications": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2475,11 +3096,11 @@ export namespace alertcenter_v1beta1 {
     updateSettings(
       params: Params$Resource$V1beta1$Updatesettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     updateSettings(
       params?: Params$Resource$V1beta1$Updatesettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Settings>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Settings>>;
     updateSettings(
       params: Params$Resource$V1beta1$Updatesettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2508,7 +3129,10 @@ export namespace alertcenter_v1beta1 {
       callback?:
         | BodyResponseCallback<Schema$Settings>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Settings> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Settings>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$V1beta1$Updatesettings;
       let options = (optionsOrCallback || {}) as MethodOptions;

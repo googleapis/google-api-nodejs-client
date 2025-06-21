@@ -207,7 +207,7 @@
       }
     }
   },
-  "revision": "20241015",
+  "revision": "20250611",
   "rootUrl": "https://readerrevenuesubscriptionlinking.googleapis.com/",
   "schemas": {
     "DeleteReaderResponse": {
@@ -252,6 +252,21 @@
         },
         "name": {
           "description": "Output only. The resource name of the reader. The last part of ppid in the resource name is the publisher provided id.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "originatingPublicationId": {
+          "description": "Output only. The SwG publication id that the reader's subscription linking was originating from.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "ppid": {
+          "description": "Output only. The publisher provided id of the reader.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "publicationId": {
+          "description": "Output only. The SwG publication id that the reader has linked their subscription to.",
           "readOnly": true,
           "type": "string"
         }

@@ -32,11 +32,12 @@ describe('Auth samples', () => {
   });
 
   it('should support JWT', async () => {
-    const scope = nock('https://www.googleapis.com')
+    const scopes = [nock('https://www.googleapis.com')
       .get('/drive/v2/files')
-      .reply(200, {})
-      .post('/oauth2/v4/token')
-      .reply(200, {access_token: 'not-a-token'});
+      .reply(200, {}),
+      nock('https://oauth2.googleapis.com/')
+      .post('/token')
+      .reply(200, {access_token: 'not-a-token'})]
     const fakePath = path.resolve('../test/fixtures/service.json');
     const realPath = path.resolve('jwt.keys.json');
     const exists = fs.existsSync(realPath);
@@ -46,7 +47,7 @@ describe('Auth samples', () => {
     }
     const data = await samples.jwt.runSample();
     assert(data);
-    scope.done();
+    scopes.forEach(scope => scope.done());
   });
 
   it('should accept an access token header', async () => {
@@ -54,7 +55,7 @@ describe('Auth samples', () => {
       .get('/drive/v2/files')
       .reply(200, {});
     const res = await samples.accessToken.runSample(12345);
-    assert.strictEqual(res.config.headers['Authorization'], 'Bearer 12345');
+    assert.strictEqual(res.config.headers.get('Authorization'), 'Bearer 12345');
     scope.done();
   });
 });

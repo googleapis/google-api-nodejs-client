@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -1052,6 +1052,7 @@ export namespace bigquery_v2 {
      */
     datasets?: Array<{
       datasetReference?: Schema$DatasetReference;
+      externalDatasetReference?: Schema$ExternalDatasetReference;
       friendlyName?: string;
       id?: string;
       kind?: string;
@@ -2423,7 +2424,7 @@ export namespace bigquery_v2 {
      */
     timestampFormat?: string | null;
     /**
-     * Optional. [Experimental] Default time zone that will apply when parsing timestamp values that have no specific time zone.
+     * Optional. Default time zone that will apply when parsing timestamp values that have no specific time zone.
      */
     timeZone?: string | null;
     /**
@@ -2431,7 +2432,7 @@ export namespace bigquery_v2 {
      */
     useAvroLogicalTypes?: boolean | null;
     /**
-     * Optional. Specifies the action that occurs if the destination table already exists. The following values are supported: * WRITE_TRUNCATE: If the table already exists, BigQuery overwrites the data, removes the constraints and uses the schema from the load job. * WRITE_APPEND: If the table already exists, BigQuery appends the data to the table. * WRITE_EMPTY: If the table already exists and contains data, a 'duplicate' error is returned in the job result. The default value is WRITE_APPEND. Each action is atomic and only occurs if BigQuery is able to complete the job successfully. Creation, truncation and append actions occur as one atomic update upon job completion.
+     * Optional. Specifies the action that occurs if the destination table already exists. The following values are supported: * WRITE_TRUNCATE: If the table already exists, BigQuery overwrites the data, removes the constraints and uses the schema from the load job. * WRITE_TRUNCATE_DATA: If the table already exists, BigQuery overwrites the data, but keeps the constraints and schema of the existing table. * WRITE_APPEND: If the table already exists, BigQuery appends the data to the table. * WRITE_EMPTY: If the table already exists and contains data, a 'duplicate' error is returned in the job result. The default value is WRITE_APPEND. Each action is atomic and only occurs if BigQuery is able to complete the job successfully. Creation, truncation and append actions occur as one atomic update upon job completion.
      */
     writeDisposition?: string | null;
   }
@@ -2544,7 +2545,7 @@ export namespace bigquery_v2 {
      */
     userDefinedFunctionResources?: Schema$UserDefinedFunctionResource[];
     /**
-     * Optional. Specifies the action that occurs if the destination table already exists. The following values are supported: * WRITE_TRUNCATE: If the table already exists, BigQuery overwrites the data, removes the constraints, and uses the schema from the query result. * WRITE_APPEND: If the table already exists, BigQuery appends the data to the table. * WRITE_EMPTY: If the table already exists and contains data, a 'duplicate' error is returned in the job result. The default value is WRITE_EMPTY. Each action is atomic and only occurs if BigQuery is able to complete the job successfully. Creation, truncation and append actions occur as one atomic update upon job completion.
+     * Optional. Specifies the action that occurs if the destination table already exists. The following values are supported: * WRITE_TRUNCATE: If the table already exists, BigQuery overwrites the data, removes the constraints, and uses the schema from the query result. * WRITE_TRUNCATE_DATA: If the table already exists, BigQuery overwrites the data, but keeps the constraints and schema of the existing table. * WRITE_APPEND: If the table already exists, BigQuery appends the data to the table. * WRITE_EMPTY: If the table already exists and contains data, a 'duplicate' error is returned in the job result. The default value is WRITE_EMPTY. Each action is atomic and only occurs if BigQuery is able to complete the job successfully. Creation, truncation and append actions occur as one atomic update upon job completion.
      */
     writeDisposition?: string | null;
     /**
@@ -2865,7 +2866,7 @@ export namespace bigquery_v2 {
      */
     referencedRoutines?: Schema$RoutineReference[];
     /**
-     * Output only. Referenced tables for the job. Queries that reference more than 50 tables will not have a complete list.
+     * Output only. Referenced tables for the job.
      */
     referencedTables?: Schema$TableReference[];
     /**
@@ -3808,6 +3809,10 @@ export namespace bigquery_v2 {
      * Total units of work remaining for the query. This number can be revised (increased or decreased) while the query is running.
      */
     pendingUnits?: string | null;
+    /**
+     * Total shuffle usage ratio in shuffle RAM per reservation of this query. This will be provided for reservation customers only.
+     */
+    shuffleRamUsageRatio?: number | null;
     /**
      * Cumulative slot-ms consumed by the query.
      */
@@ -5555,6 +5560,54 @@ export namespace bigquery_v2 {
 
     /**
      * Deletes the dataset specified by the datasetId value. Before you can delete a dataset, you must delete all its tables, either manually or by specifying deleteContents. Immediately after deletion, you can create another dataset with the same name.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigquery = google.bigquery('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquery.datasets.delete({
+     *     // Required. Dataset ID of dataset being deleted
+     *     datasetId: '[^/]+',
+     *     // If True, delete all the tables in the dataset. If False and the dataset contains tables, the request will fail. Default is False
+     *     deleteContents: 'placeholder-value',
+     *     // Required. Project ID of the dataset being deleted
+     *     projectId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5564,11 +5617,11 @@ export namespace bigquery_v2 {
     delete(
       params: Params$Resource$Datasets$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Datasets$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Datasets$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5595,7 +5648,10 @@ export namespace bigquery_v2 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Datasets$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5640,6 +5696,91 @@ export namespace bigquery_v2 {
 
     /**
      * Returns the dataset specified by datasetID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigquery = google.bigquery('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquery.datasets.get({
+     *     // Optional. The version of the access policy schema to fetch. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for conditional access policy binding in datasets must specify version 3. Dataset with no conditional role bindings in access policy may specify any valid value or leave the field unset. This field will be mapped to [IAM Policy version] (https://cloud.google.com/iam/docs/policies#versions) and will be used to fetch policy from IAM. If unset or if 0 or 1 value is used for dataset with conditional bindings, access entry with condition will have role string appended by 'withcond' string followed by a hash value. For example : { "access": [ { "role": "roles/bigquery.dataViewer_with_conditionalbinding_7a34awqsda", "userByEmail": "user@example.com", \} ] \} Please refer https://cloud.google.com/iam/docs/troubleshooting-withcond for more details.
+     *     accessPolicyVersion: 'placeholder-value',
+     *     // Required. Dataset ID of the requested dataset
+     *     datasetId: '[^/]+',
+     *     // Optional. Specifies the view that determines which dataset information is returned. By default, metadata and ACL information are returned.
+     *     datasetView: 'placeholder-value',
+     *     // Required. Project ID of the requested dataset
+     *     projectId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "access": [],
+     *   //   "creationTime": "my_creationTime",
+     *   //   "datasetReference": {},
+     *   //   "defaultCollation": "my_defaultCollation",
+     *   //   "defaultEncryptionConfiguration": {},
+     *   //   "defaultPartitionExpirationMs": "my_defaultPartitionExpirationMs",
+     *   //   "defaultRoundingMode": "my_defaultRoundingMode",
+     *   //   "defaultTableExpirationMs": "my_defaultTableExpirationMs",
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "externalCatalogDatasetOptions": {},
+     *   //   "externalDatasetReference": {},
+     *   //   "friendlyName": "my_friendlyName",
+     *   //   "id": "my_id",
+     *   //   "isCaseInsensitive": false,
+     *   //   "kind": "my_kind",
+     *   //   "labels": {},
+     *   //   "lastModifiedTime": "my_lastModifiedTime",
+     *   //   "linkedDatasetMetadata": {},
+     *   //   "linkedDatasetSource": {},
+     *   //   "location": "my_location",
+     *   //   "maxTimeTravelHours": "my_maxTimeTravelHours",
+     *   //   "resourceTags": {},
+     *   //   "restrictions": {},
+     *   //   "satisfiesPzi": false,
+     *   //   "satisfiesPzs": false,
+     *   //   "selfLink": "my_selfLink",
+     *   //   "storageBillingModel": "my_storageBillingModel",
+     *   //   "tags": [],
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5649,11 +5790,11 @@ export namespace bigquery_v2 {
     get(
       params: Params$Resource$Datasets$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Datasets$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Dataset>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Dataset>>;
     get(
       params: Params$Resource$Datasets$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5682,7 +5823,10 @@ export namespace bigquery_v2 {
       callback?:
         | BodyResponseCallback<Schema$Dataset>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Dataset> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Dataset>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Datasets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5727,6 +5871,123 @@ export namespace bigquery_v2 {
 
     /**
      * Creates a new empty dataset.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigquery = google.bigquery('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquery.datasets.insert({
+     *     // Optional. The version of the provided access policy schema. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. This version refers to the schema version of the access policy and not the version of access policy. This field's value can be equal or more than the access policy schema provided in the request. For example, * Requests with conditional access policy binding in datasets must specify version 3. * But dataset with no conditional role bindings in access policy may specify any valid value or leave the field unset. If unset or if 0 or 1 value is used for dataset with conditional bindings, request will be rejected. This field will be mapped to IAM Policy version (https://cloud.google.com/iam/docs/policies#versions) and will be used to set policy in IAM.
+     *     accessPolicyVersion: 'placeholder-value',
+     *     // Required. Project ID of the new dataset
+     *     projectId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "access": [],
+     *       //   "creationTime": "my_creationTime",
+     *       //   "datasetReference": {},
+     *       //   "defaultCollation": "my_defaultCollation",
+     *       //   "defaultEncryptionConfiguration": {},
+     *       //   "defaultPartitionExpirationMs": "my_defaultPartitionExpirationMs",
+     *       //   "defaultRoundingMode": "my_defaultRoundingMode",
+     *       //   "defaultTableExpirationMs": "my_defaultTableExpirationMs",
+     *       //   "description": "my_description",
+     *       //   "etag": "my_etag",
+     *       //   "externalCatalogDatasetOptions": {},
+     *       //   "externalDatasetReference": {},
+     *       //   "friendlyName": "my_friendlyName",
+     *       //   "id": "my_id",
+     *       //   "isCaseInsensitive": false,
+     *       //   "kind": "my_kind",
+     *       //   "labels": {},
+     *       //   "lastModifiedTime": "my_lastModifiedTime",
+     *       //   "linkedDatasetMetadata": {},
+     *       //   "linkedDatasetSource": {},
+     *       //   "location": "my_location",
+     *       //   "maxTimeTravelHours": "my_maxTimeTravelHours",
+     *       //   "resourceTags": {},
+     *       //   "restrictions": {},
+     *       //   "satisfiesPzi": false,
+     *       //   "satisfiesPzs": false,
+     *       //   "selfLink": "my_selfLink",
+     *       //   "storageBillingModel": "my_storageBillingModel",
+     *       //   "tags": [],
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "access": [],
+     *   //   "creationTime": "my_creationTime",
+     *   //   "datasetReference": {},
+     *   //   "defaultCollation": "my_defaultCollation",
+     *   //   "defaultEncryptionConfiguration": {},
+     *   //   "defaultPartitionExpirationMs": "my_defaultPartitionExpirationMs",
+     *   //   "defaultRoundingMode": "my_defaultRoundingMode",
+     *   //   "defaultTableExpirationMs": "my_defaultTableExpirationMs",
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "externalCatalogDatasetOptions": {},
+     *   //   "externalDatasetReference": {},
+     *   //   "friendlyName": "my_friendlyName",
+     *   //   "id": "my_id",
+     *   //   "isCaseInsensitive": false,
+     *   //   "kind": "my_kind",
+     *   //   "labels": {},
+     *   //   "lastModifiedTime": "my_lastModifiedTime",
+     *   //   "linkedDatasetMetadata": {},
+     *   //   "linkedDatasetSource": {},
+     *   //   "location": "my_location",
+     *   //   "maxTimeTravelHours": "my_maxTimeTravelHours",
+     *   //   "resourceTags": {},
+     *   //   "restrictions": {},
+     *   //   "satisfiesPzi": false,
+     *   //   "satisfiesPzs": false,
+     *   //   "selfLink": "my_selfLink",
+     *   //   "storageBillingModel": "my_storageBillingModel",
+     *   //   "tags": [],
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5736,11 +5997,11 @@ export namespace bigquery_v2 {
     insert(
       params: Params$Resource$Datasets$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Datasets$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Dataset>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Dataset>>;
     insert(
       params: Params$Resource$Datasets$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5769,7 +6030,10 @@ export namespace bigquery_v2 {
       callback?:
         | BodyResponseCallback<Schema$Dataset>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Dataset> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Dataset>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Datasets$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5813,6 +6077,68 @@ export namespace bigquery_v2 {
 
     /**
      * Lists all datasets in the specified project to which the user has been granted the READER dataset role.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigquery = google.bigquery('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquery.datasets.list({
+     *     // Whether to list all datasets, including hidden ones
+     *     all: 'placeholder-value',
+     *     // An expression for filtering the results of the request by label. The syntax is `labels.[:]`. Multiple filters can be AND-ed together by connecting with a space. Example: `labels.department:receiving labels.active`. See [Filtering datasets using labels](https://cloud.google.com/bigquery/docs/filtering-labels#filtering_datasets_using_labels) for details.
+     *     filter: 'placeholder-value',
+     *     // The maximum number of results to return in a single response page. Leverage the page tokens to iterate through the entire collection.
+     *     maxResults: 'placeholder-value',
+     *     // Page token, returned by a previous call, to request the next page of results
+     *     pageToken: 'placeholder-value',
+     *     // Required. Project ID of the datasets to be listed
+     *     projectId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "datasets": [],
+     *   //   "etag": "my_etag",
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5822,11 +6148,11 @@ export namespace bigquery_v2 {
     list(
       params: Params$Resource$Datasets$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Datasets$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DatasetList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DatasetList>>;
     list(
       params: Params$Resource$Datasets$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5855,7 +6181,10 @@ export namespace bigquery_v2 {
       callback?:
         | BodyResponseCallback<Schema$DatasetList>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$DatasetList> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$DatasetList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Datasets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5899,6 +6228,127 @@ export namespace bigquery_v2 {
 
     /**
      * Updates information in an existing dataset. The update method replaces the entire dataset resource, whereas the patch method only replaces fields that are provided in the submitted dataset resource. This method supports RFC5789 patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigquery = google.bigquery('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquery.datasets.patch({
+     *     // Optional. The version of the provided access policy schema. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. This version refers to the schema version of the access policy and not the version of access policy. This field's value can be equal or more than the access policy schema provided in the request. For example, * Operations updating conditional access policy binding in datasets must specify version 3. Some of the operations are : - Adding a new access policy entry with condition. - Removing an access policy entry with condition. - Updating an access policy entry with condition. * But dataset with no conditional role bindings in access policy may specify any valid value or leave the field unset. If unset or if 0 or 1 value is used for dataset with conditional bindings, request will be rejected. This field will be mapped to IAM Policy version (https://cloud.google.com/iam/docs/policies#versions) and will be used to set policy in IAM.
+     *     accessPolicyVersion: 'placeholder-value',
+     *     // Required. Dataset ID of the dataset being updated
+     *     datasetId: '[^/]+',
+     *     // Required. Project ID of the dataset being updated
+     *     projectId: '[^/]+',
+     *     // Optional. Specifies the fields of dataset that update/patch operation is targeting By default, both metadata and ACL fields are updated.
+     *     updateMode: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "access": [],
+     *       //   "creationTime": "my_creationTime",
+     *       //   "datasetReference": {},
+     *       //   "defaultCollation": "my_defaultCollation",
+     *       //   "defaultEncryptionConfiguration": {},
+     *       //   "defaultPartitionExpirationMs": "my_defaultPartitionExpirationMs",
+     *       //   "defaultRoundingMode": "my_defaultRoundingMode",
+     *       //   "defaultTableExpirationMs": "my_defaultTableExpirationMs",
+     *       //   "description": "my_description",
+     *       //   "etag": "my_etag",
+     *       //   "externalCatalogDatasetOptions": {},
+     *       //   "externalDatasetReference": {},
+     *       //   "friendlyName": "my_friendlyName",
+     *       //   "id": "my_id",
+     *       //   "isCaseInsensitive": false,
+     *       //   "kind": "my_kind",
+     *       //   "labels": {},
+     *       //   "lastModifiedTime": "my_lastModifiedTime",
+     *       //   "linkedDatasetMetadata": {},
+     *       //   "linkedDatasetSource": {},
+     *       //   "location": "my_location",
+     *       //   "maxTimeTravelHours": "my_maxTimeTravelHours",
+     *       //   "resourceTags": {},
+     *       //   "restrictions": {},
+     *       //   "satisfiesPzi": false,
+     *       //   "satisfiesPzs": false,
+     *       //   "selfLink": "my_selfLink",
+     *       //   "storageBillingModel": "my_storageBillingModel",
+     *       //   "tags": [],
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "access": [],
+     *   //   "creationTime": "my_creationTime",
+     *   //   "datasetReference": {},
+     *   //   "defaultCollation": "my_defaultCollation",
+     *   //   "defaultEncryptionConfiguration": {},
+     *   //   "defaultPartitionExpirationMs": "my_defaultPartitionExpirationMs",
+     *   //   "defaultRoundingMode": "my_defaultRoundingMode",
+     *   //   "defaultTableExpirationMs": "my_defaultTableExpirationMs",
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "externalCatalogDatasetOptions": {},
+     *   //   "externalDatasetReference": {},
+     *   //   "friendlyName": "my_friendlyName",
+     *   //   "id": "my_id",
+     *   //   "isCaseInsensitive": false,
+     *   //   "kind": "my_kind",
+     *   //   "labels": {},
+     *   //   "lastModifiedTime": "my_lastModifiedTime",
+     *   //   "linkedDatasetMetadata": {},
+     *   //   "linkedDatasetSource": {},
+     *   //   "location": "my_location",
+     *   //   "maxTimeTravelHours": "my_maxTimeTravelHours",
+     *   //   "resourceTags": {},
+     *   //   "restrictions": {},
+     *   //   "satisfiesPzi": false,
+     *   //   "satisfiesPzs": false,
+     *   //   "selfLink": "my_selfLink",
+     *   //   "storageBillingModel": "my_storageBillingModel",
+     *   //   "tags": [],
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5908,11 +6358,11 @@ export namespace bigquery_v2 {
     patch(
       params: Params$Resource$Datasets$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Datasets$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Dataset>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Dataset>>;
     patch(
       params: Params$Resource$Datasets$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5941,7 +6391,10 @@ export namespace bigquery_v2 {
       callback?:
         | BodyResponseCallback<Schema$Dataset>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Dataset> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Dataset>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Datasets$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5986,6 +6439,94 @@ export namespace bigquery_v2 {
 
     /**
      * Undeletes a dataset which is within time travel window based on datasetId. If a time is specified, the dataset version deleted at that time is undeleted, else the last live version is undeleted.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigquery = google.bigquery('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquery.datasets.undelete({
+     *     // Required. Dataset ID of dataset being deleted
+     *     datasetId: '[^/]+',
+     *     // Required. Project ID of the dataset to be undeleted
+     *     projectId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "deletionTime": "my_deletionTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "access": [],
+     *   //   "creationTime": "my_creationTime",
+     *   //   "datasetReference": {},
+     *   //   "defaultCollation": "my_defaultCollation",
+     *   //   "defaultEncryptionConfiguration": {},
+     *   //   "defaultPartitionExpirationMs": "my_defaultPartitionExpirationMs",
+     *   //   "defaultRoundingMode": "my_defaultRoundingMode",
+     *   //   "defaultTableExpirationMs": "my_defaultTableExpirationMs",
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "externalCatalogDatasetOptions": {},
+     *   //   "externalDatasetReference": {},
+     *   //   "friendlyName": "my_friendlyName",
+     *   //   "id": "my_id",
+     *   //   "isCaseInsensitive": false,
+     *   //   "kind": "my_kind",
+     *   //   "labels": {},
+     *   //   "lastModifiedTime": "my_lastModifiedTime",
+     *   //   "linkedDatasetMetadata": {},
+     *   //   "linkedDatasetSource": {},
+     *   //   "location": "my_location",
+     *   //   "maxTimeTravelHours": "my_maxTimeTravelHours",
+     *   //   "resourceTags": {},
+     *   //   "restrictions": {},
+     *   //   "satisfiesPzi": false,
+     *   //   "satisfiesPzs": false,
+     *   //   "selfLink": "my_selfLink",
+     *   //   "storageBillingModel": "my_storageBillingModel",
+     *   //   "tags": [],
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5995,11 +6536,11 @@ export namespace bigquery_v2 {
     undelete(
       params: Params$Resource$Datasets$Undelete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     undelete(
       params?: Params$Resource$Datasets$Undelete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Dataset>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Dataset>>;
     undelete(
       params: Params$Resource$Datasets$Undelete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6028,7 +6569,10 @@ export namespace bigquery_v2 {
       callback?:
         | BodyResponseCallback<Schema$Dataset>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Dataset> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Dataset>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Datasets$Undelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6074,6 +6618,127 @@ export namespace bigquery_v2 {
 
     /**
      * Updates information in an existing dataset. The update method replaces the entire dataset resource, whereas the patch method only replaces fields that are provided in the submitted dataset resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigquery = google.bigquery('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquery.datasets.update({
+     *     // Optional. The version of the provided access policy schema. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. This version refers to the schema version of the access policy and not the version of access policy. This field's value can be equal or more than the access policy schema provided in the request. For example, * Operations updating conditional access policy binding in datasets must specify version 3. Some of the operations are : - Adding a new access policy entry with condition. - Removing an access policy entry with condition. - Updating an access policy entry with condition. * But dataset with no conditional role bindings in access policy may specify any valid value or leave the field unset. If unset or if 0 or 1 value is used for dataset with conditional bindings, request will be rejected. This field will be mapped to IAM Policy version (https://cloud.google.com/iam/docs/policies#versions) and will be used to set policy in IAM.
+     *     accessPolicyVersion: 'placeholder-value',
+     *     // Required. Dataset ID of the dataset being updated
+     *     datasetId: '[^/]+',
+     *     // Required. Project ID of the dataset being updated
+     *     projectId: '[^/]+',
+     *     // Optional. Specifies the fields of dataset that update/patch operation is targeting By default, both metadata and ACL fields are updated.
+     *     updateMode: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "access": [],
+     *       //   "creationTime": "my_creationTime",
+     *       //   "datasetReference": {},
+     *       //   "defaultCollation": "my_defaultCollation",
+     *       //   "defaultEncryptionConfiguration": {},
+     *       //   "defaultPartitionExpirationMs": "my_defaultPartitionExpirationMs",
+     *       //   "defaultRoundingMode": "my_defaultRoundingMode",
+     *       //   "defaultTableExpirationMs": "my_defaultTableExpirationMs",
+     *       //   "description": "my_description",
+     *       //   "etag": "my_etag",
+     *       //   "externalCatalogDatasetOptions": {},
+     *       //   "externalDatasetReference": {},
+     *       //   "friendlyName": "my_friendlyName",
+     *       //   "id": "my_id",
+     *       //   "isCaseInsensitive": false,
+     *       //   "kind": "my_kind",
+     *       //   "labels": {},
+     *       //   "lastModifiedTime": "my_lastModifiedTime",
+     *       //   "linkedDatasetMetadata": {},
+     *       //   "linkedDatasetSource": {},
+     *       //   "location": "my_location",
+     *       //   "maxTimeTravelHours": "my_maxTimeTravelHours",
+     *       //   "resourceTags": {},
+     *       //   "restrictions": {},
+     *       //   "satisfiesPzi": false,
+     *       //   "satisfiesPzs": false,
+     *       //   "selfLink": "my_selfLink",
+     *       //   "storageBillingModel": "my_storageBillingModel",
+     *       //   "tags": [],
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "access": [],
+     *   //   "creationTime": "my_creationTime",
+     *   //   "datasetReference": {},
+     *   //   "defaultCollation": "my_defaultCollation",
+     *   //   "defaultEncryptionConfiguration": {},
+     *   //   "defaultPartitionExpirationMs": "my_defaultPartitionExpirationMs",
+     *   //   "defaultRoundingMode": "my_defaultRoundingMode",
+     *   //   "defaultTableExpirationMs": "my_defaultTableExpirationMs",
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "externalCatalogDatasetOptions": {},
+     *   //   "externalDatasetReference": {},
+     *   //   "friendlyName": "my_friendlyName",
+     *   //   "id": "my_id",
+     *   //   "isCaseInsensitive": false,
+     *   //   "kind": "my_kind",
+     *   //   "labels": {},
+     *   //   "lastModifiedTime": "my_lastModifiedTime",
+     *   //   "linkedDatasetMetadata": {},
+     *   //   "linkedDatasetSource": {},
+     *   //   "location": "my_location",
+     *   //   "maxTimeTravelHours": "my_maxTimeTravelHours",
+     *   //   "resourceTags": {},
+     *   //   "restrictions": {},
+     *   //   "satisfiesPzi": false,
+     *   //   "satisfiesPzs": false,
+     *   //   "selfLink": "my_selfLink",
+     *   //   "storageBillingModel": "my_storageBillingModel",
+     *   //   "tags": [],
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6083,11 +6748,11 @@ export namespace bigquery_v2 {
     update(
       params: Params$Resource$Datasets$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Datasets$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Dataset>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Dataset>>;
     update(
       params: Params$Resource$Datasets$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6116,7 +6781,10 @@ export namespace bigquery_v2 {
       callback?:
         | BodyResponseCallback<Schema$Dataset>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Dataset> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Dataset>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Datasets$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6242,6 +6910,10 @@ export namespace bigquery_v2 {
      * Required. Project ID of the dataset being updated
      */
     projectId?: string;
+    /**
+     * Optional. Specifies the fields of dataset that update/patch operation is targeting By default, both metadata and ACL fields are updated.
+     */
+    updateMode?: string;
 
     /**
      * Request body metadata
@@ -6277,6 +6949,10 @@ export namespace bigquery_v2 {
      * Required. Project ID of the dataset being updated
      */
     projectId?: string;
+    /**
+     * Optional. Specifies the fields of dataset that update/patch operation is targeting By default, both metadata and ACL fields are updated.
+     */
+    updateMode?: string;
 
     /**
      * Request body metadata
@@ -6292,6 +6968,60 @@ export namespace bigquery_v2 {
 
     /**
      * Requests that a job be cancelled. This call will return immediately, and the client will need to poll for the job status to see if the cancel completed successfully. Cancelled jobs may still incur costs.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigquery = google.bigquery('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquery.jobs.cancel({
+     *     // Required. Job ID of the job to cancel
+     *     jobId: '[^/]+',
+     *     // The geographic location of the job. You must [specify the location](https://cloud.google.com/bigquery/docs/locations#specify_locations) to run the job for the following scenarios: * If the location to run a job is not in the `us` or the `eu` multi-regional location * If the job's location is in a single region (for example, `us-central1`)
+     *     location: 'placeholder-value',
+     *     // Required. Project ID of the job to cancel
+     *     projectId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "job": {},
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6301,11 +7031,11 @@ export namespace bigquery_v2 {
     cancel(
       params: Params$Resource$Jobs$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     cancel(
       params?: Params$Resource$Jobs$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$JobCancelResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$JobCancelResponse>>;
     cancel(
       params: Params$Resource$Jobs$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6336,8 +7066,8 @@ export namespace bigquery_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$JobCancelResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$JobCancelResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Jobs$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6382,6 +7112,54 @@ export namespace bigquery_v2 {
 
     /**
      * Requests the deletion of the metadata of a job. This call returns when the job's metadata is deleted.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigquery = google.bigquery('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquery.jobs.delete({
+     *     // Required. Job ID of the job for which metadata is to be deleted. If this is a parent job which has child jobs, the metadata from all child jobs will be deleted as well. Direct deletion of the metadata of child jobs is not allowed.
+     *     jobId: '[^/]+',
+     *     // The geographic location of the job. Required. For more information, see how to [specify locations](https://cloud.google.com/bigquery/docs/locations#specify_locations).
+     *     location: 'placeholder-value',
+     *     // Required. Project ID of the job for which metadata is to be deleted.
+     *     projectId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6391,11 +7169,11 @@ export namespace bigquery_v2 {
     delete(
       params: Params$Resource$Jobs$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Jobs$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Jobs$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6422,7 +7200,10 @@ export namespace bigquery_v2 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Jobs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6467,6 +7248,70 @@ export namespace bigquery_v2 {
 
     /**
      * Returns information about a specific job. Job information is available for a six month period after creation. Requires that you're the person who ran the job, or have the Is Owner project role.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigquery = google.bigquery('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquery.jobs.get({
+     *     // Required. Job ID of the requested job.
+     *     jobId: '[^/]+',
+     *     // The geographic location of the job. You must specify the location to run the job for the following scenarios: * If the location to run a job is not in the `us` or the `eu` multi-regional location * If the job's location is in a single region (for example, `us-central1`) For more information, see how to [specify locations](https://cloud.google.com/bigquery/docs/locations#specify_locations).
+     *     location: 'placeholder-value',
+     *     // Required. Project ID of the requested job.
+     *     projectId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "configuration": {},
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "jobCreationReason": {},
+     *   //   "jobReference": {},
+     *   //   "kind": "my_kind",
+     *   //   "principal_subject": "my_principal_subject",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "statistics": {},
+     *   //   "status": {},
+     *   //   "user_email": "my_user_email"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6476,11 +7321,11 @@ export namespace bigquery_v2 {
     get(
       params: Params$Resource$Jobs$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Jobs$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Job>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Job>>;
     get(
       params: Params$Resource$Jobs$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6509,7 +7354,10 @@ export namespace bigquery_v2 {
       callback?:
         | BodyResponseCallback<Schema$Job>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Job> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Job>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Jobs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6553,6 +7401,81 @@ export namespace bigquery_v2 {
 
     /**
      * RPC to get the results of a query job.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigquery = google.bigquery('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquery.jobs.getQueryResults({
+     *     // Optional. Output timestamp as usec int64. Default is false.
+     *     'formatOptions.useInt64Timestamp': 'placeholder-value',
+     *     // Required. Job ID of the query job.
+     *     jobId: '[^/]+',
+     *     // The geographic location of the job. You must specify the location to run the job for the following scenarios: * If the location to run a job is not in the `us` or the `eu` multi-regional location * If the job's location is in a single region (for example, `us-central1`) For more information, see how to [specify locations](https://cloud.google.com/bigquery/docs/locations#specify_locations).
+     *     location: 'placeholder-value',
+     *     // Maximum number of results to read.
+     *     maxResults: 'placeholder-value',
+     *     // Page token, returned by a previous call, to request the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Project ID of the query job.
+     *     projectId: '[^/]+',
+     *     // Zero-based index of the starting row.
+     *     startIndex: 'placeholder-value',
+     *     // Optional: Specifies the maximum amount of time, in milliseconds, that the client is willing to wait for the query to complete. By default, this limit is 10 seconds (10,000 milliseconds). If the query is complete, the jobComplete field in the response is true. If the query has not yet completed, jobComplete is false. You can request a longer timeout period in the timeoutMs field. However, the call is not guaranteed to wait for the specified timeout; it typically returns after around 200 seconds (200,000 milliseconds), even if the query is not complete. If jobComplete is false, you can continue to wait for the query to complete by calling the getQueryResults method until the jobComplete field in the getQueryResults response is true.
+     *     timeoutMs: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cacheHit": false,
+     *   //   "errors": [],
+     *   //   "etag": "my_etag",
+     *   //   "jobComplete": false,
+     *   //   "jobReference": {},
+     *   //   "kind": "my_kind",
+     *   //   "numDmlAffectedRows": "my_numDmlAffectedRows",
+     *   //   "pageToken": "my_pageToken",
+     *   //   "rows": [],
+     *   //   "schema": {},
+     *   //   "totalBytesProcessed": "my_totalBytesProcessed",
+     *   //   "totalRows": "my_totalRows"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6562,11 +7485,11 @@ export namespace bigquery_v2 {
     getQueryResults(
       params: Params$Resource$Jobs$Getqueryresults,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getQueryResults(
       params?: Params$Resource$Jobs$Getqueryresults,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GetQueryResultsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GetQueryResultsResponse>>;
     getQueryResults(
       params: Params$Resource$Jobs$Getqueryresults,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6601,8 +7524,8 @@ export namespace bigquery_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GetQueryResultsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GetQueryResultsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Jobs$Getqueryresults;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6647,6 +7570,90 @@ export namespace bigquery_v2 {
 
     /**
      * Starts a new asynchronous job. This API has two different kinds of endpoint URIs, as this method supports a variety of use cases. * The *Metadata* URI is used for most interactions, as it accepts the job configuration directly. * The *Upload* URI is ONLY for the case when you're sending both a load job configuration and a data stream together. In this case, the Upload URI accepts the job configuration and the data as two distinct multipart MIME parts.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigquery = google.bigquery('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_only',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquery.jobs.insert({
+     *     // Project ID of project that will be billed for the job.
+     *     projectId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "configuration": {},
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "jobCreationReason": {},
+     *       //   "jobReference": {},
+     *       //   "kind": "my_kind",
+     *       //   "principal_subject": "my_principal_subject",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "statistics": {},
+     *       //   "status": {},
+     *       //   "user_email": "my_user_email"
+     *       // }
+     *     },
+     *     media: {
+     *       mimeType: 'placeholder-value',
+     *       body: 'placeholder-value',
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "configuration": {},
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "jobCreationReason": {},
+     *   //   "jobReference": {},
+     *   //   "kind": "my_kind",
+     *   //   "principal_subject": "my_principal_subject",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "statistics": {},
+     *   //   "status": {},
+     *   //   "user_email": "my_user_email"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6656,11 +7663,11 @@ export namespace bigquery_v2 {
     insert(
       params: Params$Resource$Jobs$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Jobs$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Job>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Job>>;
     insert(
       params: Params$Resource$Jobs$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6689,7 +7696,10 @@ export namespace bigquery_v2 {
       callback?:
         | BodyResponseCallback<Schema$Job>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Job> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Job>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Jobs$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6737,6 +7747,76 @@ export namespace bigquery_v2 {
 
     /**
      * Lists all jobs that you started in the specified project. Job information is available for a six month period after creation. The job list is sorted in reverse chronological order, by job creation time. Requires the Can View project role, or the Is Owner project role if you set the allUsers property.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigquery = google.bigquery('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquery.jobs.list({
+     *     // Whether to display jobs owned by all users in the project. Default False.
+     *     allUsers: 'placeholder-value',
+     *     // Max value for job creation time, in milliseconds since the POSIX epoch. If set, only jobs created before or at this timestamp are returned.
+     *     maxCreationTime: 'placeholder-value',
+     *     // The maximum number of results to return in a single response page. Leverage the page tokens to iterate through the entire collection.
+     *     maxResults: 'placeholder-value',
+     *     // Min value for job creation time, in milliseconds since the POSIX epoch. If set, only jobs created after or at this timestamp are returned.
+     *     minCreationTime: 'placeholder-value',
+     *     // Page token, returned by a previous call, to request the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // If set, show only child jobs of the specified parent. Otherwise, show all top-level jobs.
+     *     parentJobId: 'placeholder-value',
+     *     // Project ID of the jobs to list.
+     *     projectId: '[^/]+',
+     *     // Restrict information returned to a set of selected fields
+     *     projection: 'placeholder-value',
+     *     // Filter for job state
+     *     stateFilter: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "jobs": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6746,11 +7826,11 @@ export namespace bigquery_v2 {
     list(
       params: Params$Resource$Jobs$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Jobs$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$JobList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$JobList>>;
     list(
       params: Params$Resource$Jobs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6779,7 +7859,10 @@ export namespace bigquery_v2 {
       callback?:
         | BodyResponseCallback<Schema$JobList>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$JobList> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$JobList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Jobs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6824,6 +7907,107 @@ export namespace bigquery_v2 {
 
     /**
      * Runs a BigQuery SQL query synchronously and returns query results if the query completes within a specified timeout.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigquery = google.bigquery('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquery.jobs.query({
+     *     // Required. Project ID of the query request.
+     *     projectId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "connectionProperties": [],
+     *       //   "continuous": false,
+     *       //   "createSession": false,
+     *       //   "defaultDataset": {},
+     *       //   "destinationEncryptionConfiguration": {},
+     *       //   "dryRun": false,
+     *       //   "formatOptions": {},
+     *       //   "jobCreationMode": "my_jobCreationMode",
+     *       //   "jobTimeoutMs": "my_jobTimeoutMs",
+     *       //   "kind": "my_kind",
+     *       //   "labels": {},
+     *       //   "location": "my_location",
+     *       //   "maxResults": 0,
+     *       //   "maximumBytesBilled": "my_maximumBytesBilled",
+     *       //   "parameterMode": "my_parameterMode",
+     *       //   "preserveNulls": false,
+     *       //   "query": "my_query",
+     *       //   "queryParameters": [],
+     *       //   "requestId": "my_requestId",
+     *       //   "reservation": "my_reservation",
+     *       //   "timeoutMs": 0,
+     *       //   "useLegacySql": false,
+     *       //   "useQueryCache": false,
+     *       //   "writeIncrementalResults": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cacheHit": false,
+     *   //   "creationTime": "my_creationTime",
+     *   //   "dmlStats": {},
+     *   //   "endTime": "my_endTime",
+     *   //   "errors": [],
+     *   //   "jobComplete": false,
+     *   //   "jobCreationReason": {},
+     *   //   "jobReference": {},
+     *   //   "kind": "my_kind",
+     *   //   "location": "my_location",
+     *   //   "numDmlAffectedRows": "my_numDmlAffectedRows",
+     *   //   "pageToken": "my_pageToken",
+     *   //   "queryId": "my_queryId",
+     *   //   "rows": [],
+     *   //   "schema": {},
+     *   //   "sessionInfo": {},
+     *   //   "startTime": "my_startTime",
+     *   //   "totalBytesBilled": "my_totalBytesBilled",
+     *   //   "totalBytesProcessed": "my_totalBytesProcessed",
+     *   //   "totalRows": "my_totalRows",
+     *   //   "totalSlotMs": "my_totalSlotMs"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6833,11 +8017,11 @@ export namespace bigquery_v2 {
     query(
       params: Params$Resource$Jobs$Query,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     query(
       params?: Params$Resource$Jobs$Query,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$QueryResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$QueryResponse>>;
     query(
       params: Params$Resource$Jobs$Query,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6866,7 +8050,10 @@ export namespace bigquery_v2 {
       callback?:
         | BodyResponseCallback<Schema$QueryResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$QueryResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$QueryResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Jobs$Query;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7070,6 +8257,54 @@ export namespace bigquery_v2 {
 
     /**
      * Deletes the model specified by modelId from the dataset.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigquery = google.bigquery('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquery.models.delete({
+     *     // Required. Dataset ID of the model to delete.
+     *     datasetId: '[^/]+',
+     *     // Required. Model ID of the model to delete.
+     *     modelId: '[^/]+',
+     *     // Required. Project ID of the model to delete.
+     *     projectId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7079,11 +8314,11 @@ export namespace bigquery_v2 {
     delete(
       params: Params$Resource$Models$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Models$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Models$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7110,7 +8345,10 @@ export namespace bigquery_v2 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Models$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7155,6 +8393,80 @@ export namespace bigquery_v2 {
 
     /**
      * Gets the specified model resource by model ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigquery = google.bigquery('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquery.models.get({
+     *     // Required. Dataset ID of the requested model.
+     *     datasetId: '[^/]+',
+     *     // Required. Model ID of the requested model.
+     *     modelId: '[^/]+',
+     *     // Required. Project ID of the requested model.
+     *     projectId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bestTrialId": "my_bestTrialId",
+     *   //   "creationTime": "my_creationTime",
+     *   //   "defaultTrialId": "my_defaultTrialId",
+     *   //   "description": "my_description",
+     *   //   "encryptionConfiguration": {},
+     *   //   "etag": "my_etag",
+     *   //   "expirationTime": "my_expirationTime",
+     *   //   "featureColumns": [],
+     *   //   "friendlyName": "my_friendlyName",
+     *   //   "hparamSearchSpaces": {},
+     *   //   "hparamTrials": [],
+     *   //   "labelColumns": [],
+     *   //   "labels": {},
+     *   //   "lastModifiedTime": "my_lastModifiedTime",
+     *   //   "location": "my_location",
+     *   //   "modelReference": {},
+     *   //   "modelType": "my_modelType",
+     *   //   "optimalTrialIds": [],
+     *   //   "remoteModelInfo": {},
+     *   //   "trainingRuns": [],
+     *   //   "transformColumns": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7164,11 +8476,11 @@ export namespace bigquery_v2 {
     get(
       params: Params$Resource$Models$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Models$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Model>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Model>>;
     get(
       params: Params$Resource$Models$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7197,7 +8509,10 @@ export namespace bigquery_v2 {
       callback?:
         | BodyResponseCallback<Schema$Model>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Model> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Model>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Models$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7242,6 +8557,63 @@ export namespace bigquery_v2 {
 
     /**
      * Lists all models in the specified dataset. Requires the READER dataset role. After retrieving the list of models, you can get information about a particular model by calling the models.get method.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigquery = google.bigquery('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquery.models.list({
+     *     // Required. Dataset ID of the models to list.
+     *     datasetId: '[^/]+',
+     *     // The maximum number of results to return in a single response page. Leverage the page tokens to iterate through the entire collection.
+     *     maxResults: 'placeholder-value',
+     *     // Page token, returned by a previous call to request the next page of results
+     *     pageToken: 'placeholder-value',
+     *     // Required. Project ID of the models to list.
+     *     projectId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "models": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7251,11 +8623,11 @@ export namespace bigquery_v2 {
     list(
       params: Params$Resource$Models$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Models$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListModelsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListModelsResponse>>;
     list(
       params: Params$Resource$Models$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7286,8 +8658,8 @@ export namespace bigquery_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListModelsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListModelsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Models$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7332,6 +8704,107 @@ export namespace bigquery_v2 {
 
     /**
      * Patch specific fields in the specified model.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigquery = google.bigquery('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquery.models.patch({
+     *     // Required. Dataset ID of the model to patch.
+     *     datasetId: '[^/]+',
+     *     // Required. Model ID of the model to patch.
+     *     modelId: '[^/]+',
+     *     // Required. Project ID of the model to patch.
+     *     projectId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bestTrialId": "my_bestTrialId",
+     *       //   "creationTime": "my_creationTime",
+     *       //   "defaultTrialId": "my_defaultTrialId",
+     *       //   "description": "my_description",
+     *       //   "encryptionConfiguration": {},
+     *       //   "etag": "my_etag",
+     *       //   "expirationTime": "my_expirationTime",
+     *       //   "featureColumns": [],
+     *       //   "friendlyName": "my_friendlyName",
+     *       //   "hparamSearchSpaces": {},
+     *       //   "hparamTrials": [],
+     *       //   "labelColumns": [],
+     *       //   "labels": {},
+     *       //   "lastModifiedTime": "my_lastModifiedTime",
+     *       //   "location": "my_location",
+     *       //   "modelReference": {},
+     *       //   "modelType": "my_modelType",
+     *       //   "optimalTrialIds": [],
+     *       //   "remoteModelInfo": {},
+     *       //   "trainingRuns": [],
+     *       //   "transformColumns": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bestTrialId": "my_bestTrialId",
+     *   //   "creationTime": "my_creationTime",
+     *   //   "defaultTrialId": "my_defaultTrialId",
+     *   //   "description": "my_description",
+     *   //   "encryptionConfiguration": {},
+     *   //   "etag": "my_etag",
+     *   //   "expirationTime": "my_expirationTime",
+     *   //   "featureColumns": [],
+     *   //   "friendlyName": "my_friendlyName",
+     *   //   "hparamSearchSpaces": {},
+     *   //   "hparamTrials": [],
+     *   //   "labelColumns": [],
+     *   //   "labels": {},
+     *   //   "lastModifiedTime": "my_lastModifiedTime",
+     *   //   "location": "my_location",
+     *   //   "modelReference": {},
+     *   //   "modelType": "my_modelType",
+     *   //   "optimalTrialIds": [],
+     *   //   "remoteModelInfo": {},
+     *   //   "trainingRuns": [],
+     *   //   "transformColumns": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7341,11 +8814,11 @@ export namespace bigquery_v2 {
     patch(
       params: Params$Resource$Models$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Models$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Model>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Model>>;
     patch(
       params: Params$Resource$Models$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7374,7 +8847,10 @@ export namespace bigquery_v2 {
       callback?:
         | BodyResponseCallback<Schema$Model>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Model> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Model>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Models$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7492,6 +8968,57 @@ export namespace bigquery_v2 {
 
     /**
      * RPC to get the service account for a project used for interactions with Google Cloud KMS
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigquery = google.bigquery('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquery.projects.getServiceAccount({
+     *     // Required. ID of the project.
+     *     projectId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "email": "my_email",
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7501,11 +9028,11 @@ export namespace bigquery_v2 {
     getServiceAccount(
       params: Params$Resource$Projects$Getserviceaccount,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getServiceAccount(
       params?: Params$Resource$Projects$Getserviceaccount,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GetServiceAccountResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GetServiceAccountResponse>>;
     getServiceAccount(
       params: Params$Resource$Projects$Getserviceaccount,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7540,8 +9067,8 @@ export namespace bigquery_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GetServiceAccountResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GetServiceAccountResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Getserviceaccount;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7586,6 +9113,62 @@ export namespace bigquery_v2 {
 
     /**
      * RPC to list projects to which the user has been granted any project role. Users of this method are encouraged to consider the [Resource Manager](https://cloud.google.com/resource-manager/docs/) API, which provides the underlying data for this method and has more capabilities.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigquery = google.bigquery('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquery.projects.list({
+     *     // `maxResults` unset returns all results, up to 50 per page. Additionally, the number of projects in a page may be fewer than `maxResults` because projects are retrieved and then filtered to only projects with the BigQuery API enabled.
+     *     maxResults: 'placeholder-value',
+     *     // Page token, returned by a previous call, to request the next page of results. If not present, no further pages are present.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "projects": [],
+     *   //   "totalItems": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7595,11 +9178,11 @@ export namespace bigquery_v2 {
     list(
       params: Params$Resource$Projects$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ProjectList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ProjectList>>;
     list(
       params: Params$Resource$Projects$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7628,7 +9211,10 @@ export namespace bigquery_v2 {
       callback?:
         | BodyResponseCallback<Schema$ProjectList>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ProjectList> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ProjectList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Projects$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7698,6 +9284,54 @@ export namespace bigquery_v2 {
 
     /**
      * Deletes the routine specified by routineId from the dataset.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigquery = google.bigquery('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquery.routines.delete({
+     *     // Required. Dataset ID of the routine to delete
+     *     datasetId: '[^/]+',
+     *     // Required. Project ID of the routine to delete
+     *     projectId: '[^/]+',
+     *     // Required. Routine ID of the routine to delete
+     *     routineId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7707,11 +9341,11 @@ export namespace bigquery_v2 {
     delete(
       params: Params$Resource$Routines$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Routines$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Routines$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7738,7 +9372,10 @@ export namespace bigquery_v2 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Routines$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7783,6 +9420,79 @@ export namespace bigquery_v2 {
 
     /**
      * Gets the specified routine resource by routine ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigquery = google.bigquery('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquery.routines.get({
+     *     // Required. Dataset ID of the requested routine
+     *     datasetId: '[^/]+',
+     *     // Required. Project ID of the requested routine
+     *     projectId: '[^/]+',
+     *     // If set, only the Routine fields in the field mask are returned in the response. If unset, all Routine fields are returned.
+     *     readMask: 'placeholder-value',
+     *     // Required. Routine ID of the requested routine
+     *     routineId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "arguments": [],
+     *   //   "creationTime": "my_creationTime",
+     *   //   "dataGovernanceType": "my_dataGovernanceType",
+     *   //   "definitionBody": "my_definitionBody",
+     *   //   "description": "my_description",
+     *   //   "determinismLevel": "my_determinismLevel",
+     *   //   "etag": "my_etag",
+     *   //   "importedLibraries": [],
+     *   //   "language": "my_language",
+     *   //   "lastModifiedTime": "my_lastModifiedTime",
+     *   //   "remoteFunctionOptions": {},
+     *   //   "returnTableType": {},
+     *   //   "returnType": {},
+     *   //   "routineReference": {},
+     *   //   "routineType": "my_routineType",
+     *   //   "securityMode": "my_securityMode",
+     *   //   "sparkOptions": {},
+     *   //   "strictMode": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7792,11 +9502,11 @@ export namespace bigquery_v2 {
     get(
       params: Params$Resource$Routines$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Routines$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Routine>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Routine>>;
     get(
       params: Params$Resource$Routines$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7825,7 +9535,10 @@ export namespace bigquery_v2 {
       callback?:
         | BodyResponseCallback<Schema$Routine>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Routine> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Routine>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Routines$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7870,6 +9583,67 @@ export namespace bigquery_v2 {
 
     /**
      * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigquery = google.bigquery('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquery.routines.getIamPolicy({
+     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource: 'projects/my-project/datasets/my-dataset/routines/my-routine',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "options": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7879,11 +9653,11 @@ export namespace bigquery_v2 {
     getIamPolicy(
       params: Params$Resource$Routines$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Routines$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Routines$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7912,7 +9686,10 @@ export namespace bigquery_v2 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Routines$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7958,6 +9735,99 @@ export namespace bigquery_v2 {
 
     /**
      * Creates a new routine in the dataset.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigquery = google.bigquery('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquery.routines.insert({
+     *     // Required. Dataset ID of the new routine
+     *     datasetId: '[^/]+',
+     *     // Required. Project ID of the new routine
+     *     projectId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "arguments": [],
+     *       //   "creationTime": "my_creationTime",
+     *       //   "dataGovernanceType": "my_dataGovernanceType",
+     *       //   "definitionBody": "my_definitionBody",
+     *       //   "description": "my_description",
+     *       //   "determinismLevel": "my_determinismLevel",
+     *       //   "etag": "my_etag",
+     *       //   "importedLibraries": [],
+     *       //   "language": "my_language",
+     *       //   "lastModifiedTime": "my_lastModifiedTime",
+     *       //   "remoteFunctionOptions": {},
+     *       //   "returnTableType": {},
+     *       //   "returnType": {},
+     *       //   "routineReference": {},
+     *       //   "routineType": "my_routineType",
+     *       //   "securityMode": "my_securityMode",
+     *       //   "sparkOptions": {},
+     *       //   "strictMode": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "arguments": [],
+     *   //   "creationTime": "my_creationTime",
+     *   //   "dataGovernanceType": "my_dataGovernanceType",
+     *   //   "definitionBody": "my_definitionBody",
+     *   //   "description": "my_description",
+     *   //   "determinismLevel": "my_determinismLevel",
+     *   //   "etag": "my_etag",
+     *   //   "importedLibraries": [],
+     *   //   "language": "my_language",
+     *   //   "lastModifiedTime": "my_lastModifiedTime",
+     *   //   "remoteFunctionOptions": {},
+     *   //   "returnTableType": {},
+     *   //   "returnType": {},
+     *   //   "routineReference": {},
+     *   //   "routineType": "my_routineType",
+     *   //   "securityMode": "my_securityMode",
+     *   //   "sparkOptions": {},
+     *   //   "strictMode": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7967,11 +9837,11 @@ export namespace bigquery_v2 {
     insert(
       params: Params$Resource$Routines$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Routines$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Routine>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Routine>>;
     insert(
       params: Params$Resource$Routines$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8000,7 +9870,10 @@ export namespace bigquery_v2 {
       callback?:
         | BodyResponseCallback<Schema$Routine>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Routine> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Routine>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Routines$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8045,6 +9918,67 @@ export namespace bigquery_v2 {
 
     /**
      * Lists all routines in the specified dataset. Requires the READER dataset role.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigquery = google.bigquery('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquery.routines.list({
+     *     // Required. Dataset ID of the routines to list
+     *     datasetId: '[^/]+',
+     *     // If set, then only the Routines matching this filter are returned. The supported format is `routineType:{RoutineType\}`, where `{RoutineType\}` is a RoutineType enum. For example: `routineType:SCALAR_FUNCTION`.
+     *     filter: 'placeholder-value',
+     *     // The maximum number of results to return in a single response page. Leverage the page tokens to iterate through the entire collection.
+     *     maxResults: 'placeholder-value',
+     *     // Page token, returned by a previous call, to request the next page of results
+     *     pageToken: 'placeholder-value',
+     *     // Required. Project ID of the routines to list
+     *     projectId: '[^/]+',
+     *     // If set, then only the Routine fields in the field mask, as well as project_id, dataset_id and routine_id, are returned in the response. If unset, then the following Routine fields are returned: etag, project_id, dataset_id, routine_id, routine_type, creation_time, last_modified_time, and language.
+     *     readMask: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "routines": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8054,11 +9988,11 @@ export namespace bigquery_v2 {
     list(
       params: Params$Resource$Routines$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Routines$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListRoutinesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListRoutinesResponse>>;
     list(
       params: Params$Resource$Routines$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8091,8 +10025,8 @@ export namespace bigquery_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListRoutinesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListRoutinesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Routines$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8137,6 +10071,67 @@ export namespace bigquery_v2 {
 
     /**
      * Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigquery = google.bigquery('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquery.routines.setIamPolicy({
+     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource: 'projects/my-project/datasets/my-dataset/routines/my-routine',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "policy": {},
+     *       //   "updateMask": "my_updateMask"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8146,11 +10141,11 @@ export namespace bigquery_v2 {
     setIamPolicy(
       params: Params$Resource$Routines$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Routines$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Routines$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8179,7 +10174,10 @@ export namespace bigquery_v2 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Routines$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8225,6 +10223,101 @@ export namespace bigquery_v2 {
 
     /**
      * Updates information in an existing routine. The update method replaces the entire Routine resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigquery = google.bigquery('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquery.routines.update({
+     *     // Required. Dataset ID of the routine to update
+     *     datasetId: '[^/]+',
+     *     // Required. Project ID of the routine to update
+     *     projectId: '[^/]+',
+     *     // Required. Routine ID of the routine to update
+     *     routineId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "arguments": [],
+     *       //   "creationTime": "my_creationTime",
+     *       //   "dataGovernanceType": "my_dataGovernanceType",
+     *       //   "definitionBody": "my_definitionBody",
+     *       //   "description": "my_description",
+     *       //   "determinismLevel": "my_determinismLevel",
+     *       //   "etag": "my_etag",
+     *       //   "importedLibraries": [],
+     *       //   "language": "my_language",
+     *       //   "lastModifiedTime": "my_lastModifiedTime",
+     *       //   "remoteFunctionOptions": {},
+     *       //   "returnTableType": {},
+     *       //   "returnType": {},
+     *       //   "routineReference": {},
+     *       //   "routineType": "my_routineType",
+     *       //   "securityMode": "my_securityMode",
+     *       //   "sparkOptions": {},
+     *       //   "strictMode": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "arguments": [],
+     *   //   "creationTime": "my_creationTime",
+     *   //   "dataGovernanceType": "my_dataGovernanceType",
+     *   //   "definitionBody": "my_definitionBody",
+     *   //   "description": "my_description",
+     *   //   "determinismLevel": "my_determinismLevel",
+     *   //   "etag": "my_etag",
+     *   //   "importedLibraries": [],
+     *   //   "language": "my_language",
+     *   //   "lastModifiedTime": "my_lastModifiedTime",
+     *   //   "remoteFunctionOptions": {},
+     *   //   "returnTableType": {},
+     *   //   "returnType": {},
+     *   //   "routineReference": {},
+     *   //   "routineType": "my_routineType",
+     *   //   "securityMode": "my_securityMode",
+     *   //   "sparkOptions": {},
+     *   //   "strictMode": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8234,11 +10327,11 @@ export namespace bigquery_v2 {
     update(
       params: Params$Resource$Routines$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Routines$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Routine>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Routine>>;
     update(
       params: Params$Resource$Routines$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8267,7 +10360,10 @@ export namespace bigquery_v2 {
       callback?:
         | BodyResponseCallback<Schema$Routine>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Routine> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Routine>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Routines$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8436,6 +10532,64 @@ export namespace bigquery_v2 {
 
     /**
      * Deletes provided row access policies.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigquery = google.bigquery('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquery.rowAccessPolicies.batchDelete({
+     *     // Required. Dataset ID of the table to delete the row access policies.
+     *     datasetId: '[^/]+',
+     *     // Required. Project ID of the table to delete the row access policies.
+     *     projectId: '[^/]+',
+     *     // Required. Table ID of the table to delete the row access policies.
+     *     tableId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "force": false,
+     *       //   "policyIds": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8445,11 +10599,11 @@ export namespace bigquery_v2 {
     batchDelete(
       params: Params$Resource$Rowaccesspolicies$Batchdelete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     batchDelete(
       params?: Params$Resource$Rowaccesspolicies$Batchdelete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     batchDelete(
       params: Params$Resource$Rowaccesspolicies$Batchdelete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8476,7 +10630,10 @@ export namespace bigquery_v2 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Rowaccesspolicies$Batchdelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8522,6 +10679,59 @@ export namespace bigquery_v2 {
 
     /**
      * Deletes a row access policy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigquery = google.bigquery('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquery.rowAccessPolicies.delete({
+     *     // Required. Dataset ID of the table to delete the row access policy.
+     *     datasetId: '[^/]+',
+     *     // If set to true, it deletes the row access policy even if it's the last row access policy on the table and the deletion will widen the access rather narrowing it.
+     *     force: 'placeholder-value',
+     *     // Required. Policy ID of the row access policy.
+     *     policyId: '[^/]+',
+     *     // Required. Project ID of the table to delete the row access policy.
+     *     projectId: '[^/]+',
+     *     // Required. Table ID of the table to delete the row access policy.
+     *     tableId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8531,11 +10741,11 @@ export namespace bigquery_v2 {
     delete(
       params: Params$Resource$Rowaccesspolicies$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Rowaccesspolicies$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Rowaccesspolicies$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8562,7 +10772,10 @@ export namespace bigquery_v2 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Rowaccesspolicies$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8608,6 +10821,67 @@ export namespace bigquery_v2 {
 
     /**
      * Gets the specified row access policy by policy ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigquery = google.bigquery('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquery.rowAccessPolicies.get({
+     *     // Required. Dataset ID of the table to get the row access policy.
+     *     datasetId: '[^/]+',
+     *     // Required. Policy ID of the row access policy.
+     *     policyId: '[^/]+',
+     *     // Required. Project ID of the table to get the row access policy.
+     *     projectId: '[^/]+',
+     *     // Required. Table ID of the table to get the row access policy.
+     *     tableId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "creationTime": "my_creationTime",
+     *   //   "etag": "my_etag",
+     *   //   "filterPredicate": "my_filterPredicate",
+     *   //   "grantees": [],
+     *   //   "lastModifiedTime": "my_lastModifiedTime",
+     *   //   "rowAccessPolicyReference": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8617,11 +10891,11 @@ export namespace bigquery_v2 {
     get(
       params: Params$Resource$Rowaccesspolicies$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Rowaccesspolicies$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RowAccessPolicy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$RowAccessPolicy>>;
     get(
       params: Params$Resource$Rowaccesspolicies$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8650,7 +10924,10 @@ export namespace bigquery_v2 {
       callback?:
         | BodyResponseCallback<Schema$RowAccessPolicy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$RowAccessPolicy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$RowAccessPolicy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Rowaccesspolicies$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8696,6 +10973,68 @@ export namespace bigquery_v2 {
 
     /**
      * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigquery = google.bigquery('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquery.rowAccessPolicies.getIamPolicy({
+     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource:
+     *       'projects/my-project/datasets/my-dataset/tables/my-table/rowAccessPolicies/my-rowAccessPolicie',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "options": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8705,11 +11044,11 @@ export namespace bigquery_v2 {
     getIamPolicy(
       params: Params$Resource$Rowaccesspolicies$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Rowaccesspolicies$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Rowaccesspolicies$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8738,7 +11077,10 @@ export namespace bigquery_v2 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Rowaccesspolicies$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8784,6 +11126,78 @@ export namespace bigquery_v2 {
 
     /**
      * Creates a row access policy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigquery = google.bigquery('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquery.rowAccessPolicies.insert({
+     *     // Required. Dataset ID of the table to get the row access policy.
+     *     datasetId: '[^/]+',
+     *     // Required. Project ID of the table to get the row access policy.
+     *     projectId: '[^/]+',
+     *     // Required. Table ID of the table to get the row access policy.
+     *     tableId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "creationTime": "my_creationTime",
+     *       //   "etag": "my_etag",
+     *       //   "filterPredicate": "my_filterPredicate",
+     *       //   "grantees": [],
+     *       //   "lastModifiedTime": "my_lastModifiedTime",
+     *       //   "rowAccessPolicyReference": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "creationTime": "my_creationTime",
+     *   //   "etag": "my_etag",
+     *   //   "filterPredicate": "my_filterPredicate",
+     *   //   "grantees": [],
+     *   //   "lastModifiedTime": "my_lastModifiedTime",
+     *   //   "rowAccessPolicyReference": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8793,11 +11207,11 @@ export namespace bigquery_v2 {
     insert(
       params: Params$Resource$Rowaccesspolicies$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Rowaccesspolicies$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RowAccessPolicy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$RowAccessPolicy>>;
     insert(
       params: Params$Resource$Rowaccesspolicies$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8826,7 +11240,10 @@ export namespace bigquery_v2 {
       callback?:
         | BodyResponseCallback<Schema$RowAccessPolicy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$RowAccessPolicy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$RowAccessPolicy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Rowaccesspolicies$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8872,6 +11289,65 @@ export namespace bigquery_v2 {
 
     /**
      * Lists all row access policies on the specified table.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigquery = google.bigquery('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquery.rowAccessPolicies.list({
+     *     // Required. Dataset ID of row access policies to list.
+     *     datasetId: '[^/]+',
+     *     // The maximum number of results to return in a single response page. Leverage the page tokens to iterate through the entire collection.
+     *     pageSize: 'placeholder-value',
+     *     // Page token, returned by a previous call, to request the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Project ID of the row access policies to list.
+     *     projectId: '[^/]+',
+     *     // Required. Table ID of the table to list row access policies.
+     *     tableId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "rowAccessPolicies": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8881,11 +11357,11 @@ export namespace bigquery_v2 {
     list(
       params: Params$Resource$Rowaccesspolicies$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Rowaccesspolicies$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListRowAccessPoliciesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListRowAccessPoliciesResponse>>;
     list(
       params: Params$Resource$Rowaccesspolicies$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8920,8 +11396,8 @@ export namespace bigquery_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListRowAccessPoliciesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListRowAccessPoliciesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Rowaccesspolicies$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8969,6 +11445,65 @@ export namespace bigquery_v2 {
 
     /**
      * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigquery = google.bigquery('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquery.rowAccessPolicies.testIamPermissions({
+     *     // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource:
+     *       'projects/my-project/datasets/my-dataset/tables/my-table/rowAccessPolicies/my-rowAccessPolicie',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "permissions": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8978,11 +11513,11 @@ export namespace bigquery_v2 {
     testIamPermissions(
       params: Params$Resource$Rowaccesspolicies$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Rowaccesspolicies$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Rowaccesspolicies$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9017,8 +11552,8 @@ export namespace bigquery_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Rowaccesspolicies$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9063,6 +11598,80 @@ export namespace bigquery_v2 {
 
     /**
      * Updates a row access policy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigquery = google.bigquery('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquery.rowAccessPolicies.update({
+     *     // Required. Dataset ID of the table to get the row access policy.
+     *     datasetId: '[^/]+',
+     *     // Required. Policy ID of the row access policy.
+     *     policyId: '[^/]+',
+     *     // Required. Project ID of the table to get the row access policy.
+     *     projectId: '[^/]+',
+     *     // Required. Table ID of the table to get the row access policy.
+     *     tableId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "creationTime": "my_creationTime",
+     *       //   "etag": "my_etag",
+     *       //   "filterPredicate": "my_filterPredicate",
+     *       //   "grantees": [],
+     *       //   "lastModifiedTime": "my_lastModifiedTime",
+     *       //   "rowAccessPolicyReference": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "creationTime": "my_creationTime",
+     *   //   "etag": "my_etag",
+     *   //   "filterPredicate": "my_filterPredicate",
+     *   //   "grantees": [],
+     *   //   "lastModifiedTime": "my_lastModifiedTime",
+     *   //   "rowAccessPolicyReference": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9072,11 +11681,11 @@ export namespace bigquery_v2 {
     update(
       params: Params$Resource$Rowaccesspolicies$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Rowaccesspolicies$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RowAccessPolicy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$RowAccessPolicy>>;
     update(
       params: Params$Resource$Rowaccesspolicies$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9105,7 +11714,10 @@ export namespace bigquery_v2 {
       callback?:
         | BodyResponseCallback<Schema$RowAccessPolicy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$RowAccessPolicy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$RowAccessPolicy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Rowaccesspolicies$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9312,6 +11924,74 @@ export namespace bigquery_v2 {
 
     /**
      * Streams data into BigQuery one record at a time without needing to run a load job.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigquery = google.bigquery('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/bigquery.insertdata',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquery.tabledata.insertAll({
+     *     // Required. Dataset ID of the destination.
+     *     datasetId: '[^/]+',
+     *     // Required. Project ID of the destination.
+     *     projectId: '[^/]+',
+     *     // Required. Table ID of the destination.
+     *     tableId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "ignoreUnknownValues": false,
+     *       //   "kind": "my_kind",
+     *       //   "rows": [],
+     *       //   "skipInvalidRows": false,
+     *       //   "templateSuffix": "my_templateSuffix",
+     *       //   "traceId": "my_traceId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "insertErrors": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9321,11 +12001,11 @@ export namespace bigquery_v2 {
     insertAll(
       params: Params$Resource$Tabledata$Insertall,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insertAll(
       params?: Params$Resource$Tabledata$Insertall,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TableDataInsertAllResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TableDataInsertAllResponse>>;
     insertAll(
       params: Params$Resource$Tabledata$Insertall,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9360,8 +12040,8 @@ export namespace bigquery_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TableDataInsertAllResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TableDataInsertAllResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Tabledata$Insertall;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9407,6 +12087,74 @@ export namespace bigquery_v2 {
 
     /**
      * List the content of a table in rows.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigquery = google.bigquery('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquery.tabledata.list({
+     *     // Required. Dataset id of the table to list.
+     *     datasetId: '[^/]+',
+     *     // Optional. Output timestamp as usec int64. Default is false.
+     *     'formatOptions.useInt64Timestamp': 'placeholder-value',
+     *     // Row limit of the table.
+     *     maxResults: 'placeholder-value',
+     *     // To retrieve the next page of table data, set this field to the string provided in the pageToken field of the response body from your previous call to tabledata.list.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Project id of the table to list.
+     *     projectId: '[^/]+',
+     *     // Subset of fields to return, supports select into sub fields. Example: selected_fields = "a,e.d.f";
+     *     selectedFields: 'placeholder-value',
+     *     // Start row index of the table.
+     *     startIndex: 'placeholder-value',
+     *     // Required. Table id of the table to list.
+     *     tableId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "kind": "my_kind",
+     *   //   "pageToken": "my_pageToken",
+     *   //   "rows": [],
+     *   //   "totalRows": "my_totalRows"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9416,11 +12164,11 @@ export namespace bigquery_v2 {
     list(
       params: Params$Resource$Tabledata$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Tabledata$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TableDataList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TableDataList>>;
     list(
       params: Params$Resource$Tabledata$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9449,7 +12197,10 @@ export namespace bigquery_v2 {
       callback?:
         | BodyResponseCallback<Schema$TableDataList>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$TableDataList> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$TableDataList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tabledata$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9556,6 +12307,54 @@ export namespace bigquery_v2 {
 
     /**
      * Deletes the table specified by tableId from the dataset. If the table contains data, all the data will be deleted.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigquery = google.bigquery('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquery.tables.delete({
+     *     // Required. Dataset ID of the table to delete
+     *     datasetId: '[^/]+',
+     *     // Required. Project ID of the table to delete
+     *     projectId: '[^/]+',
+     *     // Required. Table ID of the table to delete
+     *     tableId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9565,11 +12364,11 @@ export namespace bigquery_v2 {
     delete(
       params: Params$Resource$Tables$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Tables$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Tables$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9596,7 +12395,10 @@ export namespace bigquery_v2 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tables$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9641,6 +12443,115 @@ export namespace bigquery_v2 {
 
     /**
      * Gets the specified table resource by table ID. This method does not return the data in the table, it only returns the table resource, which describes the structure of this table.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigquery = google.bigquery('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquery.tables.get({
+     *     // Required. Dataset ID of the requested table
+     *     datasetId: '[^/]+',
+     *     // Required. Project ID of the requested table
+     *     projectId: '[^/]+',
+     *     // List of table schema fields to return (comma-separated). If unspecified, all fields are returned. A fieldMask cannot be used here because the fields will automatically be converted from camelCase to snake_case and the conversion will fail if there are underscores. Since these are fields in BigQuery table schemas, underscores are allowed.
+     *     selectedFields: 'placeholder-value',
+     *     // Required. Table ID of the requested table
+     *     tableId: '[^/]+',
+     *     // Optional. Specifies the view that determines which table information is returned. By default, basic table information and storage statistics (STORAGE_STATS) are returned.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "biglakeConfiguration": {},
+     *   //   "cloneDefinition": {},
+     *   //   "clustering": {},
+     *   //   "creationTime": "my_creationTime",
+     *   //   "defaultCollation": "my_defaultCollation",
+     *   //   "defaultRoundingMode": "my_defaultRoundingMode",
+     *   //   "description": "my_description",
+     *   //   "encryptionConfiguration": {},
+     *   //   "etag": "my_etag",
+     *   //   "expirationTime": "my_expirationTime",
+     *   //   "externalCatalogTableOptions": {},
+     *   //   "externalDataConfiguration": {},
+     *   //   "friendlyName": "my_friendlyName",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "labels": {},
+     *   //   "lastModifiedTime": "my_lastModifiedTime",
+     *   //   "location": "my_location",
+     *   //   "managedTableType": "my_managedTableType",
+     *   //   "materializedView": {},
+     *   //   "materializedViewStatus": {},
+     *   //   "maxStaleness": "my_maxStaleness",
+     *   //   "model": {},
+     *   //   "numActiveLogicalBytes": "my_numActiveLogicalBytes",
+     *   //   "numActivePhysicalBytes": "my_numActivePhysicalBytes",
+     *   //   "numBytes": "my_numBytes",
+     *   //   "numCurrentPhysicalBytes": "my_numCurrentPhysicalBytes",
+     *   //   "numLongTermBytes": "my_numLongTermBytes",
+     *   //   "numLongTermLogicalBytes": "my_numLongTermLogicalBytes",
+     *   //   "numLongTermPhysicalBytes": "my_numLongTermPhysicalBytes",
+     *   //   "numPartitions": "my_numPartitions",
+     *   //   "numPhysicalBytes": "my_numPhysicalBytes",
+     *   //   "numRows": "my_numRows",
+     *   //   "numTimeTravelPhysicalBytes": "my_numTimeTravelPhysicalBytes",
+     *   //   "numTotalLogicalBytes": "my_numTotalLogicalBytes",
+     *   //   "numTotalPhysicalBytes": "my_numTotalPhysicalBytes",
+     *   //   "partitionDefinition": {},
+     *   //   "rangePartitioning": {},
+     *   //   "replicas": [],
+     *   //   "requirePartitionFilter": false,
+     *   //   "resourceTags": {},
+     *   //   "restrictions": {},
+     *   //   "schema": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "snapshotDefinition": {},
+     *   //   "streamingBuffer": {},
+     *   //   "tableConstraints": {},
+     *   //   "tableReference": {},
+     *   //   "tableReplicationInfo": {},
+     *   //   "timePartitioning": {},
+     *   //   "type": "my_type",
+     *   //   "view": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9650,11 +12561,11 @@ export namespace bigquery_v2 {
     get(
       params: Params$Resource$Tables$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Tables$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Table>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Table>>;
     get(
       params: Params$Resource$Tables$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9683,7 +12594,10 @@ export namespace bigquery_v2 {
       callback?:
         | BodyResponseCallback<Schema$Table>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Table> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Table>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tables$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9728,6 +12642,67 @@ export namespace bigquery_v2 {
 
     /**
      * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigquery = google.bigquery('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquery.tables.getIamPolicy({
+     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource: 'projects/my-project/datasets/my-dataset/tables/my-table',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "options": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9737,11 +12712,11 @@ export namespace bigquery_v2 {
     getIamPolicy(
       params: Params$Resource$Tables$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Tables$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Tables$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9770,7 +12745,10 @@ export namespace bigquery_v2 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Tables$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9816,6 +12794,167 @@ export namespace bigquery_v2 {
 
     /**
      * Creates a new, empty table in the dataset.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigquery = google.bigquery('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquery.tables.insert({
+     *     // Required. Dataset ID of the new table
+     *     datasetId: '[^/]+',
+     *     // Required. Project ID of the new table
+     *     projectId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "biglakeConfiguration": {},
+     *       //   "cloneDefinition": {},
+     *       //   "clustering": {},
+     *       //   "creationTime": "my_creationTime",
+     *       //   "defaultCollation": "my_defaultCollation",
+     *       //   "defaultRoundingMode": "my_defaultRoundingMode",
+     *       //   "description": "my_description",
+     *       //   "encryptionConfiguration": {},
+     *       //   "etag": "my_etag",
+     *       //   "expirationTime": "my_expirationTime",
+     *       //   "externalCatalogTableOptions": {},
+     *       //   "externalDataConfiguration": {},
+     *       //   "friendlyName": "my_friendlyName",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "labels": {},
+     *       //   "lastModifiedTime": "my_lastModifiedTime",
+     *       //   "location": "my_location",
+     *       //   "managedTableType": "my_managedTableType",
+     *       //   "materializedView": {},
+     *       //   "materializedViewStatus": {},
+     *       //   "maxStaleness": "my_maxStaleness",
+     *       //   "model": {},
+     *       //   "numActiveLogicalBytes": "my_numActiveLogicalBytes",
+     *       //   "numActivePhysicalBytes": "my_numActivePhysicalBytes",
+     *       //   "numBytes": "my_numBytes",
+     *       //   "numCurrentPhysicalBytes": "my_numCurrentPhysicalBytes",
+     *       //   "numLongTermBytes": "my_numLongTermBytes",
+     *       //   "numLongTermLogicalBytes": "my_numLongTermLogicalBytes",
+     *       //   "numLongTermPhysicalBytes": "my_numLongTermPhysicalBytes",
+     *       //   "numPartitions": "my_numPartitions",
+     *       //   "numPhysicalBytes": "my_numPhysicalBytes",
+     *       //   "numRows": "my_numRows",
+     *       //   "numTimeTravelPhysicalBytes": "my_numTimeTravelPhysicalBytes",
+     *       //   "numTotalLogicalBytes": "my_numTotalLogicalBytes",
+     *       //   "numTotalPhysicalBytes": "my_numTotalPhysicalBytes",
+     *       //   "partitionDefinition": {},
+     *       //   "rangePartitioning": {},
+     *       //   "replicas": [],
+     *       //   "requirePartitionFilter": false,
+     *       //   "resourceTags": {},
+     *       //   "restrictions": {},
+     *       //   "schema": {},
+     *       //   "selfLink": "my_selfLink",
+     *       //   "snapshotDefinition": {},
+     *       //   "streamingBuffer": {},
+     *       //   "tableConstraints": {},
+     *       //   "tableReference": {},
+     *       //   "tableReplicationInfo": {},
+     *       //   "timePartitioning": {},
+     *       //   "type": "my_type",
+     *       //   "view": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "biglakeConfiguration": {},
+     *   //   "cloneDefinition": {},
+     *   //   "clustering": {},
+     *   //   "creationTime": "my_creationTime",
+     *   //   "defaultCollation": "my_defaultCollation",
+     *   //   "defaultRoundingMode": "my_defaultRoundingMode",
+     *   //   "description": "my_description",
+     *   //   "encryptionConfiguration": {},
+     *   //   "etag": "my_etag",
+     *   //   "expirationTime": "my_expirationTime",
+     *   //   "externalCatalogTableOptions": {},
+     *   //   "externalDataConfiguration": {},
+     *   //   "friendlyName": "my_friendlyName",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "labels": {},
+     *   //   "lastModifiedTime": "my_lastModifiedTime",
+     *   //   "location": "my_location",
+     *   //   "managedTableType": "my_managedTableType",
+     *   //   "materializedView": {},
+     *   //   "materializedViewStatus": {},
+     *   //   "maxStaleness": "my_maxStaleness",
+     *   //   "model": {},
+     *   //   "numActiveLogicalBytes": "my_numActiveLogicalBytes",
+     *   //   "numActivePhysicalBytes": "my_numActivePhysicalBytes",
+     *   //   "numBytes": "my_numBytes",
+     *   //   "numCurrentPhysicalBytes": "my_numCurrentPhysicalBytes",
+     *   //   "numLongTermBytes": "my_numLongTermBytes",
+     *   //   "numLongTermLogicalBytes": "my_numLongTermLogicalBytes",
+     *   //   "numLongTermPhysicalBytes": "my_numLongTermPhysicalBytes",
+     *   //   "numPartitions": "my_numPartitions",
+     *   //   "numPhysicalBytes": "my_numPhysicalBytes",
+     *   //   "numRows": "my_numRows",
+     *   //   "numTimeTravelPhysicalBytes": "my_numTimeTravelPhysicalBytes",
+     *   //   "numTotalLogicalBytes": "my_numTotalLogicalBytes",
+     *   //   "numTotalPhysicalBytes": "my_numTotalPhysicalBytes",
+     *   //   "partitionDefinition": {},
+     *   //   "rangePartitioning": {},
+     *   //   "replicas": [],
+     *   //   "requirePartitionFilter": false,
+     *   //   "resourceTags": {},
+     *   //   "restrictions": {},
+     *   //   "schema": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "snapshotDefinition": {},
+     *   //   "streamingBuffer": {},
+     *   //   "tableConstraints": {},
+     *   //   "tableReference": {},
+     *   //   "tableReplicationInfo": {},
+     *   //   "timePartitioning": {},
+     *   //   "type": "my_type",
+     *   //   "view": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9825,11 +12964,11 @@ export namespace bigquery_v2 {
     insert(
       params: Params$Resource$Tables$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Tables$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Table>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Table>>;
     insert(
       params: Params$Resource$Tables$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9858,7 +12997,10 @@ export namespace bigquery_v2 {
       callback?:
         | BodyResponseCallback<Schema$Table>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Table> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Table>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tables$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9903,6 +13045,66 @@ export namespace bigquery_v2 {
 
     /**
      * Lists all tables in the specified dataset. Requires the READER dataset role.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigquery = google.bigquery('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquery.tables.list({
+     *     // Required. Dataset ID of the tables to list
+     *     datasetId: '[^/]+',
+     *     // The maximum number of results to return in a single response page. Leverage the page tokens to iterate through the entire collection.
+     *     maxResults: 'placeholder-value',
+     *     // Page token, returned by a previous call, to request the next page of results
+     *     pageToken: 'placeholder-value',
+     *     // Required. Project ID of the tables to list
+     *     projectId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "tables": [],
+     *   //   "totalItems": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9912,11 +13114,11 @@ export namespace bigquery_v2 {
     list(
       params: Params$Resource$Tables$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Tables$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TableList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TableList>>;
     list(
       params: Params$Resource$Tables$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9945,7 +13147,10 @@ export namespace bigquery_v2 {
       callback?:
         | BodyResponseCallback<Schema$TableList>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$TableList> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$TableList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tables$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9990,6 +13195,171 @@ export namespace bigquery_v2 {
 
     /**
      * Updates information in an existing table. The update method replaces the entire table resource, whereas the patch method only replaces fields that are provided in the submitted table resource. This method supports RFC5789 patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigquery = google.bigquery('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquery.tables.patch({
+     *     // Optional.  When true will autodetect schema, else will keep original schema
+     *     autodetect_schema: 'placeholder-value',
+     *     // Required. Dataset ID of the table to update
+     *     datasetId: '[^/]+',
+     *     // Required. Project ID of the table to update
+     *     projectId: '[^/]+',
+     *     // Required. Table ID of the table to update
+     *     tableId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "biglakeConfiguration": {},
+     *       //   "cloneDefinition": {},
+     *       //   "clustering": {},
+     *       //   "creationTime": "my_creationTime",
+     *       //   "defaultCollation": "my_defaultCollation",
+     *       //   "defaultRoundingMode": "my_defaultRoundingMode",
+     *       //   "description": "my_description",
+     *       //   "encryptionConfiguration": {},
+     *       //   "etag": "my_etag",
+     *       //   "expirationTime": "my_expirationTime",
+     *       //   "externalCatalogTableOptions": {},
+     *       //   "externalDataConfiguration": {},
+     *       //   "friendlyName": "my_friendlyName",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "labels": {},
+     *       //   "lastModifiedTime": "my_lastModifiedTime",
+     *       //   "location": "my_location",
+     *       //   "managedTableType": "my_managedTableType",
+     *       //   "materializedView": {},
+     *       //   "materializedViewStatus": {},
+     *       //   "maxStaleness": "my_maxStaleness",
+     *       //   "model": {},
+     *       //   "numActiveLogicalBytes": "my_numActiveLogicalBytes",
+     *       //   "numActivePhysicalBytes": "my_numActivePhysicalBytes",
+     *       //   "numBytes": "my_numBytes",
+     *       //   "numCurrentPhysicalBytes": "my_numCurrentPhysicalBytes",
+     *       //   "numLongTermBytes": "my_numLongTermBytes",
+     *       //   "numLongTermLogicalBytes": "my_numLongTermLogicalBytes",
+     *       //   "numLongTermPhysicalBytes": "my_numLongTermPhysicalBytes",
+     *       //   "numPartitions": "my_numPartitions",
+     *       //   "numPhysicalBytes": "my_numPhysicalBytes",
+     *       //   "numRows": "my_numRows",
+     *       //   "numTimeTravelPhysicalBytes": "my_numTimeTravelPhysicalBytes",
+     *       //   "numTotalLogicalBytes": "my_numTotalLogicalBytes",
+     *       //   "numTotalPhysicalBytes": "my_numTotalPhysicalBytes",
+     *       //   "partitionDefinition": {},
+     *       //   "rangePartitioning": {},
+     *       //   "replicas": [],
+     *       //   "requirePartitionFilter": false,
+     *       //   "resourceTags": {},
+     *       //   "restrictions": {},
+     *       //   "schema": {},
+     *       //   "selfLink": "my_selfLink",
+     *       //   "snapshotDefinition": {},
+     *       //   "streamingBuffer": {},
+     *       //   "tableConstraints": {},
+     *       //   "tableReference": {},
+     *       //   "tableReplicationInfo": {},
+     *       //   "timePartitioning": {},
+     *       //   "type": "my_type",
+     *       //   "view": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "biglakeConfiguration": {},
+     *   //   "cloneDefinition": {},
+     *   //   "clustering": {},
+     *   //   "creationTime": "my_creationTime",
+     *   //   "defaultCollation": "my_defaultCollation",
+     *   //   "defaultRoundingMode": "my_defaultRoundingMode",
+     *   //   "description": "my_description",
+     *   //   "encryptionConfiguration": {},
+     *   //   "etag": "my_etag",
+     *   //   "expirationTime": "my_expirationTime",
+     *   //   "externalCatalogTableOptions": {},
+     *   //   "externalDataConfiguration": {},
+     *   //   "friendlyName": "my_friendlyName",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "labels": {},
+     *   //   "lastModifiedTime": "my_lastModifiedTime",
+     *   //   "location": "my_location",
+     *   //   "managedTableType": "my_managedTableType",
+     *   //   "materializedView": {},
+     *   //   "materializedViewStatus": {},
+     *   //   "maxStaleness": "my_maxStaleness",
+     *   //   "model": {},
+     *   //   "numActiveLogicalBytes": "my_numActiveLogicalBytes",
+     *   //   "numActivePhysicalBytes": "my_numActivePhysicalBytes",
+     *   //   "numBytes": "my_numBytes",
+     *   //   "numCurrentPhysicalBytes": "my_numCurrentPhysicalBytes",
+     *   //   "numLongTermBytes": "my_numLongTermBytes",
+     *   //   "numLongTermLogicalBytes": "my_numLongTermLogicalBytes",
+     *   //   "numLongTermPhysicalBytes": "my_numLongTermPhysicalBytes",
+     *   //   "numPartitions": "my_numPartitions",
+     *   //   "numPhysicalBytes": "my_numPhysicalBytes",
+     *   //   "numRows": "my_numRows",
+     *   //   "numTimeTravelPhysicalBytes": "my_numTimeTravelPhysicalBytes",
+     *   //   "numTotalLogicalBytes": "my_numTotalLogicalBytes",
+     *   //   "numTotalPhysicalBytes": "my_numTotalPhysicalBytes",
+     *   //   "partitionDefinition": {},
+     *   //   "rangePartitioning": {},
+     *   //   "replicas": [],
+     *   //   "requirePartitionFilter": false,
+     *   //   "resourceTags": {},
+     *   //   "restrictions": {},
+     *   //   "schema": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "snapshotDefinition": {},
+     *   //   "streamingBuffer": {},
+     *   //   "tableConstraints": {},
+     *   //   "tableReference": {},
+     *   //   "tableReplicationInfo": {},
+     *   //   "timePartitioning": {},
+     *   //   "type": "my_type",
+     *   //   "view": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9999,11 +13369,11 @@ export namespace bigquery_v2 {
     patch(
       params: Params$Resource$Tables$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Tables$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Table>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Table>>;
     patch(
       params: Params$Resource$Tables$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10032,7 +13402,10 @@ export namespace bigquery_v2 {
       callback?:
         | BodyResponseCallback<Schema$Table>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Table> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Table>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tables$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -10077,6 +13450,67 @@ export namespace bigquery_v2 {
 
     /**
      * Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigquery = google.bigquery('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquery.tables.setIamPolicy({
+     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource: 'projects/my-project/datasets/my-dataset/tables/my-table',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "policy": {},
+     *       //   "updateMask": "my_updateMask"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10086,11 +13520,11 @@ export namespace bigquery_v2 {
     setIamPolicy(
       params: Params$Resource$Tables$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Tables$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Tables$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10119,7 +13553,10 @@ export namespace bigquery_v2 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Tables$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10165,6 +13602,64 @@ export namespace bigquery_v2 {
 
     /**
      * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigquery = google.bigquery('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquery.tables.testIamPermissions({
+     *     // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource: 'projects/my-project/datasets/my-dataset/tables/my-table',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "permissions": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10174,11 +13669,11 @@ export namespace bigquery_v2 {
     testIamPermissions(
       params: Params$Resource$Tables$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Tables$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Tables$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10213,8 +13708,8 @@ export namespace bigquery_v2 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Tables$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10259,6 +13754,171 @@ export namespace bigquery_v2 {
 
     /**
      * Updates information in an existing table. The update method replaces the entire Table resource, whereas the patch method only replaces fields that are provided in the submitted Table resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigquery = google.bigquery('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquery.tables.update({
+     *     // Optional.  When true will autodetect schema, else will keep original schema
+     *     autodetect_schema: 'placeholder-value',
+     *     // Required. Dataset ID of the table to update
+     *     datasetId: '[^/]+',
+     *     // Required. Project ID of the table to update
+     *     projectId: '[^/]+',
+     *     // Required. Table ID of the table to update
+     *     tableId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "biglakeConfiguration": {},
+     *       //   "cloneDefinition": {},
+     *       //   "clustering": {},
+     *       //   "creationTime": "my_creationTime",
+     *       //   "defaultCollation": "my_defaultCollation",
+     *       //   "defaultRoundingMode": "my_defaultRoundingMode",
+     *       //   "description": "my_description",
+     *       //   "encryptionConfiguration": {},
+     *       //   "etag": "my_etag",
+     *       //   "expirationTime": "my_expirationTime",
+     *       //   "externalCatalogTableOptions": {},
+     *       //   "externalDataConfiguration": {},
+     *       //   "friendlyName": "my_friendlyName",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "labels": {},
+     *       //   "lastModifiedTime": "my_lastModifiedTime",
+     *       //   "location": "my_location",
+     *       //   "managedTableType": "my_managedTableType",
+     *       //   "materializedView": {},
+     *       //   "materializedViewStatus": {},
+     *       //   "maxStaleness": "my_maxStaleness",
+     *       //   "model": {},
+     *       //   "numActiveLogicalBytes": "my_numActiveLogicalBytes",
+     *       //   "numActivePhysicalBytes": "my_numActivePhysicalBytes",
+     *       //   "numBytes": "my_numBytes",
+     *       //   "numCurrentPhysicalBytes": "my_numCurrentPhysicalBytes",
+     *       //   "numLongTermBytes": "my_numLongTermBytes",
+     *       //   "numLongTermLogicalBytes": "my_numLongTermLogicalBytes",
+     *       //   "numLongTermPhysicalBytes": "my_numLongTermPhysicalBytes",
+     *       //   "numPartitions": "my_numPartitions",
+     *       //   "numPhysicalBytes": "my_numPhysicalBytes",
+     *       //   "numRows": "my_numRows",
+     *       //   "numTimeTravelPhysicalBytes": "my_numTimeTravelPhysicalBytes",
+     *       //   "numTotalLogicalBytes": "my_numTotalLogicalBytes",
+     *       //   "numTotalPhysicalBytes": "my_numTotalPhysicalBytes",
+     *       //   "partitionDefinition": {},
+     *       //   "rangePartitioning": {},
+     *       //   "replicas": [],
+     *       //   "requirePartitionFilter": false,
+     *       //   "resourceTags": {},
+     *       //   "restrictions": {},
+     *       //   "schema": {},
+     *       //   "selfLink": "my_selfLink",
+     *       //   "snapshotDefinition": {},
+     *       //   "streamingBuffer": {},
+     *       //   "tableConstraints": {},
+     *       //   "tableReference": {},
+     *       //   "tableReplicationInfo": {},
+     *       //   "timePartitioning": {},
+     *       //   "type": "my_type",
+     *       //   "view": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "biglakeConfiguration": {},
+     *   //   "cloneDefinition": {},
+     *   //   "clustering": {},
+     *   //   "creationTime": "my_creationTime",
+     *   //   "defaultCollation": "my_defaultCollation",
+     *   //   "defaultRoundingMode": "my_defaultRoundingMode",
+     *   //   "description": "my_description",
+     *   //   "encryptionConfiguration": {},
+     *   //   "etag": "my_etag",
+     *   //   "expirationTime": "my_expirationTime",
+     *   //   "externalCatalogTableOptions": {},
+     *   //   "externalDataConfiguration": {},
+     *   //   "friendlyName": "my_friendlyName",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "labels": {},
+     *   //   "lastModifiedTime": "my_lastModifiedTime",
+     *   //   "location": "my_location",
+     *   //   "managedTableType": "my_managedTableType",
+     *   //   "materializedView": {},
+     *   //   "materializedViewStatus": {},
+     *   //   "maxStaleness": "my_maxStaleness",
+     *   //   "model": {},
+     *   //   "numActiveLogicalBytes": "my_numActiveLogicalBytes",
+     *   //   "numActivePhysicalBytes": "my_numActivePhysicalBytes",
+     *   //   "numBytes": "my_numBytes",
+     *   //   "numCurrentPhysicalBytes": "my_numCurrentPhysicalBytes",
+     *   //   "numLongTermBytes": "my_numLongTermBytes",
+     *   //   "numLongTermLogicalBytes": "my_numLongTermLogicalBytes",
+     *   //   "numLongTermPhysicalBytes": "my_numLongTermPhysicalBytes",
+     *   //   "numPartitions": "my_numPartitions",
+     *   //   "numPhysicalBytes": "my_numPhysicalBytes",
+     *   //   "numRows": "my_numRows",
+     *   //   "numTimeTravelPhysicalBytes": "my_numTimeTravelPhysicalBytes",
+     *   //   "numTotalLogicalBytes": "my_numTotalLogicalBytes",
+     *   //   "numTotalPhysicalBytes": "my_numTotalPhysicalBytes",
+     *   //   "partitionDefinition": {},
+     *   //   "rangePartitioning": {},
+     *   //   "replicas": [],
+     *   //   "requirePartitionFilter": false,
+     *   //   "resourceTags": {},
+     *   //   "restrictions": {},
+     *   //   "schema": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "snapshotDefinition": {},
+     *   //   "streamingBuffer": {},
+     *   //   "tableConstraints": {},
+     *   //   "tableReference": {},
+     *   //   "tableReplicationInfo": {},
+     *   //   "timePartitioning": {},
+     *   //   "type": "my_type",
+     *   //   "view": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10268,11 +13928,11 @@ export namespace bigquery_v2 {
     update(
       params: Params$Resource$Tables$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Tables$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Table>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Table>>;
     update(
       params: Params$Resource$Tables$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10301,7 +13961,10 @@ export namespace bigquery_v2 {
       callback?:
         | BodyResponseCallback<Schema$Table>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Table> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Table>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tables$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

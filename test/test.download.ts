@@ -28,8 +28,22 @@ describe(__filename, () => {
     'https://raw.githubusercontent.com/googleapis/discovery-artifact-manager/master/discoveries';
   const fakeIndexPath = 'test/fixtures/index.json';
   const sandbox = sinon.createSandbox();
+  beforeEach(() => {
+    try {
+      fs.mkdirSync('build/test/temp');
+    } catch (err) {
+      console.log('no directory');
+    }
+  });
 
-  afterEach(() => sandbox.restore());
+  afterEach(() => {
+    try {
+      fs.unlinkSync('build/test/tmp');
+    } catch (err) {
+      console.log('no directory');
+    }
+    sandbox.restore();
+  });
 
   it('should sort an object by key order', () => {
     const unsorted = {
@@ -81,25 +95,25 @@ describe(__filename, () => {
   it('should download the discovery docs', async () => {
     const scopes = [
       nock(
-        'https://raw.githubusercontent.com/googleapis/discovery-artifact-manager/master/discoveries'
+        'https://raw.githubusercontent.com/googleapis/discovery-artifact-manager/master/discoveries',
       )
         .get('/index.json')
         .reply(200, JSON.stringify(fs.readFileSync(fakeIndexPath, 'utf8')), {
           'Content-Type': 'application/json',
         }),
       nock(
-        'https://raw.githubusercontent.com/googleapis/discovery-artifact-manager/master/discoveries'
+        'https://raw.githubusercontent.com/googleapis/discovery-artifact-manager/master/discoveries',
       )
         .get('/fake.v1.json')
         .reply(
           200,
-          '{"id": "fake:v1","discoveryRestUrl": "http://localhost:3030/path","name": "fake","version": "v1"}'
+          '{"id": "fake:v1","discoveryRestUrl": "http://localhost:3030/path","name": "fake","version": "v1"}',
         ),
     ];
     const mkdirpStub = sandbox.stub(dn.gfs, 'mkdir').resolves();
     const writeFileStub = sandbox.stub(dn.gfs, 'writeFile');
     const readFileStub = sandbox.stub(dn.gfs, 'readFile');
-    const downloadPath = path.join(__dirname, '../../discovery');
+    const downloadPath = 'build/test/temp';
     await dn.downloadDiscoveryDocs({discoveryUrl, downloadPath});
     assert(mkdirpStub.calledOnce);
     assert(writeFileStub.calledTwice);
@@ -110,14 +124,14 @@ describe(__filename, () => {
   it('should ignore changes to schemas that only have revision changes', async () => {
     const scopes = [
       nock(
-        'https://raw.githubusercontent.com/googleapis/discovery-artifact-manager/master/discoveries'
+        'https://raw.githubusercontent.com/googleapis/discovery-artifact-manager/master/discoveries',
       )
         .get('/index.json')
         .reply(200, JSON.stringify(fs.readFileSync(fakeIndexPath, 'utf8')), {
           'Content-Type': 'application/json',
         }),
       nock(
-        'https://raw.githubusercontent.com/googleapis/discovery-artifact-manager/master/discoveries'
+        'https://raw.githubusercontent.com/googleapis/discovery-artifact-manager/master/discoveries',
       )
         .get('/fake.v1.json')
         .reply(200, '{"revision": "1234"}'),
@@ -129,10 +143,10 @@ describe(__filename, () => {
           revision: 'abcd',
         },
         null,
-        2
+        2,
       );
     });
-    const downloadPath = path.join(__dirname, '../../discovery');
+    const downloadPath = 'build/test/temp';
     await dn.downloadDiscoveryDocs({discoveryUrl, downloadPath});
     assert(writeFileStub.calledOnce);
     assert(readFileStub.calledOnce);
@@ -148,7 +162,7 @@ describe(__filename, () => {
         });
         const indexPath = path.join(
           __dirname,
-          '../../test/fixtures/index.json'
+          '../../test/fixtures/index.json',
         );
         fs.readFile(indexPath, 'utf-8', (err, data) => {
           if (err) {

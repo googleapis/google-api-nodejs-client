@@ -1,5 +1,34 @@
 # Changelog
 
+## [19.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/beyondcorp-v19.0.0...beyondcorp-v19.0.1) (2025-06-04)
+
+
+### Bug Fixes
+
+* **deps:** upgrade googleapis-common to 8.0.2-rc ([f4b0990](https://github.com/googleapis/google-api-nodejs-client/commit/f4b099071040cfbcfe4a2e7d487d45ee93b369e0))
+
+## [19.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/beyondcorp-v18.0.0...beyondcorp-v19.0.0) (2025-05-29)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to node 18
+
+### Features
+
+* upgrade to node 18 ([682fbb8](https://github.com/googleapis/google-api-nodejs-client/commit/682fbb869189ae92b3e9a194d37d0548af0c1f92))
+
+## [18.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/beyondcorp-v17.0.0...beyondcorp-v18.0.0) (2025-05-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* **beyondcorp:** This release has breaking changes.
+
+### Features
+
+* **beyondcorp:** update the API ([7b90d19](https://github.com/googleapis/google-api-nodejs-client/commit/7b90d19e6f69d5b0ab4c560fab7c11d0f867ee6b))
+
 ## [17.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/beyondcorp-v16.0.0...beyondcorp-v17.0.0) (2025-03-18)
 
 

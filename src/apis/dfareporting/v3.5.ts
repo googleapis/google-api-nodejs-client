@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -382,6 +382,86 @@ export namespace dfareporting_v3_5 {
 
     /**
      * Inserts a new creative asset.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.5');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.media.upload({
+     *     // Advertiser ID of this creative. This is a required field.
+     *     advertiserId: '[^/]+',
+     *     // User profile ID associated with this request.
+     *     profileId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "assetIdentifier": {},
+     *       //   "clickTags": [],
+     *       //   "counterCustomEvents": [],
+     *       //   "detectedFeatures": [],
+     *       //   "exitCustomEvents": [],
+     *       //   "id": "my_id",
+     *       //   "idDimensionValue": {},
+     *       //   "kind": "my_kind",
+     *       //   "richMedia": false,
+     *       //   "timerCustomEvents": [],
+     *       //   "warnedValidationRules": []
+     *       // }
+     *     },
+     *     media: {
+     *       mimeType: 'placeholder-value',
+     *       body: 'placeholder-value',
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assetIdentifier": {},
+     *   //   "clickTags": [],
+     *   //   "counterCustomEvents": [],
+     *   //   "detectedFeatures": [],
+     *   //   "exitCustomEvents": [],
+     *   //   "id": "my_id",
+     *   //   "idDimensionValue": {},
+     *   //   "kind": "my_kind",
+     *   //   "richMedia": false,
+     *   //   "timerCustomEvents": [],
+     *   //   "warnedValidationRules": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -391,11 +471,11 @@ export namespace dfareporting_v3_5 {
     upload(
       params: Params$Resource$Media$Upload,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     upload(
       params?: Params$Resource$Media$Upload,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CreativeAssetMetadata>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CreativeAssetMetadata>>;
     upload(
       params: Params$Resource$Media$Upload,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -428,8 +508,8 @@ export namespace dfareporting_v3_5 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CreativeAssetMetadata>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CreativeAssetMetadata>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Media$Upload;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

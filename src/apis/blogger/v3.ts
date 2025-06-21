@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -629,6 +629,70 @@ export namespace blogger_v3 {
 
     /**
      * Gets a blog by id.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const blogger = google.blogger('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/blogger',
+     *       'https://www.googleapis.com/auth/blogger.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await blogger.blogs.get({
+     *     blogId: 'placeholder-value',
+     *
+     *     maxPosts: 'placeholder-value',
+     *
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "customMetaData": "my_customMetaData",
+     *   //   "description": "my_description",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "locale": {},
+     *   //   "name": "my_name",
+     *   //   "pages": {},
+     *   //   "posts": {},
+     *   //   "published": "my_published",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "status": "my_status",
+     *   //   "updated": "my_updated",
+     *   //   "url": "my_url"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -638,11 +702,11 @@ export namespace blogger_v3 {
     get(
       params: Params$Resource$Blogs$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Blogs$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Blog>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Blog>>;
     get(
       params: Params$Resource$Blogs$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -671,7 +735,10 @@ export namespace blogger_v3 {
       callback?:
         | BodyResponseCallback<Schema$Blog>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Blog> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Blog>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Blogs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -713,6 +780,68 @@ export namespace blogger_v3 {
 
     /**
      * Gets a blog by url.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const blogger = google.blogger('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/blogger',
+     *       'https://www.googleapis.com/auth/blogger.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await blogger.blogs.getByUrl({
+     *     url: 'placeholder-value',
+     *
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "customMetaData": "my_customMetaData",
+     *   //   "description": "my_description",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "locale": {},
+     *   //   "name": "my_name",
+     *   //   "pages": {},
+     *   //   "posts": {},
+     *   //   "published": "my_published",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "status": "my_status",
+     *   //   "updated": "my_updated",
+     *   //   "url": "my_url"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -722,11 +851,11 @@ export namespace blogger_v3 {
     getByUrl(
       params: Params$Resource$Blogs$Getbyurl,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getByUrl(
       params?: Params$Resource$Blogs$Getbyurl,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Blog>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Blog>>;
     getByUrl(
       params: Params$Resource$Blogs$Getbyurl,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -755,7 +884,10 @@ export namespace blogger_v3 {
       callback?:
         | BodyResponseCallback<Schema$Blog>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Blog> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Blog>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Blogs$Getbyurl;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -797,6 +929,64 @@ export namespace blogger_v3 {
 
     /**
      * Lists blogs by user.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const blogger = google.blogger('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/blogger',
+     *       'https://www.googleapis.com/auth/blogger.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await blogger.blogs.listByUser({
+     *     fetchUserInfo: 'placeholder-value',
+     *
+     *     role: 'placeholder-value',
+     *     // Default value of status is LIVE.
+     *     status: 'placeholder-value',
+     *
+     *     userId: 'placeholder-value',
+     *
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "blogUserInfos": [],
+     *   //   "items": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -806,11 +996,11 @@ export namespace blogger_v3 {
     listByUser(
       params: Params$Resource$Blogs$Listbyuser,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     listByUser(
       params?: Params$Resource$Blogs$Listbyuser,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BlogList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BlogList>>;
     listByUser(
       params: Params$Resource$Blogs$Listbyuser,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -839,7 +1029,10 @@ export namespace blogger_v3 {
       callback?:
         | BodyResponseCallback<Schema$BlogList>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$BlogList> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$BlogList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Blogs$Listbyuser;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -938,6 +1131,60 @@ export namespace blogger_v3 {
 
     /**
      * Gets one blog and user info pair by blog id and user id.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const blogger = google.blogger('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/blogger',
+     *       'https://www.googleapis.com/auth/blogger.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await blogger.blogUserInfos.get({
+     *     blogId: 'placeholder-value',
+     *
+     *     maxPosts: 'placeholder-value',
+     *
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "blog": {},
+     *   //   "blog_user_info": {},
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -947,11 +1194,11 @@ export namespace blogger_v3 {
     get(
       params: Params$Resource$Bloguserinfos$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Bloguserinfos$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BlogUserInfo>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BlogUserInfo>>;
     get(
       params: Params$Resource$Bloguserinfos$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -980,7 +1227,10 @@ export namespace blogger_v3 {
       callback?:
         | BodyResponseCallback<Schema$BlogUserInfo>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$BlogUserInfo> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$BlogUserInfo>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bloguserinfos$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1049,6 +1299,65 @@ export namespace blogger_v3 {
 
     /**
      * Marks a comment as not spam by blog id, post id and comment id.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const blogger = google.blogger('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/blogger'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await blogger.comments.approve({
+     *     blogId: 'placeholder-value',
+     *
+     *     commentId: 'placeholder-value',
+     *
+     *     postId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "author": {},
+     *   //   "blog": {},
+     *   //   "content": "my_content",
+     *   //   "id": "my_id",
+     *   //   "inReplyTo": {},
+     *   //   "kind": "my_kind",
+     *   //   "post": {},
+     *   //   "published": "my_published",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "status": "my_status",
+     *   //   "updated": "my_updated"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1058,11 +1367,11 @@ export namespace blogger_v3 {
     approve(
       params: Params$Resource$Comments$Approve,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     approve(
       params?: Params$Resource$Comments$Approve,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Comment>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Comment>>;
     approve(
       params: Params$Resource$Comments$Approve,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1091,7 +1400,10 @@ export namespace blogger_v3 {
       callback?:
         | BodyResponseCallback<Schema$Comment>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Comment> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Comment>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$Approve;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1136,6 +1448,50 @@ export namespace blogger_v3 {
 
     /**
      * Deletes a comment by blog id, post id and comment id.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const blogger = google.blogger('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/blogger'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await blogger.comments.delete({
+     *     blogId: 'placeholder-value',
+     *
+     *     commentId: 'placeholder-value',
+     *
+     *     postId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1145,11 +1501,11 @@ export namespace blogger_v3 {
     delete(
       params: Params$Resource$Comments$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Comments$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Comments$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1176,7 +1532,10 @@ export namespace blogger_v3 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1220,6 +1579,70 @@ export namespace blogger_v3 {
 
     /**
      * Gets a comment by id.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const blogger = google.blogger('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/blogger',
+     *       'https://www.googleapis.com/auth/blogger.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await blogger.comments.get({
+     *     blogId: 'placeholder-value',
+     *
+     *     commentId: 'placeholder-value',
+     *
+     *     postId: 'placeholder-value',
+     *
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "author": {},
+     *   //   "blog": {},
+     *   //   "content": "my_content",
+     *   //   "id": "my_id",
+     *   //   "inReplyTo": {},
+     *   //   "kind": "my_kind",
+     *   //   "post": {},
+     *   //   "published": "my_published",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "status": "my_status",
+     *   //   "updated": "my_updated"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1229,11 +1652,11 @@ export namespace blogger_v3 {
     get(
       params: Params$Resource$Comments$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Comments$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Comment>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Comment>>;
     get(
       params: Params$Resource$Comments$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1262,7 +1685,10 @@ export namespace blogger_v3 {
       callback?:
         | BodyResponseCallback<Schema$Comment>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Comment> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Comment>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1306,6 +1732,74 @@ export namespace blogger_v3 {
 
     /**
      * Lists comments.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const blogger = google.blogger('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/blogger',
+     *       'https://www.googleapis.com/auth/blogger.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await blogger.comments.list({
+     *     blogId: 'placeholder-value',
+     *
+     *     endDate: 'placeholder-value',
+     *
+     *     fetchBodies: 'placeholder-value',
+     *
+     *     maxResults: 'placeholder-value',
+     *
+     *     pageToken: 'placeholder-value',
+     *
+     *     postId: 'placeholder-value',
+     *
+     *     startDate: 'placeholder-value',
+     *
+     *     status: 'placeholder-value',
+     *
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "prevPageToken": "my_prevPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1315,11 +1809,11 @@ export namespace blogger_v3 {
     list(
       params: Params$Resource$Comments$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Comments$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CommentList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CommentList>>;
     list(
       params: Params$Resource$Comments$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1348,7 +1842,10 @@ export namespace blogger_v3 {
       callback?:
         | BodyResponseCallback<Schema$CommentList>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CommentList> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$CommentList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1392,6 +1889,70 @@ export namespace blogger_v3 {
 
     /**
      * Lists comments by blog.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const blogger = google.blogger('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/blogger',
+     *       'https://www.googleapis.com/auth/blogger.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await blogger.comments.listByBlog({
+     *     blogId: 'placeholder-value',
+     *
+     *     endDate: 'placeholder-value',
+     *
+     *     fetchBodies: 'placeholder-value',
+     *
+     *     maxResults: 'placeholder-value',
+     *
+     *     pageToken: 'placeholder-value',
+     *
+     *     startDate: 'placeholder-value',
+     *
+     *     status: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "prevPageToken": "my_prevPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1401,11 +1962,11 @@ export namespace blogger_v3 {
     listByBlog(
       params: Params$Resource$Comments$Listbyblog,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     listByBlog(
       params?: Params$Resource$Comments$Listbyblog,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CommentList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CommentList>>;
     listByBlog(
       params: Params$Resource$Comments$Listbyblog,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1434,7 +1995,10 @@ export namespace blogger_v3 {
       callback?:
         | BodyResponseCallback<Schema$CommentList>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CommentList> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$CommentList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Comments$Listbyblog;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1480,6 +2044,65 @@ export namespace blogger_v3 {
 
     /**
      * Marks a comment as spam by blog id, post id and comment id.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const blogger = google.blogger('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/blogger'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await blogger.comments.markAsSpam({
+     *     blogId: 'placeholder-value',
+     *
+     *     commentId: 'placeholder-value',
+     *
+     *     postId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "author": {},
+     *   //   "blog": {},
+     *   //   "content": "my_content",
+     *   //   "id": "my_id",
+     *   //   "inReplyTo": {},
+     *   //   "kind": "my_kind",
+     *   //   "post": {},
+     *   //   "published": "my_published",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "status": "my_status",
+     *   //   "updated": "my_updated"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1489,11 +2112,11 @@ export namespace blogger_v3 {
     markAsSpam(
       params: Params$Resource$Comments$Markasspam,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     markAsSpam(
       params?: Params$Resource$Comments$Markasspam,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Comment>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Comment>>;
     markAsSpam(
       params: Params$Resource$Comments$Markasspam,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1522,7 +2145,10 @@ export namespace blogger_v3 {
       callback?:
         | BodyResponseCallback<Schema$Comment>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Comment> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Comment>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Comments$Markasspam;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1568,6 +2194,65 @@ export namespace blogger_v3 {
 
     /**
      * Removes the content of a comment by blog id, post id and comment id.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const blogger = google.blogger('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/blogger'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await blogger.comments.removeContent({
+     *     blogId: 'placeholder-value',
+     *
+     *     commentId: 'placeholder-value',
+     *
+     *     postId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "author": {},
+     *   //   "blog": {},
+     *   //   "content": "my_content",
+     *   //   "id": "my_id",
+     *   //   "inReplyTo": {},
+     *   //   "kind": "my_kind",
+     *   //   "post": {},
+     *   //   "published": "my_published",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "status": "my_status",
+     *   //   "updated": "my_updated"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1577,11 +2262,11 @@ export namespace blogger_v3 {
     removeContent(
       params: Params$Resource$Comments$Removecontent,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     removeContent(
       params?: Params$Resource$Comments$Removecontent,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Comment>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Comment>>;
     removeContent(
       params: Params$Resource$Comments$Removecontent,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1610,7 +2295,10 @@ export namespace blogger_v3 {
       callback?:
         | BodyResponseCallback<Schema$Comment>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Comment> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Comment>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Comments$Removecontent;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1809,6 +2497,50 @@ export namespace blogger_v3 {
 
     /**
      * Deletes a page by blog id and page id.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const blogger = google.blogger('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/blogger'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await blogger.pages.delete({
+     *     blogId: 'placeholder-value',
+     *
+     *     pageId: 'placeholder-value',
+     *     // Move to Trash if possible
+     *     useTrash: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1818,11 +2550,11 @@ export namespace blogger_v3 {
     delete(
       params: Params$Resource$Pages$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Pages$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Pages$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1849,7 +2581,10 @@ export namespace blogger_v3 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pages$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1894,6 +2629,70 @@ export namespace blogger_v3 {
 
     /**
      * Gets a page by blog id and page id.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const blogger = google.blogger('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/blogger',
+     *       'https://www.googleapis.com/auth/blogger.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await blogger.pages.get({
+     *     blogId: 'placeholder-value',
+     *
+     *     pageId: 'placeholder-value',
+     *
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "author": {},
+     *   //   "blog": {},
+     *   //   "content": "my_content",
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "published": "my_published",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "status": "my_status",
+     *   //   "title": "my_title",
+     *   //   "trashed": "my_trashed",
+     *   //   "updated": "my_updated",
+     *   //   "url": "my_url"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1903,11 +2702,11 @@ export namespace blogger_v3 {
     get(
       params: Params$Resource$Pages$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Pages$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Page>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Page>>;
     get(
       params: Params$Resource$Pages$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1936,7 +2735,10 @@ export namespace blogger_v3 {
       callback?:
         | BodyResponseCallback<Schema$Page>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Page> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Page>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pages$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1981,6 +2783,85 @@ export namespace blogger_v3 {
 
     /**
      * Inserts a page.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const blogger = google.blogger('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/blogger'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await blogger.pages.insert({
+     *     blogId: 'placeholder-value',
+     *
+     *     isDraft: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "author": {},
+     *       //   "blog": {},
+     *       //   "content": "my_content",
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "published": "my_published",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "status": "my_status",
+     *       //   "title": "my_title",
+     *       //   "trashed": "my_trashed",
+     *       //   "updated": "my_updated",
+     *       //   "url": "my_url"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "author": {},
+     *   //   "blog": {},
+     *   //   "content": "my_content",
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "published": "my_published",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "status": "my_status",
+     *   //   "title": "my_title",
+     *   //   "trashed": "my_trashed",
+     *   //   "updated": "my_updated",
+     *   //   "url": "my_url"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1990,11 +2871,11 @@ export namespace blogger_v3 {
     insert(
       params: Params$Resource$Pages$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Pages$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Page>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Page>>;
     insert(
       params: Params$Resource$Pages$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2023,7 +2904,10 @@ export namespace blogger_v3 {
       callback?:
         | BodyResponseCallback<Schema$Page>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Page> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Page>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pages$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2068,6 +2952,67 @@ export namespace blogger_v3 {
 
     /**
      * Lists pages.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const blogger = google.blogger('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/blogger',
+     *       'https://www.googleapis.com/auth/blogger.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await blogger.pages.list({
+     *     blogId: 'placeholder-value',
+     *
+     *     fetchBodies: 'placeholder-value',
+     *
+     *     maxResults: 'placeholder-value',
+     *
+     *     pageToken: 'placeholder-value',
+     *
+     *     status: 'placeholder-value',
+     *
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2077,11 +3022,11 @@ export namespace blogger_v3 {
     list(
       params: Params$Resource$Pages$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Pages$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PageList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PageList>>;
     list(
       params: Params$Resource$Pages$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2110,7 +3055,10 @@ export namespace blogger_v3 {
       callback?:
         | BodyResponseCallback<Schema$PageList>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$PageList> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$PageList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pages$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2155,6 +3103,89 @@ export namespace blogger_v3 {
 
     /**
      * Patches a page.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const blogger = google.blogger('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/blogger'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await blogger.pages.patch({
+     *     blogId: 'placeholder-value',
+     *
+     *     pageId: 'placeholder-value',
+     *
+     *     publish: 'placeholder-value',
+     *
+     *     revert: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "author": {},
+     *       //   "blog": {},
+     *       //   "content": "my_content",
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "published": "my_published",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "status": "my_status",
+     *       //   "title": "my_title",
+     *       //   "trashed": "my_trashed",
+     *       //   "updated": "my_updated",
+     *       //   "url": "my_url"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "author": {},
+     *   //   "blog": {},
+     *   //   "content": "my_content",
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "published": "my_published",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "status": "my_status",
+     *   //   "title": "my_title",
+     *   //   "trashed": "my_trashed",
+     *   //   "updated": "my_updated",
+     *   //   "url": "my_url"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2164,11 +3195,11 @@ export namespace blogger_v3 {
     patch(
       params: Params$Resource$Pages$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Pages$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Page>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Page>>;
     patch(
       params: Params$Resource$Pages$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2197,7 +3228,10 @@ export namespace blogger_v3 {
       callback?:
         | BodyResponseCallback<Schema$Page>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Page> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Page>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pages$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2242,6 +3276,65 @@ export namespace blogger_v3 {
 
     /**
      * Publishes a page.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const blogger = google.blogger('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/blogger'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await blogger.pages.publish({
+     *     blogId: 'placeholder-value',
+     *
+     *     pageId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "author": {},
+     *   //   "blog": {},
+     *   //   "content": "my_content",
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "published": "my_published",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "status": "my_status",
+     *   //   "title": "my_title",
+     *   //   "trashed": "my_trashed",
+     *   //   "updated": "my_updated",
+     *   //   "url": "my_url"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2251,11 +3344,11 @@ export namespace blogger_v3 {
     publish(
       params: Params$Resource$Pages$Publish,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     publish(
       params?: Params$Resource$Pages$Publish,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Page>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Page>>;
     publish(
       params: Params$Resource$Pages$Publish,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2284,7 +3377,10 @@ export namespace blogger_v3 {
       callback?:
         | BodyResponseCallback<Schema$Page>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Page> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Page>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pages$Publish;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2328,6 +3424,65 @@ export namespace blogger_v3 {
 
     /**
      * Reverts a published or scheduled page to draft state.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const blogger = google.blogger('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/blogger'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await blogger.pages.revert({
+     *     blogId: 'placeholder-value',
+     *
+     *     pageId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "author": {},
+     *   //   "blog": {},
+     *   //   "content": "my_content",
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "published": "my_published",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "status": "my_status",
+     *   //   "title": "my_title",
+     *   //   "trashed": "my_trashed",
+     *   //   "updated": "my_updated",
+     *   //   "url": "my_url"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2337,11 +3492,11 @@ export namespace blogger_v3 {
     revert(
       params: Params$Resource$Pages$Revert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     revert(
       params?: Params$Resource$Pages$Revert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Page>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Page>>;
     revert(
       params: Params$Resource$Pages$Revert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2370,7 +3525,10 @@ export namespace blogger_v3 {
       callback?:
         | BodyResponseCallback<Schema$Page>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Page> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Page>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pages$Revert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2415,6 +3573,89 @@ export namespace blogger_v3 {
 
     /**
      * Updates a page by blog id and page id.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const blogger = google.blogger('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/blogger'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await blogger.pages.update({
+     *     blogId: 'placeholder-value',
+     *
+     *     pageId: 'placeholder-value',
+     *
+     *     publish: 'placeholder-value',
+     *
+     *     revert: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "author": {},
+     *       //   "blog": {},
+     *       //   "content": "my_content",
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "published": "my_published",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "status": "my_status",
+     *       //   "title": "my_title",
+     *       //   "trashed": "my_trashed",
+     *       //   "updated": "my_updated",
+     *       //   "url": "my_url"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "author": {},
+     *   //   "blog": {},
+     *   //   "content": "my_content",
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "published": "my_published",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "status": "my_status",
+     *   //   "title": "my_title",
+     *   //   "trashed": "my_trashed",
+     *   //   "updated": "my_updated",
+     *   //   "url": "my_url"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2424,11 +3665,11 @@ export namespace blogger_v3 {
     update(
       params: Params$Resource$Pages$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Pages$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Page>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Page>>;
     update(
       params: Params$Resource$Pages$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2457,7 +3698,10 @@ export namespace blogger_v3 {
       callback?:
         | BodyResponseCallback<Schema$Page>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Page> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Page>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pages$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2645,6 +3889,55 @@ export namespace blogger_v3 {
 
     /**
      * Gets page views by blog id.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const blogger = google.blogger('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/blogger'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await blogger.pageViews.get({
+     *     blogId: 'placeholder-value',
+     *
+     *     range: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "blogId": "my_blogId",
+     *   //   "counts": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2654,11 +3947,11 @@ export namespace blogger_v3 {
     get(
       params: Params$Resource$Pageviews$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Pageviews$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Pageviews>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Pageviews>>;
     get(
       params: Params$Resource$Pageviews$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2687,7 +3980,10 @@ export namespace blogger_v3 {
       callback?:
         | BodyResponseCallback<Schema$Pageviews>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Pageviews> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Pageviews>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pageviews$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2750,6 +4046,50 @@ export namespace blogger_v3 {
 
     /**
      * Deletes a post by blog id and post id.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const blogger = google.blogger('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/blogger'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await blogger.posts.delete({
+     *     blogId: 'placeholder-value',
+     *
+     *     postId: 'placeholder-value',
+     *     // Move to Trash if possible
+     *     useTrash: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2759,11 +4099,11 @@ export namespace blogger_v3 {
     delete(
       params: Params$Resource$Posts$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Posts$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Posts$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2790,7 +4130,10 @@ export namespace blogger_v3 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Posts$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2835,6 +4178,83 @@ export namespace blogger_v3 {
 
     /**
      * Gets a post by blog id and post id
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const blogger = google.blogger('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/blogger',
+     *       'https://www.googleapis.com/auth/blogger.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await blogger.posts.get({
+     *     blogId: 'placeholder-value',
+     *
+     *     fetchBody: 'placeholder-value',
+     *
+     *     fetchImages: 'placeholder-value',
+     *
+     *     maxComments: 'placeholder-value',
+     *
+     *     postId: 'placeholder-value',
+     *
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "author": {},
+     *   //   "blog": {},
+     *   //   "content": "my_content",
+     *   //   "customMetaData": "my_customMetaData",
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "images": [],
+     *   //   "kind": "my_kind",
+     *   //   "labels": [],
+     *   //   "location": {},
+     *   //   "published": "my_published",
+     *   //   "readerComments": "my_readerComments",
+     *   //   "replies": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "status": "my_status",
+     *   //   "title": "my_title",
+     *   //   "titleLink": "my_titleLink",
+     *   //   "trashed": "my_trashed",
+     *   //   "updated": "my_updated",
+     *   //   "url": "my_url"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2844,11 +4264,11 @@ export namespace blogger_v3 {
     get(
       params: Params$Resource$Posts$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Posts$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Post>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Post>>;
     get(
       params: Params$Resource$Posts$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2877,7 +4297,10 @@ export namespace blogger_v3 {
       callback?:
         | BodyResponseCallback<Schema$Post>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Post> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Post>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Posts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2922,6 +4345,79 @@ export namespace blogger_v3 {
 
     /**
      * Gets a post by path.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const blogger = google.blogger('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/blogger',
+     *       'https://www.googleapis.com/auth/blogger.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await blogger.posts.getByPath({
+     *     blogId: 'placeholder-value',
+     *
+     *     maxComments: 'placeholder-value',
+     *
+     *     path: 'placeholder-value',
+     *
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "author": {},
+     *   //   "blog": {},
+     *   //   "content": "my_content",
+     *   //   "customMetaData": "my_customMetaData",
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "images": [],
+     *   //   "kind": "my_kind",
+     *   //   "labels": [],
+     *   //   "location": {},
+     *   //   "published": "my_published",
+     *   //   "readerComments": "my_readerComments",
+     *   //   "replies": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "status": "my_status",
+     *   //   "title": "my_title",
+     *   //   "titleLink": "my_titleLink",
+     *   //   "trashed": "my_trashed",
+     *   //   "updated": "my_updated",
+     *   //   "url": "my_url"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2931,11 +4427,11 @@ export namespace blogger_v3 {
     getByPath(
       params: Params$Resource$Posts$Getbypath,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getByPath(
       params?: Params$Resource$Posts$Getbypath,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Post>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Post>>;
     getByPath(
       params: Params$Resource$Posts$Getbypath,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2964,7 +4460,10 @@ export namespace blogger_v3 {
       callback?:
         | BodyResponseCallback<Schema$Post>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Post> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Post>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Posts$Getbypath;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3009,6 +4508,103 @@ export namespace blogger_v3 {
 
     /**
      * Inserts a post.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const blogger = google.blogger('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/blogger'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await blogger.posts.insert({
+     *     blogId: 'placeholder-value',
+     *
+     *     fetchBody: 'placeholder-value',
+     *
+     *     fetchImages: 'placeholder-value',
+     *
+     *     isDraft: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "author": {},
+     *       //   "blog": {},
+     *       //   "content": "my_content",
+     *       //   "customMetaData": "my_customMetaData",
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "images": [],
+     *       //   "kind": "my_kind",
+     *       //   "labels": [],
+     *       //   "location": {},
+     *       //   "published": "my_published",
+     *       //   "readerComments": "my_readerComments",
+     *       //   "replies": {},
+     *       //   "selfLink": "my_selfLink",
+     *       //   "status": "my_status",
+     *       //   "title": "my_title",
+     *       //   "titleLink": "my_titleLink",
+     *       //   "trashed": "my_trashed",
+     *       //   "updated": "my_updated",
+     *       //   "url": "my_url"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "author": {},
+     *   //   "blog": {},
+     *   //   "content": "my_content",
+     *   //   "customMetaData": "my_customMetaData",
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "images": [],
+     *   //   "kind": "my_kind",
+     *   //   "labels": [],
+     *   //   "location": {},
+     *   //   "published": "my_published",
+     *   //   "readerComments": "my_readerComments",
+     *   //   "replies": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "status": "my_status",
+     *   //   "title": "my_title",
+     *   //   "titleLink": "my_titleLink",
+     *   //   "trashed": "my_trashed",
+     *   //   "updated": "my_updated",
+     *   //   "url": "my_url"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3018,11 +4614,11 @@ export namespace blogger_v3 {
     insert(
       params: Params$Resource$Posts$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Posts$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Post>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Post>>;
     insert(
       params: Params$Resource$Posts$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3051,7 +4647,10 @@ export namespace blogger_v3 {
       callback?:
         | BodyResponseCallback<Schema$Post>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Post> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Post>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Posts$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3096,6 +4695,80 @@ export namespace blogger_v3 {
 
     /**
      * Lists posts.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const blogger = google.blogger('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/blogger',
+     *       'https://www.googleapis.com/auth/blogger.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await blogger.posts.list({
+     *     blogId: 'placeholder-value',
+     *
+     *     endDate: 'placeholder-value',
+     *
+     *     fetchBodies: 'placeholder-value',
+     *
+     *     fetchImages: 'placeholder-value',
+     *
+     *     labels: 'placeholder-value',
+     *
+     *     maxResults: 'placeholder-value',
+     *
+     *     orderBy: 'placeholder-value',
+     *
+     *     pageToken: 'placeholder-value',
+     *     // Sort direction applied to post list.
+     *     sortOption: 'placeholder-value',
+     *
+     *     startDate: 'placeholder-value',
+     *
+     *     status: 'placeholder-value',
+     *
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "prevPageToken": "my_prevPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3105,11 +4778,11 @@ export namespace blogger_v3 {
     list(
       params: Params$Resource$Posts$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Posts$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PostList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PostList>>;
     list(
       params: Params$Resource$Posts$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3138,7 +4811,10 @@ export namespace blogger_v3 {
       callback?:
         | BodyResponseCallback<Schema$PostList>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$PostList> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$PostList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Posts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3183,6 +4859,109 @@ export namespace blogger_v3 {
 
     /**
      * Patches a post.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const blogger = google.blogger('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/blogger'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await blogger.posts.patch({
+     *     blogId: 'placeholder-value',
+     *
+     *     fetchBody: 'placeholder-value',
+     *
+     *     fetchImages: 'placeholder-value',
+     *
+     *     maxComments: 'placeholder-value',
+     *
+     *     postId: 'placeholder-value',
+     *
+     *     publish: 'placeholder-value',
+     *
+     *     revert: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "author": {},
+     *       //   "blog": {},
+     *       //   "content": "my_content",
+     *       //   "customMetaData": "my_customMetaData",
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "images": [],
+     *       //   "kind": "my_kind",
+     *       //   "labels": [],
+     *       //   "location": {},
+     *       //   "published": "my_published",
+     *       //   "readerComments": "my_readerComments",
+     *       //   "replies": {},
+     *       //   "selfLink": "my_selfLink",
+     *       //   "status": "my_status",
+     *       //   "title": "my_title",
+     *       //   "titleLink": "my_titleLink",
+     *       //   "trashed": "my_trashed",
+     *       //   "updated": "my_updated",
+     *       //   "url": "my_url"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "author": {},
+     *   //   "blog": {},
+     *   //   "content": "my_content",
+     *   //   "customMetaData": "my_customMetaData",
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "images": [],
+     *   //   "kind": "my_kind",
+     *   //   "labels": [],
+     *   //   "location": {},
+     *   //   "published": "my_published",
+     *   //   "readerComments": "my_readerComments",
+     *   //   "replies": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "status": "my_status",
+     *   //   "title": "my_title",
+     *   //   "titleLink": "my_titleLink",
+     *   //   "trashed": "my_trashed",
+     *   //   "updated": "my_updated",
+     *   //   "url": "my_url"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3192,11 +4971,11 @@ export namespace blogger_v3 {
     patch(
       params: Params$Resource$Posts$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Posts$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Post>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Post>>;
     patch(
       params: Params$Resource$Posts$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3225,7 +5004,10 @@ export namespace blogger_v3 {
       callback?:
         | BodyResponseCallback<Schema$Post>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Post> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Post>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Posts$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3270,6 +5052,74 @@ export namespace blogger_v3 {
 
     /**
      * Publishes a post.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const blogger = google.blogger('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/blogger'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await blogger.posts.publish({
+     *     blogId: 'placeholder-value',
+     *
+     *     postId: 'placeholder-value',
+     *
+     *     publishDate: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "author": {},
+     *   //   "blog": {},
+     *   //   "content": "my_content",
+     *   //   "customMetaData": "my_customMetaData",
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "images": [],
+     *   //   "kind": "my_kind",
+     *   //   "labels": [],
+     *   //   "location": {},
+     *   //   "published": "my_published",
+     *   //   "readerComments": "my_readerComments",
+     *   //   "replies": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "status": "my_status",
+     *   //   "title": "my_title",
+     *   //   "titleLink": "my_titleLink",
+     *   //   "trashed": "my_trashed",
+     *   //   "updated": "my_updated",
+     *   //   "url": "my_url"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3279,11 +5129,11 @@ export namespace blogger_v3 {
     publish(
       params: Params$Resource$Posts$Publish,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     publish(
       params?: Params$Resource$Posts$Publish,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Post>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Post>>;
     publish(
       params: Params$Resource$Posts$Publish,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3312,7 +5162,10 @@ export namespace blogger_v3 {
       callback?:
         | BodyResponseCallback<Schema$Post>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Post> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Post>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Posts$Publish;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3356,6 +5209,72 @@ export namespace blogger_v3 {
 
     /**
      * Reverts a published or scheduled post to draft state.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const blogger = google.blogger('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/blogger'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await blogger.posts.revert({
+     *     blogId: 'placeholder-value',
+     *
+     *     postId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "author": {},
+     *   //   "blog": {},
+     *   //   "content": "my_content",
+     *   //   "customMetaData": "my_customMetaData",
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "images": [],
+     *   //   "kind": "my_kind",
+     *   //   "labels": [],
+     *   //   "location": {},
+     *   //   "published": "my_published",
+     *   //   "readerComments": "my_readerComments",
+     *   //   "replies": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "status": "my_status",
+     *   //   "title": "my_title",
+     *   //   "titleLink": "my_titleLink",
+     *   //   "trashed": "my_trashed",
+     *   //   "updated": "my_updated",
+     *   //   "url": "my_url"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3365,11 +5284,11 @@ export namespace blogger_v3 {
     revert(
       params: Params$Resource$Posts$Revert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     revert(
       params?: Params$Resource$Posts$Revert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Post>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Post>>;
     revert(
       params: Params$Resource$Posts$Revert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3398,7 +5317,10 @@ export namespace blogger_v3 {
       callback?:
         | BodyResponseCallback<Schema$Post>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Post> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Post>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Posts$Revert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3443,6 +5365,64 @@ export namespace blogger_v3 {
 
     /**
      * Searches for posts matching given query terms in the specified blog.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const blogger = google.blogger('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/blogger',
+     *       'https://www.googleapis.com/auth/blogger.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await blogger.posts.search({
+     *     blogId: 'placeholder-value',
+     *
+     *     fetchBodies: 'placeholder-value',
+     *
+     *     orderBy: 'placeholder-value',
+     *
+     *     q: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "prevPageToken": "my_prevPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3452,11 +5432,11 @@ export namespace blogger_v3 {
     search(
       params: Params$Resource$Posts$Search,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     search(
       params?: Params$Resource$Posts$Search,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PostList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PostList>>;
     search(
       params: Params$Resource$Posts$Search,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3485,7 +5465,10 @@ export namespace blogger_v3 {
       callback?:
         | BodyResponseCallback<Schema$PostList>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$PostList> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$PostList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Posts$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3530,6 +5513,109 @@ export namespace blogger_v3 {
 
     /**
      * Updates a post by blog id and post id.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const blogger = google.blogger('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/blogger'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await blogger.posts.update({
+     *     blogId: 'placeholder-value',
+     *
+     *     fetchBody: 'placeholder-value',
+     *
+     *     fetchImages: 'placeholder-value',
+     *
+     *     maxComments: 'placeholder-value',
+     *
+     *     postId: 'placeholder-value',
+     *
+     *     publish: 'placeholder-value',
+     *
+     *     revert: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "author": {},
+     *       //   "blog": {},
+     *       //   "content": "my_content",
+     *       //   "customMetaData": "my_customMetaData",
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "images": [],
+     *       //   "kind": "my_kind",
+     *       //   "labels": [],
+     *       //   "location": {},
+     *       //   "published": "my_published",
+     *       //   "readerComments": "my_readerComments",
+     *       //   "replies": {},
+     *       //   "selfLink": "my_selfLink",
+     *       //   "status": "my_status",
+     *       //   "title": "my_title",
+     *       //   "titleLink": "my_titleLink",
+     *       //   "trashed": "my_trashed",
+     *       //   "updated": "my_updated",
+     *       //   "url": "my_url"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "author": {},
+     *   //   "blog": {},
+     *   //   "content": "my_content",
+     *   //   "customMetaData": "my_customMetaData",
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "images": [],
+     *   //   "kind": "my_kind",
+     *   //   "labels": [],
+     *   //   "location": {},
+     *   //   "published": "my_published",
+     *   //   "readerComments": "my_readerComments",
+     *   //   "replies": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "status": "my_status",
+     *   //   "title": "my_title",
+     *   //   "titleLink": "my_titleLink",
+     *   //   "trashed": "my_trashed",
+     *   //   "updated": "my_updated",
+     *   //   "url": "my_url"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3539,11 +5625,11 @@ export namespace blogger_v3 {
     update(
       params: Params$Resource$Posts$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Posts$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Post>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Post>>;
     update(
       params: Params$Resource$Posts$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3572,7 +5658,10 @@ export namespace blogger_v3 {
       callback?:
         | BodyResponseCallback<Schema$Post>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Post> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Post>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Posts$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3868,6 +5957,62 @@ export namespace blogger_v3 {
 
     /**
      * Gets one post and user info pair, by post_id and user_id.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const blogger = google.blogger('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/blogger',
+     *       'https://www.googleapis.com/auth/blogger.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await blogger.postUserInfos.get({
+     *     blogId: 'placeholder-value',
+     *
+     *     maxComments: 'placeholder-value',
+     *
+     *     postId: 'placeholder-value',
+     *
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "post": {},
+     *   //   "post_user_info": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3877,11 +6022,11 @@ export namespace blogger_v3 {
     get(
       params: Params$Resource$Postuserinfos$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Postuserinfos$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PostUserInfo>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PostUserInfo>>;
     get(
       params: Params$Resource$Postuserinfos$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3910,7 +6055,10 @@ export namespace blogger_v3 {
       callback?:
         | BodyResponseCallback<Schema$PostUserInfo>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$PostUserInfo> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$PostUserInfo>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Postuserinfos$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3955,6 +6103,76 @@ export namespace blogger_v3 {
 
     /**
      * Lists post and user info pairs.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const blogger = google.blogger('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/blogger',
+     *       'https://www.googleapis.com/auth/blogger.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await blogger.postUserInfos.list({
+     *     blogId: 'placeholder-value',
+     *
+     *     endDate: 'placeholder-value',
+     *
+     *     fetchBodies: 'placeholder-value',
+     *
+     *     labels: 'placeholder-value',
+     *
+     *     maxResults: 'placeholder-value',
+     *
+     *     orderBy: 'placeholder-value',
+     *
+     *     pageToken: 'placeholder-value',
+     *
+     *     startDate: 'placeholder-value',
+     *
+     *     status: 'placeholder-value',
+     *
+     *     userId: 'placeholder-value',
+     *
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3964,11 +6182,11 @@ export namespace blogger_v3 {
     list(
       params: Params$Resource$Postuserinfos$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Postuserinfos$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PostUserInfosList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PostUserInfosList>>;
     list(
       params: Params$Resource$Postuserinfos$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3999,8 +6217,8 @@ export namespace blogger_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$PostUserInfosList>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$PostUserInfosList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Postuserinfos$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4120,6 +6338,62 @@ export namespace blogger_v3 {
 
     /**
      * Gets one user by user_id.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const blogger = google.blogger('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/blogger',
+     *       'https://www.googleapis.com/auth/blogger.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await blogger.users.get({
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "about": "my_about",
+     *   //   "blogs": {},
+     *   //   "created": "my_created",
+     *   //   "displayName": "my_displayName",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "locale": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "url": "my_url"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4129,11 +6403,11 @@ export namespace blogger_v3 {
     get(
       params: Params$Resource$Users$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Users$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$User>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$User>>;
     get(
       params: Params$Resource$Users$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4162,7 +6436,10 @@ export namespace blogger_v3 {
       callback?:
         | BodyResponseCallback<Schema$User>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$User> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$User>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

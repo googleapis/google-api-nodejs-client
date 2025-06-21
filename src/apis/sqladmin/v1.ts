@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -583,7 +583,7 @@ export namespace sqladmin_v1 {
      */
     connectionPoolingEnabled?: boolean | null;
     /**
-     * Optional. List of connection pool configuration flags
+     * Optional. List of connection pool configuration flags.
      */
     flags?: Schema$ConnectionPoolFlags[];
   }
@@ -741,6 +741,10 @@ export namespace sqladmin_v1 {
      * The backend type. `SECOND_GEN`: Cloud SQL database instance. `EXTERNAL`: A database server that is not managed by Google. This property is read-only; use the `tier` property in the `settings` object to determine the database type.
      */
     backendType?: string | null;
+    /**
+     * Clears private network settings when the instance is restored.
+     */
+    clearNetwork?: boolean | null;
     /**
      * Connection name of the Cloud SQL instance used in connection strings.
      */
@@ -1402,7 +1406,7 @@ export namespace sqladmin_v1 {
      */
     queryPlansPerMinute?: number | null;
     /**
-     * Maximum query length stored in bytes. Default value: 1024 bytes. Range: 256-4500 bytes. Query length more than this field value will be truncated to this value. When unset, query length will be the default value. Changing query length will restart the database.
+     * Maximum query length stored in bytes. Default value: 1024 bytes. Range: 256-4500 bytes. Query lengths greater than this field value will be truncated to this value. When unset, query length will be the default value. Changing query length will restart the database.
      */
     queryStringLength?: number | null;
     /**
@@ -2132,7 +2136,7 @@ export namespace sqladmin_v1 {
    */
   export interface Schema$PscAutoConnectionConfig {
     /**
-     * The consumer network of this consumer endpoint. This must be a resource path that includes both the host project and the network name. For example, `projects/project1/global/networks/network1`. The consumer host project of this network might be different from the consumer service project.
+     * Optional. The consumer network of this consumer endpoint. This must be a resource path that includes both the host project and the network name. For example, `projects/project1/global/networks/network1`. The consumer host project of this network might be different from the consumer service project.
      */
     consumerNetwork?: string | null;
     /**
@@ -2140,7 +2144,7 @@ export namespace sqladmin_v1 {
      */
     consumerNetworkStatus?: string | null;
     /**
-     * This is the project ID of consumer service project of this consumer endpoint. Optional. This is only applicable if consumer_network is a shared vpc network.
+     * Optional. This is the project ID of consumer service project of this consumer endpoint. Optional. This is only applicable if consumer_network is a shared vpc network.
      */
     consumerProject?: string | null;
     /**
@@ -2160,6 +2164,10 @@ export namespace sqladmin_v1 {
      * Optional. The list of consumer projects that are allow-listed for PSC connections to this instance. This instance can be connected to with PSC from any network in these projects. Each consumer project in this list may be represented by a project number (numeric) or by a project id (alphanumeric).
      */
     allowedConsumerProjects?: string[] | null;
+    /**
+     * Optional. The network attachment of the consumer network that the Private Service Connect enabled Cloud SQL instance is authorized to connect via PSC interface. format: projects/PROJECT/regions/REGION/networkAttachments/ID
+     */
+    networkAttachmentUri?: string | null;
     /**
      * Optional. The list of settings for requested Private Service Connect consumer endpoints that can be used to connect to this Cloud SQL instance.
      */
@@ -2878,10 +2886,6 @@ export namespace sqladmin_v1 {
      */
     host?: string | null;
     /**
-     * Indicates if user is active for IAM Authentication.
-     */
-    iamStatus?: string | null;
-    /**
      * The name of the Cloud SQL instance. This does not include the project ID. Can be omitted for `update` because it is already specified on the URL.
      */
     instance?: string | null;
@@ -2962,6 +2966,77 @@ export namespace sqladmin_v1 {
 
     /**
      * Deletes the backup taken by a backup run.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.backupRuns.delete({
+     *     // The ID of the backup run to delete. To find a backup run ID, use the [list](https://cloud.google.com/sql/docs/mysql/admin-api/rest/v1/backupRuns/list) method.
+     *     id: 'placeholder-value',
+     *     // Cloud SQL instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acquireSsrsLeaseContext": {},
+     *   //   "apiWarning": {},
+     *   //   "backupContext": {},
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "subOperationType": {},
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2971,11 +3046,11 @@ export namespace sqladmin_v1 {
     delete(
       params: Params$Resource$Backupruns$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Backupruns$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Backupruns$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3004,7 +3079,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Backupruns$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3050,6 +3128,77 @@ export namespace sqladmin_v1 {
 
     /**
      * Retrieves a resource containing information about a backup run.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.backupRuns.get({
+     *     // The ID of this backup run.
+     *     id: 'placeholder-value',
+     *     // Cloud SQL instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "backupKind": "my_backupKind",
+     *   //   "databaseVersion": "my_databaseVersion",
+     *   //   "description": "my_description",
+     *   //   "diskEncryptionConfiguration": {},
+     *   //   "diskEncryptionStatus": {},
+     *   //   "endTime": "my_endTime",
+     *   //   "enqueuedTime": "my_enqueuedTime",
+     *   //   "error": {},
+     *   //   "id": "my_id",
+     *   //   "instance": "my_instance",
+     *   //   "kind": "my_kind",
+     *   //   "location": "my_location",
+     *   //   "maxChargeableBytes": "my_maxChargeableBytes",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "timeZone": "my_timeZone",
+     *   //   "type": "my_type",
+     *   //   "windowStartTime": "my_windowStartTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3059,11 +3208,11 @@ export namespace sqladmin_v1 {
     get(
       params: Params$Resource$Backupruns$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Backupruns$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BackupRun>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BackupRun>>;
     get(
       params: Params$Resource$Backupruns$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3092,7 +3241,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$BackupRun>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$BackupRun> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$BackupRun>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Backupruns$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3137,6 +3289,101 @@ export namespace sqladmin_v1 {
 
     /**
      * Creates a new backup run on demand.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.backupRuns.insert({
+     *     // Cloud SQL instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "backupKind": "my_backupKind",
+     *       //   "databaseVersion": "my_databaseVersion",
+     *       //   "description": "my_description",
+     *       //   "diskEncryptionConfiguration": {},
+     *       //   "diskEncryptionStatus": {},
+     *       //   "endTime": "my_endTime",
+     *       //   "enqueuedTime": "my_enqueuedTime",
+     *       //   "error": {},
+     *       //   "id": "my_id",
+     *       //   "instance": "my_instance",
+     *       //   "kind": "my_kind",
+     *       //   "location": "my_location",
+     *       //   "maxChargeableBytes": "my_maxChargeableBytes",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "startTime": "my_startTime",
+     *       //   "status": "my_status",
+     *       //   "timeZone": "my_timeZone",
+     *       //   "type": "my_type",
+     *       //   "windowStartTime": "my_windowStartTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acquireSsrsLeaseContext": {},
+     *   //   "apiWarning": {},
+     *   //   "backupContext": {},
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "subOperationType": {},
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3146,11 +3393,11 @@ export namespace sqladmin_v1 {
     insert(
       params: Params$Resource$Backupruns$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Backupruns$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     insert(
       params: Params$Resource$Backupruns$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3179,7 +3426,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Backupruns$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3224,6 +3474,63 @@ export namespace sqladmin_v1 {
 
     /**
      * Lists all backup runs associated with the project or a given instance and configuration in the reverse chronological order of the backup initiation time.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.backupRuns.list({
+     *     // Cloud SQL instance ID, or "-" for all instances. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Maximum number of backup runs per response.
+     *     maxResults: 'placeholder-value',
+     *     // A previously-returned page token representing part of the larger set of results to view.
+     *     pageToken: 'placeholder-value',
+     *     // Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3233,11 +3540,11 @@ export namespace sqladmin_v1 {
     list(
       params: Params$Resource$Backupruns$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Backupruns$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BackupRunsListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BackupRunsListResponse>>;
     list(
       params: Params$Resource$Backupruns$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3270,8 +3577,8 @@ export namespace sqladmin_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BackupRunsListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$BackupRunsListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Backupruns$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3386,6 +3693,103 @@ export namespace sqladmin_v1 {
 
     /**
      * Creates a backup for a Cloud SQL instance. This API can be used only to create on-demand backups.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.Backups.CreateBackup({
+     *     // Required. The parent resource where this backup is created. Format: projects/{project\}
+     *     parent: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "backupInterval": {},
+     *       //   "backupKind": "my_backupKind",
+     *       //   "backupRun": "my_backupRun",
+     *       //   "databaseVersion": "my_databaseVersion",
+     *       //   "description": "my_description",
+     *       //   "error": {},
+     *       //   "expiryTime": "my_expiryTime",
+     *       //   "instance": "my_instance",
+     *       //   "instanceDeletionTime": "my_instanceDeletionTime",
+     *       //   "instanceSettings": {},
+     *       //   "kind": "my_kind",
+     *       //   "kmsKey": "my_kmsKey",
+     *       //   "kmsKeyVersion": "my_kmsKeyVersion",
+     *       //   "location": "my_location",
+     *       //   "maxChargeableBytes": "my_maxChargeableBytes",
+     *       //   "name": "my_name",
+     *       //   "satisfiesPzi": false,
+     *       //   "satisfiesPzs": false,
+     *       //   "selfLink": "my_selfLink",
+     *       //   "state": "my_state",
+     *       //   "timeZone": "my_timeZone",
+     *       //   "ttlDays": "my_ttlDays",
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acquireSsrsLeaseContext": {},
+     *   //   "apiWarning": {},
+     *   //   "backupContext": {},
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "subOperationType": {},
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3395,11 +3799,11 @@ export namespace sqladmin_v1 {
     CreateBackup(
       params: Params$Resource$Backups$Createbackup,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     CreateBackup(
       params?: Params$Resource$Backups$Createbackup,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     CreateBackup(
       params: Params$Resource$Backups$Createbackup,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3428,7 +3832,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Backups$Createbackup;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3474,6 +3881,73 @@ export namespace sqladmin_v1 {
 
     /**
      * Deletes the backup.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.Backups.DeleteBackup({
+     *     // Required. The name of the backup to delete. Format: projects/{project\}/backups/{backup\}
+     *     name: 'projects/my-project/backups/my-backup',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acquireSsrsLeaseContext": {},
+     *   //   "apiWarning": {},
+     *   //   "backupContext": {},
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "subOperationType": {},
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3483,11 +3957,11 @@ export namespace sqladmin_v1 {
     DeleteBackup(
       params: Params$Resource$Backups$Deletebackup,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     DeleteBackup(
       params?: Params$Resource$Backups$Deletebackup,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     DeleteBackup(
       params: Params$Resource$Backups$Deletebackup,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3516,7 +3990,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Backups$Deletebackup;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3559,6 +4036,77 @@ export namespace sqladmin_v1 {
 
     /**
      * Retrieves a resource containing information about a backup.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.Backups.GetBackup({
+     *     // Required. The name of the backup to retrieve. Format: projects/{project\}/backups/{backup\}
+     *     name: 'projects/my-project/backups/my-backup',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "backupInterval": {},
+     *   //   "backupKind": "my_backupKind",
+     *   //   "backupRun": "my_backupRun",
+     *   //   "databaseVersion": "my_databaseVersion",
+     *   //   "description": "my_description",
+     *   //   "error": {},
+     *   //   "expiryTime": "my_expiryTime",
+     *   //   "instance": "my_instance",
+     *   //   "instanceDeletionTime": "my_instanceDeletionTime",
+     *   //   "instanceSettings": {},
+     *   //   "kind": "my_kind",
+     *   //   "kmsKey": "my_kmsKey",
+     *   //   "kmsKeyVersion": "my_kmsKeyVersion",
+     *   //   "location": "my_location",
+     *   //   "maxChargeableBytes": "my_maxChargeableBytes",
+     *   //   "name": "my_name",
+     *   //   "satisfiesPzi": false,
+     *   //   "satisfiesPzs": false,
+     *   //   "selfLink": "my_selfLink",
+     *   //   "state": "my_state",
+     *   //   "timeZone": "my_timeZone",
+     *   //   "ttlDays": "my_ttlDays",
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3568,11 +4116,11 @@ export namespace sqladmin_v1 {
     GetBackup(
       params: Params$Resource$Backups$Getbackup,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     GetBackup(
       params?: Params$Resource$Backups$Getbackup,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Backup>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Backup>>;
     GetBackup(
       params: Params$Resource$Backups$Getbackup,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3601,7 +4149,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Backup>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Backup> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Backup>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Backups$Getbackup;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3644,6 +4195,63 @@ export namespace sqladmin_v1 {
 
     /**
      * Lists all backups associated with the project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.Backups.ListBackups({
+     *     // Multiple filter queries are separated by spaces. For example, 'instance:abc AND type:FINAL, 'location:us', 'backupInterval.startTime\>=1950-01-01T01:01:25.771Z'. You can filter by type, instance, backupInterval.startTime (creation time), or location.
+     *     filter: 'placeholder-value',
+     *     // The maximum number of backups to return per response. The service might return fewer backups than this value. If a value for this parameter isn't specified, then, at most, 500 backups are returned. The maximum value is 2,000. Any values that you set, which are greater than 2,000, are changed to 2,000.
+     *     pageSize: 'placeholder-value',
+     *     // A page token, received from a previous `ListBackups` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListBackups` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent that owns this collection of backups. Format: projects/{project\}
+     *     parent: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "backups": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "warnings": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3653,11 +4261,11 @@ export namespace sqladmin_v1 {
     ListBackups(
       params: Params$Resource$Backups$Listbackups,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     ListBackups(
       params?: Params$Resource$Backups$Listbackups,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListBackupsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListBackupsResponse>>;
     ListBackups(
       params: Params$Resource$Backups$Listbackups,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3690,8 +4298,8 @@ export namespace sqladmin_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListBackupsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListBackupsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Backups$Listbackups;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3736,7 +4344,106 @@ export namespace sqladmin_v1 {
     }
 
     /**
-     * This API updates the following: 1- retention period and description of backup in case of final backups only. 2- gcbdr_soft_delete_status of backup in case of GCBDR managed backups only.
+     * Updates the retention period and description of the backup. You can use this API to update final backups only.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.Backups.UpdateBackup({
+     *     // Output only. The resource name of the backup. Format: projects/{project\}/backups/{backup\}.
+     *     name: 'projects/my-project/backups/my-backup',
+     *     // The list of fields that you can update. You can update only the description and retention period of the final backup.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "backupInterval": {},
+     *       //   "backupKind": "my_backupKind",
+     *       //   "backupRun": "my_backupRun",
+     *       //   "databaseVersion": "my_databaseVersion",
+     *       //   "description": "my_description",
+     *       //   "error": {},
+     *       //   "expiryTime": "my_expiryTime",
+     *       //   "instance": "my_instance",
+     *       //   "instanceDeletionTime": "my_instanceDeletionTime",
+     *       //   "instanceSettings": {},
+     *       //   "kind": "my_kind",
+     *       //   "kmsKey": "my_kmsKey",
+     *       //   "kmsKeyVersion": "my_kmsKeyVersion",
+     *       //   "location": "my_location",
+     *       //   "maxChargeableBytes": "my_maxChargeableBytes",
+     *       //   "name": "my_name",
+     *       //   "satisfiesPzi": false,
+     *       //   "satisfiesPzs": false,
+     *       //   "selfLink": "my_selfLink",
+     *       //   "state": "my_state",
+     *       //   "timeZone": "my_timeZone",
+     *       //   "ttlDays": "my_ttlDays",
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acquireSsrsLeaseContext": {},
+     *   //   "apiWarning": {},
+     *   //   "backupContext": {},
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "subOperationType": {},
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3746,11 +4453,11 @@ export namespace sqladmin_v1 {
     UpdateBackup(
       params: Params$Resource$Backups$Updatebackup,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     UpdateBackup(
       params?: Params$Resource$Backups$Updatebackup,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     UpdateBackup(
       params: Params$Resource$Backups$Updatebackup,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3779,7 +4486,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Backups$Updatebackup;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3891,6 +4601,68 @@ export namespace sqladmin_v1 {
 
     /**
      * Generates a short-lived X509 certificate containing the provided public key and signed by a private key specific to the target instance. Users may use the certificate to authenticate as themselves when connecting to the database.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.connect.generateEphemeral({
+     *     // Cloud SQL instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "access_token": "my_access_token",
+     *       //   "public_key": "my_public_key",
+     *       //   "readTime": "my_readTime",
+     *       //   "validDuration": "my_validDuration"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "ephemeralCert": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3900,11 +4672,11 @@ export namespace sqladmin_v1 {
     generateEphemeralCert(
       params: Params$Resource$Connect$Generateephemeralcert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     generateEphemeralCert(
       params?: Params$Resource$Connect$Generateephemeralcert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GenerateEphemeralCertResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GenerateEphemeralCertResponse>>;
     generateEphemeralCert(
       params: Params$Resource$Connect$Generateephemeralcert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3939,8 +4711,8 @@ export namespace sqladmin_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GenerateEphemeralCertResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GenerateEphemeralCertResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Connect$Generateephemeralcert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3988,6 +4760,71 @@ export namespace sqladmin_v1 {
 
     /**
      * Retrieves connect settings about a Cloud SQL instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.connect.get({
+     *     // Cloud SQL instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *     // Optional. Optional snapshot read timestamp to trade freshness for performance.
+     *     readTime: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "backendType": "my_backendType",
+     *   //   "customSubjectAlternativeNames": [],
+     *   //   "databaseVersion": "my_databaseVersion",
+     *   //   "dnsName": "my_dnsName",
+     *   //   "dnsNames": [],
+     *   //   "ipAddresses": [],
+     *   //   "kind": "my_kind",
+     *   //   "nodeCount": 0,
+     *   //   "nodes": [],
+     *   //   "pscEnabled": false,
+     *   //   "region": "my_region",
+     *   //   "serverCaCert": {},
+     *   //   "serverCaMode": "my_serverCaMode"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3997,11 +4834,11 @@ export namespace sqladmin_v1 {
     get(
       params: Params$Resource$Connect$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Connect$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ConnectSettings>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ConnectSettings>>;
     get(
       params: Params$Resource$Connect$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4030,7 +4867,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$ConnectSettings>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ConnectSettings> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ConnectSettings>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Connect$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4113,6 +4953,77 @@ export namespace sqladmin_v1 {
 
     /**
      * Deletes a database from a Cloud SQL instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.databases.delete({
+     *     // Name of the database to be deleted in the instance.
+     *     database: 'placeholder-value',
+     *     // Database instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acquireSsrsLeaseContext": {},
+     *   //   "apiWarning": {},
+     *   //   "backupContext": {},
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "subOperationType": {},
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4122,11 +5033,11 @@ export namespace sqladmin_v1 {
     delete(
       params: Params$Resource$Databases$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Databases$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Databases$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4155,7 +5066,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Databases$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4200,6 +5114,67 @@ export namespace sqladmin_v1 {
 
     /**
      * Retrieves a resource containing information about a database inside a Cloud SQL instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.databases.get({
+     *     // Name of the database in the instance.
+     *     database: 'placeholder-value',
+     *     // Database instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "charset": "my_charset",
+     *   //   "collation": "my_collation",
+     *   //   "etag": "my_etag",
+     *   //   "instance": "my_instance",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "project": "my_project",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "sqlserverDatabaseDetails": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4209,11 +5184,11 @@ export namespace sqladmin_v1 {
     get(
       params: Params$Resource$Databases$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Databases$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Database>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Database>>;
     get(
       params: Params$Resource$Databases$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4242,7 +5217,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Database>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Database> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Database>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Databases$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4287,6 +5265,91 @@ export namespace sqladmin_v1 {
 
     /**
      * Inserts a resource containing information about a database inside a Cloud SQL instance. **Note:** You can't modify the default character set and collation.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.databases.insert({
+     *     // Database instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "charset": "my_charset",
+     *       //   "collation": "my_collation",
+     *       //   "etag": "my_etag",
+     *       //   "instance": "my_instance",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "project": "my_project",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "sqlserverDatabaseDetails": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acquireSsrsLeaseContext": {},
+     *   //   "apiWarning": {},
+     *   //   "backupContext": {},
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "subOperationType": {},
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4296,11 +5359,11 @@ export namespace sqladmin_v1 {
     insert(
       params: Params$Resource$Databases$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Databases$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     insert(
       params: Params$Resource$Databases$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4329,7 +5392,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Databases$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4373,6 +5439,58 @@ export namespace sqladmin_v1 {
 
     /**
      * Lists databases in the specified Cloud SQL instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.databases.list({
+     *     // Cloud SQL instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4382,11 +5500,11 @@ export namespace sqladmin_v1 {
     list(
       params: Params$Resource$Databases$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Databases$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DatabasesListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DatabasesListResponse>>;
     list(
       params: Params$Resource$Databases$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4419,8 +5537,8 @@ export namespace sqladmin_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$DatabasesListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$DatabasesListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Databases$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4464,6 +5582,93 @@ export namespace sqladmin_v1 {
 
     /**
      * Partially updates a resource containing information about a database inside a Cloud SQL instance. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.databases.patch({
+     *     // Name of the database to be updated in the instance.
+     *     database: 'placeholder-value',
+     *     // Database instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "charset": "my_charset",
+     *       //   "collation": "my_collation",
+     *       //   "etag": "my_etag",
+     *       //   "instance": "my_instance",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "project": "my_project",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "sqlserverDatabaseDetails": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acquireSsrsLeaseContext": {},
+     *   //   "apiWarning": {},
+     *   //   "backupContext": {},
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "subOperationType": {},
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4473,11 +5678,11 @@ export namespace sqladmin_v1 {
     patch(
       params: Params$Resource$Databases$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Databases$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Databases$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4506,7 +5711,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Databases$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4551,6 +5759,93 @@ export namespace sqladmin_v1 {
 
     /**
      * Updates a resource containing information about a database inside a Cloud SQL instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.databases.update({
+     *     // Name of the database to be updated in the instance.
+     *     database: 'placeholder-value',
+     *     // Database instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "charset": "my_charset",
+     *       //   "collation": "my_collation",
+     *       //   "etag": "my_etag",
+     *       //   "instance": "my_instance",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "project": "my_project",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "sqlserverDatabaseDetails": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acquireSsrsLeaseContext": {},
+     *   //   "apiWarning": {},
+     *   //   "backupContext": {},
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "subOperationType": {},
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4560,11 +5855,11 @@ export namespace sqladmin_v1 {
     update(
       params: Params$Resource$Databases$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Databases$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     update(
       params: Params$Resource$Databases$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4593,7 +5888,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Databases$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4737,6 +6035,58 @@ export namespace sqladmin_v1 {
 
     /**
      * Lists all available database flags for Cloud SQL instances.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.flags.list({
+     *     // Database type and version you want to retrieve flags for. By default, this method returns flags for all database types and versions.
+     *     databaseVersion: 'placeholder-value',
+     *     // Optional. Specify the scope of flags to be returned by SqlFlagsListService. Return list of database flags if unspecified.
+     *     flagScope: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4746,11 +6096,11 @@ export namespace sqladmin_v1 {
     list(
       params: Params$Resource$Flags$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Flags$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FlagsListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FlagsListResponse>>;
     list(
       params: Params$Resource$Flags$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4781,8 +6131,8 @@ export namespace sqladmin_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$FlagsListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$FlagsListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Flags$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4842,6 +6192,65 @@ export namespace sqladmin_v1 {
 
     /**
      * Acquire a lease for the setup of SQL Server Reporting Services (SSRS).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.instances.acquireSsrsLease({
+     *     // Required. Cloud SQL instance ID. This doesn't include the project ID. It's composed of lowercase letters, numbers, and hyphens, and it must start with a letter. The total length must be 98 characters or less (Example: instance-id).
+     *     instance: 'placeholder-value',
+     *     // Required. Project ID of the project that contains the instance (Example: project-id).
+     *     project: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "acquireSsrsLeaseContext": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "operationId": "my_operationId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4851,11 +6260,13 @@ export namespace sqladmin_v1 {
     acquireSsrsLease(
       params: Params$Resource$Instances$Acquiressrslease,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     acquireSsrsLease(
       params?: Params$Resource$Instances$Acquiressrslease,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SqlInstancesAcquireSsrsLeaseResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$SqlInstancesAcquireSsrsLeaseResponse>
+    >;
     acquireSsrsLease(
       params: Params$Resource$Instances$Acquiressrslease,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4890,8 +6301,10 @@ export namespace sqladmin_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SqlInstancesAcquireSsrsLeaseResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$SqlInstancesAcquireSsrsLeaseResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Instances$Acquiressrslease;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4939,6 +6352,75 @@ export namespace sqladmin_v1 {
 
     /**
      * Adds a new trusted Certificate Authority (CA) version for the specified instance. Required to prepare for a certificate rotation. If a CA version was previously added but never used in a certificate rotation, this operation replaces that version. There cannot be more than one CA version waiting to be rotated in. For instances that have enabled Certificate Authority Service (CAS) based server CA, use AddServerCertificate to add a new server certificate.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.instances.addServerCa({
+     *     // Cloud SQL instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acquireSsrsLeaseContext": {},
+     *   //   "apiWarning": {},
+     *   //   "backupContext": {},
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "subOperationType": {},
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4948,11 +6430,11 @@ export namespace sqladmin_v1 {
     addServerCa(
       params: Params$Resource$Instances$Addserverca,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     addServerCa(
       params?: Params$Resource$Instances$Addserverca,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     addServerCa(
       params: Params$Resource$Instances$Addserverca,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4981,7 +6463,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Instances$Addserverca;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5027,6 +6512,75 @@ export namespace sqladmin_v1 {
 
     /**
      * Add a new trusted server certificate version for the specified instance using Certificate Authority Service (CAS) server CA. Required to prepare for a certificate rotation. If a server certificate version was previously added but never used in a certificate rotation, this operation replaces that version. There cannot be more than one certificate version waiting to be rotated in. For instances not using CAS server CA, use AddServerCa instead.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.instances.addServerCertificate({
+     *     // Cloud SQL instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acquireSsrsLeaseContext": {},
+     *   //   "apiWarning": {},
+     *   //   "backupContext": {},
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "subOperationType": {},
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5036,11 +6590,11 @@ export namespace sqladmin_v1 {
     addServerCertificate(
       params: Params$Resource$Instances$Addservercertificate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     addServerCertificate(
       params?: Params$Resource$Instances$Addservercertificate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     addServerCertificate(
       params: Params$Resource$Instances$Addservercertificate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5071,7 +6625,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Instances$Addservercertificate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5117,6 +6674,83 @@ export namespace sqladmin_v1 {
 
     /**
      * Creates a Cloud SQL instance as a clone of the source instance. Using this operation might cause your instance to restart.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.instances.clone({
+     *     // The ID of the Cloud SQL instance to be cloned (source). This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Project ID of the source as well as the clone Cloud SQL instance.
+     *     project: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "cloneContext": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acquireSsrsLeaseContext": {},
+     *   //   "apiWarning": {},
+     *   //   "backupContext": {},
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "subOperationType": {},
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5126,11 +6760,11 @@ export namespace sqladmin_v1 {
     clone(
       params: Params$Resource$Instances$Clone,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     clone(
       params?: Params$Resource$Instances$Clone,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     clone(
       params: Params$Resource$Instances$Clone,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5159,7 +6793,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Instances$Clone;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5203,6 +6840,83 @@ export namespace sqladmin_v1 {
 
     /**
      * Deletes a Cloud SQL instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.instances.delete({
+     *     // Flag to opt-in for final backup. By default, it is turned off.
+     *     enableFinalBackup: 'placeholder-value',
+     *     // Optional. The description of the final backup.
+     *     finalBackupDescription: 'placeholder-value',
+     *     // Optional. Final Backup expiration time. Timestamp in UTC of when this resource is considered expired.
+     *     finalBackupExpiryTime: 'placeholder-value',
+     *     // Optional. Retention period of the final backup.
+     *     finalBackupTtlDays: 'placeholder-value',
+     *     // Cloud SQL instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Project ID of the project that contains the instance to be deleted.
+     *     project: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acquireSsrsLeaseContext": {},
+     *   //   "apiWarning": {},
+     *   //   "backupContext": {},
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "subOperationType": {},
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5212,11 +6926,11 @@ export namespace sqladmin_v1 {
     delete(
       params: Params$Resource$Instances$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Instances$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Instances$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5245,7 +6959,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Instances$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5289,6 +7006,83 @@ export namespace sqladmin_v1 {
 
     /**
      * Demotes an existing standalone instance to be a Cloud SQL read replica for an external database server.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.instances.demote({
+     *     // Required. Cloud SQL instance name.
+     *     instance: 'placeholder-value',
+     *     // Required. ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "demoteContext": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acquireSsrsLeaseContext": {},
+     *   //   "apiWarning": {},
+     *   //   "backupContext": {},
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "subOperationType": {},
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5298,11 +7092,11 @@ export namespace sqladmin_v1 {
     demote(
       params: Params$Resource$Instances$Demote,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     demote(
       params?: Params$Resource$Instances$Demote,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     demote(
       params: Params$Resource$Instances$Demote,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5331,7 +7125,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Instances$Demote;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5375,6 +7172,83 @@ export namespace sqladmin_v1 {
 
     /**
      * Demotes the stand-alone instance to be a Cloud SQL read replica for an external database server.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.instances.demoteMaster({
+     *     // Cloud SQL instance name.
+     *     instance: 'placeholder-value',
+     *     // ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "demoteMasterContext": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acquireSsrsLeaseContext": {},
+     *   //   "apiWarning": {},
+     *   //   "backupContext": {},
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "subOperationType": {},
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5384,11 +7258,11 @@ export namespace sqladmin_v1 {
     demoteMaster(
       params: Params$Resource$Instances$Demotemaster,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     demoteMaster(
       params?: Params$Resource$Instances$Demotemaster,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     demoteMaster(
       params: Params$Resource$Instances$Demotemaster,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5417,7 +7291,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Instances$Demotemaster;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5463,6 +7340,80 @@ export namespace sqladmin_v1 {
 
     /**
      * Exports data from a Cloud SQL instance to a Cloud Storage bucket as a SQL dump or CSV file.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.instances.export({
+     *     // Cloud SQL instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Project ID of the project that contains the instance to be exported.
+     *     project: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "exportContext": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acquireSsrsLeaseContext": {},
+     *   //   "apiWarning": {},
+     *   //   "backupContext": {},
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "subOperationType": {},
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5472,11 +7423,11 @@ export namespace sqladmin_v1 {
     export(
       params: Params$Resource$Instances$Export,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     export(
       params?: Params$Resource$Instances$Export,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     export(
       params: Params$Resource$Instances$Export,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5505,7 +7456,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Instances$Export;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5549,6 +7503,83 @@ export namespace sqladmin_v1 {
 
     /**
      * Initiates a manual failover of a high availability (HA) primary instance to a standby instance, which becomes the primary instance. Users are then rerouted to the new primary. For more information, see the [Overview of high availability](https://cloud.google.com/sql/docs/mysql/high-availability) page in the Cloud SQL documentation. If using Legacy HA (MySQL only), this causes the instance to failover to its failover replica instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.instances.failover({
+     *     // Cloud SQL instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // ID of the project that contains the read replica.
+     *     project: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "failoverContext": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acquireSsrsLeaseContext": {},
+     *   //   "apiWarning": {},
+     *   //   "backupContext": {},
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "subOperationType": {},
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5558,11 +7589,11 @@ export namespace sqladmin_v1 {
     failover(
       params: Params$Resource$Instances$Failover,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     failover(
       params?: Params$Resource$Instances$Failover,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     failover(
       params: Params$Resource$Instances$Failover,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5591,7 +7622,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Instances$Failover;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5636,6 +7670,108 @@ export namespace sqladmin_v1 {
 
     /**
      * Retrieves a resource containing information about a Cloud SQL instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.instances.get({
+     *     // Database instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "availableMaintenanceVersions": [],
+     *   //   "backendType": "my_backendType",
+     *   //   "clearNetwork": false,
+     *   //   "connectionName": "my_connectionName",
+     *   //   "createTime": "my_createTime",
+     *   //   "currentDiskSize": "my_currentDiskSize",
+     *   //   "databaseInstalledVersion": "my_databaseInstalledVersion",
+     *   //   "databaseVersion": "my_databaseVersion",
+     *   //   "diskEncryptionConfiguration": {},
+     *   //   "diskEncryptionStatus": {},
+     *   //   "dnsName": "my_dnsName",
+     *   //   "dnsNames": [],
+     *   //   "etag": "my_etag",
+     *   //   "failoverReplica": {},
+     *   //   "gceZone": "my_gceZone",
+     *   //   "geminiConfig": {},
+     *   //   "includeReplicasForMajorVersionUpgrade": false,
+     *   //   "instanceType": "my_instanceType",
+     *   //   "ipAddresses": [],
+     *   //   "ipv6Address": "my_ipv6Address",
+     *   //   "kind": "my_kind",
+     *   //   "maintenanceVersion": "my_maintenanceVersion",
+     *   //   "masterInstanceName": "my_masterInstanceName",
+     *   //   "maxDiskSize": "my_maxDiskSize",
+     *   //   "name": "my_name",
+     *   //   "nodeCount": 0,
+     *   //   "nodes": [],
+     *   //   "onPremisesConfiguration": {},
+     *   //   "outOfDiskReport": {},
+     *   //   "primaryDnsName": "my_primaryDnsName",
+     *   //   "project": "my_project",
+     *   //   "pscServiceAttachmentLink": "my_pscServiceAttachmentLink",
+     *   //   "region": "my_region",
+     *   //   "replicaConfiguration": {},
+     *   //   "replicaNames": [],
+     *   //   "replicationCluster": {},
+     *   //   "rootPassword": "my_rootPassword",
+     *   //   "satisfiesPzi": false,
+     *   //   "satisfiesPzs": false,
+     *   //   "scheduledMaintenance": {},
+     *   //   "secondaryGceZone": "my_secondaryGceZone",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "serverCaCert": {},
+     *   //   "serviceAccountEmailAddress": "my_serviceAccountEmailAddress",
+     *   //   "settings": {},
+     *   //   "sqlNetworkArchitecture": "my_sqlNetworkArchitecture",
+     *   //   "state": "my_state",
+     *   //   "suspensionReason": [],
+     *   //   "switchTransactionLogsToCloudStorageEnabled": false,
+     *   //   "tags": {},
+     *   //   "upgradableDatabaseVersions": [],
+     *   //   "writeEndpoint": "my_writeEndpoint"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5645,11 +7781,11 @@ export namespace sqladmin_v1 {
     get(
       params: Params$Resource$Instances$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Instances$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DatabaseInstance>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DatabaseInstance>>;
     get(
       params: Params$Resource$Instances$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5678,7 +7814,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$DatabaseInstance>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$DatabaseInstance> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$DatabaseInstance>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Instances$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5722,6 +7861,80 @@ export namespace sqladmin_v1 {
 
     /**
      * Imports data into a Cloud SQL instance from a SQL dump or CSV file in Cloud Storage.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.instances.import({
+     *     // Cloud SQL instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "importContext": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acquireSsrsLeaseContext": {},
+     *   //   "apiWarning": {},
+     *   //   "backupContext": {},
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "subOperationType": {},
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5731,11 +7944,11 @@ export namespace sqladmin_v1 {
     import(
       params: Params$Resource$Instances$Import,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     import(
       params?: Params$Resource$Instances$Import,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     import(
       params: Params$Resource$Instances$Import,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5764,7 +7977,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Instances$Import;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5808,6 +8024,132 @@ export namespace sqladmin_v1 {
 
     /**
      * Creates a new Cloud SQL instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.instances.insert({
+     *     // Project ID of the project to which the newly created Cloud SQL instances should belong.
+     *     project: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "availableMaintenanceVersions": [],
+     *       //   "backendType": "my_backendType",
+     *       //   "clearNetwork": false,
+     *       //   "connectionName": "my_connectionName",
+     *       //   "createTime": "my_createTime",
+     *       //   "currentDiskSize": "my_currentDiskSize",
+     *       //   "databaseInstalledVersion": "my_databaseInstalledVersion",
+     *       //   "databaseVersion": "my_databaseVersion",
+     *       //   "diskEncryptionConfiguration": {},
+     *       //   "diskEncryptionStatus": {},
+     *       //   "dnsName": "my_dnsName",
+     *       //   "dnsNames": [],
+     *       //   "etag": "my_etag",
+     *       //   "failoverReplica": {},
+     *       //   "gceZone": "my_gceZone",
+     *       //   "geminiConfig": {},
+     *       //   "includeReplicasForMajorVersionUpgrade": false,
+     *       //   "instanceType": "my_instanceType",
+     *       //   "ipAddresses": [],
+     *       //   "ipv6Address": "my_ipv6Address",
+     *       //   "kind": "my_kind",
+     *       //   "maintenanceVersion": "my_maintenanceVersion",
+     *       //   "masterInstanceName": "my_masterInstanceName",
+     *       //   "maxDiskSize": "my_maxDiskSize",
+     *       //   "name": "my_name",
+     *       //   "nodeCount": 0,
+     *       //   "nodes": [],
+     *       //   "onPremisesConfiguration": {},
+     *       //   "outOfDiskReport": {},
+     *       //   "primaryDnsName": "my_primaryDnsName",
+     *       //   "project": "my_project",
+     *       //   "pscServiceAttachmentLink": "my_pscServiceAttachmentLink",
+     *       //   "region": "my_region",
+     *       //   "replicaConfiguration": {},
+     *       //   "replicaNames": [],
+     *       //   "replicationCluster": {},
+     *       //   "rootPassword": "my_rootPassword",
+     *       //   "satisfiesPzi": false,
+     *       //   "satisfiesPzs": false,
+     *       //   "scheduledMaintenance": {},
+     *       //   "secondaryGceZone": "my_secondaryGceZone",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "serverCaCert": {},
+     *       //   "serviceAccountEmailAddress": "my_serviceAccountEmailAddress",
+     *       //   "settings": {},
+     *       //   "sqlNetworkArchitecture": "my_sqlNetworkArchitecture",
+     *       //   "state": "my_state",
+     *       //   "suspensionReason": [],
+     *       //   "switchTransactionLogsToCloudStorageEnabled": false,
+     *       //   "tags": {},
+     *       //   "upgradableDatabaseVersions": [],
+     *       //   "writeEndpoint": "my_writeEndpoint"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acquireSsrsLeaseContext": {},
+     *   //   "apiWarning": {},
+     *   //   "backupContext": {},
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "subOperationType": {},
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5817,11 +8159,11 @@ export namespace sqladmin_v1 {
     insert(
       params: Params$Resource$Instances$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Instances$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     insert(
       params: Params$Resource$Instances$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5850,7 +8192,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Instances$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5895,6 +8240,64 @@ export namespace sqladmin_v1 {
 
     /**
      * Lists instances under a given project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.instances.list({
+     *     // A filter expression that filters resources listed in the response. The expression is in the form of field:value. For example, 'instanceType:CLOUD_SQL_INSTANCE'. Fields can be nested as needed as per their JSON representation, such as 'settings.userLabels.auto_start:true'. Multiple filter queries are space-separated. For example. 'state:RUNNABLE instanceType:CLOUD_SQL_INSTANCE'. By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly.
+     *     filter: 'placeholder-value',
+     *     // The maximum number of instances to return. The service may return fewer than this value. If unspecified, at most 500 instances are returned. The maximum value is 1000; values above 1000 are coerced to 1000.
+     *     maxResults: 'placeholder-value',
+     *     // A previously-returned page token representing part of the larger set of results to view.
+     *     pageToken: 'placeholder-value',
+     *     // Project ID of the project for which to list Cloud SQL instances.
+     *     project: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "warnings": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5904,11 +8307,11 @@ export namespace sqladmin_v1 {
     list(
       params: Params$Resource$Instances$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Instances$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$InstancesListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$InstancesListResponse>>;
     list(
       params: Params$Resource$Instances$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5941,8 +8344,8 @@ export namespace sqladmin_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$InstancesListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$InstancesListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Instances$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5987,6 +8390,59 @@ export namespace sqladmin_v1 {
 
     /**
      * Lists all of the trusted Certificate Authorities (CAs) for the specified instance. There can be up to three CAs listed: the CA that was used to sign the certificate that is currently in use, a CA that has been added but not yet used to sign a certificate, and a CA used to sign a certificate that has previously rotated out.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.instances.listServerCas({
+     *     // Cloud SQL instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activeVersion": "my_activeVersion",
+     *   //   "certs": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5996,11 +8452,11 @@ export namespace sqladmin_v1 {
     listServerCas(
       params: Params$Resource$Instances$Listservercas,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     listServerCas(
       params?: Params$Resource$Instances$Listservercas,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$InstancesListServerCasResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$InstancesListServerCasResponse>>;
     listServerCas(
       params: Params$Resource$Instances$Listservercas,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6035,8 +8491,8 @@ export namespace sqladmin_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$InstancesListServerCasResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$InstancesListServerCasResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Instances$Listservercas;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6084,6 +8540,60 @@ export namespace sqladmin_v1 {
 
     /**
      * Lists all versions of server certificates and certificate authorities (CAs) for the specified instance. There can be up to three sets of certs listed: the certificate that is currently in use, a future that has been added but not yet used to sign a certificate, and a certificate that has been rotated out. For instances not using Certificate Authority Service (CAS) server CA, use ListServerCas instead.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.instances.ListServerCertificates({
+     *     // Required. Cloud SQL instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Required. Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activeVersion": "my_activeVersion",
+     *   //   "caCerts": [],
+     *   //   "kind": "my_kind",
+     *   //   "serverCerts": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6093,11 +8603,13 @@ export namespace sqladmin_v1 {
     ListServerCertificates(
       params: Params$Resource$Instances$Listservercertificates,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     ListServerCertificates(
       params?: Params$Resource$Instances$Listservercertificates,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$InstancesListServerCertificatesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$InstancesListServerCertificatesResponse>
+    >;
     ListServerCertificates(
       params: Params$Resource$Instances$Listservercertificates,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6132,8 +8644,10 @@ export namespace sqladmin_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$InstancesListServerCertificatesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$InstancesListServerCertificatesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Instances$Listservercertificates;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6181,6 +8695,134 @@ export namespace sqladmin_v1 {
 
     /**
      * Partially updates settings of a Cloud SQL instance by merging the request with the current configuration. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.instances.patch({
+     *     // Cloud SQL instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "availableMaintenanceVersions": [],
+     *       //   "backendType": "my_backendType",
+     *       //   "clearNetwork": false,
+     *       //   "connectionName": "my_connectionName",
+     *       //   "createTime": "my_createTime",
+     *       //   "currentDiskSize": "my_currentDiskSize",
+     *       //   "databaseInstalledVersion": "my_databaseInstalledVersion",
+     *       //   "databaseVersion": "my_databaseVersion",
+     *       //   "diskEncryptionConfiguration": {},
+     *       //   "diskEncryptionStatus": {},
+     *       //   "dnsName": "my_dnsName",
+     *       //   "dnsNames": [],
+     *       //   "etag": "my_etag",
+     *       //   "failoverReplica": {},
+     *       //   "gceZone": "my_gceZone",
+     *       //   "geminiConfig": {},
+     *       //   "includeReplicasForMajorVersionUpgrade": false,
+     *       //   "instanceType": "my_instanceType",
+     *       //   "ipAddresses": [],
+     *       //   "ipv6Address": "my_ipv6Address",
+     *       //   "kind": "my_kind",
+     *       //   "maintenanceVersion": "my_maintenanceVersion",
+     *       //   "masterInstanceName": "my_masterInstanceName",
+     *       //   "maxDiskSize": "my_maxDiskSize",
+     *       //   "name": "my_name",
+     *       //   "nodeCount": 0,
+     *       //   "nodes": [],
+     *       //   "onPremisesConfiguration": {},
+     *       //   "outOfDiskReport": {},
+     *       //   "primaryDnsName": "my_primaryDnsName",
+     *       //   "project": "my_project",
+     *       //   "pscServiceAttachmentLink": "my_pscServiceAttachmentLink",
+     *       //   "region": "my_region",
+     *       //   "replicaConfiguration": {},
+     *       //   "replicaNames": [],
+     *       //   "replicationCluster": {},
+     *       //   "rootPassword": "my_rootPassword",
+     *       //   "satisfiesPzi": false,
+     *       //   "satisfiesPzs": false,
+     *       //   "scheduledMaintenance": {},
+     *       //   "secondaryGceZone": "my_secondaryGceZone",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "serverCaCert": {},
+     *       //   "serviceAccountEmailAddress": "my_serviceAccountEmailAddress",
+     *       //   "settings": {},
+     *       //   "sqlNetworkArchitecture": "my_sqlNetworkArchitecture",
+     *       //   "state": "my_state",
+     *       //   "suspensionReason": [],
+     *       //   "switchTransactionLogsToCloudStorageEnabled": false,
+     *       //   "tags": {},
+     *       //   "upgradableDatabaseVersions": [],
+     *       //   "writeEndpoint": "my_writeEndpoint"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acquireSsrsLeaseContext": {},
+     *   //   "apiWarning": {},
+     *   //   "backupContext": {},
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "subOperationType": {},
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6190,11 +8832,11 @@ export namespace sqladmin_v1 {
     patch(
       params: Params$Resource$Instances$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Instances$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Instances$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6223,7 +8865,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Instances$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6267,6 +8912,87 @@ export namespace sqladmin_v1 {
 
     /**
      * Point in time restore for an instance managed by Google Cloud Backup and Disaster Recovery.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.instances.pointInTimeRestore({
+     *     // Required. The parent resource where you created this instance. Format: projects/{project\}
+     *     parent: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "allocatedIpRange": "my_allocatedIpRange",
+     *       //   "datasource": "my_datasource",
+     *       //   "pointInTime": "my_pointInTime",
+     *       //   "preferredSecondaryZone": "my_preferredSecondaryZone",
+     *       //   "preferredZone": "my_preferredZone",
+     *       //   "privateNetwork": "my_privateNetwork",
+     *       //   "targetInstance": "my_targetInstance"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acquireSsrsLeaseContext": {},
+     *   //   "apiWarning": {},
+     *   //   "backupContext": {},
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "subOperationType": {},
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6276,11 +9002,11 @@ export namespace sqladmin_v1 {
     pointInTimeRestore(
       params: Params$Resource$Instances$Pointintimerestore,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     pointInTimeRestore(
       params?: Params$Resource$Instances$Pointintimerestore,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     pointInTimeRestore(
       params: Params$Resource$Instances$Pointintimerestore,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6309,7 +9035,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Instances$Pointintimerestore;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6355,6 +9084,77 @@ export namespace sqladmin_v1 {
 
     /**
      * Promotes the read replica instance to be an independent Cloud SQL primary instance. Using this operation might cause your instance to restart.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.instances.promoteReplica({
+     *     // Set to true to invoke a replica failover to the DR replica. As part of replica failover, the promote operation attempts to add the original primary instance as a replica of the promoted DR replica when the original primary instance comes back online. If set to false or not specified, then the original primary instance becomes an independent Cloud SQL primary instance.
+     *     failover: 'placeholder-value',
+     *     // Cloud SQL read replica instance name.
+     *     instance: 'placeholder-value',
+     *     // ID of the project that contains the read replica.
+     *     project: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acquireSsrsLeaseContext": {},
+     *   //   "apiWarning": {},
+     *   //   "backupContext": {},
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "subOperationType": {},
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6364,11 +9164,11 @@ export namespace sqladmin_v1 {
     promoteReplica(
       params: Params$Resource$Instances$Promotereplica,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     promoteReplica(
       params?: Params$Resource$Instances$Promotereplica,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     promoteReplica(
       params: Params$Resource$Instances$Promotereplica,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6397,7 +9197,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Instances$Promotereplica;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6443,6 +9246,83 @@ export namespace sqladmin_v1 {
 
     /**
      * Reencrypt CMEK instance with latest key version.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.instances.reencrypt({
+     *     // Cloud SQL instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "backupReencryptionConfig": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acquireSsrsLeaseContext": {},
+     *   //   "apiWarning": {},
+     *   //   "backupContext": {},
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "subOperationType": {},
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6452,11 +9332,11 @@ export namespace sqladmin_v1 {
     reencrypt(
       params: Params$Resource$Instances$Reencrypt,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     reencrypt(
       params?: Params$Resource$Instances$Reencrypt,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     reencrypt(
       params: Params$Resource$Instances$Reencrypt,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6485,7 +9365,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Instances$Reencrypt;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6530,6 +9413,57 @@ export namespace sqladmin_v1 {
 
     /**
      * Release a lease for the setup of SQL Server Reporting Services (SSRS).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.instances.releaseSsrsLease({
+     *     // Required. The Cloud SQL instance ID. This doesn't include the project ID. The instance ID contains lowercase letters, numbers, and hyphens, and it must start with a letter. This ID can have a maximum length of 98 characters.
+     *     instance: 'placeholder-value',
+     *     // Required. The project ID that contains the instance.
+     *     project: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "operationId": "my_operationId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6539,11 +9473,13 @@ export namespace sqladmin_v1 {
     releaseSsrsLease(
       params: Params$Resource$Instances$Releasessrslease,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     releaseSsrsLease(
       params?: Params$Resource$Instances$Releasessrslease,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SqlInstancesReleaseSsrsLeaseResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$SqlInstancesReleaseSsrsLeaseResponse>
+    >;
     releaseSsrsLease(
       params: Params$Resource$Instances$Releasessrslease,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6578,8 +9514,10 @@ export namespace sqladmin_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SqlInstancesReleaseSsrsLeaseResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$SqlInstancesReleaseSsrsLeaseResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Instances$Releasessrslease;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6627,6 +9565,75 @@ export namespace sqladmin_v1 {
 
     /**
      * Deletes all client certificates and generates a new server SSL certificate for the instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.instances.resetSslConfig({
+     *     // Cloud SQL instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acquireSsrsLeaseContext": {},
+     *   //   "apiWarning": {},
+     *   //   "backupContext": {},
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "subOperationType": {},
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6636,11 +9643,11 @@ export namespace sqladmin_v1 {
     resetSslConfig(
       params: Params$Resource$Instances$Resetsslconfig,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     resetSslConfig(
       params?: Params$Resource$Instances$Resetsslconfig,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     resetSslConfig(
       params: Params$Resource$Instances$Resetsslconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6669,7 +9676,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Instances$Resetsslconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6715,6 +9725,75 @@ export namespace sqladmin_v1 {
 
     /**
      * Restarts a Cloud SQL instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.instances.restart({
+     *     // Cloud SQL instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Project ID of the project that contains the instance to be restarted.
+     *     project: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acquireSsrsLeaseContext": {},
+     *   //   "apiWarning": {},
+     *   //   "backupContext": {},
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "subOperationType": {},
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6724,11 +9803,11 @@ export namespace sqladmin_v1 {
     restart(
       params: Params$Resource$Instances$Restart,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     restart(
       params?: Params$Resource$Instances$Restart,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     restart(
       params: Params$Resource$Instances$Restart,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6757,7 +9836,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Instances$Restart;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6802,6 +9884,86 @@ export namespace sqladmin_v1 {
 
     /**
      * Restores a backup of a Cloud SQL instance. Using this operation might cause your instance to restart.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.instances.restoreBackup({
+     *     // Cloud SQL instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "backup": "my_backup",
+     *       //   "backupdrBackup": "my_backupdrBackup",
+     *       //   "restoreBackupContext": {},
+     *       //   "restoreInstanceSettings": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acquireSsrsLeaseContext": {},
+     *   //   "apiWarning": {},
+     *   //   "backupContext": {},
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "subOperationType": {},
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6811,11 +9973,11 @@ export namespace sqladmin_v1 {
     restoreBackup(
       params: Params$Resource$Instances$Restorebackup,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     restoreBackup(
       params?: Params$Resource$Instances$Restorebackup,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     restoreBackup(
       params: Params$Resource$Instances$Restorebackup,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6844,7 +10006,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Instances$Restorebackup;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6890,6 +10055,83 @@ export namespace sqladmin_v1 {
 
     /**
      * Rotates the server certificate to one signed by the Certificate Authority (CA) version previously added with the addServerCA method. For instances that have enabled Certificate Authority Service (CAS) based server CA, use RotateServerCertificate to rotate the server certificate.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.instances.rotateServerCa({
+     *     // Cloud SQL instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "rotateServerCaContext": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acquireSsrsLeaseContext": {},
+     *   //   "apiWarning": {},
+     *   //   "backupContext": {},
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "subOperationType": {},
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6899,11 +10141,11 @@ export namespace sqladmin_v1 {
     rotateServerCa(
       params: Params$Resource$Instances$Rotateserverca,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     rotateServerCa(
       params?: Params$Resource$Instances$Rotateserverca,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     rotateServerCa(
       params: Params$Resource$Instances$Rotateserverca,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6932,7 +10174,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Instances$Rotateserverca;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6978,6 +10223,83 @@ export namespace sqladmin_v1 {
 
     /**
      * Rotates the server certificate version to one previously added with the addServerCertificate method. For instances not using Certificate Authority Service (CAS) server CA, use RotateServerCa instead.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.instances.RotateServerCertificate({
+     *     // Required. Cloud SQL instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Required. Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "rotateServerCertificateContext": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acquireSsrsLeaseContext": {},
+     *   //   "apiWarning": {},
+     *   //   "backupContext": {},
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "subOperationType": {},
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6987,11 +10309,11 @@ export namespace sqladmin_v1 {
     RotateServerCertificate(
       params: Params$Resource$Instances$Rotateservercertificate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     RotateServerCertificate(
       params?: Params$Resource$Instances$Rotateservercertificate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     RotateServerCertificate(
       params: Params$Resource$Instances$Rotateservercertificate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7022,7 +10344,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Instances$Rotateservercertificate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7068,6 +10393,75 @@ export namespace sqladmin_v1 {
 
     /**
      * Starts the replication in the read replica instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.instances.startReplica({
+     *     // Cloud SQL read replica instance name.
+     *     instance: 'placeholder-value',
+     *     // ID of the project that contains the read replica.
+     *     project: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acquireSsrsLeaseContext": {},
+     *   //   "apiWarning": {},
+     *   //   "backupContext": {},
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "subOperationType": {},
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7077,11 +10471,11 @@ export namespace sqladmin_v1 {
     startReplica(
       params: Params$Resource$Instances$Startreplica,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     startReplica(
       params?: Params$Resource$Instances$Startreplica,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     startReplica(
       params: Params$Resource$Instances$Startreplica,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7110,7 +10504,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Instances$Startreplica;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7156,6 +10553,75 @@ export namespace sqladmin_v1 {
 
     /**
      * Stops the replication in the read replica instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.instances.stopReplica({
+     *     // Cloud SQL read replica instance name.
+     *     instance: 'placeholder-value',
+     *     // ID of the project that contains the read replica.
+     *     project: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acquireSsrsLeaseContext": {},
+     *   //   "apiWarning": {},
+     *   //   "backupContext": {},
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "subOperationType": {},
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7165,11 +10631,11 @@ export namespace sqladmin_v1 {
     stopReplica(
       params: Params$Resource$Instances$Stopreplica,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     stopReplica(
       params?: Params$Resource$Instances$Stopreplica,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     stopReplica(
       params: Params$Resource$Instances$Stopreplica,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7198,7 +10664,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Instances$Stopreplica;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7244,6 +10713,77 @@ export namespace sqladmin_v1 {
 
     /**
      * Switches over from the primary instance to the DR replica instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.instances.switchover({
+     *     // Optional. (MySQL and PostgreSQL only) Cloud SQL instance operations timeout, which is a sum of all database operations. Default value is 10 minutes and can be modified to a maximum value of 24 hours.
+     *     dbTimeout: 'placeholder-value',
+     *     // Cloud SQL read replica instance name.
+     *     instance: 'placeholder-value',
+     *     // ID of the project that contains the replica.
+     *     project: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acquireSsrsLeaseContext": {},
+     *   //   "apiWarning": {},
+     *   //   "backupContext": {},
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "subOperationType": {},
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7253,11 +10793,11 @@ export namespace sqladmin_v1 {
     switchover(
       params: Params$Resource$Instances$Switchover,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     switchover(
       params?: Params$Resource$Instances$Switchover,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     switchover(
       params: Params$Resource$Instances$Switchover,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7286,7 +10826,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Instances$Switchover;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7331,6 +10874,83 @@ export namespace sqladmin_v1 {
 
     /**
      * Truncate MySQL general and slow query log tables MySQL only.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.instances.truncateLog({
+     *     // Cloud SQL instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Project ID of the Cloud SQL project.
+     *     project: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "truncateLogContext": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acquireSsrsLeaseContext": {},
+     *   //   "apiWarning": {},
+     *   //   "backupContext": {},
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "subOperationType": {},
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7340,11 +10960,11 @@ export namespace sqladmin_v1 {
     truncateLog(
       params: Params$Resource$Instances$Truncatelog,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     truncateLog(
       params?: Params$Resource$Instances$Truncatelog,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     truncateLog(
       params: Params$Resource$Instances$Truncatelog,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7373,7 +10993,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Instances$Truncatelog;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7419,6 +11042,134 @@ export namespace sqladmin_v1 {
 
     /**
      * Updates settings of a Cloud SQL instance. Using this operation might cause your instance to restart.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.instances.update({
+     *     // Cloud SQL instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "availableMaintenanceVersions": [],
+     *       //   "backendType": "my_backendType",
+     *       //   "clearNetwork": false,
+     *       //   "connectionName": "my_connectionName",
+     *       //   "createTime": "my_createTime",
+     *       //   "currentDiskSize": "my_currentDiskSize",
+     *       //   "databaseInstalledVersion": "my_databaseInstalledVersion",
+     *       //   "databaseVersion": "my_databaseVersion",
+     *       //   "diskEncryptionConfiguration": {},
+     *       //   "diskEncryptionStatus": {},
+     *       //   "dnsName": "my_dnsName",
+     *       //   "dnsNames": [],
+     *       //   "etag": "my_etag",
+     *       //   "failoverReplica": {},
+     *       //   "gceZone": "my_gceZone",
+     *       //   "geminiConfig": {},
+     *       //   "includeReplicasForMajorVersionUpgrade": false,
+     *       //   "instanceType": "my_instanceType",
+     *       //   "ipAddresses": [],
+     *       //   "ipv6Address": "my_ipv6Address",
+     *       //   "kind": "my_kind",
+     *       //   "maintenanceVersion": "my_maintenanceVersion",
+     *       //   "masterInstanceName": "my_masterInstanceName",
+     *       //   "maxDiskSize": "my_maxDiskSize",
+     *       //   "name": "my_name",
+     *       //   "nodeCount": 0,
+     *       //   "nodes": [],
+     *       //   "onPremisesConfiguration": {},
+     *       //   "outOfDiskReport": {},
+     *       //   "primaryDnsName": "my_primaryDnsName",
+     *       //   "project": "my_project",
+     *       //   "pscServiceAttachmentLink": "my_pscServiceAttachmentLink",
+     *       //   "region": "my_region",
+     *       //   "replicaConfiguration": {},
+     *       //   "replicaNames": [],
+     *       //   "replicationCluster": {},
+     *       //   "rootPassword": "my_rootPassword",
+     *       //   "satisfiesPzi": false,
+     *       //   "satisfiesPzs": false,
+     *       //   "scheduledMaintenance": {},
+     *       //   "secondaryGceZone": "my_secondaryGceZone",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "serverCaCert": {},
+     *       //   "serviceAccountEmailAddress": "my_serviceAccountEmailAddress",
+     *       //   "settings": {},
+     *       //   "sqlNetworkArchitecture": "my_sqlNetworkArchitecture",
+     *       //   "state": "my_state",
+     *       //   "suspensionReason": [],
+     *       //   "switchTransactionLogsToCloudStorageEnabled": false,
+     *       //   "tags": {},
+     *       //   "upgradableDatabaseVersions": [],
+     *       //   "writeEndpoint": "my_writeEndpoint"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acquireSsrsLeaseContext": {},
+     *   //   "apiWarning": {},
+     *   //   "backupContext": {},
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "subOperationType": {},
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7428,11 +11179,11 @@ export namespace sqladmin_v1 {
     update(
       params: Params$Resource$Instances$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Instances$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     update(
       params: Params$Resource$Instances$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7461,7 +11212,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Instances$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7937,6 +11691,55 @@ export namespace sqladmin_v1 {
 
     /**
      * Cancels an instance operation that has been performed on an instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.operations.cancel({
+     *     // Instance operation ID.
+     *     operation: 'placeholder-value',
+     *     // Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7946,11 +11749,11 @@ export namespace sqladmin_v1 {
     cancel(
       params: Params$Resource$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     cancel(
       params?: Params$Resource$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     cancel(
       params: Params$Resource$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7979,7 +11782,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8024,6 +11830,75 @@ export namespace sqladmin_v1 {
 
     /**
      * Retrieves an instance operation that has been performed on an instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.operations.get({
+     *     // Instance operation ID.
+     *     operation: 'placeholder-value',
+     *     // Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acquireSsrsLeaseContext": {},
+     *   //   "apiWarning": {},
+     *   //   "backupContext": {},
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "subOperationType": {},
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8033,11 +11908,11 @@ export namespace sqladmin_v1 {
     get(
       params: Params$Resource$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     get(
       params: Params$Resource$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8066,7 +11941,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8110,6 +11988,63 @@ export namespace sqladmin_v1 {
 
     /**
      * Lists all instance operations that have been performed on the given Cloud SQL instance in the reverse chronological order of the start time.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.operations.list({
+     *     // Cloud SQL instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Maximum number of operations per response.
+     *     maxResults: 'placeholder-value',
+     *     // A previously-returned page token representing part of the larger set of results to view.
+     *     pageToken: 'placeholder-value',
+     *     // Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8119,11 +12054,11 @@ export namespace sqladmin_v1 {
     list(
       params: Params$Resource$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$OperationsListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$OperationsListResponse>>;
     list(
       params: Params$Resource$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8156,8 +12091,8 @@ export namespace sqladmin_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$OperationsListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$OperationsListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8258,6 +12193,59 @@ export namespace sqladmin_v1 {
 
     /**
      * Get Disk Shrink Config for a given instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.projects.instances.getDiskShrinkConfig({
+     *     // Cloud SQL instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "message": "my_message",
+     *   //   "minimalTargetSizeGb": "my_minimalTargetSizeGb"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8267,11 +12255,13 @@ export namespace sqladmin_v1 {
     getDiskShrinkConfig(
       params: Params$Resource$Projects$Instances$Getdiskshrinkconfig,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getDiskShrinkConfig(
       params?: Params$Resource$Projects$Instances$Getdiskshrinkconfig,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SqlInstancesGetDiskShrinkConfigResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$SqlInstancesGetDiskShrinkConfigResponse>
+    >;
     getDiskShrinkConfig(
       params: Params$Resource$Projects$Instances$Getdiskshrinkconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8306,8 +12296,10 @@ export namespace sqladmin_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SqlInstancesGetDiskShrinkConfigResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$SqlInstancesGetDiskShrinkConfigResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Getdiskshrinkconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8355,6 +12347,58 @@ export namespace sqladmin_v1 {
 
     /**
      * Get Latest Recovery Time for a given instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.projects.instances.getLatestRecoveryTime({
+     *     // Cloud SQL instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "latestRecoveryTime": "my_latestRecoveryTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8364,11 +12408,13 @@ export namespace sqladmin_v1 {
     getLatestRecoveryTime(
       params: Params$Resource$Projects$Instances$Getlatestrecoverytime,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getLatestRecoveryTime(
       params?: Params$Resource$Projects$Instances$Getlatestrecoverytime,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SqlInstancesGetLatestRecoveryTimeResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$SqlInstancesGetLatestRecoveryTimeResponse>
+    >;
     getLatestRecoveryTime(
       params: Params$Resource$Projects$Instances$Getlatestrecoverytime,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8403,8 +12449,10 @@ export namespace sqladmin_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SqlInstancesGetLatestRecoveryTimeResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$SqlInstancesGetLatestRecoveryTimeResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Getlatestrecoverytime;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8452,6 +12500,83 @@ export namespace sqladmin_v1 {
 
     /**
      * Perform Disk Shrink on primary instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.projects.instances.performDiskShrink({
+     *     // Cloud SQL instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "targetSizeGb": "my_targetSizeGb"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acquireSsrsLeaseContext": {},
+     *   //   "apiWarning": {},
+     *   //   "backupContext": {},
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "subOperationType": {},
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8461,11 +12586,11 @@ export namespace sqladmin_v1 {
     performDiskShrink(
       params: Params$Resource$Projects$Instances$Performdiskshrink,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     performDiskShrink(
       params?: Params$Resource$Projects$Instances$Performdiskshrink,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     performDiskShrink(
       params: Params$Resource$Projects$Instances$Performdiskshrink,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8494,7 +12619,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Performdiskshrink;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8540,6 +12668,83 @@ export namespace sqladmin_v1 {
 
     /**
      * Reschedules the maintenance on the given instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.projects.instances.rescheduleMaintenance({
+     *     // Cloud SQL instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "reschedule": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acquireSsrsLeaseContext": {},
+     *   //   "apiWarning": {},
+     *   //   "backupContext": {},
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "subOperationType": {},
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8549,11 +12754,11 @@ export namespace sqladmin_v1 {
     rescheduleMaintenance(
       params: Params$Resource$Projects$Instances$Reschedulemaintenance,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     rescheduleMaintenance(
       params?: Params$Resource$Projects$Instances$Reschedulemaintenance,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     rescheduleMaintenance(
       params: Params$Resource$Projects$Instances$Reschedulemaintenance,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8584,7 +12789,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Reschedulemaintenance;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8630,6 +12838,81 @@ export namespace sqladmin_v1 {
 
     /**
      * Reset Replica Size to primary instance disk size.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.projects.instances.resetReplicaSize({
+     *     // Cloud SQL read replica instance name.
+     *     instance: 'placeholder-value',
+     *     // ID of the project that contains the read replica.
+     *     project: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acquireSsrsLeaseContext": {},
+     *   //   "apiWarning": {},
+     *   //   "backupContext": {},
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "subOperationType": {},
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8639,11 +12922,11 @@ export namespace sqladmin_v1 {
     resetReplicaSize(
       params: Params$Resource$Projects$Instances$Resetreplicasize,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     resetReplicaSize(
       params?: Params$Resource$Projects$Instances$Resetreplicasize,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     resetReplicaSize(
       params: Params$Resource$Projects$Instances$Resetreplicasize,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8672,7 +12955,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Resetreplicasize;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8718,6 +13004,87 @@ export namespace sqladmin_v1 {
 
     /**
      * Start External primary instance migration.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.projects.instances.startExternalSync({
+     *     // Cloud SQL instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "migrationType": "my_migrationType",
+     *       //   "mysqlSyncConfig": {},
+     *       //   "skipVerification": false,
+     *       //   "syncMode": "my_syncMode",
+     *       //   "syncParallelLevel": "my_syncParallelLevel"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acquireSsrsLeaseContext": {},
+     *   //   "apiWarning": {},
+     *   //   "backupContext": {},
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "subOperationType": {},
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8727,11 +13094,11 @@ export namespace sqladmin_v1 {
     startExternalSync(
       params: Params$Resource$Projects$Instances$Startexternalsync,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     startExternalSync(
       params?: Params$Resource$Projects$Instances$Startexternalsync,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     startExternalSync(
       params: Params$Resource$Projects$Instances$Startexternalsync,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8760,7 +13127,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Startexternalsync;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8806,6 +13176,73 @@ export namespace sqladmin_v1 {
 
     /**
      * Verify External primary instance external sync settings.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.projects.instances.verifyExternalSyncSettings({
+     *     // Cloud SQL instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "migrationType": "my_migrationType",
+     *       //   "mysqlSyncConfig": {},
+     *       //   "selectedObjects": [],
+     *       //   "syncMode": "my_syncMode",
+     *       //   "syncParallelLevel": "my_syncParallelLevel",
+     *       //   "verifyConnectionOnly": false,
+     *       //   "verifyReplicationOnly": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "errors": [],
+     *   //   "kind": "my_kind",
+     *   //   "warnings": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8815,11 +13252,13 @@ export namespace sqladmin_v1 {
     verifyExternalSyncSettings(
       params: Params$Resource$Projects$Instances$Verifyexternalsyncsettings,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     verifyExternalSyncSettings(
       params?: Params$Resource$Projects$Instances$Verifyexternalsyncsettings,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SqlInstancesVerifyExternalSyncSettingsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$SqlInstancesVerifyExternalSyncSettingsResponse>
+    >;
     verifyExternalSyncSettings(
       params: Params$Resource$Projects$Instances$Verifyexternalsyncsettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8854,8 +13293,10 @@ export namespace sqladmin_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SqlInstancesVerifyExternalSyncSettingsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$SqlInstancesVerifyExternalSyncSettingsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Verifyexternalsyncsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9014,6 +13455,74 @@ export namespace sqladmin_v1 {
 
     /**
      * Generates a short-lived X509 certificate containing the provided public key and signed by a private key specific to the target instance. Users may use the certificate to authenticate as themselves when connecting to the database.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.sslCerts.createEphemeral({
+     *     // Cloud SQL instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Project ID of the Cloud SQL project.
+     *     project: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "access_token": "my_access_token",
+     *       //   "public_key": "my_public_key"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cert": "my_cert",
+     *   //   "certSerialNumber": "my_certSerialNumber",
+     *   //   "commonName": "my_commonName",
+     *   //   "createTime": "my_createTime",
+     *   //   "expirationTime": "my_expirationTime",
+     *   //   "instance": "my_instance",
+     *   //   "kind": "my_kind",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "sha1Fingerprint": "my_sha1Fingerprint"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9023,11 +13532,11 @@ export namespace sqladmin_v1 {
     createEphemeral(
       params: Params$Resource$Sslcerts$Createephemeral,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     createEphemeral(
       params?: Params$Resource$Sslcerts$Createephemeral,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SslCert>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SslCert>>;
     createEphemeral(
       params: Params$Resource$Sslcerts$Createephemeral,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9056,7 +13565,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$SslCert>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SslCert> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SslCert>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Sslcerts$Createephemeral;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9102,6 +13614,77 @@ export namespace sqladmin_v1 {
 
     /**
      * Deletes the SSL certificate. For First Generation instances, the certificate remains valid until the instance is restarted.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.sslCerts.delete({
+     *     // Cloud SQL instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *     // Sha1 FingerPrint.
+     *     sha1Fingerprint: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acquireSsrsLeaseContext": {},
+     *   //   "apiWarning": {},
+     *   //   "backupContext": {},
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "subOperationType": {},
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9111,11 +13694,11 @@ export namespace sqladmin_v1 {
     delete(
       params: Params$Resource$Sslcerts$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Sslcerts$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Sslcerts$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9144,7 +13727,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sslcerts$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9189,6 +13775,67 @@ export namespace sqladmin_v1 {
 
     /**
      * Retrieves a particular SSL certificate. Does not include the private key (required for usage). The private key must be saved from the response to initial creation.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.sslCerts.get({
+     *     // Cloud SQL instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *     // Sha1 FingerPrint.
+     *     sha1Fingerprint: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cert": "my_cert",
+     *   //   "certSerialNumber": "my_certSerialNumber",
+     *   //   "commonName": "my_commonName",
+     *   //   "createTime": "my_createTime",
+     *   //   "expirationTime": "my_expirationTime",
+     *   //   "instance": "my_instance",
+     *   //   "kind": "my_kind",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "sha1Fingerprint": "my_sha1Fingerprint"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9198,11 +13845,11 @@ export namespace sqladmin_v1 {
     get(
       params: Params$Resource$Sslcerts$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Sslcerts$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SslCert>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SslCert>>;
     get(
       params: Params$Resource$Sslcerts$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9231,7 +13878,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$SslCert>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SslCert> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SslCert>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sslcerts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9276,6 +13926,68 @@ export namespace sqladmin_v1 {
 
     /**
      * Creates an SSL certificate and returns it along with the private key and server certificate authority. The new certificate will not be usable until the instance is restarted.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.sslCerts.insert({
+     *     // Cloud SQL instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "commonName": "my_commonName"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientCert": {},
+     *   //   "kind": "my_kind",
+     *   //   "operation": {},
+     *   //   "serverCaCert": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9285,11 +13997,11 @@ export namespace sqladmin_v1 {
     insert(
       params: Params$Resource$Sslcerts$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Sslcerts$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SslCertsInsertResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SslCertsInsertResponse>>;
     insert(
       params: Params$Resource$Sslcerts$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9322,8 +14034,8 @@ export namespace sqladmin_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SslCertsInsertResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SslCertsInsertResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sslcerts$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9367,6 +14079,58 @@ export namespace sqladmin_v1 {
 
     /**
      * Lists all of the current SSL certificates for the instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.sslCerts.list({
+     *     // Cloud SQL instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9376,11 +14140,11 @@ export namespace sqladmin_v1 {
     list(
       params: Params$Resource$Sslcerts$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Sslcerts$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SslCertsListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SslCertsListResponse>>;
     list(
       params: Params$Resource$Sslcerts$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9413,8 +14177,8 @@ export namespace sqladmin_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SslCertsListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SslCertsListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sslcerts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9535,6 +14299,56 @@ export namespace sqladmin_v1 {
 
     /**
      * Lists all available machine types (tiers) for Cloud SQL, for example, `db-custom-1-3840`. For more information, see https://cloud.google.com/sql/pricing.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.tiers.list({
+     *     // Project ID of the project for which to list tiers.
+     *     project: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9544,11 +14358,11 @@ export namespace sqladmin_v1 {
     list(
       params: Params$Resource$Tiers$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Tiers$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TiersListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TiersListResponse>>;
     list(
       params: Params$Resource$Tiers$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9579,8 +14393,8 @@ export namespace sqladmin_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TiersListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TiersListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tiers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9639,6 +14453,79 @@ export namespace sqladmin_v1 {
 
     /**
      * Deletes a user from a Cloud SQL instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.users.delete({
+     *     // Host of the user in the instance.
+     *     host: 'placeholder-value',
+     *     // Database instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Name of the user in the instance.
+     *     name: 'placeholder-value',
+     *     // Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acquireSsrsLeaseContext": {},
+     *   //   "apiWarning": {},
+     *   //   "backupContext": {},
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "subOperationType": {},
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9648,11 +14535,11 @@ export namespace sqladmin_v1 {
     delete(
       params: Params$Resource$Users$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Users$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Users$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9681,7 +14568,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9725,6 +14615,71 @@ export namespace sqladmin_v1 {
 
     /**
      * Retrieves a resource containing information about a user.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.users.get({
+     *     // Host of a user of the instance.
+     *     host: 'placeholder-value',
+     *     // Database instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // User of the instance.
+     *     name: 'placeholder-value',
+     *     // Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dualPasswordType": "my_dualPasswordType",
+     *   //   "etag": "my_etag",
+     *   //   "host": "my_host",
+     *   //   "instance": "my_instance",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "password": "my_password",
+     *   //   "passwordPolicy": {},
+     *   //   "project": "my_project",
+     *   //   "sqlserverUserDetails": {},
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9734,11 +14689,11 @@ export namespace sqladmin_v1 {
     get(
       params: Params$Resource$Users$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Users$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$User>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$User>>;
     get(
       params: Params$Resource$Users$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9767,7 +14722,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$User>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$User> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$User>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9812,6 +14770,93 @@ export namespace sqladmin_v1 {
 
     /**
      * Creates a new user in a Cloud SQL instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.users.insert({
+     *     // Database instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "dualPasswordType": "my_dualPasswordType",
+     *       //   "etag": "my_etag",
+     *       //   "host": "my_host",
+     *       //   "instance": "my_instance",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "password": "my_password",
+     *       //   "passwordPolicy": {},
+     *       //   "project": "my_project",
+     *       //   "sqlserverUserDetails": {},
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acquireSsrsLeaseContext": {},
+     *   //   "apiWarning": {},
+     *   //   "backupContext": {},
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "subOperationType": {},
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9821,11 +14866,11 @@ export namespace sqladmin_v1 {
     insert(
       params: Params$Resource$Users$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Users$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     insert(
       params: Params$Resource$Users$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9854,7 +14899,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9898,6 +14946,59 @@ export namespace sqladmin_v1 {
 
     /**
      * Lists users in the specified Cloud SQL instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.users.list({
+     *     // Database instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9907,11 +15008,11 @@ export namespace sqladmin_v1 {
     list(
       params: Params$Resource$Users$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Users$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$UsersListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$UsersListResponse>>;
     list(
       params: Params$Resource$Users$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9942,8 +15043,8 @@ export namespace sqladmin_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$UsersListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$UsersListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9987,6 +15088,97 @@ export namespace sqladmin_v1 {
 
     /**
      * Updates an existing user in a Cloud SQL instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.users.update({
+     *     // Optional. Host of the user in the instance.
+     *     host: 'placeholder-value',
+     *     // Database instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Name of the user in the instance.
+     *     name: 'placeholder-value',
+     *     // Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "dualPasswordType": "my_dualPasswordType",
+     *       //   "etag": "my_etag",
+     *       //   "host": "my_host",
+     *       //   "instance": "my_instance",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "password": "my_password",
+     *       //   "passwordPolicy": {},
+     *       //   "project": "my_project",
+     *       //   "sqlserverUserDetails": {},
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acquireSsrsLeaseContext": {},
+     *   //   "apiWarning": {},
+     *   //   "backupContext": {},
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "subOperationType": {},
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9996,11 +15188,11 @@ export namespace sqladmin_v1 {
     update(
       params: Params$Resource$Users$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Users$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     update(
       params: Params$Resource$Users$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10029,7 +15221,10 @@ export namespace sqladmin_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

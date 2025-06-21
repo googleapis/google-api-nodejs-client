@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -329,6 +329,57 @@ export namespace fcmdata_v1beta1 {
 
     /**
      * List aggregate delivery data for the given Android application.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/fcmdata.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const fcmdata = google.fcmdata('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await fcmdata.projects.androidApps.deliveryData.list({
+     *     // The maximum number of entries to return. The service may return fewer than this value. If unspecified, at most 1,000 entries will be returned. The maximum value is 10,000; values above 10,000 will be capped to 10,000. This default may change over time.
+     *     pageSize: 'placeholder-value',
+     *     // A page token, received from a previous `ListAndroidDeliveryDataRequest` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListAndroidDeliveryDataRequest` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The application for which to list delivery data. Format: `projects/{project_id\}/androidApps/{app_id\}`
+     *     parent: 'projects/my-project/androidApps/my-androidApp',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "androidDeliveryData": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -338,11 +389,13 @@ export namespace fcmdata_v1beta1 {
     list(
       params: Params$Resource$Projects$Androidapps$Deliverydata$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Androidapps$Deliverydata$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseFcmDataV1beta1ListAndroidDeliveryDataResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleFirebaseFcmDataV1beta1ListAndroidDeliveryDataResponse>
+    >;
     list(
       params: Params$Resource$Projects$Androidapps$Deliverydata$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -377,8 +430,10 @@ export namespace fcmdata_v1beta1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseFcmDataV1beta1ListAndroidDeliveryDataResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleFirebaseFcmDataV1beta1ListAndroidDeliveryDataResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Androidapps$Deliverydata$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

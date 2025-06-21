@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -228,6 +228,74 @@ export namespace mybusinessplaceactions_v1 {
 
     /**
      * Creates a place action link associated with the specified location, and returns it. The request is considered duplicate if the `parent`, `place_action_link.uri` and `place_action_link.place_action_type` are the same as a previous request.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/mybusinessplaceactions.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const mybusinessplaceactions = google.mybusinessplaceactions('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await mybusinessplaceactions.locations.placeActionLinks.create({
+     *     // Required. The resource name of the location where to create this place action link. `locations/{location_id\}`.
+     *     parent: 'locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "isEditable": false,
+     *       //   "isPreferred": false,
+     *       //   "name": "my_name",
+     *       //   "placeActionType": "my_placeActionType",
+     *       //   "providerType": "my_providerType",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "uri": "my_uri"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "isEditable": false,
+     *   //   "isPreferred": false,
+     *   //   "name": "my_name",
+     *   //   "placeActionType": "my_placeActionType",
+     *   //   "providerType": "my_providerType",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "uri": "my_uri"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -237,11 +305,11 @@ export namespace mybusinessplaceactions_v1 {
     create(
       params: Params$Resource$Locations$Placeactionlinks$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Locations$Placeactionlinks$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PlaceActionLink>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PlaceActionLink>>;
     create(
       params: Params$Resource$Locations$Placeactionlinks$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -270,7 +338,10 @@ export namespace mybusinessplaceactions_v1 {
       callback?:
         | BodyResponseCallback<Schema$PlaceActionLink>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$PlaceActionLink> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$PlaceActionLink>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Placeactionlinks$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -317,6 +388,50 @@ export namespace mybusinessplaceactions_v1 {
 
     /**
      * Deletes a place action link from the specified location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/mybusinessplaceactions.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const mybusinessplaceactions = google.mybusinessplaceactions('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await mybusinessplaceactions.locations.placeActionLinks.delete({
+     *     // Required. The resource name of the place action link to remove from the location.
+     *     name: 'locations/my-location/placeActionLinks/my-placeActionLink',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -326,11 +441,11 @@ export namespace mybusinessplaceactions_v1 {
     delete(
       params: Params$Resource$Locations$Placeactionlinks$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Locations$Placeactionlinks$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Locations$Placeactionlinks$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -359,7 +474,10 @@ export namespace mybusinessplaceactions_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Placeactionlinks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -403,6 +521,59 @@ export namespace mybusinessplaceactions_v1 {
 
     /**
      * Gets the specified place action link.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/mybusinessplaceactions.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const mybusinessplaceactions = google.mybusinessplaceactions('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await mybusinessplaceactions.locations.placeActionLinks.get({
+     *     // Required. The name of the place action link to fetch.
+     *     name: 'locations/my-location/placeActionLinks/my-placeActionLink',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "isEditable": false,
+     *   //   "isPreferred": false,
+     *   //   "name": "my_name",
+     *   //   "placeActionType": "my_placeActionType",
+     *   //   "providerType": "my_providerType",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "uri": "my_uri"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -412,11 +583,11 @@ export namespace mybusinessplaceactions_v1 {
     get(
       params: Params$Resource$Locations$Placeactionlinks$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Locations$Placeactionlinks$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PlaceActionLink>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PlaceActionLink>>;
     get(
       params: Params$Resource$Locations$Placeactionlinks$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -445,7 +616,10 @@ export namespace mybusinessplaceactions_v1 {
       callback?:
         | BodyResponseCallback<Schema$PlaceActionLink>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$PlaceActionLink> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$PlaceActionLink>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Placeactionlinks$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -489,6 +663,59 @@ export namespace mybusinessplaceactions_v1 {
 
     /**
      * Lists the place action links for the specified location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/mybusinessplaceactions.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const mybusinessplaceactions = google.mybusinessplaceactions('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await mybusinessplaceactions.locations.placeActionLinks.list({
+     *     // Optional. A filter constraining the place action links to return. The response includes entries that match the filter. We support only the following filter: 1. place_action_type=XYZ where XYZ is a valid PlaceActionType.
+     *     filter: 'placeholder-value',
+     *     // Optional. How many place action links to return per page. Default of 10. The minimum is 1.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. If specified, returns the next page of place action links.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The name of the location whose place action links will be listed. `locations/{location_id\}`.
+     *     parent: 'locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "placeActionLinks": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -498,11 +725,11 @@ export namespace mybusinessplaceactions_v1 {
     list(
       params: Params$Resource$Locations$Placeactionlinks$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Locations$Placeactionlinks$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListPlaceActionLinksResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListPlaceActionLinksResponse>>;
     list(
       params: Params$Resource$Locations$Placeactionlinks$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -537,8 +764,8 @@ export namespace mybusinessplaceactions_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListPlaceActionLinksResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListPlaceActionLinksResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Placeactionlinks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -587,6 +814,76 @@ export namespace mybusinessplaceactions_v1 {
 
     /**
      * Updates the specified place action link and returns it.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/mybusinessplaceactions.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const mybusinessplaceactions = google.mybusinessplaceactions('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await mybusinessplaceactions.locations.placeActionLinks.patch({
+     *     // Optional. The resource name, in the format `locations/{location_id\}/placeActionLinks/{place_action_link_id\}`. The name field will only be considered in UpdatePlaceActionLink and DeletePlaceActionLink requests for updating and deleting links respectively. However, it will be ignored in CreatePlaceActionLink request, where `place_action_link_id` will be assigned by the server on successful creation of a new link and returned as part of the response.
+     *     name: 'locations/my-location/placeActionLinks/my-placeActionLink',
+     *     // Required. The specific fields to update. The only editable fields are `uri`, `place_action_type` and `is_preferred`. If the updated link already exists at the same location with the same `place_action_type` and `uri`, fails with an `ALREADY_EXISTS` error.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "isEditable": false,
+     *       //   "isPreferred": false,
+     *       //   "name": "my_name",
+     *       //   "placeActionType": "my_placeActionType",
+     *       //   "providerType": "my_providerType",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "uri": "my_uri"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "isEditable": false,
+     *   //   "isPreferred": false,
+     *   //   "name": "my_name",
+     *   //   "placeActionType": "my_placeActionType",
+     *   //   "providerType": "my_providerType",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "uri": "my_uri"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -596,11 +893,11 @@ export namespace mybusinessplaceactions_v1 {
     patch(
       params: Params$Resource$Locations$Placeactionlinks$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Locations$Placeactionlinks$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PlaceActionLink>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PlaceActionLink>>;
     patch(
       params: Params$Resource$Locations$Placeactionlinks$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -629,7 +926,10 @@ export namespace mybusinessplaceactions_v1 {
       callback?:
         | BodyResponseCallback<Schema$PlaceActionLink>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$PlaceActionLink> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$PlaceActionLink>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Placeactionlinks$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -742,6 +1042,59 @@ export namespace mybusinessplaceactions_v1 {
 
     /**
      * Returns the list of available place action types for a location or country.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/mybusinessplaceactions.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const mybusinessplaceactions = google.mybusinessplaceactions('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await mybusinessplaceactions.placeActionTypeMetadata.list({
+     *     // Optional. A filter constraining the place action types to return metadata for. The response includes entries that match the filter. We support only the following filters: 1. location=XYZ where XYZ is a string indicating the resource name of a location, in the format `locations/{location_id\}`. 2. region_code=XYZ where XYZ is a Unicode CLDR region code to find available action types. If no filter is provided, all place action types are returned.
+     *     filter: 'placeholder-value',
+     *     // Optional. The IETF BCP-47 code of language to get display names in. If this language is not available, they will be provided in English.
+     *     languageCode: 'placeholder-value',
+     *     // Optional. How many action types to include per page. Default is 10, minimum is 1.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. If specified, the next page of place action type metadata is retrieved. The `pageToken` is returned when a call to `placeActionTypeMetadata.list` returns more results than can fit into the requested page size.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "placeActionTypeMetadata": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -751,11 +1104,13 @@ export namespace mybusinessplaceactions_v1 {
     list(
       params: Params$Resource$Placeactiontypemetadata$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Placeactiontypemetadata$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListPlaceActionTypeMetadataResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListPlaceActionTypeMetadataResponse>
+    >;
     list(
       params: Params$Resource$Placeactiontypemetadata$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -790,8 +1145,10 @@ export namespace mybusinessplaceactions_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListPlaceActionTypeMetadataResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListPlaceActionTypeMetadataResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Placeactiontypemetadata$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

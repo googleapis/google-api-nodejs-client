@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -1178,6 +1178,52 @@ export namespace calendar_v3 {
 
     /**
      * Deletes an access control rule.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/calendar.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const calendar = google.calendar('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.acls',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await calendar.acl.delete({
+     *     // Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     *     calendarId: 'placeholder-value',
+     *     // ACL rule identifier.
+     *     ruleId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1187,11 +1233,11 @@ export namespace calendar_v3 {
     delete(
       params: Params$Resource$Acl$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Acl$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Acl$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1218,7 +1264,10 @@ export namespace calendar_v3 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Acl$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1262,6 +1311,63 @@ export namespace calendar_v3 {
 
     /**
      * Returns an access control rule.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/calendar.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const calendar = google.calendar('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.acls',
+     *       'https://www.googleapis.com/auth/calendar.acls.readonly',
+     *       'https://www.googleapis.com/auth/calendar.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await calendar.acl.get({
+     *     // Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     *     calendarId: 'placeholder-value',
+     *     // ACL rule identifier.
+     *     ruleId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "role": "my_role",
+     *   //   "scope": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1271,11 +1377,11 @@ export namespace calendar_v3 {
     get(
       params: Params$Resource$Acl$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Acl$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AclRule>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AclRule>>;
     get(
       params: Params$Resource$Acl$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1304,7 +1410,10 @@ export namespace calendar_v3 {
       callback?:
         | BodyResponseCallback<Schema$AclRule>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AclRule> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$AclRule>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Acl$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1348,6 +1457,73 @@ export namespace calendar_v3 {
 
     /**
      * Creates an access control rule.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/calendar.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const calendar = google.calendar('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.acls',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await calendar.acl.insert({
+     *     // Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     *     calendarId: 'placeholder-value',
+     *     // Whether to send notifications about the calendar sharing change. Optional. The default is True.
+     *     sendNotifications: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "role": "my_role",
+     *       //   "scope": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "role": "my_role",
+     *   //   "scope": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1357,11 +1533,11 @@ export namespace calendar_v3 {
     insert(
       params: Params$Resource$Acl$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Acl$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AclRule>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AclRule>>;
     insert(
       params: Params$Resource$Acl$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1390,7 +1566,10 @@ export namespace calendar_v3 {
       callback?:
         | BodyResponseCallback<Schema$AclRule>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AclRule> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$AclRule>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Acl$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1435,6 +1614,71 @@ export namespace calendar_v3 {
 
     /**
      * Returns the rules in the access control list for the calendar.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/calendar.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const calendar = google.calendar('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.acls',
+     *       'https://www.googleapis.com/auth/calendar.acls.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await calendar.acl.list({
+     *     // Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     *     calendarId: 'placeholder-value',
+     *     // Maximum number of entries returned on one result page. By default the value is 100 entries. The page size can never be larger than 250 entries. Optional.
+     *     maxResults: 'placeholder-value',
+     *     // Token specifying which result page to return. Optional.
+     *     pageToken: 'placeholder-value',
+     *     // Whether to include deleted ACLs in the result. Deleted ACLs are represented by role equal to "none". Deleted ACLs will always be included if syncToken is provided. Optional. The default is False.
+     *     showDeleted: 'placeholder-value',
+     *     // Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. All entries deleted since the previous list request will always be in the result set and it is not allowed to set showDeleted to False.
+     *     // If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken.
+     *     // Learn more about incremental synchronization.
+     *     // Optional. The default is to return all entries.
+     *     syncToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "nextSyncToken": "my_nextSyncToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1444,11 +1688,11 @@ export namespace calendar_v3 {
     list(
       params: Params$Resource$Acl$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Acl$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Acl>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Acl>>;
     list(
       params: Params$Resource$Acl$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1477,7 +1721,10 @@ export namespace calendar_v3 {
       callback?:
         | BodyResponseCallback<Schema$Acl>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Acl> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Acl>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Acl$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1522,6 +1769,75 @@ export namespace calendar_v3 {
 
     /**
      * Updates an access control rule. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/calendar.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const calendar = google.calendar('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.acls',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await calendar.acl.patch({
+     *     // Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     *     calendarId: 'placeholder-value',
+     *     // ACL rule identifier.
+     *     ruleId: 'placeholder-value',
+     *     // Whether to send notifications about the calendar sharing change. Note that there are no notifications on access removal. Optional. The default is True.
+     *     sendNotifications: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "role": "my_role",
+     *       //   "scope": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "role": "my_role",
+     *   //   "scope": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1531,11 +1847,11 @@ export namespace calendar_v3 {
     patch(
       params: Params$Resource$Acl$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Acl$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AclRule>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AclRule>>;
     patch(
       params: Params$Resource$Acl$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1564,7 +1880,10 @@ export namespace calendar_v3 {
       callback?:
         | BodyResponseCallback<Schema$AclRule>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AclRule> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$AclRule>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Acl$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1608,6 +1927,75 @@ export namespace calendar_v3 {
 
     /**
      * Updates an access control rule.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/calendar.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const calendar = google.calendar('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.acls',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await calendar.acl.update({
+     *     // Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     *     calendarId: 'placeholder-value',
+     *     // ACL rule identifier.
+     *     ruleId: 'placeholder-value',
+     *     // Whether to send notifications about the calendar sharing change. Note that there are no notifications on access removal. Optional. The default is True.
+     *     sendNotifications: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "role": "my_role",
+     *       //   "scope": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "role": "my_role",
+     *   //   "scope": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1617,11 +2005,11 @@ export namespace calendar_v3 {
     update(
       params: Params$Resource$Acl$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Acl$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AclRule>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AclRule>>;
     update(
       params: Params$Resource$Acl$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1650,7 +2038,10 @@ export namespace calendar_v3 {
       callback?:
         | BodyResponseCallback<Schema$AclRule>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AclRule> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$AclRule>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Acl$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1694,6 +2085,93 @@ export namespace calendar_v3 {
 
     /**
      * Watch for changes to ACL resources.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/calendar.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const calendar = google.calendar('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.acls',
+     *       'https://www.googleapis.com/auth/calendar.acls.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await calendar.acl.watch({
+     *     // Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     *     calendarId: 'placeholder-value',
+     *     // Maximum number of entries returned on one result page. By default the value is 100 entries. The page size can never be larger than 250 entries. Optional.
+     *     maxResults: 'placeholder-value',
+     *     // Token specifying which result page to return. Optional.
+     *     pageToken: 'placeholder-value',
+     *     // Whether to include deleted ACLs in the result. Deleted ACLs are represented by role equal to "none". Deleted ACLs will always be included if syncToken is provided. Optional. The default is False.
+     *     showDeleted: 'placeholder-value',
+     *     // Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. All entries deleted since the previous list request will always be in the result set and it is not allowed to set showDeleted to False.
+     *     // If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken.
+     *     // Learn more about incremental synchronization.
+     *     // Optional. The default is to return all entries.
+     *     syncToken: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "address": "my_address",
+     *       //   "expiration": "my_expiration",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "params": {},
+     *       //   "payload": false,
+     *       //   "resourceId": "my_resourceId",
+     *       //   "resourceUri": "my_resourceUri",
+     *       //   "token": "my_token",
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "address": "my_address",
+     *   //   "expiration": "my_expiration",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "params": {},
+     *   //   "payload": false,
+     *   //   "resourceId": "my_resourceId",
+     *   //   "resourceUri": "my_resourceUri",
+     *   //   "token": "my_token",
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1703,11 +2181,11 @@ export namespace calendar_v3 {
     watch(
       params: Params$Resource$Acl$Watch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     watch(
       params?: Params$Resource$Acl$Watch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Channel>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Channel>>;
     watch(
       params: Params$Resource$Acl$Watch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1736,7 +2214,10 @@ export namespace calendar_v3 {
       callback?:
         | BodyResponseCallback<Schema$Channel>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Channel> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Channel>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Acl$Watch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1916,6 +2397,51 @@ export namespace calendar_v3 {
 
     /**
      * Removes a calendar from the user's calendar list.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/calendar.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const calendar = google.calendar('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.app.created',
+     *       'https://www.googleapis.com/auth/calendar.calendarlist',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await calendar.calendarList.delete({
+     *     // Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     *     calendarId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1925,11 +2451,11 @@ export namespace calendar_v3 {
     delete(
       params: Params$Resource$Calendarlist$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Calendarlist$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Calendarlist$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1956,7 +2482,10 @@ export namespace calendar_v3 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Calendarlist$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2001,6 +2530,76 @@ export namespace calendar_v3 {
 
     /**
      * Returns a calendar from the user's calendar list.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/calendar.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const calendar = google.calendar('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.app.created',
+     *       'https://www.googleapis.com/auth/calendar.calendarlist',
+     *       'https://www.googleapis.com/auth/calendar.calendarlist.readonly',
+     *       'https://www.googleapis.com/auth/calendar.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await calendar.calendarList.get({
+     *     // Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     *     calendarId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accessRole": "my_accessRole",
+     *   //   "backgroundColor": "my_backgroundColor",
+     *   //   "colorId": "my_colorId",
+     *   //   "conferenceProperties": {},
+     *   //   "defaultReminders": [],
+     *   //   "deleted": false,
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "foregroundColor": "my_foregroundColor",
+     *   //   "hidden": false,
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "location": "my_location",
+     *   //   "notificationSettings": {},
+     *   //   "primary": false,
+     *   //   "selected": false,
+     *   //   "summary": "my_summary",
+     *   //   "summaryOverride": "my_summaryOverride",
+     *   //   "timeZone": "my_timeZone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2010,11 +2609,11 @@ export namespace calendar_v3 {
     get(
       params: Params$Resource$Calendarlist$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Calendarlist$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CalendarListEntry>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CalendarListEntry>>;
     get(
       params: Params$Resource$Calendarlist$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2045,8 +2644,8 @@ export namespace calendar_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CalendarListEntry>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CalendarListEntry>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Calendarlist$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2090,6 +2689,99 @@ export namespace calendar_v3 {
 
     /**
      * Inserts an existing calendar into the user's calendar list.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/calendar.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const calendar = google.calendar('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.calendarlist',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await calendar.calendarList.insert({
+     *     // Whether to use the foregroundColor and backgroundColor fields to write the calendar colors (RGB). If this feature is used, the index-based colorId field will be set to the best matching option automatically. Optional. The default is False.
+     *     colorRgbFormat: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accessRole": "my_accessRole",
+     *       //   "backgroundColor": "my_backgroundColor",
+     *       //   "colorId": "my_colorId",
+     *       //   "conferenceProperties": {},
+     *       //   "defaultReminders": [],
+     *       //   "deleted": false,
+     *       //   "description": "my_description",
+     *       //   "etag": "my_etag",
+     *       //   "foregroundColor": "my_foregroundColor",
+     *       //   "hidden": false,
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "location": "my_location",
+     *       //   "notificationSettings": {},
+     *       //   "primary": false,
+     *       //   "selected": false,
+     *       //   "summary": "my_summary",
+     *       //   "summaryOverride": "my_summaryOverride",
+     *       //   "timeZone": "my_timeZone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accessRole": "my_accessRole",
+     *   //   "backgroundColor": "my_backgroundColor",
+     *   //   "colorId": "my_colorId",
+     *   //   "conferenceProperties": {},
+     *   //   "defaultReminders": [],
+     *   //   "deleted": false,
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "foregroundColor": "my_foregroundColor",
+     *   //   "hidden": false,
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "location": "my_location",
+     *   //   "notificationSettings": {},
+     *   //   "primary": false,
+     *   //   "selected": false,
+     *   //   "summary": "my_summary",
+     *   //   "summaryOverride": "my_summaryOverride",
+     *   //   "timeZone": "my_timeZone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2099,11 +2791,11 @@ export namespace calendar_v3 {
     insert(
       params: Params$Resource$Calendarlist$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Calendarlist$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CalendarListEntry>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CalendarListEntry>>;
     insert(
       params: Params$Resource$Calendarlist$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2134,8 +2826,8 @@ export namespace calendar_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CalendarListEntry>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CalendarListEntry>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Calendarlist$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2181,6 +2873,75 @@ export namespace calendar_v3 {
 
     /**
      * Returns the calendars on the user's calendar list.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/calendar.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const calendar = google.calendar('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.calendarlist',
+     *       'https://www.googleapis.com/auth/calendar.calendarlist.readonly',
+     *       'https://www.googleapis.com/auth/calendar.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await calendar.calendarList.list({
+     *     // Maximum number of entries returned on one result page. By default the value is 100 entries. The page size can never be larger than 250 entries. Optional.
+     *     maxResults: 'placeholder-value',
+     *     // The minimum access role for the user in the returned entries. Optional. The default is no restriction.
+     *     minAccessRole: 'placeholder-value',
+     *     // Token specifying which result page to return. Optional.
+     *     pageToken: 'placeholder-value',
+     *     // Whether to include deleted calendar list entries in the result. Optional. The default is False.
+     *     showDeleted: 'placeholder-value',
+     *     // Whether to show hidden entries. Optional. The default is False.
+     *     showHidden: 'placeholder-value',
+     *     // Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. If only read-only fields such as calendar properties or ACLs have changed, the entry won't be returned. All entries deleted and hidden since the previous list request will always be in the result set and it is not allowed to set showDeleted neither showHidden to False.
+     *     // To ensure client state consistency minAccessRole query parameter cannot be specified together with nextSyncToken.
+     *     // If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken.
+     *     // Learn more about incremental synchronization.
+     *     // Optional. The default is to return all entries.
+     *     syncToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "nextSyncToken": "my_nextSyncToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2190,11 +2951,11 @@ export namespace calendar_v3 {
     list(
       params: Params$Resource$Calendarlist$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Calendarlist$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CalendarList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CalendarList>>;
     list(
       params: Params$Resource$Calendarlist$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2223,7 +2984,10 @@ export namespace calendar_v3 {
       callback?:
         | BodyResponseCallback<Schema$CalendarList>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CalendarList> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$CalendarList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Calendarlist$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2269,6 +3033,102 @@ export namespace calendar_v3 {
 
     /**
      * Updates an existing calendar on the user's calendar list. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/calendar.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const calendar = google.calendar('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.app.created',
+     *       'https://www.googleapis.com/auth/calendar.calendarlist',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await calendar.calendarList.patch({
+     *     // Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     *     calendarId: 'placeholder-value',
+     *     // Whether to use the foregroundColor and backgroundColor fields to write the calendar colors (RGB). If this feature is used, the index-based colorId field will be set to the best matching option automatically. Optional. The default is False.
+     *     colorRgbFormat: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accessRole": "my_accessRole",
+     *       //   "backgroundColor": "my_backgroundColor",
+     *       //   "colorId": "my_colorId",
+     *       //   "conferenceProperties": {},
+     *       //   "defaultReminders": [],
+     *       //   "deleted": false,
+     *       //   "description": "my_description",
+     *       //   "etag": "my_etag",
+     *       //   "foregroundColor": "my_foregroundColor",
+     *       //   "hidden": false,
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "location": "my_location",
+     *       //   "notificationSettings": {},
+     *       //   "primary": false,
+     *       //   "selected": false,
+     *       //   "summary": "my_summary",
+     *       //   "summaryOverride": "my_summaryOverride",
+     *       //   "timeZone": "my_timeZone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accessRole": "my_accessRole",
+     *   //   "backgroundColor": "my_backgroundColor",
+     *   //   "colorId": "my_colorId",
+     *   //   "conferenceProperties": {},
+     *   //   "defaultReminders": [],
+     *   //   "deleted": false,
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "foregroundColor": "my_foregroundColor",
+     *   //   "hidden": false,
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "location": "my_location",
+     *   //   "notificationSettings": {},
+     *   //   "primary": false,
+     *   //   "selected": false,
+     *   //   "summary": "my_summary",
+     *   //   "summaryOverride": "my_summaryOverride",
+     *   //   "timeZone": "my_timeZone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2278,11 +3138,11 @@ export namespace calendar_v3 {
     patch(
       params: Params$Resource$Calendarlist$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Calendarlist$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CalendarListEntry>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CalendarListEntry>>;
     patch(
       params: Params$Resource$Calendarlist$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2313,8 +3173,8 @@ export namespace calendar_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CalendarListEntry>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CalendarListEntry>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Calendarlist$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2359,6 +3219,102 @@ export namespace calendar_v3 {
 
     /**
      * Updates an existing calendar on the user's calendar list.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/calendar.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const calendar = google.calendar('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.app.created',
+     *       'https://www.googleapis.com/auth/calendar.calendarlist',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await calendar.calendarList.update({
+     *     // Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     *     calendarId: 'placeholder-value',
+     *     // Whether to use the foregroundColor and backgroundColor fields to write the calendar colors (RGB). If this feature is used, the index-based colorId field will be set to the best matching option automatically. Optional. The default is False.
+     *     colorRgbFormat: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accessRole": "my_accessRole",
+     *       //   "backgroundColor": "my_backgroundColor",
+     *       //   "colorId": "my_colorId",
+     *       //   "conferenceProperties": {},
+     *       //   "defaultReminders": [],
+     *       //   "deleted": false,
+     *       //   "description": "my_description",
+     *       //   "etag": "my_etag",
+     *       //   "foregroundColor": "my_foregroundColor",
+     *       //   "hidden": false,
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "location": "my_location",
+     *       //   "notificationSettings": {},
+     *       //   "primary": false,
+     *       //   "selected": false,
+     *       //   "summary": "my_summary",
+     *       //   "summaryOverride": "my_summaryOverride",
+     *       //   "timeZone": "my_timeZone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accessRole": "my_accessRole",
+     *   //   "backgroundColor": "my_backgroundColor",
+     *   //   "colorId": "my_colorId",
+     *   //   "conferenceProperties": {},
+     *   //   "defaultReminders": [],
+     *   //   "deleted": false,
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "foregroundColor": "my_foregroundColor",
+     *   //   "hidden": false,
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "location": "my_location",
+     *   //   "notificationSettings": {},
+     *   //   "primary": false,
+     *   //   "selected": false,
+     *   //   "summary": "my_summary",
+     *   //   "summaryOverride": "my_summaryOverride",
+     *   //   "timeZone": "my_timeZone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2368,11 +3324,11 @@ export namespace calendar_v3 {
     update(
       params: Params$Resource$Calendarlist$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Calendarlist$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CalendarListEntry>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CalendarListEntry>>;
     update(
       params: Params$Resource$Calendarlist$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2403,8 +3359,8 @@ export namespace calendar_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CalendarListEntry>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CalendarListEntry>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Calendarlist$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2449,6 +3405,97 @@ export namespace calendar_v3 {
 
     /**
      * Watch for changes to CalendarList resources.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/calendar.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const calendar = google.calendar('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.calendarlist',
+     *       'https://www.googleapis.com/auth/calendar.calendarlist.readonly',
+     *       'https://www.googleapis.com/auth/calendar.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await calendar.calendarList.watch({
+     *     // Maximum number of entries returned on one result page. By default the value is 100 entries. The page size can never be larger than 250 entries. Optional.
+     *     maxResults: 'placeholder-value',
+     *     // The minimum access role for the user in the returned entries. Optional. The default is no restriction.
+     *     minAccessRole: 'placeholder-value',
+     *     // Token specifying which result page to return. Optional.
+     *     pageToken: 'placeholder-value',
+     *     // Whether to include deleted calendar list entries in the result. Optional. The default is False.
+     *     showDeleted: 'placeholder-value',
+     *     // Whether to show hidden entries. Optional. The default is False.
+     *     showHidden: 'placeholder-value',
+     *     // Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. If only read-only fields such as calendar properties or ACLs have changed, the entry won't be returned. All entries deleted and hidden since the previous list request will always be in the result set and it is not allowed to set showDeleted neither showHidden to False.
+     *     // To ensure client state consistency minAccessRole query parameter cannot be specified together with nextSyncToken.
+     *     // If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken.
+     *     // Learn more about incremental synchronization.
+     *     // Optional. The default is to return all entries.
+     *     syncToken: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "address": "my_address",
+     *       //   "expiration": "my_expiration",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "params": {},
+     *       //   "payload": false,
+     *       //   "resourceId": "my_resourceId",
+     *       //   "resourceUri": "my_resourceUri",
+     *       //   "token": "my_token",
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "address": "my_address",
+     *   //   "expiration": "my_expiration",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "params": {},
+     *   //   "payload": false,
+     *   //   "resourceId": "my_resourceId",
+     *   //   "resourceUri": "my_resourceUri",
+     *   //   "token": "my_token",
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2458,11 +3505,11 @@ export namespace calendar_v3 {
     watch(
       params: Params$Resource$Calendarlist$Watch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     watch(
       params?: Params$Resource$Calendarlist$Watch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Channel>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Channel>>;
     watch(
       params: Params$Resource$Calendarlist$Watch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2491,7 +3538,10 @@ export namespace calendar_v3 {
       callback?:
         | BodyResponseCallback<Schema$Channel>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Channel> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Channel>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Calendarlist$Watch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2669,6 +3719,50 @@ export namespace calendar_v3 {
 
     /**
      * Clears a primary calendar. This operation deletes all events associated with the primary calendar of an account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/calendar.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const calendar = google.calendar('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.calendars',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await calendar.calendars.clear({
+     *     // Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     *     calendarId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2678,11 +3772,11 @@ export namespace calendar_v3 {
     clear(
       params: Params$Resource$Calendars$Clear,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     clear(
       params?: Params$Resource$Calendars$Clear,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     clear(
       params: Params$Resource$Calendars$Clear,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2709,7 +3803,10 @@ export namespace calendar_v3 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Calendars$Clear;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2753,6 +3850,51 @@ export namespace calendar_v3 {
 
     /**
      * Deletes a secondary calendar. Use calendars.clear for clearing all events on primary calendars.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/calendar.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const calendar = google.calendar('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.app.created',
+     *       'https://www.googleapis.com/auth/calendar.calendars',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await calendar.calendars.delete({
+     *     // Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     *     calendarId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2762,11 +3904,11 @@ export namespace calendar_v3 {
     delete(
       params: Params$Resource$Calendars$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Calendars$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Calendars$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2793,7 +3935,10 @@ export namespace calendar_v3 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Calendars$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2838,6 +3983,65 @@ export namespace calendar_v3 {
 
     /**
      * Returns metadata for a calendar.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/calendar.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const calendar = google.calendar('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.app.created',
+     *       'https://www.googleapis.com/auth/calendar.calendars',
+     *       'https://www.googleapis.com/auth/calendar.calendars.readonly',
+     *       'https://www.googleapis.com/auth/calendar.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await calendar.calendars.get({
+     *     // Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     *     calendarId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "conferenceProperties": {},
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "location": "my_location",
+     *   //   "summary": "my_summary",
+     *   //   "timeZone": "my_timeZone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2847,11 +4051,11 @@ export namespace calendar_v3 {
     get(
       params: Params$Resource$Calendars$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Calendars$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Calendar>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Calendar>>;
     get(
       params: Params$Resource$Calendars$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2880,7 +4084,10 @@ export namespace calendar_v3 {
       callback?:
         | BodyResponseCallback<Schema$Calendar>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Calendar> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Calendar>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Calendars$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2925,6 +4132,75 @@ export namespace calendar_v3 {
 
     /**
      * Creates a secondary calendar.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/calendar.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const calendar = google.calendar('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.app.created',
+     *       'https://www.googleapis.com/auth/calendar.calendars',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await calendar.calendars.insert({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "conferenceProperties": {},
+     *       //   "description": "my_description",
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "location": "my_location",
+     *       //   "summary": "my_summary",
+     *       //   "timeZone": "my_timeZone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "conferenceProperties": {},
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "location": "my_location",
+     *   //   "summary": "my_summary",
+     *   //   "timeZone": "my_timeZone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2934,11 +4210,11 @@ export namespace calendar_v3 {
     insert(
       params: Params$Resource$Calendars$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Calendars$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Calendar>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Calendar>>;
     insert(
       params: Params$Resource$Calendars$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2967,7 +4243,10 @@ export namespace calendar_v3 {
       callback?:
         | BodyResponseCallback<Schema$Calendar>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Calendar> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Calendar>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Calendars$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3012,6 +4291,78 @@ export namespace calendar_v3 {
 
     /**
      * Updates metadata for a calendar. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/calendar.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const calendar = google.calendar('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.app.created',
+     *       'https://www.googleapis.com/auth/calendar.calendars',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await calendar.calendars.patch({
+     *     // Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     *     calendarId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "conferenceProperties": {},
+     *       //   "description": "my_description",
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "location": "my_location",
+     *       //   "summary": "my_summary",
+     *       //   "timeZone": "my_timeZone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "conferenceProperties": {},
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "location": "my_location",
+     *   //   "summary": "my_summary",
+     *   //   "timeZone": "my_timeZone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3021,11 +4372,11 @@ export namespace calendar_v3 {
     patch(
       params: Params$Resource$Calendars$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Calendars$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Calendar>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Calendar>>;
     patch(
       params: Params$Resource$Calendars$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3054,7 +4405,10 @@ export namespace calendar_v3 {
       callback?:
         | BodyResponseCallback<Schema$Calendar>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Calendar> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Calendar>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Calendars$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3099,6 +4453,78 @@ export namespace calendar_v3 {
 
     /**
      * Updates metadata for a calendar.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/calendar.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const calendar = google.calendar('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.app.created',
+     *       'https://www.googleapis.com/auth/calendar.calendars',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await calendar.calendars.update({
+     *     // Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     *     calendarId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "conferenceProperties": {},
+     *       //   "description": "my_description",
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "location": "my_location",
+     *       //   "summary": "my_summary",
+     *       //   "timeZone": "my_timeZone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "conferenceProperties": {},
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "location": "my_location",
+     *   //   "summary": "my_summary",
+     *   //   "timeZone": "my_timeZone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3108,11 +4534,11 @@ export namespace calendar_v3 {
     update(
       params: Params$Resource$Calendars$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Calendars$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Calendar>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Calendar>>;
     update(
       params: Params$Resource$Calendars$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3141,7 +4567,10 @@ export namespace calendar_v3 {
       callback?:
         | BodyResponseCallback<Schema$Calendar>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Calendar> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Calendar>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Calendars$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3240,6 +4669,76 @@ export namespace calendar_v3 {
 
     /**
      * Stop watching resources through this channel
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/calendar.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const calendar = google.calendar('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.acls',
+     *       'https://www.googleapis.com/auth/calendar.acls.readonly',
+     *       'https://www.googleapis.com/auth/calendar.app.created',
+     *       'https://www.googleapis.com/auth/calendar.calendarlist',
+     *       'https://www.googleapis.com/auth/calendar.calendarlist.readonly',
+     *       'https://www.googleapis.com/auth/calendar.events',
+     *       'https://www.googleapis.com/auth/calendar.events.freebusy',
+     *       'https://www.googleapis.com/auth/calendar.events.owned',
+     *       'https://www.googleapis.com/auth/calendar.events.owned.readonly',
+     *       'https://www.googleapis.com/auth/calendar.events.public.readonly',
+     *       'https://www.googleapis.com/auth/calendar.events.readonly',
+     *       'https://www.googleapis.com/auth/calendar.readonly',
+     *       'https://www.googleapis.com/auth/calendar.settings.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await calendar.channels.stop({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "address": "my_address",
+     *       //   "expiration": "my_expiration",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "params": {},
+     *       //   "payload": false,
+     *       //   "resourceId": "my_resourceId",
+     *       //   "resourceUri": "my_resourceUri",
+     *       //   "token": "my_token",
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3249,11 +4748,11 @@ export namespace calendar_v3 {
     stop(
       params: Params$Resource$Channels$Stop,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     stop(
       params?: Params$Resource$Channels$Stop,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     stop(
       params: Params$Resource$Channels$Stop,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3280,7 +4779,10 @@ export namespace calendar_v3 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Channels$Stop;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3339,6 +4841,62 @@ export namespace calendar_v3 {
 
     /**
      * Returns the color definitions for calendars and events.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/calendar.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const calendar = google.calendar('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.app.created',
+     *       'https://www.googleapis.com/auth/calendar.calendarlist',
+     *       'https://www.googleapis.com/auth/calendar.calendarlist.readonly',
+     *       'https://www.googleapis.com/auth/calendar.events.freebusy',
+     *       'https://www.googleapis.com/auth/calendar.events.owned',
+     *       'https://www.googleapis.com/auth/calendar.events.owned.readonly',
+     *       'https://www.googleapis.com/auth/calendar.events.public.readonly',
+     *       'https://www.googleapis.com/auth/calendar.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await calendar.colors.get({});
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "calendar": {},
+     *   //   "event": {},
+     *   //   "kind": "my_kind",
+     *   //   "updated": "my_updated"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3348,11 +4906,11 @@ export namespace calendar_v3 {
     get(
       params: Params$Resource$Colors$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Colors$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Colors>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Colors>>;
     get(
       params: Params$Resource$Colors$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3381,7 +4939,10 @@ export namespace calendar_v3 {
       callback?:
         | BodyResponseCallback<Schema$Colors>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Colors> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Colors>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Colors$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3435,6 +4996,60 @@ export namespace calendar_v3 {
 
     /**
      * Deletes an event.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/calendar.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const calendar = google.calendar('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.app.created',
+     *       'https://www.googleapis.com/auth/calendar.events',
+     *       'https://www.googleapis.com/auth/calendar.events.owned',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await calendar.events.delete({
+     *     // Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     *     calendarId: 'placeholder-value',
+     *     // Event identifier.
+     *     eventId: 'placeholder-value',
+     *     // Deprecated. Please use sendUpdates instead.
+     *     //
+     *     // Whether to send notifications about the deletion of the event. Note that some emails might still be sent even if you set the value to false. The default is false.
+     *     sendNotifications: 'placeholder-value',
+     *     // Guests who should receive notifications about the deletion of the event.
+     *     sendUpdates: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3444,11 +5059,11 @@ export namespace calendar_v3 {
     delete(
       params: Params$Resource$Events$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Events$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Events$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3475,7 +5090,10 @@ export namespace calendar_v3 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Events$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3519,6 +5137,112 @@ export namespace calendar_v3 {
 
     /**
      * Returns an event based on its Google Calendar ID. To retrieve an event using its iCalendar ID, call the events.list method using the iCalUID parameter.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/calendar.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const calendar = google.calendar('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.app.created',
+     *       'https://www.googleapis.com/auth/calendar.events',
+     *       'https://www.googleapis.com/auth/calendar.events.freebusy',
+     *       'https://www.googleapis.com/auth/calendar.events.owned',
+     *       'https://www.googleapis.com/auth/calendar.events.owned.readonly',
+     *       'https://www.googleapis.com/auth/calendar.events.public.readonly',
+     *       'https://www.googleapis.com/auth/calendar.events.readonly',
+     *       'https://www.googleapis.com/auth/calendar.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await calendar.events.get({
+     *     // Deprecated and ignored. A value will always be returned in the email field for the organizer, creator and attendees, even if no real email address is available (i.e. a generated, non-working value will be provided).
+     *     alwaysIncludeEmail: 'placeholder-value',
+     *     // Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     *     calendarId: 'placeholder-value',
+     *     // Event identifier.
+     *     eventId: 'placeholder-value',
+     *     // The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
+     *     maxAttendees: 'placeholder-value',
+     *     // Time zone used in the response. Optional. The default is the time zone of the calendar.
+     *     timeZone: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "anyoneCanAddSelf": false,
+     *   //   "attachments": [],
+     *   //   "attendees": [],
+     *   //   "attendeesOmitted": false,
+     *   //   "birthdayProperties": {},
+     *   //   "colorId": "my_colorId",
+     *   //   "conferenceData": {},
+     *   //   "created": "my_created",
+     *   //   "creator": {},
+     *   //   "description": "my_description",
+     *   //   "end": {},
+     *   //   "endTimeUnspecified": false,
+     *   //   "etag": "my_etag",
+     *   //   "eventType": "my_eventType",
+     *   //   "extendedProperties": {},
+     *   //   "focusTimeProperties": {},
+     *   //   "gadget": {},
+     *   //   "guestsCanInviteOthers": false,
+     *   //   "guestsCanModify": false,
+     *   //   "guestsCanSeeOtherGuests": false,
+     *   //   "hangoutLink": "my_hangoutLink",
+     *   //   "htmlLink": "my_htmlLink",
+     *   //   "iCalUID": "my_iCalUID",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "location": "my_location",
+     *   //   "locked": false,
+     *   //   "organizer": {},
+     *   //   "originalStartTime": {},
+     *   //   "outOfOfficeProperties": {},
+     *   //   "privateCopy": false,
+     *   //   "recurrence": [],
+     *   //   "recurringEventId": "my_recurringEventId",
+     *   //   "reminders": {},
+     *   //   "sequence": 0,
+     *   //   "source": {},
+     *   //   "start": {},
+     *   //   "status": "my_status",
+     *   //   "summary": "my_summary",
+     *   //   "transparency": "my_transparency",
+     *   //   "updated": "my_updated",
+     *   //   "visibility": "my_visibility",
+     *   //   "workingLocationProperties": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3528,11 +5252,11 @@ export namespace calendar_v3 {
     get(
       params: Params$Resource$Events$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Events$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Event>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Event>>;
     get(
       params: Params$Resource$Events$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3561,7 +5285,10 @@ export namespace calendar_v3 {
       callback?:
         | BodyResponseCallback<Schema$Event>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Event> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Event>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Events$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3606,6 +5333,153 @@ export namespace calendar_v3 {
     /**
      * Imports an event. This operation is used to add a private copy of an existing event to a calendar. Only events with an eventType of default may be imported.
      * Deprecated behavior: If a non-default event is imported, its type will be changed to default and any event-type-specific properties it may have will be dropped.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/calendar.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const calendar = google.calendar('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.app.created',
+     *       'https://www.googleapis.com/auth/calendar.events',
+     *       'https://www.googleapis.com/auth/calendar.events.owned',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await calendar.events.import({
+     *     // Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     *     calendarId: 'placeholder-value',
+     *     // Version number of conference data supported by the API client. Version 0 assumes no conference data support and ignores conference data in the event's body. Version 1 enables support for copying of ConferenceData as well as for creating new conferences using the createRequest field of conferenceData. The default is 0.
+     *     conferenceDataVersion: 'placeholder-value',
+     *     // Whether API client performing operation supports event attachments. Optional. The default is False.
+     *     supportsAttachments: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "anyoneCanAddSelf": false,
+     *       //   "attachments": [],
+     *       //   "attendees": [],
+     *       //   "attendeesOmitted": false,
+     *       //   "birthdayProperties": {},
+     *       //   "colorId": "my_colorId",
+     *       //   "conferenceData": {},
+     *       //   "created": "my_created",
+     *       //   "creator": {},
+     *       //   "description": "my_description",
+     *       //   "end": {},
+     *       //   "endTimeUnspecified": false,
+     *       //   "etag": "my_etag",
+     *       //   "eventType": "my_eventType",
+     *       //   "extendedProperties": {},
+     *       //   "focusTimeProperties": {},
+     *       //   "gadget": {},
+     *       //   "guestsCanInviteOthers": false,
+     *       //   "guestsCanModify": false,
+     *       //   "guestsCanSeeOtherGuests": false,
+     *       //   "hangoutLink": "my_hangoutLink",
+     *       //   "htmlLink": "my_htmlLink",
+     *       //   "iCalUID": "my_iCalUID",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "location": "my_location",
+     *       //   "locked": false,
+     *       //   "organizer": {},
+     *       //   "originalStartTime": {},
+     *       //   "outOfOfficeProperties": {},
+     *       //   "privateCopy": false,
+     *       //   "recurrence": [],
+     *       //   "recurringEventId": "my_recurringEventId",
+     *       //   "reminders": {},
+     *       //   "sequence": 0,
+     *       //   "source": {},
+     *       //   "start": {},
+     *       //   "status": "my_status",
+     *       //   "summary": "my_summary",
+     *       //   "transparency": "my_transparency",
+     *       //   "updated": "my_updated",
+     *       //   "visibility": "my_visibility",
+     *       //   "workingLocationProperties": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "anyoneCanAddSelf": false,
+     *   //   "attachments": [],
+     *   //   "attendees": [],
+     *   //   "attendeesOmitted": false,
+     *   //   "birthdayProperties": {},
+     *   //   "colorId": "my_colorId",
+     *   //   "conferenceData": {},
+     *   //   "created": "my_created",
+     *   //   "creator": {},
+     *   //   "description": "my_description",
+     *   //   "end": {},
+     *   //   "endTimeUnspecified": false,
+     *   //   "etag": "my_etag",
+     *   //   "eventType": "my_eventType",
+     *   //   "extendedProperties": {},
+     *   //   "focusTimeProperties": {},
+     *   //   "gadget": {},
+     *   //   "guestsCanInviteOthers": false,
+     *   //   "guestsCanModify": false,
+     *   //   "guestsCanSeeOtherGuests": false,
+     *   //   "hangoutLink": "my_hangoutLink",
+     *   //   "htmlLink": "my_htmlLink",
+     *   //   "iCalUID": "my_iCalUID",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "location": "my_location",
+     *   //   "locked": false,
+     *   //   "organizer": {},
+     *   //   "originalStartTime": {},
+     *   //   "outOfOfficeProperties": {},
+     *   //   "privateCopy": false,
+     *   //   "recurrence": [],
+     *   //   "recurringEventId": "my_recurringEventId",
+     *   //   "reminders": {},
+     *   //   "sequence": 0,
+     *   //   "source": {},
+     *   //   "start": {},
+     *   //   "status": "my_status",
+     *   //   "summary": "my_summary",
+     *   //   "transparency": "my_transparency",
+     *   //   "updated": "my_updated",
+     *   //   "visibility": "my_visibility",
+     *   //   "workingLocationProperties": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3615,11 +5489,11 @@ export namespace calendar_v3 {
     import(
       params: Params$Resource$Events$Import,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     import(
       params?: Params$Resource$Events$Import,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Event>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Event>>;
     import(
       params: Params$Resource$Events$Import,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3648,7 +5522,10 @@ export namespace calendar_v3 {
       callback?:
         | BodyResponseCallback<Schema$Event>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Event> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Event>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Events$Import;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3692,6 +5569,161 @@ export namespace calendar_v3 {
 
     /**
      * Creates an event.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/calendar.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const calendar = google.calendar('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.app.created',
+     *       'https://www.googleapis.com/auth/calendar.events',
+     *       'https://www.googleapis.com/auth/calendar.events.owned',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await calendar.events.insert({
+     *     // Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     *     calendarId: 'placeholder-value',
+     *     // Version number of conference data supported by the API client. Version 0 assumes no conference data support and ignores conference data in the event's body. Version 1 enables support for copying of ConferenceData as well as for creating new conferences using the createRequest field of conferenceData. The default is 0.
+     *     conferenceDataVersion: 'placeholder-value',
+     *     // The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
+     *     maxAttendees: 'placeholder-value',
+     *     // Deprecated. Please use sendUpdates instead.
+     *     //
+     *     // Whether to send notifications about the creation of the new event. Note that some emails might still be sent even if you set the value to false. The default is false.
+     *     sendNotifications: 'placeholder-value',
+     *     // Whether to send notifications about the creation of the new event. Note that some emails might still be sent. The default is false.
+     *     sendUpdates: 'placeholder-value',
+     *     // Whether API client performing operation supports event attachments. Optional. The default is False.
+     *     supportsAttachments: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "anyoneCanAddSelf": false,
+     *       //   "attachments": [],
+     *       //   "attendees": [],
+     *       //   "attendeesOmitted": false,
+     *       //   "birthdayProperties": {},
+     *       //   "colorId": "my_colorId",
+     *       //   "conferenceData": {},
+     *       //   "created": "my_created",
+     *       //   "creator": {},
+     *       //   "description": "my_description",
+     *       //   "end": {},
+     *       //   "endTimeUnspecified": false,
+     *       //   "etag": "my_etag",
+     *       //   "eventType": "my_eventType",
+     *       //   "extendedProperties": {},
+     *       //   "focusTimeProperties": {},
+     *       //   "gadget": {},
+     *       //   "guestsCanInviteOthers": false,
+     *       //   "guestsCanModify": false,
+     *       //   "guestsCanSeeOtherGuests": false,
+     *       //   "hangoutLink": "my_hangoutLink",
+     *       //   "htmlLink": "my_htmlLink",
+     *       //   "iCalUID": "my_iCalUID",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "location": "my_location",
+     *       //   "locked": false,
+     *       //   "organizer": {},
+     *       //   "originalStartTime": {},
+     *       //   "outOfOfficeProperties": {},
+     *       //   "privateCopy": false,
+     *       //   "recurrence": [],
+     *       //   "recurringEventId": "my_recurringEventId",
+     *       //   "reminders": {},
+     *       //   "sequence": 0,
+     *       //   "source": {},
+     *       //   "start": {},
+     *       //   "status": "my_status",
+     *       //   "summary": "my_summary",
+     *       //   "transparency": "my_transparency",
+     *       //   "updated": "my_updated",
+     *       //   "visibility": "my_visibility",
+     *       //   "workingLocationProperties": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "anyoneCanAddSelf": false,
+     *   //   "attachments": [],
+     *   //   "attendees": [],
+     *   //   "attendeesOmitted": false,
+     *   //   "birthdayProperties": {},
+     *   //   "colorId": "my_colorId",
+     *   //   "conferenceData": {},
+     *   //   "created": "my_created",
+     *   //   "creator": {},
+     *   //   "description": "my_description",
+     *   //   "end": {},
+     *   //   "endTimeUnspecified": false,
+     *   //   "etag": "my_etag",
+     *   //   "eventType": "my_eventType",
+     *   //   "extendedProperties": {},
+     *   //   "focusTimeProperties": {},
+     *   //   "gadget": {},
+     *   //   "guestsCanInviteOthers": false,
+     *   //   "guestsCanModify": false,
+     *   //   "guestsCanSeeOtherGuests": false,
+     *   //   "hangoutLink": "my_hangoutLink",
+     *   //   "htmlLink": "my_htmlLink",
+     *   //   "iCalUID": "my_iCalUID",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "location": "my_location",
+     *   //   "locked": false,
+     *   //   "organizer": {},
+     *   //   "originalStartTime": {},
+     *   //   "outOfOfficeProperties": {},
+     *   //   "privateCopy": false,
+     *   //   "recurrence": [],
+     *   //   "recurringEventId": "my_recurringEventId",
+     *   //   "reminders": {},
+     *   //   "sequence": 0,
+     *   //   "source": {},
+     *   //   "start": {},
+     *   //   "status": "my_status",
+     *   //   "summary": "my_summary",
+     *   //   "transparency": "my_transparency",
+     *   //   "updated": "my_updated",
+     *   //   "visibility": "my_visibility",
+     *   //   "workingLocationProperties": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3701,11 +5733,11 @@ export namespace calendar_v3 {
     insert(
       params: Params$Resource$Events$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Events$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Event>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Event>>;
     insert(
       params: Params$Resource$Events$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3734,7 +5766,10 @@ export namespace calendar_v3 {
       callback?:
         | BodyResponseCallback<Schema$Event>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Event> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Event>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Events$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3778,6 +5813,92 @@ export namespace calendar_v3 {
 
     /**
      * Returns instances of the specified recurring event.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/calendar.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const calendar = google.calendar('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.app.created',
+     *       'https://www.googleapis.com/auth/calendar.events',
+     *       'https://www.googleapis.com/auth/calendar.events.freebusy',
+     *       'https://www.googleapis.com/auth/calendar.events.owned',
+     *       'https://www.googleapis.com/auth/calendar.events.owned.readonly',
+     *       'https://www.googleapis.com/auth/calendar.events.public.readonly',
+     *       'https://www.googleapis.com/auth/calendar.events.readonly',
+     *       'https://www.googleapis.com/auth/calendar.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await calendar.events.instances({
+     *     // Deprecated and ignored. A value will always be returned in the email field for the organizer, creator and attendees, even if no real email address is available (i.e. a generated, non-working value will be provided).
+     *     alwaysIncludeEmail: 'placeholder-value',
+     *     // Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     *     calendarId: 'placeholder-value',
+     *     // Recurring event identifier.
+     *     eventId: 'placeholder-value',
+     *     // The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
+     *     maxAttendees: 'placeholder-value',
+     *     // Maximum number of events returned on one result page. By default the value is 250 events. The page size can never be larger than 2500 events. Optional.
+     *     maxResults: 'placeholder-value',
+     *     // The original start time of the instance in the result. Optional.
+     *     originalStart: 'placeholder-value',
+     *     // Token specifying which result page to return. Optional.
+     *     pageToken: 'placeholder-value',
+     *     // Whether to include deleted events (with status equals "cancelled") in the result. Cancelled instances of recurring events will still be included if singleEvents is False. Optional. The default is False.
+     *     showDeleted: 'placeholder-value',
+     *     // Upper bound (exclusive) for an event's start time to filter by. Optional. The default is not to filter by start time. Must be an RFC3339 timestamp with mandatory time zone offset.
+     *     timeMax: 'placeholder-value',
+     *     // Lower bound (inclusive) for an event's end time to filter by. Optional. The default is not to filter by end time. Must be an RFC3339 timestamp with mandatory time zone offset.
+     *     timeMin: 'placeholder-value',
+     *     // Time zone used in the response. Optional. The default is the time zone of the calendar.
+     *     timeZone: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accessRole": "my_accessRole",
+     *   //   "defaultReminders": [],
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "nextSyncToken": "my_nextSyncToken",
+     *   //   "summary": "my_summary",
+     *   //   "timeZone": "my_timeZone",
+     *   //   "updated": "my_updated"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3787,11 +5908,11 @@ export namespace calendar_v3 {
     instances(
       params: Params$Resource$Events$Instances,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     instances(
       params?: Params$Resource$Events$Instances,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Events>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Events>>;
     instances(
       params: Params$Resource$Events$Instances,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3820,7 +5941,10 @@ export namespace calendar_v3 {
       callback?:
         | BodyResponseCallback<Schema$Events>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Events> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Events>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Events$Instances;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3865,6 +5989,134 @@ export namespace calendar_v3 {
 
     /**
      * Returns events on the specified calendar.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/calendar.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const calendar = google.calendar('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.app.created',
+     *       'https://www.googleapis.com/auth/calendar.events',
+     *       'https://www.googleapis.com/auth/calendar.events.freebusy',
+     *       'https://www.googleapis.com/auth/calendar.events.owned',
+     *       'https://www.googleapis.com/auth/calendar.events.owned.readonly',
+     *       'https://www.googleapis.com/auth/calendar.events.public.readonly',
+     *       'https://www.googleapis.com/auth/calendar.events.readonly',
+     *       'https://www.googleapis.com/auth/calendar.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await calendar.events.list({
+     *     // Deprecated and ignored.
+     *     alwaysIncludeEmail: 'placeholder-value',
+     *     // Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     *     calendarId: 'placeholder-value',
+     *     // Event types to return. Optional. This parameter can be repeated multiple times to return events of different types. If unset, returns all event types.
+     *     eventTypes: 'placeholder-value',
+     *     // Specifies an event ID in the iCalendar format to be provided in the response. Optional. Use this if you want to search for an event by its iCalendar ID.
+     *     iCalUID: 'placeholder-value',
+     *     // The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
+     *     maxAttendees: 'placeholder-value',
+     *     // Maximum number of events returned on one result page. The number of events in the resulting page may be less than this value, or none at all, even if there are more events matching the query. Incomplete pages can be detected by a non-empty nextPageToken field in the response. By default the value is 250 events. The page size can never be larger than 2500 events. Optional.
+     *     maxResults: 'placeholder-value',
+     *     // The order of the events returned in the result. Optional. The default is an unspecified, stable order.
+     *     orderBy: 'placeholder-value',
+     *     // Token specifying which result page to return. Optional.
+     *     pageToken: 'placeholder-value',
+     *     // Extended properties constraint specified as propertyName=value. Matches only private properties. This parameter might be repeated multiple times to return events that match all given constraints.
+     *     privateExtendedProperty: 'placeholder-value',
+     *     // Free text search terms to find events that match these terms in the following fields:
+     *     //
+     *     // - summary
+     *     // - description
+     *     // - location
+     *     // - attendee's displayName
+     *     // - attendee's email
+     *     // - organizer's displayName
+     *     // - organizer's email
+     *     // - workingLocationProperties.officeLocation.buildingId
+     *     // - workingLocationProperties.officeLocation.deskId
+     *     // - workingLocationProperties.officeLocation.label
+     *     // - workingLocationProperties.customLocation.label
+     *     // These search terms also match predefined keywords against all display title translations of working location, out-of-office, and focus-time events. For example, searching for "Office" or "Bureau" returns working location events of type officeLocation, whereas searching for "Out of office" or "Abwesend" returns out-of-office events. Optional.
+     *     q: 'placeholder-value',
+     *     // Extended properties constraint specified as propertyName=value. Matches only shared properties. This parameter might be repeated multiple times to return events that match all given constraints.
+     *     sharedExtendedProperty: 'placeholder-value',
+     *     // Whether to include deleted events (with status equals "cancelled") in the result. Cancelled instances of recurring events (but not the underlying recurring event) will still be included if showDeleted and singleEvents are both False. If showDeleted and singleEvents are both True, only single instances of deleted events (but not the underlying recurring events) are returned. Optional. The default is False.
+     *     showDeleted: 'placeholder-value',
+     *     // Whether to include hidden invitations in the result. Optional. The default is False.
+     *     showHiddenInvitations: 'placeholder-value',
+     *     // Whether to expand recurring events into instances and only return single one-off events and instances of recurring events, but not the underlying recurring events themselves. Optional. The default is False.
+     *     singleEvents: 'placeholder-value',
+     *     // Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. All events deleted since the previous list request will always be in the result set and it is not allowed to set showDeleted to False.
+     *     // There are several query parameters that cannot be specified together with nextSyncToken to ensure consistency of the client state.
+     *     //
+     *     // These are:
+     *     // - iCalUID
+     *     // - orderBy
+     *     // - privateExtendedProperty
+     *     // - q
+     *     // - sharedExtendedProperty
+     *     // - timeMin
+     *     // - timeMax
+     *     // - updatedMin All other query parameters should be the same as for the initial synchronization to avoid undefined behavior. If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken.
+     *     // Learn more about incremental synchronization.
+     *     // Optional. The default is to return all entries.
+     *     syncToken: 'placeholder-value',
+     *     // Upper bound (exclusive) for an event's start time to filter by. Optional. The default is not to filter by start time. Must be an RFC3339 timestamp with mandatory time zone offset, for example, 2011-06-03T10:00:00-07:00, 2011-06-03T10:00:00Z. Milliseconds may be provided but are ignored. If timeMin is set, timeMax must be greater than timeMin.
+     *     timeMax: 'placeholder-value',
+     *     // Lower bound (exclusive) for an event's end time to filter by. Optional. The default is not to filter by end time. Must be an RFC3339 timestamp with mandatory time zone offset, for example, 2011-06-03T10:00:00-07:00, 2011-06-03T10:00:00Z. Milliseconds may be provided but are ignored. If timeMax is set, timeMin must be smaller than timeMax.
+     *     timeMin: 'placeholder-value',
+     *     // Time zone used in the response. Optional. The default is the time zone of the calendar.
+     *     timeZone: 'placeholder-value',
+     *     // Lower bound for an event's last modification time (as a RFC3339 timestamp) to filter by. When specified, entries deleted since this time will always be included regardless of showDeleted. Optional. The default is not to filter by last modification time.
+     *     updatedMin: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accessRole": "my_accessRole",
+     *   //   "defaultReminders": [],
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "nextSyncToken": "my_nextSyncToken",
+     *   //   "summary": "my_summary",
+     *   //   "timeZone": "my_timeZone",
+     *   //   "updated": "my_updated"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3874,11 +6126,11 @@ export namespace calendar_v3 {
     list(
       params: Params$Resource$Events$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Events$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Events>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Events>>;
     list(
       params: Params$Resource$Events$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3907,7 +6159,10 @@ export namespace calendar_v3 {
       callback?:
         | BodyResponseCallback<Schema$Events>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Events> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Events>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Events$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3951,6 +6206,108 @@ export namespace calendar_v3 {
 
     /**
      * Moves an event to another calendar, i.e. changes an event's organizer. Note that only default events can be moved; birthday, focusTime, fromGmail, outOfOffice and workingLocation events cannot be moved.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/calendar.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const calendar = google.calendar('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.events',
+     *       'https://www.googleapis.com/auth/calendar.events.owned',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await calendar.events.move({
+     *     // Calendar identifier of the source calendar where the event currently is on.
+     *     calendarId: 'placeholder-value',
+     *     // Calendar identifier of the target calendar where the event is to be moved to.
+     *     destination: 'placeholder-value',
+     *     // Event identifier.
+     *     eventId: 'placeholder-value',
+     *     // Deprecated. Please use sendUpdates instead.
+     *     //
+     *     // Whether to send notifications about the change of the event's organizer. Note that some emails might still be sent even if you set the value to false. The default is false.
+     *     sendNotifications: 'placeholder-value',
+     *     // Guests who should receive notifications about the change of the event's organizer.
+     *     sendUpdates: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "anyoneCanAddSelf": false,
+     *   //   "attachments": [],
+     *   //   "attendees": [],
+     *   //   "attendeesOmitted": false,
+     *   //   "birthdayProperties": {},
+     *   //   "colorId": "my_colorId",
+     *   //   "conferenceData": {},
+     *   //   "created": "my_created",
+     *   //   "creator": {},
+     *   //   "description": "my_description",
+     *   //   "end": {},
+     *   //   "endTimeUnspecified": false,
+     *   //   "etag": "my_etag",
+     *   //   "eventType": "my_eventType",
+     *   //   "extendedProperties": {},
+     *   //   "focusTimeProperties": {},
+     *   //   "gadget": {},
+     *   //   "guestsCanInviteOthers": false,
+     *   //   "guestsCanModify": false,
+     *   //   "guestsCanSeeOtherGuests": false,
+     *   //   "hangoutLink": "my_hangoutLink",
+     *   //   "htmlLink": "my_htmlLink",
+     *   //   "iCalUID": "my_iCalUID",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "location": "my_location",
+     *   //   "locked": false,
+     *   //   "organizer": {},
+     *   //   "originalStartTime": {},
+     *   //   "outOfOfficeProperties": {},
+     *   //   "privateCopy": false,
+     *   //   "recurrence": [],
+     *   //   "recurringEventId": "my_recurringEventId",
+     *   //   "reminders": {},
+     *   //   "sequence": 0,
+     *   //   "source": {},
+     *   //   "start": {},
+     *   //   "status": "my_status",
+     *   //   "summary": "my_summary",
+     *   //   "transparency": "my_transparency",
+     *   //   "updated": "my_updated",
+     *   //   "visibility": "my_visibility",
+     *   //   "workingLocationProperties": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3960,11 +6317,11 @@ export namespace calendar_v3 {
     move(
       params: Params$Resource$Events$Move,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     move(
       params?: Params$Resource$Events$Move,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Event>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Event>>;
     move(
       params: Params$Resource$Events$Move,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3993,7 +6350,10 @@ export namespace calendar_v3 {
       callback?:
         | BodyResponseCallback<Schema$Event>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Event> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Event>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Events$Move;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4038,6 +6398,165 @@ export namespace calendar_v3 {
 
     /**
      * Updates an event. This method supports patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/calendar.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const calendar = google.calendar('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.app.created',
+     *       'https://www.googleapis.com/auth/calendar.events',
+     *       'https://www.googleapis.com/auth/calendar.events.owned',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await calendar.events.patch({
+     *     // Deprecated and ignored. A value will always be returned in the email field for the organizer, creator and attendees, even if no real email address is available (i.e. a generated, non-working value will be provided).
+     *     alwaysIncludeEmail: 'placeholder-value',
+     *     // Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     *     calendarId: 'placeholder-value',
+     *     // Version number of conference data supported by the API client. Version 0 assumes no conference data support and ignores conference data in the event's body. Version 1 enables support for copying of ConferenceData as well as for creating new conferences using the createRequest field of conferenceData. The default is 0.
+     *     conferenceDataVersion: 'placeholder-value',
+     *     // Event identifier.
+     *     eventId: 'placeholder-value',
+     *     // The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
+     *     maxAttendees: 'placeholder-value',
+     *     // Deprecated. Please use sendUpdates instead.
+     *     //
+     *     // Whether to send notifications about the event update (for example, description changes, etc.). Note that some emails might still be sent even if you set the value to false. The default is false.
+     *     sendNotifications: 'placeholder-value',
+     *     // Guests who should receive notifications about the event update (for example, title changes, etc.).
+     *     sendUpdates: 'placeholder-value',
+     *     // Whether API client performing operation supports event attachments. Optional. The default is False.
+     *     supportsAttachments: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "anyoneCanAddSelf": false,
+     *       //   "attachments": [],
+     *       //   "attendees": [],
+     *       //   "attendeesOmitted": false,
+     *       //   "birthdayProperties": {},
+     *       //   "colorId": "my_colorId",
+     *       //   "conferenceData": {},
+     *       //   "created": "my_created",
+     *       //   "creator": {},
+     *       //   "description": "my_description",
+     *       //   "end": {},
+     *       //   "endTimeUnspecified": false,
+     *       //   "etag": "my_etag",
+     *       //   "eventType": "my_eventType",
+     *       //   "extendedProperties": {},
+     *       //   "focusTimeProperties": {},
+     *       //   "gadget": {},
+     *       //   "guestsCanInviteOthers": false,
+     *       //   "guestsCanModify": false,
+     *       //   "guestsCanSeeOtherGuests": false,
+     *       //   "hangoutLink": "my_hangoutLink",
+     *       //   "htmlLink": "my_htmlLink",
+     *       //   "iCalUID": "my_iCalUID",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "location": "my_location",
+     *       //   "locked": false,
+     *       //   "organizer": {},
+     *       //   "originalStartTime": {},
+     *       //   "outOfOfficeProperties": {},
+     *       //   "privateCopy": false,
+     *       //   "recurrence": [],
+     *       //   "recurringEventId": "my_recurringEventId",
+     *       //   "reminders": {},
+     *       //   "sequence": 0,
+     *       //   "source": {},
+     *       //   "start": {},
+     *       //   "status": "my_status",
+     *       //   "summary": "my_summary",
+     *       //   "transparency": "my_transparency",
+     *       //   "updated": "my_updated",
+     *       //   "visibility": "my_visibility",
+     *       //   "workingLocationProperties": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "anyoneCanAddSelf": false,
+     *   //   "attachments": [],
+     *   //   "attendees": [],
+     *   //   "attendeesOmitted": false,
+     *   //   "birthdayProperties": {},
+     *   //   "colorId": "my_colorId",
+     *   //   "conferenceData": {},
+     *   //   "created": "my_created",
+     *   //   "creator": {},
+     *   //   "description": "my_description",
+     *   //   "end": {},
+     *   //   "endTimeUnspecified": false,
+     *   //   "etag": "my_etag",
+     *   //   "eventType": "my_eventType",
+     *   //   "extendedProperties": {},
+     *   //   "focusTimeProperties": {},
+     *   //   "gadget": {},
+     *   //   "guestsCanInviteOthers": false,
+     *   //   "guestsCanModify": false,
+     *   //   "guestsCanSeeOtherGuests": false,
+     *   //   "hangoutLink": "my_hangoutLink",
+     *   //   "htmlLink": "my_htmlLink",
+     *   //   "iCalUID": "my_iCalUID",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "location": "my_location",
+     *   //   "locked": false,
+     *   //   "organizer": {},
+     *   //   "originalStartTime": {},
+     *   //   "outOfOfficeProperties": {},
+     *   //   "privateCopy": false,
+     *   //   "recurrence": [],
+     *   //   "recurringEventId": "my_recurringEventId",
+     *   //   "reminders": {},
+     *   //   "sequence": 0,
+     *   //   "source": {},
+     *   //   "start": {},
+     *   //   "status": "my_status",
+     *   //   "summary": "my_summary",
+     *   //   "transparency": "my_transparency",
+     *   //   "updated": "my_updated",
+     *   //   "visibility": "my_visibility",
+     *   //   "workingLocationProperties": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4047,11 +6566,11 @@ export namespace calendar_v3 {
     patch(
       params: Params$Resource$Events$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Events$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Event>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Event>>;
     patch(
       params: Params$Resource$Events$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4080,7 +6599,10 @@ export namespace calendar_v3 {
       callback?:
         | BodyResponseCallback<Schema$Event>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Event> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Event>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Events$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4124,6 +6646,107 @@ export namespace calendar_v3 {
 
     /**
      * Creates an event based on a simple text string.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/calendar.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const calendar = google.calendar('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.app.created',
+     *       'https://www.googleapis.com/auth/calendar.events',
+     *       'https://www.googleapis.com/auth/calendar.events.owned',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await calendar.events.quickAdd({
+     *     // Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     *     calendarId: 'placeholder-value',
+     *     // Deprecated. Please use sendUpdates instead.
+     *     //
+     *     // Whether to send notifications about the creation of the event. Note that some emails might still be sent even if you set the value to false. The default is false.
+     *     sendNotifications: 'placeholder-value',
+     *     // Guests who should receive notifications about the creation of the new event.
+     *     sendUpdates: 'placeholder-value',
+     *     // The text describing the event to be created.
+     *     text: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "anyoneCanAddSelf": false,
+     *   //   "attachments": [],
+     *   //   "attendees": [],
+     *   //   "attendeesOmitted": false,
+     *   //   "birthdayProperties": {},
+     *   //   "colorId": "my_colorId",
+     *   //   "conferenceData": {},
+     *   //   "created": "my_created",
+     *   //   "creator": {},
+     *   //   "description": "my_description",
+     *   //   "end": {},
+     *   //   "endTimeUnspecified": false,
+     *   //   "etag": "my_etag",
+     *   //   "eventType": "my_eventType",
+     *   //   "extendedProperties": {},
+     *   //   "focusTimeProperties": {},
+     *   //   "gadget": {},
+     *   //   "guestsCanInviteOthers": false,
+     *   //   "guestsCanModify": false,
+     *   //   "guestsCanSeeOtherGuests": false,
+     *   //   "hangoutLink": "my_hangoutLink",
+     *   //   "htmlLink": "my_htmlLink",
+     *   //   "iCalUID": "my_iCalUID",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "location": "my_location",
+     *   //   "locked": false,
+     *   //   "organizer": {},
+     *   //   "originalStartTime": {},
+     *   //   "outOfOfficeProperties": {},
+     *   //   "privateCopy": false,
+     *   //   "recurrence": [],
+     *   //   "recurringEventId": "my_recurringEventId",
+     *   //   "reminders": {},
+     *   //   "sequence": 0,
+     *   //   "source": {},
+     *   //   "start": {},
+     *   //   "status": "my_status",
+     *   //   "summary": "my_summary",
+     *   //   "transparency": "my_transparency",
+     *   //   "updated": "my_updated",
+     *   //   "visibility": "my_visibility",
+     *   //   "workingLocationProperties": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4133,11 +6756,11 @@ export namespace calendar_v3 {
     quickAdd(
       params: Params$Resource$Events$Quickadd,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     quickAdd(
       params?: Params$Resource$Events$Quickadd,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Event>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Event>>;
     quickAdd(
       params: Params$Resource$Events$Quickadd,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4166,7 +6789,10 @@ export namespace calendar_v3 {
       callback?:
         | BodyResponseCallback<Schema$Event>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Event> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Event>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Events$Quickadd;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4210,6 +6836,165 @@ export namespace calendar_v3 {
 
     /**
      * Updates an event.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/calendar.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const calendar = google.calendar('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.app.created',
+     *       'https://www.googleapis.com/auth/calendar.events',
+     *       'https://www.googleapis.com/auth/calendar.events.owned',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await calendar.events.update({
+     *     // Deprecated and ignored. A value will always be returned in the email field for the organizer, creator and attendees, even if no real email address is available (i.e. a generated, non-working value will be provided).
+     *     alwaysIncludeEmail: 'placeholder-value',
+     *     // Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     *     calendarId: 'placeholder-value',
+     *     // Version number of conference data supported by the API client. Version 0 assumes no conference data support and ignores conference data in the event's body. Version 1 enables support for copying of ConferenceData as well as for creating new conferences using the createRequest field of conferenceData. The default is 0.
+     *     conferenceDataVersion: 'placeholder-value',
+     *     // Event identifier.
+     *     eventId: 'placeholder-value',
+     *     // The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
+     *     maxAttendees: 'placeholder-value',
+     *     // Deprecated. Please use sendUpdates instead.
+     *     //
+     *     // Whether to send notifications about the event update (for example, description changes, etc.). Note that some emails might still be sent even if you set the value to false. The default is false.
+     *     sendNotifications: 'placeholder-value',
+     *     // Guests who should receive notifications about the event update (for example, title changes, etc.).
+     *     sendUpdates: 'placeholder-value',
+     *     // Whether API client performing operation supports event attachments. Optional. The default is False.
+     *     supportsAttachments: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "anyoneCanAddSelf": false,
+     *       //   "attachments": [],
+     *       //   "attendees": [],
+     *       //   "attendeesOmitted": false,
+     *       //   "birthdayProperties": {},
+     *       //   "colorId": "my_colorId",
+     *       //   "conferenceData": {},
+     *       //   "created": "my_created",
+     *       //   "creator": {},
+     *       //   "description": "my_description",
+     *       //   "end": {},
+     *       //   "endTimeUnspecified": false,
+     *       //   "etag": "my_etag",
+     *       //   "eventType": "my_eventType",
+     *       //   "extendedProperties": {},
+     *       //   "focusTimeProperties": {},
+     *       //   "gadget": {},
+     *       //   "guestsCanInviteOthers": false,
+     *       //   "guestsCanModify": false,
+     *       //   "guestsCanSeeOtherGuests": false,
+     *       //   "hangoutLink": "my_hangoutLink",
+     *       //   "htmlLink": "my_htmlLink",
+     *       //   "iCalUID": "my_iCalUID",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "location": "my_location",
+     *       //   "locked": false,
+     *       //   "organizer": {},
+     *       //   "originalStartTime": {},
+     *       //   "outOfOfficeProperties": {},
+     *       //   "privateCopy": false,
+     *       //   "recurrence": [],
+     *       //   "recurringEventId": "my_recurringEventId",
+     *       //   "reminders": {},
+     *       //   "sequence": 0,
+     *       //   "source": {},
+     *       //   "start": {},
+     *       //   "status": "my_status",
+     *       //   "summary": "my_summary",
+     *       //   "transparency": "my_transparency",
+     *       //   "updated": "my_updated",
+     *       //   "visibility": "my_visibility",
+     *       //   "workingLocationProperties": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "anyoneCanAddSelf": false,
+     *   //   "attachments": [],
+     *   //   "attendees": [],
+     *   //   "attendeesOmitted": false,
+     *   //   "birthdayProperties": {},
+     *   //   "colorId": "my_colorId",
+     *   //   "conferenceData": {},
+     *   //   "created": "my_created",
+     *   //   "creator": {},
+     *   //   "description": "my_description",
+     *   //   "end": {},
+     *   //   "endTimeUnspecified": false,
+     *   //   "etag": "my_etag",
+     *   //   "eventType": "my_eventType",
+     *   //   "extendedProperties": {},
+     *   //   "focusTimeProperties": {},
+     *   //   "gadget": {},
+     *   //   "guestsCanInviteOthers": false,
+     *   //   "guestsCanModify": false,
+     *   //   "guestsCanSeeOtherGuests": false,
+     *   //   "hangoutLink": "my_hangoutLink",
+     *   //   "htmlLink": "my_htmlLink",
+     *   //   "iCalUID": "my_iCalUID",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "location": "my_location",
+     *   //   "locked": false,
+     *   //   "organizer": {},
+     *   //   "originalStartTime": {},
+     *   //   "outOfOfficeProperties": {},
+     *   //   "privateCopy": false,
+     *   //   "recurrence": [],
+     *   //   "recurringEventId": "my_recurringEventId",
+     *   //   "reminders": {},
+     *   //   "sequence": 0,
+     *   //   "source": {},
+     *   //   "start": {},
+     *   //   "status": "my_status",
+     *   //   "summary": "my_summary",
+     *   //   "transparency": "my_transparency",
+     *   //   "updated": "my_updated",
+     *   //   "visibility": "my_visibility",
+     *   //   "workingLocationProperties": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4219,11 +7004,11 @@ export namespace calendar_v3 {
     update(
       params: Params$Resource$Events$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Events$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Event>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Event>>;
     update(
       params: Params$Resource$Events$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4252,7 +7037,10 @@ export namespace calendar_v3 {
       callback?:
         | BodyResponseCallback<Schema$Event>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Event> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Event>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Events$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4296,6 +7084,150 @@ export namespace calendar_v3 {
 
     /**
      * Watch for changes to Events resources.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/calendar.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const calendar = google.calendar('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.app.created',
+     *       'https://www.googleapis.com/auth/calendar.events',
+     *       'https://www.googleapis.com/auth/calendar.events.freebusy',
+     *       'https://www.googleapis.com/auth/calendar.events.owned',
+     *       'https://www.googleapis.com/auth/calendar.events.owned.readonly',
+     *       'https://www.googleapis.com/auth/calendar.events.public.readonly',
+     *       'https://www.googleapis.com/auth/calendar.events.readonly',
+     *       'https://www.googleapis.com/auth/calendar.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await calendar.events.watch({
+     *     // Deprecated and ignored.
+     *     alwaysIncludeEmail: 'placeholder-value',
+     *     // Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     *     calendarId: 'placeholder-value',
+     *     // Event types to return. Optional. This parameter can be repeated multiple times to return events of different types. If unset, returns all event types.
+     *     eventTypes: 'placeholder-value',
+     *     // Specifies an event ID in the iCalendar format to be provided in the response. Optional. Use this if you want to search for an event by its iCalendar ID.
+     *     iCalUID: 'placeholder-value',
+     *     // The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
+     *     maxAttendees: 'placeholder-value',
+     *     // Maximum number of events returned on one result page. The number of events in the resulting page may be less than this value, or none at all, even if there are more events matching the query. Incomplete pages can be detected by a non-empty nextPageToken field in the response. By default the value is 250 events. The page size can never be larger than 2500 events. Optional.
+     *     maxResults: 'placeholder-value',
+     *     // The order of the events returned in the result. Optional. The default is an unspecified, stable order.
+     *     orderBy: 'placeholder-value',
+     *     // Token specifying which result page to return. Optional.
+     *     pageToken: 'placeholder-value',
+     *     // Extended properties constraint specified as propertyName=value. Matches only private properties. This parameter might be repeated multiple times to return events that match all given constraints.
+     *     privateExtendedProperty: 'placeholder-value',
+     *     // Free text search terms to find events that match these terms in the following fields:
+     *     //
+     *     // - summary
+     *     // - description
+     *     // - location
+     *     // - attendee's displayName
+     *     // - attendee's email
+     *     // - organizer's displayName
+     *     // - organizer's email
+     *     // - workingLocationProperties.officeLocation.buildingId
+     *     // - workingLocationProperties.officeLocation.deskId
+     *     // - workingLocationProperties.officeLocation.label
+     *     // - workingLocationProperties.customLocation.label
+     *     // These search terms also match predefined keywords against all display title translations of working location, out-of-office, and focus-time events. For example, searching for "Office" or "Bureau" returns working location events of type officeLocation, whereas searching for "Out of office" or "Abwesend" returns out-of-office events. Optional.
+     *     q: 'placeholder-value',
+     *     // Extended properties constraint specified as propertyName=value. Matches only shared properties. This parameter might be repeated multiple times to return events that match all given constraints.
+     *     sharedExtendedProperty: 'placeholder-value',
+     *     // Whether to include deleted events (with status equals "cancelled") in the result. Cancelled instances of recurring events (but not the underlying recurring event) will still be included if showDeleted and singleEvents are both False. If showDeleted and singleEvents are both True, only single instances of deleted events (but not the underlying recurring events) are returned. Optional. The default is False.
+     *     showDeleted: 'placeholder-value',
+     *     // Whether to include hidden invitations in the result. Optional. The default is False.
+     *     showHiddenInvitations: 'placeholder-value',
+     *     // Whether to expand recurring events into instances and only return single one-off events and instances of recurring events, but not the underlying recurring events themselves. Optional. The default is False.
+     *     singleEvents: 'placeholder-value',
+     *     // Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. All events deleted since the previous list request will always be in the result set and it is not allowed to set showDeleted to False.
+     *     // There are several query parameters that cannot be specified together with nextSyncToken to ensure consistency of the client state.
+     *     //
+     *     // These are:
+     *     // - iCalUID
+     *     // - orderBy
+     *     // - privateExtendedProperty
+     *     // - q
+     *     // - sharedExtendedProperty
+     *     // - timeMin
+     *     // - timeMax
+     *     // - updatedMin All other query parameters should be the same as for the initial synchronization to avoid undefined behavior. If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken.
+     *     // Learn more about incremental synchronization.
+     *     // Optional. The default is to return all entries.
+     *     syncToken: 'placeholder-value',
+     *     // Upper bound (exclusive) for an event's start time to filter by. Optional. The default is not to filter by start time. Must be an RFC3339 timestamp with mandatory time zone offset, for example, 2011-06-03T10:00:00-07:00, 2011-06-03T10:00:00Z. Milliseconds may be provided but are ignored. If timeMin is set, timeMax must be greater than timeMin.
+     *     timeMax: 'placeholder-value',
+     *     // Lower bound (exclusive) for an event's end time to filter by. Optional. The default is not to filter by end time. Must be an RFC3339 timestamp with mandatory time zone offset, for example, 2011-06-03T10:00:00-07:00, 2011-06-03T10:00:00Z. Milliseconds may be provided but are ignored. If timeMax is set, timeMin must be smaller than timeMax.
+     *     timeMin: 'placeholder-value',
+     *     // Time zone used in the response. Optional. The default is the time zone of the calendar.
+     *     timeZone: 'placeholder-value',
+     *     // Lower bound for an event's last modification time (as a RFC3339 timestamp) to filter by. When specified, entries deleted since this time will always be included regardless of showDeleted. Optional. The default is not to filter by last modification time.
+     *     updatedMin: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "address": "my_address",
+     *       //   "expiration": "my_expiration",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "params": {},
+     *       //   "payload": false,
+     *       //   "resourceId": "my_resourceId",
+     *       //   "resourceUri": "my_resourceUri",
+     *       //   "token": "my_token",
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "address": "my_address",
+     *   //   "expiration": "my_expiration",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "params": {},
+     *   //   "payload": false,
+     *   //   "resourceId": "my_resourceId",
+     *   //   "resourceUri": "my_resourceUri",
+     *   //   "token": "my_token",
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4305,11 +7237,11 @@ export namespace calendar_v3 {
     watch(
       params: Params$Resource$Events$Watch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     watch(
       params?: Params$Resource$Events$Watch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Channel>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Channel>>;
     watch(
       params: Params$Resource$Events$Watch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4338,7 +7270,10 @@ export namespace calendar_v3 {
       callback?:
         | BodyResponseCallback<Schema$Channel>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Channel> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Channel>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Events$Watch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4869,6 +7804,71 @@ export namespace calendar_v3 {
 
     /**
      * Returns free/busy information for a set of calendars.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/calendar.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const calendar = google.calendar('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.events.freebusy',
+     *       'https://www.googleapis.com/auth/calendar.freebusy',
+     *       'https://www.googleapis.com/auth/calendar.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await calendar.freebusy.query({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "calendarExpansionMax": 0,
+     *       //   "groupExpansionMax": 0,
+     *       //   "items": [],
+     *       //   "timeMax": "my_timeMax",
+     *       //   "timeMin": "my_timeMin",
+     *       //   "timeZone": "my_timeZone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "calendars": {},
+     *   //   "groups": {},
+     *   //   "kind": "my_kind",
+     *   //   "timeMax": "my_timeMax",
+     *   //   "timeMin": "my_timeMin"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4878,11 +7878,11 @@ export namespace calendar_v3 {
     query(
       params: Params$Resource$Freebusy$Query,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     query(
       params?: Params$Resource$Freebusy$Query,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FreeBusyResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FreeBusyResponse>>;
     query(
       params: Params$Resource$Freebusy$Query,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4911,7 +7911,10 @@ export namespace calendar_v3 {
       callback?:
         | BodyResponseCallback<Schema$FreeBusyResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$FreeBusyResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$FreeBusyResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Freebusy$Query;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4970,6 +7973,59 @@ export namespace calendar_v3 {
 
     /**
      * Returns a single user setting.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/calendar.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const calendar = google.calendar('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.readonly',
+     *       'https://www.googleapis.com/auth/calendar.settings.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await calendar.settings.get({
+     *     // The id of the user setting.
+     *     setting: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "value": "my_value"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4979,11 +8035,11 @@ export namespace calendar_v3 {
     get(
       params: Params$Resource$Settings$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Settings$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Setting>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Setting>>;
     get(
       params: Params$Resource$Settings$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5012,7 +8068,10 @@ export namespace calendar_v3 {
       callback?:
         | BodyResponseCallback<Schema$Setting>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Setting> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Setting>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Settings$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5057,6 +8116,67 @@ export namespace calendar_v3 {
 
     /**
      * Returns all user settings for the authenticated user.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/calendar.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const calendar = google.calendar('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.readonly',
+     *       'https://www.googleapis.com/auth/calendar.settings.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await calendar.settings.list({
+     *     // Maximum number of entries returned on one result page. By default the value is 100 entries. The page size can never be larger than 250 entries. Optional.
+     *     maxResults: 'placeholder-value',
+     *     // Token specifying which result page to return. Optional.
+     *     pageToken: 'placeholder-value',
+     *     // Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then.
+     *     // If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken.
+     *     // Learn more about incremental synchronization.
+     *     // Optional. The default is to return all entries.
+     *     syncToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "nextSyncToken": "my_nextSyncToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5066,11 +8186,11 @@ export namespace calendar_v3 {
     list(
       params: Params$Resource$Settings$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Settings$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Settings>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Settings>>;
     list(
       params: Params$Resource$Settings$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5099,7 +8219,10 @@ export namespace calendar_v3 {
       callback?:
         | BodyResponseCallback<Schema$Settings>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Settings> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Settings>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Settings$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5144,6 +8267,89 @@ export namespace calendar_v3 {
 
     /**
      * Watch for changes to Settings resources.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/calendar.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const calendar = google.calendar('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.readonly',
+     *       'https://www.googleapis.com/auth/calendar.settings.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await calendar.settings.watch({
+     *     // Maximum number of entries returned on one result page. By default the value is 100 entries. The page size can never be larger than 250 entries. Optional.
+     *     maxResults: 'placeholder-value',
+     *     // Token specifying which result page to return. Optional.
+     *     pageToken: 'placeholder-value',
+     *     // Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then.
+     *     // If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken.
+     *     // Learn more about incremental synchronization.
+     *     // Optional. The default is to return all entries.
+     *     syncToken: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "address": "my_address",
+     *       //   "expiration": "my_expiration",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "params": {},
+     *       //   "payload": false,
+     *       //   "resourceId": "my_resourceId",
+     *       //   "resourceUri": "my_resourceUri",
+     *       //   "token": "my_token",
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "address": "my_address",
+     *   //   "expiration": "my_expiration",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "params": {},
+     *   //   "payload": false,
+     *   //   "resourceId": "my_resourceId",
+     *   //   "resourceUri": "my_resourceUri",
+     *   //   "token": "my_token",
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5153,11 +8359,11 @@ export namespace calendar_v3 {
     watch(
       params: Params$Resource$Settings$Watch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     watch(
       params?: Params$Resource$Settings$Watch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Channel>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Channel>>;
     watch(
       params: Params$Resource$Settings$Watch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5186,7 +8392,10 @@ export namespace calendar_v3 {
       callback?:
         | BodyResponseCallback<Schema$Channel>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Channel> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Channel>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Settings$Watch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

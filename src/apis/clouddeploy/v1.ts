@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -3348,6 +3348,56 @@ export namespace clouddeploy_v1 {
 
     /**
      * Gets information about a location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const clouddeploy = google.clouddeploy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await clouddeploy.projects.locations.get({
+     *     // Resource name for the location.
+     *     name: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "labels": {},
+     *   //   "locationId": "my_locationId",
+     *   //   "metadata": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3357,11 +3407,11 @@ export namespace clouddeploy_v1 {
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Location>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Location>>;
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3390,7 +3440,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Location> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3433,6 +3486,54 @@ export namespace clouddeploy_v1 {
 
     /**
      * Gets the configuration for a location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const clouddeploy = google.clouddeploy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await clouddeploy.projects.locations.getConfig({
+     *     // Required. Name of requested configuration.
+     *     name: 'projects/my-project/locations/my-location/config',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "defaultSkaffoldVersion": "my_defaultSkaffoldVersion",
+     *   //   "name": "my_name",
+     *   //   "supportedVersions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3442,11 +3543,11 @@ export namespace clouddeploy_v1 {
     getConfig(
       params: Params$Resource$Projects$Locations$Getconfig,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getConfig(
       params?: Params$Resource$Projects$Locations$Getconfig,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Config>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Config>>;
     getConfig(
       params: Params$Resource$Projects$Locations$Getconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3475,7 +3576,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$Config>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Config> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Config>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Getconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3518,6 +3622,61 @@ export namespace clouddeploy_v1 {
 
     /**
      * Lists information about the supported locations for this service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const clouddeploy = google.clouddeploy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await clouddeploy.projects.locations.list({
+     *     // Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     *     extraLocationTypes: 'placeholder-value',
+     *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
+     *     filter: 'placeholder-value',
+     *     // The resource that owns the locations collection, if applicable.
+     *     name: 'projects/my-project',
+     *     // The maximum number of results to return. If not set, the service selects a default.
+     *     pageSize: 'placeholder-value',
+     *     // A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "locations": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3527,11 +3686,11 @@ export namespace clouddeploy_v1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListLocationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3564,8 +3723,8 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListLocationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3656,6 +3815,79 @@ export namespace clouddeploy_v1 {
 
     /**
      * Creates a new CustomTargetType in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const clouddeploy = google.clouddeploy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await clouddeploy.projects.locations.customTargetTypes.create({
+     *     // Required. ID of the `CustomTargetType`.
+     *     customTargetTypeId: 'placeholder-value',
+     *     // Required. The parent collection in which the `CustomTargetType` must be created. The format is `projects/{project_id\}/locations/{location_name\}`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *     // Optional. If set to true, the request is validated and the user is provided with an expected result, but no actual change is made.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "annotations": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "customActions": {},
+     *       //   "customTargetTypeId": "my_customTargetTypeId",
+     *       //   "description": "my_description",
+     *       //   "etag": "my_etag",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "uid": "my_uid",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3665,11 +3897,11 @@ export namespace clouddeploy_v1 {
     create(
       params: Params$Resource$Projects$Locations$Customtargettypes$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Customtargettypes$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Customtargettypes$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3698,7 +3930,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Customtargettypes$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3745,6 +3980,64 @@ export namespace clouddeploy_v1 {
 
     /**
      * Deletes a single CustomTargetType.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const clouddeploy = google.clouddeploy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await clouddeploy.projects.locations.customTargetTypes.delete({
+     *     // Optional. If set to true, then deleting an already deleted or non-existing `CustomTargetType` will succeed.
+     *     allowMissing: 'placeholder-value',
+     *     // Optional. This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
+     *     etag: 'placeholder-value',
+     *     // Required. The name of the `CustomTargetType` to delete. Format must be `projects/{project_id\}/locations/{location_name\}/customTargetTypes/{custom_target_type\}`.
+     *     name: 'projects/my-project/locations/my-location/customTargetTypes/my-customTargetType',
+     *     // Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *     // Optional. If set to true, the request is validated but no actual change is made.
+     *     validateOnly: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3754,11 +4047,11 @@ export namespace clouddeploy_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Customtargettypes$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Customtargettypes$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Customtargettypes$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3787,7 +4080,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Customtargettypes$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3831,6 +4127,61 @@ export namespace clouddeploy_v1 {
 
     /**
      * Gets details of a single CustomTargetType.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const clouddeploy = google.clouddeploy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await clouddeploy.projects.locations.customTargetTypes.get({
+     *     // Required. Name of the `CustomTargetType`. Format must be `projects/{project_id\}/locations/{location_name\}/customTargetTypes/{custom_target_type\}`.
+     *     name: 'projects/my-project/locations/my-location/customTargetTypes/my-customTargetType',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "annotations": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "customActions": {},
+     *   //   "customTargetTypeId": "my_customTargetTypeId",
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "uid": "my_uid",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3840,11 +4191,11 @@ export namespace clouddeploy_v1 {
     get(
       params: Params$Resource$Projects$Locations$Customtargettypes$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Customtargettypes$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CustomTargetType>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CustomTargetType>>;
     get(
       params: Params$Resource$Projects$Locations$Customtargettypes$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3873,7 +4224,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$CustomTargetType>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CustomTargetType> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$CustomTargetType>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Customtargettypes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3916,6 +4270,59 @@ export namespace clouddeploy_v1 {
 
     /**
      * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const clouddeploy = google.clouddeploy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await clouddeploy.projects.locations.customTargetTypes.getIamPolicy({
+     *       // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     *       'options.requestedPolicyVersion': 'placeholder-value',
+     *       // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/customTargetTypes/my-customTargetType',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3925,11 +4332,11 @@ export namespace clouddeploy_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Customtargettypes$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Customtargettypes$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Customtargettypes$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3958,7 +4365,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Customtargettypes$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4005,6 +4415,62 @@ export namespace clouddeploy_v1 {
 
     /**
      * Lists CustomTargetTypes in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const clouddeploy = google.clouddeploy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await clouddeploy.projects.locations.customTargetTypes.list({
+     *     // Optional. Filter custom target types to be returned. See https://google.aip.dev/160 for more details.
+     *     filter: 'placeholder-value',
+     *     // Optional. Field to sort by. See https://google.aip.dev/132#ordering for more details.
+     *     orderBy: 'placeholder-value',
+     *     // Optional. The maximum number of `CustomTargetType` objects to return. The service may return fewer than this value. If unspecified, at most 50 `CustomTargetType` objects will be returned. The maximum value is 1000; values above 1000 will be set to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous `ListCustomTargetTypes` call. Provide this to retrieve the subsequent page. When paginating, all other provided parameters match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent that owns this collection of custom target types. Format must be `projects/{project_id\}/locations/{location_name\}`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "customTargetTypes": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4014,11 +4480,11 @@ export namespace clouddeploy_v1 {
     list(
       params: Params$Resource$Projects$Locations$Customtargettypes$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Customtargettypes$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListCustomTargetTypesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListCustomTargetTypesResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Customtargettypes$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4053,8 +4519,8 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListCustomTargetTypesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListCustomTargetTypesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Customtargettypes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4103,6 +4569,81 @@ export namespace clouddeploy_v1 {
 
     /**
      * Updates a single CustomTargetType.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const clouddeploy = google.clouddeploy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await clouddeploy.projects.locations.customTargetTypes.patch({
+     *     // Optional. If set to true, updating a `CustomTargetType` that does not exist will result in the creation of a new `CustomTargetType`.
+     *     allowMissing: 'placeholder-value',
+     *     // Identifier. Name of the `CustomTargetType`. Format is `projects/{project\}/locations/{location\}/customTargetTypes/{customTargetType\}`. The `customTargetType` component must match `[a-z]([a-z0-9-]{0,61\}[a-z0-9])?`
+     *     name: 'projects/my-project/locations/my-location/customTargetTypes/my-customTargetType',
+     *     // Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *     // Required. Field mask is used to specify the fields to be overwritten by the update in the `CustomTargetType` resource. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it's in the mask. If the user doesn't provide a mask then all fields are overwritten.
+     *     updateMask: 'placeholder-value',
+     *     // Optional. If set to true, the request is validated and the user is provided with an expected result, but no actual change is made.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "annotations": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "customActions": {},
+     *       //   "customTargetTypeId": "my_customTargetTypeId",
+     *       //   "description": "my_description",
+     *       //   "etag": "my_etag",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "uid": "my_uid",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4112,11 +4653,11 @@ export namespace clouddeploy_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Customtargettypes$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Customtargettypes$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Customtargettypes$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4145,7 +4686,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Customtargettypes$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4189,6 +4733,66 @@ export namespace clouddeploy_v1 {
 
     /**
      * Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const clouddeploy = google.clouddeploy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await clouddeploy.projects.locations.customTargetTypes.setIamPolicy({
+     *       // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/customTargetTypes/my-customTargetType',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "policy": {},
+     *         //   "updateMask": "my_updateMask"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4198,11 +4802,11 @@ export namespace clouddeploy_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Customtargettypes$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Customtargettypes$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Customtargettypes$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4231,7 +4835,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Customtargettypes$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4429,6 +5036,80 @@ export namespace clouddeploy_v1 {
 
     /**
      * Creates a new DeliveryPipeline in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const clouddeploy = google.clouddeploy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await clouddeploy.projects.locations.deliveryPipelines.create({
+     *     // Required. ID of the `DeliveryPipeline`.
+     *     deliveryPipelineId: 'placeholder-value',
+     *     // Required. The parent collection in which the `DeliveryPipeline` must be created. The format is `projects/{project_id\}/locations/{location_name\}`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *     // Optional. If set to true, the request is validated and the user is provided with an expected result, but no actual change is made.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "annotations": {},
+     *       //   "condition": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "etag": "my_etag",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "serialPipeline": {},
+     *       //   "suspended": false,
+     *       //   "uid": "my_uid",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4438,11 +5119,11 @@ export namespace clouddeploy_v1 {
     create(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Deliverypipelines$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4471,7 +5152,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deliverypipelines$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4518,6 +5202,66 @@ export namespace clouddeploy_v1 {
 
     /**
      * Deletes a single DeliveryPipeline.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const clouddeploy = google.clouddeploy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await clouddeploy.projects.locations.deliveryPipelines.delete({
+     *     // Optional. If set to true, then deleting an already deleted or non-existing `DeliveryPipeline` will succeed.
+     *     allowMissing: 'placeholder-value',
+     *     // Optional. This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
+     *     etag: 'placeholder-value',
+     *     // Optional. If set to true, all child resources under this pipeline will also be deleted. Otherwise, the request will only work if the pipeline has no child resources.
+     *     force: 'placeholder-value',
+     *     // Required. The name of the `DeliveryPipeline` to delete. The format is `projects/{project_id\}/locations/{location_name\}/deliveryPipelines/{pipeline_name\}`.
+     *     name: 'projects/my-project/locations/my-location/deliveryPipelines/my-deliveryPipeline',
+     *     // Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *     // Optional. If set, validate the request and preview the review, but do not actually post it.
+     *     validateOnly: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4527,11 +5271,11 @@ export namespace clouddeploy_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Deliverypipelines$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4560,7 +5304,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deliverypipelines$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4604,6 +5351,62 @@ export namespace clouddeploy_v1 {
 
     /**
      * Gets details of a single DeliveryPipeline.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const clouddeploy = google.clouddeploy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await clouddeploy.projects.locations.deliveryPipelines.get({
+     *     // Required. Name of the `DeliveryPipeline`. Format must be `projects/{project_id\}/locations/{location_name\}/deliveryPipelines/{pipeline_name\}`.
+     *     name: 'projects/my-project/locations/my-location/deliveryPipelines/my-deliveryPipeline',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "annotations": {},
+     *   //   "condition": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "serialPipeline": {},
+     *   //   "suspended": false,
+     *   //   "uid": "my_uid",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4613,11 +5416,11 @@ export namespace clouddeploy_v1 {
     get(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Deliverypipelines$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DeliveryPipeline>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DeliveryPipeline>>;
     get(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4646,7 +5449,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$DeliveryPipeline>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$DeliveryPipeline> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$DeliveryPipeline>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deliverypipelines$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4689,6 +5495,59 @@ export namespace clouddeploy_v1 {
 
     /**
      * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const clouddeploy = google.clouddeploy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await clouddeploy.projects.locations.deliveryPipelines.getIamPolicy({
+     *       // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     *       'options.requestedPolicyVersion': 'placeholder-value',
+     *       // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/deliveryPipelines/my-deliveryPipeline',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4698,11 +5557,11 @@ export namespace clouddeploy_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Deliverypipelines$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4731,7 +5590,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deliverypipelines$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4778,6 +5640,62 @@ export namespace clouddeploy_v1 {
 
     /**
      * Lists DeliveryPipelines in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const clouddeploy = google.clouddeploy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await clouddeploy.projects.locations.deliveryPipelines.list({
+     *     // Filter pipelines to be returned. See https://google.aip.dev/160 for more details.
+     *     filter: 'placeholder-value',
+     *     // Field to sort by. See https://google.aip.dev/132#ordering for more details.
+     *     orderBy: 'placeholder-value',
+     *     // The maximum number of pipelines to return. The service may return fewer than this value. If unspecified, at most 50 pipelines will be returned. The maximum value is 1000; values above 1000 will be set to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // A page token, received from a previous `ListDeliveryPipelines` call. Provide this to retrieve the subsequent page. When paginating, all other provided parameters match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent, which owns this collection of pipelines. Format must be `projects/{project_id\}/locations/{location_name\}`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deliveryPipelines": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4787,11 +5705,11 @@ export namespace clouddeploy_v1 {
     list(
       params: Params$Resource$Projects$Locations$Deliverypipelines$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Deliverypipelines$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListDeliveryPipelinesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListDeliveryPipelinesResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Deliverypipelines$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4826,8 +5744,8 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListDeliveryPipelinesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListDeliveryPipelinesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deliverypipelines$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4876,6 +5794,82 @@ export namespace clouddeploy_v1 {
 
     /**
      * Updates the parameters of a single DeliveryPipeline.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const clouddeploy = google.clouddeploy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await clouddeploy.projects.locations.deliveryPipelines.patch({
+     *     // Optional. If set to true, updating a `DeliveryPipeline` that does not exist will result in the creation of a new `DeliveryPipeline`.
+     *     allowMissing: 'placeholder-value',
+     *     // Identifier. Name of the `DeliveryPipeline`. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}`. The `deliveryPipeline` component must match `[a-z]([a-z0-9-]{0,61\}[a-z0-9])?`
+     *     name: 'projects/my-project/locations/my-location/deliveryPipelines/my-deliveryPipeline',
+     *     // Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *     // Required. Field mask is used to specify the fields to be overwritten by the update in the `DeliveryPipeline` resource. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it's in the mask. If the user doesn't provide a mask then all fields are overwritten.
+     *     updateMask: 'placeholder-value',
+     *     // Optional. If set to true, the request is validated and the user is provided with an expected result, but no actual change is made.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "annotations": {},
+     *       //   "condition": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "etag": "my_etag",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "serialPipeline": {},
+     *       //   "suspended": false,
+     *       //   "uid": "my_uid",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4885,11 +5879,11 @@ export namespace clouddeploy_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Deliverypipelines$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4918,7 +5912,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deliverypipelines$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4962,6 +5959,67 @@ export namespace clouddeploy_v1 {
 
     /**
      * Creates a `Rollout` to roll back the specified target.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const clouddeploy = google.clouddeploy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await clouddeploy.projects.locations.deliveryPipelines.rollbackTarget({
+     *       // Required. The `DeliveryPipeline` for which the rollback `Rollout` must be created. The format is `projects/{project_id\}/locations/{location_name\}/deliveryPipelines/{pipeline_name\}`.
+     *       name: 'projects/my-project/locations/my-location/deliveryPipelines/my-deliveryPipeline',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "overrideDeployPolicy": [],
+     *         //   "releaseId": "my_releaseId",
+     *         //   "rollbackConfig": {},
+     *         //   "rolloutId": "my_rolloutId",
+     *         //   "rolloutToRollBack": "my_rolloutToRollBack",
+     *         //   "targetId": "my_targetId",
+     *         //   "validateOnly": false
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "rollbackConfig": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4971,11 +6029,11 @@ export namespace clouddeploy_v1 {
     rollbackTarget(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Rollbacktarget,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     rollbackTarget(
       params?: Params$Resource$Projects$Locations$Deliverypipelines$Rollbacktarget,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RollbackTargetResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$RollbackTargetResponse>>;
     rollbackTarget(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Rollbacktarget,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5010,8 +6068,8 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$RollbackTargetResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$RollbackTargetResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deliverypipelines$Rollbacktarget;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5058,6 +6116,66 @@ export namespace clouddeploy_v1 {
 
     /**
      * Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const clouddeploy = google.clouddeploy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await clouddeploy.projects.locations.deliveryPipelines.setIamPolicy({
+     *       // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/deliveryPipelines/my-deliveryPipeline',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "policy": {},
+     *         //   "updateMask": "my_updateMask"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5067,11 +6185,11 @@ export namespace clouddeploy_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Deliverypipelines$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5100,7 +6218,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deliverypipelines$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5147,6 +6268,62 @@ export namespace clouddeploy_v1 {
 
     /**
      * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const clouddeploy = google.clouddeploy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await clouddeploy.projects.locations.deliveryPipelines.testIamPermissions({
+     *       // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/deliveryPipelines/my-deliveryPipeline',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "permissions": []
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5156,11 +6333,11 @@ export namespace clouddeploy_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Deliverypipelines$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5195,8 +6372,8 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deliverypipelines$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5407,6 +6584,59 @@ export namespace clouddeploy_v1 {
 
     /**
      * Cancels an AutomationRun. The `state` of the `AutomationRun` after cancelling is `CANCELLED`. `CancelAutomationRun` can be called on AutomationRun in the state `IN_PROGRESS` and `PENDING`; AutomationRun in a different state returns an `FAILED_PRECONDITION` error.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const clouddeploy = google.clouddeploy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await clouddeploy.projects.locations.deliveryPipelines.automationRuns.cancel(
+     *       {
+     *         // Required. Name of the `AutomationRun`. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/{delivery_pipeline\}/automationRuns/{automation_run\}`.
+     *         name: 'projects/my-project/locations/my-location/deliveryPipelines/my-deliveryPipeline/automationRuns/my-automationRun',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {}
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5416,11 +6646,11 @@ export namespace clouddeploy_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Automationruns$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     cancel(
       params?: Params$Resource$Projects$Locations$Deliverypipelines$Automationruns$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CancelAutomationRunResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CancelAutomationRunResponse>>;
     cancel(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Automationruns$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5455,8 +6685,8 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CancelAutomationRunResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CancelAutomationRunResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deliverypipelines$Automationruns$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5500,6 +6730,70 @@ export namespace clouddeploy_v1 {
 
     /**
      * Gets details of a single AutomationRun.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const clouddeploy = google.clouddeploy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await clouddeploy.projects.locations.deliveryPipelines.automationRuns.get({
+     *       // Required. Name of the `AutomationRun`. Format must be `projects/{project\}/locations/{location\}/deliveryPipelines/{delivery_pipeline\}/automationRuns/{automation_run\}`.
+     *       name: 'projects/my-project/locations/my-location/deliveryPipelines/my-deliveryPipeline/automationRuns/my-automationRun',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "advanceRolloutOperation": {},
+     *   //   "automationId": "my_automationId",
+     *   //   "automationSnapshot": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "etag": "my_etag",
+     *   //   "expireTime": "my_expireTime",
+     *   //   "name": "my_name",
+     *   //   "policyViolation": {},
+     *   //   "promoteReleaseOperation": {},
+     *   //   "repairRolloutOperation": {},
+     *   //   "ruleId": "my_ruleId",
+     *   //   "serviceAccount": "my_serviceAccount",
+     *   //   "state": "my_state",
+     *   //   "stateDescription": "my_stateDescription",
+     *   //   "targetId": "my_targetId",
+     *   //   "timedPromoteReleaseOperation": {},
+     *   //   "updateTime": "my_updateTime",
+     *   //   "waitUntilTime": "my_waitUntilTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5509,11 +6803,11 @@ export namespace clouddeploy_v1 {
     get(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Automationruns$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Deliverypipelines$Automationruns$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AutomationRun>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AutomationRun>>;
     get(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Automationruns$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5542,7 +6836,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$AutomationRun>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AutomationRun> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$AutomationRun>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deliverypipelines$Automationruns$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5586,6 +6883,64 @@ export namespace clouddeploy_v1 {
 
     /**
      * Lists AutomationRuns in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const clouddeploy = google.clouddeploy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await clouddeploy.projects.locations.deliveryPipelines.automationRuns.list({
+     *       // Filter automationRuns to be returned. All fields can be used in the filter.
+     *       filter: 'placeholder-value',
+     *       // Field to sort by.
+     *       orderBy: 'placeholder-value',
+     *       // The maximum number of automationRuns to return. The service may return fewer than this value. If unspecified, at most 50 automationRuns will be returned. The maximum value is 1000; values above 1000 will be set to 1000.
+     *       pageSize: 'placeholder-value',
+     *       // A page token, received from a previous `ListAutomationRuns` call. Provide this to retrieve the subsequent page. When paginating, all other provided parameters match the call that provided the page token.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The parent `Delivery Pipeline`, which owns this collection of automationRuns. Format must be `projects/{project\}/locations/{location\}/deliveryPipelines/{delivery_pipeline\}`.
+     *       parent:
+     *         'projects/my-project/locations/my-location/deliveryPipelines/my-deliveryPipeline',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "automationRuns": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5595,11 +6950,11 @@ export namespace clouddeploy_v1 {
     list(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Automationruns$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Deliverypipelines$Automationruns$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAutomationRunsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListAutomationRunsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Automationruns$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5634,8 +6989,8 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListAutomationRunsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListAutomationRunsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deliverypipelines$Automationruns$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5732,6 +7087,83 @@ export namespace clouddeploy_v1 {
 
     /**
      * Creates a new Automation in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const clouddeploy = google.clouddeploy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await clouddeploy.projects.locations.deliveryPipelines.automations.create({
+     *       // Required. ID of the `Automation`.
+     *       automationId: 'placeholder-value',
+     *       // Required. The parent collection in which the `Automation` must be created. The format is `projects/{project_id\}/locations/{location_name\}/deliveryPipelines/{pipeline_name\}`.
+     *       parent:
+     *         'projects/my-project/locations/my-location/deliveryPipelines/my-deliveryPipeline',
+     *       // Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *       requestId: 'placeholder-value',
+     *       // Optional. If set to true, the request is validated and the user is provided with an expected result, but no actual change is made.
+     *       validateOnly: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "annotations": {},
+     *         //   "createTime": "my_createTime",
+     *         //   "description": "my_description",
+     *         //   "etag": "my_etag",
+     *         //   "labels": {},
+     *         //   "name": "my_name",
+     *         //   "rules": [],
+     *         //   "selector": {},
+     *         //   "serviceAccount": "my_serviceAccount",
+     *         //   "suspended": false,
+     *         //   "uid": "my_uid",
+     *         //   "updateTime": "my_updateTime"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5741,11 +7173,11 @@ export namespace clouddeploy_v1 {
     create(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Automations$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Deliverypipelines$Automations$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Automations$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5774,7 +7206,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deliverypipelines$Automations$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5821,6 +7256,65 @@ export namespace clouddeploy_v1 {
 
     /**
      * Deletes a single Automation resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const clouddeploy = google.clouddeploy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await clouddeploy.projects.locations.deliveryPipelines.automations.delete({
+     *       // Optional. If set to true, then deleting an already deleted or non-existing `Automation` will succeed.
+     *       allowMissing: 'placeholder-value',
+     *       // Optional. The weak etag of the request. This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
+     *       etag: 'placeholder-value',
+     *       // Required. The name of the `Automation` to delete. The format is `projects/{project_id\}/locations/{location_name\}/deliveryPipelines/{pipeline_name\}/automations/{automation_name\}`.
+     *       name: 'projects/my-project/locations/my-location/deliveryPipelines/my-deliveryPipeline/automations/my-automation',
+     *       // Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *       requestId: 'placeholder-value',
+     *       // Optional. If set, validate the request and verify whether the resource exists, but do not actually post it.
+     *       validateOnly: 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5830,11 +7324,11 @@ export namespace clouddeploy_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Automations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Deliverypipelines$Automations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Automations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5863,7 +7357,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deliverypipelines$Automations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5907,6 +7404,64 @@ export namespace clouddeploy_v1 {
 
     /**
      * Gets details of a single Automation.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const clouddeploy = google.clouddeploy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await clouddeploy.projects.locations.deliveryPipelines.automations.get({
+     *       // Required. Name of the `Automation`. Format must be `projects/{project_id\}/locations/{location_name\}/deliveryPipelines/{pipeline_name\}/automations/{automation_name\}`.
+     *       name: 'projects/my-project/locations/my-location/deliveryPipelines/my-deliveryPipeline/automations/my-automation',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "annotations": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "rules": [],
+     *   //   "selector": {},
+     *   //   "serviceAccount": "my_serviceAccount",
+     *   //   "suspended": false,
+     *   //   "uid": "my_uid",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5916,11 +7471,11 @@ export namespace clouddeploy_v1 {
     get(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Automations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Deliverypipelines$Automations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Automation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Automation>>;
     get(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Automations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5949,7 +7504,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$Automation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Automation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Automation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deliverypipelines$Automations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5993,6 +7551,64 @@ export namespace clouddeploy_v1 {
 
     /**
      * Lists Automations in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const clouddeploy = google.clouddeploy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await clouddeploy.projects.locations.deliveryPipelines.automations.list({
+     *       // Filter automations to be returned. All fields can be used in the filter.
+     *       filter: 'placeholder-value',
+     *       // Field to sort by.
+     *       orderBy: 'placeholder-value',
+     *       // The maximum number of automations to return. The service may return fewer than this value. If unspecified, at most 50 automations will be returned. The maximum value is 1000; values above 1000 will be set to 1000.
+     *       pageSize: 'placeholder-value',
+     *       // A page token, received from a previous `ListAutomations` call. Provide this to retrieve the subsequent page. When paginating, all other provided parameters match the call that provided the page token.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The parent `Delivery Pipeline`, which owns this collection of automations. Format must be `projects/{project_id\}/locations/{location_name\}/deliveryPipelines/{pipeline_name\}`.
+     *       parent:
+     *         'projects/my-project/locations/my-location/deliveryPipelines/my-deliveryPipeline',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "automations": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6002,11 +7618,11 @@ export namespace clouddeploy_v1 {
     list(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Automations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Deliverypipelines$Automations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAutomationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListAutomationsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Automations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6039,8 +7655,8 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListAutomationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListAutomationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deliverypipelines$Automations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6087,6 +7703,84 @@ export namespace clouddeploy_v1 {
 
     /**
      * Updates the parameters of a single Automation resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const clouddeploy = google.clouddeploy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await clouddeploy.projects.locations.deliveryPipelines.automations.patch({
+     *       // Optional. If set to true, updating a `Automation` that does not exist will result in the creation of a new `Automation`.
+     *       allowMissing: 'placeholder-value',
+     *       // Output only. Name of the `Automation`. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/{delivery_pipeline\}/automations/{automation\}`.
+     *       name: 'projects/my-project/locations/my-location/deliveryPipelines/my-deliveryPipeline/automations/my-automation',
+     *       // Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *       requestId: 'placeholder-value',
+     *       // Required. Field mask is used to specify the fields to be overwritten by the update in the `Automation` resource. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it's in the mask. If the user doesn't provide a mask then all fields are overwritten.
+     *       updateMask: 'placeholder-value',
+     *       // Optional. If set to true, the request is validated and the user is provided with an expected result, but no actual change is made.
+     *       validateOnly: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "annotations": {},
+     *         //   "createTime": "my_createTime",
+     *         //   "description": "my_description",
+     *         //   "etag": "my_etag",
+     *         //   "labels": {},
+     *         //   "name": "my_name",
+     *         //   "rules": [],
+     *         //   "selector": {},
+     *         //   "serviceAccount": "my_serviceAccount",
+     *         //   "suspended": false,
+     *         //   "uid": "my_uid",
+     *         //   "updateTime": "my_updateTime"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6096,11 +7790,11 @@ export namespace clouddeploy_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Automations$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Deliverypipelines$Automations$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Automations$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6129,7 +7823,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deliverypipelines$Automations$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6291,6 +7988,57 @@ export namespace clouddeploy_v1 {
 
     /**
      * Abandons a Release in the Delivery Pipeline.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const clouddeploy = google.clouddeploy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await clouddeploy.projects.locations.deliveryPipelines.releases.abandon({
+     *       // Required. Name of the Release. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/releases/{release\}`.
+     *       name: 'projects/my-project/locations/my-location/deliveryPipelines/my-deliveryPipeline/releases/my-release',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {}
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6300,11 +8048,11 @@ export namespace clouddeploy_v1 {
     abandon(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Abandon,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     abandon(
       params?: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Abandon,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AbandonReleaseResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AbandonReleaseResponse>>;
     abandon(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Abandon,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6339,8 +8087,8 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AbandonReleaseResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AbandonReleaseResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deliverypipelines$Releases$Abandon;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6387,6 +8135,95 @@ export namespace clouddeploy_v1 {
 
     /**
      * Creates a new Release in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const clouddeploy = google.clouddeploy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await clouddeploy.projects.locations.deliveryPipelines.releases.create({
+     *       // Optional. Deploy policies to override. Format is `projects/{project\}/locations/{location\}/deployPolicies/{deployPolicy\}`.
+     *       overrideDeployPolicy: 'placeholder-value',
+     *       // Required. The parent collection in which the `Release` is created. The format is `projects/{project_id\}/locations/{location_name\}/deliveryPipelines/{pipeline_name\}`.
+     *       parent:
+     *         'projects/my-project/locations/my-location/deliveryPipelines/my-deliveryPipeline',
+     *       // Required. ID of the `Release`.
+     *       releaseId: 'placeholder-value',
+     *       // Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *       requestId: 'placeholder-value',
+     *       // Optional. If set to true, the request is validated and the user is provided with an expected result, but no actual change is made.
+     *       validateOnly: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "abandoned": false,
+     *         //   "annotations": {},
+     *         //   "buildArtifacts": [],
+     *         //   "condition": {},
+     *         //   "createTime": "my_createTime",
+     *         //   "customTargetTypeSnapshots": [],
+     *         //   "deliveryPipelineSnapshot": {},
+     *         //   "deployParameters": {},
+     *         //   "description": "my_description",
+     *         //   "etag": "my_etag",
+     *         //   "labels": {},
+     *         //   "name": "my_name",
+     *         //   "renderEndTime": "my_renderEndTime",
+     *         //   "renderStartTime": "my_renderStartTime",
+     *         //   "renderState": "my_renderState",
+     *         //   "skaffoldConfigPath": "my_skaffoldConfigPath",
+     *         //   "skaffoldConfigUri": "my_skaffoldConfigUri",
+     *         //   "skaffoldVersion": "my_skaffoldVersion",
+     *         //   "targetArtifacts": {},
+     *         //   "targetRenders": {},
+     *         //   "targetSnapshots": [],
+     *         //   "uid": "my_uid"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6396,11 +8233,11 @@ export namespace clouddeploy_v1 {
     create(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6429,7 +8266,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deliverypipelines$Releases$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6476,6 +8316,74 @@ export namespace clouddeploy_v1 {
 
     /**
      * Gets details of a single Release.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const clouddeploy = google.clouddeploy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await clouddeploy.projects.locations.deliveryPipelines.releases.get({
+     *       // Required. Name of the `Release`. Format must be `projects/{project_id\}/locations/{location_name\}/deliveryPipelines/{pipeline_name\}/releases/{release_name\}`.
+     *       name: 'projects/my-project/locations/my-location/deliveryPipelines/my-deliveryPipeline/releases/my-release',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "abandoned": false,
+     *   //   "annotations": {},
+     *   //   "buildArtifacts": [],
+     *   //   "condition": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "customTargetTypeSnapshots": [],
+     *   //   "deliveryPipelineSnapshot": {},
+     *   //   "deployParameters": {},
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "renderEndTime": "my_renderEndTime",
+     *   //   "renderStartTime": "my_renderStartTime",
+     *   //   "renderState": "my_renderState",
+     *   //   "skaffoldConfigPath": "my_skaffoldConfigPath",
+     *   //   "skaffoldConfigUri": "my_skaffoldConfigUri",
+     *   //   "skaffoldVersion": "my_skaffoldVersion",
+     *   //   "targetArtifacts": {},
+     *   //   "targetRenders": {},
+     *   //   "targetSnapshots": [],
+     *   //   "uid": "my_uid"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6485,11 +8393,11 @@ export namespace clouddeploy_v1 {
     get(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Release>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Release>>;
     get(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6518,7 +8426,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$Release>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Release> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Release>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deliverypipelines$Releases$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6562,6 +8473,64 @@ export namespace clouddeploy_v1 {
 
     /**
      * Lists Releases in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const clouddeploy = google.clouddeploy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await clouddeploy.projects.locations.deliveryPipelines.releases.list({
+     *       // Optional. Filter releases to be returned. See https://google.aip.dev/160 for more details.
+     *       filter: 'placeholder-value',
+     *       // Optional. Field to sort by. See https://google.aip.dev/132#ordering for more details.
+     *       orderBy: 'placeholder-value',
+     *       // Optional. The maximum number of `Release` objects to return. The service may return fewer than this value. If unspecified, at most 50 `Release` objects will be returned. The maximum value is 1000; values above 1000 will be set to 1000.
+     *       pageSize: 'placeholder-value',
+     *       // Optional. A page token, received from a previous `ListReleases` call. Provide this to retrieve the subsequent page. When paginating, all other provided parameters match the call that provided the page token.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The `DeliveryPipeline` which owns this collection of `Release` objects.
+     *       parent:
+     *         'projects/my-project/locations/my-location/deliveryPipelines/my-deliveryPipeline',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "releases": [],
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6571,11 +8540,11 @@ export namespace clouddeploy_v1 {
     list(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Deliverypipelines$Releases$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListReleasesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListReleasesResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6608,8 +8577,8 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListReleasesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListReleasesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deliverypipelines$Releases$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6739,6 +8708,62 @@ export namespace clouddeploy_v1 {
 
     /**
      * Advances a Rollout in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const clouddeploy = google.clouddeploy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await clouddeploy.projects.locations.deliveryPipelines.releases.rollouts.advance(
+     *       {
+     *         // Required. Name of the Rollout. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/releases/{release\}/rollouts/{rollout\}`.
+     *         name: 'projects/my-project/locations/my-location/deliveryPipelines/my-deliveryPipeline/releases/my-release/rollouts/my-rollout',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "overrideDeployPolicy": [],
+     *           //   "phaseId": "my_phaseId"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6748,11 +8773,11 @@ export namespace clouddeploy_v1 {
     advance(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Advance,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     advance(
       params?: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Advance,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AdvanceRolloutResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AdvanceRolloutResponse>>;
     advance(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Advance,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6787,8 +8812,8 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$AdvanceRolloutResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$AdvanceRolloutResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Advance;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6835,6 +8860,62 @@ export namespace clouddeploy_v1 {
 
     /**
      * Approves a Rollout.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const clouddeploy = google.clouddeploy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await clouddeploy.projects.locations.deliveryPipelines.releases.rollouts.approve(
+     *       {
+     *         // Required. Name of the Rollout. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/releases/{release\}/rollouts/{rollout\}`.
+     *         name: 'projects/my-project/locations/my-location/deliveryPipelines/my-deliveryPipeline/releases/my-release/rollouts/my-rollout',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "approved": false,
+     *           //   "overrideDeployPolicy": []
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6844,11 +8925,11 @@ export namespace clouddeploy_v1 {
     approve(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Approve,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     approve(
       params?: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Approve,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ApproveRolloutResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ApproveRolloutResponse>>;
     approve(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Approve,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6883,8 +8964,8 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ApproveRolloutResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ApproveRolloutResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Approve;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6931,6 +9012,61 @@ export namespace clouddeploy_v1 {
 
     /**
      * Cancels a Rollout in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const clouddeploy = google.clouddeploy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await clouddeploy.projects.locations.deliveryPipelines.releases.rollouts.cancel(
+     *       {
+     *         // Required. Name of the Rollout. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/releases/{release\}/rollouts/{rollout\}`.
+     *         name: 'projects/my-project/locations/my-location/deliveryPipelines/my-deliveryPipeline/releases/my-release/rollouts/my-rollout',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "overrideDeployPolicy": []
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6940,11 +9076,11 @@ export namespace clouddeploy_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     cancel(
       params?: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CancelRolloutResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CancelRolloutResponse>>;
     cancel(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6977,8 +9113,8 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CancelRolloutResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CancelRolloutResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7022,6 +9158,100 @@ export namespace clouddeploy_v1 {
 
     /**
      * Creates a new Rollout in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const clouddeploy = google.clouddeploy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await clouddeploy.projects.locations.deliveryPipelines.releases.rollouts.create(
+     *       {
+     *         // Optional. Deploy policies to override. Format is `projects/{project\}/locations/{location\}/deployPolicies/{deployPolicy\}`.
+     *         overrideDeployPolicy: 'placeholder-value',
+     *         // Required. The parent collection in which the `Rollout` must be created. The format is `projects/{project_id\}/locations/{location_name\}/deliveryPipelines/{pipeline_name\}/releases/{release_name\}`.
+     *         parent:
+     *           'projects/my-project/locations/my-location/deliveryPipelines/my-deliveryPipeline/releases/my-release',
+     *         // Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *         requestId: 'placeholder-value',
+     *         // Required. ID of the `Rollout`.
+     *         rolloutId: 'placeholder-value',
+     *         // Optional. The starting phase ID for the `Rollout`. If empty the `Rollout` will start at the first phase.
+     *         startingPhaseId: 'placeholder-value',
+     *         // Optional. If set to true, the request is validated and the user is provided with an expected result, but no actual change is made.
+     *         validateOnly: 'placeholder-value',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "activeRepairAutomationRun": "my_activeRepairAutomationRun",
+     *           //   "annotations": {},
+     *           //   "approvalState": "my_approvalState",
+     *           //   "approveTime": "my_approveTime",
+     *           //   "controllerRollout": "my_controllerRollout",
+     *           //   "createTime": "my_createTime",
+     *           //   "deployEndTime": "my_deployEndTime",
+     *           //   "deployFailureCause": "my_deployFailureCause",
+     *           //   "deployStartTime": "my_deployStartTime",
+     *           //   "deployingBuild": "my_deployingBuild",
+     *           //   "description": "my_description",
+     *           //   "enqueueTime": "my_enqueueTime",
+     *           //   "etag": "my_etag",
+     *           //   "failureReason": "my_failureReason",
+     *           //   "labels": {},
+     *           //   "metadata": {},
+     *           //   "name": "my_name",
+     *           //   "phases": [],
+     *           //   "rollbackOfRollout": "my_rollbackOfRollout",
+     *           //   "rolledBackByRollouts": [],
+     *           //   "state": "my_state",
+     *           //   "targetId": "my_targetId",
+     *           //   "uid": "my_uid"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7031,11 +9261,11 @@ export namespace clouddeploy_v1 {
     create(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7064,7 +9294,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7111,6 +9344,77 @@ export namespace clouddeploy_v1 {
 
     /**
      * Gets details of a single Rollout.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const clouddeploy = google.clouddeploy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await clouddeploy.projects.locations.deliveryPipelines.releases.rollouts.get(
+     *       {
+     *         // Required. Name of the `Rollout`. Format must be `projects/{project_id\}/locations/{location_name\}/deliveryPipelines/{pipeline_name\}/releases/{release_name\}/rollouts/{rollout_name\}`.
+     *         name: 'projects/my-project/locations/my-location/deliveryPipelines/my-deliveryPipeline/releases/my-release/rollouts/my-rollout',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activeRepairAutomationRun": "my_activeRepairAutomationRun",
+     *   //   "annotations": {},
+     *   //   "approvalState": "my_approvalState",
+     *   //   "approveTime": "my_approveTime",
+     *   //   "controllerRollout": "my_controllerRollout",
+     *   //   "createTime": "my_createTime",
+     *   //   "deployEndTime": "my_deployEndTime",
+     *   //   "deployFailureCause": "my_deployFailureCause",
+     *   //   "deployStartTime": "my_deployStartTime",
+     *   //   "deployingBuild": "my_deployingBuild",
+     *   //   "description": "my_description",
+     *   //   "enqueueTime": "my_enqueueTime",
+     *   //   "etag": "my_etag",
+     *   //   "failureReason": "my_failureReason",
+     *   //   "labels": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "phases": [],
+     *   //   "rollbackOfRollout": "my_rollbackOfRollout",
+     *   //   "rolledBackByRollouts": [],
+     *   //   "state": "my_state",
+     *   //   "targetId": "my_targetId",
+     *   //   "uid": "my_uid"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7120,11 +9424,11 @@ export namespace clouddeploy_v1 {
     get(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Rollout>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Rollout>>;
     get(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7153,7 +9457,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$Rollout>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Rollout> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Rollout>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7197,6 +9504,64 @@ export namespace clouddeploy_v1 {
 
     /**
      * Ignores the specified Job in a Rollout.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const clouddeploy = google.clouddeploy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await clouddeploy.projects.locations.deliveryPipelines.releases.rollouts.ignoreJob(
+     *       {
+     *         // Required. Name of the Rollout. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/releases/{release\}/rollouts/{rollout\}`.
+     *         rollout:
+     *           'projects/my-project/locations/my-location/deliveryPipelines/my-deliveryPipeline/releases/my-release/rollouts/my-rollout',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "jobId": "my_jobId",
+     *           //   "overrideDeployPolicy": [],
+     *           //   "phaseId": "my_phaseId"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7206,11 +9571,11 @@ export namespace clouddeploy_v1 {
     ignoreJob(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Ignorejob,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     ignoreJob(
       params?: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Ignorejob,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$IgnoreJobResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$IgnoreJobResponse>>;
     ignoreJob(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Ignorejob,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7241,8 +9606,8 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$IgnoreJobResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$IgnoreJobResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Ignorejob;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7289,6 +9654,66 @@ export namespace clouddeploy_v1 {
 
     /**
      * Lists Rollouts in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const clouddeploy = google.clouddeploy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await clouddeploy.projects.locations.deliveryPipelines.releases.rollouts.list(
+     *       {
+     *         // Optional. Filter rollouts to be returned. See https://google.aip.dev/160 for more details.
+     *         filter: 'placeholder-value',
+     *         // Optional. Field to sort by. See https://google.aip.dev/132#ordering for more details.
+     *         orderBy: 'placeholder-value',
+     *         // Optional. The maximum number of `Rollout` objects to return. The service may return fewer than this value. If unspecified, at most 50 `Rollout` objects will be returned. The maximum value is 1000; values above 1000 will be set to 1000.
+     *         pageSize: 'placeholder-value',
+     *         // Optional. A page token, received from a previous `ListRollouts` call. Provide this to retrieve the subsequent page. When paginating, all other provided parameters match the call that provided the page token.
+     *         pageToken: 'placeholder-value',
+     *         // Required. The `Release` which owns this collection of `Rollout` objects.
+     *         parent:
+     *           'projects/my-project/locations/my-location/deliveryPipelines/my-deliveryPipeline/releases/my-release',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "rollouts": [],
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7298,11 +9723,11 @@ export namespace clouddeploy_v1 {
     list(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListRolloutsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListRolloutsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7335,8 +9760,8 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListRolloutsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListRolloutsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7383,6 +9808,64 @@ export namespace clouddeploy_v1 {
 
     /**
      * Retries the specified Job in a Rollout.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const clouddeploy = google.clouddeploy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await clouddeploy.projects.locations.deliveryPipelines.releases.rollouts.retryJob(
+     *       {
+     *         // Required. Name of the Rollout. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/releases/{release\}/rollouts/{rollout\}`.
+     *         rollout:
+     *           'projects/my-project/locations/my-location/deliveryPipelines/my-deliveryPipeline/releases/my-release/rollouts/my-rollout',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "jobId": "my_jobId",
+     *           //   "overrideDeployPolicy": [],
+     *           //   "phaseId": "my_phaseId"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7392,11 +9875,11 @@ export namespace clouddeploy_v1 {
     retryJob(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Retryjob,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     retryJob(
       params?: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Retryjob,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RetryJobResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$RetryJobResponse>>;
     retryJob(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Retryjob,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7425,7 +9908,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$RetryJobResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$RetryJobResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$RetryJobResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Retryjob;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7602,6 +10088,69 @@ export namespace clouddeploy_v1 {
 
     /**
      * Gets details of a single JobRun.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const clouddeploy = google.clouddeploy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await clouddeploy.projects.locations.deliveryPipelines.releases.rollouts.jobRuns.get(
+     *       {
+     *         // Required. Name of the `JobRun`. Format must be `projects/{project_id\}/locations/{location_name\}/deliveryPipelines/{pipeline_name\}/releases/{release_name\}/rollouts/{rollout_name\}/jobRuns/{job_run_name\}`.
+     *         name: 'projects/my-project/locations/my-location/deliveryPipelines/my-deliveryPipeline/releases/my-release/rollouts/my-rollout/jobRuns/my-jobRun',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "advanceChildRolloutJobRun": {},
+     *   //   "createChildRolloutJobRun": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "deployJobRun": {},
+     *   //   "endTime": "my_endTime",
+     *   //   "etag": "my_etag",
+     *   //   "jobId": "my_jobId",
+     *   //   "name": "my_name",
+     *   //   "phaseId": "my_phaseId",
+     *   //   "postdeployJobRun": {},
+     *   //   "predeployJobRun": {},
+     *   //   "startTime": "my_startTime",
+     *   //   "state": "my_state",
+     *   //   "uid": "my_uid",
+     *   //   "verifyJobRun": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7611,11 +10160,11 @@ export namespace clouddeploy_v1 {
     get(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Jobruns$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Jobruns$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$JobRun>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$JobRun>>;
     get(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Jobruns$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7644,7 +10193,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$JobRun>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$JobRun> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$JobRun>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Jobruns$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7688,6 +10240,66 @@ export namespace clouddeploy_v1 {
 
     /**
      * Lists JobRuns in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const clouddeploy = google.clouddeploy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await clouddeploy.projects.locations.deliveryPipelines.releases.rollouts.jobRuns.list(
+     *       {
+     *         // Optional. Filter results to be returned. See https://google.aip.dev/160 for more details.
+     *         filter: 'placeholder-value',
+     *         // Optional. Field to sort by. See https://google.aip.dev/132#ordering for more details.
+     *         orderBy: 'placeholder-value',
+     *         // Optional. The maximum number of `JobRun` objects to return. The service may return fewer than this value. If unspecified, at most 50 `JobRun` objects will be returned. The maximum value is 1000; values above 1000 will be set to 1000.
+     *         pageSize: 'placeholder-value',
+     *         // Optional. A page token, received from a previous `ListJobRuns` call. Provide this to retrieve the subsequent page. When paginating, all other provided parameters match the call that provided the page token.
+     *         pageToken: 'placeholder-value',
+     *         // Required. The `Rollout` which owns this collection of `JobRun` objects.
+     *         parent:
+     *           'projects/my-project/locations/my-location/deliveryPipelines/my-deliveryPipeline/releases/my-release/rollouts/my-rollout',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "jobRuns": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7697,11 +10309,11 @@ export namespace clouddeploy_v1 {
     list(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Jobruns$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Jobruns$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListJobRunsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListJobRunsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Jobruns$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7732,8 +10344,8 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListJobRunsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListJobRunsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Jobruns$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7780,6 +10392,61 @@ export namespace clouddeploy_v1 {
 
     /**
      * Terminates a Job Run in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const clouddeploy = google.clouddeploy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await clouddeploy.projects.locations.deliveryPipelines.releases.rollouts.jobRuns.terminate(
+     *       {
+     *         // Required. Name of the `JobRun`. Format must be `projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/releases/{release\}/rollouts/{rollout\}/jobRuns/{jobRun\}`.
+     *         name: 'projects/my-project/locations/my-location/deliveryPipelines/my-deliveryPipeline/releases/my-release/rollouts/my-rollout/jobRuns/my-jobRun',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "overrideDeployPolicy": []
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7789,11 +10456,11 @@ export namespace clouddeploy_v1 {
     terminate(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Jobruns$Terminate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     terminate(
       params?: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Jobruns$Terminate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TerminateJobRunResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TerminateJobRunResponse>>;
     terminate(
       params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Jobruns$Terminate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7828,8 +10495,8 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TerminateJobRunResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TerminateJobRunResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Jobruns$Terminate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7926,6 +10593,80 @@ export namespace clouddeploy_v1 {
 
     /**
      * Creates a new DeployPolicy in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const clouddeploy = google.clouddeploy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await clouddeploy.projects.locations.deployPolicies.create({
+     *     // Required. ID of the `DeployPolicy`.
+     *     deployPolicyId: 'placeholder-value',
+     *     // Required. The parent collection in which the `DeployPolicy` must be created. The format is `projects/{project_id\}/locations/{location_name\}`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *     // Optional. If set to true, the request is validated and the user is provided with an expected result, but no actual change is made.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "annotations": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "etag": "my_etag",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "rules": [],
+     *       //   "selectors": [],
+     *       //   "suspended": false,
+     *       //   "uid": "my_uid",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7935,11 +10676,11 @@ export namespace clouddeploy_v1 {
     create(
       params: Params$Resource$Projects$Locations$Deploypolicies$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Deploypolicies$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Deploypolicies$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7968,7 +10709,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deploypolicies$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8014,6 +10758,64 @@ export namespace clouddeploy_v1 {
 
     /**
      * Deletes a single DeployPolicy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const clouddeploy = google.clouddeploy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await clouddeploy.projects.locations.deployPolicies.delete({
+     *     // Optional. If set to true, then deleting an already deleted or non-existing `DeployPolicy` will succeed.
+     *     allowMissing: 'placeholder-value',
+     *     // Optional. This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
+     *     etag: 'placeholder-value',
+     *     // Required. The name of the `DeployPolicy` to delete. The format is `projects/{project_id\}/locations/{location_name\}/deployPolicies/{deploy_policy_name\}`.
+     *     name: 'projects/my-project/locations/my-location/deployPolicies/my-deployPolicie',
+     *     // Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *     // Optional. If set, validate the request and preview the review, but do not actually post it.
+     *     validateOnly: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8023,11 +10825,11 @@ export namespace clouddeploy_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Deploypolicies$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Deploypolicies$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Deploypolicies$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8056,7 +10858,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deploypolicies$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8099,6 +10904,62 @@ export namespace clouddeploy_v1 {
 
     /**
      * Gets details of a single DeployPolicy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const clouddeploy = google.clouddeploy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await clouddeploy.projects.locations.deployPolicies.get({
+     *     // Required. Name of the `DeployPolicy`. Format must be `projects/{project_id\}/locations/{location_name\}/deployPolicies/{deploy_policy_name\}`.
+     *     name: 'projects/my-project/locations/my-location/deployPolicies/my-deployPolicie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "annotations": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "rules": [],
+     *   //   "selectors": [],
+     *   //   "suspended": false,
+     *   //   "uid": "my_uid",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8108,11 +10969,11 @@ export namespace clouddeploy_v1 {
     get(
       params: Params$Resource$Projects$Locations$Deploypolicies$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Deploypolicies$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DeployPolicy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DeployPolicy>>;
     get(
       params: Params$Resource$Projects$Locations$Deploypolicies$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8141,7 +11002,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$DeployPolicy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$DeployPolicy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$DeployPolicy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deploypolicies$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8184,6 +11048,58 @@ export namespace clouddeploy_v1 {
 
     /**
      * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const clouddeploy = google.clouddeploy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await clouddeploy.projects.locations.deployPolicies.getIamPolicy({
+     *     // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     *     'options.requestedPolicyVersion': 'placeholder-value',
+     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource:
+     *       'projects/my-project/locations/my-location/deployPolicies/my-deployPolicie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8193,11 +11109,11 @@ export namespace clouddeploy_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Deploypolicies$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Deploypolicies$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Deploypolicies$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8226,7 +11142,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deploypolicies$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8273,6 +11192,62 @@ export namespace clouddeploy_v1 {
 
     /**
      * Lists DeployPolicies in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const clouddeploy = google.clouddeploy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await clouddeploy.projects.locations.deployPolicies.list({
+     *     // Filter deploy policies to be returned. See https://google.aip.dev/160 for more details. All fields can be used in the filter.
+     *     filter: 'placeholder-value',
+     *     // Field to sort by. See https://google.aip.dev/132#ordering for more details.
+     *     orderBy: 'placeholder-value',
+     *     // The maximum number of deploy policies to return. The service may return fewer than this value. If unspecified, at most 50 deploy policies will be returned. The maximum value is 1000; values above 1000 will be set to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // A page token, received from a previous `ListDeployPolicies` call. Provide this to retrieve the subsequent page. When paginating, all other provided parameters match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent, which owns this collection of deploy policies. Format must be `projects/{project_id\}/locations/{location_name\}`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deployPolicies": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8282,11 +11257,11 @@ export namespace clouddeploy_v1 {
     list(
       params: Params$Resource$Projects$Locations$Deploypolicies$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Deploypolicies$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListDeployPoliciesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListDeployPoliciesResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Deploypolicies$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8321,8 +11296,8 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListDeployPoliciesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListDeployPoliciesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deploypolicies$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8368,6 +11343,82 @@ export namespace clouddeploy_v1 {
 
     /**
      * Updates the parameters of a single DeployPolicy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const clouddeploy = google.clouddeploy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await clouddeploy.projects.locations.deployPolicies.patch({
+     *     // Optional. If set to true, updating a `DeployPolicy` that does not exist will result in the creation of a new `DeployPolicy`.
+     *     allowMissing: 'placeholder-value',
+     *     // Output only. Name of the `DeployPolicy`. Format is `projects/{project\}/locations/{location\}/deployPolicies/{deployPolicy\}`. The `deployPolicy` component must match `[a-z]([a-z0-9-]{0,61\}[a-z0-9])?`
+     *     name: 'projects/my-project/locations/my-location/deployPolicies/my-deployPolicie',
+     *     // Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *     // Required. Field mask is used to specify the fields to be overwritten by the update in the `DeployPolicy` resource. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it's in the mask. If the user doesn't provide a mask then all fields are overwritten.
+     *     updateMask: 'placeholder-value',
+     *     // Optional. If set to true, the request is validated and the user is provided with an expected result, but no actual change is made.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "annotations": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "etag": "my_etag",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "rules": [],
+     *       //   "selectors": [],
+     *       //   "suspended": false,
+     *       //   "uid": "my_uid",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8377,11 +11428,11 @@ export namespace clouddeploy_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Deploypolicies$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Deploypolicies$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Deploypolicies$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8410,7 +11461,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deploypolicies$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8453,6 +11507,65 @@ export namespace clouddeploy_v1 {
 
     /**
      * Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const clouddeploy = google.clouddeploy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await clouddeploy.projects.locations.deployPolicies.setIamPolicy({
+     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource:
+     *       'projects/my-project/locations/my-location/deployPolicies/my-deployPolicie',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "policy": {},
+     *       //   "updateMask": "my_updateMask"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8462,11 +11575,11 @@ export namespace clouddeploy_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Deploypolicies$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Deploypolicies$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Deploypolicies$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8495,7 +11608,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deploypolicies$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8678,6 +11794,56 @@ export namespace clouddeploy_v1 {
 
     /**
      * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const clouddeploy = google.clouddeploy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await clouddeploy.projects.locations.operations.cancel({
+     *     // The name of the operation resource to be cancelled.
+     *     name: 'projects/my-project/locations/my-location/operations/my-operation',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8687,11 +11853,11 @@ export namespace clouddeploy_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     cancel(
       params?: Params$Resource$Projects$Locations$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8720,7 +11886,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8763,6 +11932,50 @@ export namespace clouddeploy_v1 {
 
     /**
      * Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const clouddeploy = google.clouddeploy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await clouddeploy.projects.locations.operations.delete({
+     *     // The name of the operation resource to be deleted.
+     *     name: 'projects/my-project/locations/my-location/operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8772,11 +11985,11 @@ export namespace clouddeploy_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8805,7 +12018,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8848,6 +12064,56 @@ export namespace clouddeploy_v1 {
 
     /**
      * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const clouddeploy = google.clouddeploy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await clouddeploy.projects.locations.operations.get({
+     *     // The name of the operation resource.
+     *     name: 'projects/my-project/locations/my-location/operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8857,11 +12123,11 @@ export namespace clouddeploy_v1 {
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8890,7 +12156,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8933,6 +12202,59 @@ export namespace clouddeploy_v1 {
 
     /**
      * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const clouddeploy = google.clouddeploy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await clouddeploy.projects.locations.operations.list({
+     *     // The standard list filter.
+     *     filter: 'placeholder-value',
+     *     // The name of the operation's parent resource.
+     *     name: 'projects/my-project/locations/my-location',
+     *     // The standard list page size.
+     *     pageSize: 'placeholder-value',
+     *     // The standard list page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "operations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8942,11 +12264,11 @@ export namespace clouddeploy_v1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListOperationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8979,8 +12301,8 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListOperationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9079,6 +12401,87 @@ export namespace clouddeploy_v1 {
 
     /**
      * Creates a new Target in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const clouddeploy = google.clouddeploy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await clouddeploy.projects.locations.targets.create({
+     *     // Required. The parent collection in which the `Target` must be created. The format is `projects/{project_id\}/locations/{location_name\}`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *     // Required. ID of the `Target`.
+     *     targetId: 'placeholder-value',
+     *     // Optional. If set to true, the request is validated and the user is provided with an expected result, but no actual change is made.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "annotations": {},
+     *       //   "anthosCluster": {},
+     *       //   "associatedEntities": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "customTarget": {},
+     *       //   "deployParameters": {},
+     *       //   "description": "my_description",
+     *       //   "etag": "my_etag",
+     *       //   "executionConfigs": [],
+     *       //   "gke": {},
+     *       //   "labels": {},
+     *       //   "multiTarget": {},
+     *       //   "name": "my_name",
+     *       //   "requireApproval": false,
+     *       //   "run": {},
+     *       //   "targetId": "my_targetId",
+     *       //   "uid": "my_uid",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9088,11 +12491,11 @@ export namespace clouddeploy_v1 {
     create(
       params: Params$Resource$Projects$Locations$Targets$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Targets$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Targets$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9121,7 +12524,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Targets$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9167,6 +12573,64 @@ export namespace clouddeploy_v1 {
 
     /**
      * Deletes a single Target.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const clouddeploy = google.clouddeploy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await clouddeploy.projects.locations.targets.delete({
+     *     // Optional. If set to true, then deleting an already deleted or non-existing `Target` will succeed.
+     *     allowMissing: 'placeholder-value',
+     *     // Optional. This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
+     *     etag: 'placeholder-value',
+     *     // Required. The name of the `Target` to delete. The format is `projects/{project_id\}/locations/{location_name\}/targets/{target_name\}`.
+     *     name: 'projects/my-project/locations/my-location/targets/my-target',
+     *     // Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *     // Optional. If set, validate the request and preview the review, but do not actually post it.
+     *     validateOnly: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9176,11 +12640,11 @@ export namespace clouddeploy_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Targets$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Targets$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Targets$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9209,7 +12673,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Targets$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9252,6 +12719,69 @@ export namespace clouddeploy_v1 {
 
     /**
      * Gets details of a single Target.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const clouddeploy = google.clouddeploy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await clouddeploy.projects.locations.targets.get({
+     *     // Required. Name of the `Target`. Format must be `projects/{project_id\}/locations/{location_name\}/targets/{target_name\}`.
+     *     name: 'projects/my-project/locations/my-location/targets/my-target',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "annotations": {},
+     *   //   "anthosCluster": {},
+     *   //   "associatedEntities": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "customTarget": {},
+     *   //   "deployParameters": {},
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "executionConfigs": [],
+     *   //   "gke": {},
+     *   //   "labels": {},
+     *   //   "multiTarget": {},
+     *   //   "name": "my_name",
+     *   //   "requireApproval": false,
+     *   //   "run": {},
+     *   //   "targetId": "my_targetId",
+     *   //   "uid": "my_uid",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9261,11 +12791,11 @@ export namespace clouddeploy_v1 {
     get(
       params: Params$Resource$Projects$Locations$Targets$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Targets$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Target>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Target>>;
     get(
       params: Params$Resource$Projects$Locations$Targets$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9294,7 +12824,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$Target>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Target> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Target>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Targets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9337,6 +12870,57 @@ export namespace clouddeploy_v1 {
 
     /**
      * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const clouddeploy = google.clouddeploy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await clouddeploy.projects.locations.targets.getIamPolicy({
+     *     // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     *     'options.requestedPolicyVersion': 'placeholder-value',
+     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource: 'projects/my-project/locations/my-location/targets/my-target',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9346,11 +12930,11 @@ export namespace clouddeploy_v1 {
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Targets$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Projects$Locations$Targets$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Targets$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9379,7 +12963,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Targets$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9425,6 +13012,62 @@ export namespace clouddeploy_v1 {
 
     /**
      * Lists Targets in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const clouddeploy = google.clouddeploy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await clouddeploy.projects.locations.targets.list({
+     *     // Optional. Filter targets to be returned. See https://google.aip.dev/160 for more details.
+     *     filter: 'placeholder-value',
+     *     // Optional. Field to sort by. See https://google.aip.dev/132#ordering for more details.
+     *     orderBy: 'placeholder-value',
+     *     // Optional. The maximum number of `Target` objects to return. The service may return fewer than this value. If unspecified, at most 50 `Target` objects will be returned. The maximum value is 1000; values above 1000 will be set to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous `ListTargets` call. Provide this to retrieve the subsequent page. When paginating, all other provided parameters match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent, which owns this collection of targets. Format must be `projects/{project_id\}/locations/{location_name\}`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "targets": [],
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9434,11 +13077,11 @@ export namespace clouddeploy_v1 {
     list(
       params: Params$Resource$Projects$Locations$Targets$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Targets$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListTargetsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListTargetsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Targets$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9469,8 +13112,8 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListTargetsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListTargetsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Targets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9516,6 +13159,89 @@ export namespace clouddeploy_v1 {
 
     /**
      * Updates the parameters of a single Target.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const clouddeploy = google.clouddeploy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await clouddeploy.projects.locations.targets.patch({
+     *     // Optional. If set to true, updating a `Target` that does not exist will result in the creation of a new `Target`.
+     *     allowMissing: 'placeholder-value',
+     *     // Identifier. Name of the `Target`. Format is `projects/{project\}/locations/{location\}/targets/{target\}`. The `target` component must match `[a-z]([a-z0-9-]{0,61\}[a-z0-9])?`
+     *     name: 'projects/my-project/locations/my-location/targets/my-target',
+     *     // Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *     // Required. Field mask is used to specify the fields to be overwritten by the update in the `Target` resource. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it's in the mask. If the user doesn't provide a mask then all fields are overwritten.
+     *     updateMask: 'placeholder-value',
+     *     // Optional. If set to true, the request is validated and the user is provided with an expected result, but no actual change is made.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "annotations": {},
+     *       //   "anthosCluster": {},
+     *       //   "associatedEntities": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "customTarget": {},
+     *       //   "deployParameters": {},
+     *       //   "description": "my_description",
+     *       //   "etag": "my_etag",
+     *       //   "executionConfigs": [],
+     *       //   "gke": {},
+     *       //   "labels": {},
+     *       //   "multiTarget": {},
+     *       //   "name": "my_name",
+     *       //   "requireApproval": false,
+     *       //   "run": {},
+     *       //   "targetId": "my_targetId",
+     *       //   "uid": "my_uid",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9525,11 +13251,11 @@ export namespace clouddeploy_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Targets$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Locations$Targets$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     patch(
       params: Params$Resource$Projects$Locations$Targets$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9558,7 +13284,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Targets$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9601,6 +13330,64 @@ export namespace clouddeploy_v1 {
 
     /**
      * Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const clouddeploy = google.clouddeploy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await clouddeploy.projects.locations.targets.setIamPolicy({
+     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource: 'projects/my-project/locations/my-location/targets/my-target',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "policy": {},
+     *       //   "updateMask": "my_updateMask"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9610,11 +13397,11 @@ export namespace clouddeploy_v1 {
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Targets$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Projects$Locations$Targets$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Targets$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9643,7 +13430,10 @@ export namespace clouddeploy_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Targets$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9689,6 +13479,60 @@ export namespace clouddeploy_v1 {
 
     /**
      * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const clouddeploy = google.clouddeploy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await clouddeploy.projects.locations.targets.testIamPermissions({
+     *     // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource: 'projects/my-project/locations/my-location/targets/my-target',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "permissions": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9698,11 +13542,11 @@ export namespace clouddeploy_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Targets$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Projects$Locations$Targets$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Targets$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9737,8 +13581,8 @@ export namespace clouddeploy_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Targets$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;

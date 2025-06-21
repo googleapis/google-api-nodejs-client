@@ -2117,7 +2117,7 @@
       }
     }
   },
-  "revision": "20250421",
+  "revision": "20250516",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AppDevExperienceFeatureSpec": {

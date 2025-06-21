@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -300,6 +300,8 @@ export namespace storage_v1 {
      * The bucket's IP filter configuration. Specifies the network sources that are allowed to access the operations on the bucket, as well as its underlying objects. Only enforced when the mode is set to 'Enabled'.
      */
     ipFilter?: {
+      allowAllServiceAgentAccess?: boolean;
+      allowCrossOrgVpcs?: boolean;
       mode?: string;
       publicNetworkSource?: {allowedIpCidrRanges?: string[]};
       vpcNetworkSources?: Array<{
@@ -1356,6 +1358,69 @@ export namespace storage_v1 {
 
     /**
      * Disables an Anywhere Cache instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.anywhereCaches.disable({
+     *     // The ID of requested Anywhere Cache instance.
+     *     anywhereCacheId: 'placeholder-value',
+     *     // Name of the parent bucket.
+     *     bucket: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "admissionPolicy": "my_admissionPolicy",
+     *   //   "anywhereCacheId": "my_anywhereCacheId",
+     *   //   "bucket": "my_bucket",
+     *   //   "createTime": "my_createTime",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "pendingUpdate": false,
+     *   //   "selfLink": "my_selfLink",
+     *   //   "state": "my_state",
+     *   //   "ttl": "my_ttl",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1365,11 +1430,11 @@ export namespace storage_v1 {
     disable(
       params: Params$Resource$Anywherecaches$Disable,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     disable(
       params?: Params$Resource$Anywherecaches$Disable,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AnywhereCache>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AnywhereCache>>;
     disable(
       params: Params$Resource$Anywherecaches$Disable,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1398,7 +1463,10 @@ export namespace storage_v1 {
       callback?:
         | BodyResponseCallback<Schema$AnywhereCache>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AnywhereCache> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$AnywhereCache>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Anywherecaches$Disable;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1444,6 +1512,71 @@ export namespace storage_v1 {
 
     /**
      * Returns the metadata of an Anywhere Cache instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_only',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.anywhereCaches.get({
+     *     // The ID of requested Anywhere Cache instance.
+     *     anywhereCacheId: 'placeholder-value',
+     *     // Name of the parent bucket.
+     *     bucket: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "admissionPolicy": "my_admissionPolicy",
+     *   //   "anywhereCacheId": "my_anywhereCacheId",
+     *   //   "bucket": "my_bucket",
+     *   //   "createTime": "my_createTime",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "pendingUpdate": false,
+     *   //   "selfLink": "my_selfLink",
+     *   //   "state": "my_state",
+     *   //   "ttl": "my_ttl",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1453,11 +1586,11 @@ export namespace storage_v1 {
     get(
       params: Params$Resource$Anywherecaches$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Anywherecaches$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AnywhereCache>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AnywhereCache>>;
     get(
       params: Params$Resource$Anywherecaches$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1486,7 +1619,10 @@ export namespace storage_v1 {
       callback?:
         | BodyResponseCallback<Schema$AnywhereCache>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AnywhereCache> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$AnywhereCache>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Anywherecaches$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1532,6 +1668,81 @@ export namespace storage_v1 {
 
     /**
      * Creates an Anywhere Cache instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.anywhereCaches.insert({
+     *     // Name of the parent bucket.
+     *     bucket: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "admissionPolicy": "my_admissionPolicy",
+     *       //   "anywhereCacheId": "my_anywhereCacheId",
+     *       //   "bucket": "my_bucket",
+     *       //   "createTime": "my_createTime",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "pendingUpdate": false,
+     *       //   "selfLink": "my_selfLink",
+     *       //   "state": "my_state",
+     *       //   "ttl": "my_ttl",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "zone": "my_zone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {},
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1541,11 +1752,11 @@ export namespace storage_v1 {
     insert(
       params: Params$Resource$Anywherecaches$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Anywherecaches$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     insert(
       params: Params$Resource$Anywherecaches$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1580,8 +1791,8 @@ export namespace storage_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Anywherecaches$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1627,6 +1838,64 @@ export namespace storage_v1 {
 
     /**
      * Returns a list of Anywhere Cache instances of the bucket matching the criteria.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_only',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.anywhereCaches.list({
+     *     // Name of the parent bucket.
+     *     bucket: 'placeholder-value',
+     *     // Maximum number of items to return in a single page of responses. Maximum 1000.
+     *     pageSize: 'placeholder-value',
+     *     // A previously-returned page token representing part of the larger set of results to view.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1636,11 +1905,11 @@ export namespace storage_v1 {
     list(
       params: Params$Resource$Anywherecaches$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Anywherecaches$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AnywhereCaches>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AnywhereCaches>>;
     list(
       params: Params$Resource$Anywherecaches$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1669,7 +1938,10 @@ export namespace storage_v1 {
       callback?:
         | BodyResponseCallback<Schema$AnywhereCaches>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AnywhereCaches> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$AnywhereCaches>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Anywherecaches$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1715,6 +1987,69 @@ export namespace storage_v1 {
 
     /**
      * Pauses an Anywhere Cache instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.anywhereCaches.pause({
+     *     // The ID of requested Anywhere Cache instance.
+     *     anywhereCacheId: 'placeholder-value',
+     *     // Name of the parent bucket.
+     *     bucket: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "admissionPolicy": "my_admissionPolicy",
+     *   //   "anywhereCacheId": "my_anywhereCacheId",
+     *   //   "bucket": "my_bucket",
+     *   //   "createTime": "my_createTime",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "pendingUpdate": false,
+     *   //   "selfLink": "my_selfLink",
+     *   //   "state": "my_state",
+     *   //   "ttl": "my_ttl",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1724,11 +2059,11 @@ export namespace storage_v1 {
     pause(
       params: Params$Resource$Anywherecaches$Pause,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     pause(
       params?: Params$Resource$Anywherecaches$Pause,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AnywhereCache>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AnywhereCache>>;
     pause(
       params: Params$Resource$Anywherecaches$Pause,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1757,7 +2092,10 @@ export namespace storage_v1 {
       callback?:
         | BodyResponseCallback<Schema$AnywhereCache>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AnywhereCache> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$AnywhereCache>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Anywherecaches$Pause;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1803,6 +2141,69 @@ export namespace storage_v1 {
 
     /**
      * Resumes a paused or disabled Anywhere Cache instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.anywhereCaches.resume({
+     *     // The ID of requested Anywhere Cache instance.
+     *     anywhereCacheId: 'placeholder-value',
+     *     // Name of the parent bucket.
+     *     bucket: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "admissionPolicy": "my_admissionPolicy",
+     *   //   "anywhereCacheId": "my_anywhereCacheId",
+     *   //   "bucket": "my_bucket",
+     *   //   "createTime": "my_createTime",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "pendingUpdate": false,
+     *   //   "selfLink": "my_selfLink",
+     *   //   "state": "my_state",
+     *   //   "ttl": "my_ttl",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1812,11 +2213,11 @@ export namespace storage_v1 {
     resume(
       params: Params$Resource$Anywherecaches$Resume,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     resume(
       params?: Params$Resource$Anywherecaches$Resume,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AnywhereCache>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AnywhereCache>>;
     resume(
       params: Params$Resource$Anywherecaches$Resume,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1845,7 +2246,10 @@ export namespace storage_v1 {
       callback?:
         | BodyResponseCallback<Schema$AnywhereCache>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AnywhereCache> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$AnywhereCache>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Anywherecaches$Resume;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1891,6 +2295,83 @@ export namespace storage_v1 {
 
     /**
      * Updates the config(ttl and admissionPolicy) of an Anywhere Cache instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.anywhereCaches.update({
+     *     // The ID of requested Anywhere Cache instance.
+     *     anywhereCacheId: 'placeholder-value',
+     *     // Name of the parent bucket.
+     *     bucket: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "admissionPolicy": "my_admissionPolicy",
+     *       //   "anywhereCacheId": "my_anywhereCacheId",
+     *       //   "bucket": "my_bucket",
+     *       //   "createTime": "my_createTime",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "pendingUpdate": false,
+     *       //   "selfLink": "my_selfLink",
+     *       //   "state": "my_state",
+     *       //   "ttl": "my_ttl",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "zone": "my_zone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {},
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1900,11 +2381,11 @@ export namespace storage_v1 {
     update(
       params: Params$Resource$Anywherecaches$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Anywherecaches$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     update(
       params: Params$Resource$Anywherecaches$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1939,8 +2420,8 @@ export namespace storage_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Anywherecaches$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2081,6 +2562,54 @@ export namespace storage_v1 {
 
     /**
      * Permanently deletes the ACL entry for the specified entity on the specified bucket.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.bucketAccessControls.delete({
+     *     // Name of a bucket.
+     *     bucket: 'placeholder-value',
+     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     *     entity: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2090,11 +2619,11 @@ export namespace storage_v1 {
     delete(
       params: Params$Resource$Bucketaccesscontrols$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Bucketaccesscontrols$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Bucketaccesscontrols$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2121,7 +2650,10 @@ export namespace storage_v1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bucketaccesscontrols$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2167,6 +2699,69 @@ export namespace storage_v1 {
 
     /**
      * Returns the ACL entry for the specified entity on the specified bucket.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.bucketAccessControls.get({
+     *     // Name of a bucket.
+     *     bucket: 'placeholder-value',
+     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     *     entity: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bucket": "my_bucket",
+     *   //   "domain": "my_domain",
+     *   //   "email": "my_email",
+     *   //   "entity": "my_entity",
+     *   //   "entityId": "my_entityId",
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "projectTeam": {},
+     *   //   "role": "my_role",
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2176,11 +2771,11 @@ export namespace storage_v1 {
     get(
       params: Params$Resource$Bucketaccesscontrols$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Bucketaccesscontrols$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BucketAccessControl>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BucketAccessControl>>;
     get(
       params: Params$Resource$Bucketaccesscontrols$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2211,8 +2806,8 @@ export namespace storage_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BucketAccessControl>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$BucketAccessControl>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bucketaccesscontrols$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2258,6 +2853,85 @@ export namespace storage_v1 {
 
     /**
      * Creates a new ACL entry on the specified bucket.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.bucketAccessControls.insert({
+     *     // Name of a bucket.
+     *     bucket: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bucket": "my_bucket",
+     *       //   "domain": "my_domain",
+     *       //   "email": "my_email",
+     *       //   "entity": "my_entity",
+     *       //   "entityId": "my_entityId",
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "projectTeam": {},
+     *       //   "role": "my_role",
+     *       //   "selfLink": "my_selfLink"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bucket": "my_bucket",
+     *   //   "domain": "my_domain",
+     *   //   "email": "my_email",
+     *   //   "entity": "my_entity",
+     *   //   "entityId": "my_entityId",
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "projectTeam": {},
+     *   //   "role": "my_role",
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2267,11 +2941,11 @@ export namespace storage_v1 {
     insert(
       params: Params$Resource$Bucketaccesscontrols$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Bucketaccesscontrols$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BucketAccessControl>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BucketAccessControl>>;
     insert(
       params: Params$Resource$Bucketaccesscontrols$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2302,8 +2976,8 @@ export namespace storage_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BucketAccessControl>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$BucketAccessControl>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bucketaccesscontrols$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2349,6 +3023,58 @@ export namespace storage_v1 {
 
     /**
      * Retrieves ACL entries on the specified bucket.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.bucketAccessControls.list({
+     *     // Name of a bucket.
+     *     bucket: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2358,11 +3084,11 @@ export namespace storage_v1 {
     list(
       params: Params$Resource$Bucketaccesscontrols$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Bucketaccesscontrols$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BucketAccessControls>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BucketAccessControls>>;
     list(
       params: Params$Resource$Bucketaccesscontrols$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2395,8 +3121,8 @@ export namespace storage_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BucketAccessControls>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$BucketAccessControls>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bucketaccesscontrols$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2442,6 +3168,87 @@ export namespace storage_v1 {
 
     /**
      * Patches an ACL entry on the specified bucket.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.bucketAccessControls.patch({
+     *     // Name of a bucket.
+     *     bucket: 'placeholder-value',
+     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     *     entity: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bucket": "my_bucket",
+     *       //   "domain": "my_domain",
+     *       //   "email": "my_email",
+     *       //   "entity": "my_entity",
+     *       //   "entityId": "my_entityId",
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "projectTeam": {},
+     *       //   "role": "my_role",
+     *       //   "selfLink": "my_selfLink"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bucket": "my_bucket",
+     *   //   "domain": "my_domain",
+     *   //   "email": "my_email",
+     *   //   "entity": "my_entity",
+     *   //   "entityId": "my_entityId",
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "projectTeam": {},
+     *   //   "role": "my_role",
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2451,11 +3258,11 @@ export namespace storage_v1 {
     patch(
       params: Params$Resource$Bucketaccesscontrols$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Bucketaccesscontrols$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BucketAccessControl>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BucketAccessControl>>;
     patch(
       params: Params$Resource$Bucketaccesscontrols$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2486,8 +3293,8 @@ export namespace storage_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BucketAccessControl>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$BucketAccessControl>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bucketaccesscontrols$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2533,6 +3340,87 @@ export namespace storage_v1 {
 
     /**
      * Updates an ACL entry on the specified bucket.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.bucketAccessControls.update({
+     *     // Name of a bucket.
+     *     bucket: 'placeholder-value',
+     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     *     entity: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bucket": "my_bucket",
+     *       //   "domain": "my_domain",
+     *       //   "email": "my_email",
+     *       //   "entity": "my_entity",
+     *       //   "entityId": "my_entityId",
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "projectTeam": {},
+     *       //   "role": "my_role",
+     *       //   "selfLink": "my_selfLink"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bucket": "my_bucket",
+     *   //   "domain": "my_domain",
+     *   //   "email": "my_email",
+     *   //   "entity": "my_entity",
+     *   //   "entityId": "my_entityId",
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "projectTeam": {},
+     *   //   "role": "my_role",
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2542,11 +3430,11 @@ export namespace storage_v1 {
     update(
       params: Params$Resource$Bucketaccesscontrols$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Bucketaccesscontrols$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BucketAccessControl>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BucketAccessControl>>;
     update(
       params: Params$Resource$Bucketaccesscontrols$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2577,8 +3465,8 @@ export namespace storage_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BucketAccessControl>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$BucketAccessControl>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bucketaccesscontrols$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2729,6 +3617,57 @@ export namespace storage_v1 {
 
     /**
      * Deletes an empty bucket. Deletions are permanent unless soft delete is enabled on the bucket.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.buckets.delete({
+     *     // Name of a bucket.
+     *     bucket: 'placeholder-value',
+     *     // If set, only deletes the bucket if its metageneration matches this value.
+     *     ifMetagenerationMatch: 'placeholder-value',
+     *     // If set, only deletes the bucket if its metageneration does not match this value.
+     *     ifMetagenerationNotMatch: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2738,11 +3677,11 @@ export namespace storage_v1 {
     delete(
       params: Params$Resource$Buckets$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Buckets$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Buckets$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2769,7 +3708,10 @@ export namespace storage_v1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Buckets$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2814,6 +3756,107 @@ export namespace storage_v1 {
 
     /**
      * Returns metadata for the specified bucket.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_only',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.buckets.get({
+     *     // Name of a bucket.
+     *     bucket: 'placeholder-value',
+     *     // If present, specifies the generation of the bucket. This is required if softDeleted is true.
+     *     generation: 'placeholder-value',
+     *     // Makes the return of the bucket metadata conditional on whether the bucket's current metageneration matches the given value.
+     *     ifMetagenerationMatch: 'placeholder-value',
+     *     // Makes the return of the bucket metadata conditional on whether the bucket's current metageneration does not match the given value.
+     *     ifMetagenerationNotMatch: 'placeholder-value',
+     *     // Set of properties to return. Defaults to noAcl.
+     *     projection: 'placeholder-value',
+     *     // If true, return the soft-deleted version of this bucket. The default is false. For more information, see [Soft Delete](https://cloud.google.com/storage/docs/soft-delete).
+     *     softDeleted: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acl": [],
+     *   //   "autoclass": {},
+     *   //   "billing": {},
+     *   //   "cors": [],
+     *   //   "customPlacementConfig": {},
+     *   //   "defaultEventBasedHold": false,
+     *   //   "defaultObjectAcl": [],
+     *   //   "encryption": {},
+     *   //   "etag": "my_etag",
+     *   //   "generation": "my_generation",
+     *   //   "hardDeleteTime": "my_hardDeleteTime",
+     *   //   "hierarchicalNamespace": {},
+     *   //   "iamConfiguration": {},
+     *   //   "id": "my_id",
+     *   //   "ipFilter": {},
+     *   //   "kind": "my_kind",
+     *   //   "labels": {},
+     *   //   "lifecycle": {},
+     *   //   "location": "my_location",
+     *   //   "locationType": "my_locationType",
+     *   //   "logging": {},
+     *   //   "metageneration": "my_metageneration",
+     *   //   "name": "my_name",
+     *   //   "objectRetention": {},
+     *   //   "owner": {},
+     *   //   "projectNumber": "my_projectNumber",
+     *   //   "retentionPolicy": {},
+     *   //   "rpo": "my_rpo",
+     *   //   "satisfiesPZI": false,
+     *   //   "satisfiesPZS": false,
+     *   //   "selfLink": "my_selfLink",
+     *   //   "softDeletePolicy": {},
+     *   //   "softDeleteTime": "my_softDeleteTime",
+     *   //   "storageClass": "my_storageClass",
+     *   //   "timeCreated": "my_timeCreated",
+     *   //   "updated": "my_updated",
+     *   //   "versioning": {},
+     *   //   "website": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2823,11 +3866,11 @@ export namespace storage_v1 {
     get(
       params: Params$Resource$Buckets$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Buckets$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Bucket>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Bucket>>;
     get(
       params: Params$Resource$Buckets$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2856,7 +3899,10 @@ export namespace storage_v1 {
       callback?:
         | BodyResponseCallback<Schema$Bucket>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Bucket> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Bucket>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Buckets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2901,6 +3947,63 @@ export namespace storage_v1 {
 
     /**
      * Returns an IAM policy for the specified bucket.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.buckets.getIamPolicy({
+     *     // Name of a bucket.
+     *     bucket: 'placeholder-value',
+     *     // The IAM policy format version to be returned. If the optionsRequestedPolicyVersion is for an older version that doesn't support part of the requested IAM policy, the request fails.
+     *     optionsRequestedPolicyVersion: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "kind": "my_kind",
+     *   //   "resourceId": "my_resourceId",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2910,11 +4013,11 @@ export namespace storage_v1 {
     getIamPolicy(
       params: Params$Resource$Buckets$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Buckets$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Buckets$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2943,7 +4046,10 @@ export namespace storage_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buckets$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2989,6 +4095,65 @@ export namespace storage_v1 {
 
     /**
      * Returns the storage layout configuration for the specified bucket. Note that this operation requires storage.objects.list permission.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_only',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.buckets.getStorageLayout({
+     *     // Name of a bucket.
+     *     bucket: 'placeholder-value',
+     *     // An optional prefix used for permission check. It is useful when the caller only has storage.objects.list permission under a specific prefix.
+     *     prefix: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bucket": "my_bucket",
+     *   //   "customPlacementConfig": {},
+     *   //   "hierarchicalNamespace": {},
+     *   //   "kind": "my_kind",
+     *   //   "location": "my_location",
+     *   //   "locationType": "my_locationType"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2998,11 +4163,11 @@ export namespace storage_v1 {
     getStorageLayout(
       params: Params$Resource$Buckets$Getstoragelayout,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getStorageLayout(
       params?: Params$Resource$Buckets$Getstoragelayout,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BucketStorageLayout>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BucketStorageLayout>>;
     getStorageLayout(
       params: Params$Resource$Buckets$Getstoragelayout,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3035,8 +4200,8 @@ export namespace storage_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BucketStorageLayout>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$BucketStorageLayout>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buckets$Getstoragelayout;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3082,6 +4247,148 @@ export namespace storage_v1 {
 
     /**
      * Creates a new bucket.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.buckets.insert({
+     *     // When set to true, object retention is enabled for this bucket.
+     *     enableObjectRetention: 'placeholder-value',
+     *     // Apply a predefined set of access controls to this bucket.
+     *     predefinedAcl: 'placeholder-value',
+     *     // Apply a predefined set of default object access controls to this bucket.
+     *     predefinedDefaultObjectAcl: 'placeholder-value',
+     *     // A valid API project identifier.
+     *     project: 'placeholder-value',
+     *     // Set of properties to return. Defaults to noAcl, unless the bucket resource specifies acl or defaultObjectAcl properties, when it defaults to full.
+     *     projection: 'placeholder-value',
+     *     // The project to be billed for this request.
+     *     userProject: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "acl": [],
+     *       //   "autoclass": {},
+     *       //   "billing": {},
+     *       //   "cors": [],
+     *       //   "customPlacementConfig": {},
+     *       //   "defaultEventBasedHold": false,
+     *       //   "defaultObjectAcl": [],
+     *       //   "encryption": {},
+     *       //   "etag": "my_etag",
+     *       //   "generation": "my_generation",
+     *       //   "hardDeleteTime": "my_hardDeleteTime",
+     *       //   "hierarchicalNamespace": {},
+     *       //   "iamConfiguration": {},
+     *       //   "id": "my_id",
+     *       //   "ipFilter": {},
+     *       //   "kind": "my_kind",
+     *       //   "labels": {},
+     *       //   "lifecycle": {},
+     *       //   "location": "my_location",
+     *       //   "locationType": "my_locationType",
+     *       //   "logging": {},
+     *       //   "metageneration": "my_metageneration",
+     *       //   "name": "my_name",
+     *       //   "objectRetention": {},
+     *       //   "owner": {},
+     *       //   "projectNumber": "my_projectNumber",
+     *       //   "retentionPolicy": {},
+     *       //   "rpo": "my_rpo",
+     *       //   "satisfiesPZI": false,
+     *       //   "satisfiesPZS": false,
+     *       //   "selfLink": "my_selfLink",
+     *       //   "softDeletePolicy": {},
+     *       //   "softDeleteTime": "my_softDeleteTime",
+     *       //   "storageClass": "my_storageClass",
+     *       //   "timeCreated": "my_timeCreated",
+     *       //   "updated": "my_updated",
+     *       //   "versioning": {},
+     *       //   "website": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acl": [],
+     *   //   "autoclass": {},
+     *   //   "billing": {},
+     *   //   "cors": [],
+     *   //   "customPlacementConfig": {},
+     *   //   "defaultEventBasedHold": false,
+     *   //   "defaultObjectAcl": [],
+     *   //   "encryption": {},
+     *   //   "etag": "my_etag",
+     *   //   "generation": "my_generation",
+     *   //   "hardDeleteTime": "my_hardDeleteTime",
+     *   //   "hierarchicalNamespace": {},
+     *   //   "iamConfiguration": {},
+     *   //   "id": "my_id",
+     *   //   "ipFilter": {},
+     *   //   "kind": "my_kind",
+     *   //   "labels": {},
+     *   //   "lifecycle": {},
+     *   //   "location": "my_location",
+     *   //   "locationType": "my_locationType",
+     *   //   "logging": {},
+     *   //   "metageneration": "my_metageneration",
+     *   //   "name": "my_name",
+     *   //   "objectRetention": {},
+     *   //   "owner": {},
+     *   //   "projectNumber": "my_projectNumber",
+     *   //   "retentionPolicy": {},
+     *   //   "rpo": "my_rpo",
+     *   //   "satisfiesPZI": false,
+     *   //   "satisfiesPZS": false,
+     *   //   "selfLink": "my_selfLink",
+     *   //   "softDeletePolicy": {},
+     *   //   "softDeleteTime": "my_softDeleteTime",
+     *   //   "storageClass": "my_storageClass",
+     *   //   "timeCreated": "my_timeCreated",
+     *   //   "updated": "my_updated",
+     *   //   "versioning": {},
+     *   //   "website": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3091,11 +4398,11 @@ export namespace storage_v1 {
     insert(
       params: Params$Resource$Buckets$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Buckets$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Bucket>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Bucket>>;
     insert(
       params: Params$Resource$Buckets$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3124,7 +4431,10 @@ export namespace storage_v1 {
       callback?:
         | BodyResponseCallback<Schema$Bucket>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Bucket> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Bucket>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Buckets$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3166,6 +4476,72 @@ export namespace storage_v1 {
 
     /**
      * Retrieves a list of buckets for a given project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_only',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.buckets.list({
+     *     // Maximum number of buckets to return in a single response. The service will use this parameter or 1,000 items, whichever is smaller.
+     *     maxResults: 'placeholder-value',
+     *     // A previously-returned page token representing part of the larger set of results to view.
+     *     pageToken: 'placeholder-value',
+     *     // Filter results to buckets whose names begin with this prefix.
+     *     prefix: 'placeholder-value',
+     *     // A valid API project identifier.
+     *     project: 'placeholder-value',
+     *     // Set of properties to return. Defaults to noAcl.
+     *     projection: 'placeholder-value',
+     *     // If true, only soft-deleted bucket versions will be returned. The default is false. For more information, see [Soft Delete](https://cloud.google.com/storage/docs/soft-delete).
+     *     softDeleted: 'placeholder-value',
+     *     // The project to be billed for this request.
+     *     userProject: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3175,11 +4551,11 @@ export namespace storage_v1 {
     list(
       params: Params$Resource$Buckets$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Buckets$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Buckets>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Buckets>>;
     list(
       params: Params$Resource$Buckets$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3208,7 +4584,10 @@ export namespace storage_v1 {
       callback?:
         | BodyResponseCallback<Schema$Buckets>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Buckets> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Buckets>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Buckets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3250,6 +4629,97 @@ export namespace storage_v1 {
 
     /**
      * Locks retention policy on a bucket.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.buckets.lockRetentionPolicy({
+     *     // Name of a bucket.
+     *     bucket: 'placeholder-value',
+     *     // Makes the operation conditional on whether bucket's current metageneration matches the given value.
+     *     ifMetagenerationMatch: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acl": [],
+     *   //   "autoclass": {},
+     *   //   "billing": {},
+     *   //   "cors": [],
+     *   //   "customPlacementConfig": {},
+     *   //   "defaultEventBasedHold": false,
+     *   //   "defaultObjectAcl": [],
+     *   //   "encryption": {},
+     *   //   "etag": "my_etag",
+     *   //   "generation": "my_generation",
+     *   //   "hardDeleteTime": "my_hardDeleteTime",
+     *   //   "hierarchicalNamespace": {},
+     *   //   "iamConfiguration": {},
+     *   //   "id": "my_id",
+     *   //   "ipFilter": {},
+     *   //   "kind": "my_kind",
+     *   //   "labels": {},
+     *   //   "lifecycle": {},
+     *   //   "location": "my_location",
+     *   //   "locationType": "my_locationType",
+     *   //   "logging": {},
+     *   //   "metageneration": "my_metageneration",
+     *   //   "name": "my_name",
+     *   //   "objectRetention": {},
+     *   //   "owner": {},
+     *   //   "projectNumber": "my_projectNumber",
+     *   //   "retentionPolicy": {},
+     *   //   "rpo": "my_rpo",
+     *   //   "satisfiesPZI": false,
+     *   //   "satisfiesPZS": false,
+     *   //   "selfLink": "my_selfLink",
+     *   //   "softDeletePolicy": {},
+     *   //   "softDeleteTime": "my_softDeleteTime",
+     *   //   "storageClass": "my_storageClass",
+     *   //   "timeCreated": "my_timeCreated",
+     *   //   "updated": "my_updated",
+     *   //   "versioning": {},
+     *   //   "website": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3259,11 +4729,11 @@ export namespace storage_v1 {
     lockRetentionPolicy(
       params: Params$Resource$Buckets$Lockretentionpolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     lockRetentionPolicy(
       params?: Params$Resource$Buckets$Lockretentionpolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Bucket>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Bucket>>;
     lockRetentionPolicy(
       params: Params$Resource$Buckets$Lockretentionpolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3292,7 +4762,10 @@ export namespace storage_v1 {
       callback?:
         | BodyResponseCallback<Schema$Bucket>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Bucket> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Bucket>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buckets$Lockretentionpolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3337,6 +4810,149 @@ export namespace storage_v1 {
 
     /**
      * Patches a bucket. Changes to the bucket will be readable immediately after writing, but configuration changes may take time to propagate.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.buckets.patch({
+     *     // Name of a bucket.
+     *     bucket: 'placeholder-value',
+     *     // Makes the return of the bucket metadata conditional on whether the bucket's current metageneration matches the given value.
+     *     ifMetagenerationMatch: 'placeholder-value',
+     *     // Makes the return of the bucket metadata conditional on whether the bucket's current metageneration does not match the given value.
+     *     ifMetagenerationNotMatch: 'placeholder-value',
+     *     // Apply a predefined set of access controls to this bucket.
+     *     predefinedAcl: 'placeholder-value',
+     *     // Apply a predefined set of default object access controls to this bucket.
+     *     predefinedDefaultObjectAcl: 'placeholder-value',
+     *     // Set of properties to return. Defaults to full.
+     *     projection: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "acl": [],
+     *       //   "autoclass": {},
+     *       //   "billing": {},
+     *       //   "cors": [],
+     *       //   "customPlacementConfig": {},
+     *       //   "defaultEventBasedHold": false,
+     *       //   "defaultObjectAcl": [],
+     *       //   "encryption": {},
+     *       //   "etag": "my_etag",
+     *       //   "generation": "my_generation",
+     *       //   "hardDeleteTime": "my_hardDeleteTime",
+     *       //   "hierarchicalNamespace": {},
+     *       //   "iamConfiguration": {},
+     *       //   "id": "my_id",
+     *       //   "ipFilter": {},
+     *       //   "kind": "my_kind",
+     *       //   "labels": {},
+     *       //   "lifecycle": {},
+     *       //   "location": "my_location",
+     *       //   "locationType": "my_locationType",
+     *       //   "logging": {},
+     *       //   "metageneration": "my_metageneration",
+     *       //   "name": "my_name",
+     *       //   "objectRetention": {},
+     *       //   "owner": {},
+     *       //   "projectNumber": "my_projectNumber",
+     *       //   "retentionPolicy": {},
+     *       //   "rpo": "my_rpo",
+     *       //   "satisfiesPZI": false,
+     *       //   "satisfiesPZS": false,
+     *       //   "selfLink": "my_selfLink",
+     *       //   "softDeletePolicy": {},
+     *       //   "softDeleteTime": "my_softDeleteTime",
+     *       //   "storageClass": "my_storageClass",
+     *       //   "timeCreated": "my_timeCreated",
+     *       //   "updated": "my_updated",
+     *       //   "versioning": {},
+     *       //   "website": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acl": [],
+     *   //   "autoclass": {},
+     *   //   "billing": {},
+     *   //   "cors": [],
+     *   //   "customPlacementConfig": {},
+     *   //   "defaultEventBasedHold": false,
+     *   //   "defaultObjectAcl": [],
+     *   //   "encryption": {},
+     *   //   "etag": "my_etag",
+     *   //   "generation": "my_generation",
+     *   //   "hardDeleteTime": "my_hardDeleteTime",
+     *   //   "hierarchicalNamespace": {},
+     *   //   "iamConfiguration": {},
+     *   //   "id": "my_id",
+     *   //   "ipFilter": {},
+     *   //   "kind": "my_kind",
+     *   //   "labels": {},
+     *   //   "lifecycle": {},
+     *   //   "location": "my_location",
+     *   //   "locationType": "my_locationType",
+     *   //   "logging": {},
+     *   //   "metageneration": "my_metageneration",
+     *   //   "name": "my_name",
+     *   //   "objectRetention": {},
+     *   //   "owner": {},
+     *   //   "projectNumber": "my_projectNumber",
+     *   //   "retentionPolicy": {},
+     *   //   "rpo": "my_rpo",
+     *   //   "satisfiesPZI": false,
+     *   //   "satisfiesPZS": false,
+     *   //   "selfLink": "my_selfLink",
+     *   //   "softDeletePolicy": {},
+     *   //   "softDeleteTime": "my_softDeleteTime",
+     *   //   "storageClass": "my_storageClass",
+     *   //   "timeCreated": "my_timeCreated",
+     *   //   "updated": "my_updated",
+     *   //   "versioning": {},
+     *   //   "website": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3346,11 +4962,11 @@ export namespace storage_v1 {
     patch(
       params: Params$Resource$Buckets$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Buckets$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Bucket>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Bucket>>;
     patch(
       params: Params$Resource$Buckets$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3379,7 +4995,10 @@ export namespace storage_v1 {
       callback?:
         | BodyResponseCallback<Schema$Bucket>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Bucket> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Bucket>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Buckets$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3424,6 +5043,72 @@ export namespace storage_v1 {
 
     /**
      * Initiates a long-running Relocate Bucket operation on the specified bucket.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.buckets.relocate({
+     *     // Name of the bucket to be moved.
+     *     bucket: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "destinationCustomPlacementConfig": {},
+     *       //   "destinationLocation": "my_destinationLocation",
+     *       //   "validateOnly": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {},
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3433,11 +5118,11 @@ export namespace storage_v1 {
     relocate(
       params: Params$Resource$Buckets$Relocate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     relocate(
       params?: Params$Resource$Buckets$Relocate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     relocate(
       params: Params$Resource$Buckets$Relocate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3472,8 +5157,8 @@ export namespace storage_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Buckets$Relocate;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3518,6 +5203,99 @@ export namespace storage_v1 {
 
     /**
      * Restores a soft-deleted bucket.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.buckets.restore({
+     *     // Name of a bucket.
+     *     bucket: 'placeholder-value',
+     *     // Generation of a bucket.
+     *     generation: 'placeholder-value',
+     *     // Set of properties to return. Defaults to full.
+     *     projection: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acl": [],
+     *   //   "autoclass": {},
+     *   //   "billing": {},
+     *   //   "cors": [],
+     *   //   "customPlacementConfig": {},
+     *   //   "defaultEventBasedHold": false,
+     *   //   "defaultObjectAcl": [],
+     *   //   "encryption": {},
+     *   //   "etag": "my_etag",
+     *   //   "generation": "my_generation",
+     *   //   "hardDeleteTime": "my_hardDeleteTime",
+     *   //   "hierarchicalNamespace": {},
+     *   //   "iamConfiguration": {},
+     *   //   "id": "my_id",
+     *   //   "ipFilter": {},
+     *   //   "kind": "my_kind",
+     *   //   "labels": {},
+     *   //   "lifecycle": {},
+     *   //   "location": "my_location",
+     *   //   "locationType": "my_locationType",
+     *   //   "logging": {},
+     *   //   "metageneration": "my_metageneration",
+     *   //   "name": "my_name",
+     *   //   "objectRetention": {},
+     *   //   "owner": {},
+     *   //   "projectNumber": "my_projectNumber",
+     *   //   "retentionPolicy": {},
+     *   //   "rpo": "my_rpo",
+     *   //   "satisfiesPZI": false,
+     *   //   "satisfiesPZS": false,
+     *   //   "selfLink": "my_selfLink",
+     *   //   "softDeletePolicy": {},
+     *   //   "softDeleteTime": "my_softDeleteTime",
+     *   //   "storageClass": "my_storageClass",
+     *   //   "timeCreated": "my_timeCreated",
+     *   //   "updated": "my_updated",
+     *   //   "versioning": {},
+     *   //   "website": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3527,11 +5305,11 @@ export namespace storage_v1 {
     restore(
       params: Params$Resource$Buckets$Restore,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     restore(
       params?: Params$Resource$Buckets$Restore,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Bucket>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Bucket>>;
     restore(
       params: Params$Resource$Buckets$Restore,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3560,7 +5338,10 @@ export namespace storage_v1 {
       callback?:
         | BodyResponseCallback<Schema$Bucket>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Bucket> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Bucket>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Buckets$Restore;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3605,6 +5386,73 @@ export namespace storage_v1 {
 
     /**
      * Updates an IAM policy for the specified bucket.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.buckets.setIamPolicy({
+     *     // Name of a bucket.
+     *     bucket: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bindings": [],
+     *       //   "etag": "my_etag",
+     *       //   "kind": "my_kind",
+     *       //   "resourceId": "my_resourceId",
+     *       //   "version": 0
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "kind": "my_kind",
+     *   //   "resourceId": "my_resourceId",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3614,11 +5462,11 @@ export namespace storage_v1 {
     setIamPolicy(
       params: Params$Resource$Buckets$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Buckets$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Buckets$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3647,7 +5495,10 @@ export namespace storage_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buckets$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3693,6 +5544,63 @@ export namespace storage_v1 {
 
     /**
      * Tests a set of permissions on the given bucket to see which, if any, are held by the caller.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_only',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.buckets.testIamPermissions({
+     *     // Name of a bucket.
+     *     bucket: 'placeholder-value',
+     *     // Permissions to test.
+     *     permissions: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3702,11 +5610,11 @@ export namespace storage_v1 {
     testIamPermissions(
       params: Params$Resource$Buckets$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Buckets$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Buckets$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3741,8 +5649,8 @@ export namespace storage_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Buckets$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3787,6 +5695,149 @@ export namespace storage_v1 {
 
     /**
      * Updates a bucket. Changes to the bucket will be readable immediately after writing, but configuration changes may take time to propagate.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.buckets.update({
+     *     // Name of a bucket.
+     *     bucket: 'placeholder-value',
+     *     // Makes the return of the bucket metadata conditional on whether the bucket's current metageneration matches the given value.
+     *     ifMetagenerationMatch: 'placeholder-value',
+     *     // Makes the return of the bucket metadata conditional on whether the bucket's current metageneration does not match the given value.
+     *     ifMetagenerationNotMatch: 'placeholder-value',
+     *     // Apply a predefined set of access controls to this bucket.
+     *     predefinedAcl: 'placeholder-value',
+     *     // Apply a predefined set of default object access controls to this bucket.
+     *     predefinedDefaultObjectAcl: 'placeholder-value',
+     *     // Set of properties to return. Defaults to full.
+     *     projection: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "acl": [],
+     *       //   "autoclass": {},
+     *       //   "billing": {},
+     *       //   "cors": [],
+     *       //   "customPlacementConfig": {},
+     *       //   "defaultEventBasedHold": false,
+     *       //   "defaultObjectAcl": [],
+     *       //   "encryption": {},
+     *       //   "etag": "my_etag",
+     *       //   "generation": "my_generation",
+     *       //   "hardDeleteTime": "my_hardDeleteTime",
+     *       //   "hierarchicalNamespace": {},
+     *       //   "iamConfiguration": {},
+     *       //   "id": "my_id",
+     *       //   "ipFilter": {},
+     *       //   "kind": "my_kind",
+     *       //   "labels": {},
+     *       //   "lifecycle": {},
+     *       //   "location": "my_location",
+     *       //   "locationType": "my_locationType",
+     *       //   "logging": {},
+     *       //   "metageneration": "my_metageneration",
+     *       //   "name": "my_name",
+     *       //   "objectRetention": {},
+     *       //   "owner": {},
+     *       //   "projectNumber": "my_projectNumber",
+     *       //   "retentionPolicy": {},
+     *       //   "rpo": "my_rpo",
+     *       //   "satisfiesPZI": false,
+     *       //   "satisfiesPZS": false,
+     *       //   "selfLink": "my_selfLink",
+     *       //   "softDeletePolicy": {},
+     *       //   "softDeleteTime": "my_softDeleteTime",
+     *       //   "storageClass": "my_storageClass",
+     *       //   "timeCreated": "my_timeCreated",
+     *       //   "updated": "my_updated",
+     *       //   "versioning": {},
+     *       //   "website": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acl": [],
+     *   //   "autoclass": {},
+     *   //   "billing": {},
+     *   //   "cors": [],
+     *   //   "customPlacementConfig": {},
+     *   //   "defaultEventBasedHold": false,
+     *   //   "defaultObjectAcl": [],
+     *   //   "encryption": {},
+     *   //   "etag": "my_etag",
+     *   //   "generation": "my_generation",
+     *   //   "hardDeleteTime": "my_hardDeleteTime",
+     *   //   "hierarchicalNamespace": {},
+     *   //   "iamConfiguration": {},
+     *   //   "id": "my_id",
+     *   //   "ipFilter": {},
+     *   //   "kind": "my_kind",
+     *   //   "labels": {},
+     *   //   "lifecycle": {},
+     *   //   "location": "my_location",
+     *   //   "locationType": "my_locationType",
+     *   //   "logging": {},
+     *   //   "metageneration": "my_metageneration",
+     *   //   "name": "my_name",
+     *   //   "objectRetention": {},
+     *   //   "owner": {},
+     *   //   "projectNumber": "my_projectNumber",
+     *   //   "retentionPolicy": {},
+     *   //   "rpo": "my_rpo",
+     *   //   "satisfiesPZI": false,
+     *   //   "satisfiesPZS": false,
+     *   //   "selfLink": "my_selfLink",
+     *   //   "softDeletePolicy": {},
+     *   //   "softDeleteTime": "my_softDeleteTime",
+     *   //   "storageClass": "my_storageClass",
+     *   //   "timeCreated": "my_timeCreated",
+     *   //   "updated": "my_updated",
+     *   //   "versioning": {},
+     *   //   "website": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3796,11 +5847,11 @@ export namespace storage_v1 {
     update(
       params: Params$Resource$Buckets$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Buckets$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Bucket>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Bucket>>;
     update(
       params: Params$Resource$Buckets$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3829,7 +5880,10 @@ export namespace storage_v1 {
       callback?:
         | BodyResponseCallback<Schema$Bucket>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Bucket> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Bucket>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Buckets$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4162,6 +6216,67 @@ export namespace storage_v1 {
 
     /**
      * Stop watching resources through this channel
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_only',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.channels.stop({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "address": "my_address",
+     *       //   "expiration": "my_expiration",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "params": {},
+     *       //   "payload": false,
+     *       //   "resourceId": "my_resourceId",
+     *       //   "resourceUri": "my_resourceUri",
+     *       //   "token": "my_token",
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4171,11 +6286,11 @@ export namespace storage_v1 {
     stop(
       params: Params$Resource$Channels$Stop,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     stop(
       params?: Params$Resource$Channels$Stop,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     stop(
       params: Params$Resource$Channels$Stop,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4202,7 +6317,10 @@ export namespace storage_v1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Channels$Stop;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4261,6 +6379,54 @@ export namespace storage_v1 {
 
     /**
      * Permanently deletes the default object ACL entry for the specified entity on the specified bucket.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.defaultObjectAccessControls.delete({
+     *     // Name of a bucket.
+     *     bucket: 'placeholder-value',
+     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     *     entity: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4270,11 +6436,11 @@ export namespace storage_v1 {
     delete(
       params: Params$Resource$Defaultobjectaccesscontrols$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Defaultobjectaccesscontrols$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Defaultobjectaccesscontrols$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4301,7 +6467,10 @@ export namespace storage_v1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Defaultobjectaccesscontrols$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4346,6 +6515,71 @@ export namespace storage_v1 {
 
     /**
      * Returns the default object ACL entry for the specified entity on the specified bucket.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.defaultObjectAccessControls.get({
+     *     // Name of a bucket.
+     *     bucket: 'placeholder-value',
+     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     *     entity: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bucket": "my_bucket",
+     *   //   "domain": "my_domain",
+     *   //   "email": "my_email",
+     *   //   "entity": "my_entity",
+     *   //   "entityId": "my_entityId",
+     *   //   "etag": "my_etag",
+     *   //   "generation": "my_generation",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "object": "my_object",
+     *   //   "projectTeam": {},
+     *   //   "role": "my_role",
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4355,11 +6589,11 @@ export namespace storage_v1 {
     get(
       params: Params$Resource$Defaultobjectaccesscontrols$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Defaultobjectaccesscontrols$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ObjectAccessControl>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ObjectAccessControl>>;
     get(
       params: Params$Resource$Defaultobjectaccesscontrols$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4390,8 +6624,8 @@ export namespace storage_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ObjectAccessControl>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ObjectAccessControl>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Defaultobjectaccesscontrols$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4436,6 +6670,89 @@ export namespace storage_v1 {
 
     /**
      * Creates a new default object ACL entry on the specified bucket.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.defaultObjectAccessControls.insert({
+     *     // Name of a bucket.
+     *     bucket: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bucket": "my_bucket",
+     *       //   "domain": "my_domain",
+     *       //   "email": "my_email",
+     *       //   "entity": "my_entity",
+     *       //   "entityId": "my_entityId",
+     *       //   "etag": "my_etag",
+     *       //   "generation": "my_generation",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "object": "my_object",
+     *       //   "projectTeam": {},
+     *       //   "role": "my_role",
+     *       //   "selfLink": "my_selfLink"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bucket": "my_bucket",
+     *   //   "domain": "my_domain",
+     *   //   "email": "my_email",
+     *   //   "entity": "my_entity",
+     *   //   "entityId": "my_entityId",
+     *   //   "etag": "my_etag",
+     *   //   "generation": "my_generation",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "object": "my_object",
+     *   //   "projectTeam": {},
+     *   //   "role": "my_role",
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4445,11 +6762,11 @@ export namespace storage_v1 {
     insert(
       params: Params$Resource$Defaultobjectaccesscontrols$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Defaultobjectaccesscontrols$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ObjectAccessControl>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ObjectAccessControl>>;
     insert(
       params: Params$Resource$Defaultobjectaccesscontrols$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4480,8 +6797,8 @@ export namespace storage_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ObjectAccessControl>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ObjectAccessControl>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Defaultobjectaccesscontrols$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4527,6 +6844,62 @@ export namespace storage_v1 {
 
     /**
      * Retrieves default object ACL entries on the specified bucket.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.defaultObjectAccessControls.list({
+     *     // Name of a bucket.
+     *     bucket: 'placeholder-value',
+     *     // If present, only return default ACL listing if the bucket's current metageneration matches this value.
+     *     ifMetagenerationMatch: 'placeholder-value',
+     *     // If present, only return default ACL listing if the bucket's current metageneration does not match the given value.
+     *     ifMetagenerationNotMatch: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4536,11 +6909,11 @@ export namespace storage_v1 {
     list(
       params: Params$Resource$Defaultobjectaccesscontrols$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Defaultobjectaccesscontrols$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ObjectAccessControls>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ObjectAccessControls>>;
     list(
       params: Params$Resource$Defaultobjectaccesscontrols$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4573,8 +6946,8 @@ export namespace storage_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ObjectAccessControls>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ObjectAccessControls>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Defaultobjectaccesscontrols$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4620,6 +6993,91 @@ export namespace storage_v1 {
 
     /**
      * Patches a default object ACL entry on the specified bucket.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.defaultObjectAccessControls.patch({
+     *     // Name of a bucket.
+     *     bucket: 'placeholder-value',
+     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     *     entity: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bucket": "my_bucket",
+     *       //   "domain": "my_domain",
+     *       //   "email": "my_email",
+     *       //   "entity": "my_entity",
+     *       //   "entityId": "my_entityId",
+     *       //   "etag": "my_etag",
+     *       //   "generation": "my_generation",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "object": "my_object",
+     *       //   "projectTeam": {},
+     *       //   "role": "my_role",
+     *       //   "selfLink": "my_selfLink"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bucket": "my_bucket",
+     *   //   "domain": "my_domain",
+     *   //   "email": "my_email",
+     *   //   "entity": "my_entity",
+     *   //   "entityId": "my_entityId",
+     *   //   "etag": "my_etag",
+     *   //   "generation": "my_generation",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "object": "my_object",
+     *   //   "projectTeam": {},
+     *   //   "role": "my_role",
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4629,11 +7087,11 @@ export namespace storage_v1 {
     patch(
       params: Params$Resource$Defaultobjectaccesscontrols$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Defaultobjectaccesscontrols$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ObjectAccessControl>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ObjectAccessControl>>;
     patch(
       params: Params$Resource$Defaultobjectaccesscontrols$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4664,8 +7122,8 @@ export namespace storage_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ObjectAccessControl>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ObjectAccessControl>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Defaultobjectaccesscontrols$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4710,6 +7168,91 @@ export namespace storage_v1 {
 
     /**
      * Updates a default object ACL entry on the specified bucket.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.defaultObjectAccessControls.update({
+     *     // Name of a bucket.
+     *     bucket: 'placeholder-value',
+     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     *     entity: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bucket": "my_bucket",
+     *       //   "domain": "my_domain",
+     *       //   "email": "my_email",
+     *       //   "entity": "my_entity",
+     *       //   "entityId": "my_entityId",
+     *       //   "etag": "my_etag",
+     *       //   "generation": "my_generation",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "object": "my_object",
+     *       //   "projectTeam": {},
+     *       //   "role": "my_role",
+     *       //   "selfLink": "my_selfLink"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bucket": "my_bucket",
+     *   //   "domain": "my_domain",
+     *   //   "email": "my_email",
+     *   //   "entity": "my_entity",
+     *   //   "entityId": "my_entityId",
+     *   //   "etag": "my_etag",
+     *   //   "generation": "my_generation",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "object": "my_object",
+     *   //   "projectTeam": {},
+     *   //   "role": "my_role",
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4719,11 +7262,11 @@ export namespace storage_v1 {
     update(
       params: Params$Resource$Defaultobjectaccesscontrols$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Defaultobjectaccesscontrols$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ObjectAccessControl>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ObjectAccessControl>>;
     update(
       params: Params$Resource$Defaultobjectaccesscontrols$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4754,8 +7297,8 @@ export namespace storage_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ObjectAccessControl>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ObjectAccessControl>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Defaultobjectaccesscontrols$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4913,6 +7456,57 @@ export namespace storage_v1 {
 
     /**
      * Permanently deletes a folder. Only applicable to buckets with hierarchical namespace enabled.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.folders.delete({
+     *     // Name of the bucket in which the folder resides.
+     *     bucket: 'placeholder-value',
+     *     // Name of a folder.
+     *     folder: 'placeholder-value',
+     *     // If set, only deletes the folder if its metageneration matches this value.
+     *     ifMetagenerationMatch: 'placeholder-value',
+     *     // If set, only deletes the folder if its metageneration does not match this value.
+     *     ifMetagenerationNotMatch: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4922,11 +7516,11 @@ export namespace storage_v1 {
     delete(
       params: Params$Resource$Folders$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Folders$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Folders$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4953,7 +7547,10 @@ export namespace storage_v1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Folders$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4998,6 +7595,72 @@ export namespace storage_v1 {
 
     /**
      * Returns metadata for the specified folder. Only applicable to buckets with hierarchical namespace enabled.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_only',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.folders.get({
+     *     // Name of the bucket in which the folder resides.
+     *     bucket: 'placeholder-value',
+     *     // Name of a folder.
+     *     folder: 'placeholder-value',
+     *     // Makes the return of the folder metadata conditional on whether the folder's current metageneration matches the given value.
+     *     ifMetagenerationMatch: 'placeholder-value',
+     *     // Makes the return of the folder metadata conditional on whether the folder's current metageneration does not match the given value.
+     *     ifMetagenerationNotMatch: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bucket": "my_bucket",
+     *   //   "createTime": "my_createTime",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "metageneration": "my_metageneration",
+     *   //   "name": "my_name",
+     *   //   "pendingRenameInfo": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5007,11 +7670,11 @@ export namespace storage_v1 {
     get(
       params: Params$Resource$Folders$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Folders$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Folder>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Folder>>;
     get(
       params: Params$Resource$Folders$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5040,7 +7703,10 @@ export namespace storage_v1 {
       callback?:
         | BodyResponseCallback<Schema$Folder>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Folder> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Folder>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Folders$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5085,6 +7751,82 @@ export namespace storage_v1 {
 
     /**
      * Creates a new folder. Only applicable to buckets with hierarchical namespace enabled.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.folders.insert({
+     *     // Name of the bucket in which the folder resides.
+     *     bucket: 'placeholder-value',
+     *     // If true, any parent folder which doesn't exist will be created automatically.
+     *     recursive: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bucket": "my_bucket",
+     *       //   "createTime": "my_createTime",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "metageneration": "my_metageneration",
+     *       //   "name": "my_name",
+     *       //   "pendingRenameInfo": {},
+     *       //   "selfLink": "my_selfLink",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bucket": "my_bucket",
+     *   //   "createTime": "my_createTime",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "metageneration": "my_metageneration",
+     *   //   "name": "my_name",
+     *   //   "pendingRenameInfo": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5094,11 +7836,11 @@ export namespace storage_v1 {
     insert(
       params: Params$Resource$Folders$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Folders$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Folder>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Folder>>;
     insert(
       params: Params$Resource$Folders$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5127,7 +7869,10 @@ export namespace storage_v1 {
       callback?:
         | BodyResponseCallback<Schema$Folder>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Folder> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Folder>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Folders$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5172,6 +7917,72 @@ export namespace storage_v1 {
 
     /**
      * Retrieves a list of folders matching the criteria. Only applicable to buckets with hierarchical namespace enabled.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_only',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.folders.list({
+     *     // Name of the bucket in which to look for folders.
+     *     bucket: 'placeholder-value',
+     *     // Returns results in a directory-like mode. The only supported value is '/'. If set, items will only contain folders that either exactly match the prefix, or are one level below the prefix.
+     *     delimiter: 'placeholder-value',
+     *     // Filter results to folders whose names are lexicographically before endOffset. If startOffset is also set, the folders listed will have names between startOffset (inclusive) and endOffset (exclusive).
+     *     endOffset: 'placeholder-value',
+     *     // Maximum number of items to return in a single page of responses.
+     *     pageSize: 'placeholder-value',
+     *     // A previously-returned page token representing part of the larger set of results to view.
+     *     pageToken: 'placeholder-value',
+     *     // Filter results to folders whose paths begin with this prefix. If set, the value must either be an empty string or end with a '/'.
+     *     prefix: 'placeholder-value',
+     *     // Filter results to folders whose names are lexicographically equal to or after startOffset. If endOffset is also set, the folders listed will have names between startOffset (inclusive) and endOffset (exclusive).
+     *     startOffset: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5181,11 +7992,11 @@ export namespace storage_v1 {
     list(
       params: Params$Resource$Folders$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Folders$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Folders>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Folders>>;
     list(
       params: Params$Resource$Folders$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5214,7 +8025,10 @@ export namespace storage_v1 {
       callback?:
         | BodyResponseCallback<Schema$Folders>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Folders> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Folders>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Folders$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5259,6 +8073,70 @@ export namespace storage_v1 {
 
     /**
      * Renames a source folder to a destination folder. Only applicable to buckets with hierarchical namespace enabled.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.folders.rename({
+     *     // Name of the bucket in which the folders are in.
+     *     bucket: 'placeholder-value',
+     *     // Name of the destination folder.
+     *     destinationFolder: 'placeholder-value',
+     *     // Makes the operation conditional on whether the source object's current metageneration matches the given value.
+     *     ifSourceMetagenerationMatch: 'placeholder-value',
+     *     // Makes the operation conditional on whether the source object's current metageneration does not match the given value.
+     *     ifSourceMetagenerationNotMatch: 'placeholder-value',
+     *     // Name of the source folder.
+     *     sourceFolder: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {},
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5268,11 +8146,11 @@ export namespace storage_v1 {
     rename(
       params: Params$Resource$Folders$Rename,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     rename(
       params?: Params$Resource$Folders$Rename,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     rename(
       params: Params$Resource$Folders$Rename,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5307,8 +8185,8 @@ export namespace storage_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Folders$Rename;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5464,6 +8342,59 @@ export namespace storage_v1 {
 
     /**
      * Permanently deletes a managed folder.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.managedFolders.delete({
+     *     // Allows the deletion of a managed folder even if it is not empty. A managed folder is empty if there are no objects or managed folders that it applies to. Callers must have storage.managedFolders.setIamPolicy permission.
+     *     allowNonEmpty: 'placeholder-value',
+     *     // Name of the bucket containing the managed folder.
+     *     bucket: 'placeholder-value',
+     *     // If set, only deletes the managed folder if its metageneration matches this value.
+     *     ifMetagenerationMatch: 'placeholder-value',
+     *     // If set, only deletes the managed folder if its metageneration does not match this value.
+     *     ifMetagenerationNotMatch: 'placeholder-value',
+     *     // The managed folder name/path.
+     *     managedFolder: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5473,11 +8404,11 @@ export namespace storage_v1 {
     delete(
       params: Params$Resource$Managedfolders$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Managedfolders$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Managedfolders$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5504,7 +8435,10 @@ export namespace storage_v1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Managedfolders$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5549,6 +8483,71 @@ export namespace storage_v1 {
 
     /**
      * Returns metadata of the specified managed folder.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_only',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.managedFolders.get({
+     *     // Name of the bucket containing the managed folder.
+     *     bucket: 'placeholder-value',
+     *     // Makes the return of the managed folder metadata conditional on whether the managed folder's current metageneration matches the given value.
+     *     ifMetagenerationMatch: 'placeholder-value',
+     *     // Makes the return of the managed folder metadata conditional on whether the managed folder's current metageneration does not match the given value.
+     *     ifMetagenerationNotMatch: 'placeholder-value',
+     *     // The managed folder name/path.
+     *     managedFolder: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bucket": "my_bucket",
+     *   //   "createTime": "my_createTime",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "metageneration": "my_metageneration",
+     *   //   "name": "my_name",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5558,11 +8557,11 @@ export namespace storage_v1 {
     get(
       params: Params$Resource$Managedfolders$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Managedfolders$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ManagedFolder>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ManagedFolder>>;
     get(
       params: Params$Resource$Managedfolders$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5591,7 +8590,10 @@ export namespace storage_v1 {
       callback?:
         | BodyResponseCallback<Schema$ManagedFolder>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ManagedFolder> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ManagedFolder>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Managedfolders$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5636,6 +8638,68 @@ export namespace storage_v1 {
 
     /**
      * Returns an IAM policy for the specified managed folder.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_only',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.managedFolders.getIamPolicy({
+     *     // Name of the bucket containing the managed folder.
+     *     bucket: 'placeholder-value',
+     *     // The managed folder name/path.
+     *     managedFolder: 'placeholder-value',
+     *     // The IAM policy format version to be returned. If the optionsRequestedPolicyVersion is for an older version that doesn't support part of the requested IAM policy, the request fails.
+     *     optionsRequestedPolicyVersion: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "kind": "my_kind",
+     *   //   "resourceId": "my_resourceId",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5645,11 +8709,11 @@ export namespace storage_v1 {
     getIamPolicy(
       params: Params$Resource$Managedfolders$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Managedfolders$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Managedfolders$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5678,7 +8742,10 @@ export namespace storage_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Managedfolders$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5724,6 +8791,78 @@ export namespace storage_v1 {
 
     /**
      * Creates a new managed folder.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.managedFolders.insert({
+     *     // Name of the bucket containing the managed folder.
+     *     bucket: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bucket": "my_bucket",
+     *       //   "createTime": "my_createTime",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "metageneration": "my_metageneration",
+     *       //   "name": "my_name",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bucket": "my_bucket",
+     *   //   "createTime": "my_createTime",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "metageneration": "my_metageneration",
+     *   //   "name": "my_name",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5733,11 +8872,11 @@ export namespace storage_v1 {
     insert(
       params: Params$Resource$Managedfolders$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Managedfolders$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ManagedFolder>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ManagedFolder>>;
     insert(
       params: Params$Resource$Managedfolders$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5766,7 +8905,10 @@ export namespace storage_v1 {
       callback?:
         | BodyResponseCallback<Schema$ManagedFolder>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ManagedFolder> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ManagedFolder>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Managedfolders$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5812,6 +8954,66 @@ export namespace storage_v1 {
 
     /**
      * Lists managed folders in the given bucket.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_only',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.managedFolders.list({
+     *     // Name of the bucket containing the managed folder.
+     *     bucket: 'placeholder-value',
+     *     // Maximum number of items to return in a single page of responses.
+     *     pageSize: 'placeholder-value',
+     *     // A previously-returned page token representing part of the larger set of results to view.
+     *     pageToken: 'placeholder-value',
+     *     // The managed folder name/path prefix to filter the output list of results.
+     *     prefix: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5821,11 +9023,11 @@ export namespace storage_v1 {
     list(
       params: Params$Resource$Managedfolders$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Managedfolders$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ManagedFolders>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ManagedFolders>>;
     list(
       params: Params$Resource$Managedfolders$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5854,7 +9056,10 @@ export namespace storage_v1 {
       callback?:
         | BodyResponseCallback<Schema$ManagedFolders>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ManagedFolders> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ManagedFolders>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Managedfolders$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5900,6 +9105,75 @@ export namespace storage_v1 {
 
     /**
      * Updates an IAM policy for the specified managed folder.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.managedFolders.setIamPolicy({
+     *     // Name of the bucket containing the managed folder.
+     *     bucket: 'placeholder-value',
+     *     // The managed folder name/path.
+     *     managedFolder: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bindings": [],
+     *       //   "etag": "my_etag",
+     *       //   "kind": "my_kind",
+     *       //   "resourceId": "my_resourceId",
+     *       //   "version": 0
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "kind": "my_kind",
+     *   //   "resourceId": "my_resourceId",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5909,11 +9183,11 @@ export namespace storage_v1 {
     setIamPolicy(
       params: Params$Resource$Managedfolders$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Managedfolders$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Managedfolders$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5942,7 +9216,10 @@ export namespace storage_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Managedfolders$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5988,6 +9265,65 @@ export namespace storage_v1 {
 
     /**
      * Tests a set of permissions on the given managed folder to see which, if any, are held by the caller.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_only',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.managedFolders.testIamPermissions({
+     *     // Name of the bucket containing the managed folder.
+     *     bucket: 'placeholder-value',
+     *     // The managed folder name/path.
+     *     managedFolder: 'placeholder-value',
+     *     // Permissions to test.
+     *     permissions: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5997,11 +9333,11 @@ export namespace storage_v1 {
     testIamPermissions(
       params: Params$Resource$Managedfolders$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Managedfolders$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Managedfolders$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6036,8 +9372,8 @@ export namespace storage_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Managedfolders$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6222,6 +9558,55 @@ export namespace storage_v1 {
 
     /**
      * Permanently deletes a notification subscription.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.notifications.delete({
+     *     // The parent bucket of the notification.
+     *     bucket: 'placeholder-value',
+     *     // ID of the notification to delete.
+     *     notification: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6231,11 +9616,11 @@ export namespace storage_v1 {
     delete(
       params: Params$Resource$Notifications$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Notifications$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Notifications$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6262,7 +9647,10 @@ export namespace storage_v1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Notifications$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6308,6 +9696,70 @@ export namespace storage_v1 {
 
     /**
      * View a notification configuration.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_only',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.notifications.get({
+     *     // The parent bucket of the notification.
+     *     bucket: 'placeholder-value',
+     *     // Notification ID
+     *     notification: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "custom_attributes": {},
+     *   //   "etag": "my_etag",
+     *   //   "event_types": [],
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "object_name_prefix": "my_object_name_prefix",
+     *   //   "payload_format": "my_payload_format",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "topic": "my_topic"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6317,11 +9769,11 @@ export namespace storage_v1 {
     get(
       params: Params$Resource$Notifications$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Notifications$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Notification>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Notification>>;
     get(
       params: Params$Resource$Notifications$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6350,7 +9802,10 @@ export namespace storage_v1 {
       callback?:
         | BodyResponseCallback<Schema$Notification>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Notification> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Notification>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Notifications$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6396,6 +9851,82 @@ export namespace storage_v1 {
 
     /**
      * Creates a notification subscription for a given bucket.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.notifications.insert({
+     *     // The parent bucket of the notification.
+     *     bucket: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "custom_attributes": {},
+     *       //   "etag": "my_etag",
+     *       //   "event_types": [],
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "object_name_prefix": "my_object_name_prefix",
+     *       //   "payload_format": "my_payload_format",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "topic": "my_topic"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "custom_attributes": {},
+     *   //   "etag": "my_etag",
+     *   //   "event_types": [],
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "object_name_prefix": "my_object_name_prefix",
+     *   //   "payload_format": "my_payload_format",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "topic": "my_topic"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6405,11 +9936,11 @@ export namespace storage_v1 {
     insert(
       params: Params$Resource$Notifications$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Notifications$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Notification>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Notification>>;
     insert(
       params: Params$Resource$Notifications$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6438,7 +9969,10 @@ export namespace storage_v1 {
       callback?:
         | BodyResponseCallback<Schema$Notification>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Notification> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Notification>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Notifications$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6483,6 +10017,61 @@ export namespace storage_v1 {
 
     /**
      * Retrieves a list of notification subscriptions for a given bucket.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_only',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.notifications.list({
+     *     // Name of a Google Cloud Storage bucket.
+     *     bucket: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6492,11 +10081,11 @@ export namespace storage_v1 {
     list(
       params: Params$Resource$Notifications$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Notifications$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Notifications>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Notifications>>;
     list(
       params: Params$Resource$Notifications$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6525,7 +10114,10 @@ export namespace storage_v1 {
       callback?:
         | BodyResponseCallback<Schema$Notifications>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Notifications> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Notifications>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Notifications$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6635,6 +10227,58 @@ export namespace storage_v1 {
 
     /**
      * Permanently deletes the ACL entry for the specified entity on the specified object.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.objectAccessControls.delete({
+     *     // Name of a bucket.
+     *     bucket: 'placeholder-value',
+     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     *     entity: 'placeholder-value',
+     *     // If present, selects a specific revision of this object (as opposed to the latest version, the default).
+     *     generation: 'placeholder-value',
+     *     // Name of the object. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](https://cloud.google.com/storage/docs/request-endpoints#encoding).
+     *     object: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6644,11 +10288,11 @@ export namespace storage_v1 {
     delete(
       params: Params$Resource$Objectaccesscontrols$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Objectaccesscontrols$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Objectaccesscontrols$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6675,7 +10319,10 @@ export namespace storage_v1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Objectaccesscontrols$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6720,6 +10367,75 @@ export namespace storage_v1 {
 
     /**
      * Returns the ACL entry for the specified entity on the specified object.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.objectAccessControls.get({
+     *     // Name of a bucket.
+     *     bucket: 'placeholder-value',
+     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     *     entity: 'placeholder-value',
+     *     // If present, selects a specific revision of this object (as opposed to the latest version, the default).
+     *     generation: 'placeholder-value',
+     *     // Name of the object. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](https://cloud.google.com/storage/docs/request-endpoints#encoding).
+     *     object: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bucket": "my_bucket",
+     *   //   "domain": "my_domain",
+     *   //   "email": "my_email",
+     *   //   "entity": "my_entity",
+     *   //   "entityId": "my_entityId",
+     *   //   "etag": "my_etag",
+     *   //   "generation": "my_generation",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "object": "my_object",
+     *   //   "projectTeam": {},
+     *   //   "role": "my_role",
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6729,11 +10445,11 @@ export namespace storage_v1 {
     get(
       params: Params$Resource$Objectaccesscontrols$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Objectaccesscontrols$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ObjectAccessControl>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ObjectAccessControl>>;
     get(
       params: Params$Resource$Objectaccesscontrols$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6764,8 +10480,8 @@ export namespace storage_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ObjectAccessControl>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ObjectAccessControl>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Objectaccesscontrols$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6810,6 +10526,93 @@ export namespace storage_v1 {
 
     /**
      * Creates a new ACL entry on the specified object.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.objectAccessControls.insert({
+     *     // Name of a bucket.
+     *     bucket: 'placeholder-value',
+     *     // If present, selects a specific revision of this object (as opposed to the latest version, the default).
+     *     generation: 'placeholder-value',
+     *     // Name of the object. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](https://cloud.google.com/storage/docs/request-endpoints#encoding).
+     *     object: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bucket": "my_bucket",
+     *       //   "domain": "my_domain",
+     *       //   "email": "my_email",
+     *       //   "entity": "my_entity",
+     *       //   "entityId": "my_entityId",
+     *       //   "etag": "my_etag",
+     *       //   "generation": "my_generation",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "object": "my_object",
+     *       //   "projectTeam": {},
+     *       //   "role": "my_role",
+     *       //   "selfLink": "my_selfLink"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bucket": "my_bucket",
+     *   //   "domain": "my_domain",
+     *   //   "email": "my_email",
+     *   //   "entity": "my_entity",
+     *   //   "entityId": "my_entityId",
+     *   //   "etag": "my_etag",
+     *   //   "generation": "my_generation",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "object": "my_object",
+     *   //   "projectTeam": {},
+     *   //   "role": "my_role",
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6819,11 +10622,11 @@ export namespace storage_v1 {
     insert(
       params: Params$Resource$Objectaccesscontrols$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Objectaccesscontrols$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ObjectAccessControl>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ObjectAccessControl>>;
     insert(
       params: Params$Resource$Objectaccesscontrols$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6854,8 +10657,8 @@ export namespace storage_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ObjectAccessControl>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ObjectAccessControl>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Objectaccesscontrols$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6901,6 +10704,62 @@ export namespace storage_v1 {
 
     /**
      * Retrieves ACL entries on the specified object.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.objectAccessControls.list({
+     *     // Name of a bucket.
+     *     bucket: 'placeholder-value',
+     *     // If present, selects a specific revision of this object (as opposed to the latest version, the default).
+     *     generation: 'placeholder-value',
+     *     // Name of the object. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](https://cloud.google.com/storage/docs/request-endpoints#encoding).
+     *     object: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6910,11 +10769,11 @@ export namespace storage_v1 {
     list(
       params: Params$Resource$Objectaccesscontrols$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Objectaccesscontrols$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ObjectAccessControls>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ObjectAccessControls>>;
     list(
       params: Params$Resource$Objectaccesscontrols$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6947,8 +10806,8 @@ export namespace storage_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ObjectAccessControls>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ObjectAccessControls>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Objectaccesscontrols$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6994,6 +10853,95 @@ export namespace storage_v1 {
 
     /**
      * Patches an ACL entry on the specified object.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.objectAccessControls.patch({
+     *     // Name of a bucket.
+     *     bucket: 'placeholder-value',
+     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     *     entity: 'placeholder-value',
+     *     // If present, selects a specific revision of this object (as opposed to the latest version, the default).
+     *     generation: 'placeholder-value',
+     *     // Name of the object. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](https://cloud.google.com/storage/docs/request-endpoints#encoding).
+     *     object: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bucket": "my_bucket",
+     *       //   "domain": "my_domain",
+     *       //   "email": "my_email",
+     *       //   "entity": "my_entity",
+     *       //   "entityId": "my_entityId",
+     *       //   "etag": "my_etag",
+     *       //   "generation": "my_generation",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "object": "my_object",
+     *       //   "projectTeam": {},
+     *       //   "role": "my_role",
+     *       //   "selfLink": "my_selfLink"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bucket": "my_bucket",
+     *   //   "domain": "my_domain",
+     *   //   "email": "my_email",
+     *   //   "entity": "my_entity",
+     *   //   "entityId": "my_entityId",
+     *   //   "etag": "my_etag",
+     *   //   "generation": "my_generation",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "object": "my_object",
+     *   //   "projectTeam": {},
+     *   //   "role": "my_role",
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7003,11 +10951,11 @@ export namespace storage_v1 {
     patch(
       params: Params$Resource$Objectaccesscontrols$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Objectaccesscontrols$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ObjectAccessControl>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ObjectAccessControl>>;
     patch(
       params: Params$Resource$Objectaccesscontrols$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7038,8 +10986,8 @@ export namespace storage_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ObjectAccessControl>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ObjectAccessControl>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Objectaccesscontrols$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7084,6 +11032,95 @@ export namespace storage_v1 {
 
     /**
      * Updates an ACL entry on the specified object.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.objectAccessControls.update({
+     *     // Name of a bucket.
+     *     bucket: 'placeholder-value',
+     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     *     entity: 'placeholder-value',
+     *     // If present, selects a specific revision of this object (as opposed to the latest version, the default).
+     *     generation: 'placeholder-value',
+     *     // Name of the object. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](https://cloud.google.com/storage/docs/request-endpoints#encoding).
+     *     object: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bucket": "my_bucket",
+     *       //   "domain": "my_domain",
+     *       //   "email": "my_email",
+     *       //   "entity": "my_entity",
+     *       //   "entityId": "my_entityId",
+     *       //   "etag": "my_etag",
+     *       //   "generation": "my_generation",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "object": "my_object",
+     *       //   "projectTeam": {},
+     *       //   "role": "my_role",
+     *       //   "selfLink": "my_selfLink"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bucket": "my_bucket",
+     *   //   "domain": "my_domain",
+     *   //   "email": "my_email",
+     *   //   "entity": "my_entity",
+     *   //   "entityId": "my_entityId",
+     *   //   "etag": "my_etag",
+     *   //   "generation": "my_generation",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "object": "my_object",
+     *   //   "projectTeam": {},
+     *   //   "role": "my_role",
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7093,11 +11130,11 @@ export namespace storage_v1 {
     update(
       params: Params$Resource$Objectaccesscontrols$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Objectaccesscontrols$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ObjectAccessControl>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ObjectAccessControl>>;
     update(
       params: Params$Resource$Objectaccesscontrols$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7128,8 +11165,8 @@ export namespace storage_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ObjectAccessControl>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ObjectAccessControl>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Objectaccesscontrols$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7327,6 +11364,74 @@ export namespace storage_v1 {
 
     /**
      * Initiates a long-running bulk restore operation on the specified bucket.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.objects.bulkRestore({
+     *     // Name of the bucket in which the object resides.
+     *     bucket: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "allowOverwrite": false,
+     *       //   "copySourceAcl": false,
+     *       //   "matchGlobs": [],
+     *       //   "softDeletedAfterTime": "my_softDeletedAfterTime",
+     *       //   "softDeletedBeforeTime": "my_softDeletedBeforeTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {},
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7336,11 +11441,11 @@ export namespace storage_v1 {
     bulkRestore(
       params: Params$Resource$Objects$Bulkrestore,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     bulkRestore(
       params?: Params$Resource$Objects$Bulkrestore,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     bulkRestore(
       params: Params$Resource$Objects$Bulkrestore,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7375,8 +11480,8 @@ export namespace storage_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Objects$Bulkrestore;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7422,6 +11527,114 @@ export namespace storage_v1 {
 
     /**
      * Concatenates a list of existing objects into a new object in the same bucket.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.objects.compose({
+     *     // Name of the bucket containing the source objects. The destination object is stored in this bucket.
+     *     destinationBucket: 'placeholder-value',
+     *     // Name of the new object. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](https://cloud.google.com/storage/docs/request-endpoints#encoding).
+     *     destinationObject: 'placeholder-value',
+     *     // Apply a predefined set of access controls to the destination object.
+     *     destinationPredefinedAcl: 'placeholder-value',
+     *     // Makes the operation conditional on whether the object's current generation matches the given value. Setting to 0 makes the operation succeed only if there are no live versions of the object.
+     *     ifGenerationMatch: 'placeholder-value',
+     *     // Makes the operation conditional on whether the object's current metageneration matches the given value.
+     *     ifMetagenerationMatch: 'placeholder-value',
+     *     // Resource name of the Cloud KMS key, of the form projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key, that will be used to encrypt the object. Overrides the object metadata's kms_key_name value, if any.
+     *     kmsKeyName: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "destination": {},
+     *       //   "kind": "my_kind",
+     *       //   "sourceObjects": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acl": [],
+     *   //   "bucket": "my_bucket",
+     *   //   "cacheControl": "my_cacheControl",
+     *   //   "componentCount": 0,
+     *   //   "contentDisposition": "my_contentDisposition",
+     *   //   "contentEncoding": "my_contentEncoding",
+     *   //   "contentLanguage": "my_contentLanguage",
+     *   //   "contentType": "my_contentType",
+     *   //   "crc32c": "my_crc32c",
+     *   //   "customTime": "my_customTime",
+     *   //   "customerEncryption": {},
+     *   //   "etag": "my_etag",
+     *   //   "eventBasedHold": false,
+     *   //   "generation": "my_generation",
+     *   //   "hardDeleteTime": "my_hardDeleteTime",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "kmsKeyName": "my_kmsKeyName",
+     *   //   "md5Hash": "my_md5Hash",
+     *   //   "mediaLink": "my_mediaLink",
+     *   //   "metadata": {},
+     *   //   "metageneration": "my_metageneration",
+     *   //   "name": "my_name",
+     *   //   "owner": {},
+     *   //   "restoreToken": "my_restoreToken",
+     *   //   "retention": {},
+     *   //   "retentionExpirationTime": "my_retentionExpirationTime",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "size": "my_size",
+     *   //   "softDeleteTime": "my_softDeleteTime",
+     *   //   "storageClass": "my_storageClass",
+     *   //   "temporaryHold": false,
+     *   //   "timeCreated": "my_timeCreated",
+     *   //   "timeDeleted": "my_timeDeleted",
+     *   //   "timeFinalized": "my_timeFinalized",
+     *   //   "timeStorageClassUpdated": "my_timeStorageClassUpdated",
+     *   //   "updated": "my_updated"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7431,11 +11644,11 @@ export namespace storage_v1 {
     compose(
       params: Params$Resource$Objects$Compose,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     compose(
       params?: Params$Resource$Objects$Compose,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Object>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Object>>;
     compose(
       params: Params$Resource$Objects$Compose,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7464,7 +11677,10 @@ export namespace storage_v1 {
       callback?:
         | BodyResponseCallback<Schema$Object>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Object> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Object>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Objects$Compose;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7509,6 +11725,168 @@ export namespace storage_v1 {
 
     /**
      * Copies a source object to a destination object. Optionally overrides metadata.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.objects.copy({
+     *     // Name of the bucket in which to store the new object. Overrides the provided object metadata's bucket value, if any.For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](https://cloud.google.com/storage/docs/request-endpoints#encoding).
+     *     destinationBucket: 'placeholder-value',
+     *     // Resource name of the Cloud KMS key, of the form projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key, that will be used to encrypt the object. Overrides the object metadata's kms_key_name value, if any.
+     *     destinationKmsKeyName: 'placeholder-value',
+     *     // Name of the new object. Required when the object metadata is not otherwise provided. Overrides the object metadata's name value, if any.
+     *     destinationObject: 'placeholder-value',
+     *     // Apply a predefined set of access controls to the destination object.
+     *     destinationPredefinedAcl: 'placeholder-value',
+     *     // Makes the operation conditional on whether the destination object's current generation matches the given value. Setting to 0 makes the operation succeed only if there are no live versions of the object.
+     *     ifGenerationMatch: 'placeholder-value',
+     *     // Makes the operation conditional on whether the destination object's current generation does not match the given value. If no live object exists, the precondition fails. Setting to 0 makes the operation succeed only if there is a live version of the object.
+     *     ifGenerationNotMatch: 'placeholder-value',
+     *     // Makes the operation conditional on whether the destination object's current metageneration matches the given value.
+     *     ifMetagenerationMatch: 'placeholder-value',
+     *     // Makes the operation conditional on whether the destination object's current metageneration does not match the given value.
+     *     ifMetagenerationNotMatch: 'placeholder-value',
+     *     // Makes the operation conditional on whether the source object's current generation matches the given value.
+     *     ifSourceGenerationMatch: 'placeholder-value',
+     *     // Makes the operation conditional on whether the source object's current generation does not match the given value.
+     *     ifSourceGenerationNotMatch: 'placeholder-value',
+     *     // Makes the operation conditional on whether the source object's current metageneration matches the given value.
+     *     ifSourceMetagenerationMatch: 'placeholder-value',
+     *     // Makes the operation conditional on whether the source object's current metageneration does not match the given value.
+     *     ifSourceMetagenerationNotMatch: 'placeholder-value',
+     *     // Set of properties to return. Defaults to noAcl, unless the object resource specifies the acl property, when it defaults to full.
+     *     projection: 'placeholder-value',
+     *     // Name of the bucket in which to find the source object.
+     *     sourceBucket: 'placeholder-value',
+     *     // If present, selects a specific revision of the source object (as opposed to the latest version, the default).
+     *     sourceGeneration: 'placeholder-value',
+     *     // Name of the source object. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](https://cloud.google.com/storage/docs/request-endpoints#encoding).
+     *     sourceObject: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "acl": [],
+     *       //   "bucket": "my_bucket",
+     *       //   "cacheControl": "my_cacheControl",
+     *       //   "componentCount": 0,
+     *       //   "contentDisposition": "my_contentDisposition",
+     *       //   "contentEncoding": "my_contentEncoding",
+     *       //   "contentLanguage": "my_contentLanguage",
+     *       //   "contentType": "my_contentType",
+     *       //   "crc32c": "my_crc32c",
+     *       //   "customTime": "my_customTime",
+     *       //   "customerEncryption": {},
+     *       //   "etag": "my_etag",
+     *       //   "eventBasedHold": false,
+     *       //   "generation": "my_generation",
+     *       //   "hardDeleteTime": "my_hardDeleteTime",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "kmsKeyName": "my_kmsKeyName",
+     *       //   "md5Hash": "my_md5Hash",
+     *       //   "mediaLink": "my_mediaLink",
+     *       //   "metadata": {},
+     *       //   "metageneration": "my_metageneration",
+     *       //   "name": "my_name",
+     *       //   "owner": {},
+     *       //   "restoreToken": "my_restoreToken",
+     *       //   "retention": {},
+     *       //   "retentionExpirationTime": "my_retentionExpirationTime",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "size": "my_size",
+     *       //   "softDeleteTime": "my_softDeleteTime",
+     *       //   "storageClass": "my_storageClass",
+     *       //   "temporaryHold": false,
+     *       //   "timeCreated": "my_timeCreated",
+     *       //   "timeDeleted": "my_timeDeleted",
+     *       //   "timeFinalized": "my_timeFinalized",
+     *       //   "timeStorageClassUpdated": "my_timeStorageClassUpdated",
+     *       //   "updated": "my_updated"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acl": [],
+     *   //   "bucket": "my_bucket",
+     *   //   "cacheControl": "my_cacheControl",
+     *   //   "componentCount": 0,
+     *   //   "contentDisposition": "my_contentDisposition",
+     *   //   "contentEncoding": "my_contentEncoding",
+     *   //   "contentLanguage": "my_contentLanguage",
+     *   //   "contentType": "my_contentType",
+     *   //   "crc32c": "my_crc32c",
+     *   //   "customTime": "my_customTime",
+     *   //   "customerEncryption": {},
+     *   //   "etag": "my_etag",
+     *   //   "eventBasedHold": false,
+     *   //   "generation": "my_generation",
+     *   //   "hardDeleteTime": "my_hardDeleteTime",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "kmsKeyName": "my_kmsKeyName",
+     *   //   "md5Hash": "my_md5Hash",
+     *   //   "mediaLink": "my_mediaLink",
+     *   //   "metadata": {},
+     *   //   "metageneration": "my_metageneration",
+     *   //   "name": "my_name",
+     *   //   "owner": {},
+     *   //   "restoreToken": "my_restoreToken",
+     *   //   "retention": {},
+     *   //   "retentionExpirationTime": "my_retentionExpirationTime",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "size": "my_size",
+     *   //   "softDeleteTime": "my_softDeleteTime",
+     *   //   "storageClass": "my_storageClass",
+     *   //   "temporaryHold": false,
+     *   //   "timeCreated": "my_timeCreated",
+     *   //   "timeDeleted": "my_timeDeleted",
+     *   //   "timeFinalized": "my_timeFinalized",
+     *   //   "timeStorageClassUpdated": "my_timeStorageClassUpdated",
+     *   //   "updated": "my_updated"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7518,11 +11896,11 @@ export namespace storage_v1 {
     copy(
       params: Params$Resource$Objects$Copy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     copy(
       params?: Params$Resource$Objects$Copy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Object>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Object>>;
     copy(
       params: Params$Resource$Objects$Copy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7551,7 +11929,10 @@ export namespace storage_v1 {
       callback?:
         | BodyResponseCallback<Schema$Object>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Object> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Object>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Objects$Copy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7606,6 +11987,65 @@ export namespace storage_v1 {
 
     /**
      * Deletes an object and its metadata. Deletions are permanent if versioning is not enabled for the bucket, or if the generation parameter is used.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.objects.delete({
+     *     // Name of the bucket in which the object resides.
+     *     bucket: 'placeholder-value',
+     *     // If present, permanently deletes a specific revision of this object (as opposed to the latest version, the default).
+     *     generation: 'placeholder-value',
+     *     // Makes the operation conditional on whether the object's current generation matches the given value. Setting to 0 makes the operation succeed only if there are no live versions of the object.
+     *     ifGenerationMatch: 'placeholder-value',
+     *     // Makes the operation conditional on whether the object's current generation does not match the given value. If no live object exists, the precondition fails. Setting to 0 makes the operation succeed only if there is a live version of the object.
+     *     ifGenerationNotMatch: 'placeholder-value',
+     *     // Makes the operation conditional on whether the object's current metageneration matches the given value.
+     *     ifMetagenerationMatch: 'placeholder-value',
+     *     // Makes the operation conditional on whether the object's current metageneration does not match the given value.
+     *     ifMetagenerationNotMatch: 'placeholder-value',
+     *     // Name of the object. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](https://cloud.google.com/storage/docs/request-endpoints#encoding).
+     *     object: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7615,11 +12055,11 @@ export namespace storage_v1 {
     delete(
       params: Params$Resource$Objects$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Objects$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Objects$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7646,7 +12086,10 @@ export namespace storage_v1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Objects$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7691,6 +12134,114 @@ export namespace storage_v1 {
 
     /**
      * Retrieves an object or its metadata.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_only',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.objects.get({
+     *     // Name of the bucket in which the object resides.
+     *     bucket: 'placeholder-value',
+     *     // If present, selects a specific revision of this object (as opposed to the latest version, the default).
+     *     generation: 'placeholder-value',
+     *     // Makes the operation conditional on whether the object's current generation matches the given value. Setting to 0 makes the operation succeed only if there are no live versions of the object.
+     *     ifGenerationMatch: 'placeholder-value',
+     *     // Makes the operation conditional on whether the object's current generation does not match the given value. If no live object exists, the precondition fails. Setting to 0 makes the operation succeed only if there is a live version of the object.
+     *     ifGenerationNotMatch: 'placeholder-value',
+     *     // Makes the operation conditional on whether the object's current metageneration matches the given value.
+     *     ifMetagenerationMatch: 'placeholder-value',
+     *     // Makes the operation conditional on whether the object's current metageneration does not match the given value.
+     *     ifMetagenerationNotMatch: 'placeholder-value',
+     *     // Name of the object. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](https://cloud.google.com/storage/docs/request-endpoints#encoding).
+     *     object: 'placeholder-value',
+     *     // Set of properties to return. Defaults to noAcl.
+     *     projection: 'placeholder-value',
+     *     // Restore token used to differentiate soft-deleted objects with the same name and generation. Only applicable for hierarchical namespace buckets and if softDeleted is set to true. This parameter is optional, and is only required in the rare case when there are multiple soft-deleted objects with the same name and generation.
+     *     restoreToken: 'placeholder-value',
+     *     // If true, only soft-deleted object versions will be listed. The default is false. For more information, see [Soft Delete](https://cloud.google.com/storage/docs/soft-delete).
+     *     softDeleted: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acl": [],
+     *   //   "bucket": "my_bucket",
+     *   //   "cacheControl": "my_cacheControl",
+     *   //   "componentCount": 0,
+     *   //   "contentDisposition": "my_contentDisposition",
+     *   //   "contentEncoding": "my_contentEncoding",
+     *   //   "contentLanguage": "my_contentLanguage",
+     *   //   "contentType": "my_contentType",
+     *   //   "crc32c": "my_crc32c",
+     *   //   "customTime": "my_customTime",
+     *   //   "customerEncryption": {},
+     *   //   "etag": "my_etag",
+     *   //   "eventBasedHold": false,
+     *   //   "generation": "my_generation",
+     *   //   "hardDeleteTime": "my_hardDeleteTime",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "kmsKeyName": "my_kmsKeyName",
+     *   //   "md5Hash": "my_md5Hash",
+     *   //   "mediaLink": "my_mediaLink",
+     *   //   "metadata": {},
+     *   //   "metageneration": "my_metageneration",
+     *   //   "name": "my_name",
+     *   //   "owner": {},
+     *   //   "restoreToken": "my_restoreToken",
+     *   //   "retention": {},
+     *   //   "retentionExpirationTime": "my_retentionExpirationTime",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "size": "my_size",
+     *   //   "softDeleteTime": "my_softDeleteTime",
+     *   //   "storageClass": "my_storageClass",
+     *   //   "temporaryHold": false,
+     *   //   "timeCreated": "my_timeCreated",
+     *   //   "timeDeleted": "my_timeDeleted",
+     *   //   "timeFinalized": "my_timeFinalized",
+     *   //   "timeStorageClassUpdated": "my_timeStorageClassUpdated",
+     *   //   "updated": "my_updated"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7700,11 +12251,11 @@ export namespace storage_v1 {
     get(
       params: Params$Resource$Objects$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Objects$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Object>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Object>>;
     get(
       params: Params$Resource$Objects$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7733,7 +12284,10 @@ export namespace storage_v1 {
       callback?:
         | BodyResponseCallback<Schema$Object>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Object> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Object>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Objects$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7778,6 +12332,68 @@ export namespace storage_v1 {
 
     /**
      * Returns an IAM policy for the specified object.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_only',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.objects.getIamPolicy({
+     *     // Name of the bucket in which the object resides.
+     *     bucket: 'placeholder-value',
+     *     // If present, selects a specific revision of this object (as opposed to the latest version, the default).
+     *     generation: 'placeholder-value',
+     *     // Name of the object. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](https://cloud.google.com/storage/docs/request-endpoints#encoding).
+     *     object: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "kind": "my_kind",
+     *   //   "resourceId": "my_resourceId",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7787,11 +12403,11 @@ export namespace storage_v1 {
     getIamPolicy(
       params: Params$Resource$Objects$Getiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getIamPolicy(
       params?: Params$Resource$Objects$Getiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     getIamPolicy(
       params: Params$Resource$Objects$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7820,7 +12436,10 @@ export namespace storage_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Objects$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7866,6 +12485,160 @@ export namespace storage_v1 {
 
     /**
      * Stores a new object and metadata.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.objects.insert({
+     *     // Name of the bucket in which to store the new object. Overrides the provided object metadata's bucket value, if any.
+     *     bucket: 'placeholder-value',
+     *     // If set, sets the contentEncoding property of the final object to this value. Setting this parameter is equivalent to setting the contentEncoding metadata property. This can be useful when uploading an object with uploadType=media to indicate the encoding of the content being uploaded.
+     *     contentEncoding: 'placeholder-value',
+     *     // Makes the operation conditional on whether the object's current generation matches the given value. Setting to 0 makes the operation succeed only if there are no live versions of the object.
+     *     ifGenerationMatch: 'placeholder-value',
+     *     // Makes the operation conditional on whether the object's current generation does not match the given value. If no live object exists, the precondition fails. Setting to 0 makes the operation succeed only if there is a live version of the object.
+     *     ifGenerationNotMatch: 'placeholder-value',
+     *     // Makes the operation conditional on whether the object's current metageneration matches the given value.
+     *     ifMetagenerationMatch: 'placeholder-value',
+     *     // Makes the operation conditional on whether the object's current metageneration does not match the given value.
+     *     ifMetagenerationNotMatch: 'placeholder-value',
+     *     // Resource name of the Cloud KMS key, of the form projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key, that will be used to encrypt the object. Overrides the object metadata's kms_key_name value, if any.
+     *     kmsKeyName: 'placeholder-value',
+     *     // Name of the object. Required when the object metadata is not otherwise provided. Overrides the object metadata's name value, if any. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](https://cloud.google.com/storage/docs/request-endpoints#encoding).
+     *     name: 'placeholder-value',
+     *     // Apply a predefined set of access controls to this object.
+     *     predefinedAcl: 'placeholder-value',
+     *     // Set of properties to return. Defaults to noAcl, unless the object resource specifies the acl property, when it defaults to full.
+     *     projection: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "acl": [],
+     *       //   "bucket": "my_bucket",
+     *       //   "cacheControl": "my_cacheControl",
+     *       //   "componentCount": 0,
+     *       //   "contentDisposition": "my_contentDisposition",
+     *       //   "contentEncoding": "my_contentEncoding",
+     *       //   "contentLanguage": "my_contentLanguage",
+     *       //   "contentType": "my_contentType",
+     *       //   "crc32c": "my_crc32c",
+     *       //   "customTime": "my_customTime",
+     *       //   "customerEncryption": {},
+     *       //   "etag": "my_etag",
+     *       //   "eventBasedHold": false,
+     *       //   "generation": "my_generation",
+     *       //   "hardDeleteTime": "my_hardDeleteTime",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "kmsKeyName": "my_kmsKeyName",
+     *       //   "md5Hash": "my_md5Hash",
+     *       //   "mediaLink": "my_mediaLink",
+     *       //   "metadata": {},
+     *       //   "metageneration": "my_metageneration",
+     *       //   "name": "my_name",
+     *       //   "owner": {},
+     *       //   "restoreToken": "my_restoreToken",
+     *       //   "retention": {},
+     *       //   "retentionExpirationTime": "my_retentionExpirationTime",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "size": "my_size",
+     *       //   "softDeleteTime": "my_softDeleteTime",
+     *       //   "storageClass": "my_storageClass",
+     *       //   "temporaryHold": false,
+     *       //   "timeCreated": "my_timeCreated",
+     *       //   "timeDeleted": "my_timeDeleted",
+     *       //   "timeFinalized": "my_timeFinalized",
+     *       //   "timeStorageClassUpdated": "my_timeStorageClassUpdated",
+     *       //   "updated": "my_updated"
+     *       // }
+     *     },
+     *     media: {
+     *       mimeType: 'placeholder-value',
+     *       body: 'placeholder-value',
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acl": [],
+     *   //   "bucket": "my_bucket",
+     *   //   "cacheControl": "my_cacheControl",
+     *   //   "componentCount": 0,
+     *   //   "contentDisposition": "my_contentDisposition",
+     *   //   "contentEncoding": "my_contentEncoding",
+     *   //   "contentLanguage": "my_contentLanguage",
+     *   //   "contentType": "my_contentType",
+     *   //   "crc32c": "my_crc32c",
+     *   //   "customTime": "my_customTime",
+     *   //   "customerEncryption": {},
+     *   //   "etag": "my_etag",
+     *   //   "eventBasedHold": false,
+     *   //   "generation": "my_generation",
+     *   //   "hardDeleteTime": "my_hardDeleteTime",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "kmsKeyName": "my_kmsKeyName",
+     *   //   "md5Hash": "my_md5Hash",
+     *   //   "mediaLink": "my_mediaLink",
+     *   //   "metadata": {},
+     *   //   "metageneration": "my_metageneration",
+     *   //   "name": "my_name",
+     *   //   "owner": {},
+     *   //   "restoreToken": "my_restoreToken",
+     *   //   "retention": {},
+     *   //   "retentionExpirationTime": "my_retentionExpirationTime",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "size": "my_size",
+     *   //   "softDeleteTime": "my_softDeleteTime",
+     *   //   "storageClass": "my_storageClass",
+     *   //   "temporaryHold": false,
+     *   //   "timeCreated": "my_timeCreated",
+     *   //   "timeDeleted": "my_timeDeleted",
+     *   //   "timeFinalized": "my_timeFinalized",
+     *   //   "timeStorageClassUpdated": "my_timeStorageClassUpdated",
+     *   //   "updated": "my_updated"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7875,11 +12648,11 @@ export namespace storage_v1 {
     insert(
       params: Params$Resource$Objects$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Objects$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Object>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Object>>;
     insert(
       params: Params$Resource$Objects$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7908,7 +12681,10 @@ export namespace storage_v1 {
       callback?:
         | BodyResponseCallback<Schema$Object>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Object> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Object>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Objects$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7957,6 +12733,87 @@ export namespace storage_v1 {
 
     /**
      * Retrieves a list of objects matching the criteria.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_only',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.objects.list({
+     *     // Name of the bucket in which to look for objects.
+     *     bucket: 'placeholder-value',
+     *     // Returns results in a directory-like mode. items will contain only objects whose names, aside from the prefix, do not contain delimiter. Objects whose names, aside from the prefix, contain delimiter will have their name, truncated after the delimiter, returned in prefixes. Duplicate prefixes are omitted.
+     *     delimiter: 'placeholder-value',
+     *     // Filter results to objects whose names are lexicographically before endOffset. If startOffset is also set, the objects listed will have names between startOffset (inclusive) and endOffset (exclusive).
+     *     endOffset: 'placeholder-value',
+     *     // Only applicable if delimiter is set to '/'. If true, will also include folders and managed folders (besides objects) in the returned prefixes.
+     *     includeFoldersAsPrefixes: 'placeholder-value',
+     *     // If true, objects that end in exactly one instance of delimiter will have their metadata included in items in addition to prefixes.
+     *     includeTrailingDelimiter: 'placeholder-value',
+     *     // Filter results to objects and prefixes that match this glob pattern.
+     *     matchGlob: 'placeholder-value',
+     *     // Maximum number of items plus prefixes to return in a single page of responses. As duplicate prefixes are omitted, fewer total results may be returned than requested. The service will use this parameter or 1,000 items, whichever is smaller.
+     *     maxResults: 'placeholder-value',
+     *     // A previously-returned page token representing part of the larger set of results to view.
+     *     pageToken: 'placeholder-value',
+     *     // Filter results to objects whose names begin with this prefix.
+     *     prefix: 'placeholder-value',
+     *     // Set of properties to return. Defaults to noAcl.
+     *     projection: 'placeholder-value',
+     *     // If true, only soft-deleted object versions will be listed. The default is false. For more information, see [Soft Delete](https://cloud.google.com/storage/docs/soft-delete).
+     *     softDeleted: 'placeholder-value',
+     *     // Filter results to objects whose names are lexicographically equal to or after startOffset. If endOffset is also set, the objects listed will have names between startOffset (inclusive) and endOffset (exclusive).
+     *     startOffset: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *     // If true, lists all versions of an object as distinct results. The default is false. For more information, see [Object Versioning](https://cloud.google.com/storage/docs/object-versioning).
+     *     versions: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "prefixes": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7966,11 +12823,11 @@ export namespace storage_v1 {
     list(
       params: Params$Resource$Objects$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Objects$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Objects>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Objects>>;
     list(
       params: Params$Resource$Objects$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7999,7 +12856,10 @@ export namespace storage_v1 {
       callback?:
         | BodyResponseCallback<Schema$Objects>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Objects> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Objects>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Objects$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8044,6 +12904,116 @@ export namespace storage_v1 {
 
     /**
      * Moves the source object to the destination object in the same bucket.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.objects.move({
+     *     // Name of the bucket in which the object resides.
+     *     bucket: 'placeholder-value',
+     *     // Name of the destination object. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](https://cloud.google.com/storage/docs/request-endpoints#encoding).
+     *     destinationObject: 'placeholder-value',
+     *     // Makes the operation conditional on whether the destination object's current generation matches the given value. Setting to 0 makes the operation succeed only if there are no live versions of the object. `ifGenerationMatch` and `ifGenerationNotMatch` conditions are mutually exclusive: it's an error for both of them to be set in the request.
+     *     ifGenerationMatch: 'placeholder-value',
+     *     // Makes the operation conditional on whether the destination object's current generation does not match the given value. If no live object exists, the precondition fails. Setting to 0 makes the operation succeed only if there is a live version of the object.`ifGenerationMatch` and `ifGenerationNotMatch` conditions are mutually exclusive: it's an error for both of them to be set in the request.
+     *     ifGenerationNotMatch: 'placeholder-value',
+     *     // Makes the operation conditional on whether the destination object's current metageneration matches the given value. `ifMetagenerationMatch` and `ifMetagenerationNotMatch` conditions are mutually exclusive: it's an error for both of them to be set in the request.
+     *     ifMetagenerationMatch: 'placeholder-value',
+     *     // Makes the operation conditional on whether the destination object's current metageneration does not match the given value. `ifMetagenerationMatch` and `ifMetagenerationNotMatch` conditions are mutually exclusive: it's an error for both of them to be set in the request.
+     *     ifMetagenerationNotMatch: 'placeholder-value',
+     *     // Makes the operation conditional on whether the source object's current generation matches the given value. `ifSourceGenerationMatch` and `ifSourceGenerationNotMatch` conditions are mutually exclusive: it's an error for both of them to be set in the request.
+     *     ifSourceGenerationMatch: 'placeholder-value',
+     *     // Makes the operation conditional on whether the source object's current generation does not match the given value. `ifSourceGenerationMatch` and `ifSourceGenerationNotMatch` conditions are mutually exclusive: it's an error for both of them to be set in the request.
+     *     ifSourceGenerationNotMatch: 'placeholder-value',
+     *     // Makes the operation conditional on whether the source object's current metageneration matches the given value. `ifSourceMetagenerationMatch` and `ifSourceMetagenerationNotMatch` conditions are mutually exclusive: it's an error for both of them to be set in the request.
+     *     ifSourceMetagenerationMatch: 'placeholder-value',
+     *     // Makes the operation conditional on whether the source object's current metageneration does not match the given value. `ifSourceMetagenerationMatch` and `ifSourceMetagenerationNotMatch` conditions are mutually exclusive: it's an error for both of them to be set in the request.
+     *     ifSourceMetagenerationNotMatch: 'placeholder-value',
+     *     // Set of properties to return. Defaults to noAcl.
+     *     projection: 'placeholder-value',
+     *     // Name of the source object. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](https://cloud.google.com/storage/docs/request-endpoints#encoding).
+     *     sourceObject: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acl": [],
+     *   //   "bucket": "my_bucket",
+     *   //   "cacheControl": "my_cacheControl",
+     *   //   "componentCount": 0,
+     *   //   "contentDisposition": "my_contentDisposition",
+     *   //   "contentEncoding": "my_contentEncoding",
+     *   //   "contentLanguage": "my_contentLanguage",
+     *   //   "contentType": "my_contentType",
+     *   //   "crc32c": "my_crc32c",
+     *   //   "customTime": "my_customTime",
+     *   //   "customerEncryption": {},
+     *   //   "etag": "my_etag",
+     *   //   "eventBasedHold": false,
+     *   //   "generation": "my_generation",
+     *   //   "hardDeleteTime": "my_hardDeleteTime",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "kmsKeyName": "my_kmsKeyName",
+     *   //   "md5Hash": "my_md5Hash",
+     *   //   "mediaLink": "my_mediaLink",
+     *   //   "metadata": {},
+     *   //   "metageneration": "my_metageneration",
+     *   //   "name": "my_name",
+     *   //   "owner": {},
+     *   //   "restoreToken": "my_restoreToken",
+     *   //   "retention": {},
+     *   //   "retentionExpirationTime": "my_retentionExpirationTime",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "size": "my_size",
+     *   //   "softDeleteTime": "my_softDeleteTime",
+     *   //   "storageClass": "my_storageClass",
+     *   //   "temporaryHold": false,
+     *   //   "timeCreated": "my_timeCreated",
+     *   //   "timeDeleted": "my_timeDeleted",
+     *   //   "timeFinalized": "my_timeFinalized",
+     *   //   "timeStorageClassUpdated": "my_timeStorageClassUpdated",
+     *   //   "updated": "my_updated"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8053,11 +13023,11 @@ export namespace storage_v1 {
     move(
       params: Params$Resource$Objects$Move,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     move(
       params?: Params$Resource$Objects$Move,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Object>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Object>>;
     move(
       params: Params$Resource$Objects$Move,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8086,7 +13056,10 @@ export namespace storage_v1 {
       callback?:
         | BodyResponseCallback<Schema$Object>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Object> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Object>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Objects$Move;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8131,6 +13104,155 @@ export namespace storage_v1 {
 
     /**
      * Patches an object's metadata.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.objects.patch({
+     *     // Name of the bucket in which the object resides.
+     *     bucket: 'placeholder-value',
+     *     // If present, selects a specific revision of this object (as opposed to the latest version, the default).
+     *     generation: 'placeholder-value',
+     *     // Makes the operation conditional on whether the object's current generation matches the given value. Setting to 0 makes the operation succeed only if there are no live versions of the object.
+     *     ifGenerationMatch: 'placeholder-value',
+     *     // Makes the operation conditional on whether the object's current generation does not match the given value. If no live object exists, the precondition fails. Setting to 0 makes the operation succeed only if there is a live version of the object.
+     *     ifGenerationNotMatch: 'placeholder-value',
+     *     // Makes the operation conditional on whether the object's current metageneration matches the given value.
+     *     ifMetagenerationMatch: 'placeholder-value',
+     *     // Makes the operation conditional on whether the object's current metageneration does not match the given value.
+     *     ifMetagenerationNotMatch: 'placeholder-value',
+     *     // Name of the object. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](https://cloud.google.com/storage/docs/request-endpoints#encoding).
+     *     object: 'placeholder-value',
+     *     // Must be true to remove the retention configuration, reduce its unlocked retention period, or change its mode from unlocked to locked.
+     *     overrideUnlockedRetention: 'placeholder-value',
+     *     // Apply a predefined set of access controls to this object.
+     *     predefinedAcl: 'placeholder-value',
+     *     // Set of properties to return. Defaults to full.
+     *     projection: 'placeholder-value',
+     *     // The project to be billed for this request, for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "acl": [],
+     *       //   "bucket": "my_bucket",
+     *       //   "cacheControl": "my_cacheControl",
+     *       //   "componentCount": 0,
+     *       //   "contentDisposition": "my_contentDisposition",
+     *       //   "contentEncoding": "my_contentEncoding",
+     *       //   "contentLanguage": "my_contentLanguage",
+     *       //   "contentType": "my_contentType",
+     *       //   "crc32c": "my_crc32c",
+     *       //   "customTime": "my_customTime",
+     *       //   "customerEncryption": {},
+     *       //   "etag": "my_etag",
+     *       //   "eventBasedHold": false,
+     *       //   "generation": "my_generation",
+     *       //   "hardDeleteTime": "my_hardDeleteTime",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "kmsKeyName": "my_kmsKeyName",
+     *       //   "md5Hash": "my_md5Hash",
+     *       //   "mediaLink": "my_mediaLink",
+     *       //   "metadata": {},
+     *       //   "metageneration": "my_metageneration",
+     *       //   "name": "my_name",
+     *       //   "owner": {},
+     *       //   "restoreToken": "my_restoreToken",
+     *       //   "retention": {},
+     *       //   "retentionExpirationTime": "my_retentionExpirationTime",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "size": "my_size",
+     *       //   "softDeleteTime": "my_softDeleteTime",
+     *       //   "storageClass": "my_storageClass",
+     *       //   "temporaryHold": false,
+     *       //   "timeCreated": "my_timeCreated",
+     *       //   "timeDeleted": "my_timeDeleted",
+     *       //   "timeFinalized": "my_timeFinalized",
+     *       //   "timeStorageClassUpdated": "my_timeStorageClassUpdated",
+     *       //   "updated": "my_updated"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acl": [],
+     *   //   "bucket": "my_bucket",
+     *   //   "cacheControl": "my_cacheControl",
+     *   //   "componentCount": 0,
+     *   //   "contentDisposition": "my_contentDisposition",
+     *   //   "contentEncoding": "my_contentEncoding",
+     *   //   "contentLanguage": "my_contentLanguage",
+     *   //   "contentType": "my_contentType",
+     *   //   "crc32c": "my_crc32c",
+     *   //   "customTime": "my_customTime",
+     *   //   "customerEncryption": {},
+     *   //   "etag": "my_etag",
+     *   //   "eventBasedHold": false,
+     *   //   "generation": "my_generation",
+     *   //   "hardDeleteTime": "my_hardDeleteTime",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "kmsKeyName": "my_kmsKeyName",
+     *   //   "md5Hash": "my_md5Hash",
+     *   //   "mediaLink": "my_mediaLink",
+     *   //   "metadata": {},
+     *   //   "metageneration": "my_metageneration",
+     *   //   "name": "my_name",
+     *   //   "owner": {},
+     *   //   "restoreToken": "my_restoreToken",
+     *   //   "retention": {},
+     *   //   "retentionExpirationTime": "my_retentionExpirationTime",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "size": "my_size",
+     *   //   "softDeleteTime": "my_softDeleteTime",
+     *   //   "storageClass": "my_storageClass",
+     *   //   "temporaryHold": false,
+     *   //   "timeCreated": "my_timeCreated",
+     *   //   "timeDeleted": "my_timeDeleted",
+     *   //   "timeFinalized": "my_timeFinalized",
+     *   //   "timeStorageClassUpdated": "my_timeStorageClassUpdated",
+     *   //   "updated": "my_updated"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8140,11 +13262,11 @@ export namespace storage_v1 {
     patch(
       params: Params$Resource$Objects$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Objects$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Object>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Object>>;
     patch(
       params: Params$Resource$Objects$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8173,7 +13295,10 @@ export namespace storage_v1 {
       callback?:
         | BodyResponseCallback<Schema$Object>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Object> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Object>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Objects$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8218,6 +13343,111 @@ export namespace storage_v1 {
 
     /**
      * Restores a soft-deleted object.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.objects.restore({
+     *     // Name of the bucket in which the object resides.
+     *     bucket: 'placeholder-value',
+     *     // If true, copies the source object's ACL; otherwise, uses the bucket's default object ACL. The default is false.
+     *     copySourceAcl: 'placeholder-value',
+     *     // Selects a specific revision of this object.
+     *     generation: 'placeholder-value',
+     *     // Makes the operation conditional on whether the object's one live generation matches the given value. Setting to 0 makes the operation succeed only if there are no live versions of the object.
+     *     ifGenerationMatch: 'placeholder-value',
+     *     // Makes the operation conditional on whether none of the object's live generations match the given value. If no live object exists, the precondition fails. Setting to 0 makes the operation succeed only if there is a live version of the object.
+     *     ifGenerationNotMatch: 'placeholder-value',
+     *     // Makes the operation conditional on whether the object's one live metageneration matches the given value.
+     *     ifMetagenerationMatch: 'placeholder-value',
+     *     // Makes the operation conditional on whether none of the object's live metagenerations match the given value.
+     *     ifMetagenerationNotMatch: 'placeholder-value',
+     *     // Name of the object. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](https://cloud.google.com/storage/docs/request-endpoints#encoding).
+     *     object: 'placeholder-value',
+     *     // Set of properties to return. Defaults to full.
+     *     projection: 'placeholder-value',
+     *     // Restore token used to differentiate sof-deleted objects with the same name and generation. Only applicable for hierarchical namespace buckets. This parameter is optional, and is only required in the rare case when there are multiple soft-deleted objects with the same name and generation.
+     *     restoreToken: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acl": [],
+     *   //   "bucket": "my_bucket",
+     *   //   "cacheControl": "my_cacheControl",
+     *   //   "componentCount": 0,
+     *   //   "contentDisposition": "my_contentDisposition",
+     *   //   "contentEncoding": "my_contentEncoding",
+     *   //   "contentLanguage": "my_contentLanguage",
+     *   //   "contentType": "my_contentType",
+     *   //   "crc32c": "my_crc32c",
+     *   //   "customTime": "my_customTime",
+     *   //   "customerEncryption": {},
+     *   //   "etag": "my_etag",
+     *   //   "eventBasedHold": false,
+     *   //   "generation": "my_generation",
+     *   //   "hardDeleteTime": "my_hardDeleteTime",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "kmsKeyName": "my_kmsKeyName",
+     *   //   "md5Hash": "my_md5Hash",
+     *   //   "mediaLink": "my_mediaLink",
+     *   //   "metadata": {},
+     *   //   "metageneration": "my_metageneration",
+     *   //   "name": "my_name",
+     *   //   "owner": {},
+     *   //   "restoreToken": "my_restoreToken",
+     *   //   "retention": {},
+     *   //   "retentionExpirationTime": "my_retentionExpirationTime",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "size": "my_size",
+     *   //   "softDeleteTime": "my_softDeleteTime",
+     *   //   "storageClass": "my_storageClass",
+     *   //   "temporaryHold": false,
+     *   //   "timeCreated": "my_timeCreated",
+     *   //   "timeDeleted": "my_timeDeleted",
+     *   //   "timeFinalized": "my_timeFinalized",
+     *   //   "timeStorageClassUpdated": "my_timeStorageClassUpdated",
+     *   //   "updated": "my_updated"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8227,11 +13457,11 @@ export namespace storage_v1 {
     restore(
       params: Params$Resource$Objects$Restore,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     restore(
       params?: Params$Resource$Objects$Restore,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Object>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Object>>;
     restore(
       params: Params$Resource$Objects$Restore,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8260,7 +13490,10 @@ export namespace storage_v1 {
       callback?:
         | BodyResponseCallback<Schema$Object>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Object> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Object>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Objects$Restore;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8304,6 +13537,141 @@ export namespace storage_v1 {
 
     /**
      * Rewrites a source object to a destination object. Optionally overrides metadata.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.objects.rewrite({
+     *     // Name of the bucket in which to store the new object. Overrides the provided object metadata's bucket value, if any.
+     *     destinationBucket: 'placeholder-value',
+     *     // Resource name of the Cloud KMS key, of the form projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key, that will be used to encrypt the object. Overrides the object metadata's kms_key_name value, if any.
+     *     destinationKmsKeyName: 'placeholder-value',
+     *     // Name of the new object. Required when the object metadata is not otherwise provided. Overrides the object metadata's name value, if any. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](https://cloud.google.com/storage/docs/request-endpoints#encoding).
+     *     destinationObject: 'placeholder-value',
+     *     // Apply a predefined set of access controls to the destination object.
+     *     destinationPredefinedAcl: 'placeholder-value',
+     *     // Makes the operation conditional on whether the object's current generation matches the given value. Setting to 0 makes the operation succeed only if there are no live versions of the object.
+     *     ifGenerationMatch: 'placeholder-value',
+     *     // Makes the operation conditional on whether the object's current generation does not match the given value. If no live object exists, the precondition fails. Setting to 0 makes the operation succeed only if there is a live version of the object.
+     *     ifGenerationNotMatch: 'placeholder-value',
+     *     // Makes the operation conditional on whether the destination object's current metageneration matches the given value.
+     *     ifMetagenerationMatch: 'placeholder-value',
+     *     // Makes the operation conditional on whether the destination object's current metageneration does not match the given value.
+     *     ifMetagenerationNotMatch: 'placeholder-value',
+     *     // Makes the operation conditional on whether the source object's current generation matches the given value.
+     *     ifSourceGenerationMatch: 'placeholder-value',
+     *     // Makes the operation conditional on whether the source object's current generation does not match the given value.
+     *     ifSourceGenerationNotMatch: 'placeholder-value',
+     *     // Makes the operation conditional on whether the source object's current metageneration matches the given value.
+     *     ifSourceMetagenerationMatch: 'placeholder-value',
+     *     // Makes the operation conditional on whether the source object's current metageneration does not match the given value.
+     *     ifSourceMetagenerationNotMatch: 'placeholder-value',
+     *     // The maximum number of bytes that will be rewritten per rewrite request. Most callers shouldn't need to specify this parameter - it is primarily in place to support testing. If specified the value must be an integral multiple of 1 MiB (1048576). Also, this only applies to requests where the source and destination span locations and/or storage classes. Finally, this value must not change across rewrite calls else you'll get an error that the rewriteToken is invalid.
+     *     maxBytesRewrittenPerCall: 'placeholder-value',
+     *     // Set of properties to return. Defaults to noAcl, unless the object resource specifies the acl property, when it defaults to full.
+     *     projection: 'placeholder-value',
+     *     // Include this field (from the previous rewrite response) on each rewrite request after the first one, until the rewrite response 'done' flag is true. Calls that provide a rewriteToken can omit all other request fields, but if included those fields must match the values provided in the first rewrite request.
+     *     rewriteToken: 'placeholder-value',
+     *     // Name of the bucket in which to find the source object.
+     *     sourceBucket: 'placeholder-value',
+     *     // If present, selects a specific revision of the source object (as opposed to the latest version, the default).
+     *     sourceGeneration: 'placeholder-value',
+     *     // Name of the source object. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](https://cloud.google.com/storage/docs/request-endpoints#encoding).
+     *     sourceObject: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "acl": [],
+     *       //   "bucket": "my_bucket",
+     *       //   "cacheControl": "my_cacheControl",
+     *       //   "componentCount": 0,
+     *       //   "contentDisposition": "my_contentDisposition",
+     *       //   "contentEncoding": "my_contentEncoding",
+     *       //   "contentLanguage": "my_contentLanguage",
+     *       //   "contentType": "my_contentType",
+     *       //   "crc32c": "my_crc32c",
+     *       //   "customTime": "my_customTime",
+     *       //   "customerEncryption": {},
+     *       //   "etag": "my_etag",
+     *       //   "eventBasedHold": false,
+     *       //   "generation": "my_generation",
+     *       //   "hardDeleteTime": "my_hardDeleteTime",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "kmsKeyName": "my_kmsKeyName",
+     *       //   "md5Hash": "my_md5Hash",
+     *       //   "mediaLink": "my_mediaLink",
+     *       //   "metadata": {},
+     *       //   "metageneration": "my_metageneration",
+     *       //   "name": "my_name",
+     *       //   "owner": {},
+     *       //   "restoreToken": "my_restoreToken",
+     *       //   "retention": {},
+     *       //   "retentionExpirationTime": "my_retentionExpirationTime",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "size": "my_size",
+     *       //   "softDeleteTime": "my_softDeleteTime",
+     *       //   "storageClass": "my_storageClass",
+     *       //   "temporaryHold": false,
+     *       //   "timeCreated": "my_timeCreated",
+     *       //   "timeDeleted": "my_timeDeleted",
+     *       //   "timeFinalized": "my_timeFinalized",
+     *       //   "timeStorageClassUpdated": "my_timeStorageClassUpdated",
+     *       //   "updated": "my_updated"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "kind": "my_kind",
+     *   //   "objectSize": "my_objectSize",
+     *   //   "resource": {},
+     *   //   "rewriteToken": "my_rewriteToken",
+     *   //   "totalBytesRewritten": "my_totalBytesRewritten"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8313,11 +13681,11 @@ export namespace storage_v1 {
     rewrite(
       params: Params$Resource$Objects$Rewrite,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     rewrite(
       params?: Params$Resource$Objects$Rewrite,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RewriteResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$RewriteResponse>>;
     rewrite(
       params: Params$Resource$Objects$Rewrite,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8346,7 +13714,10 @@ export namespace storage_v1 {
       callback?:
         | BodyResponseCallback<Schema$RewriteResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$RewriteResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$RewriteResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Objects$Rewrite;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8401,6 +13772,78 @@ export namespace storage_v1 {
 
     /**
      * Updates an IAM policy for the specified object.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.objects.setIamPolicy({
+     *     // Name of the bucket in which the object resides.
+     *     bucket: 'placeholder-value',
+     *     // If present, selects a specific revision of this object (as opposed to the latest version, the default).
+     *     generation: 'placeholder-value',
+     *     // Name of the object. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](https://cloud.google.com/storage/docs/request-endpoints#encoding).
+     *     object: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bindings": [],
+     *       //   "etag": "my_etag",
+     *       //   "kind": "my_kind",
+     *       //   "resourceId": "my_resourceId",
+     *       //   "version": 0
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "kind": "my_kind",
+     *   //   "resourceId": "my_resourceId",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8410,11 +13853,11 @@ export namespace storage_v1 {
     setIamPolicy(
       params: Params$Resource$Objects$Setiampolicy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setIamPolicy(
       params?: Params$Resource$Objects$Setiampolicy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
     setIamPolicy(
       params: Params$Resource$Objects$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8443,7 +13886,10 @@ export namespace storage_v1 {
       callback?:
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Objects$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8489,6 +13935,67 @@ export namespace storage_v1 {
 
     /**
      * Tests a set of permissions on the given object to see which, if any, are held by the caller.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_only',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.objects.testIamPermissions({
+     *     // Name of the bucket in which the object resides.
+     *     bucket: 'placeholder-value',
+     *     // If present, selects a specific revision of this object (as opposed to the latest version, the default).
+     *     generation: 'placeholder-value',
+     *     // Name of the object. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](https://cloud.google.com/storage/docs/request-endpoints#encoding).
+     *     object: 'placeholder-value',
+     *     // Permissions to test.
+     *     permissions: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8498,11 +14005,11 @@ export namespace storage_v1 {
     testIamPermissions(
       params: Params$Resource$Objects$Testiampermissions,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     testIamPermissions(
       params?: Params$Resource$Objects$Testiampermissions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
     testIamPermissions(
       params: Params$Resource$Objects$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8537,8 +14044,8 @@ export namespace storage_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Objects$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8583,6 +14090,155 @@ export namespace storage_v1 {
 
     /**
      * Updates an object's metadata.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.objects.update({
+     *     // Name of the bucket in which the object resides.
+     *     bucket: 'placeholder-value',
+     *     // If present, selects a specific revision of this object (as opposed to the latest version, the default).
+     *     generation: 'placeholder-value',
+     *     // Makes the operation conditional on whether the object's current generation matches the given value. Setting to 0 makes the operation succeed only if there are no live versions of the object.
+     *     ifGenerationMatch: 'placeholder-value',
+     *     // Makes the operation conditional on whether the object's current generation does not match the given value. If no live object exists, the precondition fails. Setting to 0 makes the operation succeed only if there is a live version of the object.
+     *     ifGenerationNotMatch: 'placeholder-value',
+     *     // Makes the operation conditional on whether the object's current metageneration matches the given value.
+     *     ifMetagenerationMatch: 'placeholder-value',
+     *     // Makes the operation conditional on whether the object's current metageneration does not match the given value.
+     *     ifMetagenerationNotMatch: 'placeholder-value',
+     *     // Name of the object. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](https://cloud.google.com/storage/docs/request-endpoints#encoding).
+     *     object: 'placeholder-value',
+     *     // Must be true to remove the retention configuration, reduce its unlocked retention period, or change its mode from unlocked to locked.
+     *     overrideUnlockedRetention: 'placeholder-value',
+     *     // Apply a predefined set of access controls to this object.
+     *     predefinedAcl: 'placeholder-value',
+     *     // Set of properties to return. Defaults to full.
+     *     projection: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "acl": [],
+     *       //   "bucket": "my_bucket",
+     *       //   "cacheControl": "my_cacheControl",
+     *       //   "componentCount": 0,
+     *       //   "contentDisposition": "my_contentDisposition",
+     *       //   "contentEncoding": "my_contentEncoding",
+     *       //   "contentLanguage": "my_contentLanguage",
+     *       //   "contentType": "my_contentType",
+     *       //   "crc32c": "my_crc32c",
+     *       //   "customTime": "my_customTime",
+     *       //   "customerEncryption": {},
+     *       //   "etag": "my_etag",
+     *       //   "eventBasedHold": false,
+     *       //   "generation": "my_generation",
+     *       //   "hardDeleteTime": "my_hardDeleteTime",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "kmsKeyName": "my_kmsKeyName",
+     *       //   "md5Hash": "my_md5Hash",
+     *       //   "mediaLink": "my_mediaLink",
+     *       //   "metadata": {},
+     *       //   "metageneration": "my_metageneration",
+     *       //   "name": "my_name",
+     *       //   "owner": {},
+     *       //   "restoreToken": "my_restoreToken",
+     *       //   "retention": {},
+     *       //   "retentionExpirationTime": "my_retentionExpirationTime",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "size": "my_size",
+     *       //   "softDeleteTime": "my_softDeleteTime",
+     *       //   "storageClass": "my_storageClass",
+     *       //   "temporaryHold": false,
+     *       //   "timeCreated": "my_timeCreated",
+     *       //   "timeDeleted": "my_timeDeleted",
+     *       //   "timeFinalized": "my_timeFinalized",
+     *       //   "timeStorageClassUpdated": "my_timeStorageClassUpdated",
+     *       //   "updated": "my_updated"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acl": [],
+     *   //   "bucket": "my_bucket",
+     *   //   "cacheControl": "my_cacheControl",
+     *   //   "componentCount": 0,
+     *   //   "contentDisposition": "my_contentDisposition",
+     *   //   "contentEncoding": "my_contentEncoding",
+     *   //   "contentLanguage": "my_contentLanguage",
+     *   //   "contentType": "my_contentType",
+     *   //   "crc32c": "my_crc32c",
+     *   //   "customTime": "my_customTime",
+     *   //   "customerEncryption": {},
+     *   //   "etag": "my_etag",
+     *   //   "eventBasedHold": false,
+     *   //   "generation": "my_generation",
+     *   //   "hardDeleteTime": "my_hardDeleteTime",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "kmsKeyName": "my_kmsKeyName",
+     *   //   "md5Hash": "my_md5Hash",
+     *   //   "mediaLink": "my_mediaLink",
+     *   //   "metadata": {},
+     *   //   "metageneration": "my_metageneration",
+     *   //   "name": "my_name",
+     *   //   "owner": {},
+     *   //   "restoreToken": "my_restoreToken",
+     *   //   "retention": {},
+     *   //   "retentionExpirationTime": "my_retentionExpirationTime",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "size": "my_size",
+     *   //   "softDeleteTime": "my_softDeleteTime",
+     *   //   "storageClass": "my_storageClass",
+     *   //   "temporaryHold": false,
+     *   //   "timeCreated": "my_timeCreated",
+     *   //   "timeDeleted": "my_timeDeleted",
+     *   //   "timeFinalized": "my_timeFinalized",
+     *   //   "timeStorageClassUpdated": "my_timeStorageClassUpdated",
+     *   //   "updated": "my_updated"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8592,11 +14248,11 @@ export namespace storage_v1 {
     update(
       params: Params$Resource$Objects$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Objects$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Object>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Object>>;
     update(
       params: Params$Resource$Objects$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8625,7 +14281,10 @@ export namespace storage_v1 {
       callback?:
         | BodyResponseCallback<Schema$Object>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Object> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Object>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Objects$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8670,6 +14329,104 @@ export namespace storage_v1 {
 
     /**
      * Watch for changes on all objects in a bucket.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_only',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.objects.watchAll({
+     *     // Name of the bucket in which to look for objects.
+     *     bucket: 'placeholder-value',
+     *     // Returns results in a directory-like mode. items will contain only objects whose names, aside from the prefix, do not contain delimiter. Objects whose names, aside from the prefix, contain delimiter will have their name, truncated after the delimiter, returned in prefixes. Duplicate prefixes are omitted.
+     *     delimiter: 'placeholder-value',
+     *     // Filter results to objects whose names are lexicographically before endOffset. If startOffset is also set, the objects listed will have names between startOffset (inclusive) and endOffset (exclusive).
+     *     endOffset: 'placeholder-value',
+     *     // If true, objects that end in exactly one instance of delimiter will have their metadata included in items in addition to prefixes.
+     *     includeTrailingDelimiter: 'placeholder-value',
+     *     // Maximum number of items plus prefixes to return in a single page of responses. As duplicate prefixes are omitted, fewer total results may be returned than requested. The service will use this parameter or 1,000 items, whichever is smaller.
+     *     maxResults: 'placeholder-value',
+     *     // A previously-returned page token representing part of the larger set of results to view.
+     *     pageToken: 'placeholder-value',
+     *     // Filter results to objects whose names begin with this prefix.
+     *     prefix: 'placeholder-value',
+     *     // Set of properties to return. Defaults to noAcl.
+     *     projection: 'placeholder-value',
+     *     // Filter results to objects whose names are lexicographically equal to or after startOffset. If endOffset is also set, the objects listed will have names between startOffset (inclusive) and endOffset (exclusive).
+     *     startOffset: 'placeholder-value',
+     *     // The project to be billed for this request. Required for Requester Pays buckets.
+     *     userProject: 'placeholder-value',
+     *     // If true, lists all versions of an object as distinct results. The default is false. For more information, see [Object Versioning](https://cloud.google.com/storage/docs/object-versioning).
+     *     versions: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "address": "my_address",
+     *       //   "expiration": "my_expiration",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "params": {},
+     *       //   "payload": false,
+     *       //   "resourceId": "my_resourceId",
+     *       //   "resourceUri": "my_resourceUri",
+     *       //   "token": "my_token",
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "address": "my_address",
+     *   //   "expiration": "my_expiration",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "params": {},
+     *   //   "payload": false,
+     *   //   "resourceId": "my_resourceId",
+     *   //   "resourceUri": "my_resourceUri",
+     *   //   "token": "my_token",
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8679,11 +14436,11 @@ export namespace storage_v1 {
     watchAll(
       params: Params$Resource$Objects$Watchall,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     watchAll(
       params?: Params$Resource$Objects$Watchall,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Channel>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Channel>>;
     watchAll(
       params: Params$Resource$Objects$Watchall,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8712,7 +14469,10 @@ export namespace storage_v1 {
       callback?:
         | BodyResponseCallback<Schema$Channel>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Channel> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Channel>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Objects$Watchall;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9493,6 +15253,62 @@ export namespace storage_v1 {
 
     /**
      * Starts asynchronous advancement of the relocate bucket operation in the case of required write downtime, to allow it to lock the bucket at the source location, and proceed with the bucket location swap. The server makes a best effort to advance the relocate bucket operation, but success is not guaranteed.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.buckets.operations.advanceRelocateBucket({
+     *     // Name of the bucket to advance the relocate for.
+     *     bucket: 'placeholder-value',
+     *     // ID of the operation resource.
+     *     operationId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "expireTime": "my_expireTime",
+     *       //   "ttl": "my_ttl"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9502,11 +15318,11 @@ export namespace storage_v1 {
     advanceRelocateBucket(
       params: Params$Resource$Operations$Advancerelocatebucket,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     advanceRelocateBucket(
       params?: Params$Resource$Operations$Advancerelocatebucket,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     advanceRelocateBucket(
       params: Params$Resource$Operations$Advancerelocatebucket,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9533,7 +15349,10 @@ export namespace storage_v1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Operations$Advancerelocatebucket;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9579,6 +15398,53 @@ export namespace storage_v1 {
 
     /**
      * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.buckets.operations.cancel({
+     *     // The parent bucket of the operation resource.
+     *     bucket: 'placeholder-value',
+     *     // The ID of the operation resource.
+     *     operationId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9588,11 +15454,11 @@ export namespace storage_v1 {
     cancel(
       params: Params$Resource$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     cancel(
       params?: Params$Resource$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     cancel(
       params: Params$Resource$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9619,7 +15485,10 @@ export namespace storage_v1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9664,6 +15533,66 @@ export namespace storage_v1 {
 
     /**
      * Gets the latest state of a long-running operation.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_only',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.buckets.operations.get({
+     *     // The parent bucket of the operation resource.
+     *     bucket: 'placeholder-value',
+     *     // The ID of the operation resource.
+     *     operationId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {},
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9673,11 +15602,11 @@ export namespace storage_v1 {
     get(
       params: Params$Resource$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
     get(
       params: Params$Resource$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9712,8 +15641,8 @@ export namespace storage_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9757,6 +15686,66 @@ export namespace storage_v1 {
 
     /**
      * Lists operations that match the specified filter in the request.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_only',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.buckets.operations.list({
+     *     // Name of the bucket in which to look for operations.
+     *     bucket: 'placeholder-value',
+     *     // A filter to narrow down results to a preferred subset. The filtering language is documented in more detail in [AIP-160](https://google.aip.dev/160).
+     *     filter: 'placeholder-value',
+     *     // Maximum number of items to return in a single page of responses. Fewer total results may be returned than requested. The service uses this parameter or 100 items, whichever is smaller.
+     *     pageSize: 'placeholder-value',
+     *     // A previously-returned page token representing part of the larger set of results to view.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "operations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9766,11 +15755,13 @@ export namespace storage_v1 {
     list(
       params: Params$Resource$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>
+    >;
     list(
       params: Params$Resource$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9805,8 +15796,10 @@ export namespace storage_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9927,6 +15920,61 @@ export namespace storage_v1 {
 
     /**
      * Creates a new HMAC key for the specified service account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.projects.hmacKeys.create({
+     *     // Project ID owning the service account.
+     *     projectId: 'placeholder-value',
+     *     // Email address of the service account.
+     *     serviceAccountEmail: 'placeholder-value',
+     *     // The project to be billed for this request.
+     *     userProject: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "secret": "my_secret"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9936,11 +15984,11 @@ export namespace storage_v1 {
     create(
       params: Params$Resource$Projects$Hmackeys$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Hmackeys$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$HmacKey>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HmacKey>>;
     create(
       params: Params$Resource$Projects$Hmackeys$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9969,7 +16017,10 @@ export namespace storage_v1 {
       callback?:
         | BodyResponseCallback<Schema$HmacKey>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$HmacKey> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$HmacKey>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Hmackeys$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10014,6 +16065,55 @@ export namespace storage_v1 {
 
     /**
      * Deletes an HMAC key.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.projects.hmacKeys.delete({
+     *     // Name of the HMAC key to be deleted.
+     *     accessId: 'placeholder-value',
+     *     // Project ID owning the requested key
+     *     projectId: 'placeholder-value',
+     *     // The project to be billed for this request.
+     *     userProject: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10023,11 +16123,11 @@ export namespace storage_v1 {
     delete(
       params: Params$Resource$Projects$Hmackeys$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Hmackeys$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Projects$Hmackeys$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10054,7 +16154,10 @@ export namespace storage_v1 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Hmackeys$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10099,6 +16202,70 @@ export namespace storage_v1 {
 
     /**
      * Retrieves an HMAC key's metadata
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.projects.hmacKeys.get({
+     *     // Name of the HMAC key.
+     *     accessId: 'placeholder-value',
+     *     // Project ID owning the service account of the requested key.
+     *     projectId: 'placeholder-value',
+     *     // The project to be billed for this request.
+     *     userProject: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accessId": "my_accessId",
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "projectId": "my_projectId",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "serviceAccountEmail": "my_serviceAccountEmail",
+     *   //   "state": "my_state",
+     *   //   "timeCreated": "my_timeCreated",
+     *   //   "updated": "my_updated"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10108,11 +16275,11 @@ export namespace storage_v1 {
     get(
       params: Params$Resource$Projects$Hmackeys$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Hmackeys$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$HmacKeyMetadata>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HmacKeyMetadata>>;
     get(
       params: Params$Resource$Projects$Hmackeys$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10141,7 +16308,10 @@ export namespace storage_v1 {
       callback?:
         | BodyResponseCallback<Schema$HmacKeyMetadata>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$HmacKeyMetadata> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$HmacKeyMetadata>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Hmackeys$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10186,6 +16356,69 @@ export namespace storage_v1 {
 
     /**
      * Retrieves a list of HMAC keys matching the criteria.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.projects.hmacKeys.list({
+     *     // Maximum number of items to return in a single page of responses. The service uses this parameter or 250 items, whichever is smaller. The max number of items per page will also be limited by the number of distinct service accounts in the response. If the number of service accounts in a single response is too high, the page will truncated and a next page token will be returned.
+     *     maxResults: 'placeholder-value',
+     *     // A previously-returned page token representing part of the larger set of results to view.
+     *     pageToken: 'placeholder-value',
+     *     // Name of the project in which to look for HMAC keys.
+     *     projectId: 'placeholder-value',
+     *     // If present, only keys for the given service account are returned.
+     *     serviceAccountEmail: 'placeholder-value',
+     *     // Whether or not to show keys in the DELETED state.
+     *     showDeletedKeys: 'placeholder-value',
+     *     // The project to be billed for this request.
+     *     userProject: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10195,11 +16428,11 @@ export namespace storage_v1 {
     list(
       params: Params$Resource$Projects$Hmackeys$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Hmackeys$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$HmacKeysMetadata>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HmacKeysMetadata>>;
     list(
       params: Params$Resource$Projects$Hmackeys$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10228,7 +16461,10 @@ export namespace storage_v1 {
       callback?:
         | BodyResponseCallback<Schema$HmacKeysMetadata>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$HmacKeysMetadata> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$HmacKeysMetadata>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Hmackeys$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10273,6 +16509,85 @@ export namespace storage_v1 {
 
     /**
      * Updates the state of an HMAC key. See the [HMAC Key resource descriptor](https://cloud.google.com/storage/docs/json_api/v1/projects/hmacKeys/update#request-body) for valid states.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.projects.hmacKeys.update({
+     *     // Name of the HMAC key being updated.
+     *     accessId: 'placeholder-value',
+     *     // Project ID owning the service account of the updated key.
+     *     projectId: 'placeholder-value',
+     *     // The project to be billed for this request.
+     *     userProject: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accessId": "my_accessId",
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "projectId": "my_projectId",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "serviceAccountEmail": "my_serviceAccountEmail",
+     *       //   "state": "my_state",
+     *       //   "timeCreated": "my_timeCreated",
+     *       //   "updated": "my_updated"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accessId": "my_accessId",
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "projectId": "my_projectId",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "serviceAccountEmail": "my_serviceAccountEmail",
+     *   //   "state": "my_state",
+     *   //   "timeCreated": "my_timeCreated",
+     *   //   "updated": "my_updated"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10282,11 +16597,11 @@ export namespace storage_v1 {
     update(
       params: Params$Resource$Projects$Hmackeys$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Projects$Hmackeys$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$HmacKeyMetadata>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HmacKeyMetadata>>;
     update(
       params: Params$Resource$Projects$Hmackeys$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10315,7 +16630,10 @@ export namespace storage_v1 {
       callback?:
         | BodyResponseCallback<Schema$HmacKeyMetadata>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$HmacKeyMetadata> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$HmacKeyMetadata>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Hmackeys$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10460,6 +16778,61 @@ export namespace storage_v1 {
 
     /**
      * Get the email address of this project's Google Cloud Storage service account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_only',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.projects.serviceAccount.get({
+     *     // Project ID
+     *     projectId: 'placeholder-value',
+     *     // The project to be billed for this request.
+     *     userProject: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "email_address": "my_email_address",
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10469,11 +16842,11 @@ export namespace storage_v1 {
     get(
       params: Params$Resource$Projects$Serviceaccount$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Serviceaccount$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ServiceAccount>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ServiceAccount>>;
     get(
       params: Params$Resource$Projects$Serviceaccount$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10502,7 +16875,10 @@ export namespace storage_v1 {
       callback?:
         | BodyResponseCallback<Schema$ServiceAccount>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ServiceAccount> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ServiceAccount>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Serviceaccount$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;

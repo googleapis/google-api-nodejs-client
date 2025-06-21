@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -542,6 +542,10 @@ export namespace recaptchaenterprise_v1 {
      */
     cardTestingVerdict?: Schema$GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentCardTestingVerdict;
     /**
+     * Output only. Reasons why the transaction is probably fraudulent and received a high transaction risk score.
+     */
+    riskReasons?: Schema$GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentRiskReason[];
+    /**
      * Output only. Assessment of this transaction for risk of a stolen instrument.
      */
     stolenInstrumentVerdict?: Schema$GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentStolenInstrumentVerdict;
@@ -567,6 +571,15 @@ export namespace recaptchaenterprise_v1 {
      * Output only. Probability of this transaction attempt being part of a card testing attack. Values are from 0.0 (lowest) to 1.0 (highest).
      */
     risk?: number | null;
+  }
+  /**
+   * Risk reasons applicable to the Fraud Prevention assessment.
+   */
+  export interface Schema$GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentRiskReason {
+    /**
+     * Output only. Risk reasons applicable to the Fraud Prevention assessment.
+     */
+    reason?: string | null;
   }
   /**
    * Information about stolen instrument fraud, where the user is not the legitimate owner of the instrument being used for the purchase.
@@ -1317,6 +1330,62 @@ export namespace recaptchaenterprise_v1 {
 
     /**
      * Annotates a previously created Assessment to provide additional information on whether the event turned out to be authentic or fraudulent.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/recaptchaenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const recaptchaenterprise = google.recaptchaenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await recaptchaenterprise.projects.assessments.annotate({
+     *     // Required. The resource name of the Assessment, in the format `projects/{project\}/assessments/{assessment\}`.
+     *     name: 'projects/my-project/assessments/my-assessment',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "annotation": "my_annotation",
+     *       //   "hashedAccountId": "my_hashedAccountId",
+     *       //   "reasons": [],
+     *       //   "transactionEvent": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1326,11 +1395,13 @@ export namespace recaptchaenterprise_v1 {
     annotate(
       params: Params$Resource$Projects$Assessments$Annotate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     annotate(
       params?: Params$Resource$Projects$Assessments$Annotate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1AnnotateAssessmentResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudRecaptchaenterpriseV1AnnotateAssessmentResponse>
+    >;
     annotate(
       params: Params$Resource$Projects$Assessments$Annotate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1365,8 +1436,10 @@ export namespace recaptchaenterprise_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1AnnotateAssessmentResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudRecaptchaenterpriseV1AnnotateAssessmentResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Assessments$Annotate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1415,6 +1488,82 @@ export namespace recaptchaenterprise_v1 {
 
     /**
      * Creates an Assessment of the likelihood an event is legitimate.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/recaptchaenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const recaptchaenterprise = google.recaptchaenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await recaptchaenterprise.projects.assessments.create({
+     *     // Required. The name of the project in which the assessment is created, in the format `projects/{project\}`.
+     *     parent: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountDefenderAssessment": {},
+     *       //   "accountVerification": {},
+     *       //   "assessmentEnvironment": {},
+     *       //   "event": {},
+     *       //   "firewallPolicyAssessment": {},
+     *       //   "fraudPreventionAssessment": {},
+     *       //   "fraudSignals": {},
+     *       //   "name": "my_name",
+     *       //   "phoneFraudAssessment": {},
+     *       //   "privatePasswordLeakVerification": {},
+     *       //   "riskAnalysis": {},
+     *       //   "tokenProperties": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountDefenderAssessment": {},
+     *   //   "accountVerification": {},
+     *   //   "assessmentEnvironment": {},
+     *   //   "event": {},
+     *   //   "firewallPolicyAssessment": {},
+     *   //   "fraudPreventionAssessment": {},
+     *   //   "fraudSignals": {},
+     *   //   "name": "my_name",
+     *   //   "phoneFraudAssessment": {},
+     *   //   "privatePasswordLeakVerification": {},
+     *   //   "riskAnalysis": {},
+     *   //   "tokenProperties": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1424,11 +1573,13 @@ export namespace recaptchaenterprise_v1 {
     create(
       params: Params$Resource$Projects$Assessments$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Assessments$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1Assessment>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudRecaptchaenterpriseV1Assessment>
+    >;
     create(
       params: Params$Resource$Projects$Assessments$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1463,8 +1614,10 @@ export namespace recaptchaenterprise_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1Assessment>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudRecaptchaenterpriseV1Assessment>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Assessments$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1545,6 +1698,68 @@ export namespace recaptchaenterprise_v1 {
 
     /**
      * Creates a new FirewallPolicy, specifying conditions at which reCAPTCHA Enterprise actions can be executed. A project may have a maximum of 1000 policies.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/recaptchaenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const recaptchaenterprise = google.recaptchaenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await recaptchaenterprise.projects.firewallpolicies.create({
+     *     // Required. The name of the project this policy applies to, in the format `projects/{project\}`.
+     *     parent: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "actions": [],
+     *       //   "condition": "my_condition",
+     *       //   "description": "my_description",
+     *       //   "name": "my_name",
+     *       //   "path": "my_path"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "actions": [],
+     *   //   "condition": "my_condition",
+     *   //   "description": "my_description",
+     *   //   "name": "my_name",
+     *   //   "path": "my_path"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1554,11 +1769,13 @@ export namespace recaptchaenterprise_v1 {
     create(
       params: Params$Resource$Projects$Firewallpolicies$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Firewallpolicies$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1FirewallPolicy>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudRecaptchaenterpriseV1FirewallPolicy>
+    >;
     create(
       params: Params$Resource$Projects$Firewallpolicies$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1593,8 +1810,10 @@ export namespace recaptchaenterprise_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1FirewallPolicy>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudRecaptchaenterpriseV1FirewallPolicy>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Firewallpolicies$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1643,6 +1862,50 @@ export namespace recaptchaenterprise_v1 {
 
     /**
      * Deletes the specified firewall policy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/recaptchaenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const recaptchaenterprise = google.recaptchaenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await recaptchaenterprise.projects.firewallpolicies.delete({
+     *     // Required. The name of the policy to be deleted, in the format `projects/{project\}/firewallpolicies/{firewallpolicy\}`.
+     *     name: 'projects/my-project/firewallpolicies/my-firewallpolicie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1652,11 +1915,11 @@ export namespace recaptchaenterprise_v1 {
     delete(
       params: Params$Resource$Projects$Firewallpolicies$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Firewallpolicies$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     delete(
       params: Params$Resource$Projects$Firewallpolicies$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1687,8 +1950,8 @@ export namespace recaptchaenterprise_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Firewallpolicies$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1732,6 +1995,56 @@ export namespace recaptchaenterprise_v1 {
 
     /**
      * Returns the specified firewall policy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/recaptchaenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const recaptchaenterprise = google.recaptchaenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await recaptchaenterprise.projects.firewallpolicies.get({
+     *     // Required. The name of the requested policy, in the format `projects/{project\}/firewallpolicies/{firewallpolicy\}`.
+     *     name: 'projects/my-project/firewallpolicies/my-firewallpolicie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "actions": [],
+     *   //   "condition": "my_condition",
+     *   //   "description": "my_description",
+     *   //   "name": "my_name",
+     *   //   "path": "my_path"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1741,11 +2054,13 @@ export namespace recaptchaenterprise_v1 {
     get(
       params: Params$Resource$Projects$Firewallpolicies$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Firewallpolicies$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1FirewallPolicy>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudRecaptchaenterpriseV1FirewallPolicy>
+    >;
     get(
       params: Params$Resource$Projects$Firewallpolicies$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1780,8 +2095,10 @@ export namespace recaptchaenterprise_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1FirewallPolicy>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudRecaptchaenterpriseV1FirewallPolicy>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Firewallpolicies$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1827,6 +2144,57 @@ export namespace recaptchaenterprise_v1 {
 
     /**
      * Returns the list of all firewall policies that belong to a project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/recaptchaenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const recaptchaenterprise = google.recaptchaenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await recaptchaenterprise.projects.firewallpolicies.list({
+     *     // Optional. The maximum number of policies to return. Default is 10. Max limit is 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. The next_page_token value returned from a previous. ListFirewallPoliciesRequest, if any.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The name of the project to list the policies for, in the format `projects/{project\}`.
+     *     parent: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "firewallPolicies": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1836,11 +2204,13 @@ export namespace recaptchaenterprise_v1 {
     list(
       params: Params$Resource$Projects$Firewallpolicies$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Firewallpolicies$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1ListFirewallPoliciesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudRecaptchaenterpriseV1ListFirewallPoliciesResponse>
+    >;
     list(
       params: Params$Resource$Projects$Firewallpolicies$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1875,8 +2245,10 @@ export namespace recaptchaenterprise_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1ListFirewallPoliciesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudRecaptchaenterpriseV1ListFirewallPoliciesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Firewallpolicies$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1925,6 +2297,70 @@ export namespace recaptchaenterprise_v1 {
 
     /**
      * Updates the specified firewall policy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/recaptchaenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const recaptchaenterprise = google.recaptchaenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await recaptchaenterprise.projects.firewallpolicies.patch({
+     *     // Identifier. The resource name for the FirewallPolicy in the format `projects/{project\}/firewallpolicies/{firewallpolicy\}`.
+     *     name: 'projects/my-project/firewallpolicies/my-firewallpolicie',
+     *     // Optional. The mask to control which fields of the policy get updated. If the mask is not present, all fields are updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "actions": [],
+     *       //   "condition": "my_condition",
+     *       //   "description": "my_description",
+     *       //   "name": "my_name",
+     *       //   "path": "my_path"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "actions": [],
+     *   //   "condition": "my_condition",
+     *   //   "description": "my_description",
+     *   //   "name": "my_name",
+     *   //   "path": "my_path"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1934,11 +2370,13 @@ export namespace recaptchaenterprise_v1 {
     patch(
       params: Params$Resource$Projects$Firewallpolicies$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Firewallpolicies$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1FirewallPolicy>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudRecaptchaenterpriseV1FirewallPolicy>
+    >;
     patch(
       params: Params$Resource$Projects$Firewallpolicies$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1973,8 +2411,10 @@ export namespace recaptchaenterprise_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1FirewallPolicy>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudRecaptchaenterpriseV1FirewallPolicy>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Firewallpolicies$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2020,6 +2460,58 @@ export namespace recaptchaenterprise_v1 {
 
     /**
      * Reorders all firewall policies.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/recaptchaenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const recaptchaenterprise = google.recaptchaenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await recaptchaenterprise.projects.firewallpolicies.reorder({
+     *     // Required. The name of the project to list the policies for, in the format `projects/{project\}`.
+     *     parent: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "names": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2029,11 +2521,13 @@ export namespace recaptchaenterprise_v1 {
     reorder(
       params: Params$Resource$Projects$Firewallpolicies$Reorder,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     reorder(
       params?: Params$Resource$Projects$Firewallpolicies$Reorder,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1ReorderFirewallPoliciesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudRecaptchaenterpriseV1ReorderFirewallPoliciesResponse>
+    >;
     reorder(
       params: Params$Resource$Projects$Firewallpolicies$Reorder,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2068,8 +2562,10 @@ export namespace recaptchaenterprise_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1ReorderFirewallPoliciesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudRecaptchaenterpriseV1ReorderFirewallPoliciesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Firewallpolicies$Reorder;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2194,7 +2690,59 @@ export namespace recaptchaenterprise_v1 {
     }
 
     /**
-     * Adds an IP override to a key. The following restrictions hold: * The maximum number of IP overrides per key is 100. * For any conflict (such as IP already exists or IP part of an existing IP range), an error is returned.
+     * Adds an IP override to a key. The following restrictions hold: * The maximum number of IP overrides per key is 1000. * For any conflict (such as IP already exists or IP part of an existing IP range), an error is returned.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/recaptchaenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const recaptchaenterprise = google.recaptchaenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await recaptchaenterprise.projects.keys.addIpOverride({
+     *     // Required. The name of the key to which the IP override is added, in the format `projects/{project\}/keys/{key\}`.
+     *     name: 'projects/my-project/keys/my-key',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "ipOverrideData": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2204,11 +2752,13 @@ export namespace recaptchaenterprise_v1 {
     addIpOverride(
       params: Params$Resource$Projects$Keys$Addipoverride,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     addIpOverride(
       params?: Params$Resource$Projects$Keys$Addipoverride,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1AddIpOverrideResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudRecaptchaenterpriseV1AddIpOverrideResponse>
+    >;
     addIpOverride(
       params: Params$Resource$Projects$Keys$Addipoverride,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2243,8 +2793,10 @@ export namespace recaptchaenterprise_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1AddIpOverrideResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudRecaptchaenterpriseV1AddIpOverrideResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Keys$Addipoverride;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2293,6 +2845,78 @@ export namespace recaptchaenterprise_v1 {
 
     /**
      * Creates a new reCAPTCHA Enterprise key.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/recaptchaenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const recaptchaenterprise = google.recaptchaenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await recaptchaenterprise.projects.keys.create({
+     *     // Required. The name of the project in which the key is created, in the format `projects/{project\}`.
+     *     parent: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "androidSettings": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "displayName": "my_displayName",
+     *       //   "expressSettings": {},
+     *       //   "iosSettings": {},
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "testingOptions": {},
+     *       //   "wafSettings": {},
+     *       //   "webSettings": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "androidSettings": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "displayName": "my_displayName",
+     *   //   "expressSettings": {},
+     *   //   "iosSettings": {},
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "testingOptions": {},
+     *   //   "wafSettings": {},
+     *   //   "webSettings": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2302,11 +2926,13 @@ export namespace recaptchaenterprise_v1 {
     create(
       params: Params$Resource$Projects$Keys$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Keys$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1Key>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudRecaptchaenterpriseV1Key>
+    >;
     create(
       params: Params$Resource$Projects$Keys$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2341,8 +2967,10 @@ export namespace recaptchaenterprise_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1Key>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudRecaptchaenterpriseV1Key>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Keys$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2388,6 +3016,50 @@ export namespace recaptchaenterprise_v1 {
 
     /**
      * Deletes the specified key.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/recaptchaenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const recaptchaenterprise = google.recaptchaenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await recaptchaenterprise.projects.keys.delete({
+     *     // Required. The name of the key to be deleted, in the format `projects/{project\}/keys/{key\}`.
+     *     name: 'projects/my-project/keys/my-key',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2397,11 +3069,11 @@ export namespace recaptchaenterprise_v1 {
     delete(
       params: Params$Resource$Projects$Keys$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Keys$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     delete(
       params: Params$Resource$Projects$Keys$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2432,8 +3104,8 @@ export namespace recaptchaenterprise_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Keys$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2477,6 +3149,61 @@ export namespace recaptchaenterprise_v1 {
 
     /**
      * Returns the specified key.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/recaptchaenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const recaptchaenterprise = google.recaptchaenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await recaptchaenterprise.projects.keys.get({
+     *     // Required. The name of the requested key, in the format `projects/{project\}/keys/{key\}`.
+     *     name: 'projects/my-project/keys/my-key',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "androidSettings": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "displayName": "my_displayName",
+     *   //   "expressSettings": {},
+     *   //   "iosSettings": {},
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "testingOptions": {},
+     *   //   "wafSettings": {},
+     *   //   "webSettings": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2486,11 +3213,13 @@ export namespace recaptchaenterprise_v1 {
     get(
       params: Params$Resource$Projects$Keys$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Keys$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1Key>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudRecaptchaenterpriseV1Key>
+    >;
     get(
       params: Params$Resource$Projects$Keys$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2525,8 +3254,10 @@ export namespace recaptchaenterprise_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1Key>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudRecaptchaenterpriseV1Key>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Keys$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2572,6 +3303,55 @@ export namespace recaptchaenterprise_v1 {
 
     /**
      * Get some aggregated metrics for a Key. This data can be used to build dashboards.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/recaptchaenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const recaptchaenterprise = google.recaptchaenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await recaptchaenterprise.projects.keys.getMetrics({
+     *     // Required. The name of the requested metrics, in the format `projects/{project\}/keys/{key\}/metrics`.
+     *     name: 'projects/my-project/keys/my-key/metrics',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "challengeMetrics": [],
+     *   //   "name": "my_name",
+     *   //   "scoreMetrics": [],
+     *   //   "startTime": "my_startTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2581,11 +3361,13 @@ export namespace recaptchaenterprise_v1 {
     getMetrics(
       params: Params$Resource$Projects$Keys$Getmetrics,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getMetrics(
       params?: Params$Resource$Projects$Keys$Getmetrics,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1Metrics>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudRecaptchaenterpriseV1Metrics>
+    >;
     getMetrics(
       params: Params$Resource$Projects$Keys$Getmetrics,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2620,8 +3402,10 @@ export namespace recaptchaenterprise_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1Metrics>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudRecaptchaenterpriseV1Metrics>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Keys$Getmetrics;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2667,6 +3451,57 @@ export namespace recaptchaenterprise_v1 {
 
     /**
      * Returns the list of all keys that belong to a project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/recaptchaenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const recaptchaenterprise = google.recaptchaenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await recaptchaenterprise.projects.keys.list({
+     *     // Optional. The maximum number of keys to return. Default is 10. Max limit is 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. The next_page_token value returned from a previous. ListKeysRequest, if any.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The name of the project that contains the keys that is listed, in the format `projects/{project\}`.
+     *     parent: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "keys": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2676,11 +3511,13 @@ export namespace recaptchaenterprise_v1 {
     list(
       params: Params$Resource$Projects$Keys$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Keys$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1ListKeysResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudRecaptchaenterpriseV1ListKeysResponse>
+    >;
     list(
       params: Params$Resource$Projects$Keys$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2715,8 +3552,10 @@ export namespace recaptchaenterprise_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1ListKeysResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudRecaptchaenterpriseV1ListKeysResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Keys$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2762,6 +3601,57 @@ export namespace recaptchaenterprise_v1 {
 
     /**
      * Lists all IP overrides for a key.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/recaptchaenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const recaptchaenterprise = google.recaptchaenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await recaptchaenterprise.projects.keys.listIpOverrides({
+     *     // Optional. The maximum number of overrides to return. Default is 10. Max limit is 100. If the number of overrides is less than the page_size, all overrides are returned. If the page size is more than 100, it is coerced to 100.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. The next_page_token value returned from a previous ListIpOverridesRequest, if any.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent key for which the IP overrides are listed, in the format `projects/{project\}/keys/{key\}`.
+     *     parent: 'projects/my-project/keys/my-key',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "ipOverrides": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2771,11 +3661,13 @@ export namespace recaptchaenterprise_v1 {
     listIpOverrides(
       params: Params$Resource$Projects$Keys$Listipoverrides,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     listIpOverrides(
       params?: Params$Resource$Projects$Keys$Listipoverrides,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1ListIpOverridesResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudRecaptchaenterpriseV1ListIpOverridesResponse>
+    >;
     listIpOverrides(
       params: Params$Resource$Projects$Keys$Listipoverrides,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2810,8 +3702,10 @@ export namespace recaptchaenterprise_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1ListIpOverridesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudRecaptchaenterpriseV1ListIpOverridesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Keys$Listipoverrides;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2860,6 +3754,69 @@ export namespace recaptchaenterprise_v1 {
 
     /**
      * Migrates an existing key from reCAPTCHA to reCAPTCHA Enterprise. Once a key is migrated, it can be used from either product. SiteVerify requests are billed as CreateAssessment calls. You must be authenticated as one of the current owners of the reCAPTCHA Key, and your user must have the reCAPTCHA Enterprise Admin IAM role in the destination project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/recaptchaenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const recaptchaenterprise = google.recaptchaenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await recaptchaenterprise.projects.keys.migrate({
+     *     // Required. The name of the key to be migrated, in the format `projects/{project\}/keys/{key\}`.
+     *     name: 'projects/my-project/keys/my-key',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "skipBillingCheck": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "androidSettings": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "displayName": "my_displayName",
+     *   //   "expressSettings": {},
+     *   //   "iosSettings": {},
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "testingOptions": {},
+     *   //   "wafSettings": {},
+     *   //   "webSettings": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2869,11 +3826,13 @@ export namespace recaptchaenterprise_v1 {
     migrate(
       params: Params$Resource$Projects$Keys$Migrate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     migrate(
       params?: Params$Resource$Projects$Keys$Migrate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1Key>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudRecaptchaenterpriseV1Key>
+    >;
     migrate(
       params: Params$Resource$Projects$Keys$Migrate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2908,8 +3867,10 @@ export namespace recaptchaenterprise_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1Key>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudRecaptchaenterpriseV1Key>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Keys$Migrate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2958,6 +3919,80 @@ export namespace recaptchaenterprise_v1 {
 
     /**
      * Updates the specified key.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/recaptchaenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const recaptchaenterprise = google.recaptchaenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await recaptchaenterprise.projects.keys.patch({
+     *     // Identifier. The resource name for the Key in the format `projects/{project\}/keys/{key\}`.
+     *     name: 'projects/my-project/keys/my-key',
+     *     // Optional. The mask to control which fields of the key get updated. If the mask is not present, all fields are updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "androidSettings": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "displayName": "my_displayName",
+     *       //   "expressSettings": {},
+     *       //   "iosSettings": {},
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "testingOptions": {},
+     *       //   "wafSettings": {},
+     *       //   "webSettings": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "androidSettings": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "displayName": "my_displayName",
+     *   //   "expressSettings": {},
+     *   //   "iosSettings": {},
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "testingOptions": {},
+     *   //   "wafSettings": {},
+     *   //   "webSettings": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2967,11 +4002,13 @@ export namespace recaptchaenterprise_v1 {
     patch(
       params: Params$Resource$Projects$Keys$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Keys$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1Key>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudRecaptchaenterpriseV1Key>
+    >;
     patch(
       params: Params$Resource$Projects$Keys$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3006,8 +4043,10 @@ export namespace recaptchaenterprise_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1Key>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudRecaptchaenterpriseV1Key>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Keys$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3053,6 +4092,58 @@ export namespace recaptchaenterprise_v1 {
 
     /**
      * Removes an IP override from a key. The following restrictions hold: * If the IP isn't found in an existing IP override, a `NOT_FOUND` error is returned. * If the IP is found in an existing IP override, but the override type does not match, a `NOT_FOUND` error is returned.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/recaptchaenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const recaptchaenterprise = google.recaptchaenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await recaptchaenterprise.projects.keys.removeIpOverride({
+     *     // Required. The name of the key from which the IP override is removed, in the format `projects/{project\}/keys/{key\}`.
+     *     name: 'projects/my-project/keys/my-key',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "ipOverrideData": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3062,11 +4153,13 @@ export namespace recaptchaenterprise_v1 {
     removeIpOverride(
       params: Params$Resource$Projects$Keys$Removeipoverride,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     removeIpOverride(
       params?: Params$Resource$Projects$Keys$Removeipoverride,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1RemoveIpOverrideResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudRecaptchaenterpriseV1RemoveIpOverrideResponse>
+    >;
     removeIpOverride(
       params: Params$Resource$Projects$Keys$Removeipoverride,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3101,8 +4194,10 @@ export namespace recaptchaenterprise_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1RemoveIpOverrideResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudRecaptchaenterpriseV1RemoveIpOverrideResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Keys$Removeipoverride;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3151,6 +4246,52 @@ export namespace recaptchaenterprise_v1 {
 
     /**
      * Returns the secret key related to the specified public key. You must use the legacy secret key only in a 3rd party integration with legacy reCAPTCHA.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/recaptchaenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const recaptchaenterprise = google.recaptchaenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await recaptchaenterprise.projects.keys.retrieveLegacySecretKey({
+     *     // Required. The public key name linked to the requested secret key in the format `projects/{project\}/keys/{key\}`.
+     *     key: 'projects/my-project/keys/my-key',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "legacySecretKey": "my_legacySecretKey"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3160,11 +4301,13 @@ export namespace recaptchaenterprise_v1 {
     retrieveLegacySecretKey(
       params: Params$Resource$Projects$Keys$Retrievelegacysecretkey,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     retrieveLegacySecretKey(
       params?: Params$Resource$Projects$Keys$Retrievelegacysecretkey,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1RetrieveLegacySecretKeyResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudRecaptchaenterpriseV1RetrieveLegacySecretKeyResponse>
+    >;
     retrieveLegacySecretKey(
       params: Params$Resource$Projects$Keys$Retrievelegacysecretkey,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3199,8 +4342,10 @@ export namespace recaptchaenterprise_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1RetrieveLegacySecretKeyResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudRecaptchaenterpriseV1RetrieveLegacySecretKeyResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Keys$Retrievelegacysecretkey;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3379,6 +4524,65 @@ export namespace recaptchaenterprise_v1 {
 
     /**
      * Search group memberships related to a given account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/recaptchaenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const recaptchaenterprise = google.recaptchaenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await recaptchaenterprise.projects.relatedaccountgroupmemberships.search({
+     *       // Required. The name of the project to search related account group memberships from. Specify the project name in the following format: `projects/{project\}`.
+     *       project: 'projects/my-project',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "accountId": "my_accountId",
+     *         //   "hashedAccountId": "my_hashedAccountId",
+     *         //   "pageSize": 0,
+     *         //   "pageToken": "my_pageToken"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "relatedAccountGroupMemberships": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3388,11 +4592,13 @@ export namespace recaptchaenterprise_v1 {
     search(
       params: Params$Resource$Projects$Relatedaccountgroupmemberships$Search,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     search(
       params?: Params$Resource$Projects$Relatedaccountgroupmemberships$Search,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1SearchRelatedAccountGroupMembershipsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudRecaptchaenterpriseV1SearchRelatedAccountGroupMembershipsResponse>
+    >;
     search(
       params: Params$Resource$Projects$Relatedaccountgroupmemberships$Search,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3427,8 +4633,10 @@ export namespace recaptchaenterprise_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1SearchRelatedAccountGroupMembershipsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudRecaptchaenterpriseV1SearchRelatedAccountGroupMembershipsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Relatedaccountgroupmemberships$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3501,6 +4709,57 @@ export namespace recaptchaenterprise_v1 {
 
     /**
      * List groups of related accounts.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/recaptchaenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const recaptchaenterprise = google.recaptchaenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await recaptchaenterprise.projects.relatedaccountgroups.list({
+     *     // Optional. The maximum number of groups to return. The service might return fewer than this value. If unspecified, at most 50 groups are returned. The maximum value is 1000; values above 1000 are coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous `ListRelatedAccountGroups` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListRelatedAccountGroups` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The name of the project to list related account groups from, in the format `projects/{project\}`.
+     *     parent: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "relatedAccountGroups": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3510,11 +4769,13 @@ export namespace recaptchaenterprise_v1 {
     list(
       params: Params$Resource$Projects$Relatedaccountgroups$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Relatedaccountgroups$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupsResponse>
+    >;
     list(
       params: Params$Resource$Projects$Relatedaccountgroups$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3549,8 +4810,10 @@ export namespace recaptchaenterprise_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Relatedaccountgroups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3622,6 +4885,58 @@ export namespace recaptchaenterprise_v1 {
 
     /**
      * Get memberships in a group of related accounts.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/recaptchaenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const recaptchaenterprise = google.recaptchaenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await recaptchaenterprise.projects.relatedaccountgroups.memberships.list({
+     *       // Optional. The maximum number of accounts to return. The service might return fewer than this value. If unspecified, at most 50 accounts are returned. The maximum value is 1000; values above 1000 are coerced to 1000.
+     *       pageSize: 'placeholder-value',
+     *       // Optional. A page token, received from a previous `ListRelatedAccountGroupMemberships` call. When paginating, all other parameters provided to `ListRelatedAccountGroupMemberships` must match the call that provided the page token.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The resource name for the related account group in the format `projects/{project\}/relatedaccountgroups/{relatedaccountgroup\}`.
+     *       parent: 'projects/my-project/relatedaccountgroups/my-relatedaccountgroup',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "relatedAccountGroupMemberships": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3631,11 +4946,13 @@ export namespace recaptchaenterprise_v1 {
     list(
       params: Params$Resource$Projects$Relatedaccountgroups$Memberships$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Relatedaccountgroups$Memberships$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupMembershipsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupMembershipsResponse>
+    >;
     list(
       params: Params$Resource$Projects$Relatedaccountgroups$Memberships$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3670,8 +4987,10 @@ export namespace recaptchaenterprise_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupMembershipsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupMembershipsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Relatedaccountgroups$Memberships$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

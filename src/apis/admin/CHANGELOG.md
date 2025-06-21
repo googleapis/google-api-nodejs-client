@@ -1,5 +1,30 @@
 # Changelog
 
+## [24.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/admin-v24.0.0...admin-v24.0.1) (2025-06-04)
+
+
+### Bug Fixes
+
+* **deps:** upgrade googleapis-common to 8.0.2-rc ([f4b0990](https://github.com/googleapis/google-api-nodejs-client/commit/f4b099071040cfbcfe4a2e7d487d45ee93b369e0))
+
+## [24.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/admin-v23.5.0...admin-v24.0.0) (2025-05-29)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to node 18
+
+### Features
+
+* upgrade to node 18 ([682fbb8](https://github.com/googleapis/google-api-nodejs-client/commit/682fbb869189ae92b3e9a194d37d0548af0c1f92))
+
+## [23.5.0](https://github.com/googleapis/google-api-nodejs-client/compare/admin-v23.4.0...admin-v23.5.0) (2025-05-05)
+
+
+### Features
+
+* **admin:** update the API ([f68c70c](https://github.com/googleapis/google-api-nodejs-client/commit/f68c70c43a367b8f9dc2d7c81d717c6d723663fc))
+
 ## [23.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/admin-v23.3.0...admin-v23.4.0) (2025-04-18)
 
 

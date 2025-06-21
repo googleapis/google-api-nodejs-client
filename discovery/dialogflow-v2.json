@@ -8805,7 +8805,7 @@
       }
     }
   },
-  "revision": "20250422",
+  "revision": "20250612",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AdvancedSettings": {
@@ -9272,7 +9272,7 @@
       "id": "GoogleCloudDialogflowCxV3EnvironmentVersionConfig",
       "properties": {
         "version": {
-          "description": "Required. Both flow and playbook versions are supported. Format for flow version: projects//locations//agents//flows//versions/. Format for playbook version: projects//locations//agents//playbooks//versions/.",
+          "description": "Required. Flow, playbook and tool versions are supported. Format for flow version: projects//locations//agents//flows//versions/. Format for playbook version: projects//locations//agents//playbooks//versions/. Format for tool version: projects//locations//agents//tools//versions/.",
           "type": "string"
         }
       },
@@ -11689,7 +11689,7 @@
       "id": "GoogleCloudDialogflowCxV3beta1EnvironmentVersionConfig",
       "properties": {
         "version": {
-          "description": "Required. Both flow and playbook versions are supported. Format for flow version: projects//locations//agents//flows//versions/. Format for playbook version: projects//locations//agents//playbooks//versions/.",
+          "description": "Required. Flow, playbook and tool versions are supported. Format for flow version: projects//locations//agents//flows//versions/. Format for playbook version: projects//locations//agents//playbooks//versions/. Format for tool version: projects//locations//agents//tools//versions/.",
           "type": "string"
         }
       },
@@ -15924,6 +15924,10 @@
           "description": "The resource name of the existing created generator. Format: `projects//locations//generators/`",
           "type": "string"
         },
+        "securitySettings": {
+          "description": "Optional. Name of the CX SecuritySettings which is used to redact generated response. If this field is empty, try to fetch v2 security_settings, which is a project level setting. If this field is empty and no v2 security_settings set up in this project, no redaction will be done. Format: `projects//locations//securitySettings/`.",
+          "type": "string"
+        },
         "triggerEvents": {
           "description": "Optional. A list of trigger events. Generator will be triggered only if it's trigger event is included here.",
           "items": {
@@ -20059,7 +20063,7 @@
       "id": "GoogleCloudDialogflowV2ToolCall",
       "properties": {
         "action": {
-          "description": "Required. The name of the tool's action associated with this call.",
+          "description": "Optional. The name of the tool's action associated with this call.",
           "type": "string"
         },
         "createTime": {
@@ -20077,7 +20081,7 @@
           "type": "object"
         },
         "tool": {
-          "description": "Required. The tool associated with this call. Format: `projects//locations//tools/`.",
+          "description": "Optional. The tool associated with this call. Format: `projects//locations//tools/`.",
           "type": "string"
         }
       },
@@ -20088,7 +20092,7 @@
       "id": "GoogleCloudDialogflowV2ToolCallResult",
       "properties": {
         "action": {
-          "description": "Required. The name of the tool's action associated with this call.",
+          "description": "Optional. The name of the tool's action associated with this call.",
           "type": "string"
         },
         "content": {
@@ -20111,7 +20115,7 @@
           "type": "string"
         },
         "tool": {
-          "description": "Required. The tool associated with this call. Format: `projects//locations//tools/`.",
+          "description": "Optional. The tool associated with this call. Format: `projects//locations//tools/`.",
           "type": "string"
         }
       },
@@ -23106,7 +23110,7 @@
       "id": "GoogleCloudDialogflowV2beta1ToolCall",
       "properties": {
         "action": {
-          "description": "Required. The name of the tool's action associated with this call.",
+          "description": "Optional. The name of the tool's action associated with this call.",
           "type": "string"
         },
         "createTime": {
@@ -23124,7 +23128,7 @@
           "type": "object"
         },
         "tool": {
-          "description": "Required. The tool associated with this call. Format: `projects//locations//tools/`.",
+          "description": "Optional. The tool associated with this call. Format: `projects//locations//tools/`.",
           "type": "string"
         }
       },
@@ -23135,7 +23139,7 @@
       "id": "GoogleCloudDialogflowV2beta1ToolCallResult",
       "properties": {
         "action": {
-          "description": "Required. The name of the tool's action associated with this call.",
+          "description": "Optional. The name of the tool's action associated with this call.",
           "type": "string"
         },
         "content": {
@@ -23158,7 +23162,7 @@
           "type": "string"
         },
         "tool": {
-          "description": "Required. The tool associated with this call. Format: `projects//locations//tools/`.",
+          "description": "Optional. The tool associated with this call. Format: `projects//locations//tools/`.",
           "type": "string"
         }
       },

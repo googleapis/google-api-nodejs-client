@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -917,6 +917,57 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Returns a requested customer.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.customers.get({
+     *     // Required. The name of the customer.
+     *     name: 'customers/my-customer',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "sasUserIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -926,11 +977,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     get(
       params: Params$Resource$Customers$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Customers$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalCustomer>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SasPortalCustomer>>;
     get(
       params: Params$Resource$Customers$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -961,8 +1012,8 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalCustomer>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SasPortalCustomer>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Customers$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1005,6 +1056,58 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Returns a list of requested customers.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.customers.list({
+     *     // The maximum number of customers to return in the response.
+     *     pageSize: 'placeholder-value',
+     *     // A pagination token returned from a previous call to ListCustomers that indicates where this listing should continue from.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "customers": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1014,11 +1117,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     list(
       params: Params$Resource$Customers$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Customers$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalListCustomersResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SasPortalListCustomersResponse>>;
     list(
       params: Params$Resource$Customers$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1053,8 +1156,8 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalListCustomersResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SasPortalListCustomersResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Customers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1102,6 +1205,52 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Returns a list of SAS deployments associated with current GCP project. Includes whether SAS analytics has been enabled or not.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.customers.listGcpProjectDeployments({});
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deployments": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1111,11 +1260,13 @@ export namespace prod_tt_sasportal_v1alpha1 {
     listGcpProjectDeployments(
       params: Params$Resource$Customers$Listgcpprojectdeployments,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     listGcpProjectDeployments(
       params?: Params$Resource$Customers$Listgcpprojectdeployments,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalListGcpProjectDeploymentsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$SasPortalListGcpProjectDeploymentsResponse>
+    >;
     listGcpProjectDeployments(
       params: Params$Resource$Customers$Listgcpprojectdeployments,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1150,8 +1301,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalListGcpProjectDeploymentsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$SasPortalListGcpProjectDeploymentsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Listgcpprojectdeployments;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1199,6 +1352,52 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Returns a list of legacy organizations.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.customers.listLegacyOrganizations({});
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "organizations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1208,11 +1407,13 @@ export namespace prod_tt_sasportal_v1alpha1 {
     listLegacyOrganizations(
       params: Params$Resource$Customers$Listlegacyorganizations,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     listLegacyOrganizations(
       params?: Params$Resource$Customers$Listlegacyorganizations,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalListLegacyOrganizationsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$SasPortalListLegacyOrganizationsResponse>
+    >;
     listLegacyOrganizations(
       params: Params$Resource$Customers$Listlegacyorganizations,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1247,8 +1448,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalListLegacyOrganizationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$SasPortalListLegacyOrganizationsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Listlegacyorganizations;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1296,6 +1499,64 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Migrates a SAS organization to the cloud. This will create GCP projects for each deployment and associate them. The SAS Organization is linked to the gcp project that called the command. go/sas-legacy-customer-migration
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.customers.migrateOrganization({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "organizationId": "my_organizationId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1305,11 +1566,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     migrateOrganization(
       params: Params$Resource$Customers$Migrateorganization,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     migrateOrganization(
       params?: Params$Resource$Customers$Migrateorganization,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SasPortalOperation>>;
     migrateOrganization(
       params: Params$Resource$Customers$Migrateorganization,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1342,8 +1603,8 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SasPortalOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Migrateorganization;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1390,6 +1651,69 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Updates an existing customer.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.customers.patch({
+     *     // Output only. Resource name of the customer.
+     *     name: 'customers/my-customer',
+     *     // Fields to be updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "displayName": "my_displayName",
+     *       //   "name": "my_name",
+     *       //   "sasUserIds": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "sasUserIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1399,11 +1723,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     patch(
       params: Params$Resource$Customers$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Customers$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalCustomer>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SasPortalCustomer>>;
     patch(
       params: Params$Resource$Customers$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1434,8 +1758,8 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalCustomer>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SasPortalCustomer>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Customers$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1478,6 +1802,62 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Creates a new SAS deployment through the GCP workflow. Creates a SAS organization if an organization match is not found.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.customers.provisionDeployment({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "newDeploymentDisplayName": "my_newDeploymentDisplayName",
+     *       //   "newOrganizationDisplayName": "my_newOrganizationDisplayName",
+     *       //   "organizationId": "my_organizationId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "errorMessage": "my_errorMessage"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1487,11 +1867,13 @@ export namespace prod_tt_sasportal_v1alpha1 {
     provisionDeployment(
       params: Params$Resource$Customers$Provisiondeployment,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     provisionDeployment(
       params?: Params$Resource$Customers$Provisiondeployment,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalProvisionDeploymentResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$SasPortalProvisionDeploymentResponse>
+    >;
     provisionDeployment(
       params: Params$Resource$Customers$Provisiondeployment,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1526,8 +1908,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalProvisionDeploymentResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$SasPortalProvisionDeploymentResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Provisiondeployment;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1576,6 +1960,64 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Setups the a GCP Project to receive SAS Analytics messages via GCP Pub/Sub with a subscription to BigQuery. All the Pub/Sub topics and BigQuery tables are created automatically as part of this service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.customers.setupSasAnalytics({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "userId": "my_userId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1585,11 +2027,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     setupSasAnalytics(
       params: Params$Resource$Customers$Setupsasanalytics,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setupSasAnalytics(
       params?: Params$Resource$Customers$Setupsasanalytics,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SasPortalOperation>>;
     setupSasAnalytics(
       params: Params$Resource$Customers$Setupsasanalytics,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1622,8 +2064,8 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SasPortalOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Setupsasanalytics;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1736,6 +2178,69 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Creates a new deployment.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.customers.deployments.create({
+     *     // Required. The parent resource name where the deployment is to be created.
+     *     parent: 'customers/my-customer',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "displayName": "my_displayName",
+     *       //   "frns": [],
+     *       //   "name": "my_name",
+     *       //   "sasUserIds": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "frns": [],
+     *   //   "name": "my_name",
+     *   //   "sasUserIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1745,11 +2250,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     create(
       params: Params$Resource$Customers$Deployments$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Customers$Deployments$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalDeployment>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SasPortalDeployment>>;
     create(
       params: Params$Resource$Customers$Deployments$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1780,8 +2285,8 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalDeployment>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SasPortalDeployment>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Deployments$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1828,6 +2333,53 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Deletes a deployment.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.customers.deployments.delete({
+     *     // Required. The name of the deployment.
+     *     name: 'customers/my-customer/deployments/my-deployment',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1837,11 +2389,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     delete(
       params: Params$Resource$Customers$Deployments$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Customers$Deployments$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SasPortalEmpty>>;
     delete(
       params: Params$Resource$Customers$Deployments$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1870,7 +2422,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalEmpty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalEmpty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SasPortalEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Deployments$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1914,6 +2469,58 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Returns a requested deployment.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.customers.deployments.get({
+     *     // Required. The name of the deployment.
+     *     name: 'customers/my-customer/deployments/my-deployment',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "frns": [],
+     *   //   "name": "my_name",
+     *   //   "sasUserIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1923,11 +2530,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     get(
       params: Params$Resource$Customers$Deployments$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Customers$Deployments$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalDeployment>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SasPortalDeployment>>;
     get(
       params: Params$Resource$Customers$Deployments$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1958,8 +2565,8 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalDeployment>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SasPortalDeployment>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Deployments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2003,6 +2610,62 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Lists deployments.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.customers.deployments.list({
+     *     // The filter expression. The filter should have the following format: "DIRECT_CHILDREN" or format: "direct_children". The filter is case insensitive. If empty, then no deployments are filtered.
+     *     filter: 'placeholder-value',
+     *     // The maximum number of deployments to return in the response.
+     *     pageSize: 'placeholder-value',
+     *     // A pagination token returned from a previous call to ListDeployments that indicates where this listing should continue from.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent resource name, for example, "nodes/1", customer/1/nodes/2.
+     *     parent: 'customers/my-customer',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deployments": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2012,11 +2675,13 @@ export namespace prod_tt_sasportal_v1alpha1 {
     list(
       params: Params$Resource$Customers$Deployments$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Customers$Deployments$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalListDeploymentsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$SasPortalListDeploymentsResponse>
+    >;
     list(
       params: Params$Resource$Customers$Deployments$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2051,8 +2716,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalListDeploymentsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$SasPortalListDeploymentsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Deployments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2101,6 +2768,67 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Moves a deployment under another node or customer.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.customers.deployments.move({
+     *     // Required. The name of the deployment to move.
+     *     name: 'customers/my-customer/deployments/my-deployment',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "destination": "my_destination"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2110,11 +2838,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     move(
       params: Params$Resource$Customers$Deployments$Move,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     move(
       params?: Params$Resource$Customers$Deployments$Move,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SasPortalOperation>>;
     move(
       params: Params$Resource$Customers$Deployments$Move,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2145,8 +2873,8 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SasPortalOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Deployments$Move;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2193,6 +2921,71 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Updates an existing deployment.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.customers.deployments.patch({
+     *     // Output only. Resource name.
+     *     name: 'customers/my-customer/deployments/my-deployment',
+     *     // Fields to be updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "displayName": "my_displayName",
+     *       //   "frns": [],
+     *       //   "name": "my_name",
+     *       //   "sasUserIds": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "frns": [],
+     *   //   "name": "my_name",
+     *   //   "sasUserIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2202,11 +2995,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     patch(
       params: Params$Resource$Customers$Deployments$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Customers$Deployments$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalDeployment>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SasPortalDeployment>>;
     patch(
       params: Params$Resource$Customers$Deployments$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2237,8 +3030,8 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalDeployment>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SasPortalDeployment>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Deployments$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2363,6 +3156,83 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Creates a device under a node or customer.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.customers.deployments.devices.create({
+     *     // Required. The name of the parent resource.
+     *     parent: 'customers/my-customer/deployments/my-deployment',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "activeConfig": {},
+     *       //   "currentChannels": [],
+     *       //   "deviceMetadata": {},
+     *       //   "displayName": "my_displayName",
+     *       //   "fccId": "my_fccId",
+     *       //   "grantRangeAllowlists": [],
+     *       //   "grants": [],
+     *       //   "name": "my_name",
+     *       //   "preloadedConfig": {},
+     *       //   "serialNumber": "my_serialNumber",
+     *       //   "state": "my_state"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activeConfig": {},
+     *   //   "currentChannels": [],
+     *   //   "deviceMetadata": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "fccId": "my_fccId",
+     *   //   "grantRangeAllowlists": [],
+     *   //   "grants": [],
+     *   //   "name": "my_name",
+     *   //   "preloadedConfig": {},
+     *   //   "serialNumber": "my_serialNumber",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2372,11 +3242,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     create(
       params: Params$Resource$Customers$Deployments$Devices$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Customers$Deployments$Devices$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalDevice>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SasPortalDevice>>;
     create(
       params: Params$Resource$Customers$Deployments$Devices$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2405,7 +3275,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalDevice>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalDevice> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SasPortalDevice>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Deployments$Devices$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2452,6 +3325,75 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Creates a signed device under a node or customer.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await prod_tt_sasportal.customers.deployments.devices.createSigned({
+     *       // Required. The name of the parent resource.
+     *       parent: 'customers/my-customer/deployments/my-deployment',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "encodedDevice": "my_encodedDevice",
+     *         //   "installerId": "my_installerId"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activeConfig": {},
+     *   //   "currentChannels": [],
+     *   //   "deviceMetadata": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "fccId": "my_fccId",
+     *   //   "grantRangeAllowlists": [],
+     *   //   "grants": [],
+     *   //   "name": "my_name",
+     *   //   "preloadedConfig": {},
+     *   //   "serialNumber": "my_serialNumber",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2461,11 +3403,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     createSigned(
       params: Params$Resource$Customers$Deployments$Devices$Createsigned,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     createSigned(
       params?: Params$Resource$Customers$Deployments$Devices$Createsigned,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalDevice>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SasPortalDevice>>;
     createSigned(
       params: Params$Resource$Customers$Deployments$Devices$Createsigned,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2494,7 +3436,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalDevice>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalDevice> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SasPortalDevice>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Deployments$Devices$Createsigned;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2542,6 +3487,62 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Lists devices under a node or customer.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.customers.deployments.devices.list({
+     *     // The filter expression. The filter should have one of the following formats: "sn=123454" or "display_name=MyDevice". sn corresponds to serial number of the device. The filter is case insensitive.
+     *     filter: 'placeholder-value',
+     *     // The maximum number of devices to return in the response. If empty or zero, all devices will be listed. Must be in the range [0, 1000].
+     *     pageSize: 'placeholder-value',
+     *     // A pagination token returned from a previous call to ListDevices that indicates where this listing should continue from.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The name of the parent resource.
+     *     parent: 'customers/my-customer/deployments/my-deployment',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "devices": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2551,11 +3552,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     list(
       params: Params$Resource$Customers$Deployments$Devices$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Customers$Deployments$Devices$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalListDevicesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SasPortalListDevicesResponse>>;
     list(
       params: Params$Resource$Customers$Deployments$Devices$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2590,8 +3591,8 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalListDevicesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SasPortalListDevicesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Deployments$Devices$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2691,6 +3692,83 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Creates a device under a node or customer.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.customers.devices.create({
+     *     // Required. The name of the parent resource.
+     *     parent: 'customers/my-customer',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "activeConfig": {},
+     *       //   "currentChannels": [],
+     *       //   "deviceMetadata": {},
+     *       //   "displayName": "my_displayName",
+     *       //   "fccId": "my_fccId",
+     *       //   "grantRangeAllowlists": [],
+     *       //   "grants": [],
+     *       //   "name": "my_name",
+     *       //   "preloadedConfig": {},
+     *       //   "serialNumber": "my_serialNumber",
+     *       //   "state": "my_state"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activeConfig": {},
+     *   //   "currentChannels": [],
+     *   //   "deviceMetadata": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "fccId": "my_fccId",
+     *   //   "grantRangeAllowlists": [],
+     *   //   "grants": [],
+     *   //   "name": "my_name",
+     *   //   "preloadedConfig": {},
+     *   //   "serialNumber": "my_serialNumber",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2700,11 +3778,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     create(
       params: Params$Resource$Customers$Devices$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Customers$Devices$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalDevice>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SasPortalDevice>>;
     create(
       params: Params$Resource$Customers$Devices$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2733,7 +3811,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalDevice>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalDevice> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SasPortalDevice>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Devices$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2780,6 +3861,74 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Creates a signed device under a node or customer.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.customers.devices.createSigned({
+     *     // Required. The name of the parent resource.
+     *     parent: 'customers/my-customer',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "encodedDevice": "my_encodedDevice",
+     *       //   "installerId": "my_installerId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activeConfig": {},
+     *   //   "currentChannels": [],
+     *   //   "deviceMetadata": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "fccId": "my_fccId",
+     *   //   "grantRangeAllowlists": [],
+     *   //   "grants": [],
+     *   //   "name": "my_name",
+     *   //   "preloadedConfig": {},
+     *   //   "serialNumber": "my_serialNumber",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2789,11 +3938,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     createSigned(
       params: Params$Resource$Customers$Devices$Createsigned,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     createSigned(
       params?: Params$Resource$Customers$Devices$Createsigned,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalDevice>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SasPortalDevice>>;
     createSigned(
       params: Params$Resource$Customers$Devices$Createsigned,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2822,7 +3971,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalDevice>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalDevice> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SasPortalDevice>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Devices$Createsigned;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2869,6 +4021,53 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Deletes a device.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.customers.devices.delete({
+     *     // Required. The name of the device.
+     *     name: 'customers/my-customer/devices/my-device',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2878,11 +4077,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     delete(
       params: Params$Resource$Customers$Devices$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Customers$Devices$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SasPortalEmpty>>;
     delete(
       params: Params$Resource$Customers$Devices$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2911,7 +4110,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalEmpty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalEmpty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SasPortalEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Devices$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2955,6 +4157,65 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Gets details about a device.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.customers.devices.get({
+     *     // Required. The name of the device.
+     *     name: 'customers/my-customer/devices/my-device',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activeConfig": {},
+     *   //   "currentChannels": [],
+     *   //   "deviceMetadata": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "fccId": "my_fccId",
+     *   //   "grantRangeAllowlists": [],
+     *   //   "grants": [],
+     *   //   "name": "my_name",
+     *   //   "preloadedConfig": {},
+     *   //   "serialNumber": "my_serialNumber",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2964,11 +4225,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     get(
       params: Params$Resource$Customers$Devices$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Customers$Devices$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalDevice>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SasPortalDevice>>;
     get(
       params: Params$Resource$Customers$Devices$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2997,7 +4258,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalDevice>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalDevice> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SasPortalDevice>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Devices$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3041,6 +4305,62 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Lists devices under a node or customer.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.customers.devices.list({
+     *     // The filter expression. The filter should have one of the following formats: "sn=123454" or "display_name=MyDevice". sn corresponds to serial number of the device. The filter is case insensitive.
+     *     filter: 'placeholder-value',
+     *     // The maximum number of devices to return in the response. If empty or zero, all devices will be listed. Must be in the range [0, 1000].
+     *     pageSize: 'placeholder-value',
+     *     // A pagination token returned from a previous call to ListDevices that indicates where this listing should continue from.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The name of the parent resource.
+     *     parent: 'customers/my-customer',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "devices": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3050,11 +4370,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     list(
       params: Params$Resource$Customers$Devices$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Customers$Devices$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalListDevicesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SasPortalListDevicesResponse>>;
     list(
       params: Params$Resource$Customers$Devices$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3089,8 +4409,8 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalListDevicesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SasPortalListDevicesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Devices$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3139,6 +4459,67 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Moves a device under another node or customer.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.customers.devices.move({
+     *     // Required. The name of the device to move.
+     *     name: 'customers/my-customer/devices/my-device',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "destination": "my_destination"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3148,11 +4529,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     move(
       params: Params$Resource$Customers$Devices$Move,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     move(
       params?: Params$Resource$Customers$Devices$Move,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SasPortalOperation>>;
     move(
       params: Params$Resource$Customers$Devices$Move,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3183,8 +4564,8 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SasPortalOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Devices$Move;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3231,6 +4612,85 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Updates a device.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.customers.devices.patch({
+     *     // Output only. The resource path name.
+     *     name: 'customers/my-customer/devices/my-device',
+     *     // Fields to be updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "activeConfig": {},
+     *       //   "currentChannels": [],
+     *       //   "deviceMetadata": {},
+     *       //   "displayName": "my_displayName",
+     *       //   "fccId": "my_fccId",
+     *       //   "grantRangeAllowlists": [],
+     *       //   "grants": [],
+     *       //   "name": "my_name",
+     *       //   "preloadedConfig": {},
+     *       //   "serialNumber": "my_serialNumber",
+     *       //   "state": "my_state"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activeConfig": {},
+     *   //   "currentChannels": [],
+     *   //   "deviceMetadata": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "fccId": "my_fccId",
+     *   //   "grantRangeAllowlists": [],
+     *   //   "grants": [],
+     *   //   "name": "my_name",
+     *   //   "preloadedConfig": {},
+     *   //   "serialNumber": "my_serialNumber",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3240,11 +4700,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     patch(
       params: Params$Resource$Customers$Devices$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Customers$Devices$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalDevice>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SasPortalDevice>>;
     patch(
       params: Params$Resource$Customers$Devices$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3273,7 +4733,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalDevice>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalDevice> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SasPortalDevice>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Devices$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3317,6 +4780,61 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Signs a device.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.customers.devices.signDevice({
+     *     // Output only. The resource path name.
+     *     name: 'customers/my-customer/devices/my-device',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "device": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3326,11 +4844,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     signDevice(
       params: Params$Resource$Customers$Devices$Signdevice,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     signDevice(
       params?: Params$Resource$Customers$Devices$Signdevice,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SasPortalEmpty>>;
     signDevice(
       params: Params$Resource$Customers$Devices$Signdevice,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3359,7 +4877,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalEmpty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalEmpty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SasPortalEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Devices$Signdevice;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3406,6 +4927,74 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Updates a signed device.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.customers.devices.updateSigned({
+     *     // Required. The name of the device to update.
+     *     name: 'customers/my-customer/devices/my-device',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "encodedDevice": "my_encodedDevice",
+     *       //   "installerId": "my_installerId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activeConfig": {},
+     *   //   "currentChannels": [],
+     *   //   "deviceMetadata": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "fccId": "my_fccId",
+     *   //   "grantRangeAllowlists": [],
+     *   //   "grants": [],
+     *   //   "name": "my_name",
+     *   //   "preloadedConfig": {},
+     *   //   "serialNumber": "my_serialNumber",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3415,11 +5004,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     updateSigned(
       params: Params$Resource$Customers$Devices$Updatesigned,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     updateSigned(
       params?: Params$Resource$Customers$Devices$Updatesigned,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalDevice>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SasPortalDevice>>;
     updateSigned(
       params: Params$Resource$Customers$Devices$Updatesigned,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3448,7 +5037,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalDevice>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalDevice> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SasPortalDevice>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Devices$Updatesigned;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3618,6 +5210,67 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Creates a new node.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.customers.nodes.create({
+     *     // Required. The parent resource name where the node is to be created.
+     *     parent: 'customers/my-customer',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "displayName": "my_displayName",
+     *       //   "name": "my_name",
+     *       //   "sasUserIds": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "sasUserIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3627,11 +5280,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     create(
       params: Params$Resource$Customers$Nodes$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Customers$Nodes$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalNode>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SasPortalNode>>;
     create(
       params: Params$Resource$Customers$Nodes$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3660,7 +5313,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalNode>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalNode> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SasPortalNode>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Nodes$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3707,6 +5363,53 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Deletes a node.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.customers.nodes.delete({
+     *     // Required. The name of the node.
+     *     name: 'customers/my-customer/nodes/my-node',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3716,11 +5419,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     delete(
       params: Params$Resource$Customers$Nodes$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Customers$Nodes$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SasPortalEmpty>>;
     delete(
       params: Params$Resource$Customers$Nodes$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3749,7 +5452,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalEmpty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalEmpty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SasPortalEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Nodes$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3793,6 +5499,57 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Returns a requested node.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.customers.nodes.get({
+     *     // Required. The name of the node.
+     *     name: 'customers/my-customer/nodes/my-node',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "sasUserIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3802,11 +5559,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     get(
       params: Params$Resource$Customers$Nodes$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Customers$Nodes$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalNode>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SasPortalNode>>;
     get(
       params: Params$Resource$Customers$Nodes$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3835,7 +5592,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalNode>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalNode> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SasPortalNode>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Nodes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3879,6 +5639,62 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Lists nodes.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.customers.nodes.list({
+     *     // The filter expression. The filter should have the following format: "DIRECT_CHILDREN" or format: "direct_children". The filter is case insensitive. If empty, then no nodes are filtered.
+     *     filter: 'placeholder-value',
+     *     // The maximum number of nodes to return in the response.
+     *     pageSize: 'placeholder-value',
+     *     // A pagination token returned from a previous call to ListNodes that indicates where this listing should continue from.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent resource name, for example, "nodes/1".
+     *     parent: 'customers/my-customer',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "nodes": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3888,11 +5704,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     list(
       params: Params$Resource$Customers$Nodes$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Customers$Nodes$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalListNodesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SasPortalListNodesResponse>>;
     list(
       params: Params$Resource$Customers$Nodes$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3927,8 +5743,8 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalListNodesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SasPortalListNodesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Nodes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3975,6 +5791,67 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Moves a node under another node or customer.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.customers.nodes.move({
+     *     // Required. The name of the node to move.
+     *     name: 'customers/my-customer/nodes/my-node',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "destination": "my_destination"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3984,11 +5861,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     move(
       params: Params$Resource$Customers$Nodes$Move,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     move(
       params?: Params$Resource$Customers$Nodes$Move,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SasPortalOperation>>;
     move(
       params: Params$Resource$Customers$Nodes$Move,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4019,8 +5896,8 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SasPortalOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Nodes$Move;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4067,6 +5944,69 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Updates an existing node.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.customers.nodes.patch({
+     *     // Output only. Resource name.
+     *     name: 'customers/my-customer/nodes/my-node',
+     *     // Fields to be updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "displayName": "my_displayName",
+     *       //   "name": "my_name",
+     *       //   "sasUserIds": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "sasUserIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4076,11 +6016,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     patch(
       params: Params$Resource$Customers$Nodes$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Customers$Nodes$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalNode>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SasPortalNode>>;
     patch(
       params: Params$Resource$Customers$Nodes$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4109,7 +6049,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalNode>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalNode> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SasPortalNode>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Nodes$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4234,6 +6177,69 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Creates a new deployment.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.customers.nodes.deployments.create({
+     *     // Required. The parent resource name where the deployment is to be created.
+     *     parent: 'customers/my-customer/nodes/my-node',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "displayName": "my_displayName",
+     *       //   "frns": [],
+     *       //   "name": "my_name",
+     *       //   "sasUserIds": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "frns": [],
+     *   //   "name": "my_name",
+     *   //   "sasUserIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4243,11 +6249,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     create(
       params: Params$Resource$Customers$Nodes$Deployments$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Customers$Nodes$Deployments$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalDeployment>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SasPortalDeployment>>;
     create(
       params: Params$Resource$Customers$Nodes$Deployments$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4278,8 +6284,8 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalDeployment>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SasPortalDeployment>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Nodes$Deployments$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4326,6 +6332,62 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Lists deployments.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.customers.nodes.deployments.list({
+     *     // The filter expression. The filter should have the following format: "DIRECT_CHILDREN" or format: "direct_children". The filter is case insensitive. If empty, then no deployments are filtered.
+     *     filter: 'placeholder-value',
+     *     // The maximum number of deployments to return in the response.
+     *     pageSize: 'placeholder-value',
+     *     // A pagination token returned from a previous call to ListDeployments that indicates where this listing should continue from.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent resource name, for example, "nodes/1", customer/1/nodes/2.
+     *     parent: 'customers/my-customer/nodes/my-node',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deployments": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4335,11 +6397,13 @@ export namespace prod_tt_sasportal_v1alpha1 {
     list(
       params: Params$Resource$Customers$Nodes$Deployments$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Customers$Nodes$Deployments$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalListDeploymentsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$SasPortalListDeploymentsResponse>
+    >;
     list(
       params: Params$Resource$Customers$Nodes$Deployments$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4374,8 +6438,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalListDeploymentsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$SasPortalListDeploymentsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Nodes$Deployments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4463,6 +6529,83 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Creates a device under a node or customer.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.customers.nodes.devices.create({
+     *     // Required. The name of the parent resource.
+     *     parent: 'customers/my-customer/nodes/my-node',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "activeConfig": {},
+     *       //   "currentChannels": [],
+     *       //   "deviceMetadata": {},
+     *       //   "displayName": "my_displayName",
+     *       //   "fccId": "my_fccId",
+     *       //   "grantRangeAllowlists": [],
+     *       //   "grants": [],
+     *       //   "name": "my_name",
+     *       //   "preloadedConfig": {},
+     *       //   "serialNumber": "my_serialNumber",
+     *       //   "state": "my_state"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activeConfig": {},
+     *   //   "currentChannels": [],
+     *   //   "deviceMetadata": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "fccId": "my_fccId",
+     *   //   "grantRangeAllowlists": [],
+     *   //   "grants": [],
+     *   //   "name": "my_name",
+     *   //   "preloadedConfig": {},
+     *   //   "serialNumber": "my_serialNumber",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4472,11 +6615,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     create(
       params: Params$Resource$Customers$Nodes$Devices$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Customers$Nodes$Devices$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalDevice>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SasPortalDevice>>;
     create(
       params: Params$Resource$Customers$Nodes$Devices$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4505,7 +6648,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalDevice>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalDevice> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SasPortalDevice>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Nodes$Devices$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4552,6 +6698,74 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Creates a signed device under a node or customer.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.customers.nodes.devices.createSigned({
+     *     // Required. The name of the parent resource.
+     *     parent: 'customers/my-customer/nodes/my-node',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "encodedDevice": "my_encodedDevice",
+     *       //   "installerId": "my_installerId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activeConfig": {},
+     *   //   "currentChannels": [],
+     *   //   "deviceMetadata": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "fccId": "my_fccId",
+     *   //   "grantRangeAllowlists": [],
+     *   //   "grants": [],
+     *   //   "name": "my_name",
+     *   //   "preloadedConfig": {},
+     *   //   "serialNumber": "my_serialNumber",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4561,11 +6775,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     createSigned(
       params: Params$Resource$Customers$Nodes$Devices$Createsigned,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     createSigned(
       params?: Params$Resource$Customers$Nodes$Devices$Createsigned,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalDevice>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SasPortalDevice>>;
     createSigned(
       params: Params$Resource$Customers$Nodes$Devices$Createsigned,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4594,7 +6808,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalDevice>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalDevice> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SasPortalDevice>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Nodes$Devices$Createsigned;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4641,6 +6858,62 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Lists devices under a node or customer.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.customers.nodes.devices.list({
+     *     // The filter expression. The filter should have one of the following formats: "sn=123454" or "display_name=MyDevice". sn corresponds to serial number of the device. The filter is case insensitive.
+     *     filter: 'placeholder-value',
+     *     // The maximum number of devices to return in the response. If empty or zero, all devices will be listed. Must be in the range [0, 1000].
+     *     pageSize: 'placeholder-value',
+     *     // A pagination token returned from a previous call to ListDevices that indicates where this listing should continue from.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The name of the parent resource.
+     *     parent: 'customers/my-customer/nodes/my-node',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "devices": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4650,11 +6923,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     list(
       params: Params$Resource$Customers$Nodes$Devices$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Customers$Nodes$Devices$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalListDevicesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SasPortalListDevicesResponse>>;
     list(
       params: Params$Resource$Customers$Nodes$Devices$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4689,8 +6962,8 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalListDevicesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SasPortalListDevicesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Nodes$Devices$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4790,6 +7063,67 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Creates a new node.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.customers.nodes.nodes.create({
+     *     // Required. The parent resource name where the node is to be created.
+     *     parent: 'customers/my-customer/nodes/my-node',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "displayName": "my_displayName",
+     *       //   "name": "my_name",
+     *       //   "sasUserIds": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "sasUserIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4799,11 +7133,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     create(
       params: Params$Resource$Customers$Nodes$Nodes$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Customers$Nodes$Nodes$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalNode>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SasPortalNode>>;
     create(
       params: Params$Resource$Customers$Nodes$Nodes$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4832,7 +7166,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalNode>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalNode> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SasPortalNode>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Nodes$Nodes$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4879,6 +7216,62 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Lists nodes.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.customers.nodes.nodes.list({
+     *     // The filter expression. The filter should have the following format: "DIRECT_CHILDREN" or format: "direct_children". The filter is case insensitive. If empty, then no nodes are filtered.
+     *     filter: 'placeholder-value',
+     *     // The maximum number of nodes to return in the response.
+     *     pageSize: 'placeholder-value',
+     *     // A pagination token returned from a previous call to ListNodes that indicates where this listing should continue from.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent resource name, for example, "nodes/1".
+     *     parent: 'customers/my-customer/nodes/my-node',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "nodes": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4888,11 +7281,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     list(
       params: Params$Resource$Customers$Nodes$Nodes$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Customers$Nodes$Nodes$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalListNodesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SasPortalListNodesResponse>>;
     list(
       params: Params$Resource$Customers$Nodes$Nodes$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4927,8 +7320,8 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalListNodesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SasPortalListNodesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Nodes$Nodes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5016,6 +7409,58 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Returns a requested deployment.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.deployments.get({
+     *     // Required. The name of the deployment.
+     *     name: 'deployments/my-deployment',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "frns": [],
+     *   //   "name": "my_name",
+     *   //   "sasUserIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5025,11 +7470,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     get(
       params: Params$Resource$Deployments$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Deployments$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalDeployment>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SasPortalDeployment>>;
     get(
       params: Params$Resource$Deployments$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5060,8 +7505,8 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalDeployment>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SasPortalDeployment>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Deployments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5118,6 +7563,53 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Deletes a device.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.deployments.devices.delete({
+     *     // Required. The name of the device.
+     *     name: 'deployments/my-deployment/devices/my-device',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5127,11 +7619,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     delete(
       params: Params$Resource$Deployments$Devices$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Deployments$Devices$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SasPortalEmpty>>;
     delete(
       params: Params$Resource$Deployments$Devices$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5160,7 +7652,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalEmpty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalEmpty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SasPortalEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Deployments$Devices$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5204,6 +7699,65 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Gets details about a device.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.deployments.devices.get({
+     *     // Required. The name of the device.
+     *     name: 'deployments/my-deployment/devices/my-device',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activeConfig": {},
+     *   //   "currentChannels": [],
+     *   //   "deviceMetadata": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "fccId": "my_fccId",
+     *   //   "grantRangeAllowlists": [],
+     *   //   "grants": [],
+     *   //   "name": "my_name",
+     *   //   "preloadedConfig": {},
+     *   //   "serialNumber": "my_serialNumber",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5213,11 +7767,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     get(
       params: Params$Resource$Deployments$Devices$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Deployments$Devices$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalDevice>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SasPortalDevice>>;
     get(
       params: Params$Resource$Deployments$Devices$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5246,7 +7800,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalDevice>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalDevice> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SasPortalDevice>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Deployments$Devices$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5290,6 +7847,67 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Moves a device under another node or customer.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.deployments.devices.move({
+     *     // Required. The name of the device to move.
+     *     name: 'deployments/my-deployment/devices/my-device',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "destination": "my_destination"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5299,11 +7917,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     move(
       params: Params$Resource$Deployments$Devices$Move,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     move(
       params?: Params$Resource$Deployments$Devices$Move,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SasPortalOperation>>;
     move(
       params: Params$Resource$Deployments$Devices$Move,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5334,8 +7952,8 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SasPortalOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Deployments$Devices$Move;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5382,6 +8000,85 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Updates a device.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.deployments.devices.patch({
+     *     // Output only. The resource path name.
+     *     name: 'deployments/my-deployment/devices/my-device',
+     *     // Fields to be updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "activeConfig": {},
+     *       //   "currentChannels": [],
+     *       //   "deviceMetadata": {},
+     *       //   "displayName": "my_displayName",
+     *       //   "fccId": "my_fccId",
+     *       //   "grantRangeAllowlists": [],
+     *       //   "grants": [],
+     *       //   "name": "my_name",
+     *       //   "preloadedConfig": {},
+     *       //   "serialNumber": "my_serialNumber",
+     *       //   "state": "my_state"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activeConfig": {},
+     *   //   "currentChannels": [],
+     *   //   "deviceMetadata": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "fccId": "my_fccId",
+     *   //   "grantRangeAllowlists": [],
+     *   //   "grants": [],
+     *   //   "name": "my_name",
+     *   //   "preloadedConfig": {},
+     *   //   "serialNumber": "my_serialNumber",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5391,11 +8088,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     patch(
       params: Params$Resource$Deployments$Devices$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Deployments$Devices$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalDevice>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SasPortalDevice>>;
     patch(
       params: Params$Resource$Deployments$Devices$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5424,7 +8121,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalDevice>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalDevice> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SasPortalDevice>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Deployments$Devices$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5468,6 +8168,61 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Signs a device.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.deployments.devices.signDevice({
+     *     // Output only. The resource path name.
+     *     name: 'deployments/my-deployment/devices/my-device',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "device": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5477,11 +8232,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     signDevice(
       params: Params$Resource$Deployments$Devices$Signdevice,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     signDevice(
       params?: Params$Resource$Deployments$Devices$Signdevice,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SasPortalEmpty>>;
     signDevice(
       params: Params$Resource$Deployments$Devices$Signdevice,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5510,7 +8265,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalEmpty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalEmpty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SasPortalEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Deployments$Devices$Signdevice;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5557,6 +8315,74 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Updates a signed device.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.deployments.devices.updateSigned({
+     *     // Required. The name of the device to update.
+     *     name: 'deployments/my-deployment/devices/my-device',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "encodedDevice": "my_encodedDevice",
+     *       //   "installerId": "my_installerId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activeConfig": {},
+     *   //   "currentChannels": [],
+     *   //   "deviceMetadata": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "fccId": "my_fccId",
+     *   //   "grantRangeAllowlists": [],
+     *   //   "grants": [],
+     *   //   "name": "my_name",
+     *   //   "preloadedConfig": {},
+     *   //   "serialNumber": "my_serialNumber",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5566,11 +8392,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     updateSigned(
       params: Params$Resource$Deployments$Devices$Updatesigned,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     updateSigned(
       params?: Params$Resource$Deployments$Devices$Updatesigned,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalDevice>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SasPortalDevice>>;
     updateSigned(
       params: Params$Resource$Deployments$Devices$Updatesigned,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5599,7 +8425,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalDevice>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalDevice> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SasPortalDevice>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Deployments$Devices$Updatesigned;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5720,6 +8549,58 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Generates a secret to be used with the ValidateInstaller.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.installer.generateSecret({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "secret": "my_secret"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5729,11 +8610,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     generateSecret(
       params: Params$Resource$Installer$Generatesecret,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     generateSecret(
       params?: Params$Resource$Installer$Generatesecret,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalGenerateSecretResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SasPortalGenerateSecretResponse>>;
     generateSecret(
       params: Params$Resource$Installer$Generatesecret,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5768,8 +8649,8 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalGenerateSecretResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SasPortalGenerateSecretResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Installer$Generatesecret;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5818,6 +8699,60 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Validates the identity of a Certified Professional Installer (CPI).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.installer.validate({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "encodedSecret": "my_encodedSecret",
+     *       //   "installerId": "my_installerId",
+     *       //   "secret": "my_secret"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5827,11 +8762,13 @@ export namespace prod_tt_sasportal_v1alpha1 {
     validate(
       params: Params$Resource$Installer$Validate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     validate(
       params?: Params$Resource$Installer$Validate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalValidateInstallerResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$SasPortalValidateInstallerResponse>
+    >;
     validate(
       params: Params$Resource$Installer$Validate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5866,8 +8803,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalValidateInstallerResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$SasPortalValidateInstallerResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Installer$Validate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5944,6 +8883,57 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Returns a requested node.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.nodes.get({
+     *     // Required. The name of the node.
+     *     name: 'nodes/my-node',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "sasUserIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5953,11 +8943,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     get(
       params: Params$Resource$Nodes$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Nodes$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalNode>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SasPortalNode>>;
     get(
       params: Params$Resource$Nodes$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5986,7 +8976,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalNode>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalNode> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SasPortalNode>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Nodes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6045,6 +9038,53 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Deletes a deployment.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.nodes.deployments.delete({
+     *     // Required. The name of the deployment.
+     *     name: 'nodes/my-node/deployments/my-deployment',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6054,11 +9094,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     delete(
       params: Params$Resource$Nodes$Deployments$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Nodes$Deployments$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SasPortalEmpty>>;
     delete(
       params: Params$Resource$Nodes$Deployments$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6087,7 +9127,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalEmpty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalEmpty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SasPortalEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Nodes$Deployments$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6131,6 +9174,58 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Returns a requested deployment.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.nodes.deployments.get({
+     *     // Required. The name of the deployment.
+     *     name: 'nodes/my-node/deployments/my-deployment',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "frns": [],
+     *   //   "name": "my_name",
+     *   //   "sasUserIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6140,11 +9235,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     get(
       params: Params$Resource$Nodes$Deployments$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Nodes$Deployments$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalDeployment>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SasPortalDeployment>>;
     get(
       params: Params$Resource$Nodes$Deployments$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6175,8 +9270,8 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalDeployment>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SasPortalDeployment>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Nodes$Deployments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6220,6 +9315,62 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Lists deployments.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.nodes.deployments.list({
+     *     // The filter expression. The filter should have the following format: "DIRECT_CHILDREN" or format: "direct_children". The filter is case insensitive. If empty, then no deployments are filtered.
+     *     filter: 'placeholder-value',
+     *     // The maximum number of deployments to return in the response.
+     *     pageSize: 'placeholder-value',
+     *     // A pagination token returned from a previous call to ListDeployments that indicates where this listing should continue from.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent resource name, for example, "nodes/1", customer/1/nodes/2.
+     *     parent: 'nodes/my-node',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deployments": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6229,11 +9380,13 @@ export namespace prod_tt_sasportal_v1alpha1 {
     list(
       params: Params$Resource$Nodes$Deployments$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Nodes$Deployments$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalListDeploymentsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$SasPortalListDeploymentsResponse>
+    >;
     list(
       params: Params$Resource$Nodes$Deployments$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6268,8 +9421,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalListDeploymentsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$SasPortalListDeploymentsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Nodes$Deployments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6318,6 +9473,67 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Moves a deployment under another node or customer.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.nodes.deployments.move({
+     *     // Required. The name of the deployment to move.
+     *     name: 'nodes/my-node/deployments/my-deployment',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "destination": "my_destination"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6327,11 +9543,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     move(
       params: Params$Resource$Nodes$Deployments$Move,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     move(
       params?: Params$Resource$Nodes$Deployments$Move,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SasPortalOperation>>;
     move(
       params: Params$Resource$Nodes$Deployments$Move,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6362,8 +9578,8 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SasPortalOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Nodes$Deployments$Move;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6410,6 +9626,71 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Updates an existing deployment.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.nodes.deployments.patch({
+     *     // Output only. Resource name.
+     *     name: 'nodes/my-node/deployments/my-deployment',
+     *     // Fields to be updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "displayName": "my_displayName",
+     *       //   "frns": [],
+     *       //   "name": "my_name",
+     *       //   "sasUserIds": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "frns": [],
+     *   //   "name": "my_name",
+     *   //   "sasUserIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6419,11 +9700,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     patch(
       params: Params$Resource$Nodes$Deployments$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Nodes$Deployments$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalDeployment>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SasPortalDeployment>>;
     patch(
       params: Params$Resource$Nodes$Deployments$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6454,8 +9735,8 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalDeployment>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SasPortalDeployment>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Nodes$Deployments$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6568,6 +9849,83 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Creates a device under a node or customer.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.nodes.deployments.devices.create({
+     *     // Required. The name of the parent resource.
+     *     parent: 'nodes/my-node/deployments/my-deployment',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "activeConfig": {},
+     *       //   "currentChannels": [],
+     *       //   "deviceMetadata": {},
+     *       //   "displayName": "my_displayName",
+     *       //   "fccId": "my_fccId",
+     *       //   "grantRangeAllowlists": [],
+     *       //   "grants": [],
+     *       //   "name": "my_name",
+     *       //   "preloadedConfig": {},
+     *       //   "serialNumber": "my_serialNumber",
+     *       //   "state": "my_state"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activeConfig": {},
+     *   //   "currentChannels": [],
+     *   //   "deviceMetadata": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "fccId": "my_fccId",
+     *   //   "grantRangeAllowlists": [],
+     *   //   "grants": [],
+     *   //   "name": "my_name",
+     *   //   "preloadedConfig": {},
+     *   //   "serialNumber": "my_serialNumber",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6577,11 +9935,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     create(
       params: Params$Resource$Nodes$Deployments$Devices$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Nodes$Deployments$Devices$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalDevice>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SasPortalDevice>>;
     create(
       params: Params$Resource$Nodes$Deployments$Devices$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6610,7 +9968,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalDevice>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalDevice> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SasPortalDevice>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Nodes$Deployments$Devices$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6657,6 +10018,74 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Creates a signed device under a node or customer.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.nodes.deployments.devices.createSigned({
+     *     // Required. The name of the parent resource.
+     *     parent: 'nodes/my-node/deployments/my-deployment',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "encodedDevice": "my_encodedDevice",
+     *       //   "installerId": "my_installerId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activeConfig": {},
+     *   //   "currentChannels": [],
+     *   //   "deviceMetadata": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "fccId": "my_fccId",
+     *   //   "grantRangeAllowlists": [],
+     *   //   "grants": [],
+     *   //   "name": "my_name",
+     *   //   "preloadedConfig": {},
+     *   //   "serialNumber": "my_serialNumber",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6666,11 +10095,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     createSigned(
       params: Params$Resource$Nodes$Deployments$Devices$Createsigned,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     createSigned(
       params?: Params$Resource$Nodes$Deployments$Devices$Createsigned,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalDevice>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SasPortalDevice>>;
     createSigned(
       params: Params$Resource$Nodes$Deployments$Devices$Createsigned,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6699,7 +10128,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalDevice>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalDevice> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SasPortalDevice>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Nodes$Deployments$Devices$Createsigned;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6746,6 +10178,62 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Lists devices under a node or customer.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.nodes.deployments.devices.list({
+     *     // The filter expression. The filter should have one of the following formats: "sn=123454" or "display_name=MyDevice". sn corresponds to serial number of the device. The filter is case insensitive.
+     *     filter: 'placeholder-value',
+     *     // The maximum number of devices to return in the response. If empty or zero, all devices will be listed. Must be in the range [0, 1000].
+     *     pageSize: 'placeholder-value',
+     *     // A pagination token returned from a previous call to ListDevices that indicates where this listing should continue from.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The name of the parent resource.
+     *     parent: 'nodes/my-node/deployments/my-deployment',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "devices": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6755,11 +10243,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     list(
       params: Params$Resource$Nodes$Deployments$Devices$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Nodes$Deployments$Devices$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalListDevicesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SasPortalListDevicesResponse>>;
     list(
       params: Params$Resource$Nodes$Deployments$Devices$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6794,8 +10282,8 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalListDevicesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SasPortalListDevicesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Nodes$Deployments$Devices$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6895,6 +10383,83 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Creates a device under a node or customer.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.nodes.devices.create({
+     *     // Required. The name of the parent resource.
+     *     parent: 'nodes/my-node',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "activeConfig": {},
+     *       //   "currentChannels": [],
+     *       //   "deviceMetadata": {},
+     *       //   "displayName": "my_displayName",
+     *       //   "fccId": "my_fccId",
+     *       //   "grantRangeAllowlists": [],
+     *       //   "grants": [],
+     *       //   "name": "my_name",
+     *       //   "preloadedConfig": {},
+     *       //   "serialNumber": "my_serialNumber",
+     *       //   "state": "my_state"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activeConfig": {},
+     *   //   "currentChannels": [],
+     *   //   "deviceMetadata": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "fccId": "my_fccId",
+     *   //   "grantRangeAllowlists": [],
+     *   //   "grants": [],
+     *   //   "name": "my_name",
+     *   //   "preloadedConfig": {},
+     *   //   "serialNumber": "my_serialNumber",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6904,11 +10469,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     create(
       params: Params$Resource$Nodes$Devices$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Nodes$Devices$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalDevice>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SasPortalDevice>>;
     create(
       params: Params$Resource$Nodes$Devices$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6937,7 +10502,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalDevice>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalDevice> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SasPortalDevice>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Nodes$Devices$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6984,6 +10552,74 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Creates a signed device under a node or customer.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.nodes.devices.createSigned({
+     *     // Required. The name of the parent resource.
+     *     parent: 'nodes/my-node',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "encodedDevice": "my_encodedDevice",
+     *       //   "installerId": "my_installerId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activeConfig": {},
+     *   //   "currentChannels": [],
+     *   //   "deviceMetadata": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "fccId": "my_fccId",
+     *   //   "grantRangeAllowlists": [],
+     *   //   "grants": [],
+     *   //   "name": "my_name",
+     *   //   "preloadedConfig": {},
+     *   //   "serialNumber": "my_serialNumber",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6993,11 +10629,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     createSigned(
       params: Params$Resource$Nodes$Devices$Createsigned,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     createSigned(
       params?: Params$Resource$Nodes$Devices$Createsigned,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalDevice>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SasPortalDevice>>;
     createSigned(
       params: Params$Resource$Nodes$Devices$Createsigned,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7026,7 +10662,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalDevice>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalDevice> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SasPortalDevice>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Nodes$Devices$Createsigned;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7073,6 +10712,53 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Deletes a device.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.nodes.devices.delete({
+     *     // Required. The name of the device.
+     *     name: 'nodes/my-node/devices/my-device',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7082,11 +10768,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     delete(
       params: Params$Resource$Nodes$Devices$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Nodes$Devices$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SasPortalEmpty>>;
     delete(
       params: Params$Resource$Nodes$Devices$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7115,7 +10801,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalEmpty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalEmpty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SasPortalEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Nodes$Devices$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7159,6 +10848,65 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Gets details about a device.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.nodes.devices.get({
+     *     // Required. The name of the device.
+     *     name: 'nodes/my-node/devices/my-device',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activeConfig": {},
+     *   //   "currentChannels": [],
+     *   //   "deviceMetadata": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "fccId": "my_fccId",
+     *   //   "grantRangeAllowlists": [],
+     *   //   "grants": [],
+     *   //   "name": "my_name",
+     *   //   "preloadedConfig": {},
+     *   //   "serialNumber": "my_serialNumber",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7168,11 +10916,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     get(
       params: Params$Resource$Nodes$Devices$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Nodes$Devices$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalDevice>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SasPortalDevice>>;
     get(
       params: Params$Resource$Nodes$Devices$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7201,7 +10949,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalDevice>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalDevice> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SasPortalDevice>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Nodes$Devices$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7245,6 +10996,62 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Lists devices under a node or customer.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.nodes.devices.list({
+     *     // The filter expression. The filter should have one of the following formats: "sn=123454" or "display_name=MyDevice". sn corresponds to serial number of the device. The filter is case insensitive.
+     *     filter: 'placeholder-value',
+     *     // The maximum number of devices to return in the response. If empty or zero, all devices will be listed. Must be in the range [0, 1000].
+     *     pageSize: 'placeholder-value',
+     *     // A pagination token returned from a previous call to ListDevices that indicates where this listing should continue from.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The name of the parent resource.
+     *     parent: 'nodes/my-node',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "devices": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7254,11 +11061,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     list(
       params: Params$Resource$Nodes$Devices$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Nodes$Devices$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalListDevicesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SasPortalListDevicesResponse>>;
     list(
       params: Params$Resource$Nodes$Devices$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7293,8 +11100,8 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalListDevicesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SasPortalListDevicesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Nodes$Devices$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7343,6 +11150,67 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Moves a device under another node or customer.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.nodes.devices.move({
+     *     // Required. The name of the device to move.
+     *     name: 'nodes/my-node/devices/my-device',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "destination": "my_destination"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7352,11 +11220,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     move(
       params: Params$Resource$Nodes$Devices$Move,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     move(
       params?: Params$Resource$Nodes$Devices$Move,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SasPortalOperation>>;
     move(
       params: Params$Resource$Nodes$Devices$Move,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7387,8 +11255,8 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SasPortalOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Nodes$Devices$Move;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7435,6 +11303,85 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Updates a device.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.nodes.devices.patch({
+     *     // Output only. The resource path name.
+     *     name: 'nodes/my-node/devices/my-device',
+     *     // Fields to be updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "activeConfig": {},
+     *       //   "currentChannels": [],
+     *       //   "deviceMetadata": {},
+     *       //   "displayName": "my_displayName",
+     *       //   "fccId": "my_fccId",
+     *       //   "grantRangeAllowlists": [],
+     *       //   "grants": [],
+     *       //   "name": "my_name",
+     *       //   "preloadedConfig": {},
+     *       //   "serialNumber": "my_serialNumber",
+     *       //   "state": "my_state"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activeConfig": {},
+     *   //   "currentChannels": [],
+     *   //   "deviceMetadata": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "fccId": "my_fccId",
+     *   //   "grantRangeAllowlists": [],
+     *   //   "grants": [],
+     *   //   "name": "my_name",
+     *   //   "preloadedConfig": {},
+     *   //   "serialNumber": "my_serialNumber",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7444,11 +11391,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     patch(
       params: Params$Resource$Nodes$Devices$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Nodes$Devices$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalDevice>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SasPortalDevice>>;
     patch(
       params: Params$Resource$Nodes$Devices$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7477,7 +11424,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalDevice>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalDevice> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SasPortalDevice>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Nodes$Devices$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7521,6 +11471,61 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Signs a device.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.nodes.devices.signDevice({
+     *     // Output only. The resource path name.
+     *     name: 'nodes/my-node/devices/my-device',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "device": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7530,11 +11535,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     signDevice(
       params: Params$Resource$Nodes$Devices$Signdevice,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     signDevice(
       params?: Params$Resource$Nodes$Devices$Signdevice,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SasPortalEmpty>>;
     signDevice(
       params: Params$Resource$Nodes$Devices$Signdevice,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7563,7 +11568,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalEmpty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalEmpty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SasPortalEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Nodes$Devices$Signdevice;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7610,6 +11618,74 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Updates a signed device.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.nodes.devices.updateSigned({
+     *     // Required. The name of the device to update.
+     *     name: 'nodes/my-node/devices/my-device',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "encodedDevice": "my_encodedDevice",
+     *       //   "installerId": "my_installerId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activeConfig": {},
+     *   //   "currentChannels": [],
+     *   //   "deviceMetadata": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "fccId": "my_fccId",
+     *   //   "grantRangeAllowlists": [],
+     *   //   "grants": [],
+     *   //   "name": "my_name",
+     *   //   "preloadedConfig": {},
+     *   //   "serialNumber": "my_serialNumber",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7619,11 +11695,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     updateSigned(
       params: Params$Resource$Nodes$Devices$Updatesigned,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     updateSigned(
       params?: Params$Resource$Nodes$Devices$Updatesigned,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalDevice>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SasPortalDevice>>;
     updateSigned(
       params: Params$Resource$Nodes$Devices$Updatesigned,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7652,7 +11728,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalDevice>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalDevice> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SasPortalDevice>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Nodes$Devices$Updatesigned;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7822,6 +11901,67 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Creates a new node.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.nodes.nodes.create({
+     *     // Required. The parent resource name where the node is to be created.
+     *     parent: 'nodes/my-node',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "displayName": "my_displayName",
+     *       //   "name": "my_name",
+     *       //   "sasUserIds": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "sasUserIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7831,11 +11971,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     create(
       params: Params$Resource$Nodes$Nodes$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Nodes$Nodes$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalNode>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SasPortalNode>>;
     create(
       params: Params$Resource$Nodes$Nodes$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7864,7 +12004,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalNode>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalNode> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SasPortalNode>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Nodes$Nodes$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7911,6 +12054,53 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Deletes a node.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.nodes.nodes.delete({
+     *     // Required. The name of the node.
+     *     name: 'nodes/my-node/nodes/my-node',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7920,11 +12110,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     delete(
       params: Params$Resource$Nodes$Nodes$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Nodes$Nodes$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SasPortalEmpty>>;
     delete(
       params: Params$Resource$Nodes$Nodes$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7953,7 +12143,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalEmpty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalEmpty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SasPortalEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Nodes$Nodes$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7997,6 +12190,57 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Returns a requested node.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.nodes.nodes.get({
+     *     // Required. The name of the node.
+     *     name: 'nodes/my-node/nodes/my-node',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "sasUserIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8006,11 +12250,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     get(
       params: Params$Resource$Nodes$Nodes$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Nodes$Nodes$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalNode>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SasPortalNode>>;
     get(
       params: Params$Resource$Nodes$Nodes$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8039,7 +12283,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalNode>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalNode> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SasPortalNode>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Nodes$Nodes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8082,6 +12329,62 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Lists nodes.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.nodes.nodes.list({
+     *     // The filter expression. The filter should have the following format: "DIRECT_CHILDREN" or format: "direct_children". The filter is case insensitive. If empty, then no nodes are filtered.
+     *     filter: 'placeholder-value',
+     *     // The maximum number of nodes to return in the response.
+     *     pageSize: 'placeholder-value',
+     *     // A pagination token returned from a previous call to ListNodes that indicates where this listing should continue from.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent resource name, for example, "nodes/1".
+     *     parent: 'nodes/my-node',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "nodes": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8091,11 +12394,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     list(
       params: Params$Resource$Nodes$Nodes$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Nodes$Nodes$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalListNodesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SasPortalListNodesResponse>>;
     list(
       params: Params$Resource$Nodes$Nodes$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8130,8 +12433,8 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalListNodesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SasPortalListNodesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Nodes$Nodes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8177,6 +12480,67 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Moves a node under another node or customer.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.nodes.nodes.move({
+     *     // Required. The name of the node to move.
+     *     name: 'nodes/my-node/nodes/my-node',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "destination": "my_destination"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8186,11 +12550,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     move(
       params: Params$Resource$Nodes$Nodes$Move,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     move(
       params?: Params$Resource$Nodes$Nodes$Move,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalOperation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SasPortalOperation>>;
     move(
       params: Params$Resource$Nodes$Nodes$Move,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8221,8 +12585,8 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalOperation>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SasPortalOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Nodes$Nodes$Move;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8268,6 +12632,69 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Updates an existing node.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.nodes.nodes.patch({
+     *     // Output only. Resource name.
+     *     name: 'nodes/my-node/nodes/my-node',
+     *     // Fields to be updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "displayName": "my_displayName",
+     *       //   "name": "my_name",
+     *       //   "sasUserIds": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "sasUserIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8277,11 +12704,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     patch(
       params: Params$Resource$Nodes$Nodes$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Nodes$Nodes$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalNode>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SasPortalNode>>;
     patch(
       params: Params$Resource$Nodes$Nodes$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8310,7 +12737,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalNode>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalNode> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SasPortalNode>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Nodes$Nodes$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8432,6 +12862,69 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Creates a new deployment.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.nodes.nodes.deployments.create({
+     *     // Required. The parent resource name where the deployment is to be created.
+     *     parent: 'nodes/my-node/nodes/my-node',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "displayName": "my_displayName",
+     *       //   "frns": [],
+     *       //   "name": "my_name",
+     *       //   "sasUserIds": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "frns": [],
+     *   //   "name": "my_name",
+     *   //   "sasUserIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8441,11 +12934,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     create(
       params: Params$Resource$Nodes$Nodes$Deployments$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Nodes$Nodes$Deployments$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalDeployment>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SasPortalDeployment>>;
     create(
       params: Params$Resource$Nodes$Nodes$Deployments$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8476,8 +12969,8 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalDeployment>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SasPortalDeployment>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Nodes$Nodes$Deployments$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8524,6 +13017,62 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Lists deployments.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.nodes.nodes.deployments.list({
+     *     // The filter expression. The filter should have the following format: "DIRECT_CHILDREN" or format: "direct_children". The filter is case insensitive. If empty, then no deployments are filtered.
+     *     filter: 'placeholder-value',
+     *     // The maximum number of deployments to return in the response.
+     *     pageSize: 'placeholder-value',
+     *     // A pagination token returned from a previous call to ListDeployments that indicates where this listing should continue from.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent resource name, for example, "nodes/1", customer/1/nodes/2.
+     *     parent: 'nodes/my-node/nodes/my-node',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deployments": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8533,11 +13082,13 @@ export namespace prod_tt_sasportal_v1alpha1 {
     list(
       params: Params$Resource$Nodes$Nodes$Deployments$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Nodes$Nodes$Deployments$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalListDeploymentsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$SasPortalListDeploymentsResponse>
+    >;
     list(
       params: Params$Resource$Nodes$Nodes$Deployments$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8572,8 +13123,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalListDeploymentsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$SasPortalListDeploymentsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Nodes$Nodes$Deployments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8661,6 +13214,83 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Creates a device under a node or customer.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.nodes.nodes.devices.create({
+     *     // Required. The name of the parent resource.
+     *     parent: 'nodes/my-node/nodes/my-node',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "activeConfig": {},
+     *       //   "currentChannels": [],
+     *       //   "deviceMetadata": {},
+     *       //   "displayName": "my_displayName",
+     *       //   "fccId": "my_fccId",
+     *       //   "grantRangeAllowlists": [],
+     *       //   "grants": [],
+     *       //   "name": "my_name",
+     *       //   "preloadedConfig": {},
+     *       //   "serialNumber": "my_serialNumber",
+     *       //   "state": "my_state"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activeConfig": {},
+     *   //   "currentChannels": [],
+     *   //   "deviceMetadata": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "fccId": "my_fccId",
+     *   //   "grantRangeAllowlists": [],
+     *   //   "grants": [],
+     *   //   "name": "my_name",
+     *   //   "preloadedConfig": {},
+     *   //   "serialNumber": "my_serialNumber",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8670,11 +13300,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     create(
       params: Params$Resource$Nodes$Nodes$Devices$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Nodes$Nodes$Devices$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalDevice>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SasPortalDevice>>;
     create(
       params: Params$Resource$Nodes$Nodes$Devices$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8703,7 +13333,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalDevice>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalDevice> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SasPortalDevice>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Nodes$Nodes$Devices$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8750,6 +13383,74 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Creates a signed device under a node or customer.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.nodes.nodes.devices.createSigned({
+     *     // Required. The name of the parent resource.
+     *     parent: 'nodes/my-node/nodes/my-node',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "encodedDevice": "my_encodedDevice",
+     *       //   "installerId": "my_installerId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activeConfig": {},
+     *   //   "currentChannels": [],
+     *   //   "deviceMetadata": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "fccId": "my_fccId",
+     *   //   "grantRangeAllowlists": [],
+     *   //   "grants": [],
+     *   //   "name": "my_name",
+     *   //   "preloadedConfig": {},
+     *   //   "serialNumber": "my_serialNumber",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8759,11 +13460,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     createSigned(
       params: Params$Resource$Nodes$Nodes$Devices$Createsigned,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     createSigned(
       params?: Params$Resource$Nodes$Nodes$Devices$Createsigned,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalDevice>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SasPortalDevice>>;
     createSigned(
       params: Params$Resource$Nodes$Nodes$Devices$Createsigned,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8792,7 +13493,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalDevice>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalDevice> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SasPortalDevice>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Nodes$Nodes$Devices$Createsigned;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8839,6 +13543,62 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Lists devices under a node or customer.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.nodes.nodes.devices.list({
+     *     // The filter expression. The filter should have one of the following formats: "sn=123454" or "display_name=MyDevice". sn corresponds to serial number of the device. The filter is case insensitive.
+     *     filter: 'placeholder-value',
+     *     // The maximum number of devices to return in the response. If empty or zero, all devices will be listed. Must be in the range [0, 1000].
+     *     pageSize: 'placeholder-value',
+     *     // A pagination token returned from a previous call to ListDevices that indicates where this listing should continue from.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The name of the parent resource.
+     *     parent: 'nodes/my-node/nodes/my-node',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "devices": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8848,11 +13608,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     list(
       params: Params$Resource$Nodes$Nodes$Devices$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Nodes$Nodes$Devices$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalListDevicesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SasPortalListDevicesResponse>>;
     list(
       params: Params$Resource$Nodes$Nodes$Devices$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8887,8 +13647,8 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalListDevicesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SasPortalListDevicesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Nodes$Nodes$Devices$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8988,6 +13748,67 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Creates a new node.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.nodes.nodes.nodes.create({
+     *     // Required. The parent resource name where the node is to be created.
+     *     parent: 'nodes/my-node/nodes/my-node',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "displayName": "my_displayName",
+     *       //   "name": "my_name",
+     *       //   "sasUserIds": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "sasUserIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8997,11 +13818,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     create(
       params: Params$Resource$Nodes$Nodes$Nodes$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Nodes$Nodes$Nodes$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalNode>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SasPortalNode>>;
     create(
       params: Params$Resource$Nodes$Nodes$Nodes$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9030,7 +13851,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalNode>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalNode> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SasPortalNode>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Nodes$Nodes$Nodes$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9077,6 +13901,62 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Lists nodes.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.nodes.nodes.nodes.list({
+     *     // The filter expression. The filter should have the following format: "DIRECT_CHILDREN" or format: "direct_children". The filter is case insensitive. If empty, then no nodes are filtered.
+     *     filter: 'placeholder-value',
+     *     // The maximum number of nodes to return in the response.
+     *     pageSize: 'placeholder-value',
+     *     // A pagination token returned from a previous call to ListNodes that indicates where this listing should continue from.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent resource name, for example, "nodes/1".
+     *     parent: 'nodes/my-node/nodes/my-node',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "nodes": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9086,11 +13966,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     list(
       params: Params$Resource$Nodes$Nodes$Nodes$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Nodes$Nodes$Nodes$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalListNodesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SasPortalListNodesResponse>>;
     list(
       params: Params$Resource$Nodes$Nodes$Nodes$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9125,8 +14005,8 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalListNodesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SasPortalListNodesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Nodes$Nodes$Nodes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9212,6 +14092,61 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.policies.get({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "resource": "my_resource"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assignments": [],
+     *   //   "etag": "my_etag"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9221,11 +14156,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     get(
       params: Params$Resource$Policies$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Policies$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalPolicy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SasPortalPolicy>>;
     get(
       params: Params$Resource$Policies$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9254,7 +14189,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalPolicy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalPolicy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SasPortalPolicy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Policies$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9300,6 +14238,63 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Sets the access control policy on the specified resource. Replaces any existing policy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.policies.set({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "disableNotification": false,
+     *       //   "policy": {},
+     *       //   "resource": "my_resource"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assignments": [],
+     *   //   "etag": "my_etag"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9309,11 +14304,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
     set(
       params: Params$Resource$Policies$Set,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     set(
       params?: Params$Resource$Policies$Set,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalPolicy>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SasPortalPolicy>>;
     set(
       params: Params$Resource$Policies$Set,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9342,7 +14337,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
       callback?:
         | BodyResponseCallback<Schema$SasPortalPolicy>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalPolicy> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SasPortalPolicy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Policies$Set;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9388,6 +14386,61 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
     /**
      * Returns permissions that a caller has on the specified resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.policies.test({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "permissions": [],
+     *       //   "resource": "my_resource"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9397,11 +14450,13 @@ export namespace prod_tt_sasportal_v1alpha1 {
     test(
       params: Params$Resource$Policies$Test,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     test(
       params?: Params$Resource$Policies$Test,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalTestPermissionsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$SasPortalTestPermissionsResponse>
+    >;
     test(
       params: Params$Resource$Policies$Test,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9436,8 +14491,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SasPortalTestPermissionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$SasPortalTestPermissionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Policies$Test;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

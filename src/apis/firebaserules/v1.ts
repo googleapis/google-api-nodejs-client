@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -524,6 +524,66 @@ export namespace firebaserules_v1 {
 
     /**
      * Test `Source` for syntactic and semantic correctness. Issues present, if any, will be returned to the caller with a description, severity, and source location. The test method may be executed with `Source` or a `Ruleset` name. Passing `Source` is useful for unit testing new rules. Passing a `Ruleset` name is useful for regression testing an existing rule. The following is an example of `Source` that permits users to upload images to a bucket bearing their user id and matching the correct metadata: _*Example*_ // Users are allowed to subscribe and unsubscribe to the blog. service firebase.storage { match /users/{userId\}/images/{imageName\} { allow write: if userId == request.auth.uid && (imageName.matches('*.png$') || imageName.matches('*.jpg$')) && resource.mimeType.matches('^image/') \} \}
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebaserules.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebaserules = google.firebaserules('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *       'https://www.googleapis.com/auth/firebase.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebaserules.projects.test({
+     *     // Required. Tests may either provide `source` or a `Ruleset` resource name. For tests against `source`, the resource name must refer to the project: Format: `projects/{project_id\}` For tests against a `Ruleset`, this must be the `Ruleset` resource name: Format: `projects/{project_id\}/rulesets/{ruleset_id\}`
+     *     name: 'projects/.*',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "source": {},
+     *       //   "testSuite": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "issues": [],
+     *   //   "testResults": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -533,11 +593,11 @@ export namespace firebaserules_v1 {
     test(
       params: Params$Resource$Projects$Test,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     test(
       params?: Params$Resource$Projects$Test,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestRulesetResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestRulesetResponse>>;
     test(
       params: Params$Resource$Projects$Test,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -568,8 +628,8 @@ export namespace firebaserules_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$TestRulesetResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestRulesetResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Projects$Test;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -631,6 +691,69 @@ export namespace firebaserules_v1 {
 
     /**
      * Create a `Release`. Release names should reflect the developer's deployment practices. For example, the release name may include the environment name, application name, application version, or any other name meaningful to the developer. Once a `Release` refers to a `Ruleset`, the rules can be enforced by Firebase Rules-enabled services. More than one `Release` may be 'live' concurrently. Consider the following three `Release` names for `projects/foo` and the `Ruleset` to which they refer. Release Name -\> Ruleset Name * projects/foo/releases/prod -\> projects/foo/rulesets/uuid123 * projects/foo/releases/prod/beta -\> projects/foo/rulesets/uuid123 * projects/foo/releases/prod/v23 -\> projects/foo/rulesets/uuid456 The relationships reflect a `Ruleset` rollout in progress. The `prod` and `prod/beta` releases refer to the same `Ruleset`. However, `prod/v23` refers to a new `Ruleset`. The `Ruleset` reference for a `Release` may be updated using the UpdateRelease method.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebaserules.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebaserules = google.firebaserules('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebaserules.projects.releases.create({
+     *     // Required. Resource name for the project which owns this `Release`. Format: `projects/{project_id\}`
+     *     name: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "name": "my_name",
+     *       //   "rulesetName": "my_rulesetName",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "name": "my_name",
+     *   //   "rulesetName": "my_rulesetName",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -640,11 +763,11 @@ export namespace firebaserules_v1 {
     create(
       params: Params$Resource$Projects$Releases$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Releases$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Release>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Release>>;
     create(
       params: Params$Resource$Projects$Releases$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -673,7 +796,10 @@ export namespace firebaserules_v1 {
       callback?:
         | BodyResponseCallback<Schema$Release>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Release> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Release>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Releases$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -720,6 +846,53 @@ export namespace firebaserules_v1 {
 
     /**
      * Delete a `Release` by resource name.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebaserules.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebaserules = google.firebaserules('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebaserules.projects.releases.delete({
+     *     // Required. Resource name for the `Release` to delete. Format: `projects/{project_id\}/releases/{release_id\}`
+     *     name: 'projects/my-project/releases/.*',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -729,11 +902,11 @@ export namespace firebaserules_v1 {
     delete(
       params: Params$Resource$Projects$Releases$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Releases$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Releases$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -762,7 +935,10 @@ export namespace firebaserules_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Releases$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -806,6 +982,59 @@ export namespace firebaserules_v1 {
 
     /**
      * Get a `Release` by name.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebaserules.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebaserules = google.firebaserules('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *       'https://www.googleapis.com/auth/firebase.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebaserules.projects.releases.get({
+     *     // Required. Resource name of the `Release`. Format: `projects/{project_id\}/releases/{release_id\}`
+     *     name: 'projects/my-project/releases/.*',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "name": "my_name",
+     *   //   "rulesetName": "my_rulesetName",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -815,11 +1044,11 @@ export namespace firebaserules_v1 {
     get(
       params: Params$Resource$Projects$Releases$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Releases$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Release>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Release>>;
     get(
       params: Params$Resource$Projects$Releases$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -848,7 +1077,10 @@ export namespace firebaserules_v1 {
       callback?:
         | BodyResponseCallback<Schema$Release>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Release> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Release>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Releases$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -892,6 +1124,63 @@ export namespace firebaserules_v1 {
 
     /**
      * Get the `Release` executable to use when enforcing rules.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebaserules.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebaserules = google.firebaserules('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *       'https://www.googleapis.com/auth/firebase.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebaserules.projects.releases.getExecutable({
+     *     // Optional. The requested runtime executable version. Defaults to FIREBASE_RULES_EXECUTABLE_V1.
+     *     executableVersion: 'placeholder-value',
+     *     // Required. Resource name of the `Release`. Format: `projects/{project_id\}/releases/{release_id\}`
+     *     name: 'projects/my-project/releases/.*',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "executable": "my_executable",
+     *   //   "executableVersion": "my_executableVersion",
+     *   //   "language": "my_language",
+     *   //   "rulesetName": "my_rulesetName",
+     *   //   "syncTime": "my_syncTime",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -901,11 +1190,11 @@ export namespace firebaserules_v1 {
     getExecutable(
       params: Params$Resource$Projects$Releases$Getexecutable,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getExecutable(
       params?: Params$Resource$Projects$Releases$Getexecutable,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GetReleaseExecutableResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GetReleaseExecutableResponse>>;
     getExecutable(
       params: Params$Resource$Projects$Releases$Getexecutable,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -940,8 +1229,8 @@ export namespace firebaserules_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GetReleaseExecutableResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GetReleaseExecutableResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Releases$Getexecutable;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -990,6 +1279,63 @@ export namespace firebaserules_v1 {
 
     /**
      * List the `Release` values for a project. This list may optionally be filtered by `Release` name, `Ruleset` name, `TestSuite` name, or any combination thereof.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebaserules.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebaserules = google.firebaserules('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *       'https://www.googleapis.com/auth/firebase.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebaserules.projects.releases.list({
+     *     // Optional. `Release` filter. The list method supports filters with restrictions on the `Release.name`, and `Release.ruleset_name`. Example 1: A filter of 'name=prod*' might return `Release`s with names within 'projects/foo' prefixed with 'prod': Name -\> Ruleset Name: * projects/foo/releases/prod -\> projects/foo/rulesets/uuid1234 * projects/foo/releases/prod/v1 -\> projects/foo/rulesets/uuid1234 * projects/foo/releases/prod/v2 -\> projects/foo/rulesets/uuid8888 Example 2: A filter of `name=prod* ruleset_name=uuid1234` would return only `Release` instances for 'projects/foo' with names prefixed with 'prod' referring to the same `Ruleset` name of 'uuid1234': Name -\> Ruleset Name: * projects/foo/releases/prod -\> projects/foo/rulesets/1234 * projects/foo/releases/prod/v1 -\> projects/foo/rulesets/1234 In the examples, the filter parameters refer to the search filters are relative to the project. Fully qualified prefixed may also be used.
+     *     filter: 'placeholder-value',
+     *     // Required. Resource name for the project. Format: `projects/{project_id\}`
+     *     name: 'projects/my-project',
+     *     // Optional. Page size to load. Maximum of 100. Defaults to 10. Note: `page_size` is just a hint and the service may choose to load fewer than `page_size` results due to the size of the output. To traverse all of the releases, the caller should iterate until the `page_token` on the response is empty.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. Next page token for the next batch of `Release` instances.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "releases": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -999,11 +1345,11 @@ export namespace firebaserules_v1 {
     list(
       params: Params$Resource$Projects$Releases$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Releases$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListReleasesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListReleasesResponse>>;
     list(
       params: Params$Resource$Projects$Releases$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1036,8 +1382,8 @@ export namespace firebaserules_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListReleasesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListReleasesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Releases$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1084,6 +1430,67 @@ export namespace firebaserules_v1 {
 
     /**
      * Update a `Release` via PATCH. Only updates to `ruleset_name` will be honored. `Release` rename is not supported. To create a `Release` use the CreateRelease method.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebaserules.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebaserules = google.firebaserules('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebaserules.projects.releases.patch({
+     *     // Required. Resource name for the project which owns this `Release`. Format: `projects/{project_id\}`
+     *     name: 'projects/my-project/releases/.*',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "release": {},
+     *       //   "updateMask": "my_updateMask"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "name": "my_name",
+     *   //   "rulesetName": "my_rulesetName",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1093,11 +1500,11 @@ export namespace firebaserules_v1 {
     patch(
       params: Params$Resource$Projects$Releases$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Releases$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Release>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Release>>;
     patch(
       params: Params$Resource$Projects$Releases$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1126,7 +1533,10 @@ export namespace firebaserules_v1 {
       callback?:
         | BodyResponseCallback<Schema$Release>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Release> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Release>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Releases$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1246,6 +1656,71 @@ export namespace firebaserules_v1 {
 
     /**
      * Create a `Ruleset` from `Source`. The `Ruleset` is given a unique generated name which is returned to the caller. `Source` containing syntactic or semantics errors will result in an error response indicating the first error encountered. For a detailed view of `Source` issues, use TestRuleset.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebaserules.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebaserules = google.firebaserules('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebaserules.projects.rulesets.create({
+     *     // Required. Resource name for Project which owns this `Ruleset`. Format: `projects/{project_id\}`
+     *     name: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "attachmentPoint": "my_attachmentPoint",
+     *       //   "createTime": "my_createTime",
+     *       //   "metadata": {},
+     *       //   "name": "my_name",
+     *       //   "source": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attachmentPoint": "my_attachmentPoint",
+     *   //   "createTime": "my_createTime",
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "source": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1255,11 +1730,11 @@ export namespace firebaserules_v1 {
     create(
       params: Params$Resource$Projects$Rulesets$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Rulesets$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Ruleset>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Ruleset>>;
     create(
       params: Params$Resource$Projects$Rulesets$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1288,7 +1763,10 @@ export namespace firebaserules_v1 {
       callback?:
         | BodyResponseCallback<Schema$Ruleset>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Ruleset> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Ruleset>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Rulesets$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1335,6 +1813,53 @@ export namespace firebaserules_v1 {
 
     /**
      * Delete a `Ruleset` by resource name. If the `Ruleset` is referenced by a `Release` the operation will fail.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebaserules.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebaserules = google.firebaserules('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebaserules.projects.rulesets.delete({
+     *     // Required. Resource name for the ruleset to delete. Format: `projects/{project_id\}/rulesets/{ruleset_id\}`
+     *     name: 'projects/my-project/rulesets/my-ruleset',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1344,11 +1869,11 @@ export namespace firebaserules_v1 {
     delete(
       params: Params$Resource$Projects$Rulesets$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Rulesets$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Rulesets$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1377,7 +1902,10 @@ export namespace firebaserules_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Rulesets$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1421,6 +1949,60 @@ export namespace firebaserules_v1 {
 
     /**
      * Get a `Ruleset` by name including the full `Source` contents.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebaserules.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebaserules = google.firebaserules('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *       'https://www.googleapis.com/auth/firebase.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebaserules.projects.rulesets.get({
+     *     // Required. Resource name for the ruleset to get. Format: `projects/{project_id\}/rulesets/{ruleset_id\}`
+     *     name: 'projects/my-project/rulesets/my-ruleset',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attachmentPoint": "my_attachmentPoint",
+     *   //   "createTime": "my_createTime",
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "source": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1430,11 +2012,11 @@ export namespace firebaserules_v1 {
     get(
       params: Params$Resource$Projects$Rulesets$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Rulesets$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Ruleset>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Ruleset>>;
     get(
       params: Params$Resource$Projects$Rulesets$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1463,7 +2045,10 @@ export namespace firebaserules_v1 {
       callback?:
         | BodyResponseCallback<Schema$Ruleset>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Ruleset> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Ruleset>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Rulesets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1507,6 +2092,63 @@ export namespace firebaserules_v1 {
 
     /**
      * List `Ruleset` metadata only and optionally filter the results by `Ruleset` name. The full `Source` contents of a `Ruleset` may be retrieved with GetRuleset.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebaserules.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebaserules = google.firebaserules('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *       'https://www.googleapis.com/auth/firebase.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebaserules.projects.rulesets.list({
+     *     // Optional. `Ruleset` filter. The list method supports filters with restrictions on `Ruleset.name`. Filters on `Ruleset.create_time` should use the `date` function which parses strings that conform to the RFC 3339 date/time specifications. Example: `create_time \> date("2017-01-01T00:00:00Z") AND name=UUID-*`
+     *     filter: 'placeholder-value',
+     *     // Required. Resource name for the project. Format: `projects/{project_id\}`
+     *     name: 'projects/my-project',
+     *     // Optional. Page size to load. Maximum of 100. Defaults to 10. Note: `page_size` is just a hint and the service may choose to load less than `page_size` due to the size of the output. To traverse all of the releases, caller should iterate until the `page_token` is empty.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. Next page token for loading the next batch of `Ruleset` instances.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "rulesets": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1516,11 +2158,11 @@ export namespace firebaserules_v1 {
     list(
       params: Params$Resource$Projects$Rulesets$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Rulesets$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListRulesetsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListRulesetsResponse>>;
     list(
       params: Params$Resource$Projects$Rulesets$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1553,8 +2195,8 @@ export namespace firebaserules_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListRulesetsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListRulesetsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Rulesets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

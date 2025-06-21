@@ -1,5 +1,30 @@
 # Changelog
 
+## [5.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/certificatemanager-v5.0.0...certificatemanager-v5.0.1) (2025-06-04)
+
+
+### Bug Fixes
+
+* **deps:** upgrade googleapis-common to 8.0.2-rc ([f4b0990](https://github.com/googleapis/google-api-nodejs-client/commit/f4b099071040cfbcfe4a2e7d487d45ee93b369e0))
+
+## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/certificatemanager-v4.5.0...certificatemanager-v5.0.0) (2025-05-29)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to node 18
+
+### Features
+
+* upgrade to node 18 ([682fbb8](https://github.com/googleapis/google-api-nodejs-client/commit/682fbb869189ae92b3e9a194d37d0548af0c1f92))
+
+## [4.5.0](https://github.com/googleapis/google-api-nodejs-client/compare/certificatemanager-v4.4.0...certificatemanager-v4.5.0) (2025-05-05)
+
+
+### Features
+
+* **certificatemanager:** update the API ([25f0f11](https://github.com/googleapis/google-api-nodejs-client/commit/25f0f116141ed890a0a7879b0342dc9dbcd892ea))
+
 ## [4.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/certificatemanager-v4.3.0...certificatemanager-v4.4.0) (2025-03-18)
 
 

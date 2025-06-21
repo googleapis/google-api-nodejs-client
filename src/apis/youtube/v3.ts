@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -4730,6 +4730,69 @@ export namespace youtube_v3 {
 
     /**
      * Inserts a new resource into this collection.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/youtube',
+     *       'https://www.googleapis.com/auth/youtube.force-ssl',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.abuseReports.insert({
+     *     // The *part* parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.
+     *     part: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "abuseTypes": [],
+     *       //   "description": "my_description",
+     *       //   "relatedEntities": [],
+     *       //   "subject": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "abuseTypes": [],
+     *   //   "description": "my_description",
+     *   //   "relatedEntities": [],
+     *   //   "subject": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4739,11 +4802,11 @@ export namespace youtube_v3 {
     insert(
       params: Params$Resource$Abusereports$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Abusereports$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AbuseReport>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AbuseReport>>;
     insert(
       params: Params$Resource$Abusereports$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4772,7 +4835,10 @@ export namespace youtube_v3 {
       callback?:
         | BodyResponseCallback<Schema$AbuseReport>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AbuseReport> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$AbuseReport>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Abusereports$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4838,6 +4904,79 @@ export namespace youtube_v3 {
 
     /**
      * Retrieves a list of resources, possibly filtered.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/youtube',
+     *       'https://www.googleapis.com/auth/youtube.force-ssl',
+     *       'https://www.googleapis.com/auth/youtube.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.activities.list({
+     *     channelId: 'placeholder-value',
+     *
+     *     home: 'placeholder-value',
+     *     // The *maxResults* parameter specifies the maximum number of items that should be returned in the result set.
+     *     maxResults: 'placeholder-value',
+     *
+     *     mine: 'placeholder-value',
+     *     // The *pageToken* parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
+     *     pageToken: 'placeholder-value',
+     *     // The *part* parameter specifies a comma-separated list of one or more activity resource properties that the API response will include. If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in an activity resource, the snippet property contains other properties that identify the type of activity, a display title for the activity, and so forth. If you set *part=snippet*, the API response will also contain all of those nested properties.
+     *     part: 'placeholder-value',
+     *
+     *     publishedAfter: 'placeholder-value',
+     *
+     *     publishedBefore: 'placeholder-value',
+     *
+     *     regionCode: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "eventId": "my_eventId",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "pageInfo": {},
+     *   //   "prevPageToken": "my_prevPageToken",
+     *   //   "tokenPagination": {},
+     *   //   "visitorId": "my_visitorId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4847,11 +4986,11 @@ export namespace youtube_v3 {
     list(
       params: Params$Resource$Activities$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Activities$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ActivityListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ActivityListResponse>>;
     list(
       params: Params$Resource$Activities$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4884,8 +5023,8 @@ export namespace youtube_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ActivityListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ActivityListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Activities$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4976,6 +5115,53 @@ export namespace youtube_v3 {
 
     /**
      * Deletes a resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/youtube.force-ssl',
+     *       'https://www.googleapis.com/auth/youtubepartner',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.captions.delete({
+     *     id: 'placeholder-value',
+     *     // ID of the Google+ Page for the channel that the request is be on behalf of
+     *     onBehalfOf: 'placeholder-value',
+     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     *     onBehalfOfContentOwner: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4985,11 +5171,11 @@ export namespace youtube_v3 {
     delete(
       params: Params$Resource$Captions$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Captions$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Captions$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5016,7 +5202,10 @@ export namespace youtube_v3 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Captions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5061,6 +5250,58 @@ export namespace youtube_v3 {
 
     /**
      * Downloads a caption track.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/youtube.force-ssl',
+     *       'https://www.googleapis.com/auth/youtubepartner',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.captions.download({
+     *     // The ID of the caption track to download, required for One Platform.
+     *     id: 'placeholder-value',
+     *     // ID of the Google+ Page for the channel that the request is be on behalf of
+     *     onBehalfOf: 'placeholder-value',
+     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     *     onBehalfOfContentOwner: 'placeholder-value',
+     *     // Convert the captions into this format. Supported options are sbv, srt, and vtt.
+     *     tfmt: 'placeholder-value',
+     *     // tlang is the language code; machine translate the captions into this language.
+     *     tlang: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5070,11 +5311,11 @@ export namespace youtube_v3 {
     download(
       params: Params$Resource$Captions$Download,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     download(
       params?: Params$Resource$Captions$Download,
       options?: MethodOptions
-    ): GaxiosPromise<unknown>;
+    ): Promise<GaxiosResponseWithHTTP2<unknown>>;
     download(
       params: Params$Resource$Captions$Download,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5101,7 +5342,10 @@ export namespace youtube_v3 {
         | BodyResponseCallback<unknown>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<unknown> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<unknown> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<unknown>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Captions$Download;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5147,6 +5391,79 @@ export namespace youtube_v3 {
 
     /**
      * Inserts a new resource into this collection.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/youtube.force-ssl',
+     *       'https://www.googleapis.com/auth/youtubepartner',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.captions.insert({
+     *     // ID of the Google+ Page for the channel that the request is be on behalf of
+     *     onBehalfOf: 'placeholder-value',
+     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     *     onBehalfOfContentOwner: 'placeholder-value',
+     *     // The *part* parameter specifies the caption resource parts that the API response will include. Set the parameter value to snippet.
+     *     part: 'placeholder-value',
+     *     // Extra parameter to allow automatically syncing the uploaded caption/transcript with the audio.
+     *     sync: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "snippet": {}
+     *       // }
+     *     },
+     *     media: {
+     *       mimeType: 'placeholder-value',
+     *       body: 'placeholder-value',
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "snippet": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5156,11 +5473,11 @@ export namespace youtube_v3 {
     insert(
       params: Params$Resource$Captions$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Captions$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Caption>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Caption>>;
     insert(
       params: Params$Resource$Captions$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5189,7 +5506,10 @@ export namespace youtube_v3 {
       callback?:
         | BodyResponseCallback<Schema$Caption>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Caption> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Caption>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Captions$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5238,6 +5558,67 @@ export namespace youtube_v3 {
 
     /**
      * Retrieves a list of resources, possibly filtered.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/youtube.force-ssl',
+     *       'https://www.googleapis.com/auth/youtubepartner',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.captions.list({
+     *     // Returns the captions with the given IDs for Stubby or Apiary.
+     *     id: 'placeholder-value',
+     *     // ID of the Google+ Page for the channel that the request is on behalf of.
+     *     onBehalfOf: 'placeholder-value',
+     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     *     onBehalfOfContentOwner: 'placeholder-value',
+     *     // The *part* parameter specifies a comma-separated list of one or more caption resource parts that the API response will include. The part names that you can include in the parameter value are id and snippet.
+     *     part: 'placeholder-value',
+     *     // Returns the captions for the specified video.
+     *     videoId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "eventId": "my_eventId",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "visitorId": "my_visitorId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5247,11 +5628,11 @@ export namespace youtube_v3 {
     list(
       params: Params$Resource$Captions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Captions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CaptionListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CaptionListResponse>>;
     list(
       params: Params$Resource$Captions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5282,8 +5663,8 @@ export namespace youtube_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CaptionListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CaptionListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Captions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5328,6 +5709,79 @@ export namespace youtube_v3 {
 
     /**
      * Updates an existing resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/youtube.force-ssl',
+     *       'https://www.googleapis.com/auth/youtubepartner',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.captions.update({
+     *     // ID of the Google+ Page for the channel that the request is on behalf of.
+     *     onBehalfOf: 'placeholder-value',
+     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     *     onBehalfOfContentOwner: 'placeholder-value',
+     *     // The *part* parameter specifies a comma-separated list of one or more caption resource parts that the API response will include. The part names that you can include in the parameter value are id and snippet.
+     *     part: 'placeholder-value',
+     *     // Extra parameter to allow automatically syncing the uploaded caption/transcript with the audio.
+     *     sync: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "snippet": {}
+     *       // }
+     *     },
+     *     media: {
+     *       mimeType: 'placeholder-value',
+     *       body: 'placeholder-value',
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "snippet": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5337,11 +5791,11 @@ export namespace youtube_v3 {
     update(
       params: Params$Resource$Captions$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Captions$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Caption>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Caption>>;
     update(
       params: Params$Resource$Captions$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5370,7 +5824,10 @@ export namespace youtube_v3 {
       callback?:
         | BodyResponseCallback<Schema$Caption>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Caption> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Caption>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Captions$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5562,6 +6019,76 @@ export namespace youtube_v3 {
 
     /**
      * Inserts a new resource into this collection.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/youtube',
+     *       'https://www.googleapis.com/auth/youtube.force-ssl',
+     *       'https://www.googleapis.com/auth/youtube.upload',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.channelBanners.insert({
+     *     // Unused, channel_id is currently derived from the security context of the requestor.
+     *     channelId: 'placeholder-value',
+     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     *     onBehalfOfContentOwner: 'placeholder-value',
+     *     // This parameter can only be used in a properly authorized request. *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
+     *     onBehalfOfContentOwnerChannel: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "etag": "my_etag",
+     *       //   "kind": "my_kind",
+     *       //   "url": "my_url"
+     *       // }
+     *     },
+     *     media: {
+     *       mimeType: 'placeholder-value',
+     *       body: 'placeholder-value',
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "kind": "my_kind",
+     *   //   "url": "my_url"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5571,11 +6098,11 @@ export namespace youtube_v3 {
     insert(
       params: Params$Resource$Channelbanners$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Channelbanners$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ChannelBannerResource>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ChannelBannerResource>>;
     insert(
       params: Params$Resource$Channelbanners$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5608,8 +6135,8 @@ export namespace youtube_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ChannelBannerResource>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ChannelBannerResource>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Channelbanners$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5701,6 +6228,88 @@ export namespace youtube_v3 {
 
     /**
      * Retrieves a list of resources, possibly filtered.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/youtube',
+     *       'https://www.googleapis.com/auth/youtube.force-ssl',
+     *       'https://www.googleapis.com/auth/youtube.readonly',
+     *       'https://www.googleapis.com/auth/youtubepartner',
+     *       'https://www.googleapis.com/auth/youtubepartner-channel-audit',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.channels.list({
+     *     // Return the channels within the specified guide category ID.
+     *     categoryId: 'placeholder-value',
+     *     // Return the channel associated with a YouTube handle.
+     *     forHandle: 'placeholder-value',
+     *     // Return the channel associated with a YouTube username.
+     *     forUsername: 'placeholder-value',
+     *     // Stands for "host language". Specifies the localization language of the metadata to be filled into snippet.localized. The field is filled with the default metadata if there is no localization in the specified language. The parameter value must be a language code included in the list returned by the i18nLanguages.list method (e.g. en_US, es_MX).
+     *     hl: 'placeholder-value',
+     *     // Return the channels with the specified IDs.
+     *     id: 'placeholder-value',
+     *     // Return the channels managed by the authenticated user.
+     *     managedByMe: 'placeholder-value',
+     *     // The *maxResults* parameter specifies the maximum number of items that should be returned in the result set.
+     *     maxResults: 'placeholder-value',
+     *     // Return the ids of channels owned by the authenticated user.
+     *     mine: 'placeholder-value',
+     *     // Return the channels subscribed to the authenticated user
+     *     mySubscribers: 'placeholder-value',
+     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     *     onBehalfOfContentOwner: 'placeholder-value',
+     *     // The *pageToken* parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
+     *     pageToken: 'placeholder-value',
+     *     // The *part* parameter specifies a comma-separated list of one or more channel resource properties that the API response will include. If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a channel resource, the contentDetails property contains other properties, such as the uploads properties. As such, if you set *part=contentDetails*, the API response will also contain all of those nested properties.
+     *     part: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "eventId": "my_eventId",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "pageInfo": {},
+     *   //   "prevPageToken": "my_prevPageToken",
+     *   //   "tokenPagination": {},
+     *   //   "visitorId": "my_visitorId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5710,11 +6319,11 @@ export namespace youtube_v3 {
     list(
       params: Params$Resource$Channels$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Channels$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ChannelListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ChannelListResponse>>;
     list(
       params: Params$Resource$Channels$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5745,8 +6354,8 @@ export namespace youtube_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ChannelListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ChannelListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Channels$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5791,6 +6400,90 @@ export namespace youtube_v3 {
 
     /**
      * Updates an existing resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/youtube',
+     *       'https://www.googleapis.com/auth/youtube.force-ssl',
+     *       'https://www.googleapis.com/auth/youtubepartner',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.channels.update({
+     *     // The *onBehalfOfContentOwner* parameter indicates that the authenticated user is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with needs to be linked to the specified YouTube content owner.
+     *     onBehalfOfContentOwner: 'placeholder-value',
+     *     // The *part* parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include. The API currently only allows the parameter value to be set to either brandingSettings or invideoPromotion. (You cannot update both of those parts with a single request.) Note that this method overrides the existing values for all of the mutable properties that are contained in any parts that the parameter value specifies.
+     *     part: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "auditDetails": {},
+     *       //   "brandingSettings": {},
+     *       //   "contentDetails": {},
+     *       //   "contentOwnerDetails": {},
+     *       //   "conversionPings": {},
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "localizations": {},
+     *       //   "snippet": {},
+     *       //   "statistics": {},
+     *       //   "status": {},
+     *       //   "topicDetails": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditDetails": {},
+     *   //   "brandingSettings": {},
+     *   //   "contentDetails": {},
+     *   //   "contentOwnerDetails": {},
+     *   //   "conversionPings": {},
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "localizations": {},
+     *   //   "snippet": {},
+     *   //   "statistics": {},
+     *   //   "status": {},
+     *   //   "topicDetails": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5800,11 +6493,11 @@ export namespace youtube_v3 {
     update(
       params: Params$Resource$Channels$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Channels$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Channel>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Channel>>;
     update(
       params: Params$Resource$Channels$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5833,7 +6526,10 @@ export namespace youtube_v3 {
       callback?:
         | BodyResponseCallback<Schema$Channel>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Channel> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Channel>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Channels$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5951,6 +6647,52 @@ export namespace youtube_v3 {
 
     /**
      * Deletes a resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/youtube',
+     *       'https://www.googleapis.com/auth/youtube.force-ssl',
+     *       'https://www.googleapis.com/auth/youtubepartner',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.channelSections.delete({
+     *     id: 'placeholder-value',
+     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     *     onBehalfOfContentOwner: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5960,11 +6702,11 @@ export namespace youtube_v3 {
     delete(
       params: Params$Resource$Channelsections$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Channelsections$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Channelsections$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5991,7 +6733,10 @@ export namespace youtube_v3 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Channelsections$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6037,6 +6782,80 @@ export namespace youtube_v3 {
 
     /**
      * Inserts a new resource into this collection.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/youtube',
+     *       'https://www.googleapis.com/auth/youtube.force-ssl',
+     *       'https://www.googleapis.com/auth/youtubepartner',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.channelSections.insert({
+     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     *     onBehalfOfContentOwner: 'placeholder-value',
+     *     // This parameter can only be used in a properly authorized request. *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
+     *     onBehalfOfContentOwnerChannel: 'placeholder-value',
+     *     // The *part* parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include. The part names that you can include in the parameter value are snippet and contentDetails.
+     *     part: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "contentDetails": {},
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "localizations": {},
+     *       //   "snippet": {},
+     *       //   "targeting": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contentDetails": {},
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "localizations": {},
+     *   //   "snippet": {},
+     *   //   "targeting": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6046,11 +6865,11 @@ export namespace youtube_v3 {
     insert(
       params: Params$Resource$Channelsections$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Channelsections$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ChannelSection>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ChannelSection>>;
     insert(
       params: Params$Resource$Channelsections$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6079,7 +6898,10 @@ export namespace youtube_v3 {
       callback?:
         | BodyResponseCallback<Schema$ChannelSection>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ChannelSection> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ChannelSection>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Channelsections$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6125,6 +6947,71 @@ export namespace youtube_v3 {
 
     /**
      * Retrieves a list of resources, possibly filtered.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/youtube',
+     *       'https://www.googleapis.com/auth/youtube.force-ssl',
+     *       'https://www.googleapis.com/auth/youtube.readonly',
+     *       'https://www.googleapis.com/auth/youtubepartner',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.channelSections.list({
+     *     // Return the ChannelSections owned by the specified channel ID.
+     *     channelId: 'placeholder-value',
+     *     // Return content in specified language
+     *     hl: 'placeholder-value',
+     *     // Return the ChannelSections with the given IDs for Stubby or Apiary.
+     *     id: 'placeholder-value',
+     *     // Return the ChannelSections owned by the authenticated user.
+     *     mine: 'placeholder-value',
+     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     *     onBehalfOfContentOwner: 'placeholder-value',
+     *     // The *part* parameter specifies a comma-separated list of one or more channelSection resource properties that the API response will include. The part names that you can include in the parameter value are id, snippet, and contentDetails. If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a channelSection resource, the snippet property contains other properties, such as a display title for the channelSection. If you set *part=snippet*, the API response will also contain all of those nested properties.
+     *     part: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "eventId": "my_eventId",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "visitorId": "my_visitorId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6134,11 +7021,11 @@ export namespace youtube_v3 {
     list(
       params: Params$Resource$Channelsections$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Channelsections$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ChannelSectionListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ChannelSectionListResponse>>;
     list(
       params: Params$Resource$Channelsections$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6173,8 +7060,8 @@ export namespace youtube_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ChannelSectionListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ChannelSectionListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Channelsections$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6220,6 +7107,78 @@ export namespace youtube_v3 {
 
     /**
      * Updates an existing resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/youtube',
+     *       'https://www.googleapis.com/auth/youtube.force-ssl',
+     *       'https://www.googleapis.com/auth/youtubepartner',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.channelSections.update({
+     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     *     onBehalfOfContentOwner: 'placeholder-value',
+     *     // The *part* parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include. The part names that you can include in the parameter value are snippet and contentDetails.
+     *     part: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "contentDetails": {},
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "localizations": {},
+     *       //   "snippet": {},
+     *       //   "targeting": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contentDetails": {},
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "localizations": {},
+     *   //   "snippet": {},
+     *   //   "targeting": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6229,11 +7188,11 @@ export namespace youtube_v3 {
     update(
       params: Params$Resource$Channelsections$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Channelsections$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ChannelSection>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ChannelSection>>;
     update(
       params: Params$Resource$Channelsections$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6262,7 +7221,10 @@ export namespace youtube_v3 {
       callback?:
         | BodyResponseCallback<Schema$ChannelSection>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ChannelSection> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ChannelSection>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Channelsections$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6390,6 +7352,46 @@ export namespace youtube_v3 {
 
     /**
      * Deletes a resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/youtube.force-ssl'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.comments.delete({
+     *     id: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6399,11 +7401,11 @@ export namespace youtube_v3 {
     delete(
       params: Params$Resource$Comments$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Comments$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Comments$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6430,7 +7432,10 @@ export namespace youtube_v3 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6475,6 +7480,66 @@ export namespace youtube_v3 {
 
     /**
      * Inserts a new resource into this collection.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/youtube.force-ssl'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.comments.insert({
+     *     // The *part* parameter identifies the properties that the API response will include. Set the parameter value to snippet. The snippet part has a quota cost of 2 units.
+     *     part: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "snippet": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "snippet": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6484,11 +7549,11 @@ export namespace youtube_v3 {
     insert(
       params: Params$Resource$Comments$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Comments$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Comment>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Comment>>;
     insert(
       params: Params$Resource$Comments$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6517,7 +7582,10 @@ export namespace youtube_v3 {
       callback?:
         | BodyResponseCallback<Schema$Comment>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Comment> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Comment>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6562,6 +7630,69 @@ export namespace youtube_v3 {
 
     /**
      * Retrieves a list of resources, possibly filtered.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/youtube.force-ssl'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.comments.list({
+     *     // Returns the comments with the given IDs for One Platform.
+     *     id: 'placeholder-value',
+     *     // The *maxResults* parameter specifies the maximum number of items that should be returned in the result set.
+     *     maxResults: 'placeholder-value',
+     *     // The *pageToken* parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
+     *     pageToken: 'placeholder-value',
+     *     // Returns replies to the specified comment. Note, currently YouTube features only one level of replies (ie replies to top level comments). However replies to replies may be supported in the future.
+     *     parentId: 'placeholder-value',
+     *     // The *part* parameter specifies a comma-separated list of one or more comment resource properties that the API response will include.
+     *     part: 'placeholder-value',
+     *     // The requested text format for the returned comments.
+     *     textFormat: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "eventId": "my_eventId",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "pageInfo": {},
+     *   //   "tokenPagination": {},
+     *   //   "visitorId": "my_visitorId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6571,11 +7702,11 @@ export namespace youtube_v3 {
     list(
       params: Params$Resource$Comments$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Comments$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CommentListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CommentListResponse>>;
     list(
       params: Params$Resource$Comments$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6606,8 +7737,8 @@ export namespace youtube_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CommentListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CommentListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6652,6 +7783,47 @@ export namespace youtube_v3 {
 
     /**
      * Expresses the caller's opinion that one or more comments should be flagged as spam.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/youtube.force-ssl'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.comments.markAsSpam({
+     *     // Flags the comments with the given IDs as spam in the caller's opinion.
+     *     id: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6661,11 +7833,11 @@ export namespace youtube_v3 {
     markAsSpam(
       params: Params$Resource$Comments$Markasspam,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     markAsSpam(
       params?: Params$Resource$Comments$Markasspam,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     markAsSpam(
       params: Params$Resource$Comments$Markasspam,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6692,7 +7864,10 @@ export namespace youtube_v3 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Comments$Markasspam;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6738,6 +7913,51 @@ export namespace youtube_v3 {
 
     /**
      * Sets the moderation status of one or more comments.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/youtube.force-ssl'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.comments.setModerationStatus({
+     *     // If set to true the author of the comment gets added to the ban list. This means all future comments of the author will autmomatically be rejected. Only valid in combination with STATUS_REJECTED.
+     *     banAuthor: 'placeholder-value',
+     *     // Modifies the moderation status of the comments with the given IDs
+     *     id: 'placeholder-value',
+     *     // Specifies the requested moderation status. Note, comments can be in statuses, which are not available through this call. For example, this call does not allow to mark a comment as 'likely spam'. Valid values: 'heldForReview', 'published' or 'rejected'.
+     *     moderationStatus: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6747,11 +7967,11 @@ export namespace youtube_v3 {
     setModerationStatus(
       params: Params$Resource$Comments$Setmoderationstatus,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     setModerationStatus(
       params?: Params$Resource$Comments$Setmoderationstatus,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     setModerationStatus(
       params: Params$Resource$Comments$Setmoderationstatus,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6778,7 +7998,10 @@ export namespace youtube_v3 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Comments$Setmoderationstatus;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6824,6 +8047,66 @@ export namespace youtube_v3 {
 
     /**
      * Updates an existing resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/youtube.force-ssl'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.comments.update({
+     *     // The *part* parameter identifies the properties that the API response will include. You must at least include the snippet part in the parameter value since that part contains all of the properties that the API request can update.
+     *     part: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "snippet": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "snippet": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6833,11 +8116,11 @@ export namespace youtube_v3 {
     update(
       params: Params$Resource$Comments$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Comments$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Comment>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Comment>>;
     update(
       params: Params$Resource$Comments$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6866,7 +8149,10 @@ export namespace youtube_v3 {
       callback?:
         | BodyResponseCallback<Schema$Comment>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Comment> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Comment>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6995,6 +8281,68 @@ export namespace youtube_v3 {
 
     /**
      * Inserts a new resource into this collection.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/youtube.force-ssl'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.commentThreads.insert({
+     *     // The *part* parameter identifies the properties that the API response will include. Set the parameter value to snippet. The snippet part has a quota cost of 2 units.
+     *     part: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "replies": {},
+     *       //   "snippet": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "replies": {},
+     *   //   "snippet": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7004,11 +8352,11 @@ export namespace youtube_v3 {
     insert(
       params: Params$Resource$Commentthreads$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Commentthreads$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CommentThread>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CommentThread>>;
     insert(
       params: Params$Resource$Commentthreads$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7037,7 +8385,10 @@ export namespace youtube_v3 {
       callback?:
         | BodyResponseCallback<Schema$CommentThread>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CommentThread> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$CommentThread>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Commentthreads$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7083,6 +8434,81 @@ export namespace youtube_v3 {
 
     /**
      * Retrieves a list of resources, possibly filtered.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/youtube.force-ssl'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.commentThreads.list({
+     *     // Returns the comment threads of all videos of the channel and the channel comments as well.
+     *     allThreadsRelatedToChannelId: 'placeholder-value',
+     *     // Returns the comment threads for all the channel comments (ie does not include comments left on videos).
+     *     channelId: 'placeholder-value',
+     *     // Returns the comment threads with the given IDs for Stubby or Apiary.
+     *     id: 'placeholder-value',
+     *     // The *maxResults* parameter specifies the maximum number of items that should be returned in the result set.
+     *     maxResults: 'placeholder-value',
+     *     // Limits the returned comment threads to those with the specified moderation status. Not compatible with the 'id' filter. Valid values: published, heldForReview, likelySpam.
+     *     moderationStatus: 'placeholder-value',
+     *
+     *     order: 'placeholder-value',
+     *     // The *pageToken* parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
+     *     pageToken: 'placeholder-value',
+     *     // The *part* parameter specifies a comma-separated list of one or more commentThread resource properties that the API response will include.
+     *     part: 'placeholder-value',
+     *     // Returns the comment threads of the specified post.
+     *     postId: 'placeholder-value',
+     *     // Limits the returned comment threads to those matching the specified key words. Not compatible with the 'id' filter.
+     *     searchTerms: 'placeholder-value',
+     *     // The requested text format for the returned comments.
+     *     textFormat: 'placeholder-value',
+     *     // Returns the comment threads of the specified video.
+     *     videoId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "eventId": "my_eventId",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "pageInfo": {},
+     *   //   "tokenPagination": {},
+     *   //   "visitorId": "my_visitorId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7092,11 +8518,11 @@ export namespace youtube_v3 {
     list(
       params: Params$Resource$Commentthreads$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Commentthreads$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CommentThreadListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CommentThreadListResponse>>;
     list(
       params: Params$Resource$Commentthreads$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7131,8 +8557,8 @@ export namespace youtube_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CommentThreadListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$CommentThreadListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Commentthreads$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7249,6 +8675,62 @@ export namespace youtube_v3 {
 
     /**
      * Retrieves a list of resources, possibly filtered.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/youtube',
+     *       'https://www.googleapis.com/auth/youtube.force-ssl',
+     *       'https://www.googleapis.com/auth/youtube.readonly',
+     *       'https://www.googleapis.com/auth/youtubepartner',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.i18nLanguages.list({
+     *     hl: 'placeholder-value',
+     *     // The *part* parameter specifies the i18nLanguage resource properties that the API response will include. Set the parameter value to snippet.
+     *     part: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "eventId": "my_eventId",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "visitorId": "my_visitorId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7258,11 +8740,11 @@ export namespace youtube_v3 {
     list(
       params: Params$Resource$I18nlanguages$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$I18nlanguages$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$I18nLanguageListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$I18nLanguageListResponse>>;
     list(
       params: Params$Resource$I18nlanguages$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7295,8 +8777,8 @@ export namespace youtube_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$I18nLanguageListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$I18nLanguageListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$I18nlanguages$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7361,6 +8843,62 @@ export namespace youtube_v3 {
 
     /**
      * Retrieves a list of resources, possibly filtered.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/youtube',
+     *       'https://www.googleapis.com/auth/youtube.force-ssl',
+     *       'https://www.googleapis.com/auth/youtube.readonly',
+     *       'https://www.googleapis.com/auth/youtubepartner',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.i18nRegions.list({
+     *     hl: 'placeholder-value',
+     *     // The *part* parameter specifies the i18nRegion resource properties that the API response will include. Set the parameter value to snippet.
+     *     part: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "eventId": "my_eventId",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "visitorId": "my_visitorId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7370,11 +8908,11 @@ export namespace youtube_v3 {
     list(
       params: Params$Resource$I18nregions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$I18nregions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$I18nRegionListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$I18nRegionListResponse>>;
     list(
       params: Params$Resource$I18nregions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7407,8 +8945,8 @@ export namespace youtube_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$I18nRegionListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$I18nRegionListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$I18nregions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7471,6 +9009,70 @@ export namespace youtube_v3 {
 
     /**
      * Bind a broadcast to a stream.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/youtube',
+     *       'https://www.googleapis.com/auth/youtube.force-ssl',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.liveBroadcasts.bind({
+     *     // Broadcast to bind to the stream
+     *     id: 'placeholder-value',
+     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     *     onBehalfOfContentOwner: 'placeholder-value',
+     *     // This parameter can only be used in a properly authorized request. *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
+     *     onBehalfOfContentOwnerChannel: 'placeholder-value',
+     *     // The *part* parameter specifies a comma-separated list of one or more liveBroadcast resource properties that the API response will include. The part names that you can include in the parameter value are id, snippet, contentDetails, and status.
+     *     part: 'placeholder-value',
+     *     // Stream to bind, if not set unbind the current one.
+     *     streamId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contentDetails": {},
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "monetizationDetails": {},
+     *   //   "snippet": {},
+     *   //   "statistics": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7480,11 +9082,11 @@ export namespace youtube_v3 {
     bind(
       params: Params$Resource$Livebroadcasts$Bind,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     bind(
       params?: Params$Resource$Livebroadcasts$Bind,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LiveBroadcast>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LiveBroadcast>>;
     bind(
       params: Params$Resource$Livebroadcasts$Bind,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7513,7 +9115,10 @@ export namespace youtube_v3 {
       callback?:
         | BodyResponseCallback<Schema$LiveBroadcast>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LiveBroadcast> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$LiveBroadcast>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Livebroadcasts$Bind;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7559,6 +9164,54 @@ export namespace youtube_v3 {
 
     /**
      * Delete a given broadcast.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/youtube',
+     *       'https://www.googleapis.com/auth/youtube.force-ssl',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.liveBroadcasts.delete({
+     *     // Broadcast to delete.
+     *     id: 'placeholder-value',
+     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     *     onBehalfOfContentOwner: 'placeholder-value',
+     *     // This parameter can only be used in a properly authorized request. *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
+     *     onBehalfOfContentOwnerChannel: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7568,11 +9221,11 @@ export namespace youtube_v3 {
     delete(
       params: Params$Resource$Livebroadcasts$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Livebroadcasts$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Livebroadcasts$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7599,7 +9252,10 @@ export namespace youtube_v3 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Livebroadcasts$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7645,6 +9301,81 @@ export namespace youtube_v3 {
 
     /**
      * Inserts a new stream for the authenticated user.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/youtube',
+     *       'https://www.googleapis.com/auth/youtube.force-ssl',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.liveBroadcasts.insert({
+     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     *     onBehalfOfContentOwner: 'placeholder-value',
+     *     // This parameter can only be used in a properly authorized request. *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
+     *     onBehalfOfContentOwnerChannel: 'placeholder-value',
+     *     // The *part* parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include. The part properties that you can include in the parameter value are id, snippet, contentDetails, and status.
+     *     part: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "contentDetails": {},
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "monetizationDetails": {},
+     *       //   "snippet": {},
+     *       //   "statistics": {},
+     *       //   "status": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contentDetails": {},
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "monetizationDetails": {},
+     *   //   "snippet": {},
+     *   //   "statistics": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7654,11 +9385,11 @@ export namespace youtube_v3 {
     insert(
       params: Params$Resource$Livebroadcasts$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Livebroadcasts$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LiveBroadcast>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LiveBroadcast>>;
     insert(
       params: Params$Resource$Livebroadcasts$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7687,7 +9418,10 @@ export namespace youtube_v3 {
       callback?:
         | BodyResponseCallback<Schema$LiveBroadcast>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LiveBroadcast> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$LiveBroadcast>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Livebroadcasts$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7733,6 +9467,80 @@ export namespace youtube_v3 {
 
     /**
      * Insert cuepoints in a broadcast
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/youtube',
+     *       'https://www.googleapis.com/auth/youtube.force-ssl',
+     *       'https://www.googleapis.com/auth/youtubepartner',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.liveBroadcasts.insertCuepoint({
+     *     // Broadcast to insert ads to, or equivalently `external_video_id` for internal use.
+     *     id: 'placeholder-value',
+     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     *     onBehalfOfContentOwner: 'placeholder-value',
+     *     // This parameter can only be used in a properly authorized request. *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
+     *     onBehalfOfContentOwnerChannel: 'placeholder-value',
+     *     // The *part* parameter specifies a comma-separated list of one or more liveBroadcast resource properties that the API response will include. The part names that you can include in the parameter value are id, snippet, contentDetails, and status.
+     *     part: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "cueType": "my_cueType",
+     *       //   "durationSecs": 0,
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "insertionOffsetTimeMs": "my_insertionOffsetTimeMs",
+     *       //   "walltimeMs": "my_walltimeMs"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cueType": "my_cueType",
+     *   //   "durationSecs": 0,
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "insertionOffsetTimeMs": "my_insertionOffsetTimeMs",
+     *   //   "walltimeMs": "my_walltimeMs"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7742,11 +9550,11 @@ export namespace youtube_v3 {
     insertCuepoint(
       params: Params$Resource$Livebroadcasts$Insertcuepoint,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insertCuepoint(
       params?: Params$Resource$Livebroadcasts$Insertcuepoint,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Cuepoint>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Cuepoint>>;
     insertCuepoint(
       params: Params$Resource$Livebroadcasts$Insertcuepoint,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7775,7 +9583,10 @@ export namespace youtube_v3 {
       callback?:
         | BodyResponseCallback<Schema$Cuepoint>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Cuepoint> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Cuepoint>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Livebroadcasts$Insertcuepoint;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7821,6 +9632,80 @@ export namespace youtube_v3 {
 
     /**
      * Retrieve the list of broadcasts associated with the given channel.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/youtube',
+     *       'https://www.googleapis.com/auth/youtube.force-ssl',
+     *       'https://www.googleapis.com/auth/youtube.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.liveBroadcasts.list({
+     *     // Return broadcasts with a certain status, e.g. active broadcasts.
+     *     broadcastStatus: 'placeholder-value',
+     *     // Return only broadcasts with the selected type.
+     *     broadcastType: 'placeholder-value',
+     *     // Return broadcasts with the given ids from Stubby or Apiary.
+     *     id: 'placeholder-value',
+     *     // The *maxResults* parameter specifies the maximum number of items that should be returned in the result set.
+     *     maxResults: 'placeholder-value',
+     *
+     *     mine: 'placeholder-value',
+     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     *     onBehalfOfContentOwner: 'placeholder-value',
+     *     // This parameter can only be used in a properly authorized request. *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
+     *     onBehalfOfContentOwnerChannel: 'placeholder-value',
+     *     // The *pageToken* parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
+     *     pageToken: 'placeholder-value',
+     *     // The *part* parameter specifies a comma-separated list of one or more liveBroadcast resource properties that the API response will include. The part names that you can include in the parameter value are id, snippet, contentDetails, status and statistics.
+     *     part: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "eventId": "my_eventId",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "pageInfo": {},
+     *   //   "prevPageToken": "my_prevPageToken",
+     *   //   "tokenPagination": {},
+     *   //   "visitorId": "my_visitorId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7830,11 +9715,11 @@ export namespace youtube_v3 {
     list(
       params: Params$Resource$Livebroadcasts$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Livebroadcasts$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LiveBroadcastListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LiveBroadcastListResponse>>;
     list(
       params: Params$Resource$Livebroadcasts$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7869,8 +9754,8 @@ export namespace youtube_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$LiveBroadcastListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$LiveBroadcastListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Livebroadcasts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7916,6 +9801,70 @@ export namespace youtube_v3 {
 
     /**
      * Transition a broadcast to a given status.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/youtube',
+     *       'https://www.googleapis.com/auth/youtube.force-ssl',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.liveBroadcasts.transition({
+     *     // The status to which the broadcast is going to transition.
+     *     broadcastStatus: 'placeholder-value',
+     *     // Broadcast to transition.
+     *     id: 'placeholder-value',
+     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     *     onBehalfOfContentOwner: 'placeholder-value',
+     *     // This parameter can only be used in a properly authorized request. *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
+     *     onBehalfOfContentOwnerChannel: 'placeholder-value',
+     *     // The *part* parameter specifies a comma-separated list of one or more liveBroadcast resource properties that the API response will include. The part names that you can include in the parameter value are id, snippet, contentDetails, and status.
+     *     part: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contentDetails": {},
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "monetizationDetails": {},
+     *   //   "snippet": {},
+     *   //   "statistics": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7925,11 +9874,11 @@ export namespace youtube_v3 {
     transition(
       params: Params$Resource$Livebroadcasts$Transition,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     transition(
       params?: Params$Resource$Livebroadcasts$Transition,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LiveBroadcast>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LiveBroadcast>>;
     transition(
       params: Params$Resource$Livebroadcasts$Transition,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7958,7 +9907,10 @@ export namespace youtube_v3 {
       callback?:
         | BodyResponseCallback<Schema$LiveBroadcast>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LiveBroadcast> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$LiveBroadcast>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Livebroadcasts$Transition;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8004,6 +9956,81 @@ export namespace youtube_v3 {
 
     /**
      * Updates an existing broadcast for the authenticated user.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/youtube',
+     *       'https://www.googleapis.com/auth/youtube.force-ssl',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.liveBroadcasts.update({
+     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     *     onBehalfOfContentOwner: 'placeholder-value',
+     *     // This parameter can only be used in a properly authorized request. *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
+     *     onBehalfOfContentOwnerChannel: 'placeholder-value',
+     *     // The *part* parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include. The part properties that you can include in the parameter value are id, snippet, contentDetails, and status. Note that this method will override the existing values for all of the mutable properties that are contained in any parts that the parameter value specifies. For example, a broadcast's privacy status is defined in the status part. As such, if your request is updating a private or unlisted broadcast, and the request's part parameter value includes the status part, the broadcast's privacy setting will be updated to whatever value the request body specifies. If the request body does not specify a value, the existing privacy setting will be removed and the broadcast will revert to the default privacy setting.
+     *     part: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "contentDetails": {},
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "monetizationDetails": {},
+     *       //   "snippet": {},
+     *       //   "statistics": {},
+     *       //   "status": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contentDetails": {},
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "monetizationDetails": {},
+     *   //   "snippet": {},
+     *   //   "statistics": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8013,11 +10040,11 @@ export namespace youtube_v3 {
     update(
       params: Params$Resource$Livebroadcasts$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Livebroadcasts$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LiveBroadcast>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LiveBroadcast>>;
     update(
       params: Params$Resource$Livebroadcasts$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8046,7 +10073,10 @@ export namespace youtube_v3 {
       callback?:
         | BodyResponseCallback<Schema$LiveBroadcast>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LiveBroadcast> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$LiveBroadcast>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Livebroadcasts$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8264,6 +10294,49 @@ export namespace youtube_v3 {
 
     /**
      * Deletes a chat ban.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/youtube',
+     *       'https://www.googleapis.com/auth/youtube.force-ssl',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.liveChatBans.delete({
+     *     id: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8273,11 +10346,11 @@ export namespace youtube_v3 {
     delete(
       params: Params$Resource$Livechatbans$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Livechatbans$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Livechatbans$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8304,7 +10377,10 @@ export namespace youtube_v3 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Livechatbans$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8350,6 +10426,69 @@ export namespace youtube_v3 {
 
     /**
      * Inserts a new resource into this collection.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/youtube',
+     *       'https://www.googleapis.com/auth/youtube.force-ssl',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.liveChatBans.insert({
+     *     // The *part* parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response returns. Set the parameter value to snippet.
+     *     part: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "snippet": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "snippet": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8359,11 +10498,11 @@ export namespace youtube_v3 {
     insert(
       params: Params$Resource$Livechatbans$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Livechatbans$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LiveChatBan>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LiveChatBan>>;
     insert(
       params: Params$Resource$Livechatbans$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8392,7 +10531,10 @@ export namespace youtube_v3 {
       callback?:
         | BodyResponseCallback<Schema$LiveChatBan>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LiveChatBan> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$LiveChatBan>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Livechatbans$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8465,6 +10607,49 @@ export namespace youtube_v3 {
 
     /**
      * Deletes a chat message.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/youtube',
+     *       'https://www.googleapis.com/auth/youtube.force-ssl',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.liveChatMessages.delete({
+     *     id: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8474,11 +10659,11 @@ export namespace youtube_v3 {
     delete(
       params: Params$Resource$Livechatmessages$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Livechatmessages$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Livechatmessages$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8505,7 +10690,10 @@ export namespace youtube_v3 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Livechatmessages$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8551,6 +10739,71 @@ export namespace youtube_v3 {
 
     /**
      * Inserts a new resource into this collection.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/youtube',
+     *       'https://www.googleapis.com/auth/youtube.force-ssl',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.liveChatMessages.insert({
+     *     // The *part* parameter serves two purposes. It identifies the properties that the write operation will set as well as the properties that the API response will include. Set the parameter value to snippet.
+     *     part: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "authorDetails": {},
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "snippet": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "authorDetails": {},
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "snippet": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8560,11 +10813,11 @@ export namespace youtube_v3 {
     insert(
       params: Params$Resource$Livechatmessages$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Livechatmessages$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LiveChatMessage>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LiveChatMessage>>;
     insert(
       params: Params$Resource$Livechatmessages$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8593,7 +10846,10 @@ export namespace youtube_v3 {
       callback?:
         | BodyResponseCallback<Schema$LiveChatMessage>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LiveChatMessage> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$LiveChatMessage>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Livechatmessages$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8639,6 +10895,76 @@ export namespace youtube_v3 {
 
     /**
      * Retrieves a list of resources, possibly filtered.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/youtube',
+     *       'https://www.googleapis.com/auth/youtube.force-ssl',
+     *       'https://www.googleapis.com/auth/youtube.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.liveChatMessages.list({
+     *     // Specifies the localization language in which the system messages should be returned.
+     *     hl: 'placeholder-value',
+     *     // The id of the live chat for which comments should be returned.
+     *     liveChatId: 'placeholder-value',
+     *     // The *maxResults* parameter specifies the maximum number of items that should be returned in the result set. Not used in the streaming RPC.
+     *     maxResults: 'placeholder-value',
+     *     // The *pageToken* parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken property identify other pages that could be retrieved.
+     *     pageToken: 'placeholder-value',
+     *     // The *part* parameter specifies the liveChatComment resource parts that the API response will include. Supported values are id, snippet, and authorDetails.
+     *     part: 'placeholder-value',
+     *     // Specifies the size of the profile image that should be returned for each user.
+     *     profileImageSize: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activePollItem": {},
+     *   //   "etag": "my_etag",
+     *   //   "eventId": "my_eventId",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "offlineAt": "my_offlineAt",
+     *   //   "pageInfo": {},
+     *   //   "pollingIntervalMillis": 0,
+     *   //   "tokenPagination": {},
+     *   //   "visitorId": "my_visitorId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8648,11 +10974,11 @@ export namespace youtube_v3 {
     list(
       params: Params$Resource$Livechatmessages$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Livechatmessages$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LiveChatMessageListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LiveChatMessageListResponse>>;
     list(
       params: Params$Resource$Livechatmessages$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8687,8 +11013,8 @@ export namespace youtube_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$LiveChatMessageListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$LiveChatMessageListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Livechatmessages$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8734,6 +11060,61 @@ export namespace youtube_v3 {
 
     /**
      * Transition a durable chat event.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/youtube',
+     *       'https://www.googleapis.com/auth/youtube.force-ssl',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.liveChatMessages.transition({
+     *     // The ID that uniquely identify the chat message event to transition.
+     *     id: 'placeholder-value',
+     *     // The status to which the chat event is going to transition.
+     *     status: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "authorDetails": {},
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "snippet": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8743,11 +11124,11 @@ export namespace youtube_v3 {
     transition(
       params: Params$Resource$Livechatmessages$Transition,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     transition(
       params?: Params$Resource$Livechatmessages$Transition,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LiveChatMessage>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LiveChatMessage>>;
     transition(
       params: Params$Resource$Livechatmessages$Transition,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8776,7 +11157,10 @@ export namespace youtube_v3 {
       callback?:
         | BodyResponseCallback<Schema$LiveChatMessage>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LiveChatMessage> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$LiveChatMessage>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Livechatmessages$Transition;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8887,6 +11271,49 @@ export namespace youtube_v3 {
 
     /**
      * Deletes a chat moderator.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/youtube',
+     *       'https://www.googleapis.com/auth/youtube.force-ssl',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.liveChatModerators.delete({
+     *     id: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8896,11 +11323,11 @@ export namespace youtube_v3 {
     delete(
       params: Params$Resource$Livechatmoderators$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Livechatmoderators$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Livechatmoderators$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8927,7 +11354,10 @@ export namespace youtube_v3 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Livechatmoderators$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8973,6 +11403,69 @@ export namespace youtube_v3 {
 
     /**
      * Inserts a new resource into this collection.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/youtube',
+     *       'https://www.googleapis.com/auth/youtube.force-ssl',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.liveChatModerators.insert({
+     *     // The *part* parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response returns. Set the parameter value to snippet.
+     *     part: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "snippet": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "snippet": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8982,11 +11475,11 @@ export namespace youtube_v3 {
     insert(
       params: Params$Resource$Livechatmoderators$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Livechatmoderators$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LiveChatModerator>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LiveChatModerator>>;
     insert(
       params: Params$Resource$Livechatmoderators$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9017,8 +11510,8 @@ export namespace youtube_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$LiveChatModerator>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$LiveChatModerator>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Livechatmoderators$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9064,6 +11557,70 @@ export namespace youtube_v3 {
 
     /**
      * Retrieves a list of resources, possibly filtered.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/youtube',
+     *       'https://www.googleapis.com/auth/youtube.force-ssl',
+     *       'https://www.googleapis.com/auth/youtube.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.liveChatModerators.list({
+     *     // The id of the live chat for which moderators should be returned.
+     *     liveChatId: 'placeholder-value',
+     *     // The *maxResults* parameter specifies the maximum number of items that should be returned in the result set.
+     *     maxResults: 'placeholder-value',
+     *     // The *pageToken* parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
+     *     pageToken: 'placeholder-value',
+     *     // The *part* parameter specifies the liveChatModerator resource parts that the API response will include. Supported values are id and snippet.
+     *     part: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "eventId": "my_eventId",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "pageInfo": {},
+     *   //   "prevPageToken": "my_prevPageToken",
+     *   //   "tokenPagination": {},
+     *   //   "visitorId": "my_visitorId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9073,11 +11630,11 @@ export namespace youtube_v3 {
     list(
       params: Params$Resource$Livechatmoderators$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Livechatmoderators$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LiveChatModeratorListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LiveChatModeratorListResponse>>;
     list(
       params: Params$Resource$Livechatmoderators$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9112,8 +11669,8 @@ export namespace youtube_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$LiveChatModeratorListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$LiveChatModeratorListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Livechatmoderators$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9207,6 +11764,53 @@ export namespace youtube_v3 {
 
     /**
      * Deletes an existing stream for the authenticated user.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/youtube',
+     *       'https://www.googleapis.com/auth/youtube.force-ssl',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.liveStreams.delete({
+     *     id: 'placeholder-value',
+     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     *     onBehalfOfContentOwner: 'placeholder-value',
+     *     // This parameter can only be used in a properly authorized request. *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
+     *     onBehalfOfContentOwnerChannel: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9216,11 +11820,11 @@ export namespace youtube_v3 {
     delete(
       params: Params$Resource$Livestreams$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Livestreams$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Livestreams$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9247,7 +11851,10 @@ export namespace youtube_v3 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Livestreams$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9293,6 +11900,79 @@ export namespace youtube_v3 {
 
     /**
      * Inserts a new stream for the authenticated user.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/youtube',
+     *       'https://www.googleapis.com/auth/youtube.force-ssl',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.liveStreams.insert({
+     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     *     onBehalfOfContentOwner: 'placeholder-value',
+     *     // This parameter can only be used in a properly authorized request. *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
+     *     onBehalfOfContentOwnerChannel: 'placeholder-value',
+     *     // The *part* parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include. The part properties that you can include in the parameter value are id, snippet, cdn, content_details, and status.
+     *     part: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "cdn": {},
+     *       //   "contentDetails": {},
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "snippet": {},
+     *       //   "status": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cdn": {},
+     *   //   "contentDetails": {},
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "snippet": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9302,11 +11982,11 @@ export namespace youtube_v3 {
     insert(
       params: Params$Resource$Livestreams$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Livestreams$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LiveStream>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LiveStream>>;
     insert(
       params: Params$Resource$Livestreams$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9335,7 +12015,10 @@ export namespace youtube_v3 {
       callback?:
         | BodyResponseCallback<Schema$LiveStream>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LiveStream> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$LiveStream>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Livestreams$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9381,6 +12064,76 @@ export namespace youtube_v3 {
 
     /**
      * Retrieve the list of streams associated with the given channel. --
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/youtube',
+     *       'https://www.googleapis.com/auth/youtube.force-ssl',
+     *       'https://www.googleapis.com/auth/youtube.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.liveStreams.list({
+     *     // Return LiveStreams with the given ids from Stubby or Apiary.
+     *     id: 'placeholder-value',
+     *     // The *maxResults* parameter specifies the maximum number of items that should be returned in the result set.
+     *     maxResults: 'placeholder-value',
+     *
+     *     mine: 'placeholder-value',
+     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     *     onBehalfOfContentOwner: 'placeholder-value',
+     *     // This parameter can only be used in a properly authorized request. *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
+     *     onBehalfOfContentOwnerChannel: 'placeholder-value',
+     *     // The *pageToken* parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
+     *     pageToken: 'placeholder-value',
+     *     // The *part* parameter specifies a comma-separated list of one or more liveStream resource properties that the API response will include. The part names that you can include in the parameter value are id, snippet, cdn, and status.
+     *     part: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "eventId": "my_eventId",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "pageInfo": {},
+     *   //   "prevPageToken": "my_prevPageToken",
+     *   //   "tokenPagination": {},
+     *   //   "visitorId": "my_visitorId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9390,11 +12143,11 @@ export namespace youtube_v3 {
     list(
       params: Params$Resource$Livestreams$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Livestreams$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LiveStreamListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LiveStreamListResponse>>;
     list(
       params: Params$Resource$Livestreams$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9427,8 +12180,8 @@ export namespace youtube_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$LiveStreamListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$LiveStreamListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Livestreams$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9473,6 +12226,79 @@ export namespace youtube_v3 {
 
     /**
      * Updates an existing stream for the authenticated user.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/youtube',
+     *       'https://www.googleapis.com/auth/youtube.force-ssl',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.liveStreams.update({
+     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     *     onBehalfOfContentOwner: 'placeholder-value',
+     *     // This parameter can only be used in a properly authorized request. *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
+     *     onBehalfOfContentOwnerChannel: 'placeholder-value',
+     *     // The *part* parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include. The part properties that you can include in the parameter value are id, snippet, cdn, and status. Note that this method will override the existing values for all of the mutable properties that are contained in any parts that the parameter value specifies. If the request body does not specify a value for a mutable property, the existing value for that property will be removed.
+     *     part: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "cdn": {},
+     *       //   "contentDetails": {},
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "snippet": {},
+     *       //   "status": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cdn": {},
+     *   //   "contentDetails": {},
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "snippet": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9482,11 +12308,11 @@ export namespace youtube_v3 {
     update(
       params: Params$Resource$Livestreams$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Livestreams$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LiveStream>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LiveStream>>;
     update(
       params: Params$Resource$Livestreams$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9515,7 +12341,10 @@ export namespace youtube_v3 {
       callback?:
         | BodyResponseCallback<Schema$LiveStream>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LiveStream> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$LiveStream>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Livestreams$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9654,6 +12483,71 @@ export namespace youtube_v3 {
 
     /**
      * Retrieves a list of members that match the request criteria for a channel.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/youtube.channel-memberships.creator',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.members.list({
+     *     // Comma separated list of channel IDs. Only data about members that are part of this list will be included in the response.
+     *     filterByMemberChannelId: 'placeholder-value',
+     *     // Filter members in the results set to the ones that have access to a level.
+     *     hasAccessToLevel: 'placeholder-value',
+     *     // The *maxResults* parameter specifies the maximum number of items that should be returned in the result set.
+     *     maxResults: 'placeholder-value',
+     *     // Parameter that specifies which channel members to return.
+     *     mode: 'placeholder-value',
+     *     // The *pageToken* parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
+     *     pageToken: 'placeholder-value',
+     *     // The *part* parameter specifies the member resource parts that the API response will include. Set the parameter value to snippet.
+     *     part: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "eventId": "my_eventId",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "pageInfo": {},
+     *   //   "tokenPagination": {},
+     *   //   "visitorId": "my_visitorId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9663,11 +12557,11 @@ export namespace youtube_v3 {
     list(
       params: Params$Resource$Members$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Members$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$MemberListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$MemberListResponse>>;
     list(
       params: Params$Resource$Members$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9698,8 +12592,8 @@ export namespace youtube_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$MemberListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$MemberListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Members$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9778,6 +12672,58 @@ export namespace youtube_v3 {
 
     /**
      * Retrieves a list of all pricing levels offered by a creator to the fans.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/youtube.channel-memberships.creator',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.membershipsLevels.list({
+     *     // The *part* parameter specifies the membershipsLevel resource parts that the API response will include. Supported values are id and snippet.
+     *     part: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "eventId": "my_eventId",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "visitorId": "my_visitorId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9787,11 +12733,11 @@ export namespace youtube_v3 {
     list(
       params: Params$Resource$Membershipslevels$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Membershipslevels$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$MembershipsLevelListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$MembershipsLevelListResponse>>;
     list(
       params: Params$Resource$Membershipslevels$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9826,8 +12772,8 @@ export namespace youtube_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$MembershipsLevelListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$MembershipsLevelListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Membershipslevels$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9890,6 +12836,53 @@ export namespace youtube_v3 {
 
     /**
      * Deletes a resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/youtube',
+     *       'https://www.googleapis.com/auth/youtube.force-ssl',
+     *       'https://www.googleapis.com/auth/youtubepartner',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.playlistImages.delete({
+     *     // Id to identify this image. This is returned from by the List method.
+     *     id: 'placeholder-value',
+     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     *     onBehalfOfContentOwner: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9899,11 +12892,11 @@ export namespace youtube_v3 {
     delete(
       params: Params$Resource$Playlistimages$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Playlistimages$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Playlistimages$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9930,7 +12923,10 @@ export namespace youtube_v3 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Playlistimages$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9976,6 +12972,76 @@ export namespace youtube_v3 {
 
     /**
      * Inserts a new resource into this collection.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/youtube',
+     *       'https://www.googleapis.com/auth/youtube.force-ssl',
+     *       'https://www.googleapis.com/auth/youtubepartner',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.playlistImages.insert({
+     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     *     onBehalfOfContentOwner: 'placeholder-value',
+     *     // This parameter can only be used in a properly authorized request. *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
+     *     onBehalfOfContentOwnerChannel: 'placeholder-value',
+     *     // The *part* parameter specifies the properties that the API response will include.
+     *     part: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "snippet": {}
+     *       // }
+     *     },
+     *     media: {
+     *       mimeType: 'placeholder-value',
+     *       body: 'placeholder-value',
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "snippet": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9985,11 +13051,11 @@ export namespace youtube_v3 {
     insert(
       params: Params$Resource$Playlistimages$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Playlistimages$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PlaylistImage>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PlaylistImage>>;
     insert(
       params: Params$Resource$Playlistimages$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10018,7 +13084,10 @@ export namespace youtube_v3 {
       callback?:
         | BodyResponseCallback<Schema$PlaylistImage>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$PlaylistImage> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$PlaylistImage>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Playlistimages$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10068,6 +13137,71 @@ export namespace youtube_v3 {
 
     /**
      * Retrieves a list of resources, possibly filtered.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/youtube',
+     *       'https://www.googleapis.com/auth/youtube.force-ssl',
+     *       'https://www.googleapis.com/auth/youtube.readonly',
+     *       'https://www.googleapis.com/auth/youtubepartner',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.playlistImages.list({
+     *     // The *maxResults* parameter specifies the maximum number of items that should be returned in the result set.
+     *     maxResults: 'placeholder-value',
+     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     *     onBehalfOfContentOwner: 'placeholder-value',
+     *     // This parameter can only be used in a properly authorized request. *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
+     *     onBehalfOfContentOwnerChannel: 'placeholder-value',
+     *     // The *pageToken* parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
+     *     pageToken: 'placeholder-value',
+     *     // Return PlaylistImages for this playlist id.
+     *     parent: 'placeholder-value',
+     *     // The *part* parameter specifies a comma-separated list of one or more playlistImage resource properties that the API response will include. If the parameter identifies a property that contains child properties, the child properties will be included in the response.
+     *     part: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "pageInfo": {},
+     *   //   "prevPageToken": "my_prevPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10077,11 +13211,11 @@ export namespace youtube_v3 {
     list(
       params: Params$Resource$Playlistimages$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Playlistimages$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PlaylistImageListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PlaylistImageListResponse>>;
     list(
       params: Params$Resource$Playlistimages$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10116,8 +13250,8 @@ export namespace youtube_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$PlaylistImageListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$PlaylistImageListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Playlistimages$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10163,6 +13297,74 @@ export namespace youtube_v3 {
 
     /**
      * Updates an existing resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/youtube',
+     *       'https://www.googleapis.com/auth/youtube.force-ssl',
+     *       'https://www.googleapis.com/auth/youtubepartner',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.playlistImages.update({
+     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     *     onBehalfOfContentOwner: 'placeholder-value',
+     *     // The *part* parameter specifies the properties that the API response will include.
+     *     part: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "snippet": {}
+     *       // }
+     *     },
+     *     media: {
+     *       mimeType: 'placeholder-value',
+     *       body: 'placeholder-value',
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "snippet": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10172,11 +13374,11 @@ export namespace youtube_v3 {
     update(
       params: Params$Resource$Playlistimages$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Playlistimages$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PlaylistImage>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PlaylistImage>>;
     update(
       params: Params$Resource$Playlistimages$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10205,7 +13407,10 @@ export namespace youtube_v3 {
       callback?:
         | BodyResponseCallback<Schema$PlaylistImage>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$PlaylistImage> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$PlaylistImage>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Playlistimages$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10367,6 +13572,52 @@ export namespace youtube_v3 {
 
     /**
      * Deletes a resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/youtube',
+     *       'https://www.googleapis.com/auth/youtube.force-ssl',
+     *       'https://www.googleapis.com/auth/youtubepartner',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.playlistItems.delete({
+     *     id: 'placeholder-value',
+     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     *     onBehalfOfContentOwner: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10376,11 +13627,11 @@ export namespace youtube_v3 {
     delete(
       params: Params$Resource$Playlistitems$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Playlistitems$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Playlistitems$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10407,7 +13658,10 @@ export namespace youtube_v3 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Playlistitems$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10453,6 +13707,76 @@ export namespace youtube_v3 {
 
     /**
      * Inserts a new resource into this collection.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/youtube',
+     *       'https://www.googleapis.com/auth/youtube.force-ssl',
+     *       'https://www.googleapis.com/auth/youtubepartner',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.playlistItems.insert({
+     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     *     onBehalfOfContentOwner: 'placeholder-value',
+     *     // The *part* parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.
+     *     part: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "contentDetails": {},
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "snippet": {},
+     *       //   "status": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contentDetails": {},
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "snippet": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10462,11 +13786,11 @@ export namespace youtube_v3 {
     insert(
       params: Params$Resource$Playlistitems$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Playlistitems$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PlaylistItem>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PlaylistItem>>;
     insert(
       params: Params$Resource$Playlistitems$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10495,7 +13819,10 @@ export namespace youtube_v3 {
       callback?:
         | BodyResponseCallback<Schema$PlaylistItem>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$PlaylistItem> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$PlaylistItem>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Playlistitems$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10541,6 +13868,76 @@ export namespace youtube_v3 {
 
     /**
      * Retrieves a list of resources, possibly filtered.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/youtube',
+     *       'https://www.googleapis.com/auth/youtube.force-ssl',
+     *       'https://www.googleapis.com/auth/youtube.readonly',
+     *       'https://www.googleapis.com/auth/youtubepartner',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.playlistItems.list({
+     *     id: 'placeholder-value',
+     *     // The *maxResults* parameter specifies the maximum number of items that should be returned in the result set.
+     *     maxResults: 'placeholder-value',
+     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     *     onBehalfOfContentOwner: 'placeholder-value',
+     *     // The *pageToken* parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
+     *     pageToken: 'placeholder-value',
+     *     // The *part* parameter specifies a comma-separated list of one or more playlistItem resource properties that the API response will include. If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a playlistItem resource, the snippet property contains numerous fields, including the title, description, position, and resourceId properties. As such, if you set *part=snippet*, the API response will contain all of those properties.
+     *     part: 'placeholder-value',
+     *     // Return the playlist items within the given playlist.
+     *     playlistId: 'placeholder-value',
+     *     // Return the playlist items associated with the given video ID.
+     *     videoId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "eventId": "my_eventId",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "pageInfo": {},
+     *   //   "prevPageToken": "my_prevPageToken",
+     *   //   "tokenPagination": {},
+     *   //   "visitorId": "my_visitorId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10550,11 +13947,11 @@ export namespace youtube_v3 {
     list(
       params: Params$Resource$Playlistitems$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Playlistitems$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PlaylistItemListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PlaylistItemListResponse>>;
     list(
       params: Params$Resource$Playlistitems$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10587,8 +13984,8 @@ export namespace youtube_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$PlaylistItemListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$PlaylistItemListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Playlistitems$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10634,6 +14031,76 @@ export namespace youtube_v3 {
 
     /**
      * Updates an existing resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/youtube',
+     *       'https://www.googleapis.com/auth/youtube.force-ssl',
+     *       'https://www.googleapis.com/auth/youtubepartner',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.playlistItems.update({
+     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     *     onBehalfOfContentOwner: 'placeholder-value',
+     *     // The *part* parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include. Note that this method will override the existing values for all of the mutable properties that are contained in any parts that the parameter value specifies. For example, a playlist item can specify a start time and end time, which identify the times portion of the video that should play when users watch the video in the playlist. If your request is updating a playlist item that sets these values, and the request's part parameter value includes the contentDetails part, the playlist item's start and end times will be updated to whatever value the request body specifies. If the request body does not specify values, the existing start and end times will be removed and replaced with the default settings.
+     *     part: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "contentDetails": {},
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "snippet": {},
+     *       //   "status": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contentDetails": {},
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "snippet": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10643,11 +14110,11 @@ export namespace youtube_v3 {
     update(
       params: Params$Resource$Playlistitems$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Playlistitems$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PlaylistItem>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PlaylistItem>>;
     update(
       params: Params$Resource$Playlistitems$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10676,7 +14143,10 @@ export namespace youtube_v3 {
       callback?:
         | BodyResponseCallback<Schema$PlaylistItem>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$PlaylistItem> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$PlaylistItem>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Playlistitems$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10804,6 +14274,52 @@ export namespace youtube_v3 {
 
     /**
      * Deletes a resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/youtube',
+     *       'https://www.googleapis.com/auth/youtube.force-ssl',
+     *       'https://www.googleapis.com/auth/youtubepartner',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.playlists.delete({
+     *     id: 'placeholder-value',
+     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     *     onBehalfOfContentOwner: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10813,11 +14329,11 @@ export namespace youtube_v3 {
     delete(
       params: Params$Resource$Playlists$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Playlists$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Playlists$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10844,7 +14360,10 @@ export namespace youtube_v3 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Playlists$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -10889,6 +14408,82 @@ export namespace youtube_v3 {
 
     /**
      * Inserts a new resource into this collection.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/youtube',
+     *       'https://www.googleapis.com/auth/youtube.force-ssl',
+     *       'https://www.googleapis.com/auth/youtubepartner',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.playlists.insert({
+     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     *     onBehalfOfContentOwner: 'placeholder-value',
+     *     // This parameter can only be used in a properly authorized request. *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
+     *     onBehalfOfContentOwnerChannel: 'placeholder-value',
+     *     // The *part* parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.
+     *     part: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "contentDetails": {},
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "localizations": {},
+     *       //   "player": {},
+     *       //   "snippet": {},
+     *       //   "status": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contentDetails": {},
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "localizations": {},
+     *   //   "player": {},
+     *   //   "snippet": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10898,11 +14493,11 @@ export namespace youtube_v3 {
     insert(
       params: Params$Resource$Playlists$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Playlists$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Playlist>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Playlist>>;
     insert(
       params: Params$Resource$Playlists$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10931,7 +14526,10 @@ export namespace youtube_v3 {
       callback?:
         | BodyResponseCallback<Schema$Playlist>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Playlist> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Playlist>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Playlists$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -10976,6 +14574,81 @@ export namespace youtube_v3 {
 
     /**
      * Retrieves a list of resources, possibly filtered.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/youtube',
+     *       'https://www.googleapis.com/auth/youtube.force-ssl',
+     *       'https://www.googleapis.com/auth/youtube.readonly',
+     *       'https://www.googleapis.com/auth/youtubepartner',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.playlists.list({
+     *     // Return the playlists owned by the specified channel ID.
+     *     channelId: 'placeholder-value',
+     *     // Return content in specified language
+     *     hl: 'placeholder-value',
+     *     // Return the playlists with the given IDs for Stubby or Apiary.
+     *     id: 'placeholder-value',
+     *     // The *maxResults* parameter specifies the maximum number of items that should be returned in the result set.
+     *     maxResults: 'placeholder-value',
+     *     // Return the playlists owned by the authenticated user.
+     *     mine: 'placeholder-value',
+     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     *     onBehalfOfContentOwner: 'placeholder-value',
+     *     // This parameter can only be used in a properly authorized request. *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
+     *     onBehalfOfContentOwnerChannel: 'placeholder-value',
+     *     // The *pageToken* parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
+     *     pageToken: 'placeholder-value',
+     *     // The *part* parameter specifies a comma-separated list of one or more playlist resource properties that the API response will include. If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a playlist resource, the snippet property contains properties like author, title, description, tags, and timeCreated. As such, if you set *part=snippet*, the API response will contain all of those properties.
+     *     part: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "eventId": "my_eventId",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "pageInfo": {},
+     *   //   "prevPageToken": "my_prevPageToken",
+     *   //   "tokenPagination": {},
+     *   //   "visitorId": "my_visitorId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10985,11 +14658,11 @@ export namespace youtube_v3 {
     list(
       params: Params$Resource$Playlists$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Playlists$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PlaylistListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PlaylistListResponse>>;
     list(
       params: Params$Resource$Playlists$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11022,8 +14695,8 @@ export namespace youtube_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$PlaylistListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$PlaylistListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Playlists$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -11068,6 +14741,80 @@ export namespace youtube_v3 {
 
     /**
      * Updates an existing resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/youtube',
+     *       'https://www.googleapis.com/auth/youtube.force-ssl',
+     *       'https://www.googleapis.com/auth/youtubepartner',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.playlists.update({
+     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     *     onBehalfOfContentOwner: 'placeholder-value',
+     *     // The *part* parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include. Note that this method will override the existing values for mutable properties that are contained in any parts that the request body specifies. For example, a playlist's description is contained in the snippet part, which must be included in the request body. If the request does not specify a value for the snippet.description property, the playlist's existing description will be deleted.
+     *     part: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "contentDetails": {},
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "localizations": {},
+     *       //   "player": {},
+     *       //   "snippet": {},
+     *       //   "status": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contentDetails": {},
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "localizations": {},
+     *   //   "player": {},
+     *   //   "snippet": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11077,11 +14824,11 @@ export namespace youtube_v3 {
     update(
       params: Params$Resource$Playlists$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Playlists$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Playlist>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Playlist>>;
     update(
       params: Params$Resource$Playlists$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11110,7 +14857,10 @@ export namespace youtube_v3 {
       callback?:
         | BodyResponseCallback<Schema$Playlist>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Playlist> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Playlist>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Playlists$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -11245,6 +14995,126 @@ export namespace youtube_v3 {
 
     /**
      * Retrieves a list of search resources
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/youtube',
+     *       'https://www.googleapis.com/auth/youtube.force-ssl',
+     *       'https://www.googleapis.com/auth/youtube.readonly',
+     *       'https://www.googleapis.com/auth/youtubepartner',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.search.list({
+     *     // Filter on resources belonging to this channelId.
+     *     channelId: 'placeholder-value',
+     *     // Add a filter on the channel search.
+     *     channelType: 'placeholder-value',
+     *     // Filter on the livestream status of the videos.
+     *     eventType: 'placeholder-value',
+     *     // Search owned by a content owner.
+     *     forContentOwner: 'placeholder-value',
+     *     // Restrict the search to only retrieve videos uploaded using the project id of the authenticated user.
+     *     forDeveloper: 'placeholder-value',
+     *     // Search for the private videos of the authenticated user.
+     *     forMine: 'placeholder-value',
+     *     // Filter on location of the video
+     *     location: 'placeholder-value',
+     *     // Filter on distance from the location (specified above).
+     *     locationRadius: 'placeholder-value',
+     *     // The *maxResults* parameter specifies the maximum number of items that should be returned in the result set.
+     *     maxResults: 'placeholder-value',
+     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     *     onBehalfOfContentOwner: 'placeholder-value',
+     *     // Sort order of the results.
+     *     order: 'placeholder-value',
+     *     // The *pageToken* parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
+     *     pageToken: 'placeholder-value',
+     *     // The *part* parameter specifies a comma-separated list of one or more search resource properties that the API response will include. Set the parameter value to snippet.
+     *     part: 'placeholder-value',
+     *     // Filter on resources published after this date.
+     *     publishedAfter: 'placeholder-value',
+     *     // Filter on resources published before this date.
+     *     publishedBefore: 'placeholder-value',
+     *     // Textual search terms to match.
+     *     q: 'placeholder-value',
+     *     // Display the content as seen by viewers in this country.
+     *     regionCode: 'placeholder-value',
+     *     // Return results relevant to this language.
+     *     relevanceLanguage: 'placeholder-value',
+     *     // Indicates whether the search results should include restricted content as well as standard content.
+     *     safeSearch: 'placeholder-value',
+     *     // Restrict results to a particular topic.
+     *     topicId: 'placeholder-value',
+     *     // Restrict results to a particular set of resource types from One Platform.
+     *     type: 'placeholder-value',
+     *     // Filter on the presence of captions on the videos.
+     *     videoCaption: 'placeholder-value',
+     *     // Filter on videos in a specific category.
+     *     videoCategoryId: 'placeholder-value',
+     *     // Filter on the definition of the videos.
+     *     videoDefinition: 'placeholder-value',
+     *     // Filter on 3d videos.
+     *     videoDimension: 'placeholder-value',
+     *     // Filter on the duration of the videos.
+     *     videoDuration: 'placeholder-value',
+     *     // Filter on embeddable videos.
+     *     videoEmbeddable: 'placeholder-value',
+     *     // Filter on the license of the videos.
+     *     videoLicense: 'placeholder-value',
+     *
+     *     videoPaidProductPlacement: 'placeholder-value',
+     *     // Filter on syndicated videos.
+     *     videoSyndicated: 'placeholder-value',
+     *     // Filter on videos of a specific type.
+     *     videoType: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "eventId": "my_eventId",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "pageInfo": {},
+     *   //   "prevPageToken": "my_prevPageToken",
+     *   //   "regionCode": "my_regionCode",
+     *   //   "tokenPagination": {},
+     *   //   "visitorId": "my_visitorId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11254,11 +15124,11 @@ export namespace youtube_v3 {
     list(
       params: Params$Resource$Search$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Search$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SearchListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SearchListResponse>>;
     list(
       params: Params$Resource$Search$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11289,8 +15159,8 @@ export namespace youtube_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SearchListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SearchListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Search$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -11466,6 +15336,50 @@ export namespace youtube_v3 {
 
     /**
      * Deletes a resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/youtube',
+     *       'https://www.googleapis.com/auth/youtube.force-ssl',
+     *       'https://www.googleapis.com/auth/youtubepartner',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.subscriptions.delete({
+     *     id: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11475,11 +15389,11 @@ export namespace youtube_v3 {
     delete(
       params: Params$Resource$Subscriptions$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Subscriptions$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Subscriptions$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11506,7 +15420,10 @@ export namespace youtube_v3 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Subscriptions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11552,6 +15469,74 @@ export namespace youtube_v3 {
 
     /**
      * Inserts a new resource into this collection.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/youtube',
+     *       'https://www.googleapis.com/auth/youtube.force-ssl',
+     *       'https://www.googleapis.com/auth/youtubepartner',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.subscriptions.insert({
+     *     // The *part* parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.
+     *     part: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "contentDetails": {},
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "snippet": {},
+     *       //   "subscriberSnippet": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contentDetails": {},
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "snippet": {},
+     *   //   "subscriberSnippet": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11561,11 +15546,11 @@ export namespace youtube_v3 {
     insert(
       params: Params$Resource$Subscriptions$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Subscriptions$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Subscription>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Subscription>>;
     insert(
       params: Params$Resource$Subscriptions$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11594,7 +15579,10 @@ export namespace youtube_v3 {
       callback?:
         | BodyResponseCallback<Schema$Subscription>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Subscription> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Subscription>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Subscriptions$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11640,6 +15628,87 @@ export namespace youtube_v3 {
 
     /**
      * Retrieves a list of resources, possibly filtered.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/youtube',
+     *       'https://www.googleapis.com/auth/youtube.force-ssl',
+     *       'https://www.googleapis.com/auth/youtube.readonly',
+     *       'https://www.googleapis.com/auth/youtubepartner',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.subscriptions.list({
+     *     // Return the subscriptions of the given channel owner.
+     *     channelId: 'placeholder-value',
+     *     // Return the subscriptions to the subset of these channels that the authenticated user is subscribed to.
+     *     forChannelId: 'placeholder-value',
+     *     // Return the subscriptions with the given IDs for Stubby or Apiary.
+     *     id: 'placeholder-value',
+     *     // The *maxResults* parameter specifies the maximum number of items that should be returned in the result set.
+     *     maxResults: 'placeholder-value',
+     *     // Flag for returning the subscriptions of the authenticated user.
+     *     mine: 'placeholder-value',
+     *
+     *     myRecentSubscribers: 'placeholder-value',
+     *     // Return the subscribers of the given channel owner.
+     *     mySubscribers: 'placeholder-value',
+     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     *     onBehalfOfContentOwner: 'placeholder-value',
+     *     // This parameter can only be used in a properly authorized request. *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
+     *     onBehalfOfContentOwnerChannel: 'placeholder-value',
+     *     // The order of the returned subscriptions
+     *     order: 'placeholder-value',
+     *     // The *pageToken* parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
+     *     pageToken: 'placeholder-value',
+     *     // The *part* parameter specifies a comma-separated list of one or more subscription resource properties that the API response will include. If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a subscription resource, the snippet property contains other properties, such as a display title for the subscription. If you set *part=snippet*, the API response will also contain all of those nested properties.
+     *     part: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "eventId": "my_eventId",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "pageInfo": {},
+     *   //   "prevPageToken": "my_prevPageToken",
+     *   //   "tokenPagination": {},
+     *   //   "visitorId": "my_visitorId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11649,11 +15718,11 @@ export namespace youtube_v3 {
     list(
       params: Params$Resource$Subscriptions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Subscriptions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SubscriptionListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SubscriptionListResponse>>;
     list(
       params: Params$Resource$Subscriptions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11686,8 +15755,8 @@ export namespace youtube_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SubscriptionListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SubscriptionListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Subscriptions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11811,6 +15880,69 @@ export namespace youtube_v3 {
 
     /**
      * Retrieves a list of resources, possibly filtered.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/youtube',
+     *       'https://www.googleapis.com/auth/youtube.force-ssl',
+     *       'https://www.googleapis.com/auth/youtube.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.superChatEvents.list({
+     *     // Return rendered funding amounts in specified language.
+     *     hl: 'placeholder-value',
+     *     // The *maxResults* parameter specifies the maximum number of items that should be returned in the result set.
+     *     maxResults: 'placeholder-value',
+     *     // The *pageToken* parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
+     *     pageToken: 'placeholder-value',
+     *     // The *part* parameter specifies the superChatEvent resource parts that the API response will include. This parameter is currently not supported.
+     *     part: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "eventId": "my_eventId",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "pageInfo": {},
+     *   //   "tokenPagination": {},
+     *   //   "visitorId": "my_visitorId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11820,11 +15952,11 @@ export namespace youtube_v3 {
     list(
       params: Params$Resource$Superchatevents$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Superchatevents$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SuperChatEventListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SuperChatEventListResponse>>;
     list(
       params: Params$Resource$Superchatevents$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11859,8 +15991,8 @@ export namespace youtube_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$SuperChatEventListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$SuperChatEventListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Superchatevents$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11933,6 +16065,69 @@ export namespace youtube_v3 {
 
     /**
      * POST method.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/youtube.readonly'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.tests.insert({
+     *     externalChannelId: 'placeholder-value',
+     *
+     *     part: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "etag": "my_etag",
+     *       //   "featuredPart": false,
+     *       //   "gaia": "my_gaia",
+     *       //   "id": "my_id",
+     *       //   "snippet": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "featuredPart": false,
+     *   //   "gaia": "my_gaia",
+     *   //   "id": "my_id",
+     *   //   "snippet": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11942,11 +16137,11 @@ export namespace youtube_v3 {
     insert(
       params: Params$Resource$Tests$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Tests$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TestItem>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestItem>>;
     insert(
       params: Params$Resource$Tests$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11975,7 +16170,10 @@ export namespace youtube_v3 {
       callback?:
         | BodyResponseCallback<Schema$TestItem>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$TestItem> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestItem>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tests$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -12040,6 +16238,53 @@ export namespace youtube_v3 {
 
     /**
      * Deletes a resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.thirdPartyLinks.delete({
+     *     // Channel ID to which changes should be applied, for delegation.
+     *     externalChannelId: 'placeholder-value',
+     *     // Delete the partner links with the given linking token.
+     *     linkingToken: 'placeholder-value',
+     *     // Do not use. Required for compatibility.
+     *     part: 'placeholder-value',
+     *     // Type of the link to be deleted.
+     *     type: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12049,11 +16294,11 @@ export namespace youtube_v3 {
     delete(
       params: Params$Resource$Thirdpartylinks$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Thirdpartylinks$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Thirdpartylinks$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12080,7 +16325,10 @@ export namespace youtube_v3 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Thirdpartylinks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12126,6 +16374,70 @@ export namespace youtube_v3 {
 
     /**
      * Inserts a new resource into this collection.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.thirdPartyLinks.insert({
+     *     // Channel ID to which changes should be applied, for delegation.
+     *     externalChannelId: 'placeholder-value',
+     *     // The *part* parameter specifies the thirdPartyLink resource parts that the API request and response will include. Supported values are linkingToken, status, and snippet.
+     *     part: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "etag": "my_etag",
+     *       //   "kind": "my_kind",
+     *       //   "linkingToken": "my_linkingToken",
+     *       //   "snippet": {},
+     *       //   "status": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "kind": "my_kind",
+     *   //   "linkingToken": "my_linkingToken",
+     *   //   "snippet": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12135,11 +16447,11 @@ export namespace youtube_v3 {
     insert(
       params: Params$Resource$Thirdpartylinks$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Thirdpartylinks$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ThirdPartyLink>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ThirdPartyLink>>;
     insert(
       params: Params$Resource$Thirdpartylinks$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12168,7 +16480,10 @@ export namespace youtube_v3 {
       callback?:
         | BodyResponseCallback<Schema$ThirdPartyLink>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ThirdPartyLink> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ThirdPartyLink>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Thirdpartylinks$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12214,6 +16529,60 @@ export namespace youtube_v3 {
 
     /**
      * Retrieves a list of resources, possibly filtered.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.thirdPartyLinks.list({
+     *     // Channel ID to which changes should be applied, for delegation.
+     *     externalChannelId: 'placeholder-value',
+     *     // Get a third party link with the given linking token.
+     *     linkingToken: 'placeholder-value',
+     *     // The *part* parameter specifies the thirdPartyLink resource parts that the API response will include. Supported values are linkingToken, status, and snippet.
+     *     part: 'placeholder-value',
+     *     // Get a third party link of the given type.
+     *     type: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12223,11 +16592,11 @@ export namespace youtube_v3 {
     list(
       params: Params$Resource$Thirdpartylinks$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Thirdpartylinks$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ThirdPartyLinkListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ThirdPartyLinkListResponse>>;
     list(
       params: Params$Resource$Thirdpartylinks$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12262,8 +16631,8 @@ export namespace youtube_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ThirdPartyLinkListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ThirdPartyLinkListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Thirdpartylinks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12309,6 +16678,70 @@ export namespace youtube_v3 {
 
     /**
      * Updates an existing resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.thirdPartyLinks.update({
+     *     // Channel ID to which changes should be applied, for delegation.
+     *     externalChannelId: 'placeholder-value',
+     *     // The *part* parameter specifies the thirdPartyLink resource parts that the API request and response will include. Supported values are linkingToken, status, and snippet.
+     *     part: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "etag": "my_etag",
+     *       //   "kind": "my_kind",
+     *       //   "linkingToken": "my_linkingToken",
+     *       //   "snippet": {},
+     *       //   "status": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "kind": "my_kind",
+     *   //   "linkingToken": "my_linkingToken",
+     *   //   "snippet": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12318,11 +16751,11 @@ export namespace youtube_v3 {
     update(
       params: Params$Resource$Thirdpartylinks$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Thirdpartylinks$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ThirdPartyLink>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ThirdPartyLink>>;
     update(
       params: Params$Resource$Thirdpartylinks$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12351,7 +16784,10 @@ export namespace youtube_v3 {
       callback?:
         | BodyResponseCallback<Schema$ThirdPartyLink>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ThirdPartyLink> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ThirdPartyLink>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Thirdpartylinks$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12475,6 +16911,71 @@ export namespace youtube_v3 {
 
     /**
      * As this is not an insert in a strict sense (it supports uploading/setting of a thumbnail for multiple videos, which doesn't result in creation of a single resource), I use a custom verb here.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/youtube',
+     *       'https://www.googleapis.com/auth/youtube.force-ssl',
+     *       'https://www.googleapis.com/auth/youtube.upload',
+     *       'https://www.googleapis.com/auth/youtubepartner',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.thumbnails.set({
+     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     *     onBehalfOfContentOwner: 'placeholder-value',
+     *     // Returns the Thumbnail with the given video IDs for Stubby or Apiary.
+     *     videoId: 'placeholder-value',
+     *
+     *     requestBody: {
+     *       // request body parameters
+     *     },
+     *     media: {
+     *       mimeType: 'placeholder-value',
+     *       body: 'placeholder-value',
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "eventId": "my_eventId",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "visitorId": "my_visitorId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12484,11 +16985,11 @@ export namespace youtube_v3 {
     set(
       params: Params$Resource$Thumbnails$Set,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     set(
       params?: Params$Resource$Thumbnails$Set,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ThumbnailSetResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ThumbnailSetResponse>>;
     set(
       params: Params$Resource$Thumbnails$Set,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12521,8 +17022,8 @@ export namespace youtube_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ThumbnailSetResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ThumbnailSetResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Thumbnails$Set;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -12609,6 +17110,61 @@ export namespace youtube_v3 {
 
     /**
      * Retrieves a list of resources, possibly filtered.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/youtube',
+     *       'https://www.googleapis.com/auth/youtube.force-ssl',
+     *       'https://www.googleapis.com/auth/youtube.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.videoAbuseReportReasons.list({
+     *     hl: 'placeholder-value',
+     *     // The *part* parameter specifies the videoCategory resource parts that the API response will include. Supported values are id and snippet.
+     *     part: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "eventId": "my_eventId",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "visitorId": "my_visitorId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12618,11 +17174,13 @@ export namespace youtube_v3 {
     list(
       params: Params$Resource$Videoabusereportreasons$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Videoabusereportreasons$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$VideoAbuseReportReasonListResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$VideoAbuseReportReasonListResponse>
+    >;
     list(
       params: Params$Resource$Videoabusereportreasons$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12657,8 +17215,10 @@ export namespace youtube_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$VideoAbuseReportReasonListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$VideoAbuseReportReasonListResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Videoabusereportreasons$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12725,6 +17285,70 @@ export namespace youtube_v3 {
 
     /**
      * Retrieves a list of resources, possibly filtered.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/youtube',
+     *       'https://www.googleapis.com/auth/youtube.force-ssl',
+     *       'https://www.googleapis.com/auth/youtube.readonly',
+     *       'https://www.googleapis.com/auth/youtubepartner',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.videoCategories.list({
+     *     hl: 'placeholder-value',
+     *     // Returns the video categories with the given IDs for Stubby or Apiary.
+     *     id: 'placeholder-value',
+     *     // The *part* parameter specifies the videoCategory resource properties that the API response will include. Set the parameter value to snippet.
+     *     part: 'placeholder-value',
+     *
+     *     regionCode: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "eventId": "my_eventId",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "pageInfo": {},
+     *   //   "prevPageToken": "my_prevPageToken",
+     *   //   "tokenPagination": {},
+     *   //   "visitorId": "my_visitorId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12734,11 +17358,11 @@ export namespace youtube_v3 {
     list(
       params: Params$Resource$Videocategories$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Videocategories$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$VideoCategoryListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$VideoCategoryListResponse>>;
     list(
       params: Params$Resource$Videocategories$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12773,8 +17397,8 @@ export namespace youtube_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$VideoCategoryListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$VideoCategoryListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Videocategories$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12847,6 +17471,52 @@ export namespace youtube_v3 {
 
     /**
      * Deletes a resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/youtube',
+     *       'https://www.googleapis.com/auth/youtube.force-ssl',
+     *       'https://www.googleapis.com/auth/youtubepartner',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.videos.delete({
+     *     id: 'placeholder-value',
+     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     *     onBehalfOfContentOwner: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12856,11 +17526,11 @@ export namespace youtube_v3 {
     delete(
       params: Params$Resource$Videos$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Videos$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Videos$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12887,7 +17557,10 @@ export namespace youtube_v3 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Videos$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -12929,6 +17602,61 @@ export namespace youtube_v3 {
 
     /**
      * Retrieves the ratings that the authorized user gave to a list of specified videos.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/youtube',
+     *       'https://www.googleapis.com/auth/youtube.force-ssl',
+     *       'https://www.googleapis.com/auth/youtubepartner',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.videos.getRating({
+     *     id: 'placeholder-value',
+     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     *     onBehalfOfContentOwner: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "eventId": "my_eventId",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "visitorId": "my_visitorId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12938,11 +17666,11 @@ export namespace youtube_v3 {
     getRating(
       params: Params$Resource$Videos$Getrating,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getRating(
       params?: Params$Resource$Videos$Getrating,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$VideoGetRatingResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$VideoGetRatingResponse>>;
     getRating(
       params: Params$Resource$Videos$Getrating,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12977,8 +17705,8 @@ export namespace youtube_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$VideoGetRatingResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$VideoGetRatingResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Videos$Getrating;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -13023,6 +17751,115 @@ export namespace youtube_v3 {
 
     /**
      * Inserts a new resource into this collection.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/youtube',
+     *       'https://www.googleapis.com/auth/youtube.force-ssl',
+     *       'https://www.googleapis.com/auth/youtube.upload',
+     *       'https://www.googleapis.com/auth/youtubepartner',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.videos.insert({
+     *     // Should auto-levels be applied to the upload.
+     *     autoLevels: 'placeholder-value',
+     *     // Notify the channel subscribers about the new video. As default, the notification is enabled.
+     *     notifySubscribers: 'placeholder-value',
+     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     *     onBehalfOfContentOwner: 'placeholder-value',
+     *     // This parameter can only be used in a properly authorized request. *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
+     *     onBehalfOfContentOwnerChannel: 'placeholder-value',
+     *     // The *part* parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include. Note that not all parts contain properties that can be set when inserting or updating a video. For example, the statistics object encapsulates statistics that YouTube calculates for a video and does not contain values that you can set or modify. If the parameter value specifies a part that does not contain mutable values, that part will still be included in the API response.
+     *     part: 'placeholder-value',
+     *     // Should stabilize be applied to the upload.
+     *     stabilize: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "ageGating": {},
+     *       //   "contentDetails": {},
+     *       //   "etag": "my_etag",
+     *       //   "fileDetails": {},
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "liveStreamingDetails": {},
+     *       //   "localizations": {},
+     *       //   "monetizationDetails": {},
+     *       //   "paidProductPlacementDetails": {},
+     *       //   "player": {},
+     *       //   "processingDetails": {},
+     *       //   "projectDetails": {},
+     *       //   "recordingDetails": {},
+     *       //   "snippet": {},
+     *       //   "statistics": {},
+     *       //   "status": {},
+     *       //   "suggestions": {},
+     *       //   "topicDetails": {}
+     *       // }
+     *     },
+     *     media: {
+     *       mimeType: 'placeholder-value',
+     *       body: 'placeholder-value',
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "ageGating": {},
+     *   //   "contentDetails": {},
+     *   //   "etag": "my_etag",
+     *   //   "fileDetails": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "liveStreamingDetails": {},
+     *   //   "localizations": {},
+     *   //   "monetizationDetails": {},
+     *   //   "paidProductPlacementDetails": {},
+     *   //   "player": {},
+     *   //   "processingDetails": {},
+     *   //   "projectDetails": {},
+     *   //   "recordingDetails": {},
+     *   //   "snippet": {},
+     *   //   "statistics": {},
+     *   //   "status": {},
+     *   //   "suggestions": {},
+     *   //   "topicDetails": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13032,11 +17869,11 @@ export namespace youtube_v3 {
     insert(
       params: Params$Resource$Videos$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Videos$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Video>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Video>>;
     insert(
       params: Params$Resource$Videos$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13065,7 +17902,10 @@ export namespace youtube_v3 {
       callback?:
         | BodyResponseCallback<Schema$Video>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Video> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Video>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Videos$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -13111,6 +17951,89 @@ export namespace youtube_v3 {
 
     /**
      * Retrieves a list of resources, possibly filtered.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/youtube',
+     *       'https://www.googleapis.com/auth/youtube.force-ssl',
+     *       'https://www.googleapis.com/auth/youtube.readonly',
+     *       'https://www.googleapis.com/auth/youtubepartner',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.videos.list({
+     *     // Return the videos that are in the specified chart.
+     *     chart: 'placeholder-value',
+     *     // Stands for "host language". Specifies the localization language of the metadata to be filled into snippet.localized. The field is filled with the default metadata if there is no localization in the specified language. The parameter value must be a language code included in the list returned by the i18nLanguages.list method (e.g. en_US, es_MX).
+     *     hl: 'placeholder-value',
+     *     // Return videos with the given ids.
+     *     id: 'placeholder-value',
+     *
+     *     locale: 'placeholder-value',
+     *
+     *     maxHeight: 'placeholder-value',
+     *     // The *maxResults* parameter specifies the maximum number of items that should be returned in the result set. *Note:* This parameter is supported for use in conjunction with the myRating and chart parameters, but it is not supported for use in conjunction with the id parameter.
+     *     maxResults: 'placeholder-value',
+     *     // Return the player with maximum height specified in
+     *     maxWidth: 'placeholder-value',
+     *     // Return videos liked/disliked by the authenticated user. Does not support RateType.RATED_TYPE_NONE.
+     *     myRating: 'placeholder-value',
+     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     *     onBehalfOfContentOwner: 'placeholder-value',
+     *     // The *pageToken* parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved. *Note:* This parameter is supported for use in conjunction with the myRating and chart parameters, but it is not supported for use in conjunction with the id parameter.
+     *     pageToken: 'placeholder-value',
+     *     // The *part* parameter specifies a comma-separated list of one or more video resource properties that the API response will include. If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a video resource, the snippet property contains the channelId, title, description, tags, and categoryId properties. As such, if you set *part=snippet*, the API response will contain all of those properties.
+     *     part: 'placeholder-value',
+     *     // Use a chart that is specific to the specified region
+     *     regionCode: 'placeholder-value',
+     *     // Use chart that is specific to the specified video category
+     *     videoCategoryId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "eventId": "my_eventId",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "pageInfo": {},
+     *   //   "prevPageToken": "my_prevPageToken",
+     *   //   "tokenPagination": {},
+     *   //   "visitorId": "my_visitorId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13120,11 +18043,11 @@ export namespace youtube_v3 {
     list(
       params: Params$Resource$Videos$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Videos$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$VideoListResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$VideoListResponse>>;
     list(
       params: Params$Resource$Videos$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13155,8 +18078,8 @@ export namespace youtube_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$VideoListResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$VideoListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Videos$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -13198,6 +18121,52 @@ export namespace youtube_v3 {
 
     /**
      * Adds a like or dislike rating to a video or removes a rating from a video.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/youtube',
+     *       'https://www.googleapis.com/auth/youtube.force-ssl',
+     *       'https://www.googleapis.com/auth/youtubepartner',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.videos.rate({
+     *     id: 'placeholder-value',
+     *
+     *     rating: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13207,11 +18176,11 @@ export namespace youtube_v3 {
     rate(
       params: Params$Resource$Videos$Rate,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     rate(
       params?: Params$Resource$Videos$Rate,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     rate(
       params: Params$Resource$Videos$Rate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13238,7 +18207,10 @@ export namespace youtube_v3 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Videos$Rate;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -13283,6 +18255,63 @@ export namespace youtube_v3 {
 
     /**
      * Report abuse for a video.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/youtube',
+     *       'https://www.googleapis.com/auth/youtube.force-ssl',
+     *       'https://www.googleapis.com/auth/youtubepartner',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.videos.reportAbuse({
+     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     *     onBehalfOfContentOwner: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "comments": "my_comments",
+     *       //   "language": "my_language",
+     *       //   "reasonId": "my_reasonId",
+     *       //   "secondaryReasonId": "my_secondaryReasonId",
+     *       //   "videoId": "my_videoId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13292,11 +18321,11 @@ export namespace youtube_v3 {
     reportAbuse(
       params: Params$Resource$Videos$Reportabuse,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     reportAbuse(
       params?: Params$Resource$Videos$Reportabuse,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     reportAbuse(
       params: Params$Resource$Videos$Reportabuse,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13323,7 +18352,10 @@ export namespace youtube_v3 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Videos$Reportabuse;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13369,6 +18401,102 @@ export namespace youtube_v3 {
 
     /**
      * Updates an existing resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/youtube',
+     *       'https://www.googleapis.com/auth/youtube.force-ssl',
+     *       'https://www.googleapis.com/auth/youtubepartner',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.videos.update({
+     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     *     onBehalfOfContentOwner: 'placeholder-value',
+     *     // The *part* parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include. Note that this method will override the existing values for all of the mutable properties that are contained in any parts that the parameter value specifies. For example, a video's privacy setting is contained in the status part. As such, if your request is updating a private video, and the request's part parameter value includes the status part, the video's privacy setting will be updated to whatever value the request body specifies. If the request body does not specify a value, the existing privacy setting will be removed and the video will revert to the default privacy setting. In addition, not all parts contain properties that can be set when inserting or updating a video. For example, the statistics object encapsulates statistics that YouTube calculates for a video and does not contain values that you can set or modify. If the parameter value specifies a part that does not contain mutable values, that part will still be included in the API response.
+     *     part: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "ageGating": {},
+     *       //   "contentDetails": {},
+     *       //   "etag": "my_etag",
+     *       //   "fileDetails": {},
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "liveStreamingDetails": {},
+     *       //   "localizations": {},
+     *       //   "monetizationDetails": {},
+     *       //   "paidProductPlacementDetails": {},
+     *       //   "player": {},
+     *       //   "processingDetails": {},
+     *       //   "projectDetails": {},
+     *       //   "recordingDetails": {},
+     *       //   "snippet": {},
+     *       //   "statistics": {},
+     *       //   "status": {},
+     *       //   "suggestions": {},
+     *       //   "topicDetails": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "ageGating": {},
+     *   //   "contentDetails": {},
+     *   //   "etag": "my_etag",
+     *   //   "fileDetails": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "liveStreamingDetails": {},
+     *   //   "localizations": {},
+     *   //   "monetizationDetails": {},
+     *   //   "paidProductPlacementDetails": {},
+     *   //   "player": {},
+     *   //   "processingDetails": {},
+     *   //   "projectDetails": {},
+     *   //   "recordingDetails": {},
+     *   //   "snippet": {},
+     *   //   "statistics": {},
+     *   //   "status": {},
+     *   //   "suggestions": {},
+     *   //   "topicDetails": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13378,11 +18506,11 @@ export namespace youtube_v3 {
     update(
       params: Params$Resource$Videos$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Videos$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Video>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Video>>;
     update(
       params: Params$Resource$Videos$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13411,7 +18539,10 @@ export namespace youtube_v3 {
       callback?:
         | BodyResponseCallback<Schema$Video>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Video> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Video>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Videos$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -13618,6 +18749,60 @@ export namespace youtube_v3 {
 
     /**
      * Returns the trainability status of a video.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/youtube',
+     *       'https://www.googleapis.com/auth/youtube.force-ssl',
+     *       'https://www.googleapis.com/auth/youtube.readonly',
+     *       'https://www.googleapis.com/auth/youtubepartner',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.videoTrainability.get({
+     *     // The ID of the video to retrieve.
+     *     id: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "kind": "my_kind",
+     *   //   "permitted": [],
+     *   //   "videoId": "my_videoId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13627,11 +18812,11 @@ export namespace youtube_v3 {
     get(
       params: Params$Resource$Videotrainability$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Videotrainability$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$VideoTrainability>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$VideoTrainability>>;
     get(
       params: Params$Resource$Videotrainability$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13662,8 +18847,8 @@ export namespace youtube_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$VideoTrainability>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$VideoTrainability>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Videotrainability$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13724,6 +18909,69 @@ export namespace youtube_v3 {
 
     /**
      * Allows upload of watermark image and setting it for a channel.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/youtube',
+     *       'https://www.googleapis.com/auth/youtube.force-ssl',
+     *       'https://www.googleapis.com/auth/youtube.upload',
+     *       'https://www.googleapis.com/auth/youtubepartner',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.watermarks.set({
+     *     channelId: 'placeholder-value',
+     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     *     onBehalfOfContentOwner: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "imageBytes": "my_imageBytes",
+     *       //   "imageUrl": "my_imageUrl",
+     *       //   "position": {},
+     *       //   "targetChannelId": "my_targetChannelId",
+     *       //   "timing": {}
+     *       // }
+     *     },
+     *     media: {
+     *       mimeType: 'placeholder-value',
+     *       body: 'placeholder-value',
+     *     },
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13733,11 +18981,11 @@ export namespace youtube_v3 {
     set(
       params: Params$Resource$Watermarks$Set,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     set(
       params?: Params$Resource$Watermarks$Set,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     set(
       params: Params$Resource$Watermarks$Set,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13764,7 +19012,10 @@ export namespace youtube_v3 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Watermarks$Set;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -13813,6 +19064,52 @@ export namespace youtube_v3 {
 
     /**
      * Allows removal of channel watermark.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/youtube',
+     *       'https://www.googleapis.com/auth/youtube.force-ssl',
+     *       'https://www.googleapis.com/auth/youtubepartner',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.watermarks.unset({
+     *     channelId: 'placeholder-value',
+     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     *     onBehalfOfContentOwner: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13822,11 +19119,11 @@ export namespace youtube_v3 {
     unset(
       params: Params$Resource$Watermarks$Unset,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     unset(
       params?: Params$Resource$Watermarks$Unset,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     unset(
       params: Params$Resource$Watermarks$Unset,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13853,7 +19150,10 @@ export namespace youtube_v3 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Watermarks$Unset;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -13955,6 +19255,68 @@ export namespace youtube_v3 {
 
     /**
      * Updates an existing resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.youtube.v3.updateCommentThreads({
+     *     // The *part* parameter specifies a comma-separated list of commentThread resource properties that the API response will include. You must at least include the snippet part in the parameter value since that part contains all of the properties that the API request can update.
+     *     part: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "replies": {},
+     *       //   "snippet": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "replies": {},
+     *   //   "snippet": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13964,11 +19326,11 @@ export namespace youtube_v3 {
     updateCommentThreads(
       params: Params$Resource$Youtube$V3$Updatecommentthreads,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     updateCommentThreads(
       params?: Params$Resource$Youtube$V3$Updatecommentthreads,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CommentThread>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CommentThread>>;
     updateCommentThreads(
       params: Params$Resource$Youtube$V3$Updatecommentthreads,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13999,7 +19361,10 @@ export namespace youtube_v3 {
       callback?:
         | BodyResponseCallback<Schema$CommentThread>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CommentThread> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$CommentThread>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Youtube$V3$Updatecommentthreads;
       let options = (optionsOrCallback || {}) as MethodOptions;

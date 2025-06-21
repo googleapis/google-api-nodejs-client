@@ -1,5 +1,30 @@
 # Changelog
 
+## [5.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/reseller-v5.0.0...reseller-v5.0.1) (2025-06-04)
+
+
+### Bug Fixes
+
+* **deps:** upgrade googleapis-common to 8.0.2-rc ([f4b0990](https://github.com/googleapis/google-api-nodejs-client/commit/f4b099071040cfbcfe4a2e7d487d45ee93b369e0))
+
+## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/reseller-v4.0.6...reseller-v5.0.0) (2025-05-29)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to node 18
+
+### Features
+
+* upgrade to node 18 ([682fbb8](https://github.com/googleapis/google-api-nodejs-client/commit/682fbb869189ae92b3e9a194d37d0548af0c1f92))
+
+## [4.0.6](https://github.com/googleapis/google-api-nodejs-client/compare/reseller-v4.0.5...reseller-v4.0.6) (2025-05-05)
+
+
+### Bug Fixes
+
+* **reseller:** update the API ([e568067](https://github.com/googleapis/google-api-nodejs-client/commit/e568067d248451ab47512c9e539e65d143a93840))
+
 ## [4.0.5](https://github.com/googleapis/google-api-nodejs-client/compare/reseller-v4.0.4...reseller-v4.0.5) (2024-05-02)
 
 

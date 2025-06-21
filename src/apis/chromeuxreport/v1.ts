@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -419,6 +419,62 @@ export namespace chromeuxreport_v1 {
 
     /**
      * Queries the Chrome User Experience Report for a timeseries `history record` for a given site. Returns a `history record` that contains one or more `metric timeseries` corresponding to performance data about the requested site.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromeuxreport.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromeuxreport = google.chromeuxreport('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chromeuxreport.records.queryHistoryRecord({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "collectionPeriodCount": 0,
+     *       //   "formFactor": "my_formFactor",
+     *       //   "metrics": [],
+     *       //   "origin": "my_origin",
+     *       //   "url": "my_url"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "record": {},
+     *   //   "urlNormalizationDetails": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -428,11 +484,11 @@ export namespace chromeuxreport_v1 {
     queryHistoryRecord(
       params: Params$Resource$Records$Queryhistoryrecord,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     queryHistoryRecord(
       params?: Params$Resource$Records$Queryhistoryrecord,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$QueryHistoryResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$QueryHistoryResponse>>;
     queryHistoryRecord(
       params: Params$Resource$Records$Queryhistoryrecord,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -467,8 +523,8 @@ export namespace chromeuxreport_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$QueryHistoryResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$QueryHistoryResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Records$Queryhistoryrecord;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -515,6 +571,62 @@ export namespace chromeuxreport_v1 {
 
     /**
      * Queries the Chrome User Experience for a single `record` for a given site. Returns a `record` that contains one or more `metrics` corresponding to performance data about the requested site.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromeuxreport.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromeuxreport = google.chromeuxreport('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chromeuxreport.records.queryRecord({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "effectiveConnectionType": "my_effectiveConnectionType",
+     *       //   "formFactor": "my_formFactor",
+     *       //   "metrics": [],
+     *       //   "origin": "my_origin",
+     *       //   "url": "my_url"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "record": {},
+     *   //   "urlNormalizationDetails": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -524,11 +636,11 @@ export namespace chromeuxreport_v1 {
     queryRecord(
       params: Params$Resource$Records$Queryrecord,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     queryRecord(
       params?: Params$Resource$Records$Queryrecord,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$QueryResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$QueryResponse>>;
     queryRecord(
       params: Params$Resource$Records$Queryrecord,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -557,7 +669,10 @@ export namespace chromeuxreport_v1 {
       callback?:
         | BodyResponseCallback<Schema$QueryResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$QueryResponse> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$QueryResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Records$Queryrecord;
       let options = (optionsOrCallback || {}) as MethodOptions;

@@ -13,21 +13,21 @@
 // limitations under the License.
 
 module.exports = async ({ github, context }) => {
-    const commenter = context.actor;
-    const issue = await github.rest.issues.get({
+  const commenter = context.actor;
+  const issue = await github.rest.issues.get({
+    owner: context.repo.owner,
+    repo: context.repo.repo,
+    issue_number: context.issue.number,
+  });
+  const author = issue.data.user.login;
+  const labels = issue.data.labels.map((e) => e.name);
+
+  if (author === commenter && labels.includes("needs more info")) {
+    await github.rest.issues.removeLabel({
       owner: context.repo.owner,
       repo: context.repo.repo,
       issue_number: context.issue.number,
+      name: "needs more info",
     });
-    const author = issue.data.user.login;
-    const labels = issue.data.labels.map((e) => e.name);
-  
-    if (author === commenter && labels.includes('needs more info')) {
-      await github.rest.issues.removeLabel({
-        owner: context.repo.owner,
-        repo: context.repo.repo,
-        issue_number: context.issue.number,
-        name: 'needs more info',
-      });
-    }
-  };
+  }
+};

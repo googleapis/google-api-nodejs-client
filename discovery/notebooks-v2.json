@@ -143,6 +143,12 @@
                 "name"
               ],
               "parameters": {
+                "extraLocationTypes": {
+                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "location": "query",
+                  "repeated": true,
+                  "type": "string"
+                },
                 "filter": {
                   "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
                   "location": "query",
@@ -326,7 +332,7 @@
                   ]
                 },
                 "getConfig": {
-                  "description": "Gets general backend configurations that might also affect the frontend. Location is required by CCFE. Although we could bypass it to send location- less request directly to the backend job, we would need CPE (go/cloud-cpe). Having the location might also be useful depending on the query.",
+                  "description": "Returns various configuration parameters.",
                   "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/instances:getConfig",
                   "httpMethod": "GET",
                   "id": "notebooks.projects.locations.instances.getConfig",
@@ -449,7 +455,7 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Required. Mask used to update an instance",
+                      "description": "Required. Mask used to update an instance. Updatable fields: * `labels` * `gce_setup.min_cpu_platform` * `gce_setup.metadata` * `gce_setup.machine_type` * `gce_setup.accelerator_configs` * `gce_setup.accelerator_configs.type` * `gce_setup.accelerator_configs.core_count` * `gce_setup.gpu_driver_config` * `gce_setup.gpu_driver_config.enable_gpu_driver` * `gce_setup.gpu_driver_config.custom_gpu_driver_path` * `gce_setup.shielded_instance_config` * `gce_setup.shielded_instance_config.enable_secure_boot` * `gce_setup.shielded_instance_config.enable_vtpm` * `gce_setup.shielded_instance_config.enable_integrity_monitoring` * `gce_setup.reservation_affinity` * `gce_setup.reservation_affinity.consume_reservation_type` * `gce_setup.reservation_affinity.key` * `gce_setup.reservation_affinity.values` * `gce_setup.tags` * `gce_setup.container_image` * `gce_setup.container_image.repository` * `gce_setup.container_image.tag` * `gce_setup.disable_public_ip` * `disable_proxy_access`",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -904,7 +910,7 @@
       }
     }
   },
-  "revision": "20250319",
+  "revision": "20250604",
   "rootUrl": "https://notebooks.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -1071,21 +1077,13 @@
           "description": "Optional. Defines the type of technology used by the confidential instance.",
           "enum": [
             "CONFIDENTIAL_INSTANCE_TYPE_UNSPECIFIED",
-            "SEV",
-            "SEV_SNP",
-            "TDX"
+            "SEV"
           ],
           "enumDescriptions": [
             "No type specified. Do not use this value.",
-            "AMD Secure Encrypted Virtualization.",
-            "AMD Secure Encrypted Virtualization - Secure Nested Paging.",
-            "Intel Trust Domain eXtension."
+            "AMD Secure Encrypted Virtualization."
           ],
           "type": "string"
-        },
-        "enableConfidentialCompute": {
-          "description": "Optional. Defines whether the instance should have confidential compute enabled.",
-          "type": "boolean"
         }
       },
       "type": "object"
@@ -1385,6 +1383,10 @@
           },
           "type": "array"
         },
+        "reservationAffinity": {
+          "$ref": "ReservationAffinity",
+          "description": "Optional. Specifies the reservations that this instance can consume from."
+        },
         "serviceAccounts": {
           "description": "Optional. The service account that serves as an identity for the VM instance. Currently supports only one service account.",
           "items": {
@@ -1446,6 +1448,10 @@
           "description": "Optional. If true, the notebook instance will not register with the proxy.",
           "type": "boolean"
         },
+        "enableDeletionProtection": {
+          "description": "Optional. If true, deletion protection will be enabled for this Workbench Instance. If false, deletion protection will be disabled for this Workbench Instance.",
+          "type": "boolean"
+        },
         "enableThirdPartyIdentity": {
           "description": "Optional. Flag that specifies that a notebook can be accessed with third party identity provider.",
           "type": "boolean"
@@ -1487,7 +1493,7 @@
           "type": "string"
         },
         "instanceOwners": {
-          "description": "Optional. Input only. The owner of this instance after creation. Format: `alias@example.com` Currently supports one owner only. If not specified, all of the service account users of your VM instance's service account can use the instance.",
+          "description": "Optional. The owner of this instance after creation. Format: `alias@example.com` Currently supports one owner only. If not specified, all of the service account users of your VM instance's service account can use the instance.",
           "items": {
             "type": "string"
           },
@@ -1819,6 +1825,40 @@
       },
       "type": "object"
     },
+    "ReservationAffinity": {
+      "description": "A reservation that an instance can consume from.",
+      "id": "ReservationAffinity",
+      "properties": {
+        "consumeReservationType": {
+          "description": "Required. Specifies the type of reservation from which this instance can consume resources: RESERVATION_ANY (default), RESERVATION_SPECIFIC, or RESERVATION_NONE. See Consuming reserved instances for examples.",
+          "enum": [
+            "RESERVATION_UNSPECIFIED",
+            "RESERVATION_NONE",
+            "RESERVATION_ANY",
+            "RESERVATION_SPECIFIC"
+          ],
+          "enumDescriptions": [
+            "Default type.",
+            "Do not consume from any allocated capacity.",
+            "Consume any reservation available.",
+            "Must consume from a specific reservation. Must specify key value fields for specifying the reservations."
+          ],
+          "type": "string"
+        },
+        "key": {
+          "description": "Optional. Corresponds to the label key of a reservation resource. To target a RESERVATION_SPECIFIC by name, use compute.googleapis.com/reservation-name as the key and specify the name of your reservation as its value.",
+          "type": "string"
+        },
+        "values": {
+          "description": "Optional. Corresponds to the label values of a reservation resource. This can be either a name to a reservation in the same project or \"projects/different-project/reservations/some-reservation-name\" to target a shared reservation in the same zone but in a different project.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ResetInstanceRequest": {
       "description": "Request for resetting a notebook instance",
       "id": "ResetInstanceRequest",
@@ -1902,7 +1942,7 @@
       "id": "ShieldedInstanceConfig",
       "properties": {
         "enableIntegrityMonitoring": {
-          "description": "Optional. Defines whether the VM instance has integrity monitoring enabled. Enables monitoring and attestation of the boot integrity of the VM instance. The attestation is performed against the integrity policy baseline. This baseline is initially derived from the implicitly trusted boot image when the VM instance is created. Enabled by default.",
+          "description": "Optional. Defines whether the VM instance has integrity monitoring enabled. Enables monitoring and attestation of the boot integrity of the VM instance. The attestation is performed against the integrity policy baseline. This baseline is initially derived from the implicitly trusted boot image when the VM instance is created.",
           "type": "boolean"
         },
         "enableSecureBoot": {
@@ -1910,7 +1950,7 @@
           "type": "boolean"
         },
         "enableVtpm": {
-          "description": "Optional. Defines whether the VM instance has the vTPM enabled. Enabled by default.",
+          "description": "Optional. Defines whether the VM instance has the vTPM enabled.",
           "type": "boolean"
         }
       },

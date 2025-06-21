@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -162,7 +162,7 @@ export namespace essentialcontacts_v1 {
      */
     notificationCategorySubscriptions?: string[] | null;
     /**
-     * The last time the validation_state was updated, either manually or automatically. A contact is considered stale if its validation state was updated more than 1 year ago.
+     * Output only. The last time the validation_state was updated, either manually or automatically. A contact is considered stale if its validation state was updated more than 1 year ago.
      */
     validateTime?: string | null;
     /**
@@ -218,6 +218,59 @@ export namespace essentialcontacts_v1 {
 
     /**
      * Lists all contacts for the resource that are subscribed to the specified notification categories, including contacts inherited from any parent resources.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/essentialcontacts.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const essentialcontacts = google.essentialcontacts('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await essentialcontacts.folders.contacts.compute({
+     *     // The categories of notifications to compute contacts for. If ALL is included in this list, contacts subscribed to any notification category will be returned.
+     *     notificationCategories: 'placeholder-value',
+     *     // Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of `next_page_token` in the response indicates that more results might be available. If not specified, the default page_size is 100.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. If present, retrieves the next batch of results from the preceding call to this method. `page_token` must be the value of `next_page_token` from the previous response. The values of other method parameters should be identical to those in the previous call.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The name of the resource to compute contacts for. Format: organizations/{organization_id\}, folders/{folder_id\} or projects/{project_id\}
+     *     parent: 'folders/my-folder',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contacts": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -227,11 +280,13 @@ export namespace essentialcontacts_v1 {
     compute(
       params: Params$Resource$Folders$Contacts$Compute,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     compute(
       params?: Params$Resource$Folders$Contacts$Compute,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudEssentialcontactsV1ComputeContactsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudEssentialcontactsV1ComputeContactsResponse>
+    >;
     compute(
       params: Params$Resource$Folders$Contacts$Compute,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -266,8 +321,10 @@ export namespace essentialcontacts_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudEssentialcontactsV1ComputeContactsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudEssentialcontactsV1ComputeContactsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Contacts$Compute;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -316,6 +373,70 @@ export namespace essentialcontacts_v1 {
 
     /**
      * Adds a new contact for a resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/essentialcontacts.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const essentialcontacts = google.essentialcontacts('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await essentialcontacts.folders.contacts.create({
+     *     // Required. The resource to save this contact for. Format: organizations/{organization_id\}, folders/{folder_id\} or projects/{project_id\}
+     *     parent: 'folders/my-folder',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "email": "my_email",
+     *       //   "languageTag": "my_languageTag",
+     *       //   "name": "my_name",
+     *       //   "notificationCategorySubscriptions": [],
+     *       //   "validateTime": "my_validateTime",
+     *       //   "validationState": "my_validationState"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "email": "my_email",
+     *   //   "languageTag": "my_languageTag",
+     *   //   "name": "my_name",
+     *   //   "notificationCategorySubscriptions": [],
+     *   //   "validateTime": "my_validateTime",
+     *   //   "validationState": "my_validationState"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -325,11 +446,13 @@ export namespace essentialcontacts_v1 {
     create(
       params: Params$Resource$Folders$Contacts$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Folders$Contacts$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudEssentialcontactsV1Contact>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudEssentialcontactsV1Contact>
+    >;
     create(
       params: Params$Resource$Folders$Contacts$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -364,8 +487,10 @@ export namespace essentialcontacts_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudEssentialcontactsV1Contact>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudEssentialcontactsV1Contact>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Contacts$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -414,6 +539,50 @@ export namespace essentialcontacts_v1 {
 
     /**
      * Deletes a contact.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/essentialcontacts.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const essentialcontacts = google.essentialcontacts('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await essentialcontacts.folders.contacts.delete({
+     *     // Required. The name of the contact to delete. Format: organizations/{organization_id\}/contacts/{contact_id\}, folders/{folder_id\}/contacts/{contact_id\} or projects/{project_id\}/contacts/{contact_id\}
+     *     name: 'folders/my-folder/contacts/my-contact',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -423,11 +592,11 @@ export namespace essentialcontacts_v1 {
     delete(
       params: Params$Resource$Folders$Contacts$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Folders$Contacts$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     delete(
       params: Params$Resource$Folders$Contacts$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -458,8 +627,8 @@ export namespace essentialcontacts_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Contacts$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -503,6 +672,57 @@ export namespace essentialcontacts_v1 {
 
     /**
      * Gets a single contact.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/essentialcontacts.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const essentialcontacts = google.essentialcontacts('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await essentialcontacts.folders.contacts.get({
+     *     // Required. The name of the contact to retrieve. Format: organizations/{organization_id\}/contacts/{contact_id\}, folders/{folder_id\}/contacts/{contact_id\} or projects/{project_id\}/contacts/{contact_id\}
+     *     name: 'folders/my-folder/contacts/my-contact',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "email": "my_email",
+     *   //   "languageTag": "my_languageTag",
+     *   //   "name": "my_name",
+     *   //   "notificationCategorySubscriptions": [],
+     *   //   "validateTime": "my_validateTime",
+     *   //   "validationState": "my_validationState"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -512,11 +732,13 @@ export namespace essentialcontacts_v1 {
     get(
       params: Params$Resource$Folders$Contacts$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Folders$Contacts$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudEssentialcontactsV1Contact>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudEssentialcontactsV1Contact>
+    >;
     get(
       params: Params$Resource$Folders$Contacts$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -551,8 +773,10 @@ export namespace essentialcontacts_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudEssentialcontactsV1Contact>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudEssentialcontactsV1Contact>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Contacts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -598,6 +822,57 @@ export namespace essentialcontacts_v1 {
 
     /**
      * Lists the contacts that have been set on a resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/essentialcontacts.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const essentialcontacts = google.essentialcontacts('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await essentialcontacts.folders.contacts.list({
+     *     // Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of `next_page_token` in the response indicates that more results might be available. If not specified, the default page_size is 100.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. If present, retrieves the next batch of results from the preceding call to this method. `page_token` must be the value of `next_page_token` from the previous response. The values of other method parameters should be identical to those in the previous call.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent resource name. Format: organizations/{organization_id\}, folders/{folder_id\} or projects/{project_id\}
+     *     parent: 'folders/my-folder',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contacts": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -607,11 +882,13 @@ export namespace essentialcontacts_v1 {
     list(
       params: Params$Resource$Folders$Contacts$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Folders$Contacts$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudEssentialcontactsV1ListContactsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudEssentialcontactsV1ListContactsResponse>
+    >;
     list(
       params: Params$Resource$Folders$Contacts$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -646,8 +923,10 @@ export namespace essentialcontacts_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudEssentialcontactsV1ListContactsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudEssentialcontactsV1ListContactsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Contacts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -696,6 +975,72 @@ export namespace essentialcontacts_v1 {
 
     /**
      * Updates a contact. Note: A contact's email address cannot be changed.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/essentialcontacts.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const essentialcontacts = google.essentialcontacts('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await essentialcontacts.folders.contacts.patch({
+     *     // Output only. The identifier for the contact. Format: {resource_type\}/{resource_id\}/contacts/{contact_id\}
+     *     name: 'folders/my-folder/contacts/my-contact',
+     *     // Optional. The update mask applied to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "email": "my_email",
+     *       //   "languageTag": "my_languageTag",
+     *       //   "name": "my_name",
+     *       //   "notificationCategorySubscriptions": [],
+     *       //   "validateTime": "my_validateTime",
+     *       //   "validationState": "my_validationState"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "email": "my_email",
+     *   //   "languageTag": "my_languageTag",
+     *   //   "name": "my_name",
+     *   //   "notificationCategorySubscriptions": [],
+     *   //   "validateTime": "my_validateTime",
+     *   //   "validationState": "my_validationState"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -705,11 +1050,13 @@ export namespace essentialcontacts_v1 {
     patch(
       params: Params$Resource$Folders$Contacts$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Folders$Contacts$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudEssentialcontactsV1Contact>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudEssentialcontactsV1Contact>
+    >;
     patch(
       params: Params$Resource$Folders$Contacts$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -744,8 +1091,10 @@ export namespace essentialcontacts_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudEssentialcontactsV1Contact>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudEssentialcontactsV1Contact>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Contacts$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -791,6 +1140,59 @@ export namespace essentialcontacts_v1 {
 
     /**
      * Allows a contact admin to send a test message to contact to verify that it has been configured correctly.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/essentialcontacts.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const essentialcontacts = google.essentialcontacts('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await essentialcontacts.folders.contacts.sendTestMessage({
+     *     // Required. The name of the resource to send the test message for. All contacts must either be set directly on this resource or inherited from another resource that is an ancestor of this one. Format: organizations/{organization_id\}, folders/{folder_id\} or projects/{project_id\}
+     *     resource: 'folders/my-folder',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "contacts": [],
+     *       //   "notificationCategory": "my_notificationCategory"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -800,11 +1202,11 @@ export namespace essentialcontacts_v1 {
     sendTestMessage(
       params: Params$Resource$Folders$Contacts$Sendtestmessage,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     sendTestMessage(
       params?: Params$Resource$Folders$Contacts$Sendtestmessage,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     sendTestMessage(
       params: Params$Resource$Folders$Contacts$Sendtestmessage,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -837,8 +1239,8 @@ export namespace essentialcontacts_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Contacts$Sendtestmessage;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -990,6 +1392,59 @@ export namespace essentialcontacts_v1 {
 
     /**
      * Lists all contacts for the resource that are subscribed to the specified notification categories, including contacts inherited from any parent resources.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/essentialcontacts.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const essentialcontacts = google.essentialcontacts('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await essentialcontacts.organizations.contacts.compute({
+     *     // The categories of notifications to compute contacts for. If ALL is included in this list, contacts subscribed to any notification category will be returned.
+     *     notificationCategories: 'placeholder-value',
+     *     // Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of `next_page_token` in the response indicates that more results might be available. If not specified, the default page_size is 100.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. If present, retrieves the next batch of results from the preceding call to this method. `page_token` must be the value of `next_page_token` from the previous response. The values of other method parameters should be identical to those in the previous call.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The name of the resource to compute contacts for. Format: organizations/{organization_id\}, folders/{folder_id\} or projects/{project_id\}
+     *     parent: 'organizations/my-organization',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contacts": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -999,11 +1454,13 @@ export namespace essentialcontacts_v1 {
     compute(
       params: Params$Resource$Organizations$Contacts$Compute,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     compute(
       params?: Params$Resource$Organizations$Contacts$Compute,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudEssentialcontactsV1ComputeContactsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudEssentialcontactsV1ComputeContactsResponse>
+    >;
     compute(
       params: Params$Resource$Organizations$Contacts$Compute,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1038,8 +1495,10 @@ export namespace essentialcontacts_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudEssentialcontactsV1ComputeContactsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudEssentialcontactsV1ComputeContactsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Contacts$Compute;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1088,6 +1547,70 @@ export namespace essentialcontacts_v1 {
 
     /**
      * Adds a new contact for a resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/essentialcontacts.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const essentialcontacts = google.essentialcontacts('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await essentialcontacts.organizations.contacts.create({
+     *     // Required. The resource to save this contact for. Format: organizations/{organization_id\}, folders/{folder_id\} or projects/{project_id\}
+     *     parent: 'organizations/my-organization',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "email": "my_email",
+     *       //   "languageTag": "my_languageTag",
+     *       //   "name": "my_name",
+     *       //   "notificationCategorySubscriptions": [],
+     *       //   "validateTime": "my_validateTime",
+     *       //   "validationState": "my_validationState"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "email": "my_email",
+     *   //   "languageTag": "my_languageTag",
+     *   //   "name": "my_name",
+     *   //   "notificationCategorySubscriptions": [],
+     *   //   "validateTime": "my_validateTime",
+     *   //   "validationState": "my_validationState"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1097,11 +1620,13 @@ export namespace essentialcontacts_v1 {
     create(
       params: Params$Resource$Organizations$Contacts$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Organizations$Contacts$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudEssentialcontactsV1Contact>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudEssentialcontactsV1Contact>
+    >;
     create(
       params: Params$Resource$Organizations$Contacts$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1136,8 +1661,10 @@ export namespace essentialcontacts_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudEssentialcontactsV1Contact>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudEssentialcontactsV1Contact>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Contacts$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1186,6 +1713,50 @@ export namespace essentialcontacts_v1 {
 
     /**
      * Deletes a contact.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/essentialcontacts.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const essentialcontacts = google.essentialcontacts('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await essentialcontacts.organizations.contacts.delete({
+     *     // Required. The name of the contact to delete. Format: organizations/{organization_id\}/contacts/{contact_id\}, folders/{folder_id\}/contacts/{contact_id\} or projects/{project_id\}/contacts/{contact_id\}
+     *     name: 'organizations/my-organization/contacts/my-contact',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1195,11 +1766,11 @@ export namespace essentialcontacts_v1 {
     delete(
       params: Params$Resource$Organizations$Contacts$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Organizations$Contacts$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     delete(
       params: Params$Resource$Organizations$Contacts$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1230,8 +1801,8 @@ export namespace essentialcontacts_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Contacts$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1275,6 +1846,57 @@ export namespace essentialcontacts_v1 {
 
     /**
      * Gets a single contact.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/essentialcontacts.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const essentialcontacts = google.essentialcontacts('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await essentialcontacts.organizations.contacts.get({
+     *     // Required. The name of the contact to retrieve. Format: organizations/{organization_id\}/contacts/{contact_id\}, folders/{folder_id\}/contacts/{contact_id\} or projects/{project_id\}/contacts/{contact_id\}
+     *     name: 'organizations/my-organization/contacts/my-contact',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "email": "my_email",
+     *   //   "languageTag": "my_languageTag",
+     *   //   "name": "my_name",
+     *   //   "notificationCategorySubscriptions": [],
+     *   //   "validateTime": "my_validateTime",
+     *   //   "validationState": "my_validationState"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1284,11 +1906,13 @@ export namespace essentialcontacts_v1 {
     get(
       params: Params$Resource$Organizations$Contacts$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Organizations$Contacts$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudEssentialcontactsV1Contact>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudEssentialcontactsV1Contact>
+    >;
     get(
       params: Params$Resource$Organizations$Contacts$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1323,8 +1947,10 @@ export namespace essentialcontacts_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudEssentialcontactsV1Contact>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudEssentialcontactsV1Contact>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Contacts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1370,6 +1996,57 @@ export namespace essentialcontacts_v1 {
 
     /**
      * Lists the contacts that have been set on a resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/essentialcontacts.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const essentialcontacts = google.essentialcontacts('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await essentialcontacts.organizations.contacts.list({
+     *     // Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of `next_page_token` in the response indicates that more results might be available. If not specified, the default page_size is 100.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. If present, retrieves the next batch of results from the preceding call to this method. `page_token` must be the value of `next_page_token` from the previous response. The values of other method parameters should be identical to those in the previous call.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent resource name. Format: organizations/{organization_id\}, folders/{folder_id\} or projects/{project_id\}
+     *     parent: 'organizations/my-organization',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contacts": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1379,11 +2056,13 @@ export namespace essentialcontacts_v1 {
     list(
       params: Params$Resource$Organizations$Contacts$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Organizations$Contacts$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudEssentialcontactsV1ListContactsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudEssentialcontactsV1ListContactsResponse>
+    >;
     list(
       params: Params$Resource$Organizations$Contacts$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1418,8 +2097,10 @@ export namespace essentialcontacts_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudEssentialcontactsV1ListContactsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudEssentialcontactsV1ListContactsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Contacts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1468,6 +2149,72 @@ export namespace essentialcontacts_v1 {
 
     /**
      * Updates a contact. Note: A contact's email address cannot be changed.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/essentialcontacts.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const essentialcontacts = google.essentialcontacts('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await essentialcontacts.organizations.contacts.patch({
+     *     // Output only. The identifier for the contact. Format: {resource_type\}/{resource_id\}/contacts/{contact_id\}
+     *     name: 'organizations/my-organization/contacts/my-contact',
+     *     // Optional. The update mask applied to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "email": "my_email",
+     *       //   "languageTag": "my_languageTag",
+     *       //   "name": "my_name",
+     *       //   "notificationCategorySubscriptions": [],
+     *       //   "validateTime": "my_validateTime",
+     *       //   "validationState": "my_validationState"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "email": "my_email",
+     *   //   "languageTag": "my_languageTag",
+     *   //   "name": "my_name",
+     *   //   "notificationCategorySubscriptions": [],
+     *   //   "validateTime": "my_validateTime",
+     *   //   "validationState": "my_validationState"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1477,11 +2224,13 @@ export namespace essentialcontacts_v1 {
     patch(
       params: Params$Resource$Organizations$Contacts$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Organizations$Contacts$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudEssentialcontactsV1Contact>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudEssentialcontactsV1Contact>
+    >;
     patch(
       params: Params$Resource$Organizations$Contacts$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1516,8 +2265,10 @@ export namespace essentialcontacts_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudEssentialcontactsV1Contact>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudEssentialcontactsV1Contact>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Contacts$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1563,6 +2314,59 @@ export namespace essentialcontacts_v1 {
 
     /**
      * Allows a contact admin to send a test message to contact to verify that it has been configured correctly.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/essentialcontacts.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const essentialcontacts = google.essentialcontacts('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await essentialcontacts.organizations.contacts.sendTestMessage({
+     *     // Required. The name of the resource to send the test message for. All contacts must either be set directly on this resource or inherited from another resource that is an ancestor of this one. Format: organizations/{organization_id\}, folders/{folder_id\} or projects/{project_id\}
+     *     resource: 'organizations/my-organization',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "contacts": [],
+     *       //   "notificationCategory": "my_notificationCategory"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1572,11 +2376,11 @@ export namespace essentialcontacts_v1 {
     sendTestMessage(
       params: Params$Resource$Organizations$Contacts$Sendtestmessage,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     sendTestMessage(
       params?: Params$Resource$Organizations$Contacts$Sendtestmessage,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     sendTestMessage(
       params: Params$Resource$Organizations$Contacts$Sendtestmessage,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1609,8 +2413,8 @@ export namespace essentialcontacts_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Contacts$Sendtestmessage;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1762,6 +2566,59 @@ export namespace essentialcontacts_v1 {
 
     /**
      * Lists all contacts for the resource that are subscribed to the specified notification categories, including contacts inherited from any parent resources.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/essentialcontacts.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const essentialcontacts = google.essentialcontacts('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await essentialcontacts.projects.contacts.compute({
+     *     // The categories of notifications to compute contacts for. If ALL is included in this list, contacts subscribed to any notification category will be returned.
+     *     notificationCategories: 'placeholder-value',
+     *     // Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of `next_page_token` in the response indicates that more results might be available. If not specified, the default page_size is 100.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. If present, retrieves the next batch of results from the preceding call to this method. `page_token` must be the value of `next_page_token` from the previous response. The values of other method parameters should be identical to those in the previous call.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The name of the resource to compute contacts for. Format: organizations/{organization_id\}, folders/{folder_id\} or projects/{project_id\}
+     *     parent: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contacts": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1771,11 +2628,13 @@ export namespace essentialcontacts_v1 {
     compute(
       params: Params$Resource$Projects$Contacts$Compute,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     compute(
       params?: Params$Resource$Projects$Contacts$Compute,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudEssentialcontactsV1ComputeContactsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudEssentialcontactsV1ComputeContactsResponse>
+    >;
     compute(
       params: Params$Resource$Projects$Contacts$Compute,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1810,8 +2669,10 @@ export namespace essentialcontacts_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudEssentialcontactsV1ComputeContactsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudEssentialcontactsV1ComputeContactsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Contacts$Compute;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1860,6 +2721,70 @@ export namespace essentialcontacts_v1 {
 
     /**
      * Adds a new contact for a resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/essentialcontacts.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const essentialcontacts = google.essentialcontacts('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await essentialcontacts.projects.contacts.create({
+     *     // Required. The resource to save this contact for. Format: organizations/{organization_id\}, folders/{folder_id\} or projects/{project_id\}
+     *     parent: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "email": "my_email",
+     *       //   "languageTag": "my_languageTag",
+     *       //   "name": "my_name",
+     *       //   "notificationCategorySubscriptions": [],
+     *       //   "validateTime": "my_validateTime",
+     *       //   "validationState": "my_validationState"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "email": "my_email",
+     *   //   "languageTag": "my_languageTag",
+     *   //   "name": "my_name",
+     *   //   "notificationCategorySubscriptions": [],
+     *   //   "validateTime": "my_validateTime",
+     *   //   "validationState": "my_validationState"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1869,11 +2794,13 @@ export namespace essentialcontacts_v1 {
     create(
       params: Params$Resource$Projects$Contacts$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Contacts$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudEssentialcontactsV1Contact>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudEssentialcontactsV1Contact>
+    >;
     create(
       params: Params$Resource$Projects$Contacts$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1908,8 +2835,10 @@ export namespace essentialcontacts_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudEssentialcontactsV1Contact>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudEssentialcontactsV1Contact>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Contacts$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1958,6 +2887,50 @@ export namespace essentialcontacts_v1 {
 
     /**
      * Deletes a contact.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/essentialcontacts.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const essentialcontacts = google.essentialcontacts('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await essentialcontacts.projects.contacts.delete({
+     *     // Required. The name of the contact to delete. Format: organizations/{organization_id\}/contacts/{contact_id\}, folders/{folder_id\}/contacts/{contact_id\} or projects/{project_id\}/contacts/{contact_id\}
+     *     name: 'projects/my-project/contacts/my-contact',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1967,11 +2940,11 @@ export namespace essentialcontacts_v1 {
     delete(
       params: Params$Resource$Projects$Contacts$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Contacts$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     delete(
       params: Params$Resource$Projects$Contacts$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2002,8 +2975,8 @@ export namespace essentialcontacts_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Contacts$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2047,6 +3020,57 @@ export namespace essentialcontacts_v1 {
 
     /**
      * Gets a single contact.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/essentialcontacts.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const essentialcontacts = google.essentialcontacts('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await essentialcontacts.projects.contacts.get({
+     *     // Required. The name of the contact to retrieve. Format: organizations/{organization_id\}/contacts/{contact_id\}, folders/{folder_id\}/contacts/{contact_id\} or projects/{project_id\}/contacts/{contact_id\}
+     *     name: 'projects/my-project/contacts/my-contact',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "email": "my_email",
+     *   //   "languageTag": "my_languageTag",
+     *   //   "name": "my_name",
+     *   //   "notificationCategorySubscriptions": [],
+     *   //   "validateTime": "my_validateTime",
+     *   //   "validationState": "my_validationState"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2056,11 +3080,13 @@ export namespace essentialcontacts_v1 {
     get(
       params: Params$Resource$Projects$Contacts$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Contacts$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudEssentialcontactsV1Contact>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudEssentialcontactsV1Contact>
+    >;
     get(
       params: Params$Resource$Projects$Contacts$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2095,8 +3121,10 @@ export namespace essentialcontacts_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudEssentialcontactsV1Contact>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudEssentialcontactsV1Contact>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Contacts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2142,6 +3170,57 @@ export namespace essentialcontacts_v1 {
 
     /**
      * Lists the contacts that have been set on a resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/essentialcontacts.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const essentialcontacts = google.essentialcontacts('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await essentialcontacts.projects.contacts.list({
+     *     // Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of `next_page_token` in the response indicates that more results might be available. If not specified, the default page_size is 100.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. If present, retrieves the next batch of results from the preceding call to this method. `page_token` must be the value of `next_page_token` from the previous response. The values of other method parameters should be identical to those in the previous call.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent resource name. Format: organizations/{organization_id\}, folders/{folder_id\} or projects/{project_id\}
+     *     parent: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contacts": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2151,11 +3230,13 @@ export namespace essentialcontacts_v1 {
     list(
       params: Params$Resource$Projects$Contacts$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Contacts$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudEssentialcontactsV1ListContactsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudEssentialcontactsV1ListContactsResponse>
+    >;
     list(
       params: Params$Resource$Projects$Contacts$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2190,8 +3271,10 @@ export namespace essentialcontacts_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudEssentialcontactsV1ListContactsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudEssentialcontactsV1ListContactsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Contacts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2240,6 +3323,72 @@ export namespace essentialcontacts_v1 {
 
     /**
      * Updates a contact. Note: A contact's email address cannot be changed.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/essentialcontacts.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const essentialcontacts = google.essentialcontacts('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await essentialcontacts.projects.contacts.patch({
+     *     // Output only. The identifier for the contact. Format: {resource_type\}/{resource_id\}/contacts/{contact_id\}
+     *     name: 'projects/my-project/contacts/my-contact',
+     *     // Optional. The update mask applied to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "email": "my_email",
+     *       //   "languageTag": "my_languageTag",
+     *       //   "name": "my_name",
+     *       //   "notificationCategorySubscriptions": [],
+     *       //   "validateTime": "my_validateTime",
+     *       //   "validationState": "my_validationState"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "email": "my_email",
+     *   //   "languageTag": "my_languageTag",
+     *   //   "name": "my_name",
+     *   //   "notificationCategorySubscriptions": [],
+     *   //   "validateTime": "my_validateTime",
+     *   //   "validationState": "my_validationState"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2249,11 +3398,13 @@ export namespace essentialcontacts_v1 {
     patch(
       params: Params$Resource$Projects$Contacts$Patch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     patch(
       params?: Params$Resource$Projects$Contacts$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudEssentialcontactsV1Contact>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudEssentialcontactsV1Contact>
+    >;
     patch(
       params: Params$Resource$Projects$Contacts$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2288,8 +3439,10 @@ export namespace essentialcontacts_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudEssentialcontactsV1Contact>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudEssentialcontactsV1Contact>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Contacts$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2335,6 +3488,59 @@ export namespace essentialcontacts_v1 {
 
     /**
      * Allows a contact admin to send a test message to contact to verify that it has been configured correctly.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/essentialcontacts.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const essentialcontacts = google.essentialcontacts('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await essentialcontacts.projects.contacts.sendTestMessage({
+     *     // Required. The name of the resource to send the test message for. All contacts must either be set directly on this resource or inherited from another resource that is an ancestor of this one. Format: organizations/{organization_id\}, folders/{folder_id\} or projects/{project_id\}
+     *     resource: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "contacts": [],
+     *       //   "notificationCategory": "my_notificationCategory"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2344,11 +3550,11 @@ export namespace essentialcontacts_v1 {
     sendTestMessage(
       params: Params$Resource$Projects$Contacts$Sendtestmessage,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     sendTestMessage(
       params?: Params$Resource$Projects$Contacts$Sendtestmessage,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
     sendTestMessage(
       params: Params$Resource$Projects$Contacts$Sendtestmessage,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2381,8 +3587,8 @@ export namespace essentialcontacts_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Contacts$Sendtestmessage;
       let options = (optionsOrCallback || {}) as MethodOptions;

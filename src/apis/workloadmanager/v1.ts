@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -138,6 +138,135 @@ export namespace workloadmanager_v1 {
     parameters?: {[key: string]: string} | null;
   }
   /**
+   * The schema of agent status data.
+   */
+  export interface Schema$AgentStatus {
+    /**
+     * Output only. The name of the agent.
+     */
+    agentName?: string | null;
+    /**
+     * Output only. The available version of the agent in artifact registry.
+     */
+    availableVersion?: string | null;
+    /**
+     * Output only. Whether the agent has full access to Cloud APIs.
+     */
+    cloudApiAccessFullScopesGranted?: string | null;
+    /**
+     * Output only. The error message for the agent configuration if invalid.
+     */
+    configurationErrorMessage?: string | null;
+    /**
+     * Output only. The path to the agent configuration file.
+     */
+    configurationFilePath?: string | null;
+    /**
+     * Output only. Whether the agent configuration is valid.
+     */
+    configurationValid?: string | null;
+    /**
+     * Output only. The installed version of the agent on the host.
+     */
+    installedVersion?: string | null;
+    /**
+     * Output only. The kernel version of the system.
+     */
+    kernelVersion?: Schema$SapDiscoveryResourceInstancePropertiesKernelVersion;
+    /**
+     * Output only. Optional references to public documentation.
+     */
+    references?: Schema$AgentStatusReference[];
+    /**
+     * Output only. The services (process metrics, host metrics, etc.).
+     */
+    services?: Schema$AgentStatusServiceStatus[];
+    /**
+     * Output only. Whether the agent service is enabled in systemd.
+     */
+    systemdServiceEnabled?: string | null;
+    /**
+     * Output only. Whether the agent service is running in systemd.
+     */
+    systemdServiceRunning?: string | null;
+  }
+  /**
+   * The configuration value.
+   */
+  export interface Schema$AgentStatusConfigValue {
+    /**
+     * Output only. Whether the configuration value is the default value or overridden.
+     */
+    isDefault?: boolean | null;
+    /**
+     * Output only. The name of the configuration value.
+     */
+    name?: string | null;
+    /**
+     * Output only. The value of the configuration value.
+     */
+    value?: string | null;
+  }
+  /**
+   * The IAM permission status.
+   */
+  export interface Schema$AgentStatusIAMPermission {
+    /**
+     * Output only. Whether the permission is granted.
+     */
+    granted?: string | null;
+    /**
+     * Output only. The name of the permission.
+     */
+    name?: string | null;
+  }
+  /**
+   * The reference to public documentation.
+   */
+  export interface Schema$AgentStatusReference {
+    /**
+     * Output only. The name of the reference.
+     */
+    name?: string | null;
+    /**
+     * Output only. The URL of the reference.
+     */
+    url?: string | null;
+  }
+  /**
+   * The status of a service (process metrics, host metrics, etc.).
+   */
+  export interface Schema$AgentStatusServiceStatus {
+    /**
+     * Output only. The configuration values for the service.
+     */
+    configValues?: Schema$AgentStatusConfigValue[];
+    /**
+     * Output only. The error message for the service if it is not fully functional.
+     */
+    errorMessage?: string | null;
+    /**
+     * Output only. Whether the service is fully functional (all checks passed).
+     */
+    fullyFunctional?: string | null;
+    /**
+     * Output only. The permissions required for the service.
+     */
+    iamPermissions?: Schema$AgentStatusIAMPermission[];
+    /**
+     * Output only. The name of the service.
+     */
+    name?: string | null;
+    /**
+     * Output only. The state of the service (enabled or disabled in the configuration).
+     */
+    state?: string | null;
+    /**
+     * Output only. The message to display when the service state is unspecified.
+     */
+    unspecifiedStateMessage?: string | null;
+  }
+  /**
    * Backup properties.
    */
   export interface Schema$BackupProperties {
@@ -221,10 +350,11 @@ export namespace workloadmanager_v1 {
      * Output only. The health state of the component.
      */
     state?: string | null;
+    subComponentHealthes?: Schema$ComponentHealth[];
     /**
      * Sub component health.
      */
-    subComponentHealthes?: Schema$ComponentHealth[];
+    subComponentsHealth?: Schema$ComponentHealth[];
   }
   /**
    * Database Properties.
@@ -450,6 +580,10 @@ export namespace workloadmanager_v1 {
    */
   export interface Schema$Insight {
     /**
+     * The insights data for the agent status.
+     */
+    agentStatus?: Schema$AgentStatus;
+    /**
      * Required. The instance id where the insight is generated from
      */
     instanceId?: string | null;
@@ -475,23 +609,6 @@ export namespace workloadmanager_v1 {
     torsoValidation?: Schema$TorsoValidation;
   }
   /**
-   * a vm instance
-   */
-  export interface Schema$Instance {
-    /**
-     * Output only. name of the VM
-     */
-    name?: string | null;
-    /**
-     * Output only. The location of the VM
-     */
-    region?: string | null;
-    /**
-     * Output only. The state of the VM
-     */
-    status?: string | null;
-  }
-  /**
    * Instance Properties.
    */
   export interface Schema$InstanceProperties {
@@ -503,10 +620,6 @@ export namespace workloadmanager_v1 {
      * Optional. Instance machine type.
      */
     machineType?: string | null;
-    /**
-     * Optional. Instance role.
-     */
-    role?: string | null;
     /**
      * Optional. Instance roles.
      */
@@ -523,27 +636,6 @@ export namespace workloadmanager_v1 {
      * Optional. the next maintenance event on VM
      */
     upcomingMaintenanceEvent?: Schema$UpcomingMaintenanceEvent;
-  }
-  /**
-   * The database layer
-   */
-  export interface Schema$Layer {
-    /**
-     * the application layer
-     */
-    applicationType?: string | null;
-    /**
-     * Optional. the database layer
-     */
-    databaseType?: string | null;
-    /**
-     * Optional. instances in a layer
-     */
-    instances?: Schema$Instance[];
-    /**
-     * Output only. system identification of a layer
-     */
-    sid?: string | null;
   }
   /**
    * List discovered profile Response returns discovered profiles from agents
@@ -1173,6 +1265,10 @@ export namespace workloadmanager_v1 {
      */
     isDrSite?: boolean | null;
     /**
+     * Optional. The kernel version of the instance.
+     */
+    osKernelVersion?: Schema$SapDiscoveryResourceInstancePropertiesKernelVersion;
+    /**
      * Optional. A virtual hostname of the instance if it has one.
      */
     virtualHostname?: string | null;
@@ -1206,6 +1302,48 @@ export namespace workloadmanager_v1 {
      * Optional. Name of the disk.
      */
     name?: string | null;
+  }
+  /**
+   * KernelVersion encapsulates the kernel version data for the system.
+   */
+  export interface Schema$SapDiscoveryResourceInstancePropertiesKernelVersion {
+    /**
+     * Optional. Captures the distro-specific kernel version, the portion of the string following the first dash.
+     */
+    distroKernel?: Schema$SapDiscoveryResourceInstancePropertiesKernelVersionVersion;
+    /**
+     * Optional. Captures the OS-specific kernel version, the portion of the string up to the first dash.
+     */
+    osKernel?: Schema$SapDiscoveryResourceInstancePropertiesKernelVersionVersion;
+    /**
+     * Optional. Raw string of the kernel version.
+     */
+    rawString?: string | null;
+  }
+  /**
+   * Version is reported as Major.Minor.Build.Patch.
+   */
+  export interface Schema$SapDiscoveryResourceInstancePropertiesKernelVersionVersion {
+    /**
+     * Optional. The build version number.
+     */
+    build?: number | null;
+    /**
+     * Optional. The major version number.
+     */
+    major?: number | null;
+    /**
+     * Optional. The minor version number.
+     */
+    minor?: number | null;
+    /**
+     * Optional. The patch version number.
+     */
+    patch?: number | null;
+    /**
+     * Optional. A catch-all for any unparsed version components. This is in case the number of points in the version string exceeds the expected count of 4.
+     */
+    remainder?: string | null;
   }
   /**
    * A set of properties describing an SAP workload.
@@ -1501,23 +1639,11 @@ export namespace workloadmanager_v1 {
    */
   export interface Schema$WorkloadProfile {
     /**
-     * Optional. The application layer
-     */
-    application?: Schema$Layer;
-    /**
-     * Optional. The ascs layer
-     */
-    ascs?: Schema$Layer;
-    /**
-     * Optional. The database layer
-     */
-    database?: Schema$Layer;
-    /**
      * Optional. such as name, description, version. More example can be found in deployment
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Identifier. name of resource names have the form 'projects/{project_id\}/workloads/{workload_id\}'
+     * Identifier. name of resource names have the form 'projects/{project_id\}/locations/{location\}/workloadProfiles/{workload_id\}'
      */
     name?: string | null;
     /**
@@ -1528,10 +1654,6 @@ export namespace workloadmanager_v1 {
      * The sap workload content
      */
     sapWorkload?: Schema$SapWorkload;
-    /**
-     * Output only. [output only] the current state if a a workload
-     */
-    state?: string | null;
     /**
      * Required. The type of the workload
      */
@@ -1545,10 +1667,11 @@ export namespace workloadmanager_v1 {
      * The time when the health check was performed.
      */
     checkTime?: string | null;
+    componentHealthes?: Schema$ComponentHealth[];
     /**
      * The detailed condition reports of each component.
      */
-    componentHealthes?: Schema$ComponentHealth[];
+    componentsHealth?: Schema$ComponentHealth[];
     /**
      * Output only. The health state of the workload.
      */
@@ -1608,6 +1731,56 @@ export namespace workloadmanager_v1 {
 
     /**
      * Gets information about a location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/workloadmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const workloadmanager = google.workloadmanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await workloadmanager.projects.locations.get({
+     *     // Resource name for the location.
+     *     name: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "labels": {},
+     *   //   "locationId": "my_locationId",
+     *   //   "metadata": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1617,11 +1790,11 @@ export namespace workloadmanager_v1 {
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Location>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Location>>;
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1650,7 +1823,10 @@ export namespace workloadmanager_v1 {
       callback?:
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Location> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1694,6 +1870,61 @@ export namespace workloadmanager_v1 {
 
     /**
      * Lists information about the supported locations for this service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/workloadmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const workloadmanager = google.workloadmanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await workloadmanager.projects.locations.list({
+     *     // Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     *     extraLocationTypes: 'placeholder-value',
+     *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
+     *     filter: 'placeholder-value',
+     *     // The resource that owns the locations collection, if applicable.
+     *     name: 'projects/my-project',
+     *     // The maximum number of results to return. If not set, the service selects a default.
+     *     pageSize: 'placeholder-value',
+     *     // A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "locations": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1703,11 +1934,11 @@ export namespace workloadmanager_v1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListLocationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1740,8 +1971,8 @@ export namespace workloadmanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListLocationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1831,6 +2062,56 @@ export namespace workloadmanager_v1 {
 
     /**
      * Gets details of a discovered workload profile.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/workloadmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const workloadmanager = google.workloadmanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await workloadmanager.projects.locations.discoveredprofiles.get({
+     *     // Required. Name of the resource
+     *     name: 'projects/my-project/locations/my-location/discoveredprofiles/my-discoveredprofile',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "refreshedTime": "my_refreshedTime",
+     *   //   "sapWorkload": {},
+     *   //   "workloadType": "my_workloadType"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1840,11 +2121,11 @@ export namespace workloadmanager_v1 {
     get(
       params: Params$Resource$Projects$Locations$Discoveredprofiles$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Discoveredprofiles$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$WorkloadProfile>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$WorkloadProfile>>;
     get(
       params: Params$Resource$Projects$Locations$Discoveredprofiles$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1873,7 +2154,10 @@ export namespace workloadmanager_v1 {
       callback?:
         | BodyResponseCallback<Schema$WorkloadProfile>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$WorkloadProfile> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$WorkloadProfile>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Discoveredprofiles$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1918,6 +2202,60 @@ export namespace workloadmanager_v1 {
 
     /**
      * List discovered workload profiles
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/workloadmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const workloadmanager = google.workloadmanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await workloadmanager.projects.locations.discoveredprofiles.list({
+     *     // Optional. Filtering results
+     *     filter: 'placeholder-value',
+     *     // Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A token identifying a page of results the server should return.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Parent value for ListDiscoveredProfilesRequest
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": [],
+     *   //   "workloadProfiles": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1927,11 +2265,11 @@ export namespace workloadmanager_v1 {
     list(
       params: Params$Resource$Projects$Locations$Discoveredprofiles$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Discoveredprofiles$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListDiscoveredProfilesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListDiscoveredProfilesResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Discoveredprofiles$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1966,8 +2304,8 @@ export namespace workloadmanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListDiscoveredProfilesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListDiscoveredProfilesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Discoveredprofiles$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2051,6 +2389,56 @@ export namespace workloadmanager_v1 {
 
     /**
      * Get the health of a discovered workload profile.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/workloadmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const workloadmanager = google.workloadmanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await workloadmanager.projects.locations.discoveredprofiles.healthes.get({
+     *       // Required. The resource name
+     *       name: 'projects/my-project/locations/my-location/discoveredprofiles/my-discoveredprofile/healthes/my-healthe',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "checkTime": "my_checkTime",
+     *   //   "componentHealthes": [],
+     *   //   "componentsHealth": [],
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2060,11 +2448,11 @@ export namespace workloadmanager_v1 {
     get(
       params: Params$Resource$Projects$Locations$Discoveredprofiles$Healthes$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Discoveredprofiles$Healthes$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$WorkloadProfileHealth>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$WorkloadProfileHealth>>;
     get(
       params: Params$Resource$Projects$Locations$Discoveredprofiles$Healthes$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2097,8 +2485,8 @@ export namespace workloadmanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$WorkloadProfileHealth>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$WorkloadProfileHealth>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Discoveredprofiles$Healthes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2162,6 +2550,80 @@ export namespace workloadmanager_v1 {
 
     /**
      * Creates a new Evaluation in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/workloadmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const workloadmanager = google.workloadmanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await workloadmanager.projects.locations.evaluations.create({
+     *     // Required. Id of the requesting object
+     *     evaluationId: 'placeholder-value',
+     *     // Required. The resource prefix of the evaluation location using the form: `projects/{project_id\}/locations/{location_id\}`
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bigQueryDestination": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "customRulesBucket": "my_customRulesBucket",
+     *       //   "description": "my_description",
+     *       //   "evaluationType": "my_evaluationType",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "resourceFilter": {},
+     *       //   "resourceStatus": {},
+     *       //   "ruleNames": [],
+     *       //   "ruleVersions": [],
+     *       //   "schedule": "my_schedule",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2171,11 +2633,11 @@ export namespace workloadmanager_v1 {
     create(
       params: Params$Resource$Projects$Locations$Evaluations$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Projects$Locations$Evaluations$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     create(
       params: Params$Resource$Projects$Locations$Evaluations$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2204,7 +2666,10 @@ export namespace workloadmanager_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Evaluations$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2251,6 +2716,60 @@ export namespace workloadmanager_v1 {
 
     /**
      * Deletes a single Evaluation.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/workloadmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const workloadmanager = google.workloadmanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await workloadmanager.projects.locations.evaluations.delete({
+     *     // Optional. Followed the best practice from https://aip.dev/135#cascading-delete
+     *     force: 'placeholder-value',
+     *     // Required. Name of the resource
+     *     name: 'projects/my-project/locations/my-location/evaluations/my-evaluation',
+     *     // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2260,11 +2779,11 @@ export namespace workloadmanager_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Evaluations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Evaluations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Evaluations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2293,7 +2812,10 @@ export namespace workloadmanager_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Evaluations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2337,6 +2859,64 @@ export namespace workloadmanager_v1 {
 
     /**
      * Gets details of a single Evaluation.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/workloadmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const workloadmanager = google.workloadmanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await workloadmanager.projects.locations.evaluations.get({
+     *     // Required. Name of the resource
+     *     name: 'projects/my-project/locations/my-location/evaluations/my-evaluation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bigQueryDestination": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "customRulesBucket": "my_customRulesBucket",
+     *   //   "description": "my_description",
+     *   //   "evaluationType": "my_evaluationType",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "resourceFilter": {},
+     *   //   "resourceStatus": {},
+     *   //   "ruleNames": [],
+     *   //   "ruleVersions": [],
+     *   //   "schedule": "my_schedule",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2346,11 +2926,11 @@ export namespace workloadmanager_v1 {
     get(
       params: Params$Resource$Projects$Locations$Evaluations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Evaluations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Evaluation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Evaluation>>;
     get(
       params: Params$Resource$Projects$Locations$Evaluations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2379,7 +2959,10 @@ export namespace workloadmanager_v1 {
       callback?:
         | BodyResponseCallback<Schema$Evaluation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Evaluation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Evaluation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Evaluations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2423,6 +3006,62 @@ export namespace workloadmanager_v1 {
 
     /**
      * Lists Evaluations in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/workloadmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const workloadmanager = google.workloadmanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await workloadmanager.projects.locations.evaluations.list({
+     *     // Filter to be applied when listing the evaluation results.
+     *     filter: 'placeholder-value',
+     *     // Hint for how to order the results
+     *     orderBy: 'placeholder-value',
+     *     // Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results the server should return.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Parent value for ListEvaluationsRequest
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "evaluations": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2432,11 +3071,11 @@ export namespace workloadmanager_v1 {
     list(
       params: Params$Resource$Projects$Locations$Evaluations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Evaluations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListEvaluationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListEvaluationsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Evaluations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2469,8 +3108,8 @@ export namespace workloadmanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListEvaluationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListEvaluationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Evaluations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2600,6 +3239,59 @@ export namespace workloadmanager_v1 {
 
     /**
      * Deletes a single Execution.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/workloadmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const workloadmanager = google.workloadmanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await workloadmanager.projects.locations.evaluations.executions.delete({
+     *       // Required. Name of the resource
+     *       name: 'projects/my-project/locations/my-location/evaluations/my-evaluation/executions/my-execution',
+     *       // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *       requestId: 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2609,11 +3301,11 @@ export namespace workloadmanager_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Evaluations$Executions$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Evaluations$Executions$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     delete(
       params: Params$Resource$Projects$Locations$Evaluations$Executions$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2642,7 +3334,10 @@ export namespace workloadmanager_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Evaluations$Executions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2687,6 +3382,64 @@ export namespace workloadmanager_v1 {
 
     /**
      * Gets details of a single Execution.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/workloadmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const workloadmanager = google.workloadmanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await workloadmanager.projects.locations.evaluations.executions.get({
+     *       // Required. Name of the resource
+     *       name: 'projects/my-project/locations/my-location/evaluations/my-evaluation/executions/my-execution',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "endTime": "my_endTime",
+     *   //   "evaluationId": "my_evaluationId",
+     *   //   "externalDataSources": [],
+     *   //   "inventoryTime": "my_inventoryTime",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "notices": [],
+     *   //   "resultSummary": {},
+     *   //   "ruleResults": [],
+     *   //   "runType": "my_runType",
+     *   //   "startTime": "my_startTime",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2696,11 +3449,11 @@ export namespace workloadmanager_v1 {
     get(
       params: Params$Resource$Projects$Locations$Evaluations$Executions$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Evaluations$Executions$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Execution>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Execution>>;
     get(
       params: Params$Resource$Projects$Locations$Evaluations$Executions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2729,7 +3482,10 @@ export namespace workloadmanager_v1 {
       callback?:
         | BodyResponseCallback<Schema$Execution>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Execution> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Execution>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Evaluations$Executions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2774,6 +3530,64 @@ export namespace workloadmanager_v1 {
 
     /**
      * Lists Executions in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/workloadmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const workloadmanager = google.workloadmanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await workloadmanager.projects.locations.evaluations.executions.list({
+     *       // Filtering results
+     *       filter: 'placeholder-value',
+     *       // Field to sort by. See https://google.aip.dev/132#ordering for more details.
+     *       orderBy: 'placeholder-value',
+     *       // Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     *       pageSize: 'placeholder-value',
+     *       // A token identifying a page of results the server should return.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The resource prefix of the Execution using the form: 'projects/{project\}/locations/{location\}/evaluations/{evaluation\}'
+     *       parent:
+     *         'projects/my-project/locations/my-location/evaluations/my-evaluation',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "executions": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2783,11 +3597,11 @@ export namespace workloadmanager_v1 {
     list(
       params: Params$Resource$Projects$Locations$Evaluations$Executions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Evaluations$Executions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListExecutionsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListExecutionsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Evaluations$Executions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2820,8 +3634,8 @@ export namespace workloadmanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListExecutionsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListExecutionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Evaluations$Executions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2869,6 +3683,67 @@ export namespace workloadmanager_v1 {
 
     /**
      * Creates a new Execution in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/workloadmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const workloadmanager = google.workloadmanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await workloadmanager.projects.locations.evaluations.executions.run({
+     *       // Required. The resource name of the Execution using the form: 'projects/{project\}/locations/{location\}/evaluations/{evaluation\}/executions/{execution\}'
+     *       name: 'projects/my-project/locations/my-location/evaluations/my-evaluation',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "execution": {},
+     *         //   "executionId": "my_executionId",
+     *         //   "requestId": "my_requestId"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2878,11 +3753,11 @@ export namespace workloadmanager_v1 {
     run(
       params: Params$Resource$Projects$Locations$Evaluations$Executions$Run,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     run(
       params?: Params$Resource$Projects$Locations$Evaluations$Executions$Run,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     run(
       params: Params$Resource$Projects$Locations$Evaluations$Executions$Run,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2911,7 +3786,10 @@ export namespace workloadmanager_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Evaluations$Executions$Run;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3020,6 +3898,63 @@ export namespace workloadmanager_v1 {
 
     /**
      * Lists the result of a single evaluation.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/workloadmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const workloadmanager = google.workloadmanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await workloadmanager.projects.locations.evaluations.executions.results.list(
+     *       {
+     *         // Filtering results
+     *         filter: 'placeholder-value',
+     *         // Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     *         pageSize: 'placeholder-value',
+     *         // A token identifying a page of results the server should return.
+     *         pageToken: 'placeholder-value',
+     *         // Required. The execution results. Format: {parent\}/evaluations/x/executions/x/results
+     *         parent:
+     *           'projects/my-project/locations/my-location/evaluations/my-evaluation/executions/my-execution',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "executionResults": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3029,11 +3964,11 @@ export namespace workloadmanager_v1 {
     list(
       params: Params$Resource$Projects$Locations$Evaluations$Executions$Results$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Evaluations$Executions$Results$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListExecutionResultsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListExecutionResultsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Evaluations$Executions$Results$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3068,8 +4003,8 @@ export namespace workloadmanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListExecutionResultsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListExecutionResultsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Evaluations$Executions$Results$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3146,6 +4081,67 @@ export namespace workloadmanager_v1 {
 
     /**
      * List all scanned resources for a single Execution.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/workloadmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const workloadmanager = google.workloadmanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await workloadmanager.projects.locations.evaluations.executions.scannedResources.list(
+     *       {
+     *         // Filtering results
+     *         filter: 'placeholder-value',
+     *         // Field to sort by. See https://google.aip.dev/132#ordering for more details.
+     *         orderBy: 'placeholder-value',
+     *         // Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     *         pageSize: 'placeholder-value',
+     *         // A token identifying a page of results the server should return.
+     *         pageToken: 'placeholder-value',
+     *         // Required. parent for ListScannedResourcesRequest
+     *         parent:
+     *           'projects/my-project/locations/my-location/evaluations/my-evaluation/executions/my-execution',
+     *         // rule name
+     *         rule: 'placeholder-value',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "scannedResources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3155,11 +4151,11 @@ export namespace workloadmanager_v1 {
     list(
       params: Params$Resource$Projects$Locations$Evaluations$Executions$Scannedresources$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Evaluations$Executions$Scannedresources$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListScannedResourcesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListScannedResourcesResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Evaluations$Executions$Scannedresources$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3194,8 +4190,8 @@ export namespace workloadmanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListScannedResourcesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListScannedResourcesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Evaluations$Executions$Scannedresources$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3280,6 +4276,52 @@ export namespace workloadmanager_v1 {
 
     /**
      * Delete the data insights from workload manager data warehouse.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/workloadmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const workloadmanager = google.workloadmanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await workloadmanager.projects.locations.insights.delete({
+     *     // Required. The system id of the SAP system resource to delete. Formatted as projects/{project\}/locations/{location\}/sapSystems/{sap_system_id\}
+     *     name: 'projects/my-project/locations/my-location/insights/my-insight',
+     *     // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3289,11 +4331,11 @@ export namespace workloadmanager_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Insights$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Insights$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Locations$Insights$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3322,7 +4364,10 @@ export namespace workloadmanager_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Insights$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3366,6 +4411,60 @@ export namespace workloadmanager_v1 {
 
     /**
      * Write the data insights to workload manager data warehouse.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/workloadmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const workloadmanager = google.workloadmanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await workloadmanager.projects.locations.insights.writeInsight({
+     *     // Required. The GCP location. The format is: projects/{project\}/locations/{location\}.
+     *     location: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "agentVersion": "my_agentVersion",
+     *       //   "insight": {},
+     *       //   "requestId": "my_requestId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3375,11 +4474,11 @@ export namespace workloadmanager_v1 {
     writeInsight(
       params: Params$Resource$Projects$Locations$Insights$Writeinsight,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     writeInsight(
       params?: Params$Resource$Projects$Locations$Insights$Writeinsight,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$WriteInsightResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$WriteInsightResponse>>;
     writeInsight(
       params: Params$Resource$Projects$Locations$Insights$Writeinsight,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3414,8 +4513,8 @@ export namespace workloadmanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$WriteInsightResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$WriteInsightResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Insights$Writeinsight;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3493,6 +4592,56 @@ export namespace workloadmanager_v1 {
 
     /**
      * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/workloadmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const workloadmanager = google.workloadmanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await workloadmanager.projects.locations.operations.cancel({
+     *     // The name of the operation resource to be cancelled.
+     *     name: 'projects/my-project/locations/my-location/operations/my-operation',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3502,11 +4651,11 @@ export namespace workloadmanager_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     cancel(
       params?: Params$Resource$Projects$Locations$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3535,7 +4684,10 @@ export namespace workloadmanager_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3579,6 +4731,50 @@ export namespace workloadmanager_v1 {
 
     /**
      * Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/workloadmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const workloadmanager = google.workloadmanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await workloadmanager.projects.locations.operations.delete({
+     *     // The name of the operation resource to be deleted.
+     *     name: 'projects/my-project/locations/my-location/operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3588,11 +4784,11 @@ export namespace workloadmanager_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Projects$Locations$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3621,7 +4817,10 @@ export namespace workloadmanager_v1 {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3665,6 +4864,56 @@ export namespace workloadmanager_v1 {
 
     /**
      * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/workloadmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const workloadmanager = google.workloadmanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await workloadmanager.projects.locations.operations.get({
+     *     // The name of the operation resource.
+     *     name: 'projects/my-project/locations/my-location/operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3674,11 +4923,11 @@ export namespace workloadmanager_v1 {
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Projects$Locations$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3707,7 +4956,10 @@ export namespace workloadmanager_v1 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3751,6 +5003,59 @@ export namespace workloadmanager_v1 {
 
     /**
      * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/workloadmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const workloadmanager = google.workloadmanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await workloadmanager.projects.locations.operations.list({
+     *     // The standard list filter.
+     *     filter: 'placeholder-value',
+     *     // The name of the operation's parent resource.
+     *     name: 'projects/my-project/locations/my-location',
+     *     // The standard list page size.
+     *     pageSize: 'placeholder-value',
+     *     // The standard list page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "operations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3760,11 +5065,11 @@ export namespace workloadmanager_v1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListOperationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3797,8 +5102,8 @@ export namespace workloadmanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListOperationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3898,6 +5203,63 @@ export namespace workloadmanager_v1 {
 
     /**
      * Lists rules in a given project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/workloadmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const workloadmanager = google.workloadmanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await workloadmanager.projects.locations.rules.list({
+     *     // The Cloud Storage bucket name for custom rules.
+     *     customRulesBucket: 'placeholder-value',
+     *     // Optional. The evaluation type of the rules will be applied to. The Cloud Storage bucket name for custom rules.
+     *     evaluationType: 'placeholder-value',
+     *     // Filter based on primary_category, secondary_category
+     *     filter: 'placeholder-value',
+     *     // Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results the server should return.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The [project] on which to execute the request. The format is: projects/{project_id\}/locations/{location\} Currently, the pre-defined rules are global available to all projects and all regions
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "rules": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3907,11 +5269,11 @@ export namespace workloadmanager_v1 {
     list(
       params: Params$Resource$Projects$Locations$Rules$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Projects$Locations$Rules$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListRulesResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListRulesResponse>>;
     list(
       params: Params$Resource$Projects$Locations$Rules$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3942,8 +5304,8 @@ export namespace workloadmanager_v1 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListRulesResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListRulesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Rules$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

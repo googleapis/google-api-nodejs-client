@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -1739,6 +1739,69 @@ export namespace drive_v3 {
 
     /**
      * Gets information about the user, the user's Drive, and system capabilities. For more information, see [Return user info](https://developers.google.com/workspace/drive/api/guides/user-info). Required: The `fields` parameter must be set. To return the exact fields you need, see [Return specific fields](https://developers.google.com/workspace/drive/api/guides/fields-parameter).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.metadata',
+     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
+     *       'https://www.googleapis.com/auth/drive.photos.readonly',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.about.get({});
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appInstalled": false,
+     *   //   "canCreateDrives": false,
+     *   //   "canCreateTeamDrives": false,
+     *   //   "driveThemes": [],
+     *   //   "exportFormats": {},
+     *   //   "folderColorPalette": [],
+     *   //   "importFormats": {},
+     *   //   "kind": "my_kind",
+     *   //   "maxImportSizes": {},
+     *   //   "maxUploadSize": "my_maxUploadSize",
+     *   //   "storageQuota": {},
+     *   //   "teamDriveThemes": [],
+     *   //   "user": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1748,11 +1811,11 @@ export namespace drive_v3 {
     get(
       params: Params$Resource$About$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$About$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$About>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$About>>;
     get(
       params: Params$Resource$About$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1781,7 +1844,10 @@ export namespace drive_v3 {
       callback?:
         | BodyResponseCallback<Schema$About>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$About> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$About>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$About$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1832,6 +1898,66 @@ export namespace drive_v3 {
 
     /**
      * Retrieves an AccessProposal by ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.metadata',
+     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.accessproposals.get({
+     *     // Required. The id of the item the request is on.
+     *     fileId: 'placeholder-value',
+     *     // Required. The id of the access proposal to resolve.
+     *     proposalId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "fileId": "my_fileId",
+     *   //   "proposalId": "my_proposalId",
+     *   //   "recipientEmailAddress": "my_recipientEmailAddress",
+     *   //   "requestMessage": "my_requestMessage",
+     *   //   "requesterEmailAddress": "my_requesterEmailAddress",
+     *   //   "rolesAndViews": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1841,11 +1967,11 @@ export namespace drive_v3 {
     get(
       params: Params$Resource$Accessproposals$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Accessproposals$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AccessProposal>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AccessProposal>>;
     get(
       params: Params$Resource$Accessproposals$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1874,7 +2000,10 @@ export namespace drive_v3 {
       callback?:
         | BodyResponseCallback<Schema$AccessProposal>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AccessProposal> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$AccessProposal>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accessproposals$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1919,6 +2048,63 @@ export namespace drive_v3 {
 
     /**
      * List the AccessProposals on a file. Note: Only approvers are able to list AccessProposals on a file. If the user is not an approver, returns a 403.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.metadata',
+     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.accessproposals.list({
+     *     // Required. The id of the item the request is on.
+     *     fileId: 'placeholder-value',
+     *     // Optional. The number of results per page
+     *     pageSize: 'placeholder-value',
+     *     // Optional. The continuation token on the list of access requests.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accessProposals": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1928,11 +2114,11 @@ export namespace drive_v3 {
     list(
       params: Params$Resource$Accessproposals$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Accessproposals$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAccessProposalsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListAccessProposalsResponse>>;
     list(
       params: Params$Resource$Accessproposals$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1967,8 +2153,8 @@ export namespace drive_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListAccessProposalsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListAccessProposalsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accessproposals$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2014,6 +2200,63 @@ export namespace drive_v3 {
 
     /**
      * Used to approve or deny an Access Proposal.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.accessproposals.resolve({
+     *     // Required. The id of the item the request is on.
+     *     fileId: 'placeholder-value',
+     *     // Required. The id of the access proposal to resolve.
+     *     proposalId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "action": "my_action",
+     *       //   "role": [],
+     *       //   "sendNotification": false,
+     *       //   "view": "my_view"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2023,11 +2266,11 @@ export namespace drive_v3 {
     resolve(
       params: Params$Resource$Accessproposals$Resolve,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     resolve(
       params?: Params$Resource$Accessproposals$Resolve,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     resolve(
       params: Params$Resource$Accessproposals$Resolve,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2054,7 +2297,10 @@ export namespace drive_v3 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accessproposals$Resolve;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2150,6 +2396,83 @@ export namespace drive_v3 {
 
     /**
      * Gets a specific app. For more information, see [Return user info](https://developers.google.com/workspace/drive/api/guides/user-info).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/drive.apps.readonly',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.metadata',
+     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.apps.get({
+     *     // The ID of the app.
+     *     appId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "authorized": false,
+     *   //   "createInFolderTemplate": "my_createInFolderTemplate",
+     *   //   "createUrl": "my_createUrl",
+     *   //   "hasDriveWideScope": false,
+     *   //   "icons": [],
+     *   //   "id": "my_id",
+     *   //   "installed": false,
+     *   //   "kind": "my_kind",
+     *   //   "longDescription": "my_longDescription",
+     *   //   "name": "my_name",
+     *   //   "objectType": "my_objectType",
+     *   //   "openUrlTemplate": "my_openUrlTemplate",
+     *   //   "primaryFileExtensions": [],
+     *   //   "primaryMimeTypes": [],
+     *   //   "productId": "my_productId",
+     *   //   "productUrl": "my_productUrl",
+     *   //   "secondaryFileExtensions": [],
+     *   //   "secondaryMimeTypes": [],
+     *   //   "shortDescription": "my_shortDescription",
+     *   //   "supportsCreate": false,
+     *   //   "supportsImport": false,
+     *   //   "supportsMultiOpen": false,
+     *   //   "supportsOfflineCreate": false,
+     *   //   "useByDefault": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2159,11 +2482,11 @@ export namespace drive_v3 {
     get(
       params: Params$Resource$Apps$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Apps$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$App>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$App>>;
     get(
       params: Params$Resource$Apps$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2192,7 +2515,10 @@ export namespace drive_v3 {
       callback?:
         | BodyResponseCallback<Schema$App>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$App> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$App>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Apps$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2237,6 +2563,59 @@ export namespace drive_v3 {
 
     /**
      * Lists a user's installed apps. For more information, see [Return user info](https://developers.google.com/workspace/drive/api/guides/user-info).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/drive.apps.readonly'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.apps.list({
+     *     // A comma-separated list of file extensions to limit returned results. All results within the given app query scope which can open any of the given file extensions are included in the response. If `appFilterMimeTypes` are provided as well, the result is a union of the two resulting app lists.
+     *     appFilterExtensions: 'placeholder-value',
+     *     // A comma-separated list of file extensions to limit returned results. All results within the given app query scope which can open any of the given MIME types will be included in the response. If `appFilterExtensions` are provided as well, the result is a union of the two resulting app lists.
+     *     appFilterMimeTypes: 'placeholder-value',
+     *     // A language or locale code, as defined by BCP 47, with some extensions from Unicode's LDML format (http://www.unicode.org/reports/tr35/).
+     *     languageCode: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "defaultAppIds": [],
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2246,11 +2625,11 @@ export namespace drive_v3 {
     list(
       params: Params$Resource$Apps$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Apps$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$AppList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AppList>>;
     list(
       params: Params$Resource$Apps$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2279,7 +2658,10 @@ export namespace drive_v3 {
       callback?:
         | BodyResponseCallback<Schema$AppList>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AppList> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$AppList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Apps$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2349,6 +2731,68 @@ export namespace drive_v3 {
 
     /**
      * Gets the starting pageToken for listing future changes. For more information, see [Retrieve changes](https://developers.google.com/workspace/drive/api/guides/manage-changes).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.meet.readonly',
+     *       'https://www.googleapis.com/auth/drive.metadata',
+     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
+     *       'https://www.googleapis.com/auth/drive.photos.readonly',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.changes.getStartPageToken({
+     *     // The ID of the shared drive for which the starting pageToken for listing future changes from that shared drive will be returned.
+     *     driveId: 'placeholder-value',
+     *     // Whether the requesting application supports both My Drives and shared drives.
+     *     supportsAllDrives: 'placeholder-value',
+     *     // Deprecated: Use `supportsAllDrives` instead.
+     *     supportsTeamDrives: 'placeholder-value',
+     *     // Deprecated: Use `driveId` instead.
+     *     teamDriveId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "startPageToken": "my_startPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2358,11 +2802,11 @@ export namespace drive_v3 {
     getStartPageToken(
       params: Params$Resource$Changes$Getstartpagetoken,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getStartPageToken(
       params?: Params$Resource$Changes$Getstartpagetoken,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$StartPageToken>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$StartPageToken>>;
     getStartPageToken(
       params: Params$Resource$Changes$Getstartpagetoken,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2393,7 +2837,10 @@ export namespace drive_v3 {
       callback?:
         | BodyResponseCallback<Schema$StartPageToken>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$StartPageToken> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$StartPageToken>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Changes$Getstartpagetoken;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2439,6 +2886,90 @@ export namespace drive_v3 {
 
     /**
      * Lists the changes for a user or shared drive. For more information, see [Retrieve changes](https://developers.google.com/workspace/drive/api/guides/manage-changes).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.meet.readonly',
+     *       'https://www.googleapis.com/auth/drive.metadata',
+     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
+     *       'https://www.googleapis.com/auth/drive.photos.readonly',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.changes.list({
+     *     // The shared drive from which changes will be returned. If specified the change IDs will be reflective of the shared drive; use the combined drive ID and change ID as an identifier.
+     *     driveId: 'placeholder-value',
+     *     // Whether changes should include the file resource if the file is still accessible by the user at the time of the request, even when a file was removed from the list of changes and there will be no further change entries for this file.
+     *     includeCorpusRemovals: 'placeholder-value',
+     *     // Whether both My Drive and shared drive items should be included in results.
+     *     includeItemsFromAllDrives: 'placeholder-value',
+     *     // A comma-separated list of IDs of labels to include in the `labelInfo` part of the response.
+     *     includeLabels: 'placeholder-value',
+     *     // Specifies which additional view's permissions to include in the response. Only 'published' is supported.
+     *     includePermissionsForView: 'placeholder-value',
+     *     // Whether to include changes indicating that items have been removed from the list of changes, for example by deletion or loss of access.
+     *     includeRemoved: 'placeholder-value',
+     *     // Deprecated: Use `includeItemsFromAllDrives` instead.
+     *     includeTeamDriveItems: 'placeholder-value',
+     *     // The maximum number of changes to return per page.
+     *     pageSize: 'placeholder-value',
+     *     // The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response or to the response from the getStartPageToken method.
+     *     pageToken: 'placeholder-value',
+     *     // Whether to restrict the results to changes inside the My Drive hierarchy. This omits changes to files such as those in the Application Data folder or shared files which have not been added to My Drive.
+     *     restrictToMyDrive: 'placeholder-value',
+     *     // A comma-separated list of spaces to query within the corpora. Supported values are 'drive' and 'appDataFolder'.
+     *     spaces: 'placeholder-value',
+     *     // Whether the requesting application supports both My Drives and shared drives.
+     *     supportsAllDrives: 'placeholder-value',
+     *     // Deprecated: Use `supportsAllDrives` instead.
+     *     supportsTeamDrives: 'placeholder-value',
+     *     // Deprecated: Use `driveId` instead.
+     *     teamDriveId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "changes": [],
+     *   //   "kind": "my_kind",
+     *   //   "newStartPageToken": "my_newStartPageToken",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2448,11 +2979,11 @@ export namespace drive_v3 {
     list(
       params: Params$Resource$Changes$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Changes$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ChangeList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ChangeList>>;
     list(
       params: Params$Resource$Changes$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2481,7 +3012,10 @@ export namespace drive_v3 {
       callback?:
         | BodyResponseCallback<Schema$ChangeList>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ChangeList> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ChangeList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Changes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2523,6 +3057,113 @@ export namespace drive_v3 {
 
     /**
      * Subscribes to changes for a user. For more information, see [Notifications for resource changes](https://developers.google.com/workspace/drive/api/guides/push).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.meet.readonly',
+     *       'https://www.googleapis.com/auth/drive.metadata',
+     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
+     *       'https://www.googleapis.com/auth/drive.photos.readonly',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.changes.watch({
+     *     // The shared drive from which changes will be returned. If specified the change IDs will be reflective of the shared drive; use the combined drive ID and change ID as an identifier.
+     *     driveId: 'placeholder-value',
+     *     // Whether changes should include the file resource if the file is still accessible by the user at the time of the request, even when a file was removed from the list of changes and there will be no further change entries for this file.
+     *     includeCorpusRemovals: 'placeholder-value',
+     *     // Whether both My Drive and shared drive items should be included in results.
+     *     includeItemsFromAllDrives: 'placeholder-value',
+     *     // A comma-separated list of IDs of labels to include in the `labelInfo` part of the response.
+     *     includeLabels: 'placeholder-value',
+     *     // Specifies which additional view's permissions to include in the response. Only 'published' is supported.
+     *     includePermissionsForView: 'placeholder-value',
+     *     // Whether to include changes indicating that items have been removed from the list of changes, for example by deletion or loss of access.
+     *     includeRemoved: 'placeholder-value',
+     *     // Deprecated: Use `includeItemsFromAllDrives` instead.
+     *     includeTeamDriveItems: 'placeholder-value',
+     *     // The maximum number of changes to return per page.
+     *     pageSize: 'placeholder-value',
+     *     // The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response or to the response from the getStartPageToken method.
+     *     pageToken: 'placeholder-value',
+     *     // Whether to restrict the results to changes inside the My Drive hierarchy. This omits changes to files such as those in the Application Data folder or shared files which have not been added to My Drive.
+     *     restrictToMyDrive: 'placeholder-value',
+     *     // A comma-separated list of spaces to query within the corpora. Supported values are 'drive' and 'appDataFolder'.
+     *     spaces: 'placeholder-value',
+     *     // Whether the requesting application supports both My Drives and shared drives.
+     *     supportsAllDrives: 'placeholder-value',
+     *     // Deprecated: Use `supportsAllDrives` instead.
+     *     supportsTeamDrives: 'placeholder-value',
+     *     // Deprecated: Use `driveId` instead.
+     *     teamDriveId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "address": "my_address",
+     *       //   "expiration": "my_expiration",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "params": {},
+     *       //   "payload": false,
+     *       //   "resourceId": "my_resourceId",
+     *       //   "resourceUri": "my_resourceUri",
+     *       //   "token": "my_token",
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "address": "my_address",
+     *   //   "expiration": "my_expiration",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "params": {},
+     *   //   "payload": false,
+     *   //   "resourceId": "my_resourceId",
+     *   //   "resourceUri": "my_resourceUri",
+     *   //   "token": "my_token",
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2532,11 +3173,11 @@ export namespace drive_v3 {
     watch(
       params: Params$Resource$Changes$Watch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     watch(
       params?: Params$Resource$Changes$Watch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Channel>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Channel>>;
     watch(
       params: Params$Resource$Changes$Watch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2565,7 +3206,10 @@ export namespace drive_v3 {
       callback?:
         | BodyResponseCallback<Schema$Channel>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Channel> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Channel>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Changes$Watch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2758,6 +3402,70 @@ export namespace drive_v3 {
 
     /**
      * Stops watching resources through this channel. For more information, see [Notifications for resource changes](https://developers.google.com/workspace/drive/api/guides/push).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.meet.readonly',
+     *       'https://www.googleapis.com/auth/drive.metadata',
+     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
+     *       'https://www.googleapis.com/auth/drive.photos.readonly',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.channels.stop({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "address": "my_address",
+     *       //   "expiration": "my_expiration",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "params": {},
+     *       //   "payload": false,
+     *       //   "resourceId": "my_resourceId",
+     *       //   "resourceUri": "my_resourceUri",
+     *       //   "token": "my_token",
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2767,11 +3475,11 @@ export namespace drive_v3 {
     stop(
       params: Params$Resource$Channels$Stop,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     stop(
       params?: Params$Resource$Channels$Stop,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     stop(
       params: Params$Resource$Channels$Stop,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2798,7 +3506,10 @@ export namespace drive_v3 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Channels$Stop;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2857,6 +3568,85 @@ export namespace drive_v3 {
 
     /**
      * Creates a comment on a file. For more information, see [Manage comments and replies](https://developers.google.com/workspace/drive/api/guides/manage-comments). Required: The `fields` parameter must be set. To return the exact fields you need, see [Return specific fields](https://developers.google.com/workspace/drive/api/guides/fields-parameter).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.comments.create({
+     *     // The ID of the file.
+     *     fileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "anchor": "my_anchor",
+     *       //   "author": {},
+     *       //   "content": "my_content",
+     *       //   "createdTime": "my_createdTime",
+     *       //   "deleted": false,
+     *       //   "htmlContent": "my_htmlContent",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "modifiedTime": "my_modifiedTime",
+     *       //   "quotedFileContent": {},
+     *       //   "replies": [],
+     *       //   "resolved": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "anchor": "my_anchor",
+     *   //   "author": {},
+     *   //   "content": "my_content",
+     *   //   "createdTime": "my_createdTime",
+     *   //   "deleted": false,
+     *   //   "htmlContent": "my_htmlContent",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "modifiedTime": "my_modifiedTime",
+     *   //   "quotedFileContent": {},
+     *   //   "replies": [],
+     *   //   "resolved": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2866,11 +3656,11 @@ export namespace drive_v3 {
     create(
       params: Params$Resource$Comments$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Comments$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Comment>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Comment>>;
     create(
       params: Params$Resource$Comments$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2899,7 +3689,10 @@ export namespace drive_v3 {
       callback?:
         | BodyResponseCallback<Schema$Comment>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Comment> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Comment>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2943,7 +3736,53 @@ export namespace drive_v3 {
     }
 
     /**
-     * Deletes a comment. For more information, see [Manage comments and replies](https://developers.google.com/workspace/drive/api/guides/manage-comments). Required: The `fields` parameter must be set. To return the exact fields you need, see [Return specific fields](https://developers.google.com/workspace/drive/api/guides/fields-parameter).
+     * Deletes a comment. For more information, see [Manage comments and replies](https://developers.google.com/workspace/drive/api/guides/manage-comments).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.comments.delete({
+     *     // The ID of the comment.
+     *     commentId: 'placeholder-value',
+     *     // The ID of the file.
+     *     fileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2953,11 +3792,11 @@ export namespace drive_v3 {
     delete(
       params: Params$Resource$Comments$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Comments$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Comments$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2984,7 +3823,10 @@ export namespace drive_v3 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3028,6 +3870,72 @@ export namespace drive_v3 {
 
     /**
      * Gets a comment by ID. For more information, see [Manage comments and replies](https://developers.google.com/workspace/drive/api/guides/manage-comments). Required: The `fields` parameter must be set. To return the exact fields you need, see [Return specific fields](https://developers.google.com/workspace/drive/api/guides/fields-parameter).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.meet.readonly',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.comments.get({
+     *     // The ID of the comment.
+     *     commentId: 'placeholder-value',
+     *     // The ID of the file.
+     *     fileId: 'placeholder-value',
+     *     // Whether to return deleted comments. Deleted comments will not include their original content.
+     *     includeDeleted: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "anchor": "my_anchor",
+     *   //   "author": {},
+     *   //   "content": "my_content",
+     *   //   "createdTime": "my_createdTime",
+     *   //   "deleted": false,
+     *   //   "htmlContent": "my_htmlContent",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "modifiedTime": "my_modifiedTime",
+     *   //   "quotedFileContent": {},
+     *   //   "replies": [],
+     *   //   "resolved": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3037,11 +3945,11 @@ export namespace drive_v3 {
     get(
       params: Params$Resource$Comments$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Comments$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Comment>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Comment>>;
     get(
       params: Params$Resource$Comments$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3070,7 +3978,10 @@ export namespace drive_v3 {
       callback?:
         | BodyResponseCallback<Schema$Comment>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Comment> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Comment>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3114,6 +4025,67 @@ export namespace drive_v3 {
 
     /**
      * Lists a file's comments. For more information, see [Manage comments and replies](https://developers.google.com/workspace/drive/api/guides/manage-comments). Required: The `fields` parameter must be set. To return the exact fields you need, see [Return specific fields](https://developers.google.com/workspace/drive/api/guides/fields-parameter).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.meet.readonly',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.comments.list({
+     *     // The ID of the file.
+     *     fileId: 'placeholder-value',
+     *     // Whether to include deleted comments. Deleted comments will not include their original content.
+     *     includeDeleted: 'placeholder-value',
+     *     // The maximum number of comments to return per page.
+     *     pageSize: 'placeholder-value',
+     *     // The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response.
+     *     pageToken: 'placeholder-value',
+     *     // The minimum value of 'modifiedTime' for the result comments (RFC 3339 date-time).
+     *     startModifiedTime: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "comments": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3123,11 +4095,11 @@ export namespace drive_v3 {
     list(
       params: Params$Resource$Comments$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Comments$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CommentList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CommentList>>;
     list(
       params: Params$Resource$Comments$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3156,7 +4128,10 @@ export namespace drive_v3 {
       callback?:
         | BodyResponseCallback<Schema$CommentList>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CommentList> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$CommentList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3201,6 +4176,87 @@ export namespace drive_v3 {
 
     /**
      * Updates a comment with patch semantics. For more information, see [Manage comments and replies](https://developers.google.com/workspace/drive/api/guides/manage-comments). Required: The `fields` parameter must be set. To return the exact fields you need, see [Return specific fields](https://developers.google.com/workspace/drive/api/guides/fields-parameter).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.comments.update({
+     *     // The ID of the comment.
+     *     commentId: 'placeholder-value',
+     *     // The ID of the file.
+     *     fileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "anchor": "my_anchor",
+     *       //   "author": {},
+     *       //   "content": "my_content",
+     *       //   "createdTime": "my_createdTime",
+     *       //   "deleted": false,
+     *       //   "htmlContent": "my_htmlContent",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "modifiedTime": "my_modifiedTime",
+     *       //   "quotedFileContent": {},
+     *       //   "replies": [],
+     *       //   "resolved": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "anchor": "my_anchor",
+     *   //   "author": {},
+     *   //   "content": "my_content",
+     *   //   "createdTime": "my_createdTime",
+     *   //   "deleted": false,
+     *   //   "htmlContent": "my_htmlContent",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "modifiedTime": "my_modifiedTime",
+     *   //   "quotedFileContent": {},
+     *   //   "replies": [],
+     *   //   "resolved": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3210,11 +4266,11 @@ export namespace drive_v3 {
     update(
       params: Params$Resource$Comments$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Comments$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Comment>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Comment>>;
     update(
       params: Params$Resource$Comments$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3243,7 +4299,10 @@ export namespace drive_v3 {
       callback?:
         | BodyResponseCallback<Schema$Comment>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Comment> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Comment>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3367,6 +4426,82 @@ export namespace drive_v3 {
 
     /**
      * Creates a shared drive.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/drive'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.drives.create({
+     *     // Required. An ID, such as a random UUID, which uniquely identifies this user's request for idempotent creation of a shared drive. A repeated request by the same user and with the same request ID will avoid creating duplicates by attempting to create the same shared drive. If the shared drive already exists a 409 error will be returned.
+     *     requestId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "backgroundImageFile": {},
+     *       //   "backgroundImageLink": "my_backgroundImageLink",
+     *       //   "capabilities": {},
+     *       //   "colorRgb": "my_colorRgb",
+     *       //   "createdTime": "my_createdTime",
+     *       //   "hidden": false,
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "orgUnitId": "my_orgUnitId",
+     *       //   "restrictions": {},
+     *       //   "themeId": "my_themeId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "backgroundImageFile": {},
+     *   //   "backgroundImageLink": "my_backgroundImageLink",
+     *   //   "capabilities": {},
+     *   //   "colorRgb": "my_colorRgb",
+     *   //   "createdTime": "my_createdTime",
+     *   //   "hidden": false,
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "orgUnitId": "my_orgUnitId",
+     *   //   "restrictions": {},
+     *   //   "themeId": "my_themeId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3376,11 +4511,11 @@ export namespace drive_v3 {
     create(
       params: Params$Resource$Drives$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Drives$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Drive>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Drive>>;
     create(
       params: Params$Resource$Drives$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3409,7 +4544,10 @@ export namespace drive_v3 {
       callback?:
         | BodyResponseCallback<Schema$Drive>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Drive> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Drive>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Drives$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3451,6 +4589,51 @@ export namespace drive_v3 {
 
     /**
      * Permanently deletes a shared drive for which the user is an `organizer`. The shared drive cannot contain any untrashed items.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/drive'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.drives.delete({
+     *     // Whether any items inside the shared drive should also be deleted. This option is only supported when `useDomainAdminAccess` is also set to `true`.
+     *     allowItemDeletion: 'placeholder-value',
+     *     // The ID of the shared drive.
+     *     driveId: 'placeholder-value',
+     *     // Issue the request as a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the shared drive belongs.
+     *     useDomainAdminAccess: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3460,11 +4643,11 @@ export namespace drive_v3 {
     delete(
       params: Params$Resource$Drives$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Drives$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Drives$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3491,7 +4674,10 @@ export namespace drive_v3 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Drives$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3536,6 +4722,68 @@ export namespace drive_v3 {
 
     /**
      * Gets a shared drive's metadata by ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.drives.get({
+     *     // The ID of the shared drive.
+     *     driveId: 'placeholder-value',
+     *     // Issue the request as a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the shared drive belongs.
+     *     useDomainAdminAccess: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "backgroundImageFile": {},
+     *   //   "backgroundImageLink": "my_backgroundImageLink",
+     *   //   "capabilities": {},
+     *   //   "colorRgb": "my_colorRgb",
+     *   //   "createdTime": "my_createdTime",
+     *   //   "hidden": false,
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "orgUnitId": "my_orgUnitId",
+     *   //   "restrictions": {},
+     *   //   "themeId": "my_themeId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3545,11 +4793,11 @@ export namespace drive_v3 {
     get(
       params: Params$Resource$Drives$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Drives$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Drive>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Drive>>;
     get(
       params: Params$Resource$Drives$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3578,7 +4826,10 @@ export namespace drive_v3 {
       callback?:
         | BodyResponseCallback<Schema$Drive>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Drive> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Drive>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Drives$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3623,6 +4874,63 @@ export namespace drive_v3 {
 
     /**
      * Hides a shared drive from the default view.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/drive'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.drives.hide({
+     *     // The ID of the shared drive.
+     *     driveId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "backgroundImageFile": {},
+     *   //   "backgroundImageLink": "my_backgroundImageLink",
+     *   //   "capabilities": {},
+     *   //   "colorRgb": "my_colorRgb",
+     *   //   "createdTime": "my_createdTime",
+     *   //   "hidden": false,
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "orgUnitId": "my_orgUnitId",
+     *   //   "restrictions": {},
+     *   //   "themeId": "my_themeId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3632,11 +4940,11 @@ export namespace drive_v3 {
     hide(
       params: Params$Resource$Drives$Hide,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     hide(
       params?: Params$Resource$Drives$Hide,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Drive>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Drive>>;
     hide(
       params: Params$Resource$Drives$Hide,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3665,7 +4973,10 @@ export namespace drive_v3 {
       callback?:
         | BodyResponseCallback<Schema$Drive>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Drive> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Drive>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Drives$Hide;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3710,6 +5021,63 @@ export namespace drive_v3 {
 
     /**
      *  Lists the user's shared drives. This method accepts the `q` parameter, which is a search query combining one or more search terms. For more information, see the [Search for shared drives](/workspace/drive/api/guides/search-shareddrives) guide.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.drives.list({
+     *     // Maximum number of shared drives to return per page.
+     *     pageSize: 'placeholder-value',
+     *     // Page token for shared drives.
+     *     pageToken: 'placeholder-value',
+     *     // Query string for searching shared drives.
+     *     q: 'placeholder-value',
+     *     // Issue the request as a domain administrator; if set to true, then all shared drives of the domain in which the requester is an administrator are returned.
+     *     useDomainAdminAccess: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "drives": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3719,11 +5087,11 @@ export namespace drive_v3 {
     list(
       params: Params$Resource$Drives$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Drives$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DriveList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DriveList>>;
     list(
       params: Params$Resource$Drives$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3752,7 +5120,10 @@ export namespace drive_v3 {
       callback?:
         | BodyResponseCallback<Schema$DriveList>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$DriveList> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$DriveList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Drives$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3794,6 +5165,63 @@ export namespace drive_v3 {
 
     /**
      * Restores a shared drive to the default view.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/drive'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.drives.unhide({
+     *     // The ID of the shared drive.
+     *     driveId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "backgroundImageFile": {},
+     *   //   "backgroundImageLink": "my_backgroundImageLink",
+     *   //   "capabilities": {},
+     *   //   "colorRgb": "my_colorRgb",
+     *   //   "createdTime": "my_createdTime",
+     *   //   "hidden": false,
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "orgUnitId": "my_orgUnitId",
+     *   //   "restrictions": {},
+     *   //   "themeId": "my_themeId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3803,11 +5231,11 @@ export namespace drive_v3 {
     unhide(
       params: Params$Resource$Drives$Unhide,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     unhide(
       params?: Params$Resource$Drives$Unhide,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Drive>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Drive>>;
     unhide(
       params: Params$Resource$Drives$Unhide,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3836,7 +5264,10 @@ export namespace drive_v3 {
       callback?:
         | BodyResponseCallback<Schema$Drive>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Drive> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Drive>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Drives$Unhide;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3881,6 +5312,84 @@ export namespace drive_v3 {
 
     /**
      * Updates the metadata for a shared drive.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/drive'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.drives.update({
+     *     // The ID of the shared drive.
+     *     driveId: 'placeholder-value',
+     *     // Issue the request as a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the shared drive belongs.
+     *     useDomainAdminAccess: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "backgroundImageFile": {},
+     *       //   "backgroundImageLink": "my_backgroundImageLink",
+     *       //   "capabilities": {},
+     *       //   "colorRgb": "my_colorRgb",
+     *       //   "createdTime": "my_createdTime",
+     *       //   "hidden": false,
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "orgUnitId": "my_orgUnitId",
+     *       //   "restrictions": {},
+     *       //   "themeId": "my_themeId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "backgroundImageFile": {},
+     *   //   "backgroundImageLink": "my_backgroundImageLink",
+     *   //   "capabilities": {},
+     *   //   "colorRgb": "my_colorRgb",
+     *   //   "createdTime": "my_createdTime",
+     *   //   "hidden": false,
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "orgUnitId": "my_orgUnitId",
+     *   //   "restrictions": {},
+     *   //   "themeId": "my_themeId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3890,11 +5399,11 @@ export namespace drive_v3 {
     update(
       params: Params$Resource$Drives$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Drives$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Drive>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Drive>>;
     update(
       params: Params$Resource$Drives$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3923,7 +5432,10 @@ export namespace drive_v3 {
       callback?:
         | BodyResponseCallback<Schema$Drive>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Drive> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Drive>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Drives$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4056,6 +5568,205 @@ export namespace drive_v3 {
 
     /**
      * Creates a copy of a file and applies any requested updates with patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.photos.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.files.copy({
+     *     // Deprecated. Copying files into multiple folders is no longer supported. Use shortcuts instead.
+     *     enforceSingleParent: 'placeholder-value',
+     *     // The ID of the file.
+     *     fileId: 'placeholder-value',
+     *     // Whether to ignore the domain's default visibility settings for the created file. Domain administrators can choose to make all uploaded files visible to the domain by default; this parameter bypasses that behavior for the request. Permissions are still inherited from parent folders.
+     *     ignoreDefaultVisibility: 'placeholder-value',
+     *     // A comma-separated list of IDs of labels to include in the `labelInfo` part of the response.
+     *     includeLabels: 'placeholder-value',
+     *     // Specifies which additional view's permissions to include in the response. Only 'published' is supported.
+     *     includePermissionsForView: 'placeholder-value',
+     *     // Whether to set the 'keepForever' field in the new head revision. This is only applicable to files with binary content in Google Drive. Only 200 revisions for the file can be kept forever. If the limit is reached, try deleting pinned revisions.
+     *     keepRevisionForever: 'placeholder-value',
+     *     // A language hint for OCR processing during image import (ISO 639-1 code).
+     *     ocrLanguage: 'placeholder-value',
+     *     // Whether the requesting application supports both My Drives and shared drives.
+     *     supportsAllDrives: 'placeholder-value',
+     *     // Deprecated: Use `supportsAllDrives` instead.
+     *     supportsTeamDrives: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "appProperties": {},
+     *       //   "capabilities": {},
+     *       //   "contentHints": {},
+     *       //   "contentRestrictions": [],
+     *       //   "copyRequiresWriterPermission": false,
+     *       //   "createdTime": "my_createdTime",
+     *       //   "description": "my_description",
+     *       //   "driveId": "my_driveId",
+     *       //   "explicitlyTrashed": false,
+     *       //   "exportLinks": {},
+     *       //   "fileExtension": "my_fileExtension",
+     *       //   "folderColorRgb": "my_folderColorRgb",
+     *       //   "fullFileExtension": "my_fullFileExtension",
+     *       //   "hasAugmentedPermissions": false,
+     *       //   "hasThumbnail": false,
+     *       //   "headRevisionId": "my_headRevisionId",
+     *       //   "iconLink": "my_iconLink",
+     *       //   "id": "my_id",
+     *       //   "imageMediaMetadata": {},
+     *       //   "inheritedPermissionsDisabled": false,
+     *       //   "isAppAuthorized": false,
+     *       //   "kind": "my_kind",
+     *       //   "labelInfo": {},
+     *       //   "lastModifyingUser": {},
+     *       //   "linkShareMetadata": {},
+     *       //   "md5Checksum": "my_md5Checksum",
+     *       //   "mimeType": "my_mimeType",
+     *       //   "modifiedByMe": false,
+     *       //   "modifiedByMeTime": "my_modifiedByMeTime",
+     *       //   "modifiedTime": "my_modifiedTime",
+     *       //   "name": "my_name",
+     *       //   "originalFilename": "my_originalFilename",
+     *       //   "ownedByMe": false,
+     *       //   "owners": [],
+     *       //   "parents": [],
+     *       //   "permissionIds": [],
+     *       //   "permissions": [],
+     *       //   "properties": {},
+     *       //   "quotaBytesUsed": "my_quotaBytesUsed",
+     *       //   "resourceKey": "my_resourceKey",
+     *       //   "sha1Checksum": "my_sha1Checksum",
+     *       //   "sha256Checksum": "my_sha256Checksum",
+     *       //   "shared": false,
+     *       //   "sharedWithMeTime": "my_sharedWithMeTime",
+     *       //   "sharingUser": {},
+     *       //   "shortcutDetails": {},
+     *       //   "size": "my_size",
+     *       //   "spaces": [],
+     *       //   "starred": false,
+     *       //   "teamDriveId": "my_teamDriveId",
+     *       //   "thumbnailLink": "my_thumbnailLink",
+     *       //   "thumbnailVersion": "my_thumbnailVersion",
+     *       //   "trashed": false,
+     *       //   "trashedTime": "my_trashedTime",
+     *       //   "trashingUser": {},
+     *       //   "version": "my_version",
+     *       //   "videoMediaMetadata": {},
+     *       //   "viewedByMe": false,
+     *       //   "viewedByMeTime": "my_viewedByMeTime",
+     *       //   "viewersCanCopyContent": false,
+     *       //   "webContentLink": "my_webContentLink",
+     *       //   "webViewLink": "my_webViewLink",
+     *       //   "writersCanShare": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appProperties": {},
+     *   //   "capabilities": {},
+     *   //   "contentHints": {},
+     *   //   "contentRestrictions": [],
+     *   //   "copyRequiresWriterPermission": false,
+     *   //   "createdTime": "my_createdTime",
+     *   //   "description": "my_description",
+     *   //   "driveId": "my_driveId",
+     *   //   "explicitlyTrashed": false,
+     *   //   "exportLinks": {},
+     *   //   "fileExtension": "my_fileExtension",
+     *   //   "folderColorRgb": "my_folderColorRgb",
+     *   //   "fullFileExtension": "my_fullFileExtension",
+     *   //   "hasAugmentedPermissions": false,
+     *   //   "hasThumbnail": false,
+     *   //   "headRevisionId": "my_headRevisionId",
+     *   //   "iconLink": "my_iconLink",
+     *   //   "id": "my_id",
+     *   //   "imageMediaMetadata": {},
+     *   //   "inheritedPermissionsDisabled": false,
+     *   //   "isAppAuthorized": false,
+     *   //   "kind": "my_kind",
+     *   //   "labelInfo": {},
+     *   //   "lastModifyingUser": {},
+     *   //   "linkShareMetadata": {},
+     *   //   "md5Checksum": "my_md5Checksum",
+     *   //   "mimeType": "my_mimeType",
+     *   //   "modifiedByMe": false,
+     *   //   "modifiedByMeTime": "my_modifiedByMeTime",
+     *   //   "modifiedTime": "my_modifiedTime",
+     *   //   "name": "my_name",
+     *   //   "originalFilename": "my_originalFilename",
+     *   //   "ownedByMe": false,
+     *   //   "owners": [],
+     *   //   "parents": [],
+     *   //   "permissionIds": [],
+     *   //   "permissions": [],
+     *   //   "properties": {},
+     *   //   "quotaBytesUsed": "my_quotaBytesUsed",
+     *   //   "resourceKey": "my_resourceKey",
+     *   //   "sha1Checksum": "my_sha1Checksum",
+     *   //   "sha256Checksum": "my_sha256Checksum",
+     *   //   "shared": false,
+     *   //   "sharedWithMeTime": "my_sharedWithMeTime",
+     *   //   "sharingUser": {},
+     *   //   "shortcutDetails": {},
+     *   //   "size": "my_size",
+     *   //   "spaces": [],
+     *   //   "starred": false,
+     *   //   "teamDriveId": "my_teamDriveId",
+     *   //   "thumbnailLink": "my_thumbnailLink",
+     *   //   "thumbnailVersion": "my_thumbnailVersion",
+     *   //   "trashed": false,
+     *   //   "trashedTime": "my_trashedTime",
+     *   //   "trashingUser": {},
+     *   //   "version": "my_version",
+     *   //   "videoMediaMetadata": {},
+     *   //   "viewedByMe": false,
+     *   //   "viewedByMeTime": "my_viewedByMeTime",
+     *   //   "viewersCanCopyContent": false,
+     *   //   "webContentLink": "my_webContentLink",
+     *   //   "webViewLink": "my_webViewLink",
+     *   //   "writersCanShare": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4065,11 +5776,11 @@ export namespace drive_v3 {
     copy(
       params: Params$Resource$Files$Copy,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     copy(
       params?: Params$Resource$Files$Copy,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$File>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$File>>;
     copy(
       params: Params$Resource$Files$Copy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4098,7 +5809,10 @@ export namespace drive_v3 {
       callback?:
         | BodyResponseCallback<Schema$File>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$File> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$File>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$Copy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4143,6 +5857,208 @@ export namespace drive_v3 {
 
     /**
      *  Creates a new file. This method supports an x/upload* URI and accepts uploaded media with the following characteristics: - *Maximum file size:* 5,120 GB - *Accepted Media MIME types:*`x/x` Note: Specify a valid MIME type, rather than the literal `x/x` value. The literal `x/x` is only used to indicate that any valid MIME type can be uploaded. For more information on uploading files, see [Upload file data](/workspace/drive/api/guides/manage-uploads). Apps creating shortcuts with `files.create` must specify the MIME type `application/vnd.google-apps.shortcut`. Apps should specify a file extension in the `name` property when inserting files with the API. For example, an operation to insert a JPEG file should specify something like `"name": "cat.jpg"` in the metadata. Subsequent `GET` requests include the read-only `fileExtension` property populated with the extension originally specified in the `title` property. When a Google Drive user requests to download a file, or when the file is downloaded through the sync client, Drive builds a full filename (with extension) based on the title. In cases where the extension is missing, Drive attempts to determine the extension based on the file's MIME type.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.files.create({
+     *     // Deprecated. Creating files in multiple folders is no longer supported.
+     *     enforceSingleParent: 'placeholder-value',
+     *     // Whether to ignore the domain's default visibility settings for the created file. Domain administrators can choose to make all uploaded files visible to the domain by default; this parameter bypasses that behavior for the request. Permissions are still inherited from parent folders.
+     *     ignoreDefaultVisibility: 'placeholder-value',
+     *     // A comma-separated list of IDs of labels to include in the `labelInfo` part of the response.
+     *     includeLabels: 'placeholder-value',
+     *     // Specifies which additional view's permissions to include in the response. Only 'published' is supported.
+     *     includePermissionsForView: 'placeholder-value',
+     *     // Whether to set the 'keepForever' field in the new head revision. This is only applicable to files with binary content in Google Drive. Only 200 revisions for the file can be kept forever. If the limit is reached, try deleting pinned revisions.
+     *     keepRevisionForever: 'placeholder-value',
+     *     // A language hint for OCR processing during image import (ISO 639-1 code).
+     *     ocrLanguage: 'placeholder-value',
+     *     // Whether the requesting application supports both My Drives and shared drives.
+     *     supportsAllDrives: 'placeholder-value',
+     *     // Deprecated: Use `supportsAllDrives` instead.
+     *     supportsTeamDrives: 'placeholder-value',
+     *     // Whether to use the uploaded content as indexable text.
+     *     useContentAsIndexableText: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "appProperties": {},
+     *       //   "capabilities": {},
+     *       //   "contentHints": {},
+     *       //   "contentRestrictions": [],
+     *       //   "copyRequiresWriterPermission": false,
+     *       //   "createdTime": "my_createdTime",
+     *       //   "description": "my_description",
+     *       //   "driveId": "my_driveId",
+     *       //   "explicitlyTrashed": false,
+     *       //   "exportLinks": {},
+     *       //   "fileExtension": "my_fileExtension",
+     *       //   "folderColorRgb": "my_folderColorRgb",
+     *       //   "fullFileExtension": "my_fullFileExtension",
+     *       //   "hasAugmentedPermissions": false,
+     *       //   "hasThumbnail": false,
+     *       //   "headRevisionId": "my_headRevisionId",
+     *       //   "iconLink": "my_iconLink",
+     *       //   "id": "my_id",
+     *       //   "imageMediaMetadata": {},
+     *       //   "inheritedPermissionsDisabled": false,
+     *       //   "isAppAuthorized": false,
+     *       //   "kind": "my_kind",
+     *       //   "labelInfo": {},
+     *       //   "lastModifyingUser": {},
+     *       //   "linkShareMetadata": {},
+     *       //   "md5Checksum": "my_md5Checksum",
+     *       //   "mimeType": "my_mimeType",
+     *       //   "modifiedByMe": false,
+     *       //   "modifiedByMeTime": "my_modifiedByMeTime",
+     *       //   "modifiedTime": "my_modifiedTime",
+     *       //   "name": "my_name",
+     *       //   "originalFilename": "my_originalFilename",
+     *       //   "ownedByMe": false,
+     *       //   "owners": [],
+     *       //   "parents": [],
+     *       //   "permissionIds": [],
+     *       //   "permissions": [],
+     *       //   "properties": {},
+     *       //   "quotaBytesUsed": "my_quotaBytesUsed",
+     *       //   "resourceKey": "my_resourceKey",
+     *       //   "sha1Checksum": "my_sha1Checksum",
+     *       //   "sha256Checksum": "my_sha256Checksum",
+     *       //   "shared": false,
+     *       //   "sharedWithMeTime": "my_sharedWithMeTime",
+     *       //   "sharingUser": {},
+     *       //   "shortcutDetails": {},
+     *       //   "size": "my_size",
+     *       //   "spaces": [],
+     *       //   "starred": false,
+     *       //   "teamDriveId": "my_teamDriveId",
+     *       //   "thumbnailLink": "my_thumbnailLink",
+     *       //   "thumbnailVersion": "my_thumbnailVersion",
+     *       //   "trashed": false,
+     *       //   "trashedTime": "my_trashedTime",
+     *       //   "trashingUser": {},
+     *       //   "version": "my_version",
+     *       //   "videoMediaMetadata": {},
+     *       //   "viewedByMe": false,
+     *       //   "viewedByMeTime": "my_viewedByMeTime",
+     *       //   "viewersCanCopyContent": false,
+     *       //   "webContentLink": "my_webContentLink",
+     *       //   "webViewLink": "my_webViewLink",
+     *       //   "writersCanShare": false
+     *       // }
+     *     },
+     *     media: {
+     *       mimeType: 'placeholder-value',
+     *       body: 'placeholder-value',
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appProperties": {},
+     *   //   "capabilities": {},
+     *   //   "contentHints": {},
+     *   //   "contentRestrictions": [],
+     *   //   "copyRequiresWriterPermission": false,
+     *   //   "createdTime": "my_createdTime",
+     *   //   "description": "my_description",
+     *   //   "driveId": "my_driveId",
+     *   //   "explicitlyTrashed": false,
+     *   //   "exportLinks": {},
+     *   //   "fileExtension": "my_fileExtension",
+     *   //   "folderColorRgb": "my_folderColorRgb",
+     *   //   "fullFileExtension": "my_fullFileExtension",
+     *   //   "hasAugmentedPermissions": false,
+     *   //   "hasThumbnail": false,
+     *   //   "headRevisionId": "my_headRevisionId",
+     *   //   "iconLink": "my_iconLink",
+     *   //   "id": "my_id",
+     *   //   "imageMediaMetadata": {},
+     *   //   "inheritedPermissionsDisabled": false,
+     *   //   "isAppAuthorized": false,
+     *   //   "kind": "my_kind",
+     *   //   "labelInfo": {},
+     *   //   "lastModifyingUser": {},
+     *   //   "linkShareMetadata": {},
+     *   //   "md5Checksum": "my_md5Checksum",
+     *   //   "mimeType": "my_mimeType",
+     *   //   "modifiedByMe": false,
+     *   //   "modifiedByMeTime": "my_modifiedByMeTime",
+     *   //   "modifiedTime": "my_modifiedTime",
+     *   //   "name": "my_name",
+     *   //   "originalFilename": "my_originalFilename",
+     *   //   "ownedByMe": false,
+     *   //   "owners": [],
+     *   //   "parents": [],
+     *   //   "permissionIds": [],
+     *   //   "permissions": [],
+     *   //   "properties": {},
+     *   //   "quotaBytesUsed": "my_quotaBytesUsed",
+     *   //   "resourceKey": "my_resourceKey",
+     *   //   "sha1Checksum": "my_sha1Checksum",
+     *   //   "sha256Checksum": "my_sha256Checksum",
+     *   //   "shared": false,
+     *   //   "sharedWithMeTime": "my_sharedWithMeTime",
+     *   //   "sharingUser": {},
+     *   //   "shortcutDetails": {},
+     *   //   "size": "my_size",
+     *   //   "spaces": [],
+     *   //   "starred": false,
+     *   //   "teamDriveId": "my_teamDriveId",
+     *   //   "thumbnailLink": "my_thumbnailLink",
+     *   //   "thumbnailVersion": "my_thumbnailVersion",
+     *   //   "trashed": false,
+     *   //   "trashedTime": "my_trashedTime",
+     *   //   "trashingUser": {},
+     *   //   "version": "my_version",
+     *   //   "videoMediaMetadata": {},
+     *   //   "viewedByMe": false,
+     *   //   "viewedByMeTime": "my_viewedByMeTime",
+     *   //   "viewersCanCopyContent": false,
+     *   //   "webContentLink": "my_webContentLink",
+     *   //   "webViewLink": "my_webViewLink",
+     *   //   "writersCanShare": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4152,11 +6068,11 @@ export namespace drive_v3 {
     create(
       params: Params$Resource$Files$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Files$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$File>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$File>>;
     create(
       params: Params$Resource$Files$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4185,7 +6101,10 @@ export namespace drive_v3 {
       callback?:
         | BodyResponseCallback<Schema$File>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$File> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$File>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4231,6 +6150,57 @@ export namespace drive_v3 {
 
     /**
      * Permanently deletes a file owned by the user without moving it to the trash. If the file belongs to a shared drive, the user must be an `organizer` on the parent folder. If the target is a folder, all descendants owned by the user are also deleted.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.files.delete({
+     *     // Deprecated: If an item is not in a shared drive and its last parent is deleted but the item itself is not, the item will be placed under its owner's root.
+     *     enforceSingleParent: 'placeholder-value',
+     *     // The ID of the file.
+     *     fileId: 'placeholder-value',
+     *     // Whether the requesting application supports both My Drives and shared drives.
+     *     supportsAllDrives: 'placeholder-value',
+     *     // Deprecated: Use `supportsAllDrives` instead.
+     *     supportsTeamDrives: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4240,11 +6210,11 @@ export namespace drive_v3 {
     delete(
       params: Params$Resource$Files$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Files$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Files$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4271,7 +6241,10 @@ export namespace drive_v3 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4316,6 +6289,64 @@ export namespace drive_v3 {
 
     /**
      * Downloads content of a file. Operations are valid for 24 hours from the time of creation.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.files.download({
+     *     // Required. The ID of the file to download.
+     *     fileId: 'placeholder-value',
+     *     // Optional. The MIME type the file should be downloaded as. This field can only be set when downloading Google Workspace documents. See [Export MIME types for Google Workspace documents](/drive/api/guides/ref-export-formats) for the list of supported MIME types. If not set, a Google Workspace document is downloaded with a default MIME type. The default MIME type might change in the future.
+     *     mimeType: 'placeholder-value',
+     *     // Optional. The revision ID of the file to download. This field can only be set when downloading blob files, Google Docs, and Google Sheets. Returns `INVALID_ARGUMENT` if downloading a specific revision on the file is unsupported.
+     *     revisionId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4325,11 +6356,11 @@ export namespace drive_v3 {
     download(
       params: Params$Resource$Files$Download,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     download(
       params?: Params$Resource$Files$Download,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     download(
       params: Params$Resource$Files$Download,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4358,7 +6389,10 @@ export namespace drive_v3 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$Download;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4403,6 +6437,49 @@ export namespace drive_v3 {
 
     /**
      * Permanently deletes all of the user's trashed files.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/drive'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.files.emptyTrash({
+     *     // If set, empties the trash of the provided shared drive.
+     *     driveId: 'placeholder-value',
+     *     // Deprecated: If an item is not in a shared drive and its last parent is deleted but the item itself is not, the item will be placed under its owner's root.
+     *     enforceSingleParent: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4412,11 +6489,11 @@ export namespace drive_v3 {
     emptyTrash(
       params: Params$Resource$Files$Emptytrash,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     emptyTrash(
       params?: Params$Resource$Files$Emptytrash,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     emptyTrash(
       params: Params$Resource$Files$Emptytrash,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4443,7 +6520,10 @@ export namespace drive_v3 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$Emptytrash;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4488,6 +6568,54 @@ export namespace drive_v3 {
 
     /**
      * Exports a Google Workspace document to the requested MIME type and returns exported byte content. Note that the exported content is limited to 10MB.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.meet.readonly',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.files.export({
+     *     // The ID of the file.
+     *     fileId: 'placeholder-value',
+     *     // Required. The MIME type of the format requested for this export.
+     *     mimeType: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4497,11 +6625,11 @@ export namespace drive_v3 {
     export(
       params: Params$Resource$Files$Export,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     export(
       params?: Params$Resource$Files$Export,
       options?: MethodOptions
-    ): GaxiosPromise<unknown>;
+    ): Promise<GaxiosResponseWithHTTP2<unknown>>;
     export(
       params: Params$Resource$Files$Export,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4528,7 +6656,10 @@ export namespace drive_v3 {
         | BodyResponseCallback<unknown>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<unknown> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<unknown> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<unknown>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$Export;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4573,6 +6704,62 @@ export namespace drive_v3 {
 
     /**
      * Generates a set of file IDs which can be provided in create or copy requests.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.files.generateIds({
+     *     // The number of IDs to return.
+     *     count: 'placeholder-value',
+     *     // The space in which the IDs can be used to create new files. Supported values are 'drive' and 'appDataFolder'. (Default: 'drive')
+     *     space: 'placeholder-value',
+     *     // The type of items which the IDs can be used for. Supported values are 'files' and 'shortcuts'. Note that 'shortcuts' are only supported in the `drive` 'space'. (Default: 'files')
+     *     type: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "ids": [],
+     *   //   "kind": "my_kind",
+     *   //   "space": "my_space"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4582,11 +6769,11 @@ export namespace drive_v3 {
     generateIds(
       params: Params$Resource$Files$Generateids,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     generateIds(
       params?: Params$Resource$Files$Generateids,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GeneratedIds>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GeneratedIds>>;
     generateIds(
       params: Params$Resource$Files$Generateids,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4615,7 +6802,10 @@ export namespace drive_v3 {
       callback?:
         | BodyResponseCallback<Schema$GeneratedIds>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$GeneratedIds> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GeneratedIds>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Files$Generateids;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4661,6 +6851,133 @@ export namespace drive_v3 {
 
     /**
      *  Gets a file's metadata or content by ID. If you provide the URL parameter `alt=media`, then the response includes the file contents in the response body. Downloading content with `alt=media` only works if the file is stored in Drive. To download Google Docs, Sheets, and Slides use [`files.export`](/workspace/drive/api/reference/rest/v3/files/export) instead. For more information, see [Download & export files](/workspace/drive/api/guides/manage-downloads).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.meet.readonly',
+     *       'https://www.googleapis.com/auth/drive.metadata',
+     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
+     *       'https://www.googleapis.com/auth/drive.photos.readonly',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.files.get({
+     *     // Whether the user is acknowledging the risk of downloading known malware or other abusive files. This is only applicable when the `alt` parameter is set to `media` and the user is the owner of the file or an organizer of the shared drive in which the file resides.
+     *     acknowledgeAbuse: 'placeholder-value',
+     *     // The ID of the file.
+     *     fileId: 'placeholder-value',
+     *     // A comma-separated list of IDs of labels to include in the `labelInfo` part of the response.
+     *     includeLabels: 'placeholder-value',
+     *     // Specifies which additional view's permissions to include in the response. Only 'published' is supported.
+     *     includePermissionsForView: 'placeholder-value',
+     *     // Whether the requesting application supports both My Drives and shared drives.
+     *     supportsAllDrives: 'placeholder-value',
+     *     // Deprecated: Use `supportsAllDrives` instead.
+     *     supportsTeamDrives: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appProperties": {},
+     *   //   "capabilities": {},
+     *   //   "contentHints": {},
+     *   //   "contentRestrictions": [],
+     *   //   "copyRequiresWriterPermission": false,
+     *   //   "createdTime": "my_createdTime",
+     *   //   "description": "my_description",
+     *   //   "driveId": "my_driveId",
+     *   //   "explicitlyTrashed": false,
+     *   //   "exportLinks": {},
+     *   //   "fileExtension": "my_fileExtension",
+     *   //   "folderColorRgb": "my_folderColorRgb",
+     *   //   "fullFileExtension": "my_fullFileExtension",
+     *   //   "hasAugmentedPermissions": false,
+     *   //   "hasThumbnail": false,
+     *   //   "headRevisionId": "my_headRevisionId",
+     *   //   "iconLink": "my_iconLink",
+     *   //   "id": "my_id",
+     *   //   "imageMediaMetadata": {},
+     *   //   "inheritedPermissionsDisabled": false,
+     *   //   "isAppAuthorized": false,
+     *   //   "kind": "my_kind",
+     *   //   "labelInfo": {},
+     *   //   "lastModifyingUser": {},
+     *   //   "linkShareMetadata": {},
+     *   //   "md5Checksum": "my_md5Checksum",
+     *   //   "mimeType": "my_mimeType",
+     *   //   "modifiedByMe": false,
+     *   //   "modifiedByMeTime": "my_modifiedByMeTime",
+     *   //   "modifiedTime": "my_modifiedTime",
+     *   //   "name": "my_name",
+     *   //   "originalFilename": "my_originalFilename",
+     *   //   "ownedByMe": false,
+     *   //   "owners": [],
+     *   //   "parents": [],
+     *   //   "permissionIds": [],
+     *   //   "permissions": [],
+     *   //   "properties": {},
+     *   //   "quotaBytesUsed": "my_quotaBytesUsed",
+     *   //   "resourceKey": "my_resourceKey",
+     *   //   "sha1Checksum": "my_sha1Checksum",
+     *   //   "sha256Checksum": "my_sha256Checksum",
+     *   //   "shared": false,
+     *   //   "sharedWithMeTime": "my_sharedWithMeTime",
+     *   //   "sharingUser": {},
+     *   //   "shortcutDetails": {},
+     *   //   "size": "my_size",
+     *   //   "spaces": [],
+     *   //   "starred": false,
+     *   //   "teamDriveId": "my_teamDriveId",
+     *   //   "thumbnailLink": "my_thumbnailLink",
+     *   //   "thumbnailVersion": "my_thumbnailVersion",
+     *   //   "trashed": false,
+     *   //   "trashedTime": "my_trashedTime",
+     *   //   "trashingUser": {},
+     *   //   "version": "my_version",
+     *   //   "videoMediaMetadata": {},
+     *   //   "viewedByMe": false,
+     *   //   "viewedByMeTime": "my_viewedByMeTime",
+     *   //   "viewersCanCopyContent": false,
+     *   //   "webContentLink": "my_webContentLink",
+     *   //   "webViewLink": "my_webViewLink",
+     *   //   "writersCanShare": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4670,11 +6987,11 @@ export namespace drive_v3 {
     get(
       params: Params$Resource$Files$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Files$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$File>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$File>>;
     get(
       params: Params$Resource$Files$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4703,7 +7020,10 @@ export namespace drive_v3 {
       callback?:
         | BodyResponseCallback<Schema$File>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$File> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$File>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4748,6 +7068,92 @@ export namespace drive_v3 {
 
     /**
      *  Lists the user's files. This method accepts the `q` parameter, which is a search query combining one or more search terms. For more information, see the [Search for files & folders](/workspace/drive/api/guides/search-files) guide. *Note:* This method returns *all* files by default, including trashed files. If you don't want trashed files to appear in the list, use the `trashed=false` query parameter to remove trashed files from the results.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.meet.readonly',
+     *       'https://www.googleapis.com/auth/drive.metadata',
+     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
+     *       'https://www.googleapis.com/auth/drive.photos.readonly',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.files.list({
+     *     // Bodies of items (files/documents) to which the query applies. Supported bodies are 'user', 'domain', 'drive', and 'allDrives'. Prefer 'user' or 'drive' to 'allDrives' for efficiency. By default, corpora is set to 'user'. However, this can change depending on the filter set through the 'q' parameter.
+     *     corpora: 'placeholder-value',
+     *     // Deprecated: The source of files to list. Use 'corpora' instead.
+     *     corpus: 'placeholder-value',
+     *     // ID of the shared drive to search.
+     *     driveId: 'placeholder-value',
+     *     // Whether both My Drive and shared drive items should be included in results.
+     *     includeItemsFromAllDrives: 'placeholder-value',
+     *     // A comma-separated list of IDs of labels to include in the `labelInfo` part of the response.
+     *     includeLabels: 'placeholder-value',
+     *     // Specifies which additional view's permissions to include in the response. Only 'published' is supported.
+     *     includePermissionsForView: 'placeholder-value',
+     *     // Deprecated: Use `includeItemsFromAllDrives` instead.
+     *     includeTeamDriveItems: 'placeholder-value',
+     *     // A comma-separated list of sort keys. Valid keys are: * `createdTime`: When the file was created. * `folder`: The folder ID. This field is sorted using alphabetical ordering. * `modifiedByMeTime`: The last time the file was modified by the user. * `modifiedTime`: The last time the file was modified by anyone. * `name`: The name of the file. This field is sorted using alphabetical ordering, so 1, 12, 2, 22. * `name_natural`: The name of the file. This field is sorted using natural sort ordering, so 1, 2, 12, 22. * `quotaBytesUsed`: The number of storage quota bytes used by the file. * `recency`: The most recent timestamp from the file's date-time fields. * `sharedWithMeTime`: When the file was shared with the user, if applicable. * `starred`: Whether the user has starred the file. * `viewedByMeTime`: The last time the file was viewed by the user. Each key sorts ascending by default, but can be reversed with the 'desc' modifier. Example usage: `?orderBy=folder,modifiedTime desc,name`.
+     *     orderBy: 'placeholder-value',
+     *     // The maximum number of files to return per page. Partial or empty result pages are possible even before the end of the files list has been reached.
+     *     pageSize: 'placeholder-value',
+     *     // The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response.
+     *     pageToken: 'placeholder-value',
+     *     // A query for filtering the file results. See the "Search for files & folders" guide for supported syntax.
+     *     q: 'placeholder-value',
+     *     // A comma-separated list of spaces to query within the corpora. Supported values are 'drive' and 'appDataFolder'.
+     *     spaces: 'placeholder-value',
+     *     // Whether the requesting application supports both My Drives and shared drives.
+     *     supportsAllDrives: 'placeholder-value',
+     *     // Deprecated: Use `supportsAllDrives` instead.
+     *     supportsTeamDrives: 'placeholder-value',
+     *     // Deprecated: Use `driveId` instead.
+     *     teamDriveId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "files": [],
+     *   //   "incompleteSearch": false,
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4757,11 +7163,11 @@ export namespace drive_v3 {
     list(
       params: Params$Resource$Files$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Files$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$FileList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FileList>>;
     list(
       params: Params$Resource$Files$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4790,7 +7196,10 @@ export namespace drive_v3 {
       callback?:
         | BodyResponseCallback<Schema$FileList>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$FileList> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$FileList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4832,6 +7241,65 @@ export namespace drive_v3 {
 
     /**
      * Lists the labels on a file.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.meet.readonly',
+     *       'https://www.googleapis.com/auth/drive.metadata',
+     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.files.listLabels({
+     *     // The ID for the file.
+     *     fileId: 'placeholder-value',
+     *     // The maximum number of labels to return per page. When not set, defaults to 100.
+     *     maxResults: 'placeholder-value',
+     *     // The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "labels": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4841,11 +7309,11 @@ export namespace drive_v3 {
     listLabels(
       params: Params$Resource$Files$Listlabels,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     listLabels(
       params?: Params$Resource$Files$Listlabels,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LabelList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LabelList>>;
     listLabels(
       params: Params$Resource$Files$Listlabels,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4874,7 +7342,10 @@ export namespace drive_v3 {
       callback?:
         | BodyResponseCallback<Schema$LabelList>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LabelList> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$LabelList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$Listlabels;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4919,6 +7390,66 @@ export namespace drive_v3 {
 
     /**
      * Modifies the set of labels applied to a file. Returns a list of the labels that were added or modified.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.metadata',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.files.modifyLabels({
+     *     // The ID of the file to which the labels belong.
+     *     fileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "kind": "my_kind",
+     *       //   "labelModifications": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "modifiedLabels": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4928,11 +7459,11 @@ export namespace drive_v3 {
     modifyLabels(
       params: Params$Resource$Files$Modifylabels,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     modifyLabels(
       params?: Params$Resource$Files$Modifylabels,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ModifyLabelsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ModifyLabelsResponse>>;
     modifyLabels(
       params: Params$Resource$Files$Modifylabels,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4967,8 +7498,8 @@ export namespace drive_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ModifyLabelsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ModifyLabelsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Files$Modifylabels;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5014,6 +7545,214 @@ export namespace drive_v3 {
 
     /**
      *  Updates a file's metadata and/or content. When calling this method, only populate fields in the request that you want to modify. When updating fields, some fields might be changed automatically, such as `modifiedDate`. This method supports patch semantics. This method supports an x/upload* URI and accepts uploaded media with the following characteristics: - *Maximum file size:* 5,120 GB - *Accepted Media MIME types:*`x/x` Note: Specify a valid MIME type, rather than the literal `x/x` value. The literal `x/x` is only used to indicate that any valid MIME type can be uploaded. For more information on uploading files, see [Upload file data](/workspace/drive/api/guides/manage-uploads).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.metadata',
+     *       'https://www.googleapis.com/auth/drive.scripts',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.files.update({
+     *     // A comma-separated list of parent IDs to add.
+     *     addParents: 'placeholder-value',
+     *     // Deprecated: Adding files to multiple folders is no longer supported. Use shortcuts instead.
+     *     enforceSingleParent: 'placeholder-value',
+     *     // The ID of the file.
+     *     fileId: 'placeholder-value',
+     *     // A comma-separated list of IDs of labels to include in the `labelInfo` part of the response.
+     *     includeLabels: 'placeholder-value',
+     *     // Specifies which additional view's permissions to include in the response. Only 'published' is supported.
+     *     includePermissionsForView: 'placeholder-value',
+     *     // Whether to set the 'keepForever' field in the new head revision. This is only applicable to files with binary content in Google Drive. Only 200 revisions for the file can be kept forever. If the limit is reached, try deleting pinned revisions.
+     *     keepRevisionForever: 'placeholder-value',
+     *     // A language hint for OCR processing during image import (ISO 639-1 code).
+     *     ocrLanguage: 'placeholder-value',
+     *     // A comma-separated list of parent IDs to remove.
+     *     removeParents: 'placeholder-value',
+     *     // Whether the requesting application supports both My Drives and shared drives.
+     *     supportsAllDrives: 'placeholder-value',
+     *     // Deprecated: Use `supportsAllDrives` instead.
+     *     supportsTeamDrives: 'placeholder-value',
+     *     // Whether to use the uploaded content as indexable text.
+     *     useContentAsIndexableText: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "appProperties": {},
+     *       //   "capabilities": {},
+     *       //   "contentHints": {},
+     *       //   "contentRestrictions": [],
+     *       //   "copyRequiresWriterPermission": false,
+     *       //   "createdTime": "my_createdTime",
+     *       //   "description": "my_description",
+     *       //   "driveId": "my_driveId",
+     *       //   "explicitlyTrashed": false,
+     *       //   "exportLinks": {},
+     *       //   "fileExtension": "my_fileExtension",
+     *       //   "folderColorRgb": "my_folderColorRgb",
+     *       //   "fullFileExtension": "my_fullFileExtension",
+     *       //   "hasAugmentedPermissions": false,
+     *       //   "hasThumbnail": false,
+     *       //   "headRevisionId": "my_headRevisionId",
+     *       //   "iconLink": "my_iconLink",
+     *       //   "id": "my_id",
+     *       //   "imageMediaMetadata": {},
+     *       //   "inheritedPermissionsDisabled": false,
+     *       //   "isAppAuthorized": false,
+     *       //   "kind": "my_kind",
+     *       //   "labelInfo": {},
+     *       //   "lastModifyingUser": {},
+     *       //   "linkShareMetadata": {},
+     *       //   "md5Checksum": "my_md5Checksum",
+     *       //   "mimeType": "my_mimeType",
+     *       //   "modifiedByMe": false,
+     *       //   "modifiedByMeTime": "my_modifiedByMeTime",
+     *       //   "modifiedTime": "my_modifiedTime",
+     *       //   "name": "my_name",
+     *       //   "originalFilename": "my_originalFilename",
+     *       //   "ownedByMe": false,
+     *       //   "owners": [],
+     *       //   "parents": [],
+     *       //   "permissionIds": [],
+     *       //   "permissions": [],
+     *       //   "properties": {},
+     *       //   "quotaBytesUsed": "my_quotaBytesUsed",
+     *       //   "resourceKey": "my_resourceKey",
+     *       //   "sha1Checksum": "my_sha1Checksum",
+     *       //   "sha256Checksum": "my_sha256Checksum",
+     *       //   "shared": false,
+     *       //   "sharedWithMeTime": "my_sharedWithMeTime",
+     *       //   "sharingUser": {},
+     *       //   "shortcutDetails": {},
+     *       //   "size": "my_size",
+     *       //   "spaces": [],
+     *       //   "starred": false,
+     *       //   "teamDriveId": "my_teamDriveId",
+     *       //   "thumbnailLink": "my_thumbnailLink",
+     *       //   "thumbnailVersion": "my_thumbnailVersion",
+     *       //   "trashed": false,
+     *       //   "trashedTime": "my_trashedTime",
+     *       //   "trashingUser": {},
+     *       //   "version": "my_version",
+     *       //   "videoMediaMetadata": {},
+     *       //   "viewedByMe": false,
+     *       //   "viewedByMeTime": "my_viewedByMeTime",
+     *       //   "viewersCanCopyContent": false,
+     *       //   "webContentLink": "my_webContentLink",
+     *       //   "webViewLink": "my_webViewLink",
+     *       //   "writersCanShare": false
+     *       // }
+     *     },
+     *     media: {
+     *       mimeType: 'placeholder-value',
+     *       body: 'placeholder-value',
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appProperties": {},
+     *   //   "capabilities": {},
+     *   //   "contentHints": {},
+     *   //   "contentRestrictions": [],
+     *   //   "copyRequiresWriterPermission": false,
+     *   //   "createdTime": "my_createdTime",
+     *   //   "description": "my_description",
+     *   //   "driveId": "my_driveId",
+     *   //   "explicitlyTrashed": false,
+     *   //   "exportLinks": {},
+     *   //   "fileExtension": "my_fileExtension",
+     *   //   "folderColorRgb": "my_folderColorRgb",
+     *   //   "fullFileExtension": "my_fullFileExtension",
+     *   //   "hasAugmentedPermissions": false,
+     *   //   "hasThumbnail": false,
+     *   //   "headRevisionId": "my_headRevisionId",
+     *   //   "iconLink": "my_iconLink",
+     *   //   "id": "my_id",
+     *   //   "imageMediaMetadata": {},
+     *   //   "inheritedPermissionsDisabled": false,
+     *   //   "isAppAuthorized": false,
+     *   //   "kind": "my_kind",
+     *   //   "labelInfo": {},
+     *   //   "lastModifyingUser": {},
+     *   //   "linkShareMetadata": {},
+     *   //   "md5Checksum": "my_md5Checksum",
+     *   //   "mimeType": "my_mimeType",
+     *   //   "modifiedByMe": false,
+     *   //   "modifiedByMeTime": "my_modifiedByMeTime",
+     *   //   "modifiedTime": "my_modifiedTime",
+     *   //   "name": "my_name",
+     *   //   "originalFilename": "my_originalFilename",
+     *   //   "ownedByMe": false,
+     *   //   "owners": [],
+     *   //   "parents": [],
+     *   //   "permissionIds": [],
+     *   //   "permissions": [],
+     *   //   "properties": {},
+     *   //   "quotaBytesUsed": "my_quotaBytesUsed",
+     *   //   "resourceKey": "my_resourceKey",
+     *   //   "sha1Checksum": "my_sha1Checksum",
+     *   //   "sha256Checksum": "my_sha256Checksum",
+     *   //   "shared": false,
+     *   //   "sharedWithMeTime": "my_sharedWithMeTime",
+     *   //   "sharingUser": {},
+     *   //   "shortcutDetails": {},
+     *   //   "size": "my_size",
+     *   //   "spaces": [],
+     *   //   "starred": false,
+     *   //   "teamDriveId": "my_teamDriveId",
+     *   //   "thumbnailLink": "my_thumbnailLink",
+     *   //   "thumbnailVersion": "my_thumbnailVersion",
+     *   //   "trashed": false,
+     *   //   "trashedTime": "my_trashedTime",
+     *   //   "trashingUser": {},
+     *   //   "version": "my_version",
+     *   //   "videoMediaMetadata": {},
+     *   //   "viewedByMe": false,
+     *   //   "viewedByMeTime": "my_viewedByMeTime",
+     *   //   "viewersCanCopyContent": false,
+     *   //   "webContentLink": "my_webContentLink",
+     *   //   "webViewLink": "my_webViewLink",
+     *   //   "writersCanShare": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5023,11 +7762,11 @@ export namespace drive_v3 {
     update(
       params: Params$Resource$Files$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Files$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$File>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$File>>;
     update(
       params: Params$Resource$Files$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5056,7 +7795,10 @@ export namespace drive_v3 {
       callback?:
         | BodyResponseCallback<Schema$File>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$File> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$File>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5105,6 +7847,97 @@ export namespace drive_v3 {
 
     /**
      * Subscribes to changes to a file.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.meet.readonly',
+     *       'https://www.googleapis.com/auth/drive.metadata',
+     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
+     *       'https://www.googleapis.com/auth/drive.photos.readonly',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.files.watch({
+     *     // Whether the user is acknowledging the risk of downloading known malware or other abusive files. This is only applicable when the `alt` parameter is set to `media` and the user is the owner of the file or an organizer of the shared drive in which the file resides.
+     *     acknowledgeAbuse: 'placeholder-value',
+     *     // The ID of the file.
+     *     fileId: 'placeholder-value',
+     *     // A comma-separated list of IDs of labels to include in the `labelInfo` part of the response.
+     *     includeLabels: 'placeholder-value',
+     *     // Specifies which additional view's permissions to include in the response. Only 'published' is supported.
+     *     includePermissionsForView: 'placeholder-value',
+     *     // Whether the requesting application supports both My Drives and shared drives.
+     *     supportsAllDrives: 'placeholder-value',
+     *     // Deprecated: Use `supportsAllDrives` instead.
+     *     supportsTeamDrives: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "address": "my_address",
+     *       //   "expiration": "my_expiration",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "params": {},
+     *       //   "payload": false,
+     *       //   "resourceId": "my_resourceId",
+     *       //   "resourceUri": "my_resourceUri",
+     *       //   "token": "my_token",
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "address": "my_address",
+     *   //   "expiration": "my_expiration",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "params": {},
+     *   //   "payload": false,
+     *   //   "resourceId": "my_resourceId",
+     *   //   "resourceUri": "my_resourceUri",
+     *   //   "token": "my_token",
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5114,11 +7947,11 @@ export namespace drive_v3 {
     watch(
       params: Params$Resource$Files$Watch,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     watch(
       params?: Params$Resource$Files$Watch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Channel>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Channel>>;
     watch(
       params: Params$Resource$Files$Watch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5147,7 +7980,10 @@ export namespace drive_v3 {
       callback?:
         | BodyResponseCallback<Schema$Channel>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Channel> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Channel>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$Watch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5579,6 +8415,52 @@ export namespace drive_v3 {
 
     /**
      * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.meet.readonly',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.operations.cancel({
+     *     // The name of the operation resource to be cancelled.
+     *     name: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5588,11 +8470,11 @@ export namespace drive_v3 {
     cancel(
       params: Params$Resource$Operations$Cancel,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     cancel(
       params?: Params$Resource$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     cancel(
       params: Params$Resource$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5619,7 +8501,10 @@ export namespace drive_v3 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5665,6 +8550,52 @@ export namespace drive_v3 {
 
     /**
      * Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.meet.readonly',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.operations.delete({
+     *     // The name of the operation resource to be deleted.
+     *     name: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5674,11 +8605,11 @@ export namespace drive_v3 {
     delete(
       params: Params$Resource$Operations$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5705,7 +8636,10 @@ export namespace drive_v3 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5751,6 +8685,61 @@ export namespace drive_v3 {
 
     /**
      * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.meet.readonly',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.operations.get({
+     *     // The name of the operation resource.
+     *     name: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5760,11 +8749,11 @@ export namespace drive_v3 {
     get(
       params: Params$Resource$Operations$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     get(
       params: Params$Resource$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5793,7 +8782,10 @@ export namespace drive_v3 {
       callback?:
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5838,6 +8830,64 @@ export namespace drive_v3 {
 
     /**
      * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.meet.readonly',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.operations.list({
+     *     // The standard list filter.
+     *     filter: 'placeholder-value',
+     *     // The name of the operation's parent resource.
+     *     name: 'placeholder-value',
+     *     // The standard list page size.
+     *     pageSize: 'placeholder-value',
+     *     // The standard list page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "operations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5847,11 +8897,11 @@ export namespace drive_v3 {
     list(
       params: Params$Resource$Operations$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListOperationsResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>;
     list(
       params: Params$Resource$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5884,8 +8934,8 @@ export namespace drive_v3 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListOperationsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5976,6 +9026,111 @@ export namespace drive_v3 {
 
     /**
      * Creates a permission for a file or shared drive. **Warning:** Concurrent permissions operations on the same file are not supported; only the last update is applied.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.permissions.create({
+     *     // A plain text custom message to include in the notification email.
+     *     emailMessage: 'placeholder-value',
+     *     // Whether the request should enforce expansive access rules.
+     *     enforceExpansiveAccess: 'placeholder-value',
+     *     // Deprecated: See `moveToNewOwnersRoot` for details.
+     *     enforceSingleParent: 'placeholder-value',
+     *     // The ID of the file or shared drive.
+     *     fileId: 'placeholder-value',
+     *     // This parameter will only take effect if the item is not in a shared drive and the request is attempting to transfer the ownership of the item. If set to `true`, the item will be moved to the new owner's My Drive root folder and all prior parents removed. If set to `false`, parents are not changed.
+     *     moveToNewOwnersRoot: 'placeholder-value',
+     *     // Whether to send a notification email when sharing to users or groups. This defaults to true for users and groups, and is not allowed for other requests. It must not be disabled for ownership transfers.
+     *     sendNotificationEmail: 'placeholder-value',
+     *     // Whether the requesting application supports both My Drives and shared drives.
+     *     supportsAllDrives: 'placeholder-value',
+     *     // Deprecated: Use `supportsAllDrives` instead.
+     *     supportsTeamDrives: 'placeholder-value',
+     *     // Whether to transfer ownership to the specified user and downgrade the current owner to a writer. This parameter is required as an acknowledgement of the side effect.
+     *     transferOwnership: 'placeholder-value',
+     *     // Issue the request as a domain administrator; if set to true, then the requester will be granted access if the file ID parameter refers to a shared drive and the requester is an administrator of the domain to which the shared drive belongs.
+     *     useDomainAdminAccess: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "allowFileDiscovery": false,
+     *       //   "deleted": false,
+     *       //   "displayName": "my_displayName",
+     *       //   "domain": "my_domain",
+     *       //   "emailAddress": "my_emailAddress",
+     *       //   "expirationTime": "my_expirationTime",
+     *       //   "id": "my_id",
+     *       //   "inheritedPermissionsDisabled": false,
+     *       //   "kind": "my_kind",
+     *       //   "pendingOwner": false,
+     *       //   "permissionDetails": [],
+     *       //   "photoLink": "my_photoLink",
+     *       //   "role": "my_role",
+     *       //   "teamDrivePermissionDetails": [],
+     *       //   "type": "my_type",
+     *       //   "view": "my_view"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allowFileDiscovery": false,
+     *   //   "deleted": false,
+     *   //   "displayName": "my_displayName",
+     *   //   "domain": "my_domain",
+     *   //   "emailAddress": "my_emailAddress",
+     *   //   "expirationTime": "my_expirationTime",
+     *   //   "id": "my_id",
+     *   //   "inheritedPermissionsDisabled": false,
+     *   //   "kind": "my_kind",
+     *   //   "pendingOwner": false,
+     *   //   "permissionDetails": [],
+     *   //   "photoLink": "my_photoLink",
+     *   //   "role": "my_role",
+     *   //   "teamDrivePermissionDetails": [],
+     *   //   "type": "my_type",
+     *   //   "view": "my_view"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5985,11 +9140,11 @@ export namespace drive_v3 {
     create(
       params: Params$Resource$Permissions$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Permissions$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Permission>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Permission>>;
     create(
       params: Params$Resource$Permissions$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6018,7 +9173,10 @@ export namespace drive_v3 {
       callback?:
         | BodyResponseCallback<Schema$Permission>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Permission> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Permission>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Permissions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6064,6 +9222,60 @@ export namespace drive_v3 {
 
     /**
      * Deletes a permission. **Warning:** Concurrent permissions operations on the same file are not supported; only the last update is applied.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.permissions.delete({
+     *     // Whether the request should enforce expansive access rules.
+     *     enforceExpansiveAccess: 'placeholder-value',
+     *     // The ID of the file or shared drive.
+     *     fileId: 'placeholder-value',
+     *     // The ID of the permission.
+     *     permissionId: 'placeholder-value',
+     *     // Whether the requesting application supports both My Drives and shared drives.
+     *     supportsAllDrives: 'placeholder-value',
+     *     // Deprecated: Use `supportsAllDrives` instead.
+     *     supportsTeamDrives: 'placeholder-value',
+     *     // Issue the request as a domain administrator; if set to true, then the requester will be granted access if the file ID parameter refers to a shared drive and the requester is an administrator of the domain to which the shared drive belongs.
+     *     useDomainAdminAccess: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6073,11 +9285,11 @@ export namespace drive_v3 {
     delete(
       params: Params$Resource$Permissions$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Permissions$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Permissions$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6104,7 +9316,10 @@ export namespace drive_v3 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Permissions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6149,6 +9364,83 @@ export namespace drive_v3 {
 
     /**
      * Gets a permission by ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.meet.readonly',
+     *       'https://www.googleapis.com/auth/drive.metadata',
+     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
+     *       'https://www.googleapis.com/auth/drive.photos.readonly',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.permissions.get({
+     *     // The ID of the file.
+     *     fileId: 'placeholder-value',
+     *     // The ID of the permission.
+     *     permissionId: 'placeholder-value',
+     *     // Whether the requesting application supports both My Drives and shared drives.
+     *     supportsAllDrives: 'placeholder-value',
+     *     // Deprecated: Use `supportsAllDrives` instead.
+     *     supportsTeamDrives: 'placeholder-value',
+     *     // Issue the request as a domain administrator; if set to true, then the requester will be granted access if the file ID parameter refers to a shared drive and the requester is an administrator of the domain to which the shared drive belongs.
+     *     useDomainAdminAccess: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allowFileDiscovery": false,
+     *   //   "deleted": false,
+     *   //   "displayName": "my_displayName",
+     *   //   "domain": "my_domain",
+     *   //   "emailAddress": "my_emailAddress",
+     *   //   "expirationTime": "my_expirationTime",
+     *   //   "id": "my_id",
+     *   //   "inheritedPermissionsDisabled": false,
+     *   //   "kind": "my_kind",
+     *   //   "pendingOwner": false,
+     *   //   "permissionDetails": [],
+     *   //   "photoLink": "my_photoLink",
+     *   //   "role": "my_role",
+     *   //   "teamDrivePermissionDetails": [],
+     *   //   "type": "my_type",
+     *   //   "view": "my_view"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6158,11 +9450,11 @@ export namespace drive_v3 {
     get(
       params: Params$Resource$Permissions$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Permissions$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Permission>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Permission>>;
     get(
       params: Params$Resource$Permissions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6191,7 +9483,10 @@ export namespace drive_v3 {
       callback?:
         | BodyResponseCallback<Schema$Permission>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Permission> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Permission>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Permissions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6235,6 +9530,74 @@ export namespace drive_v3 {
 
     /**
      * Lists a file's or shared drive's permissions.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.meet.readonly',
+     *       'https://www.googleapis.com/auth/drive.metadata',
+     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
+     *       'https://www.googleapis.com/auth/drive.photos.readonly',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.permissions.list({
+     *     // The ID of the file or shared drive.
+     *     fileId: 'placeholder-value',
+     *     // Specifies which additional view's permissions to include in the response. Only 'published' is supported.
+     *     includePermissionsForView: 'placeholder-value',
+     *     // The maximum number of permissions to return per page. When not set for files in a shared drive, at most 100 results will be returned. When not set for files that are not in a shared drive, the entire list will be returned.
+     *     pageSize: 'placeholder-value',
+     *     // The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response.
+     *     pageToken: 'placeholder-value',
+     *     // Whether the requesting application supports both My Drives and shared drives.
+     *     supportsAllDrives: 'placeholder-value',
+     *     // Deprecated: Use `supportsAllDrives` instead.
+     *     supportsTeamDrives: 'placeholder-value',
+     *     // Issue the request as a domain administrator; if set to true, then the requester will be granted access if the file ID parameter refers to a shared drive and the requester is an administrator of the domain to which the shared drive belongs.
+     *     useDomainAdminAccess: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6244,11 +9607,11 @@ export namespace drive_v3 {
     list(
       params: Params$Resource$Permissions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Permissions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$PermissionList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PermissionList>>;
     list(
       params: Params$Resource$Permissions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6277,7 +9640,10 @@ export namespace drive_v3 {
       callback?:
         | BodyResponseCallback<Schema$PermissionList>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$PermissionList> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$PermissionList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Permissions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6322,6 +9688,107 @@ export namespace drive_v3 {
 
     /**
      * Updates a permission with patch semantics. **Warning:** Concurrent permissions operations on the same file are not supported; only the last update is applied.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.permissions.update({
+     *     // Whether the request should enforce expansive access rules.
+     *     enforceExpansiveAccess: 'placeholder-value',
+     *     // The ID of the file or shared drive.
+     *     fileId: 'placeholder-value',
+     *     // The ID of the permission.
+     *     permissionId: 'placeholder-value',
+     *     // Whether to remove the expiration date.
+     *     removeExpiration: 'placeholder-value',
+     *     // Whether the requesting application supports both My Drives and shared drives.
+     *     supportsAllDrives: 'placeholder-value',
+     *     // Deprecated: Use `supportsAllDrives` instead.
+     *     supportsTeamDrives: 'placeholder-value',
+     *     // Whether to transfer ownership to the specified user and downgrade the current owner to a writer. This parameter is required as an acknowledgement of the side effect.
+     *     transferOwnership: 'placeholder-value',
+     *     // Issue the request as a domain administrator; if set to true, then the requester will be granted access if the file ID parameter refers to a shared drive and the requester is an administrator of the domain to which the shared drive belongs.
+     *     useDomainAdminAccess: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "allowFileDiscovery": false,
+     *       //   "deleted": false,
+     *       //   "displayName": "my_displayName",
+     *       //   "domain": "my_domain",
+     *       //   "emailAddress": "my_emailAddress",
+     *       //   "expirationTime": "my_expirationTime",
+     *       //   "id": "my_id",
+     *       //   "inheritedPermissionsDisabled": false,
+     *       //   "kind": "my_kind",
+     *       //   "pendingOwner": false,
+     *       //   "permissionDetails": [],
+     *       //   "photoLink": "my_photoLink",
+     *       //   "role": "my_role",
+     *       //   "teamDrivePermissionDetails": [],
+     *       //   "type": "my_type",
+     *       //   "view": "my_view"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allowFileDiscovery": false,
+     *   //   "deleted": false,
+     *   //   "displayName": "my_displayName",
+     *   //   "domain": "my_domain",
+     *   //   "emailAddress": "my_emailAddress",
+     *   //   "expirationTime": "my_expirationTime",
+     *   //   "id": "my_id",
+     *   //   "inheritedPermissionsDisabled": false,
+     *   //   "kind": "my_kind",
+     *   //   "pendingOwner": false,
+     *   //   "permissionDetails": [],
+     *   //   "photoLink": "my_photoLink",
+     *   //   "role": "my_role",
+     *   //   "teamDrivePermissionDetails": [],
+     *   //   "type": "my_type",
+     *   //   "view": "my_view"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6331,11 +9798,11 @@ export namespace drive_v3 {
     update(
       params: Params$Resource$Permissions$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Permissions$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Permission>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Permission>>;
     update(
       params: Params$Resource$Permissions$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6364,7 +9831,10 @@ export namespace drive_v3 {
       callback?:
         | BodyResponseCallback<Schema$Permission>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Permission> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Permission>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Permissions$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6414,6 +9884,10 @@ export namespace drive_v3 {
      * A plain text custom message to include in the notification email.
      */
     emailMessage?: string;
+    /**
+     * Whether the request should enforce expansive access rules.
+     */
+    enforceExpansiveAccess?: boolean;
     /**
      * Deprecated: See `moveToNewOwnersRoot` for details.
      */
@@ -6580,6 +10054,81 @@ export namespace drive_v3 {
 
     /**
      * Creates a reply to a comment.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.replies.create({
+     *     // The ID of the comment.
+     *     commentId: 'placeholder-value',
+     *     // The ID of the file.
+     *     fileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "action": "my_action",
+     *       //   "author": {},
+     *       //   "content": "my_content",
+     *       //   "createdTime": "my_createdTime",
+     *       //   "deleted": false,
+     *       //   "htmlContent": "my_htmlContent",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "modifiedTime": "my_modifiedTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "action": "my_action",
+     *   //   "author": {},
+     *   //   "content": "my_content",
+     *   //   "createdTime": "my_createdTime",
+     *   //   "deleted": false,
+     *   //   "htmlContent": "my_htmlContent",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "modifiedTime": "my_modifiedTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6589,11 +10138,11 @@ export namespace drive_v3 {
     create(
       params: Params$Resource$Replies$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Replies$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Reply>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Reply>>;
     create(
       params: Params$Resource$Replies$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6622,7 +10171,10 @@ export namespace drive_v3 {
       callback?:
         | BodyResponseCallback<Schema$Reply>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Reply> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Reply>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Replies$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6666,6 +10218,54 @@ export namespace drive_v3 {
 
     /**
      * Deletes a reply.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.replies.delete({
+     *     // The ID of the comment.
+     *     commentId: 'placeholder-value',
+     *     // The ID of the file.
+     *     fileId: 'placeholder-value',
+     *     // The ID of the reply.
+     *     replyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6675,11 +10275,11 @@ export namespace drive_v3 {
     delete(
       params: Params$Resource$Replies$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Replies$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Replies$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6706,7 +10306,10 @@ export namespace drive_v3 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Replies$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6751,6 +10354,71 @@ export namespace drive_v3 {
 
     /**
      * Gets a reply by ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.meet.readonly',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.replies.get({
+     *     // The ID of the comment.
+     *     commentId: 'placeholder-value',
+     *     // The ID of the file.
+     *     fileId: 'placeholder-value',
+     *     // Whether to return deleted replies. Deleted replies will not include their original content.
+     *     includeDeleted: 'placeholder-value',
+     *     // The ID of the reply.
+     *     replyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "action": "my_action",
+     *   //   "author": {},
+     *   //   "content": "my_content",
+     *   //   "createdTime": "my_createdTime",
+     *   //   "deleted": false,
+     *   //   "htmlContent": "my_htmlContent",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "modifiedTime": "my_modifiedTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6760,11 +10428,11 @@ export namespace drive_v3 {
     get(
       params: Params$Resource$Replies$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Replies$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Reply>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Reply>>;
     get(
       params: Params$Resource$Replies$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6793,7 +10461,10 @@ export namespace drive_v3 {
       callback?:
         | BodyResponseCallback<Schema$Reply>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Reply> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Reply>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Replies$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6838,6 +10509,67 @@ export namespace drive_v3 {
 
     /**
      * Lists a comment's replies.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.meet.readonly',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.replies.list({
+     *     // The ID of the comment.
+     *     commentId: 'placeholder-value',
+     *     // The ID of the file.
+     *     fileId: 'placeholder-value',
+     *     // Whether to include deleted replies. Deleted replies will not include their original content.
+     *     includeDeleted: 'placeholder-value',
+     *     // The maximum number of replies to return per page.
+     *     pageSize: 'placeholder-value',
+     *     // The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "replies": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6847,11 +10579,11 @@ export namespace drive_v3 {
     list(
       params: Params$Resource$Replies$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Replies$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ReplyList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ReplyList>>;
     list(
       params: Params$Resource$Replies$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6880,7 +10612,10 @@ export namespace drive_v3 {
       callback?:
         | BodyResponseCallback<Schema$ReplyList>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ReplyList> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ReplyList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Replies$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6924,6 +10659,83 @@ export namespace drive_v3 {
 
     /**
      * Updates a reply with patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.replies.update({
+     *     // The ID of the comment.
+     *     commentId: 'placeholder-value',
+     *     // The ID of the file.
+     *     fileId: 'placeholder-value',
+     *     // The ID of the reply.
+     *     replyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "action": "my_action",
+     *       //   "author": {},
+     *       //   "content": "my_content",
+     *       //   "createdTime": "my_createdTime",
+     *       //   "deleted": false,
+     *       //   "htmlContent": "my_htmlContent",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "modifiedTime": "my_modifiedTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "action": "my_action",
+     *   //   "author": {},
+     *   //   "content": "my_content",
+     *   //   "createdTime": "my_createdTime",
+     *   //   "deleted": false,
+     *   //   "htmlContent": "my_htmlContent",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "modifiedTime": "my_modifiedTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6933,11 +10745,11 @@ export namespace drive_v3 {
     update(
       params: Params$Resource$Replies$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Replies$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Reply>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Reply>>;
     update(
       params: Params$Resource$Replies$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6966,7 +10778,10 @@ export namespace drive_v3 {
       callback?:
         | BodyResponseCallback<Schema$Reply>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Reply> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Reply>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Replies$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7107,6 +10922,53 @@ export namespace drive_v3 {
 
     /**
      * Permanently deletes a file version. You can only delete revisions for files with binary content in Google Drive, like images or videos. Revisions for other files, like Google Docs or Sheets, and the last remaining file version can't be deleted.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.revisions.delete({
+     *     // The ID of the file.
+     *     fileId: 'placeholder-value',
+     *     // The ID of the revision.
+     *     revisionId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7116,11 +10978,11 @@ export namespace drive_v3 {
     delete(
       params: Params$Resource$Revisions$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Revisions$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Revisions$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7147,7 +11009,10 @@ export namespace drive_v3 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Revisions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7191,6 +11056,78 @@ export namespace drive_v3 {
 
     /**
      * Gets a revision's metadata or content by ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.meet.readonly',
+     *       'https://www.googleapis.com/auth/drive.metadata',
+     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
+     *       'https://www.googleapis.com/auth/drive.photos.readonly',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.revisions.get({
+     *     // Whether the user is acknowledging the risk of downloading known malware or other abusive files. This is only applicable when the `alt` parameter is set to `media` and the user is the owner of the file or an organizer of the shared drive in which the file resides.
+     *     acknowledgeAbuse: 'placeholder-value',
+     *     // The ID of the file.
+     *     fileId: 'placeholder-value',
+     *     // The ID of the revision.
+     *     revisionId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "exportLinks": {},
+     *   //   "id": "my_id",
+     *   //   "keepForever": false,
+     *   //   "kind": "my_kind",
+     *   //   "lastModifyingUser": {},
+     *   //   "md5Checksum": "my_md5Checksum",
+     *   //   "mimeType": "my_mimeType",
+     *   //   "modifiedTime": "my_modifiedTime",
+     *   //   "originalFilename": "my_originalFilename",
+     *   //   "publishAuto": false,
+     *   //   "published": false,
+     *   //   "publishedLink": "my_publishedLink",
+     *   //   "publishedOutsideDomain": false,
+     *   //   "size": "my_size"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7200,11 +11137,11 @@ export namespace drive_v3 {
     get(
       params: Params$Resource$Revisions$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Revisions$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Revision>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Revision>>;
     get(
       params: Params$Resource$Revisions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7233,7 +11170,10 @@ export namespace drive_v3 {
       callback?:
         | BodyResponseCallback<Schema$Revision>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Revision> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Revision>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Revisions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7277,6 +11217,67 @@ export namespace drive_v3 {
 
     /**
      * Lists a file's revisions.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.meet.readonly',
+     *       'https://www.googleapis.com/auth/drive.metadata',
+     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
+     *       'https://www.googleapis.com/auth/drive.photos.readonly',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.revisions.list({
+     *     // The ID of the file.
+     *     fileId: 'placeholder-value',
+     *     // The maximum number of revisions to return per page.
+     *     pageSize: 'placeholder-value',
+     *     // The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "revisions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7286,11 +11287,11 @@ export namespace drive_v3 {
     list(
       params: Params$Resource$Revisions$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Revisions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RevisionList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$RevisionList>>;
     list(
       params: Params$Resource$Revisions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7319,7 +11320,10 @@ export namespace drive_v3 {
       callback?:
         | BodyResponseCallback<Schema$RevisionList>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$RevisionList> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$RevisionList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Revisions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7364,6 +11368,92 @@ export namespace drive_v3 {
 
     /**
      * Updates a revision with patch semantics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.revisions.update({
+     *     // The ID of the file.
+     *     fileId: 'placeholder-value',
+     *     // The ID of the revision.
+     *     revisionId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "exportLinks": {},
+     *       //   "id": "my_id",
+     *       //   "keepForever": false,
+     *       //   "kind": "my_kind",
+     *       //   "lastModifyingUser": {},
+     *       //   "md5Checksum": "my_md5Checksum",
+     *       //   "mimeType": "my_mimeType",
+     *       //   "modifiedTime": "my_modifiedTime",
+     *       //   "originalFilename": "my_originalFilename",
+     *       //   "publishAuto": false,
+     *       //   "published": false,
+     *       //   "publishedLink": "my_publishedLink",
+     *       //   "publishedOutsideDomain": false,
+     *       //   "size": "my_size"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "exportLinks": {},
+     *   //   "id": "my_id",
+     *   //   "keepForever": false,
+     *   //   "kind": "my_kind",
+     *   //   "lastModifyingUser": {},
+     *   //   "md5Checksum": "my_md5Checksum",
+     *   //   "mimeType": "my_mimeType",
+     *   //   "modifiedTime": "my_modifiedTime",
+     *   //   "originalFilename": "my_originalFilename",
+     *   //   "publishAuto": false,
+     *   //   "published": false,
+     *   //   "publishedLink": "my_publishedLink",
+     *   //   "publishedOutsideDomain": false,
+     *   //   "size": "my_size"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7373,11 +11463,11 @@ export namespace drive_v3 {
     update(
       params: Params$Resource$Revisions$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Revisions$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Revision>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Revision>>;
     update(
       params: Params$Resource$Revisions$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7406,7 +11496,10 @@ export namespace drive_v3 {
       callback?:
         | BodyResponseCallback<Schema$Revision>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Revision> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Revision>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Revisions$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7511,6 +11604,80 @@ export namespace drive_v3 {
 
     /**
      * Deprecated: Use `drives.create` instead.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/drive'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.teamdrives.create({
+     *     // Required. An ID, such as a random UUID, which uniquely identifies this user's request for idempotent creation of a Team Drive. A repeated request by the same user and with the same request ID will avoid creating duplicates by attempting to create the same Team Drive. If the Team Drive already exists a 409 error will be returned.
+     *     requestId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "backgroundImageFile": {},
+     *       //   "backgroundImageLink": "my_backgroundImageLink",
+     *       //   "capabilities": {},
+     *       //   "colorRgb": "my_colorRgb",
+     *       //   "createdTime": "my_createdTime",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "orgUnitId": "my_orgUnitId",
+     *       //   "restrictions": {},
+     *       //   "themeId": "my_themeId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "backgroundImageFile": {},
+     *   //   "backgroundImageLink": "my_backgroundImageLink",
+     *   //   "capabilities": {},
+     *   //   "colorRgb": "my_colorRgb",
+     *   //   "createdTime": "my_createdTime",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "orgUnitId": "my_orgUnitId",
+     *   //   "restrictions": {},
+     *   //   "themeId": "my_themeId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7520,11 +11687,11 @@ export namespace drive_v3 {
     create(
       params: Params$Resource$Teamdrives$Create,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     create(
       params?: Params$Resource$Teamdrives$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TeamDrive>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TeamDrive>>;
     create(
       params: Params$Resource$Teamdrives$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7553,7 +11720,10 @@ export namespace drive_v3 {
       callback?:
         | BodyResponseCallback<Schema$TeamDrive>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$TeamDrive> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$TeamDrive>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Teamdrives$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7599,6 +11769,47 @@ export namespace drive_v3 {
 
     /**
      * Deprecated: Use `drives.delete` instead.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/drive'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.teamdrives.delete({
+     *     // The ID of the Team Drive
+     *     teamDriveId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7608,11 +11819,11 @@ export namespace drive_v3 {
     delete(
       params: Params$Resource$Teamdrives$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Teamdrives$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
     delete(
       params: Params$Resource$Teamdrives$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7639,7 +11850,10 @@ export namespace drive_v3 {
         | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Teamdrives$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7685,6 +11899,67 @@ export namespace drive_v3 {
 
     /**
      * Deprecated: Use `drives.get` instead.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.teamdrives.get({
+     *     // The ID of the Team Drive
+     *     teamDriveId: 'placeholder-value',
+     *     // Issue the request as a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the Team Drive belongs.
+     *     useDomainAdminAccess: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "backgroundImageFile": {},
+     *   //   "backgroundImageLink": "my_backgroundImageLink",
+     *   //   "capabilities": {},
+     *   //   "colorRgb": "my_colorRgb",
+     *   //   "createdTime": "my_createdTime",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "orgUnitId": "my_orgUnitId",
+     *   //   "restrictions": {},
+     *   //   "themeId": "my_themeId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7694,11 +11969,11 @@ export namespace drive_v3 {
     get(
       params: Params$Resource$Teamdrives$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Teamdrives$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TeamDrive>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TeamDrive>>;
     get(
       params: Params$Resource$Teamdrives$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7727,7 +12002,10 @@ export namespace drive_v3 {
       callback?:
         | BodyResponseCallback<Schema$TeamDrive>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$TeamDrive> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$TeamDrive>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Teamdrives$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7772,6 +12050,63 @@ export namespace drive_v3 {
 
     /**
      * Deprecated: Use `drives.list` instead.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.teamdrives.list({
+     *     // Maximum number of Team Drives to return.
+     *     pageSize: 'placeholder-value',
+     *     // Page token for Team Drives.
+     *     pageToken: 'placeholder-value',
+     *     // Query string for searching Team Drives.
+     *     q: 'placeholder-value',
+     *     // Issue the request as a domain administrator; if set to true, then all Team Drives of the domain in which the requester is an administrator are returned.
+     *     useDomainAdminAccess: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "teamDrives": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7781,11 +12116,11 @@ export namespace drive_v3 {
     list(
       params: Params$Resource$Teamdrives$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Teamdrives$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TeamDriveList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TeamDriveList>>;
     list(
       params: Params$Resource$Teamdrives$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7814,7 +12149,10 @@ export namespace drive_v3 {
       callback?:
         | BodyResponseCallback<Schema$TeamDriveList>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$TeamDriveList> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$TeamDriveList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Teamdrives$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7859,6 +12197,82 @@ export namespace drive_v3 {
 
     /**
      * Deprecated: Use `drives.update` instead.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/drive'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.teamdrives.update({
+     *     // The ID of the Team Drive
+     *     teamDriveId: 'placeholder-value',
+     *     // Issue the request as a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the Team Drive belongs.
+     *     useDomainAdminAccess: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "backgroundImageFile": {},
+     *       //   "backgroundImageLink": "my_backgroundImageLink",
+     *       //   "capabilities": {},
+     *       //   "colorRgb": "my_colorRgb",
+     *       //   "createdTime": "my_createdTime",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "orgUnitId": "my_orgUnitId",
+     *       //   "restrictions": {},
+     *       //   "themeId": "my_themeId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "backgroundImageFile": {},
+     *   //   "backgroundImageLink": "my_backgroundImageLink",
+     *   //   "capabilities": {},
+     *   //   "colorRgb": "my_colorRgb",
+     *   //   "createdTime": "my_createdTime",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "orgUnitId": "my_orgUnitId",
+     *   //   "restrictions": {},
+     *   //   "themeId": "my_themeId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7868,11 +12282,11 @@ export namespace drive_v3 {
     update(
       params: Params$Resource$Teamdrives$Update,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     update(
       params?: Params$Resource$Teamdrives$Update,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$TeamDrive>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TeamDrive>>;
     update(
       params: Params$Resource$Teamdrives$Update,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7901,7 +12315,10 @@ export namespace drive_v3 {
       callback?:
         | BodyResponseCallback<Schema$TeamDrive>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$TeamDrive> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$TeamDrive>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Teamdrives$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;

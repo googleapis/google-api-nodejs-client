@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -4662,6 +4662,49 @@ export namespace searchads360_v0 {
 
     /**
      * Returns resource names of customers directly accessible by the user authenticating the call. List of thrown errors: [AuthenticationError]() [AuthorizationError]() [HeaderError]() [InternalError]() [QuotaError]() [RequestError]()
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/searchads360.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const searchads360 = google.searchads360('v0');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/doubleclicksearch'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await searchads360.customers.listAccessibleCustomers({});
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "resourceNames": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4671,11 +4714,13 @@ export namespace searchads360_v0 {
     listAccessibleCustomers(
       params: Params$Resource$Customers$Listaccessiblecustomers,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     listAccessibleCustomers(
       params?: Params$Resource$Customers$Listaccessiblecustomers,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAdsSearchads360V0Services__ListAccessibleCustomersResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleAdsSearchads360V0Services__ListAccessibleCustomersResponse>
+    >;
     listAccessibleCustomers(
       params: Params$Resource$Customers$Listaccessiblecustomers,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4710,8 +4755,10 @@ export namespace searchads360_v0 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAdsSearchads360V0Services__ListAccessibleCustomersResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAdsSearchads360V0Services__ListAccessibleCustomersResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Listaccessiblecustomers;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4769,6 +4816,61 @@ export namespace searchads360_v0 {
 
     /**
      * Returns the requested custom column in full detail.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/searchads360.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const searchads360 = google.searchads360('v0');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/doubleclicksearch'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await searchads360.customers.customColumns.get({
+     *     // Required. The resource name of the custom column to fetch.
+     *     resourceName: 'customers/my-customer/customColumns/my-customColumn',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "description": "my_description",
+     *   //   "id": "my_id",
+     *   //   "name": "my_name",
+     *   //   "queryable": false,
+     *   //   "referencedSystemColumns": [],
+     *   //   "referencesAttributes": false,
+     *   //   "referencesMetrics": false,
+     *   //   "renderType": "my_renderType",
+     *   //   "resourceName": "my_resourceName",
+     *   //   "valueType": "my_valueType"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4778,11 +4880,13 @@ export namespace searchads360_v0 {
     get(
       params: Params$Resource$Customers$Customcolumns$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Customers$Customcolumns$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAdsSearchads360V0Resources__CustomColumn>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleAdsSearchads360V0Resources__CustomColumn>
+    >;
     get(
       params: Params$Resource$Customers$Customcolumns$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4817,8 +4921,10 @@ export namespace searchads360_v0 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAdsSearchads360V0Resources__CustomColumn>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAdsSearchads360V0Resources__CustomColumn>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Customcolumns$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4866,6 +4972,52 @@ export namespace searchads360_v0 {
 
     /**
      * Returns all the custom columns associated with the customer in full detail.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/searchads360.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const searchads360 = google.searchads360('v0');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/doubleclicksearch'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await searchads360.customers.customColumns.list({
+     *     // Required. The ID of the customer to apply the CustomColumn list operation to.
+     *     customerId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "customColumns": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4875,11 +5027,13 @@ export namespace searchads360_v0 {
     list(
       params: Params$Resource$Customers$Customcolumns$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Customers$Customcolumns$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAdsSearchads360V0Services__ListCustomColumnsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleAdsSearchads360V0Services__ListCustomColumnsResponse>
+    >;
     list(
       params: Params$Resource$Customers$Customcolumns$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4914,8 +5068,10 @@ export namespace searchads360_v0 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAdsSearchads360V0Services__ListCustomColumnsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAdsSearchads360V0Services__ListCustomColumnsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Customcolumns$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4984,6 +5140,74 @@ export namespace searchads360_v0 {
 
     /**
      * Returns all rows that match the search query. List of thrown errors: [AuthenticationError]() [AuthorizationError]() [HeaderError]() [InternalError]() [QueryError]() [QuotaError]() [RequestError]()
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/searchads360.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const searchads360 = google.searchads360('v0');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/doubleclicksearch'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await searchads360.customers.searchAds360.search({
+     *     // Required. The ID of the customer being queried.
+     *     customerId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "pageSize": 0,
+     *       //   "pageToken": "my_pageToken",
+     *       //   "query": "my_query",
+     *       //   "returnTotalResultsCount": false,
+     *       //   "summaryRowSetting": "my_summaryRowSetting",
+     *       //   "validateOnly": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "conversionCustomDimensionHeaders": [],
+     *   //   "conversionCustomMetricHeaders": [],
+     *   //   "customColumnHeaders": [],
+     *   //   "fieldMask": "my_fieldMask",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "rawEventConversionDimensionHeaders": [],
+     *   //   "rawEventConversionMetricHeaders": [],
+     *   //   "results": [],
+     *   //   "summaryRow": {},
+     *   //   "totalResultsCount": "my_totalResultsCount"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4993,11 +5217,13 @@ export namespace searchads360_v0 {
     search(
       params: Params$Resource$Customers$Searchads360$Search,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     search(
       params?: Params$Resource$Customers$Searchads360$Search,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAdsSearchads360V0Services__SearchSearchAds360Response>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleAdsSearchads360V0Services__SearchSearchAds360Response>
+    >;
     search(
       params: Params$Resource$Customers$Searchads360$Search,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5032,8 +5258,10 @@ export namespace searchads360_v0 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAdsSearchads360V0Services__SearchSearchAds360Response>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAdsSearchads360V0Services__SearchSearchAds360Response>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Searchads360$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5100,6 +5328,65 @@ export namespace searchads360_v0 {
 
     /**
      * Returns just the requested field. List of thrown errors: [AuthenticationError]() [AuthorizationError]() [HeaderError]() [InternalError]() [QuotaError]() [RequestError]()
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/searchads360.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const searchads360 = google.searchads360('v0');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/doubleclicksearch'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await searchads360.searchAds360Fields.get({
+     *     // Required. The resource name of the field to get.
+     *     resourceName: 'searchAds360Fields/my-searchAds360Field',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attributeResources": [],
+     *   //   "category": "my_category",
+     *   //   "dataType": "my_dataType",
+     *   //   "enumValues": [],
+     *   //   "filterable": false,
+     *   //   "isRepeated": false,
+     *   //   "metrics": [],
+     *   //   "name": "my_name",
+     *   //   "resourceName": "my_resourceName",
+     *   //   "segments": [],
+     *   //   "selectable": false,
+     *   //   "selectableWith": [],
+     *   //   "sortable": false,
+     *   //   "typeUrl": "my_typeUrl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5109,11 +5396,13 @@ export namespace searchads360_v0 {
     get(
       params: Params$Resource$Searchads360fields$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Searchads360fields$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAdsSearchads360V0Resources__SearchAds360Field>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleAdsSearchads360V0Resources__SearchAds360Field>
+    >;
     get(
       params: Params$Resource$Searchads360fields$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5148,8 +5437,10 @@ export namespace searchads360_v0 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAdsSearchads360V0Resources__SearchAds360Field>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAdsSearchads360V0Resources__SearchAds360Field>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Searchads360fields$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5197,6 +5488,61 @@ export namespace searchads360_v0 {
 
     /**
      * Returns all fields that match the search [query](/search-ads/reporting/concepts/field-service#use_a_query_to_get_field_details). List of thrown errors: [AuthenticationError]() [AuthorizationError]() [HeaderError]() [InternalError]() [QueryError]() [QuotaError]() [RequestError]()
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/searchads360.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const searchads360 = google.searchads360('v0');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/doubleclicksearch'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await searchads360.searchAds360Fields.search({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "pageSize": 0,
+     *       //   "pageToken": "my_pageToken",
+     *       //   "query": "my_query"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "results": [],
+     *   //   "totalResultsCount": "my_totalResultsCount"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5206,11 +5552,13 @@ export namespace searchads360_v0 {
     search(
       params: Params$Resource$Searchads360fields$Search,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     search(
       params?: Params$Resource$Searchads360fields$Search,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAdsSearchads360V0Services__SearchSearchAds360FieldsResponse>;
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleAdsSearchads360V0Services__SearchSearchAds360FieldsResponse>
+    >;
     search(
       params: Params$Resource$Searchads360fields$Search,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5245,8 +5593,10 @@ export namespace searchads360_v0 {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAdsSearchads360V0Services__SearchSearchAds360FieldsResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAdsSearchads360V0Services__SearchSearchAds360FieldsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Searchads360fields$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;

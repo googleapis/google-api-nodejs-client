@@ -1,5 +1,39 @@
 # Changelog
 
+## [31.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/displayvideo-v31.0.0...displayvideo-v31.0.1) (2025-06-04)
+
+
+### Bug Fixes
+
+* **deps:** upgrade googleapis-common to 8.0.2-rc ([f4b0990](https://github.com/googleapis/google-api-nodejs-client/commit/f4b099071040cfbcfe4a2e7d487d45ee93b369e0))
+
+## [31.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/displayvideo-v30.0.0...displayvideo-v31.0.0) (2025-05-29)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to node 18
+
+### Features
+
+* upgrade to node 18 ([682fbb8](https://github.com/googleapis/google-api-nodejs-client/commit/682fbb869189ae92b3e9a194d37d0548af0c1f92))
+
+## [30.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/displayvideo-v29.0.0...displayvideo-v30.0.0) (2025-05-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* **displayvideo:** This release has breaking changes.
+
+### Features
+
+* **displayvideo:** update the API ([dd87987](https://github.com/googleapis/google-api-nodejs-client/commit/dd87987e492d283a2aafc62683f4a90b2b820256))
+
+
+### Bug Fixes
+
+* **displayvideo:** update the API ([aff30b6](https://github.com/googleapis/google-api-nodejs-client/commit/aff30b6628594801a2114e2dc9ef94c1be520ce2))
+
 ## [29.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/displayvideo-v28.0.0...displayvideo-v29.0.0) (2025-04-18)
 
 

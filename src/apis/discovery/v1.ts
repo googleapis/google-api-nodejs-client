@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -460,6 +460,84 @@ export namespace discovery_v1 {
 
     /**
      * Retrieve the description of a particular version of an api.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discovery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discovery = google.discovery('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discovery.apis.getRest({
+     *     // The name of the API.
+     *     api: 'placeholder-value',
+     *     // The version of the API.
+     *     version: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auth": {},
+     *   //   "basePath": "my_basePath",
+     *   //   "baseUrl": "my_baseUrl",
+     *   //   "batchPath": "my_batchPath",
+     *   //   "canonicalName": "my_canonicalName",
+     *   //   "description": "my_description",
+     *   //   "discoveryVersion": "my_discoveryVersion",
+     *   //   "documentationLink": "my_documentationLink",
+     *   //   "endpoints": [],
+     *   //   "etag": "my_etag",
+     *   //   "exponentialBackoffDefault": false,
+     *   //   "features": [],
+     *   //   "icons": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "labels": [],
+     *   //   "methods": {},
+     *   //   "name": "my_name",
+     *   //   "ownerDomain": "my_ownerDomain",
+     *   //   "ownerName": "my_ownerName",
+     *   //   "packagePath": "my_packagePath",
+     *   //   "parameters": {},
+     *   //   "protocol": "my_protocol",
+     *   //   "resources": {},
+     *   //   "revision": "my_revision",
+     *   //   "rootUrl": "my_rootUrl",
+     *   //   "schemas": {},
+     *   //   "servicePath": "my_servicePath",
+     *   //   "title": "my_title",
+     *   //   "version": "my_version",
+     *   //   "version_module": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -469,11 +547,11 @@ export namespace discovery_v1 {
     getRest(
       params: Params$Resource$Apis$Getrest,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     getRest(
       params?: Params$Resource$Apis$Getrest,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$RestDescription>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$RestDescription>>;
     getRest(
       params: Params$Resource$Apis$Getrest,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -502,7 +580,10 @@ export namespace discovery_v1 {
       callback?:
         | BodyResponseCallback<Schema$RestDescription>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$RestDescription> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$RestDescription>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Apis$Getrest;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -547,6 +628,56 @@ export namespace discovery_v1 {
 
     /**
      * Retrieve the list of APIs supported at this endpoint.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discovery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discovery = google.discovery('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discovery.apis.list({
+     *     // Only include APIs with the given name.
+     *     name: 'placeholder-value',
+     *     // Return only the preferred version of an API.
+     *     preferred: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "discoveryVersion": "my_discoveryVersion",
+     *   //   "items": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -556,11 +687,11 @@ export namespace discovery_v1 {
     list(
       params: Params$Resource$Apis$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Apis$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$DirectoryList>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DirectoryList>>;
     list(
       params: Params$Resource$Apis$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -589,7 +720,10 @@ export namespace discovery_v1 {
       callback?:
         | BodyResponseCallback<Schema$DirectoryList>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$DirectoryList> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$DirectoryList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback || {}) as Params$Resource$Apis$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

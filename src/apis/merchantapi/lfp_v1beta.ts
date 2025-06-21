@@ -23,7 +23,7 @@ import {
   Compute,
   UserRefreshClient,
   BaseExternalAccountClient,
-  GaxiosPromise,
+  GaxiosResponseWithHTTP2,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -260,7 +260,7 @@ export namespace merchantapi_lfp_v1beta {
      */
     linkedGbps?: string | null;
     /**
-     * Identifier. The name of the `LfpMerchantState` resource. Format: `accounts/{account\}/lfpMerchantStates/{target_merchant\}`
+     * Identifier. The name of the `LfpMerchantState` resource. Format: `accounts/{account\}/lfpMerchantStates/{target_merchant\}`. For example, `accounts/123456/lfpMerchantStates/567890`.
      */
     name?: string | null;
     /**
@@ -455,7 +455,7 @@ export namespace merchantapi_lfp_v1beta {
      */
     eventTime?: string | null;
     /**
-     * Optional. The product expiration time. This field will not bet set if the notification is sent for a product deletion event.
+     * Optional. The product expiration time. This field will not be set if the notification is sent for a product deletion event.
      */
     expirationTime?: string | null;
     /**
@@ -501,6 +501,86 @@ export namespace merchantapi_lfp_v1beta {
 
     /**
      * Inserts a `LfpInventory` resource for the given target merchant account. If the resource already exists, it will be replaced. The inventory automatically expires after 30 days.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('lfp_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.lfpInventories.insert({
+     *     // Required. The LFP provider account. Format: `accounts/{account\}`
+     *     parent: 'accounts/my-account',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "availability": "my_availability",
+     *       //   "collectionTime": "my_collectionTime",
+     *       //   "contentLanguage": "my_contentLanguage",
+     *       //   "feedLabel": "my_feedLabel",
+     *       //   "gtin": "my_gtin",
+     *       //   "name": "my_name",
+     *       //   "offerId": "my_offerId",
+     *       //   "pickupMethod": "my_pickupMethod",
+     *       //   "pickupSla": "my_pickupSla",
+     *       //   "price": {},
+     *       //   "quantity": "my_quantity",
+     *       //   "regionCode": "my_regionCode",
+     *       //   "storeCode": "my_storeCode",
+     *       //   "targetAccount": "my_targetAccount"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "availability": "my_availability",
+     *   //   "collectionTime": "my_collectionTime",
+     *   //   "contentLanguage": "my_contentLanguage",
+     *   //   "feedLabel": "my_feedLabel",
+     *   //   "gtin": "my_gtin",
+     *   //   "name": "my_name",
+     *   //   "offerId": "my_offerId",
+     *   //   "pickupMethod": "my_pickupMethod",
+     *   //   "pickupSla": "my_pickupSla",
+     *   //   "price": {},
+     *   //   "quantity": "my_quantity",
+     *   //   "regionCode": "my_regionCode",
+     *   //   "storeCode": "my_storeCode",
+     *   //   "targetAccount": "my_targetAccount"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -510,11 +590,11 @@ export namespace merchantapi_lfp_v1beta {
     insert(
       params: Params$Resource$Accounts$Lfpinventories$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Accounts$Lfpinventories$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LfpInventory>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LfpInventory>>;
     insert(
       params: Params$Resource$Accounts$Lfpinventories$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -543,7 +623,10 @@ export namespace merchantapi_lfp_v1beta {
       callback?:
         | BodyResponseCallback<Schema$LfpInventory>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LfpInventory> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$LfpInventory>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Lfpinventories$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -608,6 +691,56 @@ export namespace merchantapi_lfp_v1beta {
 
     /**
      * Gets the LFP state of a merchant
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('lfp_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.lfpMerchantStates.get({
+     *     // Required. The name of the state to retrieve. Format: `accounts/{account\}/lfpMerchantStates/{target_merchant\}`. For example, `accounts/123456/lfpMerchantStates/567890`.
+     *     name: 'accounts/my-account/lfpMerchantStates/my-lfpMerchantState',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "countrySettings": [],
+     *   //   "inventoryStats": {},
+     *   //   "linkedGbps": "my_linkedGbps",
+     *   //   "name": "my_name",
+     *   //   "storeStates": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -617,11 +750,11 @@ export namespace merchantapi_lfp_v1beta {
     get(
       params: Params$Resource$Accounts$Lfpmerchantstates$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Accounts$Lfpmerchantstates$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LfpMerchantState>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LfpMerchantState>>;
     get(
       params: Params$Resource$Accounts$Lfpmerchantstates$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -650,7 +783,10 @@ export namespace merchantapi_lfp_v1beta {
       callback?:
         | BodyResponseCallback<Schema$LfpMerchantState>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LfpMerchantState> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$LfpMerchantState>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Lfpmerchantstates$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -698,7 +834,7 @@ export namespace merchantapi_lfp_v1beta {
   export interface Params$Resource$Accounts$Lfpmerchantstates$Get
     extends StandardParameters {
     /**
-     * Required. The name of the state to retrieve. Format: `accounts/{account\}/lfpMerchantStates/{target_merchant\}`
+     * Required. The name of the state to retrieve. Format: `accounts/{account\}/lfpMerchantStates/{target_merchant\}`. For example, `accounts/123456/lfpMerchantStates/567890`.
      */
     name?: string;
   }
@@ -711,6 +847,82 @@ export namespace merchantapi_lfp_v1beta {
 
     /**
      * Inserts a `LfpSale` for the given merchant.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('lfp_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.lfpSales.insert({
+     *     // Required. The LFP provider account. Format: `accounts/{lfp_partner\}`
+     *     parent: 'accounts/my-account',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "contentLanguage": "my_contentLanguage",
+     *       //   "feedLabel": "my_feedLabel",
+     *       //   "gtin": "my_gtin",
+     *       //   "name": "my_name",
+     *       //   "offerId": "my_offerId",
+     *       //   "price": {},
+     *       //   "quantity": "my_quantity",
+     *       //   "regionCode": "my_regionCode",
+     *       //   "saleTime": "my_saleTime",
+     *       //   "storeCode": "my_storeCode",
+     *       //   "targetAccount": "my_targetAccount",
+     *       //   "uid": "my_uid"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contentLanguage": "my_contentLanguage",
+     *   //   "feedLabel": "my_feedLabel",
+     *   //   "gtin": "my_gtin",
+     *   //   "name": "my_name",
+     *   //   "offerId": "my_offerId",
+     *   //   "price": {},
+     *   //   "quantity": "my_quantity",
+     *   //   "regionCode": "my_regionCode",
+     *   //   "saleTime": "my_saleTime",
+     *   //   "storeCode": "my_storeCode",
+     *   //   "targetAccount": "my_targetAccount",
+     *   //   "uid": "my_uid"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -720,11 +932,11 @@ export namespace merchantapi_lfp_v1beta {
     insert(
       params: Params$Resource$Accounts$Lfpsales$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Accounts$Lfpsales$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LfpSale>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LfpSale>>;
     insert(
       params: Params$Resource$Accounts$Lfpsales$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -753,7 +965,10 @@ export namespace merchantapi_lfp_v1beta {
       callback?:
         | BodyResponseCallback<Schema$LfpSale>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LfpSale> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$LfpSale>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Lfpsales$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -819,6 +1034,50 @@ export namespace merchantapi_lfp_v1beta {
 
     /**
      * Deletes a store for a target merchant.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('lfp_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.lfpStores.delete({
+     *     // Required. The name of the store to delete for the target merchant account. Format: `accounts/{account\}/lfpStores/{target_merchant\}~{store_code\}`
+     *     name: 'accounts/my-account/lfpStores/my-lfpStore',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -828,11 +1087,11 @@ export namespace merchantapi_lfp_v1beta {
     delete(
       params: Params$Resource$Accounts$Lfpstores$Delete,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
       params?: Params$Resource$Accounts$Lfpstores$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
       params: Params$Resource$Accounts$Lfpstores$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -861,7 +1120,10 @@ export namespace merchantapi_lfp_v1beta {
       callback?:
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Lfpstores$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -907,6 +1169,62 @@ export namespace merchantapi_lfp_v1beta {
 
     /**
      * Retrieves information about a store.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('lfp_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.lfpStores.get({
+     *     // Required. The name of the store to retrieve. Format: `accounts/{account\}/lfpStores/{target_merchant\}~{store_code\}`
+     *     name: 'accounts/my-account/lfpStores/my-lfpStore',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "gcidCategory": [],
+     *   //   "matchingState": "my_matchingState",
+     *   //   "matchingStateHint": "my_matchingStateHint",
+     *   //   "name": "my_name",
+     *   //   "phoneNumber": "my_phoneNumber",
+     *   //   "placeId": "my_placeId",
+     *   //   "storeAddress": "my_storeAddress",
+     *   //   "storeCode": "my_storeCode",
+     *   //   "storeName": "my_storeName",
+     *   //   "targetAccount": "my_targetAccount",
+     *   //   "websiteUri": "my_websiteUri"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -916,11 +1234,11 @@ export namespace merchantapi_lfp_v1beta {
     get(
       params: Params$Resource$Accounts$Lfpstores$Get,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
       params?: Params$Resource$Accounts$Lfpstores$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LfpStore>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LfpStore>>;
     get(
       params: Params$Resource$Accounts$Lfpstores$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -949,7 +1267,10 @@ export namespace merchantapi_lfp_v1beta {
       callback?:
         | BodyResponseCallback<Schema$LfpStore>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LfpStore> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$LfpStore>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Lfpstores$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -995,6 +1316,80 @@ export namespace merchantapi_lfp_v1beta {
 
     /**
      * Inserts a store for the target merchant. If the store with the same store code already exists, it will be replaced.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('lfp_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.lfpStores.insert({
+     *     // Required. The LFP provider account Format: `accounts/{account\}`
+     *     parent: 'accounts/my-account',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "gcidCategory": [],
+     *       //   "matchingState": "my_matchingState",
+     *       //   "matchingStateHint": "my_matchingStateHint",
+     *       //   "name": "my_name",
+     *       //   "phoneNumber": "my_phoneNumber",
+     *       //   "placeId": "my_placeId",
+     *       //   "storeAddress": "my_storeAddress",
+     *       //   "storeCode": "my_storeCode",
+     *       //   "storeName": "my_storeName",
+     *       //   "targetAccount": "my_targetAccount",
+     *       //   "websiteUri": "my_websiteUri"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "gcidCategory": [],
+     *   //   "matchingState": "my_matchingState",
+     *   //   "matchingStateHint": "my_matchingStateHint",
+     *   //   "name": "my_name",
+     *   //   "phoneNumber": "my_phoneNumber",
+     *   //   "placeId": "my_placeId",
+     *   //   "storeAddress": "my_storeAddress",
+     *   //   "storeCode": "my_storeCode",
+     *   //   "storeName": "my_storeName",
+     *   //   "targetAccount": "my_targetAccount",
+     *   //   "websiteUri": "my_websiteUri"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1004,11 +1399,11 @@ export namespace merchantapi_lfp_v1beta {
     insert(
       params: Params$Resource$Accounts$Lfpstores$Insert,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     insert(
       params?: Params$Resource$Accounts$Lfpstores$Insert,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$LfpStore>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LfpStore>>;
     insert(
       params: Params$Resource$Accounts$Lfpstores$Insert,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1037,7 +1432,10 @@ export namespace merchantapi_lfp_v1beta {
       callback?:
         | BodyResponseCallback<Schema$LfpStore>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LfpStore> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$LfpStore>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Lfpstores$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1083,6 +1481,59 @@ export namespace merchantapi_lfp_v1beta {
 
     /**
      * Lists the stores of the target merchant, specified by the filter in `ListLfpStoresRequest`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('lfp_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.lfpStores.list({
+     *     // Optional. The maximum number of `LfpStore` resources for the given account to return. The service returns fewer than this value if the number of stores for the given account is less than the `pageSize`. The default value is 250. The maximum value is 1000; If a value higher than the maximum is specified, then the `pageSize` will default to the maximum.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous `ListLfpStoresRequest` call. Provide the page token to retrieve the subsequent page. When paginating, all other parameters provided to `ListLfpStoresRequest` must match the call that provided the page token. The token returned as nextPageToken in the response to the previous request.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The LFP partner. Format: `accounts/{account\}`
+     *     parent: 'accounts/my-account',
+     *     // Required. The Merchant Center id of the merchant to list stores for.
+     *     targetAccount: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "lfpStores": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1092,11 +1543,11 @@ export namespace merchantapi_lfp_v1beta {
     list(
       params: Params$Resource$Accounts$Lfpstores$List,
       options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
       params?: Params$Resource$Accounts$Lfpstores$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListLfpStoresResponse>;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListLfpStoresResponse>>;
     list(
       params: Params$Resource$Accounts$Lfpstores$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1129,8 +1580,8 @@ export namespace merchantapi_lfp_v1beta {
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListLfpStoresResponse>
-      | GaxiosPromise<Readable> {
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListLfpStoresResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Lfpstores$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

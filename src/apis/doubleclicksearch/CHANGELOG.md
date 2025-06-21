@@ -1,5 +1,30 @@
 # Changelog
 
+## [5.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/doubleclicksearch-v5.0.0...doubleclicksearch-v5.0.1) (2025-06-04)
+
+
+### Bug Fixes
+
+* **deps:** upgrade googleapis-common to 8.0.2-rc ([f4b0990](https://github.com/googleapis/google-api-nodejs-client/commit/f4b099071040cfbcfe4a2e7d487d45ee93b369e0))
+
+## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/doubleclicksearch-v4.0.4...doubleclicksearch-v5.0.0) (2025-05-29)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to node 18
+
+### Features
+
+* upgrade to node 18 ([682fbb8](https://github.com/googleapis/google-api-nodejs-client/commit/682fbb869189ae92b3e9a194d37d0548af0c1f92))
+
+## [4.0.4](https://github.com/googleapis/google-api-nodejs-client/compare/doubleclicksearch-v4.0.3...doubleclicksearch-v4.0.4) (2025-05-05)
+
+
+### Bug Fixes
+
+* **doubleclicksearch:** update the API ([30aa349](https://github.com/googleapis/google-api-nodejs-client/commit/30aa3492fb5500cddc997448447cdb93649de387))
+
 ## [4.0.3](https://github.com/googleapis/google-api-nodejs-client/compare/doubleclicksearch-v4.0.2...doubleclicksearch-v4.0.3) (2024-05-02)
 
 
