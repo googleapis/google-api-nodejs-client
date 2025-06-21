@@ -1202,6 +1202,79 @@ export namespace dns_v1beta2 {
 
     /**
      * Atomically updates the ResourceRecordSet collection.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dns.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dns = google.dns('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/ndev.clouddns.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dns.changes.create({
+     *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     *     clientOperationId: 'placeholder-value',
+     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or ID.
+     *     managedZone: 'placeholder-value',
+     *     // Identifies the project addressed by this request.
+     *     project: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "additions": [],
+     *       //   "deletions": [],
+     *       //   "id": "my_id",
+     *       //   "isServing": false,
+     *       //   "kind": "my_kind",
+     *       //   "startTime": "my_startTime",
+     *       //   "status": "my_status"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "additions": [],
+     *   //   "deletions": [],
+     *   //   "id": "my_id",
+     *   //   "isServing": false,
+     *   //   "kind": "my_kind",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1292,6 +1365,69 @@ export namespace dns_v1beta2 {
 
     /**
      * Fetches the representation of an existing Change.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dns.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dns = google.dns('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/ndev.clouddns.readonly',
+     *       'https://www.googleapis.com/auth/ndev.clouddns.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dns.changes.get({
+     *     // The identifier of the requested change, from a previous ResourceRecordSetsChangeResponse.
+     *     changeId: 'placeholder-value',
+     *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     *     clientOperationId: 'placeholder-value',
+     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or ID.
+     *     managedZone: 'placeholder-value',
+     *     // Identifies the project addressed by this request.
+     *     project: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "additions": [],
+     *   //   "deletions": [],
+     *   //   "id": "my_id",
+     *   //   "isServing": false,
+     *   //   "kind": "my_kind",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1382,6 +1518,69 @@ export namespace dns_v1beta2 {
 
     /**
      * Enumerates Changes to a ResourceRecordSet collection.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dns.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dns = google.dns('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/ndev.clouddns.readonly',
+     *       'https://www.googleapis.com/auth/ndev.clouddns.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dns.changes.list({
+     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or ID.
+     *     managedZone: 'placeholder-value',
+     *     // Optional. Maximum number of results to be returned. If unspecified, the server decides how many results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
+     *     pageToken: 'placeholder-value',
+     *     // Identifies the project addressed by this request.
+     *     project: 'placeholder-value',
+     *     // Sorting criterion. The only supported value is change sequence.
+     *     sortBy: 'placeholder-value',
+     *     // Sorting order direction: 'ascending' or 'descending'.
+     *     sortOrder: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "changes": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1543,6 +1742,75 @@ export namespace dns_v1beta2 {
 
     /**
      * Fetches the representation of an existing DnsKey.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dns.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dns = google.dns('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/ndev.clouddns.readonly',
+     *       'https://www.googleapis.com/auth/ndev.clouddns.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dns.dnsKeys.get({
+     *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     *     clientOperationId: 'placeholder-value',
+     *     // An optional comma-separated list of digest types to compute and display for key signing keys. If omitted, the recommended digest type is computed and displayed.
+     *     digestType: 'placeholder-value',
+     *     // The identifier of the requested DnsKey.
+     *     dnsKeyId: 'placeholder-value',
+     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or ID.
+     *     managedZone: 'placeholder-value',
+     *     // Identifies the project addressed by this request.
+     *     project: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "algorithm": "my_algorithm",
+     *   //   "creationTime": "my_creationTime",
+     *   //   "description": "my_description",
+     *   //   "digests": [],
+     *   //   "id": "my_id",
+     *   //   "isActive": false,
+     *   //   "keyLength": 0,
+     *   //   "keyTag": 0,
+     *   //   "kind": "my_kind",
+     *   //   "publicKey": "my_publicKey",
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1633,6 +1901,67 @@ export namespace dns_v1beta2 {
 
     /**
      * Enumerates DnsKeys to a ResourceRecordSet collection.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dns.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dns = google.dns('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/ndev.clouddns.readonly',
+     *       'https://www.googleapis.com/auth/ndev.clouddns.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dns.dnsKeys.list({
+     *     // An optional comma-separated list of digest types to compute and display for key signing keys. If omitted, the recommended digest type is computed and displayed.
+     *     digestType: 'placeholder-value',
+     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or ID.
+     *     managedZone: 'placeholder-value',
+     *     // Optional. Maximum number of results to be returned. If unspecified, the server decides how many results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
+     *     pageToken: 'placeholder-value',
+     *     // Identifies the project addressed by this request.
+     *     project: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dnsKeys": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1775,6 +2104,70 @@ export namespace dns_v1beta2 {
 
     /**
      * Fetches the representation of an existing Operation.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dns.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dns = google.dns('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/ndev.clouddns.readonly',
+     *       'https://www.googleapis.com/auth/ndev.clouddns.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dns.managedZoneOperations.get({
+     *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     *     clientOperationId: 'placeholder-value',
+     *     // Identifies the managed zone addressed by this request.
+     *     managedZone: 'placeholder-value',
+     *     // Identifies the operation addressed by this request (ID of the operation).
+     *     operation: 'placeholder-value',
+     *     // Identifies the project addressed by this request.
+     *     project: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dnsKeyContext": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "type": "my_type",
+     *   //   "user": "my_user",
+     *   //   "zoneContext": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1866,6 +2259,67 @@ export namespace dns_v1beta2 {
 
     /**
      * Enumerates Operations for the given ManagedZone.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dns.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dns = google.dns('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/ndev.clouddns.readonly',
+     *       'https://www.googleapis.com/auth/ndev.clouddns.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dns.managedZoneOperations.list({
+     *     // Identifies the managed zone addressed by this request.
+     *     managedZone: 'placeholder-value',
+     *     // Optional. Maximum number of results to be returned. If unspecified, the server decides how many results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
+     *     pageToken: 'placeholder-value',
+     *     // Identifies the project addressed by this request.
+     *     project: 'placeholder-value',
+     *     // Sorting criterion. The only supported values are START_TIME and ID.
+     *     sortBy: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "operations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2017,6 +2471,97 @@ export namespace dns_v1beta2 {
 
     /**
      * Creates a new ManagedZone.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dns.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dns = google.dns('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/ndev.clouddns.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dns.managedZones.create({
+     *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     *     clientOperationId: 'placeholder-value',
+     *     // Identifies the project addressed by this request.
+     *     project: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "cloudLoggingConfig": {},
+     *       //   "creationTime": "my_creationTime",
+     *       //   "description": "my_description",
+     *       //   "dnsName": "my_dnsName",
+     *       //   "dnssecConfig": {},
+     *       //   "forwardingConfig": {},
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "nameServerSet": "my_nameServerSet",
+     *       //   "nameServers": [],
+     *       //   "peeringConfig": {},
+     *       //   "privateVisibilityConfig": {},
+     *       //   "reverseLookupConfig": {},
+     *       //   "serviceDirectoryConfig": {},
+     *       //   "visibility": "my_visibility"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cloudLoggingConfig": {},
+     *   //   "creationTime": "my_creationTime",
+     *   //   "description": "my_description",
+     *   //   "dnsName": "my_dnsName",
+     *   //   "dnssecConfig": {},
+     *   //   "forwardingConfig": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "nameServerSet": "my_nameServerSet",
+     *   //   "nameServers": [],
+     *   //   "peeringConfig": {},
+     *   //   "privateVisibilityConfig": {},
+     *   //   "reverseLookupConfig": {},
+     *   //   "serviceDirectoryConfig": {},
+     *   //   "visibility": "my_visibility"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2107,6 +2652,54 @@ export namespace dns_v1beta2 {
 
     /**
      * Deletes a previously created ManagedZone.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dns.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dns = google.dns('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/ndev.clouddns.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dns.managedZones.delete({
+     *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     *     clientOperationId: 'placeholder-value',
+     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or ID.
+     *     managedZone: 'placeholder-value',
+     *     // Identifies the project addressed by this request.
+     *     project: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2196,6 +2789,77 @@ export namespace dns_v1beta2 {
 
     /**
      * Fetches the representation of an existing ManagedZone.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dns.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dns = google.dns('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/ndev.clouddns.readonly',
+     *       'https://www.googleapis.com/auth/ndev.clouddns.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dns.managedZones.get({
+     *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     *     clientOperationId: 'placeholder-value',
+     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or ID.
+     *     managedZone: 'placeholder-value',
+     *     // Identifies the project addressed by this request.
+     *     project: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cloudLoggingConfig": {},
+     *   //   "creationTime": "my_creationTime",
+     *   //   "description": "my_description",
+     *   //   "dnsName": "my_dnsName",
+     *   //   "dnssecConfig": {},
+     *   //   "forwardingConfig": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "nameServerSet": "my_nameServerSet",
+     *   //   "nameServers": [],
+     *   //   "peeringConfig": {},
+     *   //   "privateVisibilityConfig": {},
+     *   //   "reverseLookupConfig": {},
+     *   //   "serviceDirectoryConfig": {},
+     *   //   "visibility": "my_visibility"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2286,6 +2950,68 @@ export namespace dns_v1beta2 {
 
     /**
      * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dns.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dns = google.dns('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/ndev.clouddns.readonly',
+     *       'https://www.googleapis.com/auth/ndev.clouddns.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dns.managedZones.getIamPolicy({
+     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource: 'projects/my-project/managedZones/my-managedZone',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "options": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2379,6 +3105,65 @@ export namespace dns_v1beta2 {
 
     /**
      * Enumerates ManagedZones that have been created but not yet deleted.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dns.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dns = google.dns('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/ndev.clouddns.readonly',
+     *       'https://www.googleapis.com/auth/ndev.clouddns.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dns.managedZones.list({
+     *     // Restricts the list to return only zones with this domain name.
+     *     dnsName: 'placeholder-value',
+     *     // Optional. Maximum number of results to be returned. If unspecified, the server decides how many results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
+     *     pageToken: 'placeholder-value',
+     *     // Identifies the project addressed by this request.
+     *     project: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "managedZones": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2471,6 +3256,90 @@ export namespace dns_v1beta2 {
 
     /**
      * Applies a partial update to an existing ManagedZone.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dns.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dns = google.dns('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/ndev.clouddns.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dns.managedZones.patch({
+     *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     *     clientOperationId: 'placeholder-value',
+     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or ID.
+     *     managedZone: 'placeholder-value',
+     *     // Identifies the project addressed by this request.
+     *     project: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "cloudLoggingConfig": {},
+     *       //   "creationTime": "my_creationTime",
+     *       //   "description": "my_description",
+     *       //   "dnsName": "my_dnsName",
+     *       //   "dnssecConfig": {},
+     *       //   "forwardingConfig": {},
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "nameServerSet": "my_nameServerSet",
+     *       //   "nameServers": [],
+     *       //   "peeringConfig": {},
+     *       //   "privateVisibilityConfig": {},
+     *       //   "reverseLookupConfig": {},
+     *       //   "serviceDirectoryConfig": {},
+     *       //   "visibility": "my_visibility"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dnsKeyContext": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "type": "my_type",
+     *   //   "user": "my_user",
+     *   //   "zoneContext": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2562,6 +3431,67 @@ export namespace dns_v1beta2 {
 
     /**
      * Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dns.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dns = google.dns('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/ndev.clouddns.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dns.managedZones.setIamPolicy({
+     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource: 'projects/my-project/managedZones/my-managedZone',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "policy": {},
+     *       //   "updateMask": "my_updateMask"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2655,6 +3585,65 @@ export namespace dns_v1beta2 {
 
     /**
      * Returns permissions that a caller has on the specified resource. If the resource does not exist, this returns an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dns.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dns = google.dns('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/ndev.clouddns.readonly',
+     *       'https://www.googleapis.com/auth/ndev.clouddns.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dns.managedZones.testIamPermissions({
+     *     // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource: 'projects/my-project/managedZones/my-managedZone',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "permissions": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2755,6 +3744,90 @@ export namespace dns_v1beta2 {
 
     /**
      * Updates an existing ManagedZone.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dns.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dns = google.dns('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/ndev.clouddns.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dns.managedZones.update({
+     *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     *     clientOperationId: 'placeholder-value',
+     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or ID.
+     *     managedZone: 'placeholder-value',
+     *     // Identifies the project addressed by this request.
+     *     project: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "cloudLoggingConfig": {},
+     *       //   "creationTime": "my_creationTime",
+     *       //   "description": "my_description",
+     *       //   "dnsName": "my_dnsName",
+     *       //   "dnssecConfig": {},
+     *       //   "forwardingConfig": {},
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "nameServerSet": "my_nameServerSet",
+     *       //   "nameServers": [],
+     *       //   "peeringConfig": {},
+     *       //   "privateVisibilityConfig": {},
+     *       //   "reverseLookupConfig": {},
+     *       //   "serviceDirectoryConfig": {},
+     *       //   "visibility": "my_visibility"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dnsKeyContext": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "type": "my_type",
+     *   //   "user": "my_user",
+     *   //   "zoneContext": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2994,6 +4067,81 @@ export namespace dns_v1beta2 {
 
     /**
      * Creates a new Policy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dns.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dns = google.dns('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/ndev.clouddns.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dns.policies.create({
+     *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     *     clientOperationId: 'placeholder-value',
+     *     // Identifies the project addressed by this request.
+     *     project: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "alternativeNameServerConfig": {},
+     *       //   "description": "my_description",
+     *       //   "dns64Config": {},
+     *       //   "enableInboundForwarding": false,
+     *       //   "enableLogging": false,
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "networks": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "alternativeNameServerConfig": {},
+     *   //   "description": "my_description",
+     *   //   "dns64Config": {},
+     *   //   "enableInboundForwarding": false,
+     *   //   "enableLogging": false,
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "networks": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3084,6 +4232,54 @@ export namespace dns_v1beta2 {
 
     /**
      * Deletes a previously created Policy. Fails if the policy is still being referenced by a network.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dns.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dns = google.dns('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/ndev.clouddns.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dns.policies.delete({
+     *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     *     clientOperationId: 'placeholder-value',
+     *     // User given friendly name of the policy addressed by this request.
+     *     policy: 'placeholder-value',
+     *     // Identifies the project addressed by this request.
+     *     project: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3171,6 +4367,69 @@ export namespace dns_v1beta2 {
 
     /**
      * Fetches the representation of an existing Policy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dns.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dns = google.dns('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/ndev.clouddns.readonly',
+     *       'https://www.googleapis.com/auth/ndev.clouddns.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dns.policies.get({
+     *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     *     clientOperationId: 'placeholder-value',
+     *     // User given friendly name of the policy addressed by this request.
+     *     policy: 'placeholder-value',
+     *     // Identifies the project addressed by this request.
+     *     project: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "alternativeNameServerConfig": {},
+     *   //   "description": "my_description",
+     *   //   "dns64Config": {},
+     *   //   "enableInboundForwarding": false,
+     *   //   "enableLogging": false,
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "networks": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3260,6 +4519,63 @@ export namespace dns_v1beta2 {
 
     /**
      * Enumerates all Policies associated with a project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dns.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dns = google.dns('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/ndev.clouddns.readonly',
+     *       'https://www.googleapis.com/auth/ndev.clouddns.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dns.policies.list({
+     *     // Optional. Maximum number of results to be returned. If unspecified, the server decides how many results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
+     *     pageToken: 'placeholder-value',
+     *     // Identifies the project addressed by this request.
+     *     project: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "policies": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3352,6 +4668,75 @@ export namespace dns_v1beta2 {
 
     /**
      * Applies a partial update to an existing Policy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dns.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dns = google.dns('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/ndev.clouddns.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dns.policies.patch({
+     *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     *     clientOperationId: 'placeholder-value',
+     *     // User given friendly name of the policy addressed by this request.
+     *     policy: 'placeholder-value',
+     *     // Identifies the project addressed by this request.
+     *     project: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "alternativeNameServerConfig": {},
+     *       //   "description": "my_description",
+     *       //   "dns64Config": {},
+     *       //   "enableInboundForwarding": false,
+     *       //   "enableLogging": false,
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "networks": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "policy": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3443,6 +4828,75 @@ export namespace dns_v1beta2 {
 
     /**
      * Updates an existing Policy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dns.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dns = google.dns('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/ndev.clouddns.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dns.policies.update({
+     *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     *     clientOperationId: 'placeholder-value',
+     *     // User given friendly name of the policy addressed by this request.
+     *     policy: 'placeholder-value',
+     *     // Identifies the project addressed by this request.
+     *     project: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "alternativeNameServerConfig": {},
+     *       //   "description": "my_description",
+     *       //   "dns64Config": {},
+     *       //   "enableInboundForwarding": false,
+     *       //   "enableLogging": false,
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "networks": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "policy": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3637,6 +5091,62 @@ export namespace dns_v1beta2 {
 
     /**
      * Fetches the representation of an existing Project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dns.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dns = google.dns('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/ndev.clouddns.readonly',
+     *       'https://www.googleapis.com/auth/ndev.clouddns.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dns.projects.get({
+     *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     *     clientOperationId: 'placeholder-value',
+     *     // Identifies the project addressed by this request.
+     *     project: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "number": "my_number",
+     *   //   "quota": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3745,6 +5255,79 @@ export namespace dns_v1beta2 {
 
     /**
      * Creates a new ResourceRecordSet.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dns.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dns = google.dns('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/ndev.clouddns.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dns.resourceRecordSets.create({
+     *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     *     clientOperationId: 'placeholder-value',
+     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or ID.
+     *     managedZone: 'placeholder-value',
+     *     // Identifies the project addressed by this request.
+     *     project: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "routingPolicy": {},
+     *       //   "rrdatas": [],
+     *       //   "signatureRrdatas": [],
+     *       //   "ttl": 0,
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "routingPolicy": {},
+     *   //   "rrdatas": [],
+     *   //   "signatureRrdatas": [],
+     *   //   "ttl": 0,
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3836,6 +5419,58 @@ export namespace dns_v1beta2 {
 
     /**
      * Deletes a previously created ResourceRecordSet.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dns.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dns = google.dns('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/ndev.clouddns.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dns.resourceRecordSets.delete({
+     *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     *     clientOperationId: 'placeholder-value',
+     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or ID.
+     *     managedZone: 'placeholder-value',
+     *     // Fully qualified domain name.
+     *     name: 'placeholder-value',
+     *     // Identifies the project addressed by this request.
+     *     project: 'placeholder-value',
+     *     // RRSet type.
+     *     type: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3925,6 +5560,71 @@ export namespace dns_v1beta2 {
 
     /**
      * Fetches the representation of an existing ResourceRecordSet.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dns.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dns = google.dns('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/ndev.clouddns.readonly',
+     *       'https://www.googleapis.com/auth/ndev.clouddns.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dns.resourceRecordSets.get({
+     *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     *     clientOperationId: 'placeholder-value',
+     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or ID.
+     *     managedZone: 'placeholder-value',
+     *     // Fully qualified domain name.
+     *     name: 'placeholder-value',
+     *     // Identifies the project addressed by this request.
+     *     project: 'placeholder-value',
+     *     // RRSet type.
+     *     type: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "routingPolicy": {},
+     *   //   "rrdatas": [],
+     *   //   "signatureRrdatas": [],
+     *   //   "ttl": 0,
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4016,6 +5716,69 @@ export namespace dns_v1beta2 {
 
     /**
      * Enumerates ResourceRecordSets that you have created but not yet deleted.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dns.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dns = google.dns('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/ndev.clouddns.readonly',
+     *       'https://www.googleapis.com/auth/ndev.clouddns.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dns.resourceRecordSets.list({
+     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or ID.
+     *     managedZone: 'placeholder-value',
+     *     // Optional. Maximum number of results to be returned. If unspecified, the server decides how many results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Restricts the list to return only records with this fully qualified domain name.
+     *     name: 'placeholder-value',
+     *     // Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
+     *     pageToken: 'placeholder-value',
+     *     // Identifies the project addressed by this request.
+     *     project: 'placeholder-value',
+     *     // Restricts the list to return only records of this type. If present, the "name" parameter must also be present.
+     *     type: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "rrsets": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4113,6 +5876,83 @@ export namespace dns_v1beta2 {
 
     /**
      * Applies a partial update to an existing ResourceRecordSet.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dns.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dns = google.dns('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/ndev.clouddns.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dns.resourceRecordSets.patch({
+     *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     *     clientOperationId: 'placeholder-value',
+     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or ID.
+     *     managedZone: 'placeholder-value',
+     *     // Fully qualified domain name.
+     *     name: 'placeholder-value',
+     *     // Identifies the project addressed by this request.
+     *     project: 'placeholder-value',
+     *     // RRSet type.
+     *     type: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "routingPolicy": {},
+     *       //   "rrdatas": [],
+     *       //   "signatureRrdatas": [],
+     *       //   "ttl": 0,
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "routingPolicy": {},
+     *   //   "rrdatas": [],
+     *   //   "signatureRrdatas": [],
+     *   //   "ttl": 0,
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4333,6 +6173,77 @@ export namespace dns_v1beta2 {
 
     /**
      * Creates a new Response Policy
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dns.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dns = google.dns('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/ndev.clouddns.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dns.responsePolicies.create({
+     *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     *     clientOperationId: 'placeholder-value',
+     *     // Identifies the project addressed by this request.
+     *     project: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "description": "my_description",
+     *       //   "gkeClusters": [],
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "labels": {},
+     *       //   "networks": [],
+     *       //   "responsePolicyName": "my_responsePolicyName"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "description": "my_description",
+     *   //   "gkeClusters": [],
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "labels": {},
+     *   //   "networks": [],
+     *   //   "responsePolicyName": "my_responsePolicyName"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4423,6 +6334,54 @@ export namespace dns_v1beta2 {
 
     /**
      * Deletes a previously created Response Policy. Fails if the response policy is non-empty or still being referenced by a network.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dns.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dns = google.dns('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/ndev.clouddns.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dns.responsePolicies.delete({
+     *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     *     clientOperationId: 'placeholder-value',
+     *     // Identifies the project addressed by this request.
+     *     project: 'placeholder-value',
+     *     // User assigned name of the Response Policy addressed by this request.
+     *     responsePolicy: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4512,6 +6471,67 @@ export namespace dns_v1beta2 {
 
     /**
      * Fetches the representation of an existing Response Policy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dns.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dns = google.dns('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/ndev.clouddns.readonly',
+     *       'https://www.googleapis.com/auth/ndev.clouddns.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dns.responsePolicies.get({
+     *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     *     clientOperationId: 'placeholder-value',
+     *     // Identifies the project addressed by this request.
+     *     project: 'placeholder-value',
+     *     // User assigned name of the Response Policy addressed by this request.
+     *     responsePolicy: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "description": "my_description",
+     *   //   "gkeClusters": [],
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "labels": {},
+     *   //   "networks": [],
+     *   //   "responsePolicyName": "my_responsePolicyName"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4603,6 +6623,62 @@ export namespace dns_v1beta2 {
 
     /**
      * Enumerates all Response Policies associated with a project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dns.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dns = google.dns('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/ndev.clouddns.readonly',
+     *       'https://www.googleapis.com/auth/ndev.clouddns.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dns.responsePolicies.list({
+     *     // Optional. Maximum number of results to be returned. If unspecified, the server decides how many results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
+     *     pageToken: 'placeholder-value',
+     *     // Identifies the project addressed by this request.
+     *     project: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "responsePolicies": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4699,6 +6775,73 @@ export namespace dns_v1beta2 {
 
     /**
      * Applies a partial update to an existing Response Policy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dns.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dns = google.dns('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/ndev.clouddns.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dns.responsePolicies.patch({
+     *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     *     clientOperationId: 'placeholder-value',
+     *     // Identifies the project addressed by this request.
+     *     project: 'placeholder-value',
+     *     // User assigned name of the response policy addressed by this request.
+     *     responsePolicy: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "description": "my_description",
+     *       //   "gkeClusters": [],
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "labels": {},
+     *       //   "networks": [],
+     *       //   "responsePolicyName": "my_responsePolicyName"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "responsePolicy": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4796,6 +6939,73 @@ export namespace dns_v1beta2 {
 
     /**
      * Updates an existing Response Policy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dns.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dns = google.dns('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/ndev.clouddns.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dns.responsePolicies.update({
+     *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     *     clientOperationId: 'placeholder-value',
+     *     // Identifies the project addressed by this request.
+     *     project: 'placeholder-value',
+     *     // User assigned name of the Response Policy addressed by this request.
+     *     responsePolicy: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "description": "my_description",
+     *       //   "gkeClusters": [],
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "labels": {},
+     *       //   "networks": [],
+     *       //   "responsePolicyName": "my_responsePolicyName"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "responsePolicy": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5002,6 +7212,75 @@ export namespace dns_v1beta2 {
 
     /**
      * Creates a new Response Policy Rule.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dns.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dns = google.dns('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/ndev.clouddns.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dns.responsePolicyRules.create({
+     *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     *     clientOperationId: 'placeholder-value',
+     *     // Identifies the project addressed by this request.
+     *     project: 'placeholder-value',
+     *     // User assigned name of the Response Policy containing the Response Policy Rule.
+     *     responsePolicy: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "behavior": "my_behavior",
+     *       //   "dnsName": "my_dnsName",
+     *       //   "kind": "my_kind",
+     *       //   "localData": {},
+     *       //   "ruleName": "my_ruleName"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "behavior": "my_behavior",
+     *   //   "dnsName": "my_dnsName",
+     *   //   "kind": "my_kind",
+     *   //   "localData": {},
+     *   //   "ruleName": "my_ruleName"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5093,6 +7372,56 @@ export namespace dns_v1beta2 {
 
     /**
      * Deletes a previously created Response Policy Rule.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dns.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dns = google.dns('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/ndev.clouddns.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dns.responsePolicyRules.delete({
+     *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     *     clientOperationId: 'placeholder-value',
+     *     // Identifies the project addressed by this request.
+     *     project: 'placeholder-value',
+     *     // User assigned name of the Response Policy containing the Response Policy Rule.
+     *     responsePolicy: 'placeholder-value',
+     *     // User assigned name of the Response Policy Rule addressed by this request.
+     *     responsePolicyRule: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5182,6 +7511,67 @@ export namespace dns_v1beta2 {
 
     /**
      * Fetches the representation of an existing Response Policy Rule.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dns.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dns = google.dns('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/ndev.clouddns.readonly',
+     *       'https://www.googleapis.com/auth/ndev.clouddns.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dns.responsePolicyRules.get({
+     *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     *     clientOperationId: 'placeholder-value',
+     *     // Identifies the project addressed by this request.
+     *     project: 'placeholder-value',
+     *     // User assigned name of the Response Policy containing the Response Policy Rule.
+     *     responsePolicy: 'placeholder-value',
+     *     // User assigned name of the Response Policy Rule addressed by this request.
+     *     responsePolicyRule: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "behavior": "my_behavior",
+     *   //   "dnsName": "my_dnsName",
+     *   //   "kind": "my_kind",
+     *   //   "localData": {},
+     *   //   "ruleName": "my_ruleName"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5273,6 +7663,64 @@ export namespace dns_v1beta2 {
 
     /**
      * Enumerates all Response Policy Rules associated with a project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dns.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dns = google.dns('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/ndev.clouddns.readonly',
+     *       'https://www.googleapis.com/auth/ndev.clouddns.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dns.responsePolicyRules.list({
+     *     // Optional. Maximum number of results to be returned. If unspecified, the server decides how many results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
+     *     pageToken: 'placeholder-value',
+     *     // Identifies the project addressed by this request.
+     *     project: 'placeholder-value',
+     *     // User assigned name of the Response Policy to list.
+     *     responsePolicy: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "responsePolicyRules": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5370,6 +7818,73 @@ export namespace dns_v1beta2 {
 
     /**
      * Applies a partial update to an existing Response Policy Rule.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dns.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dns = google.dns('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/ndev.clouddns.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dns.responsePolicyRules.patch({
+     *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     *     clientOperationId: 'placeholder-value',
+     *     // Identifies the project addressed by this request.
+     *     project: 'placeholder-value',
+     *     // User assigned name of the Response Policy containing the Response Policy Rule.
+     *     responsePolicy: 'placeholder-value',
+     *     // User assigned name of the Response Policy Rule addressed by this request.
+     *     responsePolicyRule: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "behavior": "my_behavior",
+     *       //   "dnsName": "my_dnsName",
+     *       //   "kind": "my_kind",
+     *       //   "localData": {},
+     *       //   "ruleName": "my_ruleName"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "responsePolicyRule": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5471,6 +7986,73 @@ export namespace dns_v1beta2 {
 
     /**
      * Updates an existing Response Policy Rule.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dns.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dns = google.dns('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/ndev.clouddns.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dns.responsePolicyRules.update({
+     *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     *     clientOperationId: 'placeholder-value',
+     *     // Identifies the project addressed by this request.
+     *     project: 'placeholder-value',
+     *     // User assigned name of the Response Policy containing the Response Policy Rule.
+     *     responsePolicy: 'placeholder-value',
+     *     // User assigned name of the Response Policy Rule addressed by this request.
+     *     responsePolicyRule: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "behavior": "my_behavior",
+     *       //   "dnsName": "my_dnsName",
+     *       //   "kind": "my_kind",
+     *       //   "localData": {},
+     *       //   "ruleName": "my_ruleName"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "responsePolicyRule": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
