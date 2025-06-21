@@ -162,6 +162,31 @@
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
             },
+            "getPerimeter": {
+              "description": "Gets a perimeter",
+              "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/perimeter",
+              "httpMethod": "GET",
+              "id": "apphub.projects.locations.getPerimeter",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Fully qualified name of the Perimeter Expected format: `projects/{project}/locations/{location}/perimeter`.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+/perimeter$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "response": {
+                "$ref": "Perimeter"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
             "list": {
               "description": "Lists information about the supported locations for this service.",
               "flatPath": "v1alpha/projects/{projectsId}/locations",
@@ -1444,7 +1469,7 @@
       }
     }
   },
-  "revision": "20250414",
+  "revision": "20250416",
   "rootUrl": "https://apphub.googleapis.com/",
   "schemas": {
     "Application": {
@@ -2174,6 +2199,48 @@
         },
         "verb": {
           "description": "Output only. Name of the verb executed by the operation.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Perimeter": {
+      "description": "Perimeter is a boundary that describes application management on a `perimeter_node` (currently limited to an app-enabled folder).",
+      "id": "Perimeter",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Create time.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. Name of the Perimeter resource.",
+          "type": "string"
+        },
+        "perimeterNode": {
+          "description": "Immutable. Cloud Resource Manager node that determines the perimeter. Only `folders/{folder_number}` is currently supported.",
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. Perimeter state.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "UPDATING",
+            "ACTIVE"
+          ],
+          "enumDescriptions": [
+            "Unspecified state.",
+            "The Perimeter is being created or updated.",
+            "The Perimeter is ready."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Update time.",
+          "format": "google-datetime",
           "readOnly": true,
           "type": "string"
         }
