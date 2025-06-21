@@ -549,7 +549,7 @@
       }
     }
   },
-  "revision": "20250416",
+  "revision": "20250609",
   "rootUrl": "https://parallelstore.googleapis.com/",
   "schemas": {
     "CancelOperationRequest": {
@@ -759,7 +759,7 @@
             "The instance is being created.",
             "The instance is available for use.",
             "The instance is being deleted.",
-            "LINT.IfChange The instance is not usable. LINT.ThenChange(//depot/google3/configs/monitoring/boq/daos_clh/cloud_precomputes_lib.py)",
+            "The instance is not usable.",
             "The instance is being upgraded.",
             "The instance is being repaired. This should only be used by instances using the `PERSISTENT` deployment type."
           ],
