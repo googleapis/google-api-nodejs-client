@@ -146,7 +146,7 @@
       }
     }
   },
-  "revision": "20250311",
+  "revision": "20250610",
   "rootUrl": "https://fcm.googleapis.com/",
   "schemas": {
     "AndroidConfig": {
@@ -169,7 +169,7 @@
           "type": "object"
         },
         "directBootOk": {
-          "description": "If set to true, messages will be allowed to be delivered to the app while the device is in direct boot mode. See [Support Direct Boot mode](https://developer.android.com/training/articles/direct-boot).",
+          "description": "Optional. If set to true, messages will be allowed to be delivered to the app while the device is in direct boot mode. See [Support Direct Boot mode](https://developer.android.com/training/articles/direct-boot).",
           "type": "boolean"
         },
         "fcmOptions": {
@@ -195,6 +195,10 @@
         "restrictedPackageName": {
           "description": "Package name of the application where the registration token must match in order to receive the message.",
           "type": "string"
+        },
+        "restrictedSatelliteOk": {
+          "description": "Optional. If set to true, messages will be allowed to be delivered to the app while the device is connected over a restricted satellite network. This should only be enabled for messages that can be handled over a restricted satellite network and only for apps that are allowed to work over a restricted satellite network. Note that the ability of the app to connect to a restricted satellite network is dependent on the carrier's settings and the device model.",
+          "type": "boolean"
         },
         "ttl": {
           "description": "How long (in seconds) the message should be kept in FCM storage if the device is offline. The maximum time to live supported is 4 weeks, and the default value is 4 weeks if not set. Set it to 0 if want to send the message immediately. In JSON format, the Duration type is encoded as a string rather than an object, where the string ends in the suffix \"s\" (indicating seconds) and is preceded by the number of seconds, with nanoseconds expressed as fractional seconds. For example, 3 seconds with 0 nanoseconds should be encoded in JSON format as \"3s\", while 3 seconds and 1 nanosecond should be expressed in JSON format as \"3.000000001s\". The ttl will be rounded down to the nearest second.",
