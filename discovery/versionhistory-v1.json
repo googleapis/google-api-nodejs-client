@@ -5,7 +5,7 @@
   "canonicalName": "Version History",
   "description": "Version History API - Prod",
   "discoveryVersion": "v1",
-  "documentationLink": "https://developers.chrome.com/versionhistory",
+  "documentationLink": "https://developer.chrome.com/docs/web-platform/versionhistory/guide",
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -271,7 +271,7 @@
       }
     }
   },
-  "revision": "20240528",
+  "revision": "20250601",
   "rootUrl": "https://versionhistory.googleapis.com/",
   "schemas": {
     "Channel": {
