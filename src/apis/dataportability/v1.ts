@@ -240,6 +240,124 @@ export namespace dataportability_v1 {
 
     /**
      * Gets the access type of the token.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataportability.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataportability = google.dataportability('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/dataportability.alerts.subscriptions',
+     *       'https://www.googleapis.com/auth/dataportability.businessmessaging.conversations',
+     *       'https://www.googleapis.com/auth/dataportability.chrome.autofill',
+     *       'https://www.googleapis.com/auth/dataportability.chrome.bookmarks',
+     *       'https://www.googleapis.com/auth/dataportability.chrome.dictionary',
+     *       'https://www.googleapis.com/auth/dataportability.chrome.extensions',
+     *       'https://www.googleapis.com/auth/dataportability.chrome.history',
+     *       'https://www.googleapis.com/auth/dataportability.chrome.reading_list',
+     *       'https://www.googleapis.com/auth/dataportability.chrome.settings',
+     *       'https://www.googleapis.com/auth/dataportability.discover.follows',
+     *       'https://www.googleapis.com/auth/dataportability.discover.likes',
+     *       'https://www.googleapis.com/auth/dataportability.discover.not_interested',
+     *       'https://www.googleapis.com/auth/dataportability.maps.aliased_places',
+     *       'https://www.googleapis.com/auth/dataportability.maps.commute_routes',
+     *       'https://www.googleapis.com/auth/dataportability.maps.commute_settings',
+     *       'https://www.googleapis.com/auth/dataportability.maps.ev_profile',
+     *       'https://www.googleapis.com/auth/dataportability.maps.factual_contributions',
+     *       'https://www.googleapis.com/auth/dataportability.maps.offering_contributions',
+     *       'https://www.googleapis.com/auth/dataportability.maps.photos_videos',
+     *       'https://www.googleapis.com/auth/dataportability.maps.questions_answers',
+     *       'https://www.googleapis.com/auth/dataportability.maps.reviews',
+     *       'https://www.googleapis.com/auth/dataportability.maps.starred_places',
+     *       'https://www.googleapis.com/auth/dataportability.maps.vehicle_profile',
+     *       'https://www.googleapis.com/auth/dataportability.myactivity.maps',
+     *       'https://www.googleapis.com/auth/dataportability.myactivity.myadcenter',
+     *       'https://www.googleapis.com/auth/dataportability.myactivity.play',
+     *       'https://www.googleapis.com/auth/dataportability.myactivity.search',
+     *       'https://www.googleapis.com/auth/dataportability.myactivity.shopping',
+     *       'https://www.googleapis.com/auth/dataportability.myactivity.youtube',
+     *       'https://www.googleapis.com/auth/dataportability.mymaps.maps',
+     *       'https://www.googleapis.com/auth/dataportability.order_reserve.purchases_reservations',
+     *       'https://www.googleapis.com/auth/dataportability.play.devices',
+     *       'https://www.googleapis.com/auth/dataportability.play.grouping',
+     *       'https://www.googleapis.com/auth/dataportability.play.installs',
+     *       'https://www.googleapis.com/auth/dataportability.play.library',
+     *       'https://www.googleapis.com/auth/dataportability.play.playpoints',
+     *       'https://www.googleapis.com/auth/dataportability.play.promotions',
+     *       'https://www.googleapis.com/auth/dataportability.play.purchases',
+     *       'https://www.googleapis.com/auth/dataportability.play.redemptions',
+     *       'https://www.googleapis.com/auth/dataportability.play.subscriptions',
+     *       'https://www.googleapis.com/auth/dataportability.play.usersettings',
+     *       'https://www.googleapis.com/auth/dataportability.saved.collections',
+     *       'https://www.googleapis.com/auth/dataportability.search_ugc.comments',
+     *       'https://www.googleapis.com/auth/dataportability.search_ugc.media.reviews_and_stars',
+     *       'https://www.googleapis.com/auth/dataportability.search_ugc.media.streaming_video_providers',
+     *       'https://www.googleapis.com/auth/dataportability.search_ugc.media.thumbs',
+     *       'https://www.googleapis.com/auth/dataportability.search_ugc.media.watched',
+     *       'https://www.googleapis.com/auth/dataportability.searchnotifications.settings',
+     *       'https://www.googleapis.com/auth/dataportability.searchnotifications.subscriptions',
+     *       'https://www.googleapis.com/auth/dataportability.shopping.addresses',
+     *       'https://www.googleapis.com/auth/dataportability.shopping.reviews',
+     *       'https://www.googleapis.com/auth/dataportability.streetview.imagery',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.channel',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.clips',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.comments',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.live_chat',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.music',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.playable',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.posts',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.private_playlists',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.private_videos',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.public_playlists',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.public_videos',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.shopping',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.subscriptions',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.unlisted_playlists',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.unlisted_videos',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataportability.accessType.check({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "oneTimeResources": [],
+     *   //   "timeBasedResources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -347,6 +465,124 @@ export namespace dataportability_v1 {
 
     /**
      * Cancels a Portability Archive job.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataportability.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataportability = google.dataportability('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/dataportability.alerts.subscriptions',
+     *       'https://www.googleapis.com/auth/dataportability.businessmessaging.conversations',
+     *       'https://www.googleapis.com/auth/dataportability.chrome.autofill',
+     *       'https://www.googleapis.com/auth/dataportability.chrome.bookmarks',
+     *       'https://www.googleapis.com/auth/dataportability.chrome.dictionary',
+     *       'https://www.googleapis.com/auth/dataportability.chrome.extensions',
+     *       'https://www.googleapis.com/auth/dataportability.chrome.history',
+     *       'https://www.googleapis.com/auth/dataportability.chrome.reading_list',
+     *       'https://www.googleapis.com/auth/dataportability.chrome.settings',
+     *       'https://www.googleapis.com/auth/dataportability.discover.follows',
+     *       'https://www.googleapis.com/auth/dataportability.discover.likes',
+     *       'https://www.googleapis.com/auth/dataportability.discover.not_interested',
+     *       'https://www.googleapis.com/auth/dataportability.maps.aliased_places',
+     *       'https://www.googleapis.com/auth/dataportability.maps.commute_routes',
+     *       'https://www.googleapis.com/auth/dataportability.maps.commute_settings',
+     *       'https://www.googleapis.com/auth/dataportability.maps.ev_profile',
+     *       'https://www.googleapis.com/auth/dataportability.maps.factual_contributions',
+     *       'https://www.googleapis.com/auth/dataportability.maps.offering_contributions',
+     *       'https://www.googleapis.com/auth/dataportability.maps.photos_videos',
+     *       'https://www.googleapis.com/auth/dataportability.maps.questions_answers',
+     *       'https://www.googleapis.com/auth/dataportability.maps.reviews',
+     *       'https://www.googleapis.com/auth/dataportability.maps.starred_places',
+     *       'https://www.googleapis.com/auth/dataportability.maps.vehicle_profile',
+     *       'https://www.googleapis.com/auth/dataportability.myactivity.maps',
+     *       'https://www.googleapis.com/auth/dataportability.myactivity.myadcenter',
+     *       'https://www.googleapis.com/auth/dataportability.myactivity.play',
+     *       'https://www.googleapis.com/auth/dataportability.myactivity.search',
+     *       'https://www.googleapis.com/auth/dataportability.myactivity.shopping',
+     *       'https://www.googleapis.com/auth/dataportability.myactivity.youtube',
+     *       'https://www.googleapis.com/auth/dataportability.mymaps.maps',
+     *       'https://www.googleapis.com/auth/dataportability.order_reserve.purchases_reservations',
+     *       'https://www.googleapis.com/auth/dataportability.play.devices',
+     *       'https://www.googleapis.com/auth/dataportability.play.grouping',
+     *       'https://www.googleapis.com/auth/dataportability.play.installs',
+     *       'https://www.googleapis.com/auth/dataportability.play.library',
+     *       'https://www.googleapis.com/auth/dataportability.play.playpoints',
+     *       'https://www.googleapis.com/auth/dataportability.play.promotions',
+     *       'https://www.googleapis.com/auth/dataportability.play.purchases',
+     *       'https://www.googleapis.com/auth/dataportability.play.redemptions',
+     *       'https://www.googleapis.com/auth/dataportability.play.subscriptions',
+     *       'https://www.googleapis.com/auth/dataportability.play.usersettings',
+     *       'https://www.googleapis.com/auth/dataportability.saved.collections',
+     *       'https://www.googleapis.com/auth/dataportability.search_ugc.comments',
+     *       'https://www.googleapis.com/auth/dataportability.search_ugc.media.reviews_and_stars',
+     *       'https://www.googleapis.com/auth/dataportability.search_ugc.media.streaming_video_providers',
+     *       'https://www.googleapis.com/auth/dataportability.search_ugc.media.thumbs',
+     *       'https://www.googleapis.com/auth/dataportability.search_ugc.media.watched',
+     *       'https://www.googleapis.com/auth/dataportability.searchnotifications.settings',
+     *       'https://www.googleapis.com/auth/dataportability.searchnotifications.subscriptions',
+     *       'https://www.googleapis.com/auth/dataportability.shopping.addresses',
+     *       'https://www.googleapis.com/auth/dataportability.shopping.reviews',
+     *       'https://www.googleapis.com/auth/dataportability.streetview.imagery',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.channel',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.clips',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.comments',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.live_chat',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.music',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.playable',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.posts',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.private_playlists',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.private_videos',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.public_playlists',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.public_videos',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.shopping',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.subscriptions',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.unlisted_playlists',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.unlisted_videos',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataportability.archiveJobs.cancel({
+     *     // Required. The Archive job ID you're canceling. This is returned by the InitiatePortabilityArchive response. The format is: archiveJobs/{archive_job\}. Canceling is only executed if the job is in progress.
+     *     name: 'archiveJobs/my-archiveJob',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -446,6 +682,124 @@ export namespace dataportability_v1 {
 
     /**
      * Retrieves the state of an Archive job for the Portability API.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataportability.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataportability = google.dataportability('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/dataportability.alerts.subscriptions',
+     *       'https://www.googleapis.com/auth/dataportability.businessmessaging.conversations',
+     *       'https://www.googleapis.com/auth/dataportability.chrome.autofill',
+     *       'https://www.googleapis.com/auth/dataportability.chrome.bookmarks',
+     *       'https://www.googleapis.com/auth/dataportability.chrome.dictionary',
+     *       'https://www.googleapis.com/auth/dataportability.chrome.extensions',
+     *       'https://www.googleapis.com/auth/dataportability.chrome.history',
+     *       'https://www.googleapis.com/auth/dataportability.chrome.reading_list',
+     *       'https://www.googleapis.com/auth/dataportability.chrome.settings',
+     *       'https://www.googleapis.com/auth/dataportability.discover.follows',
+     *       'https://www.googleapis.com/auth/dataportability.discover.likes',
+     *       'https://www.googleapis.com/auth/dataportability.discover.not_interested',
+     *       'https://www.googleapis.com/auth/dataportability.maps.aliased_places',
+     *       'https://www.googleapis.com/auth/dataportability.maps.commute_routes',
+     *       'https://www.googleapis.com/auth/dataportability.maps.commute_settings',
+     *       'https://www.googleapis.com/auth/dataportability.maps.ev_profile',
+     *       'https://www.googleapis.com/auth/dataportability.maps.factual_contributions',
+     *       'https://www.googleapis.com/auth/dataportability.maps.offering_contributions',
+     *       'https://www.googleapis.com/auth/dataportability.maps.photos_videos',
+     *       'https://www.googleapis.com/auth/dataportability.maps.questions_answers',
+     *       'https://www.googleapis.com/auth/dataportability.maps.reviews',
+     *       'https://www.googleapis.com/auth/dataportability.maps.starred_places',
+     *       'https://www.googleapis.com/auth/dataportability.maps.vehicle_profile',
+     *       'https://www.googleapis.com/auth/dataportability.myactivity.maps',
+     *       'https://www.googleapis.com/auth/dataportability.myactivity.myadcenter',
+     *       'https://www.googleapis.com/auth/dataportability.myactivity.play',
+     *       'https://www.googleapis.com/auth/dataportability.myactivity.search',
+     *       'https://www.googleapis.com/auth/dataportability.myactivity.shopping',
+     *       'https://www.googleapis.com/auth/dataportability.myactivity.youtube',
+     *       'https://www.googleapis.com/auth/dataportability.mymaps.maps',
+     *       'https://www.googleapis.com/auth/dataportability.order_reserve.purchases_reservations',
+     *       'https://www.googleapis.com/auth/dataportability.play.devices',
+     *       'https://www.googleapis.com/auth/dataportability.play.grouping',
+     *       'https://www.googleapis.com/auth/dataportability.play.installs',
+     *       'https://www.googleapis.com/auth/dataportability.play.library',
+     *       'https://www.googleapis.com/auth/dataportability.play.playpoints',
+     *       'https://www.googleapis.com/auth/dataportability.play.promotions',
+     *       'https://www.googleapis.com/auth/dataportability.play.purchases',
+     *       'https://www.googleapis.com/auth/dataportability.play.redemptions',
+     *       'https://www.googleapis.com/auth/dataportability.play.subscriptions',
+     *       'https://www.googleapis.com/auth/dataportability.play.usersettings',
+     *       'https://www.googleapis.com/auth/dataportability.saved.collections',
+     *       'https://www.googleapis.com/auth/dataportability.search_ugc.comments',
+     *       'https://www.googleapis.com/auth/dataportability.search_ugc.media.reviews_and_stars',
+     *       'https://www.googleapis.com/auth/dataportability.search_ugc.media.streaming_video_providers',
+     *       'https://www.googleapis.com/auth/dataportability.search_ugc.media.thumbs',
+     *       'https://www.googleapis.com/auth/dataportability.search_ugc.media.watched',
+     *       'https://www.googleapis.com/auth/dataportability.searchnotifications.settings',
+     *       'https://www.googleapis.com/auth/dataportability.searchnotifications.subscriptions',
+     *       'https://www.googleapis.com/auth/dataportability.shopping.addresses',
+     *       'https://www.googleapis.com/auth/dataportability.shopping.reviews',
+     *       'https://www.googleapis.com/auth/dataportability.streetview.imagery',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.channel',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.clips',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.comments',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.live_chat',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.music',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.playable',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.posts',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.private_playlists',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.private_videos',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.public_playlists',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.public_videos',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.shopping',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.subscriptions',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.unlisted_playlists',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.unlisted_videos',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataportability.archiveJobs.getPortabilityArchiveState({
+     *     // Required. The archive job ID that is returned when you request the state of the job. The format is: archiveJobs/{archive_job\}/portabilityArchiveState. archive_job is the job ID returned by the InitiatePortabilityArchiveResponse.
+     *     name: 'archiveJobs/my-archiveJob/portabilityArchiveState',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "exportTime": "my_exportTime",
+     *   //   "name": "my_name",
+     *   //   "startTime": "my_startTime",
+     *   //   "state": "my_state",
+     *   //   "urls": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -539,6 +893,126 @@ export namespace dataportability_v1 {
 
     /**
      * Retries a failed Portability Archive job.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataportability.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataportability = google.dataportability('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/dataportability.alerts.subscriptions',
+     *       'https://www.googleapis.com/auth/dataportability.businessmessaging.conversations',
+     *       'https://www.googleapis.com/auth/dataportability.chrome.autofill',
+     *       'https://www.googleapis.com/auth/dataportability.chrome.bookmarks',
+     *       'https://www.googleapis.com/auth/dataportability.chrome.dictionary',
+     *       'https://www.googleapis.com/auth/dataportability.chrome.extensions',
+     *       'https://www.googleapis.com/auth/dataportability.chrome.history',
+     *       'https://www.googleapis.com/auth/dataportability.chrome.reading_list',
+     *       'https://www.googleapis.com/auth/dataportability.chrome.settings',
+     *       'https://www.googleapis.com/auth/dataportability.discover.follows',
+     *       'https://www.googleapis.com/auth/dataportability.discover.likes',
+     *       'https://www.googleapis.com/auth/dataportability.discover.not_interested',
+     *       'https://www.googleapis.com/auth/dataportability.maps.aliased_places',
+     *       'https://www.googleapis.com/auth/dataportability.maps.commute_routes',
+     *       'https://www.googleapis.com/auth/dataportability.maps.commute_settings',
+     *       'https://www.googleapis.com/auth/dataportability.maps.ev_profile',
+     *       'https://www.googleapis.com/auth/dataportability.maps.factual_contributions',
+     *       'https://www.googleapis.com/auth/dataportability.maps.offering_contributions',
+     *       'https://www.googleapis.com/auth/dataportability.maps.photos_videos',
+     *       'https://www.googleapis.com/auth/dataportability.maps.questions_answers',
+     *       'https://www.googleapis.com/auth/dataportability.maps.reviews',
+     *       'https://www.googleapis.com/auth/dataportability.maps.starred_places',
+     *       'https://www.googleapis.com/auth/dataportability.maps.vehicle_profile',
+     *       'https://www.googleapis.com/auth/dataportability.myactivity.maps',
+     *       'https://www.googleapis.com/auth/dataportability.myactivity.myadcenter',
+     *       'https://www.googleapis.com/auth/dataportability.myactivity.play',
+     *       'https://www.googleapis.com/auth/dataportability.myactivity.search',
+     *       'https://www.googleapis.com/auth/dataportability.myactivity.shopping',
+     *       'https://www.googleapis.com/auth/dataportability.myactivity.youtube',
+     *       'https://www.googleapis.com/auth/dataportability.mymaps.maps',
+     *       'https://www.googleapis.com/auth/dataportability.order_reserve.purchases_reservations',
+     *       'https://www.googleapis.com/auth/dataportability.play.devices',
+     *       'https://www.googleapis.com/auth/dataportability.play.grouping',
+     *       'https://www.googleapis.com/auth/dataportability.play.installs',
+     *       'https://www.googleapis.com/auth/dataportability.play.library',
+     *       'https://www.googleapis.com/auth/dataportability.play.playpoints',
+     *       'https://www.googleapis.com/auth/dataportability.play.promotions',
+     *       'https://www.googleapis.com/auth/dataportability.play.purchases',
+     *       'https://www.googleapis.com/auth/dataportability.play.redemptions',
+     *       'https://www.googleapis.com/auth/dataportability.play.subscriptions',
+     *       'https://www.googleapis.com/auth/dataportability.play.usersettings',
+     *       'https://www.googleapis.com/auth/dataportability.saved.collections',
+     *       'https://www.googleapis.com/auth/dataportability.search_ugc.comments',
+     *       'https://www.googleapis.com/auth/dataportability.search_ugc.media.reviews_and_stars',
+     *       'https://www.googleapis.com/auth/dataportability.search_ugc.media.streaming_video_providers',
+     *       'https://www.googleapis.com/auth/dataportability.search_ugc.media.thumbs',
+     *       'https://www.googleapis.com/auth/dataportability.search_ugc.media.watched',
+     *       'https://www.googleapis.com/auth/dataportability.searchnotifications.settings',
+     *       'https://www.googleapis.com/auth/dataportability.searchnotifications.subscriptions',
+     *       'https://www.googleapis.com/auth/dataportability.shopping.addresses',
+     *       'https://www.googleapis.com/auth/dataportability.shopping.reviews',
+     *       'https://www.googleapis.com/auth/dataportability.streetview.imagery',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.channel',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.clips',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.comments',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.live_chat',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.music',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.playable',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.posts',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.private_playlists',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.private_videos',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.public_playlists',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.public_videos',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.shopping',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.subscriptions',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.unlisted_playlists',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.unlisted_videos',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataportability.archiveJobs.retry({
+     *     // Required. The Archive job ID you're retrying. This is returned by the InitiatePortabilityArchiveResponse. Retrying is only executed if the initial job failed.
+     *     name: 'archiveJobs/my-archiveJob',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "archiveJobId": "my_archiveJobId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -673,6 +1147,121 @@ export namespace dataportability_v1 {
 
     /**
      * Revokes OAuth tokens and resets exhausted scopes for a user/project pair. This method allows you to initiate a request after a new consent is granted. This method also indicates that previous archives can be garbage collected. You should call this method when all jobs are complete and all archives are downloaded. Do not call it only when you start a new job.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataportability.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataportability = google.dataportability('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/dataportability.alerts.subscriptions',
+     *       'https://www.googleapis.com/auth/dataportability.businessmessaging.conversations',
+     *       'https://www.googleapis.com/auth/dataportability.chrome.autofill',
+     *       'https://www.googleapis.com/auth/dataportability.chrome.bookmarks',
+     *       'https://www.googleapis.com/auth/dataportability.chrome.dictionary',
+     *       'https://www.googleapis.com/auth/dataportability.chrome.extensions',
+     *       'https://www.googleapis.com/auth/dataportability.chrome.history',
+     *       'https://www.googleapis.com/auth/dataportability.chrome.reading_list',
+     *       'https://www.googleapis.com/auth/dataportability.chrome.settings',
+     *       'https://www.googleapis.com/auth/dataportability.discover.follows',
+     *       'https://www.googleapis.com/auth/dataportability.discover.likes',
+     *       'https://www.googleapis.com/auth/dataportability.discover.not_interested',
+     *       'https://www.googleapis.com/auth/dataportability.maps.aliased_places',
+     *       'https://www.googleapis.com/auth/dataportability.maps.commute_routes',
+     *       'https://www.googleapis.com/auth/dataportability.maps.commute_settings',
+     *       'https://www.googleapis.com/auth/dataportability.maps.ev_profile',
+     *       'https://www.googleapis.com/auth/dataportability.maps.factual_contributions',
+     *       'https://www.googleapis.com/auth/dataportability.maps.offering_contributions',
+     *       'https://www.googleapis.com/auth/dataportability.maps.photos_videos',
+     *       'https://www.googleapis.com/auth/dataportability.maps.questions_answers',
+     *       'https://www.googleapis.com/auth/dataportability.maps.reviews',
+     *       'https://www.googleapis.com/auth/dataportability.maps.starred_places',
+     *       'https://www.googleapis.com/auth/dataportability.maps.vehicle_profile',
+     *       'https://www.googleapis.com/auth/dataportability.myactivity.maps',
+     *       'https://www.googleapis.com/auth/dataportability.myactivity.myadcenter',
+     *       'https://www.googleapis.com/auth/dataportability.myactivity.play',
+     *       'https://www.googleapis.com/auth/dataportability.myactivity.search',
+     *       'https://www.googleapis.com/auth/dataportability.myactivity.shopping',
+     *       'https://www.googleapis.com/auth/dataportability.myactivity.youtube',
+     *       'https://www.googleapis.com/auth/dataportability.mymaps.maps',
+     *       'https://www.googleapis.com/auth/dataportability.order_reserve.purchases_reservations',
+     *       'https://www.googleapis.com/auth/dataportability.play.devices',
+     *       'https://www.googleapis.com/auth/dataportability.play.grouping',
+     *       'https://www.googleapis.com/auth/dataportability.play.installs',
+     *       'https://www.googleapis.com/auth/dataportability.play.library',
+     *       'https://www.googleapis.com/auth/dataportability.play.playpoints',
+     *       'https://www.googleapis.com/auth/dataportability.play.promotions',
+     *       'https://www.googleapis.com/auth/dataportability.play.purchases',
+     *       'https://www.googleapis.com/auth/dataportability.play.redemptions',
+     *       'https://www.googleapis.com/auth/dataportability.play.subscriptions',
+     *       'https://www.googleapis.com/auth/dataportability.play.usersettings',
+     *       'https://www.googleapis.com/auth/dataportability.saved.collections',
+     *       'https://www.googleapis.com/auth/dataportability.search_ugc.comments',
+     *       'https://www.googleapis.com/auth/dataportability.search_ugc.media.reviews_and_stars',
+     *       'https://www.googleapis.com/auth/dataportability.search_ugc.media.streaming_video_providers',
+     *       'https://www.googleapis.com/auth/dataportability.search_ugc.media.thumbs',
+     *       'https://www.googleapis.com/auth/dataportability.search_ugc.media.watched',
+     *       'https://www.googleapis.com/auth/dataportability.searchnotifications.settings',
+     *       'https://www.googleapis.com/auth/dataportability.searchnotifications.subscriptions',
+     *       'https://www.googleapis.com/auth/dataportability.shopping.addresses',
+     *       'https://www.googleapis.com/auth/dataportability.shopping.reviews',
+     *       'https://www.googleapis.com/auth/dataportability.streetview.imagery',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.channel',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.clips',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.comments',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.live_chat',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.music',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.playable',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.posts',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.private_playlists',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.private_videos',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.public_playlists',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.public_videos',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.shopping',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.subscriptions',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.unlisted_playlists',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.unlisted_videos',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataportability.authorization.reset({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -780,6 +1369,128 @@ export namespace dataportability_v1 {
 
     /**
      * Initiates a new Archive job for the Portability API.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataportability.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataportability = google.dataportability('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/dataportability.alerts.subscriptions',
+     *       'https://www.googleapis.com/auth/dataportability.businessmessaging.conversations',
+     *       'https://www.googleapis.com/auth/dataportability.chrome.autofill',
+     *       'https://www.googleapis.com/auth/dataportability.chrome.bookmarks',
+     *       'https://www.googleapis.com/auth/dataportability.chrome.dictionary',
+     *       'https://www.googleapis.com/auth/dataportability.chrome.extensions',
+     *       'https://www.googleapis.com/auth/dataportability.chrome.history',
+     *       'https://www.googleapis.com/auth/dataportability.chrome.reading_list',
+     *       'https://www.googleapis.com/auth/dataportability.chrome.settings',
+     *       'https://www.googleapis.com/auth/dataportability.discover.follows',
+     *       'https://www.googleapis.com/auth/dataportability.discover.likes',
+     *       'https://www.googleapis.com/auth/dataportability.discover.not_interested',
+     *       'https://www.googleapis.com/auth/dataportability.maps.aliased_places',
+     *       'https://www.googleapis.com/auth/dataportability.maps.commute_routes',
+     *       'https://www.googleapis.com/auth/dataportability.maps.commute_settings',
+     *       'https://www.googleapis.com/auth/dataportability.maps.ev_profile',
+     *       'https://www.googleapis.com/auth/dataportability.maps.factual_contributions',
+     *       'https://www.googleapis.com/auth/dataportability.maps.offering_contributions',
+     *       'https://www.googleapis.com/auth/dataportability.maps.photos_videos',
+     *       'https://www.googleapis.com/auth/dataportability.maps.questions_answers',
+     *       'https://www.googleapis.com/auth/dataportability.maps.reviews',
+     *       'https://www.googleapis.com/auth/dataportability.maps.starred_places',
+     *       'https://www.googleapis.com/auth/dataportability.maps.vehicle_profile',
+     *       'https://www.googleapis.com/auth/dataportability.myactivity.maps',
+     *       'https://www.googleapis.com/auth/dataportability.myactivity.myadcenter',
+     *       'https://www.googleapis.com/auth/dataportability.myactivity.play',
+     *       'https://www.googleapis.com/auth/dataportability.myactivity.search',
+     *       'https://www.googleapis.com/auth/dataportability.myactivity.shopping',
+     *       'https://www.googleapis.com/auth/dataportability.myactivity.youtube',
+     *       'https://www.googleapis.com/auth/dataportability.mymaps.maps',
+     *       'https://www.googleapis.com/auth/dataportability.order_reserve.purchases_reservations',
+     *       'https://www.googleapis.com/auth/dataportability.play.devices',
+     *       'https://www.googleapis.com/auth/dataportability.play.grouping',
+     *       'https://www.googleapis.com/auth/dataportability.play.installs',
+     *       'https://www.googleapis.com/auth/dataportability.play.library',
+     *       'https://www.googleapis.com/auth/dataportability.play.playpoints',
+     *       'https://www.googleapis.com/auth/dataportability.play.promotions',
+     *       'https://www.googleapis.com/auth/dataportability.play.purchases',
+     *       'https://www.googleapis.com/auth/dataportability.play.redemptions',
+     *       'https://www.googleapis.com/auth/dataportability.play.subscriptions',
+     *       'https://www.googleapis.com/auth/dataportability.play.usersettings',
+     *       'https://www.googleapis.com/auth/dataportability.saved.collections',
+     *       'https://www.googleapis.com/auth/dataportability.search_ugc.comments',
+     *       'https://www.googleapis.com/auth/dataportability.search_ugc.media.reviews_and_stars',
+     *       'https://www.googleapis.com/auth/dataportability.search_ugc.media.streaming_video_providers',
+     *       'https://www.googleapis.com/auth/dataportability.search_ugc.media.thumbs',
+     *       'https://www.googleapis.com/auth/dataportability.search_ugc.media.watched',
+     *       'https://www.googleapis.com/auth/dataportability.searchnotifications.settings',
+     *       'https://www.googleapis.com/auth/dataportability.searchnotifications.subscriptions',
+     *       'https://www.googleapis.com/auth/dataportability.shopping.addresses',
+     *       'https://www.googleapis.com/auth/dataportability.shopping.reviews',
+     *       'https://www.googleapis.com/auth/dataportability.streetview.imagery',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.channel',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.clips',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.comments',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.live_chat',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.music',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.playable',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.posts',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.private_playlists',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.private_videos',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.public_playlists',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.public_videos',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.shopping',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.subscriptions',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.unlisted_playlists',
+     *       'https://www.googleapis.com/auth/dataportability.youtube.unlisted_videos',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataportability.portabilityArchive.initiate({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "endTime": "my_endTime",
+     *       //   "resources": [],
+     *       //   "startTime": "my_startTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accessType": "my_accessType",
+     *   //   "archiveJobId": "my_archiveJobId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
