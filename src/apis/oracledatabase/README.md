@@ -4,6 +4,15 @@
 
 > The Oracle Database@Google Cloud API provides a set of APIs to manage Oracle database services, such as Exadata and Autonomous Databases.
 
+## Support status
+**Note**: Google provides multiple libraries for this service. This library is in
+maintenance mode, and will continue to be made available for users who have
+existing applications. If you're building a new application, or modernizing a
+legacy application, please use [@google-cloud/oracledatabase](https://www.npmjs.com/package/@google-cloud/oracledatabase) instead.
+The [@google-cloud/oracledatabase](https://www.npmjs.com/package/@google-cloud/oracledatabase) library is faster, easier to use, and better maintained.
+
+To learn more, see [Client Libraries Explained](https://cloud.google.com/apis/docs/client-libraries-explained).
+
 ## Installation
 
 ```sh

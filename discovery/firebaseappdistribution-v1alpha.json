@@ -807,7 +807,7 @@
       }
     }
   },
-  "revision": "20250416",
+  "revision": "20250612",
   "rootUrl": "https://firebaseappdistribution.googleapis.com/",
   "schemas": {
     "AndroidxCrawlerOutputPoint": {
@@ -819,6 +819,29 @@
           "type": "integer"
         },
         "yCoordinate": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "AndroidxCrawlerOutputRectangle": {
+      "description": "Rectangle for describing bounding boxes",
+      "id": "AndroidxCrawlerOutputRectangle",
+      "properties": {
+        "bottom": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "left": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "right": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "top": {
           "format": "int32",
           "type": "integer"
         }
@@ -1288,6 +1311,11 @@
       "description": "An interaction with the device, such as a tap, text entry, wait, etc.",
       "id": "GoogleFirebaseAppdistroV1alphaDeviceInteraction",
       "properties": {
+        "enterText": {
+          "$ref": "GoogleFirebaseAppdistroV1alphaDeviceInteractionEnterText",
+          "description": "Output only. A text entry action, that enters text into a particular text field, clearing any existing text in the field. Unlike `text_input` this action does not require any other actions such as a tap to be performed before it can enter the text.",
+          "readOnly": true
+        },
         "keyCode": {
           "description": "Output only. Key code for a key event action.",
           "readOnly": true,
@@ -1309,7 +1337,7 @@
           "readOnly": true
         },
         "textInput": {
-          "description": "Output only. Text entered for a text entry action.",
+          "description": "Output only. A text input action, that types some text into whatever field is currently focused, if any. Unlike `enter_text` this action requires that the field be brought into focus first, for example by emitting a tap action before this one.",
           "readOnly": true,
           "type": "string"
         },
@@ -1317,6 +1345,23 @@
           "$ref": "GoogleFirebaseAppdistroV1alphaDeviceInteractionWait",
           "description": "Output only. A wait action.",
           "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "GoogleFirebaseAppdistroV1alphaDeviceInteractionEnterText": {
+      "description": "A text entry action, that enters text into a particular text field, clearing any existing text in the field.",
+      "id": "GoogleFirebaseAppdistroV1alphaDeviceInteractionEnterText",
+      "properties": {
+        "elementBounds": {
+          "$ref": "AndroidxCrawlerOutputRectangle",
+          "description": "Output only. The visible bounds of the element to enter text into.",
+          "readOnly": true
+        },
+        "text": {
+          "description": "Output only. The text to enter.",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"

@@ -604,6 +604,10 @@ import {
   VERSIONS as runtimeconfigVersions,
   runtimeconfig,
 } from './runtimeconfig';
+import {
+  VERSIONS as saasservicemgmtVersions,
+  saasservicemgmt,
+} from './saasservicemgmt';
 import {VERSIONS as safebrowsingVersions, safebrowsing} from './safebrowsing';
 import {VERSIONS as sasportalVersions, sasportal} from './sasportal';
 import {VERSIONS as scriptVersions, script} from './script';
@@ -1000,6 +1004,7 @@ export const APIS: APIList = {
   retail: retailVersions,
   run: runVersions,
   runtimeconfig: runtimeconfigVersions,
+  saasservicemgmt: saasservicemgmtVersions,
   safebrowsing: safebrowsingVersions,
   sasportal: sasportalVersions,
   script: scriptVersions,
@@ -1314,6 +1319,7 @@ export class GeneratedAPIs {
   retail = retail;
   run = run;
   runtimeconfig = runtimeconfig;
+  saasservicemgmt = saasservicemgmt;
   safebrowsing = safebrowsing;
   sasportal = sasportal;
   script = script;

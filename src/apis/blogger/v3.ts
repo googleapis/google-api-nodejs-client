@@ -629,6 +629,70 @@ export namespace blogger_v3 {
 
     /**
      * Gets a blog by id.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const blogger = google.blogger('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/blogger',
+     *       'https://www.googleapis.com/auth/blogger.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await blogger.blogs.get({
+     *     blogId: 'placeholder-value',
+     *
+     *     maxPosts: 'placeholder-value',
+     *
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "customMetaData": "my_customMetaData",
+     *   //   "description": "my_description",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "locale": {},
+     *   //   "name": "my_name",
+     *   //   "pages": {},
+     *   //   "posts": {},
+     *   //   "published": "my_published",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "status": "my_status",
+     *   //   "updated": "my_updated",
+     *   //   "url": "my_url"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -716,6 +780,68 @@ export namespace blogger_v3 {
 
     /**
      * Gets a blog by url.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const blogger = google.blogger('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/blogger',
+     *       'https://www.googleapis.com/auth/blogger.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await blogger.blogs.getByUrl({
+     *     url: 'placeholder-value',
+     *
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "customMetaData": "my_customMetaData",
+     *   //   "description": "my_description",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "locale": {},
+     *   //   "name": "my_name",
+     *   //   "pages": {},
+     *   //   "posts": {},
+     *   //   "published": "my_published",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "status": "my_status",
+     *   //   "updated": "my_updated",
+     *   //   "url": "my_url"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -803,6 +929,64 @@ export namespace blogger_v3 {
 
     /**
      * Lists blogs by user.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const blogger = google.blogger('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/blogger',
+     *       'https://www.googleapis.com/auth/blogger.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await blogger.blogs.listByUser({
+     *     fetchUserInfo: 'placeholder-value',
+     *
+     *     role: 'placeholder-value',
+     *     // Default value of status is LIVE.
+     *     status: 'placeholder-value',
+     *
+     *     userId: 'placeholder-value',
+     *
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "blogUserInfos": [],
+     *   //   "items": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -947,6 +1131,60 @@ export namespace blogger_v3 {
 
     /**
      * Gets one blog and user info pair by blog id and user id.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const blogger = google.blogger('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/blogger',
+     *       'https://www.googleapis.com/auth/blogger.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await blogger.blogUserInfos.get({
+     *     blogId: 'placeholder-value',
+     *
+     *     maxPosts: 'placeholder-value',
+     *
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "blog": {},
+     *   //   "blog_user_info": {},
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1061,6 +1299,65 @@ export namespace blogger_v3 {
 
     /**
      * Marks a comment as not spam by blog id, post id and comment id.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const blogger = google.blogger('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/blogger'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await blogger.comments.approve({
+     *     blogId: 'placeholder-value',
+     *
+     *     commentId: 'placeholder-value',
+     *
+     *     postId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "author": {},
+     *   //   "blog": {},
+     *   //   "content": "my_content",
+     *   //   "id": "my_id",
+     *   //   "inReplyTo": {},
+     *   //   "kind": "my_kind",
+     *   //   "post": {},
+     *   //   "published": "my_published",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "status": "my_status",
+     *   //   "updated": "my_updated"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1151,6 +1448,50 @@ export namespace blogger_v3 {
 
     /**
      * Deletes a comment by blog id, post id and comment id.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const blogger = google.blogger('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/blogger'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await blogger.comments.delete({
+     *     blogId: 'placeholder-value',
+     *
+     *     commentId: 'placeholder-value',
+     *
+     *     postId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1238,6 +1579,70 @@ export namespace blogger_v3 {
 
     /**
      * Gets a comment by id.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const blogger = google.blogger('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/blogger',
+     *       'https://www.googleapis.com/auth/blogger.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await blogger.comments.get({
+     *     blogId: 'placeholder-value',
+     *
+     *     commentId: 'placeholder-value',
+     *
+     *     postId: 'placeholder-value',
+     *
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "author": {},
+     *   //   "blog": {},
+     *   //   "content": "my_content",
+     *   //   "id": "my_id",
+     *   //   "inReplyTo": {},
+     *   //   "kind": "my_kind",
+     *   //   "post": {},
+     *   //   "published": "my_published",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "status": "my_status",
+     *   //   "updated": "my_updated"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1327,6 +1732,74 @@ export namespace blogger_v3 {
 
     /**
      * Lists comments.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const blogger = google.blogger('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/blogger',
+     *       'https://www.googleapis.com/auth/blogger.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await blogger.comments.list({
+     *     blogId: 'placeholder-value',
+     *
+     *     endDate: 'placeholder-value',
+     *
+     *     fetchBodies: 'placeholder-value',
+     *
+     *     maxResults: 'placeholder-value',
+     *
+     *     pageToken: 'placeholder-value',
+     *
+     *     postId: 'placeholder-value',
+     *
+     *     startDate: 'placeholder-value',
+     *
+     *     status: 'placeholder-value',
+     *
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "prevPageToken": "my_prevPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1416,6 +1889,70 @@ export namespace blogger_v3 {
 
     /**
      * Lists comments by blog.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const blogger = google.blogger('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/blogger',
+     *       'https://www.googleapis.com/auth/blogger.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await blogger.comments.listByBlog({
+     *     blogId: 'placeholder-value',
+     *
+     *     endDate: 'placeholder-value',
+     *
+     *     fetchBodies: 'placeholder-value',
+     *
+     *     maxResults: 'placeholder-value',
+     *
+     *     pageToken: 'placeholder-value',
+     *
+     *     startDate: 'placeholder-value',
+     *
+     *     status: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "prevPageToken": "my_prevPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1507,6 +2044,65 @@ export namespace blogger_v3 {
 
     /**
      * Marks a comment as spam by blog id, post id and comment id.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const blogger = google.blogger('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/blogger'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await blogger.comments.markAsSpam({
+     *     blogId: 'placeholder-value',
+     *
+     *     commentId: 'placeholder-value',
+     *
+     *     postId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "author": {},
+     *   //   "blog": {},
+     *   //   "content": "my_content",
+     *   //   "id": "my_id",
+     *   //   "inReplyTo": {},
+     *   //   "kind": "my_kind",
+     *   //   "post": {},
+     *   //   "published": "my_published",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "status": "my_status",
+     *   //   "updated": "my_updated"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1598,6 +2194,65 @@ export namespace blogger_v3 {
 
     /**
      * Removes the content of a comment by blog id, post id and comment id.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const blogger = google.blogger('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/blogger'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await blogger.comments.removeContent({
+     *     blogId: 'placeholder-value',
+     *
+     *     commentId: 'placeholder-value',
+     *
+     *     postId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "author": {},
+     *   //   "blog": {},
+     *   //   "content": "my_content",
+     *   //   "id": "my_id",
+     *   //   "inReplyTo": {},
+     *   //   "kind": "my_kind",
+     *   //   "post": {},
+     *   //   "published": "my_published",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "status": "my_status",
+     *   //   "updated": "my_updated"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1842,6 +2497,50 @@ export namespace blogger_v3 {
 
     /**
      * Deletes a page by blog id and page id.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const blogger = google.blogger('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/blogger'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await blogger.pages.delete({
+     *     blogId: 'placeholder-value',
+     *
+     *     pageId: 'placeholder-value',
+     *     // Move to Trash if possible
+     *     useTrash: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1930,6 +2629,70 @@ export namespace blogger_v3 {
 
     /**
      * Gets a page by blog id and page id.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const blogger = google.blogger('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/blogger',
+     *       'https://www.googleapis.com/auth/blogger.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await blogger.pages.get({
+     *     blogId: 'placeholder-value',
+     *
+     *     pageId: 'placeholder-value',
+     *
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "author": {},
+     *   //   "blog": {},
+     *   //   "content": "my_content",
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "published": "my_published",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "status": "my_status",
+     *   //   "title": "my_title",
+     *   //   "trashed": "my_trashed",
+     *   //   "updated": "my_updated",
+     *   //   "url": "my_url"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2020,6 +2783,85 @@ export namespace blogger_v3 {
 
     /**
      * Inserts a page.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const blogger = google.blogger('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/blogger'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await blogger.pages.insert({
+     *     blogId: 'placeholder-value',
+     *
+     *     isDraft: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "author": {},
+     *       //   "blog": {},
+     *       //   "content": "my_content",
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "published": "my_published",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "status": "my_status",
+     *       //   "title": "my_title",
+     *       //   "trashed": "my_trashed",
+     *       //   "updated": "my_updated",
+     *       //   "url": "my_url"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "author": {},
+     *   //   "blog": {},
+     *   //   "content": "my_content",
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "published": "my_published",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "status": "my_status",
+     *   //   "title": "my_title",
+     *   //   "trashed": "my_trashed",
+     *   //   "updated": "my_updated",
+     *   //   "url": "my_url"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2110,6 +2952,67 @@ export namespace blogger_v3 {
 
     /**
      * Lists pages.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const blogger = google.blogger('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/blogger',
+     *       'https://www.googleapis.com/auth/blogger.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await blogger.pages.list({
+     *     blogId: 'placeholder-value',
+     *
+     *     fetchBodies: 'placeholder-value',
+     *
+     *     maxResults: 'placeholder-value',
+     *
+     *     pageToken: 'placeholder-value',
+     *
+     *     status: 'placeholder-value',
+     *
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2200,6 +3103,89 @@ export namespace blogger_v3 {
 
     /**
      * Patches a page.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const blogger = google.blogger('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/blogger'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await blogger.pages.patch({
+     *     blogId: 'placeholder-value',
+     *
+     *     pageId: 'placeholder-value',
+     *
+     *     publish: 'placeholder-value',
+     *
+     *     revert: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "author": {},
+     *       //   "blog": {},
+     *       //   "content": "my_content",
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "published": "my_published",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "status": "my_status",
+     *       //   "title": "my_title",
+     *       //   "trashed": "my_trashed",
+     *       //   "updated": "my_updated",
+     *       //   "url": "my_url"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "author": {},
+     *   //   "blog": {},
+     *   //   "content": "my_content",
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "published": "my_published",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "status": "my_status",
+     *   //   "title": "my_title",
+     *   //   "trashed": "my_trashed",
+     *   //   "updated": "my_updated",
+     *   //   "url": "my_url"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2290,6 +3276,65 @@ export namespace blogger_v3 {
 
     /**
      * Publishes a page.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const blogger = google.blogger('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/blogger'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await blogger.pages.publish({
+     *     blogId: 'placeholder-value',
+     *
+     *     pageId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "author": {},
+     *   //   "blog": {},
+     *   //   "content": "my_content",
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "published": "my_published",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "status": "my_status",
+     *   //   "title": "my_title",
+     *   //   "trashed": "my_trashed",
+     *   //   "updated": "my_updated",
+     *   //   "url": "my_url"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2379,6 +3424,65 @@ export namespace blogger_v3 {
 
     /**
      * Reverts a published or scheduled page to draft state.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const blogger = google.blogger('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/blogger'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await blogger.pages.revert({
+     *     blogId: 'placeholder-value',
+     *
+     *     pageId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "author": {},
+     *   //   "blog": {},
+     *   //   "content": "my_content",
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "published": "my_published",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "status": "my_status",
+     *   //   "title": "my_title",
+     *   //   "trashed": "my_trashed",
+     *   //   "updated": "my_updated",
+     *   //   "url": "my_url"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2469,6 +3573,89 @@ export namespace blogger_v3 {
 
     /**
      * Updates a page by blog id and page id.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const blogger = google.blogger('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/blogger'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await blogger.pages.update({
+     *     blogId: 'placeholder-value',
+     *
+     *     pageId: 'placeholder-value',
+     *
+     *     publish: 'placeholder-value',
+     *
+     *     revert: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "author": {},
+     *       //   "blog": {},
+     *       //   "content": "my_content",
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "published": "my_published",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "status": "my_status",
+     *       //   "title": "my_title",
+     *       //   "trashed": "my_trashed",
+     *       //   "updated": "my_updated",
+     *       //   "url": "my_url"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "author": {},
+     *   //   "blog": {},
+     *   //   "content": "my_content",
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "published": "my_published",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "status": "my_status",
+     *   //   "title": "my_title",
+     *   //   "trashed": "my_trashed",
+     *   //   "updated": "my_updated",
+     *   //   "url": "my_url"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2702,6 +3889,55 @@ export namespace blogger_v3 {
 
     /**
      * Gets page views by blog id.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const blogger = google.blogger('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/blogger'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await blogger.pageViews.get({
+     *     blogId: 'placeholder-value',
+     *
+     *     range: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "blogId": "my_blogId",
+     *   //   "counts": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2810,6 +4046,50 @@ export namespace blogger_v3 {
 
     /**
      * Deletes a post by blog id and post id.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const blogger = google.blogger('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/blogger'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await blogger.posts.delete({
+     *     blogId: 'placeholder-value',
+     *
+     *     postId: 'placeholder-value',
+     *     // Move to Trash if possible
+     *     useTrash: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2898,6 +4178,83 @@ export namespace blogger_v3 {
 
     /**
      * Gets a post by blog id and post id
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const blogger = google.blogger('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/blogger',
+     *       'https://www.googleapis.com/auth/blogger.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await blogger.posts.get({
+     *     blogId: 'placeholder-value',
+     *
+     *     fetchBody: 'placeholder-value',
+     *
+     *     fetchImages: 'placeholder-value',
+     *
+     *     maxComments: 'placeholder-value',
+     *
+     *     postId: 'placeholder-value',
+     *
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "author": {},
+     *   //   "blog": {},
+     *   //   "content": "my_content",
+     *   //   "customMetaData": "my_customMetaData",
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "images": [],
+     *   //   "kind": "my_kind",
+     *   //   "labels": [],
+     *   //   "location": {},
+     *   //   "published": "my_published",
+     *   //   "readerComments": "my_readerComments",
+     *   //   "replies": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "status": "my_status",
+     *   //   "title": "my_title",
+     *   //   "titleLink": "my_titleLink",
+     *   //   "trashed": "my_trashed",
+     *   //   "updated": "my_updated",
+     *   //   "url": "my_url"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2988,6 +4345,79 @@ export namespace blogger_v3 {
 
     /**
      * Gets a post by path.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const blogger = google.blogger('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/blogger',
+     *       'https://www.googleapis.com/auth/blogger.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await blogger.posts.getByPath({
+     *     blogId: 'placeholder-value',
+     *
+     *     maxComments: 'placeholder-value',
+     *
+     *     path: 'placeholder-value',
+     *
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "author": {},
+     *   //   "blog": {},
+     *   //   "content": "my_content",
+     *   //   "customMetaData": "my_customMetaData",
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "images": [],
+     *   //   "kind": "my_kind",
+     *   //   "labels": [],
+     *   //   "location": {},
+     *   //   "published": "my_published",
+     *   //   "readerComments": "my_readerComments",
+     *   //   "replies": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "status": "my_status",
+     *   //   "title": "my_title",
+     *   //   "titleLink": "my_titleLink",
+     *   //   "trashed": "my_trashed",
+     *   //   "updated": "my_updated",
+     *   //   "url": "my_url"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3078,6 +4508,103 @@ export namespace blogger_v3 {
 
     /**
      * Inserts a post.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const blogger = google.blogger('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/blogger'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await blogger.posts.insert({
+     *     blogId: 'placeholder-value',
+     *
+     *     fetchBody: 'placeholder-value',
+     *
+     *     fetchImages: 'placeholder-value',
+     *
+     *     isDraft: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "author": {},
+     *       //   "blog": {},
+     *       //   "content": "my_content",
+     *       //   "customMetaData": "my_customMetaData",
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "images": [],
+     *       //   "kind": "my_kind",
+     *       //   "labels": [],
+     *       //   "location": {},
+     *       //   "published": "my_published",
+     *       //   "readerComments": "my_readerComments",
+     *       //   "replies": {},
+     *       //   "selfLink": "my_selfLink",
+     *       //   "status": "my_status",
+     *       //   "title": "my_title",
+     *       //   "titleLink": "my_titleLink",
+     *       //   "trashed": "my_trashed",
+     *       //   "updated": "my_updated",
+     *       //   "url": "my_url"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "author": {},
+     *   //   "blog": {},
+     *   //   "content": "my_content",
+     *   //   "customMetaData": "my_customMetaData",
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "images": [],
+     *   //   "kind": "my_kind",
+     *   //   "labels": [],
+     *   //   "location": {},
+     *   //   "published": "my_published",
+     *   //   "readerComments": "my_readerComments",
+     *   //   "replies": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "status": "my_status",
+     *   //   "title": "my_title",
+     *   //   "titleLink": "my_titleLink",
+     *   //   "trashed": "my_trashed",
+     *   //   "updated": "my_updated",
+     *   //   "url": "my_url"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3168,6 +4695,80 @@ export namespace blogger_v3 {
 
     /**
      * Lists posts.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const blogger = google.blogger('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/blogger',
+     *       'https://www.googleapis.com/auth/blogger.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await blogger.posts.list({
+     *     blogId: 'placeholder-value',
+     *
+     *     endDate: 'placeholder-value',
+     *
+     *     fetchBodies: 'placeholder-value',
+     *
+     *     fetchImages: 'placeholder-value',
+     *
+     *     labels: 'placeholder-value',
+     *
+     *     maxResults: 'placeholder-value',
+     *
+     *     orderBy: 'placeholder-value',
+     *
+     *     pageToken: 'placeholder-value',
+     *     // Sort direction applied to post list.
+     *     sortOption: 'placeholder-value',
+     *
+     *     startDate: 'placeholder-value',
+     *
+     *     status: 'placeholder-value',
+     *
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "prevPageToken": "my_prevPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3258,6 +4859,109 @@ export namespace blogger_v3 {
 
     /**
      * Patches a post.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const blogger = google.blogger('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/blogger'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await blogger.posts.patch({
+     *     blogId: 'placeholder-value',
+     *
+     *     fetchBody: 'placeholder-value',
+     *
+     *     fetchImages: 'placeholder-value',
+     *
+     *     maxComments: 'placeholder-value',
+     *
+     *     postId: 'placeholder-value',
+     *
+     *     publish: 'placeholder-value',
+     *
+     *     revert: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "author": {},
+     *       //   "blog": {},
+     *       //   "content": "my_content",
+     *       //   "customMetaData": "my_customMetaData",
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "images": [],
+     *       //   "kind": "my_kind",
+     *       //   "labels": [],
+     *       //   "location": {},
+     *       //   "published": "my_published",
+     *       //   "readerComments": "my_readerComments",
+     *       //   "replies": {},
+     *       //   "selfLink": "my_selfLink",
+     *       //   "status": "my_status",
+     *       //   "title": "my_title",
+     *       //   "titleLink": "my_titleLink",
+     *       //   "trashed": "my_trashed",
+     *       //   "updated": "my_updated",
+     *       //   "url": "my_url"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "author": {},
+     *   //   "blog": {},
+     *   //   "content": "my_content",
+     *   //   "customMetaData": "my_customMetaData",
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "images": [],
+     *   //   "kind": "my_kind",
+     *   //   "labels": [],
+     *   //   "location": {},
+     *   //   "published": "my_published",
+     *   //   "readerComments": "my_readerComments",
+     *   //   "replies": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "status": "my_status",
+     *   //   "title": "my_title",
+     *   //   "titleLink": "my_titleLink",
+     *   //   "trashed": "my_trashed",
+     *   //   "updated": "my_updated",
+     *   //   "url": "my_url"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3348,6 +5052,74 @@ export namespace blogger_v3 {
 
     /**
      * Publishes a post.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const blogger = google.blogger('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/blogger'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await blogger.posts.publish({
+     *     blogId: 'placeholder-value',
+     *
+     *     postId: 'placeholder-value',
+     *
+     *     publishDate: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "author": {},
+     *   //   "blog": {},
+     *   //   "content": "my_content",
+     *   //   "customMetaData": "my_customMetaData",
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "images": [],
+     *   //   "kind": "my_kind",
+     *   //   "labels": [],
+     *   //   "location": {},
+     *   //   "published": "my_published",
+     *   //   "readerComments": "my_readerComments",
+     *   //   "replies": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "status": "my_status",
+     *   //   "title": "my_title",
+     *   //   "titleLink": "my_titleLink",
+     *   //   "trashed": "my_trashed",
+     *   //   "updated": "my_updated",
+     *   //   "url": "my_url"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3437,6 +5209,72 @@ export namespace blogger_v3 {
 
     /**
      * Reverts a published or scheduled post to draft state.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const blogger = google.blogger('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/blogger'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await blogger.posts.revert({
+     *     blogId: 'placeholder-value',
+     *
+     *     postId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "author": {},
+     *   //   "blog": {},
+     *   //   "content": "my_content",
+     *   //   "customMetaData": "my_customMetaData",
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "images": [],
+     *   //   "kind": "my_kind",
+     *   //   "labels": [],
+     *   //   "location": {},
+     *   //   "published": "my_published",
+     *   //   "readerComments": "my_readerComments",
+     *   //   "replies": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "status": "my_status",
+     *   //   "title": "my_title",
+     *   //   "titleLink": "my_titleLink",
+     *   //   "trashed": "my_trashed",
+     *   //   "updated": "my_updated",
+     *   //   "url": "my_url"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3527,6 +5365,64 @@ export namespace blogger_v3 {
 
     /**
      * Searches for posts matching given query terms in the specified blog.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const blogger = google.blogger('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/blogger',
+     *       'https://www.googleapis.com/auth/blogger.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await blogger.posts.search({
+     *     blogId: 'placeholder-value',
+     *
+     *     fetchBodies: 'placeholder-value',
+     *
+     *     orderBy: 'placeholder-value',
+     *
+     *     q: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "prevPageToken": "my_prevPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3617,6 +5513,109 @@ export namespace blogger_v3 {
 
     /**
      * Updates a post by blog id and post id.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const blogger = google.blogger('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/blogger'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await blogger.posts.update({
+     *     blogId: 'placeholder-value',
+     *
+     *     fetchBody: 'placeholder-value',
+     *
+     *     fetchImages: 'placeholder-value',
+     *
+     *     maxComments: 'placeholder-value',
+     *
+     *     postId: 'placeholder-value',
+     *
+     *     publish: 'placeholder-value',
+     *
+     *     revert: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "author": {},
+     *       //   "blog": {},
+     *       //   "content": "my_content",
+     *       //   "customMetaData": "my_customMetaData",
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "images": [],
+     *       //   "kind": "my_kind",
+     *       //   "labels": [],
+     *       //   "location": {},
+     *       //   "published": "my_published",
+     *       //   "readerComments": "my_readerComments",
+     *       //   "replies": {},
+     *       //   "selfLink": "my_selfLink",
+     *       //   "status": "my_status",
+     *       //   "title": "my_title",
+     *       //   "titleLink": "my_titleLink",
+     *       //   "trashed": "my_trashed",
+     *       //   "updated": "my_updated",
+     *       //   "url": "my_url"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "author": {},
+     *   //   "blog": {},
+     *   //   "content": "my_content",
+     *   //   "customMetaData": "my_customMetaData",
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "images": [],
+     *   //   "kind": "my_kind",
+     *   //   "labels": [],
+     *   //   "location": {},
+     *   //   "published": "my_published",
+     *   //   "readerComments": "my_readerComments",
+     *   //   "replies": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "status": "my_status",
+     *   //   "title": "my_title",
+     *   //   "titleLink": "my_titleLink",
+     *   //   "trashed": "my_trashed",
+     *   //   "updated": "my_updated",
+     *   //   "url": "my_url"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3958,6 +5957,62 @@ export namespace blogger_v3 {
 
     /**
      * Gets one post and user info pair, by post_id and user_id.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const blogger = google.blogger('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/blogger',
+     *       'https://www.googleapis.com/auth/blogger.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await blogger.postUserInfos.get({
+     *     blogId: 'placeholder-value',
+     *
+     *     maxComments: 'placeholder-value',
+     *
+     *     postId: 'placeholder-value',
+     *
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "post": {},
+     *   //   "post_user_info": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4048,6 +6103,76 @@ export namespace blogger_v3 {
 
     /**
      * Lists post and user info pairs.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const blogger = google.blogger('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/blogger',
+     *       'https://www.googleapis.com/auth/blogger.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await blogger.postUserInfos.list({
+     *     blogId: 'placeholder-value',
+     *
+     *     endDate: 'placeholder-value',
+     *
+     *     fetchBodies: 'placeholder-value',
+     *
+     *     labels: 'placeholder-value',
+     *
+     *     maxResults: 'placeholder-value',
+     *
+     *     orderBy: 'placeholder-value',
+     *
+     *     pageToken: 'placeholder-value',
+     *
+     *     startDate: 'placeholder-value',
+     *
+     *     status: 'placeholder-value',
+     *
+     *     userId: 'placeholder-value',
+     *
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4213,6 +6338,62 @@ export namespace blogger_v3 {
 
     /**
      * Gets one user by user_id.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const blogger = google.blogger('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/blogger',
+     *       'https://www.googleapis.com/auth/blogger.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await blogger.users.get({
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "about": "my_about",
+     *   //   "blogs": {},
+     *   //   "created": "my_created",
+     *   //   "displayName": "my_displayName",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "locale": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "url": "my_url"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

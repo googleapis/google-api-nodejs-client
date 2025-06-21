@@ -200,7 +200,7 @@ export namespace addressvalidation_v1 {
     unexpected?: boolean | null;
   }
   /**
-   * The metadata for the address. `metadata` is not guaranteed to be fully populated for every address sent to the Address Validation API.
+   * The metadata for the post-processed address. `metadata` is not guaranteed to be fully populated for every address sent to the Address Validation API.
    */
   export interface Schema$GoogleMapsAddressvalidationV1AddressMetadata {
     /**
@@ -563,7 +563,7 @@ export namespace addressvalidation_v1 {
    */
   export interface Schema$GoogleMapsAddressvalidationV1Verdict {
     /**
-     * The address is considered complete if there are no unresolved tokens, no unexpected or missing address components. If unset, indicates that the value is `false`. See `missing_component_types`, `unresolved_tokens` or `unexpected` fields for more details.
+     * The post-processed address is considered complete if there are no unresolved tokens, no unexpected or missing address components. If unset, indicates that the value is `false`. See `missing_component_types`, `unresolved_tokens` or `unexpected` fields for more details.
      */
     addressComplete?: boolean | null;
     /**
@@ -579,15 +579,23 @@ export namespace addressvalidation_v1 {
      */
     hasReplacedComponents?: boolean | null;
     /**
+     * At least one address component was spell-corrected, see [google.maps.addressvalidation.v1.Address.address_components] for details.
+     */
+    hasSpellCorrectedComponents?: boolean | null;
+    /**
      * At least one address component cannot be categorized or validated, see [google.maps.addressvalidation.v1.Address.address_components] for details.
      */
     hasUnconfirmedComponents?: boolean | null;
     /**
-     * The granularity of the **input** address. This is the result of parsing the input address and does not give any validation signals. For validation signals, refer to `validation_granularity` below. For example, if the input address includes a specific apartment number, then the `input_granularity` here will be `SUB_PREMISE`. If we cannot match the apartment number in the databases or the apartment number is invalid, the `validation_granularity` will likely be `PREMISE` or worse.
+     * The granularity of the **input** address. This is the result of parsing the input address and does not give any validation signals. For validation signals, refer to `validation_granularity` below. For example, if the input address includes a specific apartment number, then the `input_granularity` here will be `SUB_PREMISE`. If the address validation service cannot match the apartment number in the databases or the apartment number is invalid, the `validation_granularity` will likely be `PREMISE` or more coarse.
      */
     inputGranularity?: string | null;
     /**
-     * The granularity level that the API can fully **validate** the address to. For example, an `validation_granularity` of `PREMISE` indicates all address components at the level of `PREMISE` or more coarse can be validated. Per address component validation result can be found in [google.maps.addressvalidation.v1.Address.address_components].
+     * Preview: This feature is in Preview (pre-GA). Pre-GA products and features might have limited support, and changes to pre-GA products and features might not be compatible with other pre-GA versions. Pre-GA Offerings are covered by the [Google Maps Platform Service Specific Terms](https://cloud.google.com/maps-platform/terms/maps-service-terms). For more information, see the [launch stage descriptions](https://developers.google.com/maps/launch-stages). Offers an interpretive summary of the API response, intended to assist in determining a potential subsequent action to take. This field is derived from other fields in the API response and should not be considered as a guarantee of address accuracy or deliverability. See [Build your validation logic](https://developers.google.com/maps/documentation/address-validation/build-validation-logic) for more details.
+     */
+    possibleNextAction?: string | null;
+    /**
+     * The level of granularity for the post-processed address that the API can fully validate. For example, a `validation_granularity` of `PREMISE` indicates all address components at the level of `PREMISE` or more coarse can be validated. Per address component validation result can be found in [google.maps.addressvalidation.v1.Address.address_components].
      */
     validationGranularity?: string | null;
   }
@@ -605,7 +613,7 @@ export namespace addressvalidation_v1 {
     longitude?: number | null;
   }
   /**
-   * Represents a postal address (for example, for postal delivery or payments addresses). Given a postal address, a postal service can deliver items to a premise, P.O. box or similar. It is not intended to model geographical locations (roads, towns, mountains). In typical usage, an address would be created by user input or from importing existing data, depending on the type of process. Advice on address input or editing: - Use an internationalization-ready address widget such as https://github.com/google/libaddressinput. - Users should not be presented with UI elements for input or editing of fields outside countries where that field is used. For more guidance on how to use this schema, see: https://support.google.com/business/answer/6397478.
+   * Represents a postal address, such as for postal delivery or payments addresses. With a postal address, a postal service can deliver items to a premise, P.O. box, or similar. A postal address is not intended to model geographical locations like roads, towns, or mountains. In typical usage, an address would be created by user input or from importing existing data, depending on the type of process. Advice on address input or editing: - Use an internationalization-ready address widget such as https://github.com/google/libaddressinput. - Users should not be presented with UI elements for input or editing of fields outside countries where that field is used. For more guidance on how to use this schema, see: https://support.google.com/business/answer/6397478.
    */
   export interface Schema$GoogleTypePostalAddress {
     /**
@@ -662,6 +670,59 @@ export namespace addressvalidation_v1 {
 
     /**
      * Feedback about the outcome of the sequence of validation attempts. This should be the last call made after a sequence of validation calls for the same address, and should be called once the transaction is concluded. This should only be sent once for the sequence of `ValidateAddress` requests needed to validate an address fully.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/addressvalidation.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const addressvalidation = google.addressvalidation('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/maps-platform.addressvalidation',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await addressvalidation.provideValidationFeedback({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "conclusion": "my_conclusion",
+     *       //   "responseId": "my_responseId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -764,6 +825,65 @@ export namespace addressvalidation_v1 {
 
     /**
      * Validates an address.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/addressvalidation.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const addressvalidation = google.addressvalidation('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/maps-platform.addressvalidation',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await addressvalidation.validateAddress({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "address": {},
+     *       //   "enableUspsCass": false,
+     *       //   "languageOptions": {},
+     *       //   "previousResponseId": "my_previousResponseId",
+     *       //   "sessionToken": "my_sessionToken"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "responseId": "my_responseId",
+     *   //   "result": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

@@ -875,7 +875,7 @@
       }
     }
   },
-  "revision": "20250415",
+  "revision": "20250616",
   "rootUrl": "https://sheets.googleapis.com/",
   "schemas": {
     "AddBandingRequest": {
@@ -1110,6 +1110,18 @@
       },
       "type": "object"
     },
+    "AddTableResponse": {
+      "description": "The result of adding a table.",
+      "id": "AddTableResponse",
+      "properties": {
+        "table": {
+          "$ref": "Table",
+          "description": "Output only. The table that was added.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
     "AppendCellsRequest": {
       "description": "Adds new cells after the last row with data in a sheet, inserting new rows into the sheet if necessary.",
       "id": "AppendCellsRequest",
@@ -1227,9 +1239,14 @@
       "id": "BandedRange",
       "properties": {
         "bandedRangeId": {
-          "description": "The ID of the banded range.",
+          "description": "The ID of the banded range. If unset, refer to banded_range_reference.",
           "format": "int32",
           "type": "integer"
+        },
+        "bandedRangeReference": {
+          "description": "Output only. The reference of the banded range, used to identify the ID that is not supported by the banded_range_id.",
+          "readOnly": true,
+          "type": "string"
         },
         "columnProperties": {
           "$ref": "BandingProperties",
@@ -2472,6 +2489,13 @@
       "description": "Data about a specific cell.",
       "id": "CellData",
       "properties": {
+        "chipRuns": {
+          "description": "Optional. Runs of chips applied to subsections of the cell. Properties of a run start at a specific index in the text and continue until the next run. When reading, all chipped and non-chipped runs are included. Non-chipped runs will have an empty Chip. When writing, only runs with chips are included. Runs containing chips are of length 1 and are represented in the user-entered text by an “@” placeholder symbol. New runs will overwrite any prior runs. Writing a new user_entered_value will erase previous runs.",
+          "items": {
+            "$ref": "ChipRun"
+          },
+          "type": "array"
+        },
         "dataSourceFormula": {
           "$ref": "DataSourceFormula",
           "description": "Output only. Information about a data source formula on the cell. The field is set if user_entered_value is a formula referencing some DATA_SOURCE sheet, e.g. `=SUM(DataSheet!Column)`.",
@@ -2948,6 +2972,37 @@
         "waterfallChart": {
           "$ref": "WaterfallChartSpec",
           "description": "A waterfall chart specification."
+        }
+      },
+      "type": "object"
+    },
+    "Chip": {
+      "description": "The Smart Chip.",
+      "id": "Chip",
+      "properties": {
+        "personProperties": {
+          "$ref": "PersonProperties",
+          "description": "Properties of a linked person."
+        },
+        "richLinkProperties": {
+          "$ref": "RichLinkProperties",
+          "description": "Properties of a rich link."
+        }
+      },
+      "type": "object"
+    },
+    "ChipRun": {
+      "description": "The run of a chip. The chip continues until the start index of the next run.",
+      "id": "ChipRun",
+      "properties": {
+        "chip": {
+          "$ref": "Chip",
+          "description": "Optional. The chip of this run."
+        },
+        "startIndex": {
+          "description": "Required. The zero-based character index where this run starts, in UTF-16 code units.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -5510,6 +5565,33 @@
       },
       "type": "object"
     },
+    "PersonProperties": {
+      "description": "Properties specific to a linked person.",
+      "id": "PersonProperties",
+      "properties": {
+        "displayFormat": {
+          "description": "Optional. The display format of the person chip. If not set, the default display format is used.",
+          "enum": [
+            "DISPLAY_FORMAT_UNSPECIFIED",
+            "DEFAULT",
+            "LAST_NAME_COMMA_FIRST_NAME",
+            "EMAIL"
+          ],
+          "enumDescriptions": [
+            "Default value, do not use.",
+            "Default display format.",
+            "Last name, first name display format.",
+            "Email display format."
+          ],
+          "type": "string"
+        },
+        "email": {
+          "description": "Required. The email address linked to this person. This field is always present.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "PieChartSpec": {
       "description": "A pie chart.",
       "id": "PieChartSpec",
@@ -6409,6 +6491,10 @@
           "$ref": "AddSlicerResponse",
           "description": "A reply from adding a slicer."
         },
+        "addTable": {
+          "$ref": "AddTableResponse",
+          "description": "A reply from adding a table."
+        },
         "cancelDataSourceRefresh": {
           "$ref": "CancelDataSourceRefreshResponse",
           "description": "A reply from cancelling data source object refreshes."
@@ -6468,6 +6554,22 @@
         "updateEmbeddedObjectPosition": {
           "$ref": "UpdateEmbeddedObjectPositionResponse",
           "description": "A reply from updating an embedded object's position."
+        }
+      },
+      "type": "object"
+    },
+    "RichLinkProperties": {
+      "description": "Properties of a link to a Google resource (such as a file in Drive, a YouTube video, a Maps address, or a Calendar event). Only Drive files can be written as chips. All other rich link types are read only. URIs cannot exceed 2000 bytes when writing. NOTE: Writing Drive file chips requires at least one of the `drive.file`, `drive.readonly`, or `drive` OAuth scopes.",
+      "id": "RichLinkProperties",
+      "properties": {
+        "mimeType": {
+          "description": "Output only. The [MIME type](https://developers.google.com/drive/api/v3/mime-types) of the link, if there's one (for example, when it's a file in Drive).",
+          "readOnly": true,
+          "type": "string"
+        },
+        "uri": {
+          "description": "Required. The URI to the link. This is always present.",
+          "type": "string"
         }
       },
       "type": "object"

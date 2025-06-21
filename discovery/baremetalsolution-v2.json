@@ -1127,7 +1127,7 @@
                   ]
                 },
                 "submit": {
-                  "description": "Submit a provisiong configuration for a given project.",
+                  "description": "Submit a provisioning configuration for a given project.",
                   "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/provisioningConfigs:submit",
                   "httpMethod": "POST",
                   "id": "baremetalsolution.projects.locations.provisioningConfigs.submit",
@@ -1728,7 +1728,7 @@
       }
     }
   },
-  "revision": "20250414",
+  "revision": "20250519",
   "rootUrl": "https://baremetalsolution.googleapis.com/",
   "schemas": {
     "AllowedClient": {
@@ -2072,7 +2072,7 @@
         },
         "id": {
           "deprecated": true,
-          "description": "A transient unique identifier to idenfity an instance within an ProvisioningConfig request.",
+          "description": "A transient unique identifier to identify an instance within an ProvisioningConfig request.",
           "type": "string"
         },
         "instanceType": {

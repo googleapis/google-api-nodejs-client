@@ -238,7 +238,7 @@ export namespace config_v1 {
      */
     importExistingResources?: boolean | null;
     /**
-     * User-defined metadata for the deployment.
+     * Optional. User-defined metadata for the deployment.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -250,7 +250,7 @@ export namespace config_v1 {
      */
     lockState?: string | null;
     /**
-     * Resource name of the deployment. Format: `projects/{project\}/locations/{location\}/deployments/{deployment\}`
+     * Identifier. Resource name of the deployment. Format: `projects/{project\}/locations/{location\}/deployments/{deployment\}`
      */
     name?: string | null;
     /**
@@ -446,6 +446,40 @@ export namespace config_v1 {
     previews?: Schema$Preview[];
     /**
      * Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
+   * A response to a 'ListResourceChanges' call. Contains a list of ResourceChanges.
+   */
+  export interface Schema$ListResourceChangesResponse {
+    /**
+     * A token to request the next page of resources from the 'ListResourceChanges' method. The value of an empty string means that there are no more resources to return.
+     */
+    nextPageToken?: string | null;
+    /**
+     * List of ResourceChanges.
+     */
+    resourceChanges?: Schema$ResourceChange[];
+    /**
+     * Unreachable resources, if any.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
+   * A response to a 'ListResourceDrifts' call. Contains a list of ResourceDrifts.
+   */
+  export interface Schema$ListResourceDriftsResponse {
+    /**
+     * A token to request the next page of resources from the 'ListResourceDrifts' method. The value of an empty string means that there are no more resources to return.
+     */
+    nextPageToken?: string | null;
+    /**
+     * List of ResourceDrifts.
+     */
+    resourceDrifts?: Schema$ResourceDrift[];
+    /**
+     * Unreachable resources, if any.
      */
     unreachable?: string[] | null;
   }
@@ -778,6 +812,56 @@ export namespace config_v1 {
     jsonSignedUri?: string | null;
   }
   /**
+   * A property change represents a change to a property in the state file.
+   */
+  export interface Schema$PropertyChange {
+    /**
+     * Output only. Representations of the object value after the actions.
+     */
+    after?: any | null;
+    /**
+     * Output only. The paths of sensitive fields in `after`. Paths are relative to `path`.
+     */
+    afterSensitivePaths?: string[] | null;
+    /**
+     * Output only. Representations of the object value before the actions.
+     */
+    before?: any | null;
+    /**
+     * Output only. The paths of sensitive fields in `before`. Paths are relative to `path`.
+     */
+    beforeSensitivePaths?: string[] | null;
+    /**
+     * Output only. The path of the property change.
+     */
+    path?: string | null;
+  }
+  /**
+   * A property drift represents a drift to a property in the state file.
+   */
+  export interface Schema$PropertyDrift {
+    /**
+     * Output only. Representations of the object value after the actions.
+     */
+    after?: any | null;
+    /**
+     * Output only. The paths of sensitive fields in `after`. Paths are relative to `path`.
+     */
+    afterSensitivePaths?: string[] | null;
+    /**
+     * Output only. Representations of the object value before the actions.
+     */
+    before?: any | null;
+    /**
+     * Output only. The paths of sensitive fields in `before`. Paths are relative to `path`.
+     */
+    beforeSensitivePaths?: string[] | null;
+    /**
+     * Output only. The path of the property drift.
+     */
+    path?: string | null;
+  }
+  /**
    * Resource represents a Google Cloud Platform resource actuated by IM. Resources are child resources of Revisions.
    */
   export interface Schema$Resource {
@@ -810,6 +894,90 @@ export namespace config_v1 {
      * CAI resource name in the format following https://cloud.google.com/apis/design/resource_names#full_resource_name
      */
     fullResourceName?: string | null;
+  }
+  /**
+   * A resource change represents a change to a resource in the state file.
+   */
+  export interface Schema$ResourceChange {
+    /**
+     * Output only. The intent of the resource change.
+     */
+    intent?: string | null;
+    /**
+     * Identifier. The name of the resource change. Format: 'projects/{project_id\}/locations/{location\}/previews/{preview\}/resourceChanges/{resource_change\}'.
+     */
+    name?: string | null;
+    /**
+     * Output only. The property changes of the resource change.
+     */
+    propertyChanges?: Schema$PropertyChange[];
+    /**
+     * Output only. Terraform info of the resource change.
+     */
+    terraformInfo?: Schema$ResourceChangeTerraformInfo;
+  }
+  /**
+   * Terraform info of a ResourceChange.
+   */
+  export interface Schema$ResourceChangeTerraformInfo {
+    /**
+     * Output only. TF resource actions.
+     */
+    actions?: string[] | null;
+    /**
+     * Output only. TF resource address that uniquely identifies the resource.
+     */
+    address?: string | null;
+    /**
+     * Output only. TF resource provider.
+     */
+    provider?: string | null;
+    /**
+     * Output only. TF resource name.
+     */
+    resourceName?: string | null;
+    /**
+     * Output only. TF resource type.
+     */
+    type?: string | null;
+  }
+  /**
+   * A resource drift represents a drift to a resource in the state file.
+   */
+  export interface Schema$ResourceDrift {
+    /**
+     * Identifier. The name of the resource drift. Format: 'projects/{project_id\}/locations/{location\}/previews/{preview\}/resourceDrifts/{resource_drift\}'.
+     */
+    name?: string | null;
+    /**
+     * Output only. The property drifts of the resource drift.
+     */
+    propertyDrifts?: Schema$PropertyDrift[];
+    /**
+     * Output only. Terraform info of the resource drift.
+     */
+    terraformInfo?: Schema$ResourceDriftTerraformInfo;
+  }
+  /**
+   * Terraform info of a ResourceChange.
+   */
+  export interface Schema$ResourceDriftTerraformInfo {
+    /**
+     * Output only. The address of the drifted resource.
+     */
+    address?: string | null;
+    /**
+     * Output only. The provider of the drifted resource.
+     */
+    provider?: string | null;
+    /**
+     * Output only. TF resource name.
+     */
+    resourceName?: string | null;
+    /**
+     * Output only. The type of the drifted resource.
+     */
+    type?: string | null;
   }
   /**
    * Terraform info of a Resource.
@@ -1095,6 +1263,56 @@ export namespace config_v1 {
 
     /**
      * Gets information about a location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/config.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const config = google.config('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await config.projects.locations.get({
+     *     // Resource name for the location.
+     *     name: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "labels": {},
+     *   //   "locationId": "my_locationId",
+     *   //   "metadata": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1183,6 +1401,61 @@ export namespace config_v1 {
 
     /**
      * Lists information about the supported locations for this service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/config.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const config = google.config('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await config.projects.locations.list({
+     *     // Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     *     extraLocationTypes: 'placeholder-value',
+     *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
+     *     filter: 'placeholder-value',
+     *     // The resource that owns the locations collection, if applicable.
+     *     name: 'projects/my-project',
+     *     // The maximum number of results to return. If not set, the service selects a default.
+     *     pageSize: 'placeholder-value',
+     *     // A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "locations": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1318,6 +1591,90 @@ export namespace config_v1 {
 
     /**
      * Creates a Deployment.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/config.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const config = google.config('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await config.projects.locations.deployments.create({
+     *     // Required. The Deployment ID.
+     *     deploymentId: 'placeholder-value',
+     *     // Required. The parent in whose context the Deployment is created. The parent value is in the format: 'projects/{project_id\}/locations/{location\}'.
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "annotations": {},
+     *       //   "artifactsGcsBucket": "my_artifactsGcsBucket",
+     *       //   "createTime": "my_createTime",
+     *       //   "deleteBuild": "my_deleteBuild",
+     *       //   "deleteLogs": "my_deleteLogs",
+     *       //   "deleteResults": {},
+     *       //   "errorCode": "my_errorCode",
+     *       //   "errorLogs": "my_errorLogs",
+     *       //   "importExistingResources": false,
+     *       //   "labels": {},
+     *       //   "latestRevision": "my_latestRevision",
+     *       //   "lockState": "my_lockState",
+     *       //   "name": "my_name",
+     *       //   "quotaValidation": "my_quotaValidation",
+     *       //   "serviceAccount": "my_serviceAccount",
+     *       //   "state": "my_state",
+     *       //   "stateDetail": "my_stateDetail",
+     *       //   "terraformBlueprint": {},
+     *       //   "tfErrors": [],
+     *       //   "tfVersion": "my_tfVersion",
+     *       //   "tfVersionConstraint": "my_tfVersionConstraint",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "workerPool": "my_workerPool"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1409,6 +1766,62 @@ export namespace config_v1 {
 
     /**
      * Deletes a Deployment.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/config.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const config = google.config('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await config.projects.locations.deployments.delete({
+     *     // Optional. Policy on how resources actuated by the deployment should be deleted. If unspecified, the default behavior is to delete the underlying resources.
+     *     deletePolicy: 'placeholder-value',
+     *     // Optional. If set to true, any revisions for this deployment will also be deleted. (Otherwise, the request will only work if the deployment has no revisions.)
+     *     force: 'placeholder-value',
+     *     // Required. The name of the Deployment in the format: 'projects/{project_id\}/locations/{location\}/deployments/{deployment\}'.
+     *     name: 'projects/my-project/locations/my-location/deployments/my-deployment',
+     *     // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1497,6 +1910,58 @@ export namespace config_v1 {
 
     /**
      * Deletes Terraform state file in a given deployment.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/config.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const config = google.config('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await config.projects.locations.deployments.deleteState({
+     *     // Required. The name of the deployment in the format: 'projects/{project_id\}/locations/{location\}/deployments/{deployment\}'.
+     *     name: 'projects/my-project/locations/my-location/deployments/my-deployment',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "lockId": "my_lockId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1589,6 +2054,57 @@ export namespace config_v1 {
 
     /**
      * Exports the lock info on a locked deployment.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/config.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const config = google.config('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await config.projects.locations.deployments.exportLock({
+     *     // Required. The name of the deployment in the format: 'projects/{project_id\}/locations/{location\}/deployments/{deployment\}'.
+     *     name: 'projects/my-project/locations/my-location/deployments/my-deployment',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "info": "my_info",
+     *   //   "lockId": "my_lockId",
+     *   //   "operation": "my_operation",
+     *   //   "version": "my_version",
+     *   //   "who": "my_who"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1681,6 +2197,61 @@ export namespace config_v1 {
 
     /**
      * Exports Terraform state file from a given deployment.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/config.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const config = google.config('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await config.projects.locations.deployments.exportState({
+     *     // Required. The parent in whose context the statefile is listed. The parent value is in the format: 'projects/{project_id\}/locations/{location\}/deployments/{deployment\}'.
+     *     parent:
+     *       'projects/my-project/locations/my-location/deployments/my-deployment',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "draft": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "signedUri": "my_signedUri"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1773,6 +2344,74 @@ export namespace config_v1 {
 
     /**
      * Gets details about a Deployment.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/config.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const config = google.config('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await config.projects.locations.deployments.get({
+     *     // Required. The name of the deployment. Format: 'projects/{project_id\}/locations/{location\}/deployments/{deployment\}'.
+     *     name: 'projects/my-project/locations/my-location/deployments/my-deployment',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "annotations": {},
+     *   //   "artifactsGcsBucket": "my_artifactsGcsBucket",
+     *   //   "createTime": "my_createTime",
+     *   //   "deleteBuild": "my_deleteBuild",
+     *   //   "deleteLogs": "my_deleteLogs",
+     *   //   "deleteResults": {},
+     *   //   "errorCode": "my_errorCode",
+     *   //   "errorLogs": "my_errorLogs",
+     *   //   "importExistingResources": false,
+     *   //   "labels": {},
+     *   //   "latestRevision": "my_latestRevision",
+     *   //   "lockState": "my_lockState",
+     *   //   "name": "my_name",
+     *   //   "quotaValidation": "my_quotaValidation",
+     *   //   "serviceAccount": "my_serviceAccount",
+     *   //   "state": "my_state",
+     *   //   "stateDetail": "my_stateDetail",
+     *   //   "terraformBlueprint": {},
+     *   //   "tfErrors": [],
+     *   //   "tfVersion": "my_tfVersion",
+     *   //   "tfVersionConstraint": "my_tfVersionConstraint",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "workerPool": "my_workerPool"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1861,6 +2500,58 @@ export namespace config_v1 {
 
     /**
      * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/config.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const config = google.config('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await config.projects.locations.deployments.getIamPolicy({
+     *     // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     *     'options.requestedPolicyVersion': 'placeholder-value',
+     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource:
+     *       'projects/my-project/locations/my-location/deployments/my-deployment',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1953,6 +2644,61 @@ export namespace config_v1 {
 
     /**
      * Imports Terraform state file in a given deployment. The state file does not take effect until the Deployment has been unlocked.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/config.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const config = google.config('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await config.projects.locations.deployments.importState({
+     *     // Required. The parent in whose context the statefile is listed. The parent value is in the format: 'projects/{project_id\}/locations/{location\}/deployments/{deployment\}'.
+     *     parent:
+     *       'projects/my-project/locations/my-location/deployments/my-deployment',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "lockId": "my_lockId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "signedUri": "my_signedUri"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2045,6 +2791,62 @@ export namespace config_v1 {
 
     /**
      * Lists Deployments in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/config.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const config = google.config('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await config.projects.locations.deployments.list({
+     *     // Lists the Deployments that match the filter expression. A filter expression filters the resources listed in the response. The expression must be of the form '{field\} {operator\} {value\}' where operators: '<', '\>', '<=', '\>=', '!=', '=', ':' are supported (colon ':' represents a HAS operator which is roughly synonymous with equality). {field\} can refer to a proto or JSON field, or a synthetic field. Field names can be camelCase or snake_case. Examples: - Filter by name: name = "projects/foo/locations/us-central1/deployments/bar - Filter by labels: - Resources that have a key called 'foo' labels.foo:* - Resources that have a key called 'foo' whose value is 'bar' labels.foo = bar - Filter by state: - Deployments in CREATING state. state=CREATING
+     *     filter: 'placeholder-value',
+     *     // Field to use to sort the list.
+     *     orderBy: 'placeholder-value',
+     *     // When requesting a page of resources, 'page_size' specifies number of resources to return. If unspecified, at most 500 will be returned. The maximum value is 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Token returned by previous call to 'ListDeployments' which specifies the position in the list from where to continue listing the resources.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent in whose context the Deployments are listed. The parent value is in the format: 'projects/{project_id\}/locations/{location\}'.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deployments": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2138,6 +2940,62 @@ export namespace config_v1 {
 
     /**
      * Locks a deployment.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/config.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const config = google.config('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await config.projects.locations.deployments.lock({
+     *     // Required. The name of the deployment in the format: 'projects/{project_id\}/locations/{location\}/deployments/{deployment\}'.
+     *     name: 'projects/my-project/locations/my-location/deployments/my-deployment',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2226,6 +3084,90 @@ export namespace config_v1 {
 
     /**
      * Updates a Deployment.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/config.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const config = google.config('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await config.projects.locations.deployments.patch({
+     *     // Identifier. Resource name of the deployment. Format: `projects/{project\}/locations/{location\}/deployments/{deployment\}`
+     *     name: 'projects/my-project/locations/my-location/deployments/my-deployment',
+     *     // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *     // Optional. Field mask used to specify the fields to be overwritten in the Deployment resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "annotations": {},
+     *       //   "artifactsGcsBucket": "my_artifactsGcsBucket",
+     *       //   "createTime": "my_createTime",
+     *       //   "deleteBuild": "my_deleteBuild",
+     *       //   "deleteLogs": "my_deleteLogs",
+     *       //   "deleteResults": {},
+     *       //   "errorCode": "my_errorCode",
+     *       //   "errorLogs": "my_errorLogs",
+     *       //   "importExistingResources": false,
+     *       //   "labels": {},
+     *       //   "latestRevision": "my_latestRevision",
+     *       //   "lockState": "my_lockState",
+     *       //   "name": "my_name",
+     *       //   "quotaValidation": "my_quotaValidation",
+     *       //   "serviceAccount": "my_serviceAccount",
+     *       //   "state": "my_state",
+     *       //   "stateDetail": "my_stateDetail",
+     *       //   "terraformBlueprint": {},
+     *       //   "tfErrors": [],
+     *       //   "tfVersion": "my_tfVersion",
+     *       //   "tfVersionConstraint": "my_tfVersionConstraint",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "workerPool": "my_workerPool"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2314,6 +3256,65 @@ export namespace config_v1 {
 
     /**
      * Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/config.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const config = google.config('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await config.projects.locations.deployments.setIamPolicy({
+     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource:
+     *       'projects/my-project/locations/my-location/deployments/my-deployment',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "policy": {},
+     *       //   "updateMask": "my_updateMask"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2406,6 +3407,61 @@ export namespace config_v1 {
 
     /**
      * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/config.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const config = google.config('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await config.projects.locations.deployments.testIamPermissions({
+     *     // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource:
+     *       'projects/my-project/locations/my-location/deployments/my-deployment',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "permissions": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2502,6 +3558,64 @@ export namespace config_v1 {
 
     /**
      * Unlocks a locked deployment.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/config.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const config = google.config('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await config.projects.locations.deployments.unlock({
+     *     // Required. The name of the deployment in the format: 'projects/{project_id\}/locations/{location\}/deployments/{deployment\}'.
+     *     name: 'projects/my-project/locations/my-location/deployments/my-deployment',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "lockId": "my_lockId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2727,7 +3841,7 @@ export namespace config_v1 {
   export interface Params$Resource$Projects$Locations$Deployments$Patch
     extends StandardParameters {
     /**
-     * Resource name of the deployment. Format: `projects/{project\}/locations/{location\}/deployments/{deployment\}`
+     * Identifier. Resource name of the deployment. Format: `projects/{project\}/locations/{location\}/deployments/{deployment\}`
      */
     name?: string;
     /**
@@ -2794,6 +3908,61 @@ export namespace config_v1 {
 
     /**
      * Exports Terraform state file from a given revision.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/config.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const config = google.config('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await config.projects.locations.deployments.revisions.exportState(
+     *     {
+     *       // Required. The parent in whose context the statefile is listed. The parent value is in the format: 'projects/{project_id\}/locations/{location\}/deployments/{deployment\}/revisions/{revision\}'.
+     *       parent:
+     *         'projects/my-project/locations/my-location/deployments/my-deployment/revisions/my-revision',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {}
+     *       },
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "signedUri": "my_signedUri"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2886,6 +4055,71 @@ export namespace config_v1 {
 
     /**
      * Gets details about a Revision.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/config.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const config = google.config('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await config.projects.locations.deployments.revisions.get({
+     *     // Required. The name of the Revision in the format: 'projects/{project_id\}/locations/{location\}/deployments/{deployment\}/revisions/{revision\}'.
+     *     name: 'projects/my-project/locations/my-location/deployments/my-deployment/revisions/my-revision',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "action": "my_action",
+     *   //   "applyResults": {},
+     *   //   "build": "my_build",
+     *   //   "createTime": "my_createTime",
+     *   //   "errorCode": "my_errorCode",
+     *   //   "errorLogs": "my_errorLogs",
+     *   //   "importExistingResources": false,
+     *   //   "logs": "my_logs",
+     *   //   "name": "my_name",
+     *   //   "quotaValidation": "my_quotaValidation",
+     *   //   "quotaValidationResults": "my_quotaValidationResults",
+     *   //   "serviceAccount": "my_serviceAccount",
+     *   //   "state": "my_state",
+     *   //   "stateDetail": "my_stateDetail",
+     *   //   "terraformBlueprint": {},
+     *   //   "tfErrors": [],
+     *   //   "tfVersion": "my_tfVersion",
+     *   //   "tfVersionConstraint": "my_tfVersionConstraint",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "workerPool": "my_workerPool"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2975,6 +4209,63 @@ export namespace config_v1 {
 
     /**
      * Lists Revisions of a deployment.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/config.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const config = google.config('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await config.projects.locations.deployments.revisions.list({
+     *     // Lists the Revisions that match the filter expression. A filter expression filters the resources listed in the response. The expression must be of the form '{field\} {operator\} {value\}' where operators: '<', '\>', '<=', '\>=', '!=', '=', ':' are supported (colon ':' represents a HAS operator which is roughly synonymous with equality). {field\} can refer to a proto or JSON field, or a synthetic field. Field names can be camelCase or snake_case. Examples: - Filter by name: name = "projects/foo/locations/us-central1/deployments/dep/revisions/bar - Filter by labels: - Resources that have a key called 'foo' labels.foo:* - Resources that have a key called 'foo' whose value is 'bar' labels.foo = bar - Filter by state: - Revisions in CREATING state. state=CREATING
+     *     filter: 'placeholder-value',
+     *     // Field to use to sort the list.
+     *     orderBy: 'placeholder-value',
+     *     // When requesting a page of resources, `page_size` specifies number of resources to return. If unspecified, at most 500 will be returned. The maximum value is 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Token returned by previous call to 'ListRevisions' which specifies the position in the list from where to continue listing the resources.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent in whose context the Revisions are listed. The parent value is in the format: 'projects/{project_id\}/locations/{location\}/deployments/{deployment\}'.
+     *     parent:
+     *       'projects/my-project/locations/my-location/deployments/my-deployment',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "revisions": [],
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3119,6 +4410,57 @@ export namespace config_v1 {
 
     /**
      * Gets details about a Resource deployed by Infra Manager.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/config.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const config = google.config('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await config.projects.locations.deployments.revisions.resources.get({
+     *       // Required. The name of the Resource in the format: 'projects/{project_id\}/locations/{location\}/deployments/{deployment\}/revisions/{revision\}/resource/{resource\}'.
+     *       name: 'projects/my-project/locations/my-location/deployments/my-deployment/revisions/my-revision/resources/my-resource',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "caiAssets": {},
+     *   //   "intent": "my_intent",
+     *   //   "name": "my_name",
+     *   //   "state": "my_state",
+     *   //   "terraformInfo": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3208,6 +4550,64 @@ export namespace config_v1 {
 
     /**
      * Lists Resources in a given revision.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/config.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const config = google.config('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await config.projects.locations.deployments.revisions.resources.list({
+     *       // Lists the Resources that match the filter expression. A filter expression filters the resources listed in the response. The expression must be of the form '{field\} {operator\} {value\}' where operators: '<', '\>', '<=', '\>=', '!=', '=', ':' are supported (colon ':' represents a HAS operator which is roughly synonymous with equality). {field\} can refer to a proto or JSON field, or a synthetic field. Field names can be camelCase or snake_case. Examples: - Filter by name: name = "projects/foo/locations/us-central1/deployments/dep/revisions/bar/resources/baz
+     *       filter: 'placeholder-value',
+     *       // Field to use to sort the list.
+     *       orderBy: 'placeholder-value',
+     *       // When requesting a page of resources, 'page_size' specifies number of resources to return. If unspecified, at most 500 will be returned. The maximum value is 1000.
+     *       pageSize: 'placeholder-value',
+     *       // Token returned by previous call to 'ListResources' which specifies the position in the list from where to continue listing the resources.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The parent in whose context the Resources are listed. The parent value is in the format: 'projects/{project_id\}/locations/{location\}/deployments/{deployment\}/revisions/{revision\}'.
+     *       parent:
+     *         'projects/my-project/locations/my-location/deployments/my-deployment/revisions/my-revision',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "resources": [],
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3340,6 +4740,56 @@ export namespace config_v1 {
 
     /**
      * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/config.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const config = google.config('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await config.projects.locations.operations.cancel({
+     *     // The name of the operation resource to be cancelled.
+     *     name: 'projects/my-project/locations/my-location/operations/my-operation',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3428,6 +4878,50 @@ export namespace config_v1 {
 
     /**
      * Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/config.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const config = google.config('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await config.projects.locations.operations.delete({
+     *     // The name of the operation resource to be deleted.
+     *     name: 'projects/my-project/locations/my-location/operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3516,6 +5010,56 @@ export namespace config_v1 {
 
     /**
      * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/config.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const config = google.config('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await config.projects.locations.operations.get({
+     *     // The name of the operation resource.
+     *     name: 'projects/my-project/locations/my-location/operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3604,6 +5148,59 @@ export namespace config_v1 {
 
     /**
      * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/config.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const config = google.config('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await config.projects.locations.operations.list({
+     *     // The standard list filter.
+     *     filter: 'placeholder-value',
+     *     // The name of the operation's parent resource.
+     *     name: 'projects/my-project/locations/my-location',
+     *     // The standard list page size.
+     *     pageSize: 'placeholder-value',
+     *     // The standard list page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "operations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3744,12 +5341,99 @@ export namespace config_v1 {
 
   export class Resource$Projects$Locations$Previews {
     context: APIRequestContext;
+    resourceChanges: Resource$Projects$Locations$Previews$Resourcechanges;
+    resourceDrifts: Resource$Projects$Locations$Previews$Resourcedrifts;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.resourceChanges =
+        new Resource$Projects$Locations$Previews$Resourcechanges(this.context);
+      this.resourceDrifts =
+        new Resource$Projects$Locations$Previews$Resourcedrifts(this.context);
     }
 
     /**
      * Creates a Preview.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/config.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const config = google.config('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await config.projects.locations.previews.create({
+     *     // Required. The parent in whose context the Preview is created. The parent value is in the format: 'projects/{project_id\}/locations/{location\}'.
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // Optional. The preview ID.
+     *     previewId: 'placeholder-value',
+     *     // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "annotations": {},
+     *       //   "artifactsGcsBucket": "my_artifactsGcsBucket",
+     *       //   "build": "my_build",
+     *       //   "createTime": "my_createTime",
+     *       //   "deployment": "my_deployment",
+     *       //   "errorCode": "my_errorCode",
+     *       //   "errorLogs": "my_errorLogs",
+     *       //   "errorStatus": {},
+     *       //   "labels": {},
+     *       //   "logs": "my_logs",
+     *       //   "name": "my_name",
+     *       //   "previewArtifacts": {},
+     *       //   "previewMode": "my_previewMode",
+     *       //   "serviceAccount": "my_serviceAccount",
+     *       //   "state": "my_state",
+     *       //   "terraformBlueprint": {},
+     *       //   "tfErrors": [],
+     *       //   "tfVersion": "my_tfVersion",
+     *       //   "tfVersionConstraint": "my_tfVersionConstraint",
+     *       //   "workerPool": "my_workerPool"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3841,6 +5525,58 @@ export namespace config_v1 {
 
     /**
      * Deletes a Preview.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/config.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const config = google.config('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await config.projects.locations.previews.delete({
+     *     // Required. The name of the Preview in the format: 'projects/{project_id\}/locations/{location\}/previews/{preview\}'.
+     *     name: 'projects/my-project/locations/my-location/previews/my-preview',
+     *     // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3929,6 +5665,58 @@ export namespace config_v1 {
 
     /**
      * Export Preview results.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/config.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const config = google.config('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await config.projects.locations.previews.export({
+     *     // Required. The preview whose results should be exported. The preview value is in the format: 'projects/{project_id\}/locations/{location\}/previews/{preview\}'.
+     *     parent: 'projects/my-project/locations/my-location/previews/my-preview',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "result": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4024,6 +5812,71 @@ export namespace config_v1 {
 
     /**
      * Gets details about a Preview.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/config.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const config = google.config('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await config.projects.locations.previews.get({
+     *     // Required. The name of the preview. Format: 'projects/{project_id\}/locations/{location\}/previews/{preview\}'.
+     *     name: 'projects/my-project/locations/my-location/previews/my-preview',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "annotations": {},
+     *   //   "artifactsGcsBucket": "my_artifactsGcsBucket",
+     *   //   "build": "my_build",
+     *   //   "createTime": "my_createTime",
+     *   //   "deployment": "my_deployment",
+     *   //   "errorCode": "my_errorCode",
+     *   //   "errorLogs": "my_errorLogs",
+     *   //   "errorStatus": {},
+     *   //   "labels": {},
+     *   //   "logs": "my_logs",
+     *   //   "name": "my_name",
+     *   //   "previewArtifacts": {},
+     *   //   "previewMode": "my_previewMode",
+     *   //   "serviceAccount": "my_serviceAccount",
+     *   //   "state": "my_state",
+     *   //   "terraformBlueprint": {},
+     *   //   "tfErrors": [],
+     *   //   "tfVersion": "my_tfVersion",
+     *   //   "tfVersionConstraint": "my_tfVersionConstraint",
+     *   //   "workerPool": "my_workerPool"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4112,6 +5965,62 @@ export namespace config_v1 {
 
     /**
      * Lists Previews in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/config.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const config = google.config('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await config.projects.locations.previews.list({
+     *     // Optional. Lists the Deployments that match the filter expression. A filter expression filters the resources listed in the response. The expression must be of the form '{field\} {operator\} {value\}' where operators: '<', '\>', '<=', '\>=', '!=', '=', ':' are supported (colon ':' represents a HAS operator which is roughly synonymous with equality). {field\} can refer to a proto or JSON field, or a synthetic field. Field names can be camelCase or snake_case. Examples: - Filter by name: name = "projects/foo/locations/us-central1/deployments/bar - Filter by labels: - Resources that have a key called 'foo' labels.foo:* - Resources that have a key called 'foo' whose value is 'bar' labels.foo = bar - Filter by state: - Deployments in CREATING state. state=CREATING
+     *     filter: 'placeholder-value',
+     *     // Optional. Field to use to sort the list.
+     *     orderBy: 'placeholder-value',
+     *     // Optional. When requesting a page of resources, 'page_size' specifies number of resources to return. If unspecified, at most 500 will be returned. The maximum value is 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. Token returned by previous call to 'ListDeployments' which specifies the position in the list from where to continue listing the resources.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent in whose context the Previews are listed. The parent value is in the format: 'projects/{project_id\}/locations/{location\}'.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "previews": [],
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4278,6 +6187,661 @@ export namespace config_v1 {
     parent?: string;
   }
 
+  export class Resource$Projects$Locations$Previews$Resourcechanges {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Get a ResourceChange for a given preview.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/config.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const config = google.config('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await config.projects.locations.previews.resourceChanges.get({
+     *     // Required. The name of the resource change to retrieve. Format: 'projects/{project_id\}/locations/{location\}/previews/{preview\}/resourceChanges/{resource_change\}'.
+     *     name: 'projects/my-project/locations/my-location/previews/my-preview/resourceChanges/my-resourceChange',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "intent": "my_intent",
+     *   //   "name": "my_name",
+     *   //   "propertyChanges": [],
+     *   //   "terraformInfo": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Previews$Resourcechanges$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Previews$Resourcechanges$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ResourceChange>>;
+    get(
+      params: Params$Resource$Projects$Locations$Previews$Resourcechanges$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Previews$Resourcechanges$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ResourceChange>,
+      callback: BodyResponseCallback<Schema$ResourceChange>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Previews$Resourcechanges$Get,
+      callback: BodyResponseCallback<Schema$ResourceChange>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$ResourceChange>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Previews$Resourcechanges$Get
+        | BodyResponseCallback<Schema$ResourceChange>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ResourceChange>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ResourceChange>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ResourceChange>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Previews$Resourcechanges$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Previews$Resourcechanges$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://config.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ResourceChange>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ResourceChange>(parameters);
+      }
+    }
+
+    /**
+     * Lists ResourceChanges for a given preview.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/config.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const config = google.config('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await config.projects.locations.previews.resourceChanges.list({
+     *     // Optional. Lists the resource changes that match the filter expression. A filter expression filters the resource changes listed in the response. The expression must be of the form '{field\} {operator\} {value\}' where operators: '<', '\>', '<=', '\>=', '!=', '=', ':' are supported (colon ':' represents a HAS operator which is roughly synonymous with equality). {field\} can refer to a proto or JSON field, or a synthetic field. Field names can be camelCase or snake_case. Examples: - Filter by name: name = "projects/foo/locations/us-central1/previews/dep/resourceChanges/baz
+     *     filter: 'placeholder-value',
+     *     // Optional. Field to use to sort the list.
+     *     orderBy: 'placeholder-value',
+     *     // Optional. When requesting a page of resource changes, 'page_size' specifies number of resource changes to return. If unspecified, at most 500 will be returned. The maximum value is 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. Token returned by previous call to 'ListResourceChanges' which specifies the position in the list from where to continue listing the resource changes.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent in whose context the ResourceChanges are listed. The parent value is in the format: 'projects/{project_id\}/locations/{location\}/previews/{preview\}'.
+     *     parent: 'projects/my-project/locations/my-location/previews/my-preview',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "resourceChanges": [],
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Previews$Resourcechanges$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Previews$Resourcechanges$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListResourceChangesResponse>>;
+    list(
+      params: Params$Resource$Projects$Locations$Previews$Resourcechanges$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Previews$Resourcechanges$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListResourceChangesResponse>,
+      callback: BodyResponseCallback<Schema$ListResourceChangesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Previews$Resourcechanges$List,
+      callback: BodyResponseCallback<Schema$ListResourceChangesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListResourceChangesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Previews$Resourcechanges$List
+        | BodyResponseCallback<Schema$ListResourceChangesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListResourceChangesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListResourceChangesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListResourceChangesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Previews$Resourcechanges$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Previews$Resourcechanges$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://config.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/resourceChanges').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListResourceChangesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListResourceChangesResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Previews$Resourcechanges$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the resource change to retrieve. Format: 'projects/{project_id\}/locations/{location\}/previews/{preview\}/resourceChanges/{resource_change\}'.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Previews$Resourcechanges$List
+    extends StandardParameters {
+    /**
+     * Optional. Lists the resource changes that match the filter expression. A filter expression filters the resource changes listed in the response. The expression must be of the form '{field\} {operator\} {value\}' where operators: '<', '\>', '<=', '\>=', '!=', '=', ':' are supported (colon ':' represents a HAS operator which is roughly synonymous with equality). {field\} can refer to a proto or JSON field, or a synthetic field. Field names can be camelCase or snake_case. Examples: - Filter by name: name = "projects/foo/locations/us-central1/previews/dep/resourceChanges/baz
+     */
+    filter?: string;
+    /**
+     * Optional. Field to use to sort the list.
+     */
+    orderBy?: string;
+    /**
+     * Optional. When requesting a page of resource changes, 'page_size' specifies number of resource changes to return. If unspecified, at most 500 will be returned. The maximum value is 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Token returned by previous call to 'ListResourceChanges' which specifies the position in the list from where to continue listing the resource changes.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent in whose context the ResourceChanges are listed. The parent value is in the format: 'projects/{project_id\}/locations/{location\}/previews/{preview\}'.
+     */
+    parent?: string;
+  }
+
+  export class Resource$Projects$Locations$Previews$Resourcedrifts {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Get a ResourceDrift for a given preview.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/config.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const config = google.config('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await config.projects.locations.previews.resourceDrifts.get({
+     *     // Required. The name of the resource drift to retrieve. Format: 'projects/{project_id\}/locations/{location\}/previews/{preview\}/resourceDrifts/{resource_drift\}'.
+     *     name: 'projects/my-project/locations/my-location/previews/my-preview/resourceDrifts/my-resourceDrift',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "propertyDrifts": [],
+     *   //   "terraformInfo": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Previews$Resourcedrifts$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Previews$Resourcedrifts$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ResourceDrift>>;
+    get(
+      params: Params$Resource$Projects$Locations$Previews$Resourcedrifts$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Previews$Resourcedrifts$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ResourceDrift>,
+      callback: BodyResponseCallback<Schema$ResourceDrift>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Previews$Resourcedrifts$Get,
+      callback: BodyResponseCallback<Schema$ResourceDrift>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$ResourceDrift>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Previews$Resourcedrifts$Get
+        | BodyResponseCallback<Schema$ResourceDrift>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ResourceDrift>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ResourceDrift>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ResourceDrift>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Previews$Resourcedrifts$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Previews$Resourcedrifts$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://config.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ResourceDrift>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ResourceDrift>(parameters);
+      }
+    }
+
+    /**
+     * List ResourceDrifts for a given preview.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/config.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const config = google.config('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await config.projects.locations.previews.resourceDrifts.list({
+     *     // Optional. Lists the resource drifts that match the filter expression. A filter expression filters the resource drifts listed in the response. The expression must be of the form '{field\} {operator\} {value\}' where operators: '<', '\>', '<=', '\>=', '!=', '=', ':' are supported (colon ':' represents a HAS operator which is roughly synonymous with equality). {field\} can refer to a proto or JSON field, or a synthetic field. Field names can be camelCase or snake_case. Examples: - Filter by name: name = "projects/foo/locations/us-central1/previews/dep/resourceDrifts/baz
+     *     filter: 'placeholder-value',
+     *     // Optional. Field to use to sort the list.
+     *     orderBy: 'placeholder-value',
+     *     // Optional. When requesting a page of resource drifts, 'page_size' specifies number of resource drifts to return. If unspecified, at most 500 will be returned. The maximum value is 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. Token returned by previous call to 'ListResourceDrifts' which specifies the position in the list from where to continue listing the resource drifts.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent in whose context the ResourceDrifts are listed. The parent value is in the format: 'projects/{project_id\}/locations/{location\}/previews/{preview\}'.
+     *     parent: 'projects/my-project/locations/my-location/previews/my-preview',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "resourceDrifts": [],
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Previews$Resourcedrifts$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Previews$Resourcedrifts$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListResourceDriftsResponse>>;
+    list(
+      params: Params$Resource$Projects$Locations$Previews$Resourcedrifts$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Previews$Resourcedrifts$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListResourceDriftsResponse>,
+      callback: BodyResponseCallback<Schema$ListResourceDriftsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Previews$Resourcedrifts$List,
+      callback: BodyResponseCallback<Schema$ListResourceDriftsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListResourceDriftsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Previews$Resourcedrifts$List
+        | BodyResponseCallback<Schema$ListResourceDriftsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListResourceDriftsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListResourceDriftsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListResourceDriftsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Previews$Resourcedrifts$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Previews$Resourcedrifts$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://config.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/resourceDrifts').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListResourceDriftsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListResourceDriftsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Previews$Resourcedrifts$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the resource drift to retrieve. Format: 'projects/{project_id\}/locations/{location\}/previews/{preview\}/resourceDrifts/{resource_drift\}'.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Previews$Resourcedrifts$List
+    extends StandardParameters {
+    /**
+     * Optional. Lists the resource drifts that match the filter expression. A filter expression filters the resource drifts listed in the response. The expression must be of the form '{field\} {operator\} {value\}' where operators: '<', '\>', '<=', '\>=', '!=', '=', ':' are supported (colon ':' represents a HAS operator which is roughly synonymous with equality). {field\} can refer to a proto or JSON field, or a synthetic field. Field names can be camelCase or snake_case. Examples: - Filter by name: name = "projects/foo/locations/us-central1/previews/dep/resourceDrifts/baz
+     */
+    filter?: string;
+    /**
+     * Optional. Field to use to sort the list.
+     */
+    orderBy?: string;
+    /**
+     * Optional. When requesting a page of resource drifts, 'page_size' specifies number of resource drifts to return. If unspecified, at most 500 will be returned. The maximum value is 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Token returned by previous call to 'ListResourceDrifts' which specifies the position in the list from where to continue listing the resource drifts.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent in whose context the ResourceDrifts are listed. The parent value is in the format: 'projects/{project_id\}/locations/{location\}/previews/{preview\}'.
+     */
+    parent?: string;
+  }
+
   export class Resource$Projects$Locations$Terraformversions {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -4286,6 +6850,56 @@ export namespace config_v1 {
 
     /**
      * Gets details about a TerraformVersion.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/config.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const config = google.config('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await config.projects.locations.terraformVersions.get({
+     *     // Required. The name of the TerraformVersion. Format: 'projects/{project_id\}/locations/{location\}/terraformVersions/{terraform_version\}'
+     *     name: 'projects/my-project/locations/my-location/terraformVersions/my-terraformVersion',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deprecateTime": "my_deprecateTime",
+     *   //   "name": "my_name",
+     *   //   "obsoleteTime": "my_obsoleteTime",
+     *   //   "state": "my_state",
+     *   //   "supportTime": "my_supportTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4374,6 +6988,62 @@ export namespace config_v1 {
 
     /**
      * Lists TerraformVersions in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/config.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const config = google.config('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await config.projects.locations.terraformVersions.list({
+     *     // Optional. Lists the TerraformVersions that match the filter expression. A filter expression filters the resources listed in the response. The expression must be of the form '{field\} {operator\} {value\}' where operators: '<', '\>', '<=', '\>=', '!=', '=', ':' are supported (colon ':' represents a HAS operator which is roughly synonymous with equality). {field\} can refer to a proto or JSON field, or a synthetic field. Field names can be camelCase or snake_case.
+     *     filter: 'placeholder-value',
+     *     // Optional. Field to use to sort the list.
+     *     orderBy: 'placeholder-value',
+     *     // Optional. When requesting a page of terraform versions, 'page_size' specifies number of terraform versions to return. If unspecified, at most 500 will be returned. The maximum value is 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. Token returned by previous call to 'ListTerraformVersions' which specifies the position in the list from where to continue listing the terraform versions.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent in whose context the TerraformVersions are listed. The parent value is in the format: 'projects/{project_id\}/locations/{location\}'.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "terraformVersions": [],
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

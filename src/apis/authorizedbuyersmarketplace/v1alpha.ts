@@ -367,7 +367,7 @@ export namespace authorizedbuyersmarketplace_v1alpha {
      */
     createTime?: string | null;
     /**
-     * Immutable. Identifier. The unique identifier for the data segment. Account ID corresponds to the account ID that created the segment. Format: `buyers/{accountId\}/dataSegments/{curatorDataSegmentId\}`
+     * Immutable. Identifier. The unique identifier for the data segment. Account ID corresponds to the account ID that created the segment. v1alpha format: `buyers/{accountId\}/dataSegments/{curatorDataSegmentId\}` v1beta format: `curators/{curatorAccountId\}/dataSegments/{curatorDataSegmentId\}`
      */
     name?: string | null;
     /**
@@ -1347,6 +1347,62 @@ export namespace authorizedbuyersmarketplace_v1alpha {
 
     /**
      * List the auction packages. Buyers can use the URL path "/v1alpha/buyers/{accountId\}/auctionPackages" to list auction packages for the current buyer and its clients. Bidders can use the URL path "/v1alpha/bidders/{accountId\}/auctionPackages" to list auction packages for the bidder, its media planners, its buyers, and all their clients.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/authorizedbuyersmarketplace.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const authorizedbuyersmarketplace =
+     *   google.authorizedbuyersmarketplace('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/authorized-buyers-marketplace'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await authorizedbuyersmarketplace.bidders.auctionPackages.list({
+     *     // Optional. Optional query string using the [Cloud API list filtering syntax](/authorized-buyers/apis/guides/list-filters). Only supported when parent is bidder. Supported columns for filtering are: * displayName * createTime * updateTime * eligibleSeatIds
+     *     filter: 'placeholder-value',
+     *     // Optional. An optional query string to sort auction packages using the [Cloud API sorting syntax](https://cloud.google.com/apis/design/design_patterns#sorting_order). If no sort order is specified, results will be returned in an arbitrary order. Only supported when parent is bidder. Supported columns for sorting are: * displayName * createTime * updateTime
+     *     orderBy: 'placeholder-value',
+     *     // Requested page size. The server may return fewer results than requested. Max allowed page size is 500.
+     *     pageSize: 'placeholder-value',
+     *     // The page token as returned. ListAuctionPackagesResponse.nextPageToken
+     *     pageToken: 'placeholder-value',
+     *     // Required. Name of the parent buyer that can access the auction package. Format: `buyers/{accountId\}`. When used with a bidder account, the auction packages that the bidder, its media planners, its buyers and clients are subscribed to will be listed, in the format `bidders/{accountId\}`.
+     *     parent: 'bidders/my-bidder',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auctionPackages": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1475,6 +1531,62 @@ export namespace authorizedbuyersmarketplace_v1alpha {
 
     /**
      * Lists finalized deals. Use the URL path "/v1alpha/buyers/{accountId\}/finalizedDeals" to list finalized deals for the current buyer and its clients. Bidders can use the URL path "/v1alpha/bidders/{accountId\}/finalizedDeals" to list finalized deals for the bidder, its buyers and all their clients.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/authorizedbuyersmarketplace.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const authorizedbuyersmarketplace =
+     *   google.authorizedbuyersmarketplace('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/authorized-buyers-marketplace'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await authorizedbuyersmarketplace.bidders.finalizedDeals.list({
+     *     // Optional query string using the [Cloud API list filtering syntax](https://developers.google.com/authorized-buyers/apis/guides/list-filters) Supported columns for filtering are: * deal.displayName * deal.dealType * deal.createTime * deal.updateTime * deal.flightStartTime * deal.flightEndTime * deal.eligibleSeatIds * dealServingStatus
+     *     filter: 'placeholder-value',
+     *     // An optional query string to sort finalized deals using the [Cloud API sorting syntax](https://cloud.google.com/apis/design/design_patterns#sorting_order). If no sort order is specified, results will be returned in an arbitrary order. Supported columns for sorting are: * deal.displayName * deal.createTime * deal.updateTime * deal.flightStartTime * deal.flightEndTime * rtbMetrics.bidRequests7Days * rtbMetrics.bids7Days * rtbMetrics.adImpressions7Days * rtbMetrics.bidRate7Days * rtbMetrics.filteredBidRate7Days * rtbMetrics.mustBidRateCurrentMonth
+     *     orderBy: 'placeholder-value',
+     *     // Requested page size. The server may return fewer results than requested. If requested more than 500, the server will return 500 results per page. If unspecified, the server will pick a default page size of 100.
+     *     pageSize: 'placeholder-value',
+     *     // The page token as returned from ListFinalizedDealsResponse.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The buyer to list the finalized deals for, in the format: `buyers/{accountId\}`. When used to list finalized deals for a bidder, its buyers and clients, in the format `bidders/{accountId\}`.
+     *     parent: 'bidders/my-bidder',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "finalizedDeals": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1624,6 +1736,63 @@ export namespace authorizedbuyersmarketplace_v1alpha {
 
     /**
      * Gets an auction package given its name.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/authorizedbuyersmarketplace.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const authorizedbuyersmarketplace =
+     *   google.authorizedbuyersmarketplace('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/authorized-buyers-marketplace'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await authorizedbuyersmarketplace.buyers.auctionPackages.get({
+     *     // Required. Name of auction package to get. Format: `buyers/{accountId\}/auctionPackages/{auctionPackageId\}`
+     *     name: 'buyers/my-buyer/auctionPackages/my-auctionPackage',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "creator": "my_creator",
+     *   //   "dealOwnerSeatId": "my_dealOwnerSeatId",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "eligibleSeatIds": [],
+     *   //   "name": "my_name",
+     *   //   "subscribedBuyers": [],
+     *   //   "subscribedClients": [],
+     *   //   "subscribedMediaPlanners": [],
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1714,6 +1883,62 @@ export namespace authorizedbuyersmarketplace_v1alpha {
 
     /**
      * List the auction packages. Buyers can use the URL path "/v1alpha/buyers/{accountId\}/auctionPackages" to list auction packages for the current buyer and its clients. Bidders can use the URL path "/v1alpha/bidders/{accountId\}/auctionPackages" to list auction packages for the bidder, its media planners, its buyers, and all their clients.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/authorizedbuyersmarketplace.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const authorizedbuyersmarketplace =
+     *   google.authorizedbuyersmarketplace('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/authorized-buyers-marketplace'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await authorizedbuyersmarketplace.buyers.auctionPackages.list({
+     *     // Optional. Optional query string using the [Cloud API list filtering syntax](/authorized-buyers/apis/guides/list-filters). Only supported when parent is bidder. Supported columns for filtering are: * displayName * createTime * updateTime * eligibleSeatIds
+     *     filter: 'placeholder-value',
+     *     // Optional. An optional query string to sort auction packages using the [Cloud API sorting syntax](https://cloud.google.com/apis/design/design_patterns#sorting_order). If no sort order is specified, results will be returned in an arbitrary order. Only supported when parent is bidder. Supported columns for sorting are: * displayName * createTime * updateTime
+     *     orderBy: 'placeholder-value',
+     *     // Requested page size. The server may return fewer results than requested. Max allowed page size is 500.
+     *     pageSize: 'placeholder-value',
+     *     // The page token as returned. ListAuctionPackagesResponse.nextPageToken
+     *     pageToken: 'placeholder-value',
+     *     // Required. Name of the parent buyer that can access the auction package. Format: `buyers/{accountId\}`. When used with a bidder account, the auction packages that the bidder, its media planners, its buyers and clients are subscribed to will be listed, in the format `bidders/{accountId\}`.
+     *     parent: 'buyers/my-buyer',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auctionPackages": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1811,6 +2036,70 @@ export namespace authorizedbuyersmarketplace_v1alpha {
 
     /**
      * Subscribe to the auction package for the specified buyer. Once subscribed, the bidder will receive a call out for inventory matching the auction package targeting criteria with the auction package deal ID and the specified buyer.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/authorizedbuyersmarketplace.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const authorizedbuyersmarketplace =
+     *   google.authorizedbuyersmarketplace('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/authorized-buyers-marketplace'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await authorizedbuyersmarketplace.buyers.auctionPackages.subscribe({
+     *       // Required. Name of the auction package. Format: `buyers/{accountId\}/auctionPackages/{auctionPackageId\}`
+     *       name: 'buyers/my-buyer/auctionPackages/my-auctionPackage',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {}
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "creator": "my_creator",
+     *   //   "dealOwnerSeatId": "my_dealOwnerSeatId",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "eligibleSeatIds": [],
+     *   //   "name": "my_name",
+     *   //   "subscribedBuyers": [],
+     *   //   "subscribedClients": [],
+     *   //   "subscribedMediaPlanners": [],
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1904,6 +2193,72 @@ export namespace authorizedbuyersmarketplace_v1alpha {
 
     /**
      * Subscribe the specified clients of the buyer to the auction package. If a client in the list does not belong to the buyer, an error response will be returned, and all of the following clients in the list will not be subscribed. Subscribing an already subscribed client will have no effect.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/authorizedbuyersmarketplace.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const authorizedbuyersmarketplace =
+     *   google.authorizedbuyersmarketplace('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/authorized-buyers-marketplace'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await authorizedbuyersmarketplace.buyers.auctionPackages.subscribeClients({
+     *       // Required. Name of the auction package. Format: `buyers/{accountId\}/auctionPackages/{auctionPackageId\}`
+     *       auctionPackage: 'buyers/my-buyer/auctionPackages/my-auctionPackage',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "clients": []
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "creator": "my_creator",
+     *   //   "dealOwnerSeatId": "my_dealOwnerSeatId",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "eligibleSeatIds": [],
+     *   //   "name": "my_name",
+     *   //   "subscribedBuyers": [],
+     *   //   "subscribedClients": [],
+     *   //   "subscribedMediaPlanners": [],
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1998,6 +2353,70 @@ export namespace authorizedbuyersmarketplace_v1alpha {
 
     /**
      * Unsubscribe from the auction package for the specified buyer. Once unsubscribed, the bidder will no longer receive a call out for the auction package deal ID and the specified buyer.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/authorizedbuyersmarketplace.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const authorizedbuyersmarketplace =
+     *   google.authorizedbuyersmarketplace('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/authorized-buyers-marketplace'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await authorizedbuyersmarketplace.buyers.auctionPackages.unsubscribe({
+     *       // Required. Name of the auction package. Format: `buyers/{accountId\}/auctionPackages/{auctionPackageId\}`
+     *       name: 'buyers/my-buyer/auctionPackages/my-auctionPackage',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {}
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "creator": "my_creator",
+     *   //   "dealOwnerSeatId": "my_dealOwnerSeatId",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "eligibleSeatIds": [],
+     *   //   "name": "my_name",
+     *   //   "subscribedBuyers": [],
+     *   //   "subscribedClients": [],
+     *   //   "subscribedMediaPlanners": [],
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2091,6 +2510,74 @@ export namespace authorizedbuyersmarketplace_v1alpha {
 
     /**
      * Unsubscribe from the auction package for the specified clients of the buyer. Unsubscribing a client that is not subscribed will have no effect.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/authorizedbuyersmarketplace.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const authorizedbuyersmarketplace =
+     *   google.authorizedbuyersmarketplace('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/authorized-buyers-marketplace'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await authorizedbuyersmarketplace.buyers.auctionPackages.unsubscribeClients(
+     *       {
+     *         // Required. Name of the auction package. Format: `buyers/{accountId\}/auctionPackages/{auctionPackageId\}`
+     *         auctionPackage: 'buyers/my-buyer/auctionPackages/my-auctionPackage',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "clients": []
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "creator": "my_creator",
+     *   //   "dealOwnerSeatId": "my_dealOwnerSeatId",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "eligibleSeatIds": [],
+     *   //   "name": "my_name",
+     *   //   "subscribedBuyers": [],
+     *   //   "subscribedClients": [],
+     *   //   "subscribedMediaPlanners": [],
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2274,6 +2761,64 @@ export namespace authorizedbuyersmarketplace_v1alpha {
 
     /**
      * Activates an existing client. The state of the client will be updated to "ACTIVE". This method has no effect if the client is already in "ACTIVE" state.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/authorizedbuyersmarketplace.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const authorizedbuyersmarketplace =
+     *   google.authorizedbuyersmarketplace('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/authorized-buyers-marketplace'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await authorizedbuyersmarketplace.buyers.clients.activate({
+     *     // Required. Format: `buyers/{buyerAccountId\}/clients/{clientAccountId\}`
+     *     name: 'buyers/my-buyer/clients/my-client',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "partnerClientId": "my_partnerClientId",
+     *   //   "role": "my_role",
+     *   //   "sellerVisible": false,
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2367,6 +2912,71 @@ export namespace authorizedbuyersmarketplace_v1alpha {
 
     /**
      * Creates a new client.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/authorizedbuyersmarketplace.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const authorizedbuyersmarketplace =
+     *   google.authorizedbuyersmarketplace('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/authorized-buyers-marketplace'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await authorizedbuyersmarketplace.buyers.clients.create({
+     *     // Required. The name of the buyer. Format: `buyers/{accountId\}`
+     *     parent: 'buyers/my-buyer',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "displayName": "my_displayName",
+     *       //   "name": "my_name",
+     *       //   "partnerClientId": "my_partnerClientId",
+     *       //   "role": "my_role",
+     *       //   "sellerVisible": false,
+     *       //   "state": "my_state"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "partnerClientId": "my_partnerClientId",
+     *   //   "role": "my_role",
+     *   //   "sellerVisible": false,
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2460,6 +3070,64 @@ export namespace authorizedbuyersmarketplace_v1alpha {
 
     /**
      * Deactivates an existing client. The state of the client will be updated to "INACTIVE". This method has no effect if the client is already in "INACTIVE" state.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/authorizedbuyersmarketplace.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const authorizedbuyersmarketplace =
+     *   google.authorizedbuyersmarketplace('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/authorized-buyers-marketplace'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await authorizedbuyersmarketplace.buyers.clients.deactivate({
+     *     // Required. Format: `buyers/{buyerAccountId\}/clients/{clientAccountId\}`
+     *     name: 'buyers/my-buyer/clients/my-client',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "partnerClientId": "my_partnerClientId",
+     *   //   "role": "my_role",
+     *   //   "sellerVisible": false,
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2553,6 +3221,58 @@ export namespace authorizedbuyersmarketplace_v1alpha {
 
     /**
      * Gets a client with a given resource name.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/authorizedbuyersmarketplace.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const authorizedbuyersmarketplace =
+     *   google.authorizedbuyersmarketplace('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/authorized-buyers-marketplace'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await authorizedbuyersmarketplace.buyers.clients.get({
+     *     // Required. Format: `buyers/{accountId\}/clients/{clientAccountId\}`
+     *     name: 'buyers/my-buyer/clients/my-client',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "partnerClientId": "my_partnerClientId",
+     *   //   "role": "my_role",
+     *   //   "sellerVisible": false,
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2643,6 +3363,60 @@ export namespace authorizedbuyersmarketplace_v1alpha {
 
     /**
      * Lists all the clients for the current buyer.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/authorizedbuyersmarketplace.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const authorizedbuyersmarketplace =
+     *   google.authorizedbuyersmarketplace('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/authorized-buyers-marketplace'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await authorizedbuyersmarketplace.buyers.clients.list({
+     *     // Query string using the [Filtering Syntax](https://developers.google.com/authorized-buyers/apis/guides/list-filters) Supported fields for filtering are: * partnerClientId Use this field to filter the clients by the partnerClientId. For example, if the partnerClientId of the client is "1234", the value of this field should be `partnerClientId = "1234"`, in order to get only the client whose partnerClientId is "1234" in the response.
+     *     filter: 'placeholder-value',
+     *     // Requested page size. If left blank, a default page size of 500 will be applied.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results the server should return. Typically, this is the value of ListClientsResponse.nextPageToken returned from the previous call to the list method.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The name of the buyer. Format: `buyers/{accountId\}`
+     *     parent: 'buyers/my-buyer',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clients": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2736,6 +3510,73 @@ export namespace authorizedbuyersmarketplace_v1alpha {
 
     /**
      * Updates an existing client.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/authorizedbuyersmarketplace.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const authorizedbuyersmarketplace =
+     *   google.authorizedbuyersmarketplace('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/authorized-buyers-marketplace'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await authorizedbuyersmarketplace.buyers.clients.patch({
+     *     // Output only. The resource name of the client. Format: `buyers/{accountId\}/clients/{clientAccountId\}`
+     *     name: 'buyers/my-buyer/clients/my-client',
+     *     // List of fields to be updated. If empty or unspecified, the service will update all fields populated in the update request excluding the output only fields and primitive fields with default value. Note that explicit field mask is required in order to reset a primitive field back to its default value, for example, false for boolean fields, 0 for integer fields. A special field mask consisting of a single path "*" can be used to indicate full replacement(the equivalent of PUT method), updatable fields unset or unspecified in the input will be cleared or set to default value. Output only fields will be ignored regardless of the value of updateMask.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "displayName": "my_displayName",
+     *       //   "name": "my_name",
+     *       //   "partnerClientId": "my_partnerClientId",
+     *       //   "role": "my_role",
+     *       //   "sellerVisible": false,
+     *       //   "state": "my_state"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "partnerClientId": "my_partnerClientId",
+     *   //   "role": "my_role",
+     *   //   "sellerVisible": false,
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2912,6 +3753,61 @@ export namespace authorizedbuyersmarketplace_v1alpha {
 
     /**
      * Activates an existing client user. The state of the client user will be updated from "INACTIVE" to "ACTIVE". This method has no effect if the client user is already in "ACTIVE" state. An error will be returned if the client user to activate is still in "INVITED" state.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/authorizedbuyersmarketplace.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const authorizedbuyersmarketplace =
+     *   google.authorizedbuyersmarketplace('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/authorized-buyers-marketplace'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await authorizedbuyersmarketplace.buyers.clients.users.activate({
+     *     // Required. Format: `buyers/{buyerAccountId\}/clients/{clientAccountId\}/clientUsers/{userId\}`
+     *     name: 'buyers/my-buyer/clients/my-client/users/my-user',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "email": "my_email",
+     *   //   "name": "my_name",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3005,6 +3901,65 @@ export namespace authorizedbuyersmarketplace_v1alpha {
 
     /**
      * Creates a new client user in "INVITED" state. An email invitation will be sent to the new user, once accepted the user will become active.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/authorizedbuyersmarketplace.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const authorizedbuyersmarketplace =
+     *   google.authorizedbuyersmarketplace('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/authorized-buyers-marketplace'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await authorizedbuyersmarketplace.buyers.clients.users.create({
+     *     // Required. The name of the client. Format: `buyers/{accountId\}/clients/{clientAccountId\}`
+     *     parent: 'buyers/my-buyer/clients/my-client',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "email": "my_email",
+     *       //   "name": "my_name",
+     *       //   "state": "my_state"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "email": "my_email",
+     *   //   "name": "my_name",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3098,6 +4053,63 @@ export namespace authorizedbuyersmarketplace_v1alpha {
 
     /**
      * Deactivates an existing client user. The state of the client user will be updated from "ACTIVE" to "INACTIVE". This method has no effect if the client user is already in "INACTIVE" state. An error will be returned if the client user to deactivate is still in "INVITED" state.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/authorizedbuyersmarketplace.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const authorizedbuyersmarketplace =
+     *   google.authorizedbuyersmarketplace('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/authorized-buyers-marketplace'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await authorizedbuyersmarketplace.buyers.clients.users.deactivate(
+     *     {
+     *       // Required. Format: `buyers/{buyerAccountId\}/clients/{clientAccountId\}/clientUsers/{userId\}`
+     *       name: 'buyers/my-buyer/clients/my-client/users/my-user',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {}
+     *       },
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "email": "my_email",
+     *   //   "name": "my_name",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3191,6 +4203,51 @@ export namespace authorizedbuyersmarketplace_v1alpha {
 
     /**
      * Deletes an existing client user. The client user will lose access to the Authorized Buyers UI. Note that if a client user is deleted, the user's access to the UI can't be restored unless a new client user is created and activated.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/authorizedbuyersmarketplace.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const authorizedbuyersmarketplace =
+     *   google.authorizedbuyersmarketplace('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/authorized-buyers-marketplace'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await authorizedbuyersmarketplace.buyers.clients.users.delete({
+     *     // Required. Format: `buyers/{buyerAccountId\}/clients/{clientAccountId\}/clientUsers/{userId\}`
+     *     name: 'buyers/my-buyer/clients/my-client/users/my-user',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3281,6 +4338,55 @@ export namespace authorizedbuyersmarketplace_v1alpha {
 
     /**
      * Retrieves an existing client user.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/authorizedbuyersmarketplace.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const authorizedbuyersmarketplace =
+     *   google.authorizedbuyersmarketplace('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/authorized-buyers-marketplace'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await authorizedbuyersmarketplace.buyers.clients.users.get({
+     *     // Required. Format: `buyers/{buyerAccountId\}/clients/{clientAccountId\}/clientUsers/{userId\}`
+     *     name: 'buyers/my-buyer/clients/my-client/users/my-user',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "email": "my_email",
+     *   //   "name": "my_name",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3371,6 +4477,58 @@ export namespace authorizedbuyersmarketplace_v1alpha {
 
     /**
      * Lists all client users for a specified client.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/authorizedbuyersmarketplace.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const authorizedbuyersmarketplace =
+     *   google.authorizedbuyersmarketplace('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/authorized-buyers-marketplace'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await authorizedbuyersmarketplace.buyers.clients.users.list({
+     *     // Requested page size. If left blank, a default page size of 500 will be applied.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results the server should return. Typically, this is the value of ListClientUsersResponse.nextPageToken returned from the previous call to the list method.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The name of the client. Format: `buyers/{buyerAccountId\}/clients/{clientAccountId\}`
+     *     parent: 'buyers/my-buyer/clients/my-client',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientUsers": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3539,6 +4697,63 @@ export namespace authorizedbuyersmarketplace_v1alpha {
 
     /**
      * Activates a data segment.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/authorizedbuyersmarketplace.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const authorizedbuyersmarketplace =
+     *   google.authorizedbuyersmarketplace('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/authorized-buyers-marketplace'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await authorizedbuyersmarketplace.buyers.dataSegments.activate({
+     *     // Required. Name of data segment to activate. v1alpha format: `buyers/{accountId\}/dataSegments/{curatorDataSegmentId\}` v1beta format: `curators/{accountId\}/dataSegments/{curatorDataSegmentId\}`
+     *     name: 'buyers/my-buyer/dataSegments/my-dataSegment',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cpmFee": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "name": "my_name",
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3632,6 +4847,69 @@ export namespace authorizedbuyersmarketplace_v1alpha {
 
     /**
      * Creates a data segment owned by the listed curator. The data segment will be created in the `ACTIVE` state, meaning it will be immediately available for buyers to use in preferred deals, private auction deals, and auction packages.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/authorizedbuyersmarketplace.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const authorizedbuyersmarketplace =
+     *   google.authorizedbuyersmarketplace('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/authorized-buyers-marketplace'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await authorizedbuyersmarketplace.buyers.dataSegments.create({
+     *     // Required. The parent resource where this data segment will be created. v1alpha format: `buyers/{accountId\}` v1beta format: `curators/{accountId\}`
+     *     parent: 'buyers/my-buyer',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "cpmFee": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "name": "my_name",
+     *       //   "state": "my_state",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cpmFee": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "name": "my_name",
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3725,6 +5003,63 @@ export namespace authorizedbuyersmarketplace_v1alpha {
 
     /**
      * Deactivates a data segment.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/authorizedbuyersmarketplace.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const authorizedbuyersmarketplace =
+     *   google.authorizedbuyersmarketplace('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/authorized-buyers-marketplace'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await authorizedbuyersmarketplace.buyers.dataSegments.deactivate({
+     *     // Required. Name of data segment to deactivate. v1alpha format: `buyers/{accountId\}/dataSegments/{curatorDataSegmentId\}` v1beta format: `curators/{accountId\}/dataSegments/{curatorDataSegmentId\}`
+     *     name: 'buyers/my-buyer/dataSegments/my-dataSegment',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cpmFee": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "name": "my_name",
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3818,6 +5153,57 @@ export namespace authorizedbuyersmarketplace_v1alpha {
 
     /**
      * Gets a data segment given its name.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/authorizedbuyersmarketplace.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const authorizedbuyersmarketplace =
+     *   google.authorizedbuyersmarketplace('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/authorized-buyers-marketplace'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await authorizedbuyersmarketplace.buyers.dataSegments.get({
+     *     // Required. Name of data segment to get. v1alpha format: `buyers/{accountId\}/dataSegments/{curatorDataSegmentId\}` v1beta format: `curators/{accountId\}/dataSegments/{curatorDataSegmentId\}`
+     *     name: 'buyers/my-buyer/dataSegments/my-dataSegment',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cpmFee": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "name": "my_name",
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3908,6 +5294,58 @@ export namespace authorizedbuyersmarketplace_v1alpha {
 
     /**
      * List the data segments owned by a curator.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/authorizedbuyersmarketplace.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const authorizedbuyersmarketplace =
+     *   google.authorizedbuyersmarketplace('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/authorized-buyers-marketplace'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await authorizedbuyersmarketplace.buyers.dataSegments.list({
+     *     // Optional. Requested page size. The server may return fewer results than requested. Max allowed page size is 500. If unspecified, the server will default to 500.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. The page token as returned. ListDataSegmentsResponse.nextPageToken
+     *     pageToken: 'placeholder-value',
+     *     // Required. Name of the parent curator that can access the data segment. v1alpha format: `buyers/{accountId\}` v1beta format: `curators/{accountId\}`
+     *     parent: 'buyers/my-buyer',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dataSegments": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4003,6 +5441,71 @@ export namespace authorizedbuyersmarketplace_v1alpha {
 
     /**
      * Updates a data segment.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/authorizedbuyersmarketplace.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const authorizedbuyersmarketplace =
+     *   google.authorizedbuyersmarketplace('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/authorized-buyers-marketplace'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await authorizedbuyersmarketplace.buyers.dataSegments.patch({
+     *     // Immutable. Identifier. The unique identifier for the data segment. Account ID corresponds to the account ID that created the segment. v1alpha format: `buyers/{accountId\}/dataSegments/{curatorDataSegmentId\}` v1beta format: `curators/{curatorAccountId\}/dataSegments/{curatorDataSegmentId\}`
+     *     name: 'buyers/my-buyer/dataSegments/my-dataSegment',
+     *     // Optional. List of fields to be updated. If empty or unspecified, the service will update all fields populated in the update request excluding the output only fields and primitive fields with default value. Note that explicit field mask is required in order to reset a primitive field back to its default value, for example, false for boolean fields, 0 for integer fields. A special field mask consisting of a single path "*" can be used to indicate full replacement(the equivalent of PUT method), updatable fields unset or unspecified in the input will be cleared or set to default value. Output only fields will be ignored regardless of the value of updateMask.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "cpmFee": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "name": "my_name",
+     *       //   "state": "my_state",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cpmFee": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "name": "my_name",
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4095,7 +5598,7 @@ export namespace authorizedbuyersmarketplace_v1alpha {
   export interface Params$Resource$Buyers$Datasegments$Activate
     extends StandardParameters {
     /**
-     * Required. Name of data segment to activate. Format: `buyers/{accountId\}/dataSegments/{curatorDataSegmentId\}`
+     * Required. Name of data segment to activate. v1alpha format: `buyers/{accountId\}/dataSegments/{curatorDataSegmentId\}` v1beta format: `curators/{accountId\}/dataSegments/{curatorDataSegmentId\}`
      */
     name?: string;
 
@@ -4107,7 +5610,7 @@ export namespace authorizedbuyersmarketplace_v1alpha {
   export interface Params$Resource$Buyers$Datasegments$Create
     extends StandardParameters {
     /**
-     * Required. The parent resource where this data segment will be created. Format: `buyers/{accountId\}`
+     * Required. The parent resource where this data segment will be created. v1alpha format: `buyers/{accountId\}` v1beta format: `curators/{accountId\}`
      */
     parent?: string;
 
@@ -4119,7 +5622,7 @@ export namespace authorizedbuyersmarketplace_v1alpha {
   export interface Params$Resource$Buyers$Datasegments$Deactivate
     extends StandardParameters {
     /**
-     * Required. Name of data segment to deactivate. Format: `buyers/{accountId\}/dataSegments/{curatorDataSegmentId\}`
+     * Required. Name of data segment to deactivate. v1alpha format: `buyers/{accountId\}/dataSegments/{curatorDataSegmentId\}` v1beta format: `curators/{accountId\}/dataSegments/{curatorDataSegmentId\}`
      */
     name?: string;
 
@@ -4131,7 +5634,7 @@ export namespace authorizedbuyersmarketplace_v1alpha {
   export interface Params$Resource$Buyers$Datasegments$Get
     extends StandardParameters {
     /**
-     * Required. Name of data segment to get. Format: `buyers/{accountId\}/dataSegments/{curatorDataSegmentId\}`
+     * Required. Name of data segment to get. v1alpha format: `buyers/{accountId\}/dataSegments/{curatorDataSegmentId\}` v1beta format: `curators/{accountId\}/dataSegments/{curatorDataSegmentId\}`
      */
     name?: string;
   }
@@ -4146,14 +5649,14 @@ export namespace authorizedbuyersmarketplace_v1alpha {
      */
     pageToken?: string;
     /**
-     * Required. Name of the parent buyer that can access the data segment. Format: `buyers/{accountId\}`
+     * Required. Name of the parent curator that can access the data segment. v1alpha format: `buyers/{accountId\}` v1beta format: `curators/{accountId\}`
      */
     parent?: string;
   }
   export interface Params$Resource$Buyers$Datasegments$Patch
     extends StandardParameters {
     /**
-     * Immutable. Identifier. The unique identifier for the data segment. Account ID corresponds to the account ID that created the segment. Format: `buyers/{accountId\}/dataSegments/{curatorDataSegmentId\}`
+     * Immutable. Identifier. The unique identifier for the data segment. Account ID corresponds to the account ID that created the segment. v1alpha format: `buyers/{accountId\}/dataSegments/{curatorDataSegmentId\}` v1beta format: `curators/{curatorAccountId\}/dataSegments/{curatorDataSegmentId\}`
      */
     name?: string;
     /**
@@ -4175,6 +5678,67 @@ export namespace authorizedbuyersmarketplace_v1alpha {
 
     /**
      * Add creative to be used in the bidding process for a finalized deal. For programmatic guaranteed deals, it's recommended that you associate at least one approved creative with the deal before calling SetReadyToServe, to help reduce the number of bid responses filtered because they don't contain approved creatives. Creatives successfully added to a deal can be found in the Realtime-bidding Creatives API creative.deal_ids. This method only applies to programmatic guaranteed deals. Maximum number of 1000 creatives can be added to a finalized deal.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/authorizedbuyersmarketplace.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const authorizedbuyersmarketplace =
+     *   google.authorizedbuyersmarketplace('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/authorized-buyers-marketplace'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await authorizedbuyersmarketplace.buyers.finalizedDeals.addCreative({
+     *       // Required. Name of the finalized deal in the format of: `buyers/{accountId\}/finalizedDeals/{dealId\}`
+     *       deal: 'buyers/my-buyer/finalizedDeals/my-finalizedDeal',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "creative": "my_creative"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deal": {},
+     *   //   "dealPausingInfo": {},
+     *   //   "dealServingStatus": "my_dealServingStatus",
+     *   //   "name": "my_name",
+     *   //   "readyToServe": false,
+     *   //   "rtbMetrics": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4268,6 +5832,58 @@ export namespace authorizedbuyersmarketplace_v1alpha {
 
     /**
      * Gets a finalized deal given its name.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/authorizedbuyersmarketplace.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const authorizedbuyersmarketplace =
+     *   google.authorizedbuyersmarketplace('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/authorized-buyers-marketplace'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await authorizedbuyersmarketplace.buyers.finalizedDeals.get({
+     *     // Required. Format: `buyers/{accountId\}/finalizedDeals/{dealId\}`
+     *     name: 'buyers/my-buyer/finalizedDeals/my-finalizedDeal',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deal": {},
+     *   //   "dealPausingInfo": {},
+     *   //   "dealServingStatus": "my_dealServingStatus",
+     *   //   "name": "my_name",
+     *   //   "readyToServe": false,
+     *   //   "rtbMetrics": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4358,6 +5974,62 @@ export namespace authorizedbuyersmarketplace_v1alpha {
 
     /**
      * Lists finalized deals. Use the URL path "/v1alpha/buyers/{accountId\}/finalizedDeals" to list finalized deals for the current buyer and its clients. Bidders can use the URL path "/v1alpha/bidders/{accountId\}/finalizedDeals" to list finalized deals for the bidder, its buyers and all their clients.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/authorizedbuyersmarketplace.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const authorizedbuyersmarketplace =
+     *   google.authorizedbuyersmarketplace('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/authorized-buyers-marketplace'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await authorizedbuyersmarketplace.buyers.finalizedDeals.list({
+     *     // Optional query string using the [Cloud API list filtering syntax](https://developers.google.com/authorized-buyers/apis/guides/list-filters) Supported columns for filtering are: * deal.displayName * deal.dealType * deal.createTime * deal.updateTime * deal.flightStartTime * deal.flightEndTime * deal.eligibleSeatIds * dealServingStatus
+     *     filter: 'placeholder-value',
+     *     // An optional query string to sort finalized deals using the [Cloud API sorting syntax](https://cloud.google.com/apis/design/design_patterns#sorting_order). If no sort order is specified, results will be returned in an arbitrary order. Supported columns for sorting are: * deal.displayName * deal.createTime * deal.updateTime * deal.flightStartTime * deal.flightEndTime * rtbMetrics.bidRequests7Days * rtbMetrics.bids7Days * rtbMetrics.adImpressions7Days * rtbMetrics.bidRate7Days * rtbMetrics.filteredBidRate7Days * rtbMetrics.mustBidRateCurrentMonth
+     *     orderBy: 'placeholder-value',
+     *     // Requested page size. The server may return fewer results than requested. If requested more than 500, the server will return 500 results per page. If unspecified, the server will pick a default page size of 100.
+     *     pageSize: 'placeholder-value',
+     *     // The page token as returned from ListFinalizedDealsResponse.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The buyer to list the finalized deals for, in the format: `buyers/{accountId\}`. When used to list finalized deals for a bidder, its buyers and clients, in the format `bidders/{accountId\}`.
+     *     parent: 'buyers/my-buyer',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "finalizedDeals": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4455,6 +6127,66 @@ export namespace authorizedbuyersmarketplace_v1alpha {
 
     /**
      * Pauses serving of the given finalized deal. This call only pauses the serving status, and does not affect other fields of the finalized deal. Calling this method for an already paused deal has no effect. This method only applies to programmatic guaranteed deals and preferred deals.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/authorizedbuyersmarketplace.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const authorizedbuyersmarketplace =
+     *   google.authorizedbuyersmarketplace('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/authorized-buyers-marketplace'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await authorizedbuyersmarketplace.buyers.finalizedDeals.pause({
+     *     // Required. Format: `buyers/{accountId\}/finalizedDeals/{dealId\}`
+     *     name: 'buyers/my-buyer/finalizedDeals/my-finalizedDeal',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "reason": "my_reason"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deal": {},
+     *   //   "dealPausingInfo": {},
+     *   //   "dealServingStatus": "my_dealServingStatus",
+     *   //   "name": "my_name",
+     *   //   "readyToServe": false,
+     *   //   "rtbMetrics": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4548,6 +6280,64 @@ export namespace authorizedbuyersmarketplace_v1alpha {
 
     /**
      * Resumes serving of the given finalized deal. Calling this method for an running deal has no effect. If a deal is initially paused by the seller, calling this method will not resume serving of the deal until the seller also resumes the deal. This method only applies to programmatic guaranteed deals and preferred deals.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/authorizedbuyersmarketplace.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const authorizedbuyersmarketplace =
+     *   google.authorizedbuyersmarketplace('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/authorized-buyers-marketplace'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await authorizedbuyersmarketplace.buyers.finalizedDeals.resume({
+     *     // Required. Format: `buyers/{accountId\}/finalizedDeals/{dealId\}`
+     *     name: 'buyers/my-buyer/finalizedDeals/my-finalizedDeal',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deal": {},
+     *   //   "dealPausingInfo": {},
+     *   //   "dealServingStatus": "my_dealServingStatus",
+     *   //   "name": "my_name",
+     *   //   "readyToServe": false,
+     *   //   "rtbMetrics": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4641,6 +6431,65 @@ export namespace authorizedbuyersmarketplace_v1alpha {
 
     /**
      * Sets the given finalized deal as ready to serve. By default, deals are set as ready to serve as soon as they're finalized. If you want to opt out of the default behavior, and manually indicate that deals are ready to serve, ask your Technical Account Manager to add you to the allowlist. If you choose to use this method, finalized deals belonging to the bidder and its child seats don't start serving until after you call `setReadyToServe`, and after the deals become active. For example, you can use this method to delay receiving bid requests until your creative is ready. This method only applies to programmatic guaranteed deals.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/authorizedbuyersmarketplace.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const authorizedbuyersmarketplace =
+     *   google.authorizedbuyersmarketplace('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/authorized-buyers-marketplace'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await authorizedbuyersmarketplace.buyers.finalizedDeals.setReadyToServe({
+     *       // Required. Format: `buyers/{accountId\}/finalizedDeals/{dealId\}`
+     *       deal: 'buyers/my-buyer/finalizedDeals/my-finalizedDeal',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {}
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deal": {},
+     *   //   "dealPausingInfo": {},
+     *   //   "dealServingStatus": "my_dealServingStatus",
+     *   //   "name": "my_name",
+     *   //   "readyToServe": false,
+     *   //   "rtbMetrics": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4822,6 +6671,79 @@ export namespace authorizedbuyersmarketplace_v1alpha {
 
     /**
      * Accepts the proposal at the given revision number. If the revision number in the request is behind the latest from the server, an error message will be returned. This call updates the Proposal.state from `BUYER_ACCEPTANCE_REQUESTED` to `FINALIZED`; it has no side effect if the Proposal.state is already `FINALIZED` and throws exception if the Proposal.state is not either `BUYER_ACCEPTANCE_REQUESTED` or `FINALIZED`. Accepting a proposal means the buyer understands and accepts the Proposal.terms_and_conditions proposed by the seller.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/authorizedbuyersmarketplace.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const authorizedbuyersmarketplace =
+     *   google.authorizedbuyersmarketplace('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/authorized-buyers-marketplace'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await authorizedbuyersmarketplace.buyers.proposals.accept({
+     *     // Name of the proposal. Format: `buyers/{accountId\}/proposals/{proposalId\}`
+     *     name: 'buyers/my-buyer/proposals/my-proposal',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "proposalRevision": "my_proposalRevision"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "billedBuyer": "my_billedBuyer",
+     *   //   "buyer": "my_buyer",
+     *   //   "buyerContacts": [],
+     *   //   "buyerPrivateData": {},
+     *   //   "client": "my_client",
+     *   //   "dealType": "my_dealType",
+     *   //   "displayName": "my_displayName",
+     *   //   "isRenegotiating": false,
+     *   //   "lastUpdaterOrCommentorRole": "my_lastUpdaterOrCommentorRole",
+     *   //   "name": "my_name",
+     *   //   "notes": [],
+     *   //   "originatorRole": "my_originatorRole",
+     *   //   "pausingConsented": false,
+     *   //   "proposalRevision": "my_proposalRevision",
+     *   //   "publisherProfile": "my_publisherProfile",
+     *   //   "sellerContacts": [],
+     *   //   "state": "my_state",
+     *   //   "termsAndConditions": "my_termsAndConditions",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4915,6 +6837,79 @@ export namespace authorizedbuyersmarketplace_v1alpha {
 
     /**
      * Creates a note for this proposal and sends to the seller. This method is not supported for proposals with DealType set to 'PRIVATE_AUCTION'.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/authorizedbuyersmarketplace.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const authorizedbuyersmarketplace =
+     *   google.authorizedbuyersmarketplace('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/authorized-buyers-marketplace'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await authorizedbuyersmarketplace.buyers.proposals.addNote({
+     *     // Name of the proposal. Format: `buyers/{accountId\}/proposals/{proposalId\}`
+     *     proposal: 'buyers/my-buyer/proposals/my-proposal',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "note": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "billedBuyer": "my_billedBuyer",
+     *   //   "buyer": "my_buyer",
+     *   //   "buyerContacts": [],
+     *   //   "buyerPrivateData": {},
+     *   //   "client": "my_client",
+     *   //   "dealType": "my_dealType",
+     *   //   "displayName": "my_displayName",
+     *   //   "isRenegotiating": false,
+     *   //   "lastUpdaterOrCommentorRole": "my_lastUpdaterOrCommentorRole",
+     *   //   "name": "my_name",
+     *   //   "notes": [],
+     *   //   "originatorRole": "my_originatorRole",
+     *   //   "pausingConsented": false,
+     *   //   "proposalRevision": "my_proposalRevision",
+     *   //   "publisherProfile": "my_publisherProfile",
+     *   //   "sellerContacts": [],
+     *   //   "state": "my_state",
+     *   //   "termsAndConditions": "my_termsAndConditions",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5008,6 +7003,78 @@ export namespace authorizedbuyersmarketplace_v1alpha {
 
     /**
      * Cancels an ongoing negotiation on a proposal. This does not cancel or end serving for the deals if the proposal has been finalized. If the proposal has not been finalized before, calling this method will set the Proposal.state to `TERMINATED` and increment the Proposal.proposal_revision. If the proposal has been finalized before and is under renegotiation now, calling this method will reset the Proposal.state to `FINALIZED` and increment the Proposal.proposal_revision. This method does not support private auction proposals whose Proposal.deal_type is 'PRIVATE_AUCTION'.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/authorizedbuyersmarketplace.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const authorizedbuyersmarketplace =
+     *   google.authorizedbuyersmarketplace('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/authorized-buyers-marketplace'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await authorizedbuyersmarketplace.buyers.proposals.cancelNegotiation({
+     *       // Name of the proposal. Format: `buyers/{accountId\}/proposals/{proposalId\}`
+     *       proposal: 'buyers/my-buyer/proposals/my-proposal',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {}
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "billedBuyer": "my_billedBuyer",
+     *   //   "buyer": "my_buyer",
+     *   //   "buyerContacts": [],
+     *   //   "buyerPrivateData": {},
+     *   //   "client": "my_client",
+     *   //   "dealType": "my_dealType",
+     *   //   "displayName": "my_displayName",
+     *   //   "isRenegotiating": false,
+     *   //   "lastUpdaterOrCommentorRole": "my_lastUpdaterOrCommentorRole",
+     *   //   "name": "my_name",
+     *   //   "notes": [],
+     *   //   "originatorRole": "my_originatorRole",
+     *   //   "pausingConsented": false,
+     *   //   "proposalRevision": "my_proposalRevision",
+     *   //   "publisherProfile": "my_publisherProfile",
+     *   //   "sellerContacts": [],
+     *   //   "state": "my_state",
+     *   //   "termsAndConditions": "my_termsAndConditions",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5101,6 +7168,71 @@ export namespace authorizedbuyersmarketplace_v1alpha {
 
     /**
      * Gets a proposal using its resource name. The proposal is returned at the latest revision.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/authorizedbuyersmarketplace.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const authorizedbuyersmarketplace =
+     *   google.authorizedbuyersmarketplace('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/authorized-buyers-marketplace'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await authorizedbuyersmarketplace.buyers.proposals.get({
+     *     // Required. Name of the proposal. Format: `buyers/{accountId\}/proposals/{proposalId\}`
+     *     name: 'buyers/my-buyer/proposals/my-proposal',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "billedBuyer": "my_billedBuyer",
+     *   //   "buyer": "my_buyer",
+     *   //   "buyerContacts": [],
+     *   //   "buyerPrivateData": {},
+     *   //   "client": "my_client",
+     *   //   "dealType": "my_dealType",
+     *   //   "displayName": "my_displayName",
+     *   //   "isRenegotiating": false,
+     *   //   "lastUpdaterOrCommentorRole": "my_lastUpdaterOrCommentorRole",
+     *   //   "name": "my_name",
+     *   //   "notes": [],
+     *   //   "originatorRole": "my_originatorRole",
+     *   //   "pausingConsented": false,
+     *   //   "proposalRevision": "my_proposalRevision",
+     *   //   "publisherProfile": "my_publisherProfile",
+     *   //   "sellerContacts": [],
+     *   //   "state": "my_state",
+     *   //   "termsAndConditions": "my_termsAndConditions",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5191,6 +7323,60 @@ export namespace authorizedbuyersmarketplace_v1alpha {
 
     /**
      * Lists proposals. A filter expression using [Cloud API list filtering syntax](https://developers.google.com/authorized-buyers/apis/guides/list-filters) may be specified to filter the results.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/authorizedbuyersmarketplace.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const authorizedbuyersmarketplace =
+     *   google.authorizedbuyersmarketplace('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/authorized-buyers-marketplace'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await authorizedbuyersmarketplace.buyers.proposals.list({
+     *     // Optional query string using the [Cloud API list filtering syntax](https://developers.google.com/authorized-buyers/apis/guides/list-filters) Supported columns for filtering are: * displayName * dealType * updateTime * state
+     *     filter: 'placeholder-value',
+     *     // Requested page size. The server may return fewer results than requested. If unspecified, the server will put a size of 500.
+     *     pageSize: 'placeholder-value',
+     *     // The page token as returned from ListProposalsResponse.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Parent that owns the collection of proposals Format: `buyers/{accountId\}`
+     *     parent: 'buyers/my-buyer',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "proposals": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5286,6 +7472,99 @@ export namespace authorizedbuyersmarketplace_v1alpha {
 
     /**
      * Updates the proposal at the given revision number. If the revision number in the request is behind the latest one kept in the server, an error message will be returned. See FieldMask for how to use FieldMask. Only fields specified in the UpdateProposalRequest.update_mask will be updated; Fields noted as 'Immutable' or 'Output only' yet specified in the UpdateProposalRequest.update_mask will be ignored and left unchanged. Updating a private auction proposal is only allowed for buyer private data, all other fields are immutable.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/authorizedbuyersmarketplace.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const authorizedbuyersmarketplace =
+     *   google.authorizedbuyersmarketplace('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/authorized-buyers-marketplace'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await authorizedbuyersmarketplace.buyers.proposals.patch({
+     *     // Immutable. The name of the proposal serving as a unique identifier. Format: buyers/{accountId\}/proposals/{proposalId\}
+     *     name: 'buyers/my-buyer/proposals/my-proposal',
+     *     // List of fields to be updated. If empty or unspecified, the service will update all fields populated in the update request excluding the output only fields and primitive fields with default value. Note that explicit field mask is required in order to reset a primitive field back to its default value, for example, false for boolean fields, 0 for integer fields. A special field mask consisting of a single path "*" can be used to indicate full replacement(the equivalent of PUT method), updatable fields unset or unspecified in the input will be cleared or set to default value. Output only fields will be ignored regardless of the value of updateMask.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "billedBuyer": "my_billedBuyer",
+     *       //   "buyer": "my_buyer",
+     *       //   "buyerContacts": [],
+     *       //   "buyerPrivateData": {},
+     *       //   "client": "my_client",
+     *       //   "dealType": "my_dealType",
+     *       //   "displayName": "my_displayName",
+     *       //   "isRenegotiating": false,
+     *       //   "lastUpdaterOrCommentorRole": "my_lastUpdaterOrCommentorRole",
+     *       //   "name": "my_name",
+     *       //   "notes": [],
+     *       //   "originatorRole": "my_originatorRole",
+     *       //   "pausingConsented": false,
+     *       //   "proposalRevision": "my_proposalRevision",
+     *       //   "publisherProfile": "my_publisherProfile",
+     *       //   "sellerContacts": [],
+     *       //   "state": "my_state",
+     *       //   "termsAndConditions": "my_termsAndConditions",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "billedBuyer": "my_billedBuyer",
+     *   //   "buyer": "my_buyer",
+     *   //   "buyerContacts": [],
+     *   //   "buyerPrivateData": {},
+     *   //   "client": "my_client",
+     *   //   "dealType": "my_dealType",
+     *   //   "displayName": "my_displayName",
+     *   //   "isRenegotiating": false,
+     *   //   "lastUpdaterOrCommentorRole": "my_lastUpdaterOrCommentorRole",
+     *   //   "name": "my_name",
+     *   //   "notes": [],
+     *   //   "originatorRole": "my_originatorRole",
+     *   //   "pausingConsented": false,
+     *   //   "proposalRevision": "my_proposalRevision",
+     *   //   "publisherProfile": "my_publisherProfile",
+     *   //   "sellerContacts": [],
+     *   //   "state": "my_state",
+     *   //   "termsAndConditions": "my_termsAndConditions",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5376,6 +7655,90 @@ export namespace authorizedbuyersmarketplace_v1alpha {
 
     /**
      * Sends a request for proposal (RFP) to a publisher to initiate the negotiation regarding certain inventory. In the RFP, buyers can specify the deal type, deal terms, start and end dates, targeting, and a message to the publisher. Once the RFP is sent, a proposal in `SELLER_REVIEW_REQUESTED` state will be created and returned in the response. The publisher may review your request and respond with detailed deals in the proposal.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/authorizedbuyersmarketplace.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const authorizedbuyersmarketplace =
+     *   google.authorizedbuyersmarketplace('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/authorized-buyers-marketplace'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await authorizedbuyersmarketplace.buyers.proposals.sendRfp({
+     *     // Required. The current buyer who is sending the RFP in the format: `buyers/{accountId\}`.
+     *     buyer: 'buyers/my-buyer',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "buyerContacts": [],
+     *       //   "client": "my_client",
+     *       //   "displayName": "my_displayName",
+     *       //   "estimatedGrossSpend": {},
+     *       //   "flightEndTime": "my_flightEndTime",
+     *       //   "flightStartTime": "my_flightStartTime",
+     *       //   "geoTargeting": {},
+     *       //   "inventorySizeTargeting": {},
+     *       //   "note": "my_note",
+     *       //   "preferredDealTerms": {},
+     *       //   "programmaticGuaranteedTerms": {},
+     *       //   "publisherProfile": "my_publisherProfile"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "billedBuyer": "my_billedBuyer",
+     *   //   "buyer": "my_buyer",
+     *   //   "buyerContacts": [],
+     *   //   "buyerPrivateData": {},
+     *   //   "client": "my_client",
+     *   //   "dealType": "my_dealType",
+     *   //   "displayName": "my_displayName",
+     *   //   "isRenegotiating": false,
+     *   //   "lastUpdaterOrCommentorRole": "my_lastUpdaterOrCommentorRole",
+     *   //   "name": "my_name",
+     *   //   "notes": [],
+     *   //   "originatorRole": "my_originatorRole",
+     *   //   "pausingConsented": false,
+     *   //   "proposalRevision": "my_proposalRevision",
+     *   //   "publisherProfile": "my_publisherProfile",
+     *   //   "sellerContacts": [],
+     *   //   "state": "my_state",
+     *   //   "termsAndConditions": "my_termsAndConditions",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5567,6 +7930,62 @@ export namespace authorizedbuyersmarketplace_v1alpha {
 
     /**
      * Batch updates multiple deals in the same proposal.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/authorizedbuyersmarketplace.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const authorizedbuyersmarketplace =
+     *   google.authorizedbuyersmarketplace('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/authorized-buyers-marketplace'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await authorizedbuyersmarketplace.buyers.proposals.deals.batchUpdate({
+     *       // Required. The name of the proposal containing the deals to batch update. Format: buyers/{accountId\}/proposals/{proposalId\}
+     *       parent: 'buyers/my-buyer/proposals/my-proposal',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "requests": []
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deals": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5664,6 +8083,76 @@ export namespace authorizedbuyersmarketplace_v1alpha {
 
     /**
      * Gets a deal given its name. The deal is returned at its head revision.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/authorizedbuyersmarketplace.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const authorizedbuyersmarketplace =
+     *   google.authorizedbuyersmarketplace('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/authorized-buyers-marketplace'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await authorizedbuyersmarketplace.buyers.proposals.deals.get({
+     *     // Required. Format: buyers/{accountId\}/proposals/{proposalId\}/deals/{dealId\}
+     *     name: 'buyers/my-buyer/proposals/my-proposal/deals/my-deal',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "billedBuyer": "my_billedBuyer",
+     *   //   "buyer": "my_buyer",
+     *   //   "buyerPermissionType": "my_buyerPermissionType",
+     *   //   "client": "my_client",
+     *   //   "createTime": "my_createTime",
+     *   //   "creativeRequirements": {},
+     *   //   "dealType": "my_dealType",
+     *   //   "deliveryControl": {},
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "eligibleSeatIds": [],
+     *   //   "estimatedGrossSpend": {},
+     *   //   "flightEndTime": "my_flightEndTime",
+     *   //   "flightStartTime": "my_flightStartTime",
+     *   //   "mediaPlanner": {},
+     *   //   "name": "my_name",
+     *   //   "preferredDealTerms": {},
+     *   //   "privateAuctionTerms": {},
+     *   //   "programmaticGuaranteedTerms": {},
+     *   //   "proposalRevision": "my_proposalRevision",
+     *   //   "publisherProfile": "my_publisherProfile",
+     *   //   "sellerTimeZone": {},
+     *   //   "targeting": {},
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5754,6 +8243,58 @@ export namespace authorizedbuyersmarketplace_v1alpha {
 
     /**
      * Lists all deals in a proposal. To retrieve only the finalized revision deals regardless if a deal is being renegotiated, see the FinalizedDeals resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/authorizedbuyersmarketplace.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const authorizedbuyersmarketplace =
+     *   google.authorizedbuyersmarketplace('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/authorized-buyers-marketplace'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await authorizedbuyersmarketplace.buyers.proposals.deals.list({
+     *     // Requested page size. The server may return fewer results than requested. If requested more than 500, the server will return 500 results per page. If unspecified, the server will pick a default page size of 100.
+     *     pageSize: 'placeholder-value',
+     *     // The page token as returned from ListDealsResponse.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The name of the proposal containing the deals to retrieve. Format: buyers/{accountId\}/proposals/{proposalId\}
+     *     parent: 'buyers/my-buyer/proposals/my-proposal',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deals": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5847,6 +8388,109 @@ export namespace authorizedbuyersmarketplace_v1alpha {
 
     /**
      * Updates the given deal at the buyer known revision number. If the server revision has advanced since the passed-in proposal.proposal_revision an ABORTED error message will be returned. The revision number is incremented by the server whenever the proposal or its constituent deals are updated. Note: The revision number is kept at a proposal level. The buyer of the API is expected to keep track of the revision number after the last update operation and send it in as part of the next update request. This way, if there are further changes on the server (for example, seller making new updates), then the server can detect conflicts and reject the proposed changes.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/authorizedbuyersmarketplace.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const authorizedbuyersmarketplace =
+     *   google.authorizedbuyersmarketplace('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/authorized-buyers-marketplace'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await authorizedbuyersmarketplace.buyers.proposals.deals.patch({
+     *     // Immutable. The unique identifier of the deal. Auto-generated by the server when a deal is created. Format: buyers/{accountId\}/proposals/{proposalId\}/deals/{dealId\}
+     *     name: 'buyers/my-buyer/proposals/my-proposal/deals/my-deal',
+     *     // List of fields to be updated. If empty or unspecified, the service will update all fields populated in the update request excluding the output only fields and primitive fields with default value. Note that explicit field mask is required in order to reset a primitive field back to its default value, for example, false for boolean fields, 0 for integer fields. A special field mask consisting of a single path "*" can be used to indicate full replacement(the equivalent of PUT method), updatable fields unset or unspecified in the input will be cleared or set to default value. Output only fields will be ignored regardless of the value of updateMask.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "billedBuyer": "my_billedBuyer",
+     *       //   "buyer": "my_buyer",
+     *       //   "buyerPermissionType": "my_buyerPermissionType",
+     *       //   "client": "my_client",
+     *       //   "createTime": "my_createTime",
+     *       //   "creativeRequirements": {},
+     *       //   "dealType": "my_dealType",
+     *       //   "deliveryControl": {},
+     *       //   "description": "my_description",
+     *       //   "displayName": "my_displayName",
+     *       //   "eligibleSeatIds": [],
+     *       //   "estimatedGrossSpend": {},
+     *       //   "flightEndTime": "my_flightEndTime",
+     *       //   "flightStartTime": "my_flightStartTime",
+     *       //   "mediaPlanner": {},
+     *       //   "name": "my_name",
+     *       //   "preferredDealTerms": {},
+     *       //   "privateAuctionTerms": {},
+     *       //   "programmaticGuaranteedTerms": {},
+     *       //   "proposalRevision": "my_proposalRevision",
+     *       //   "publisherProfile": "my_publisherProfile",
+     *       //   "sellerTimeZone": {},
+     *       //   "targeting": {},
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "billedBuyer": "my_billedBuyer",
+     *   //   "buyer": "my_buyer",
+     *   //   "buyerPermissionType": "my_buyerPermissionType",
+     *   //   "client": "my_client",
+     *   //   "createTime": "my_createTime",
+     *   //   "creativeRequirements": {},
+     *   //   "dealType": "my_dealType",
+     *   //   "deliveryControl": {},
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "eligibleSeatIds": [],
+     *   //   "estimatedGrossSpend": {},
+     *   //   "flightEndTime": "my_flightEndTime",
+     *   //   "flightStartTime": "my_flightStartTime",
+     *   //   "mediaPlanner": {},
+     *   //   "name": "my_name",
+     *   //   "preferredDealTerms": {},
+     *   //   "privateAuctionTerms": {},
+     *   //   "programmaticGuaranteedTerms": {},
+     *   //   "proposalRevision": "my_proposalRevision",
+     *   //   "publisherProfile": "my_publisherProfile",
+     *   //   "sellerTimeZone": {},
+     *   //   "targeting": {},
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5995,6 +8639,67 @@ export namespace authorizedbuyersmarketplace_v1alpha {
 
     /**
      * Gets the requested publisher profile by name.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/authorizedbuyersmarketplace.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const authorizedbuyersmarketplace =
+     *   google.authorizedbuyersmarketplace('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/authorized-buyers-marketplace'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await authorizedbuyersmarketplace.buyers.publisherProfiles.get({
+     *     // Required. Name of the publisher profile. Format: `buyers/{buyerId\}/publisherProfiles/{publisherProfileId\}`
+     *     name: 'buyers/my-buyer/publisherProfiles/my-publisherProfile',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "audienceDescription": "my_audienceDescription",
+     *   //   "directDealsContact": "my_directDealsContact",
+     *   //   "displayName": "my_displayName",
+     *   //   "domains": [],
+     *   //   "isParent": false,
+     *   //   "logoUrl": "my_logoUrl",
+     *   //   "mediaKitUrl": "my_mediaKitUrl",
+     *   //   "mobileApps": [],
+     *   //   "name": "my_name",
+     *   //   "overview": "my_overview",
+     *   //   "pitchStatement": "my_pitchStatement",
+     *   //   "programmaticDealsContact": "my_programmaticDealsContact",
+     *   //   "publisherCode": "my_publisherCode",
+     *   //   "samplePageUrl": "my_samplePageUrl",
+     *   //   "topHeadlines": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6085,6 +8790,60 @@ export namespace authorizedbuyersmarketplace_v1alpha {
 
     /**
      * Lists publisher profiles. The returned publisher profiles aren't in any defined order. The order of the results might change. A new publisher profile can appear in any place in the list of returned results.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/authorizedbuyersmarketplace.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const authorizedbuyersmarketplace =
+     *   google.authorizedbuyersmarketplace('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/authorized-buyers-marketplace'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await authorizedbuyersmarketplace.buyers.publisherProfiles.list({
+     *     // Optional query string using the [Cloud API list filtering] (https://developers.google.com/authorized-buyers/apis/guides/list-filters) syntax.
+     *     filter: 'placeholder-value',
+     *     // Requested page size. The server may return fewer results than requested. If requested more than 500, the server will return 500 results per page. If unspecified, the server will pick a default page size of 100.
+     *     pageSize: 'placeholder-value',
+     *     // The page token as returned from a previous ListPublisherProfilesResponse.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Parent that owns the collection of publisher profiles Format: `buyers/{buyerId\}`
+     *     parent: 'buyers/my-buyer',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "publisherProfiles": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

@@ -16,10 +16,12 @@
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {authorizedbuyersmarketplace_v1} from './v1';
 import {authorizedbuyersmarketplace_v1alpha} from './v1alpha';
+import {authorizedbuyersmarketplace_v1beta} from './v1beta';
 
 export const VERSIONS = {
   v1: authorizedbuyersmarketplace_v1.Authorizedbuyersmarketplace,
   v1alpha: authorizedbuyersmarketplace_v1alpha.Authorizedbuyersmarketplace,
+  v1beta: authorizedbuyersmarketplace_v1beta.Authorizedbuyersmarketplace,
 };
 
 export function authorizedbuyersmarketplace(
@@ -34,10 +36,17 @@ export function authorizedbuyersmarketplace(
 export function authorizedbuyersmarketplace(
   options: authorizedbuyersmarketplace_v1alpha.Options
 ): authorizedbuyersmarketplace_v1alpha.Authorizedbuyersmarketplace;
+export function authorizedbuyersmarketplace(
+  version: 'v1beta'
+): authorizedbuyersmarketplace_v1beta.Authorizedbuyersmarketplace;
+export function authorizedbuyersmarketplace(
+  options: authorizedbuyersmarketplace_v1beta.Options
+): authorizedbuyersmarketplace_v1beta.Authorizedbuyersmarketplace;
 export function authorizedbuyersmarketplace<
   T =
     | authorizedbuyersmarketplace_v1.Authorizedbuyersmarketplace
-    | authorizedbuyersmarketplace_v1alpha.Authorizedbuyersmarketplace,
+    | authorizedbuyersmarketplace_v1alpha.Authorizedbuyersmarketplace
+    | authorizedbuyersmarketplace_v1beta.Authorizedbuyersmarketplace,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
@@ -45,6 +54,8 @@ export function authorizedbuyersmarketplace<
     | authorizedbuyersmarketplace_v1.Options
     | 'v1alpha'
     | authorizedbuyersmarketplace_v1alpha.Options
+    | 'v1beta'
+    | authorizedbuyersmarketplace_v1beta.Options
 ) {
   return getAPI<T>(
     'authorizedbuyersmarketplace',
@@ -58,6 +69,7 @@ const auth = new AuthPlus();
 export {auth};
 export {authorizedbuyersmarketplace_v1};
 export {authorizedbuyersmarketplace_v1alpha};
+export {authorizedbuyersmarketplace_v1beta};
 export {
   AuthPlus,
   GlobalOptions,

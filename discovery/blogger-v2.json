@@ -401,13 +401,14 @@
       }
     }
   },
-  "revision": "20220727",
+  "revision": "20250524",
   "rootUrl": "https://blogger.googleapis.com/",
   "schemas": {
     "Blog": {
       "id": "Blog",
       "properties": {
         "customMetaData": {
+          "deprecated": true,
           "description": "The JSON custom meta-data for the Blog.",
           "type": "string"
         },
@@ -899,6 +900,7 @@
           "type": "string"
         },
         "customMetaData": {
+          "deprecated": true,
           "description": "The JSON meta-data for the Post.",
           "type": "string"
         },

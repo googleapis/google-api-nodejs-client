@@ -298,7 +298,7 @@ export namespace merchantapi_ordertracking_v1beta {
      */
     eventTime?: string | null;
     /**
-     * Optional. The product expiration time. This field will not bet set if the notification is sent for a product deletion event.
+     * Optional. The product expiration time. This field will not be set if the notification is sent for a product deletion event.
      */
     expirationTime?: string | null;
     /**
@@ -417,6 +417,80 @@ export namespace merchantapi_ordertracking_v1beta {
 
     /**
      * Creates new order tracking signal.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('ordertracking_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.ordertrackingsignals.create({
+     *     // Output only. The ID that uniquely identifies this order tracking signal.
+     *     orderTrackingSignalId: 'placeholder-value',
+     *     // Required. The account of the business for which the order signal is created. Format: accounts/{account\}
+     *     parent: 'accounts/my-account',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "customerShippingFee": {},
+     *       //   "deliveryPostalCode": "my_deliveryPostalCode",
+     *       //   "deliveryRegionCode": "my_deliveryRegionCode",
+     *       //   "lineItems": [],
+     *       //   "merchantId": "my_merchantId",
+     *       //   "orderCreatedTime": {},
+     *       //   "orderId": "my_orderId",
+     *       //   "orderTrackingSignalId": "my_orderTrackingSignalId",
+     *       //   "shipmentLineItemMapping": [],
+     *       //   "shippingInfo": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "customerShippingFee": {},
+     *   //   "deliveryPostalCode": "my_deliveryPostalCode",
+     *   //   "deliveryRegionCode": "my_deliveryRegionCode",
+     *   //   "lineItems": [],
+     *   //   "merchantId": "my_merchantId",
+     *   //   "orderCreatedTime": {},
+     *   //   "orderId": "my_orderId",
+     *   //   "orderTrackingSignalId": "my_orderTrackingSignalId",
+     *   //   "shipmentLineItemMapping": [],
+     *   //   "shippingInfo": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

@@ -500,6 +500,163 @@
                 }
               }
             },
+            "assessmentRules": {
+              "methods": {
+                "create": {
+                  "description": "Creates an assessment rule.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/assessmentRules",
+                  "httpMethod": "POST",
+                  "id": "contactcenterinsights.projects.locations.assessmentRules.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "assessmentRuleId": {
+                      "description": "Optional. A unique ID for the new AssessmentRule. This ID will become the final component of the AssessmentRule's resource name. If no ID is specified, a server-generated ID will be used. This value should be 4-64 characters and must match the regular expression `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent resource of the assessment rule. Required. The location to create a assessment rule for. Format: `projects//locations/` or `projects//locations/`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/assessmentRules",
+                  "request": {
+                    "$ref": "GoogleCloudContactcenterinsightsV1AssessmentRule"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudContactcenterinsightsV1AssessmentRule"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes an assessment rule.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/assessmentRules/{assessmentRulesId}",
+                  "httpMethod": "DELETE",
+                  "id": "contactcenterinsights.projects.locations.assessmentRules.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the assessment rule to delete.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/assessmentRules/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleProtobufEmpty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Get an assessment rule.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/assessmentRules/{assessmentRulesId}",
+                  "httpMethod": "GET",
+                  "id": "contactcenterinsights.projects.locations.assessmentRules.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the assessment rule to get.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/assessmentRules/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudContactcenterinsightsV1AssessmentRule"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists assessment rules.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/assessmentRules",
+                  "httpMethod": "GET",
+                  "id": "contactcenterinsights.projects.locations.assessmentRules.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Optional. The maximum number of assessment rule to return in the response. If this value is zero, the service will select a default size. A call may return fewer objects than requested. A non-empty `next_page_token` in the response indicates that more data is available.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. The value returned by the last `ListAssessmentRulesResponse`; indicates that this is a continuation of a prior `ListAssessmentRules` call and the system should return the next page of data.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent resource of the assessment rules.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/assessmentRules",
+                  "response": {
+                    "$ref": "GoogleCloudContactcenterinsightsV1ListAssessmentRulesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates an assessment rule.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/assessmentRules/{assessmentRulesId}",
+                  "httpMethod": "PATCH",
+                  "id": "contactcenterinsights.projects.locations.assessmentRules.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Identifier. The resource name of the assessment rule. Format: projects/{project}/locations/{location}/assessmentRules/{assessment_rule}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/assessmentRules/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. The list of fields to be updated. If the update_mask is not provided, the update will be applied to all fields.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "GoogleCloudContactcenterinsightsV1AssessmentRule"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudContactcenterinsightsV1AssessmentRule"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "authorizedViewSets": {
               "methods": {
                 "create": {
@@ -1226,6 +1383,347 @@
                               "scopes": [
                                 "https://www.googleapis.com/auth/cloud-platform"
                               ]
+                            }
+                          }
+                        },
+                        "assessments": {
+                          "methods": {
+                            "appeal": {
+                              "description": "Appeal an Assessment.",
+                              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/authorizedViewSets/{authorizedViewSetsId}/authorizedViews/{authorizedViewsId}/conversations/{conversationsId}/assessments/{assessmentsId}:appeal",
+                              "httpMethod": "POST",
+                              "id": "contactcenterinsights.projects.locations.authorizedViewSets.authorizedViews.conversations.assessments.appeal",
+                              "parameterOrder": [
+                                "name"
+                              ],
+                              "parameters": {
+                                "name": {
+                                  "description": "Required. The name of the assessment to appeal.",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/authorizedViewSets/[^/]+/authorizedViews/[^/]+/conversations/[^/]+/assessments/[^/]+$",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1/{+name}:appeal",
+                              "request": {
+                                "$ref": "GoogleCloudContactcenterinsightsV1AppealAssessmentRequest"
+                              },
+                              "response": {
+                                "$ref": "GoogleCloudContactcenterinsightsV1Assessment"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform"
+                              ]
+                            },
+                            "create": {
+                              "description": "Create Assessment.",
+                              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/authorizedViewSets/{authorizedViewSetsId}/authorizedViews/{authorizedViewsId}/conversations/{conversationsId}/assessments",
+                              "httpMethod": "POST",
+                              "id": "contactcenterinsights.projects.locations.authorizedViewSets.authorizedViews.conversations.assessments.create",
+                              "parameterOrder": [
+                                "parent"
+                              ],
+                              "parameters": {
+                                "parent": {
+                                  "description": "Required. The parent resource of the assessment.",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/authorizedViewSets/[^/]+/authorizedViews/[^/]+/conversations/[^/]+$",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1/{+parent}/assessments",
+                              "request": {
+                                "$ref": "GoogleCloudContactcenterinsightsV1Assessment"
+                              },
+                              "response": {
+                                "$ref": "GoogleCloudContactcenterinsightsV1Assessment"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform"
+                              ]
+                            },
+                            "delete": {
+                              "description": "Delete an Assessment.",
+                              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/authorizedViewSets/{authorizedViewSetsId}/authorizedViews/{authorizedViewsId}/conversations/{conversationsId}/assessments/{assessmentsId}",
+                              "httpMethod": "DELETE",
+                              "id": "contactcenterinsights.projects.locations.authorizedViewSets.authorizedViews.conversations.assessments.delete",
+                              "parameterOrder": [
+                                "name"
+                              ],
+                              "parameters": {
+                                "force": {
+                                  "description": "Optional. If set to true, all of this assessment's notes will also be deleted. Otherwise, the request will only succeed if it has no notes.",
+                                  "location": "query",
+                                  "type": "boolean"
+                                },
+                                "name": {
+                                  "description": "Required. The name of the assessment to delete.",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/authorizedViewSets/[^/]+/authorizedViews/[^/]+/conversations/[^/]+/assessments/[^/]+$",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1/{+name}",
+                              "response": {
+                                "$ref": "GoogleProtobufEmpty"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform"
+                              ]
+                            },
+                            "finalize": {
+                              "description": "Finalize an Assessment.",
+                              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/authorizedViewSets/{authorizedViewSetsId}/authorizedViews/{authorizedViewsId}/conversations/{conversationsId}/assessments/{assessmentsId}:finalize",
+                              "httpMethod": "POST",
+                              "id": "contactcenterinsights.projects.locations.authorizedViewSets.authorizedViews.conversations.assessments.finalize",
+                              "parameterOrder": [
+                                "name"
+                              ],
+                              "parameters": {
+                                "name": {
+                                  "description": "Required. The name of the assessment to finalize.",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/authorizedViewSets/[^/]+/authorizedViews/[^/]+/conversations/[^/]+/assessments/[^/]+$",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1/{+name}:finalize",
+                              "request": {
+                                "$ref": "GoogleCloudContactcenterinsightsV1FinalizeAssessmentRequest"
+                              },
+                              "response": {
+                                "$ref": "GoogleCloudContactcenterinsightsV1Assessment"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform"
+                              ]
+                            },
+                            "get": {
+                              "description": "Get Assessment.",
+                              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/authorizedViewSets/{authorizedViewSetsId}/authorizedViews/{authorizedViewsId}/conversations/{conversationsId}/assessments/{assessmentsId}",
+                              "httpMethod": "GET",
+                              "id": "contactcenterinsights.projects.locations.authorizedViewSets.authorizedViews.conversations.assessments.get",
+                              "parameterOrder": [
+                                "name"
+                              ],
+                              "parameters": {
+                                "name": {
+                                  "description": "Required. The name of the assessment to get.",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/authorizedViewSets/[^/]+/authorizedViews/[^/]+/conversations/[^/]+/assessments/[^/]+$",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1/{+name}",
+                              "response": {
+                                "$ref": "GoogleCloudContactcenterinsightsV1Assessment"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform"
+                              ]
+                            },
+                            "list": {
+                              "description": "List Assessments.",
+                              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/authorizedViewSets/{authorizedViewSetsId}/authorizedViews/{authorizedViewsId}/conversations/{conversationsId}/assessments",
+                              "httpMethod": "GET",
+                              "id": "contactcenterinsights.projects.locations.authorizedViewSets.authorizedViews.conversations.assessments.list",
+                              "parameterOrder": [
+                                "parent"
+                              ],
+                              "parameters": {
+                                "filter": {
+                                  "description": "Optional. A filter to reduce results to a specific subset. Supported filters include: * `state` - The state of the assessment * `agent_info.agent_id` - The ID of the agent the assessment is for",
+                                  "location": "query",
+                                  "type": "string"
+                                },
+                                "pageSize": {
+                                  "description": "The maximum number of assessments to list. If zero, the service will select a default size. A call may return fewer objects than requested. A non-empty `next_page_token` in the response indicates that more data is available.",
+                                  "format": "int32",
+                                  "location": "query",
+                                  "type": "integer"
+                                },
+                                "pageToken": {
+                                  "description": "Optional. The value returned by the last `ListAssessmentRulesResponse`; indicates that this is a continuation of a prior `ListAssessmentRules` call and the system should return the next page of data.",
+                                  "location": "query",
+                                  "type": "string"
+                                },
+                                "parent": {
+                                  "description": "Required. The parent resource of the assessments. To list all assessments in a location, substitute the conversation ID with a '-' character.",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/authorizedViewSets/[^/]+/authorizedViews/[^/]+/conversations/[^/]+$",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1/{+parent}/assessments",
+                              "response": {
+                                "$ref": "GoogleCloudContactcenterinsightsV1ListAssessmentsResponse"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform"
+                              ]
+                            },
+                            "publish": {
+                              "description": "Publish an Assessment.",
+                              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/authorizedViewSets/{authorizedViewSetsId}/authorizedViews/{authorizedViewsId}/conversations/{conversationsId}/assessments/{assessmentsId}:publish",
+                              "httpMethod": "POST",
+                              "id": "contactcenterinsights.projects.locations.authorizedViewSets.authorizedViews.conversations.assessments.publish",
+                              "parameterOrder": [
+                                "name"
+                              ],
+                              "parameters": {
+                                "name": {
+                                  "description": "Required. The name of the assessment to publish.",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/authorizedViewSets/[^/]+/authorizedViews/[^/]+/conversations/[^/]+/assessments/[^/]+$",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1/{+name}:publish",
+                              "request": {
+                                "$ref": "GoogleCloudContactcenterinsightsV1PublishAssessmentRequest"
+                              },
+                              "response": {
+                                "$ref": "GoogleCloudContactcenterinsightsV1Assessment"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform"
+                              ]
+                            }
+                          },
+                          "resources": {
+                            "notes": {
+                              "methods": {
+                                "create": {
+                                  "description": "Create Note.",
+                                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/authorizedViewSets/{authorizedViewSetsId}/authorizedViews/{authorizedViewsId}/conversations/{conversationsId}/assessments/{assessmentsId}/notes",
+                                  "httpMethod": "POST",
+                                  "id": "contactcenterinsights.projects.locations.authorizedViewSets.authorizedViews.conversations.assessments.notes.create",
+                                  "parameterOrder": [
+                                    "parent"
+                                  ],
+                                  "parameters": {
+                                    "parent": {
+                                      "description": "Required. The parent resource of the note.",
+                                      "location": "path",
+                                      "pattern": "^projects/[^/]+/locations/[^/]+/authorizedViewSets/[^/]+/authorizedViews/[^/]+/conversations/[^/]+/assessments/[^/]+$",
+                                      "required": true,
+                                      "type": "string"
+                                    }
+                                  },
+                                  "path": "v1/{+parent}/notes",
+                                  "request": {
+                                    "$ref": "GoogleCloudContactcenterinsightsV1Note"
+                                  },
+                                  "response": {
+                                    "$ref": "GoogleCloudContactcenterinsightsV1Note"
+                                  },
+                                  "scopes": [
+                                    "https://www.googleapis.com/auth/cloud-platform"
+                                  ]
+                                },
+                                "delete": {
+                                  "description": "Deletes a Note.",
+                                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/authorizedViewSets/{authorizedViewSetsId}/authorizedViews/{authorizedViewsId}/conversations/{conversationsId}/assessments/{assessmentsId}/notes/{notesId}",
+                                  "httpMethod": "DELETE",
+                                  "id": "contactcenterinsights.projects.locations.authorizedViewSets.authorizedViews.conversations.assessments.notes.delete",
+                                  "parameterOrder": [
+                                    "name"
+                                  ],
+                                  "parameters": {
+                                    "name": {
+                                      "description": "Required. The name of the note to delete.",
+                                      "location": "path",
+                                      "pattern": "^projects/[^/]+/locations/[^/]+/authorizedViewSets/[^/]+/authorizedViews/[^/]+/conversations/[^/]+/assessments/[^/]+/notes/[^/]+$",
+                                      "required": true,
+                                      "type": "string"
+                                    }
+                                  },
+                                  "path": "v1/{+name}",
+                                  "response": {
+                                    "$ref": "GoogleProtobufEmpty"
+                                  },
+                                  "scopes": [
+                                    "https://www.googleapis.com/auth/cloud-platform"
+                                  ]
+                                },
+                                "list": {
+                                  "description": "List Notes.",
+                                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/authorizedViewSets/{authorizedViewSetsId}/authorizedViews/{authorizedViewsId}/conversations/{conversationsId}/assessments/{assessmentsId}/notes",
+                                  "httpMethod": "GET",
+                                  "id": "contactcenterinsights.projects.locations.authorizedViewSets.authorizedViews.conversations.assessments.notes.list",
+                                  "parameterOrder": [
+                                    "parent"
+                                  ],
+                                  "parameters": {
+                                    "pageSize": {
+                                      "description": "Optional. The maximum number of notes to return in the response. If zero the service will select a default size. A call might return fewer objects than requested. A non-empty `next_page_token` in the response indicates that more data is available.",
+                                      "format": "int32",
+                                      "location": "query",
+                                      "type": "integer"
+                                    },
+                                    "pageToken": {
+                                      "description": "Optional. The value returned by the last `ListNotesResponse`. This value indicates that this is a continuation of a prior `ListNotes` call and that the system should return the next page of data.",
+                                      "location": "query",
+                                      "type": "string"
+                                    },
+                                    "parent": {
+                                      "description": "Required. The parent resource of the notes.",
+                                      "location": "path",
+                                      "pattern": "^projects/[^/]+/locations/[^/]+/authorizedViewSets/[^/]+/authorizedViews/[^/]+/conversations/[^/]+/assessments/[^/]+$",
+                                      "required": true,
+                                      "type": "string"
+                                    }
+                                  },
+                                  "path": "v1/{+parent}/notes",
+                                  "response": {
+                                    "$ref": "GoogleCloudContactcenterinsightsV1ListNotesResponse"
+                                  },
+                                  "scopes": [
+                                    "https://www.googleapis.com/auth/cloud-platform"
+                                  ]
+                                },
+                                "patch": {
+                                  "description": "Update Note.",
+                                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/authorizedViewSets/{authorizedViewSetsId}/authorizedViews/{authorizedViewsId}/conversations/{conversationsId}/assessments/{assessmentsId}/notes/{notesId}",
+                                  "httpMethod": "PATCH",
+                                  "id": "contactcenterinsights.projects.locations.authorizedViewSets.authorizedViews.conversations.assessments.notes.patch",
+                                  "parameterOrder": [
+                                    "name"
+                                  ],
+                                  "parameters": {
+                                    "name": {
+                                      "description": "Identifier. The resource name of the note. Format: projects/{project}/locations/{location}/conversations/{conversation}/assessments/{assessment}/notes/{note}",
+                                      "location": "path",
+                                      "pattern": "^projects/[^/]+/locations/[^/]+/authorizedViewSets/[^/]+/authorizedViews/[^/]+/conversations/[^/]+/assessments/[^/]+/notes/[^/]+$",
+                                      "required": true,
+                                      "type": "string"
+                                    },
+                                    "updateMask": {
+                                      "description": "Optional. The list of fields to be updated. If the update_mask is empty, all updateable fields will be updated. Acceptable fields include: * `content`",
+                                      "format": "google-fieldmask",
+                                      "location": "query",
+                                      "type": "string"
+                                    }
+                                  },
+                                  "path": "v1/{+name}",
+                                  "request": {
+                                    "$ref": "GoogleCloudContactcenterinsightsV1Note"
+                                  },
+                                  "response": {
+                                    "$ref": "GoogleCloudContactcenterinsightsV1Note"
+                                  },
+                                  "scopes": [
+                                    "https://www.googleapis.com/auth/cloud-platform"
+                                  ]
+                                }
+                              }
                             }
                           }
                         },
@@ -1956,6 +2454,347 @@
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
+                    }
+                  }
+                },
+                "assessments": {
+                  "methods": {
+                    "appeal": {
+                      "description": "Appeal an Assessment.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/conversations/{conversationsId}/assessments/{assessmentsId}:appeal",
+                      "httpMethod": "POST",
+                      "id": "contactcenterinsights.projects.locations.conversations.assessments.appeal",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the assessment to appeal.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/conversations/[^/]+/assessments/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:appeal",
+                      "request": {
+                        "$ref": "GoogleCloudContactcenterinsightsV1AppealAssessmentRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudContactcenterinsightsV1Assessment"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "create": {
+                      "description": "Create Assessment.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/conversations/{conversationsId}/assessments",
+                      "httpMethod": "POST",
+                      "id": "contactcenterinsights.projects.locations.conversations.assessments.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The parent resource of the assessment.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/conversations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/assessments",
+                      "request": {
+                        "$ref": "GoogleCloudContactcenterinsightsV1Assessment"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudContactcenterinsightsV1Assessment"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Delete an Assessment.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/conversations/{conversationsId}/assessments/{assessmentsId}",
+                      "httpMethod": "DELETE",
+                      "id": "contactcenterinsights.projects.locations.conversations.assessments.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "force": {
+                          "description": "Optional. If set to true, all of this assessment's notes will also be deleted. Otherwise, the request will only succeed if it has no notes.",
+                          "location": "query",
+                          "type": "boolean"
+                        },
+                        "name": {
+                          "description": "Required. The name of the assessment to delete.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/conversations/[^/]+/assessments/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "GoogleProtobufEmpty"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "finalize": {
+                      "description": "Finalize an Assessment.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/conversations/{conversationsId}/assessments/{assessmentsId}:finalize",
+                      "httpMethod": "POST",
+                      "id": "contactcenterinsights.projects.locations.conversations.assessments.finalize",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the assessment to finalize.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/conversations/[^/]+/assessments/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:finalize",
+                      "request": {
+                        "$ref": "GoogleCloudContactcenterinsightsV1FinalizeAssessmentRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudContactcenterinsightsV1Assessment"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Get Assessment.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/conversations/{conversationsId}/assessments/{assessmentsId}",
+                      "httpMethod": "GET",
+                      "id": "contactcenterinsights.projects.locations.conversations.assessments.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the assessment to get.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/conversations/[^/]+/assessments/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "GoogleCloudContactcenterinsightsV1Assessment"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "List Assessments.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/conversations/{conversationsId}/assessments",
+                      "httpMethod": "GET",
+                      "id": "contactcenterinsights.projects.locations.conversations.assessments.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "Optional. A filter to reduce results to a specific subset. Supported filters include: * `state` - The state of the assessment * `agent_info.agent_id` - The ID of the agent the assessment is for",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "The maximum number of assessments to list. If zero, the service will select a default size. A call may return fewer objects than requested. A non-empty `next_page_token` in the response indicates that more data is available.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. The value returned by the last `ListAssessmentRulesResponse`; indicates that this is a continuation of a prior `ListAssessmentRules` call and the system should return the next page of data.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The parent resource of the assessments. To list all assessments in a location, substitute the conversation ID with a '-' character.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/conversations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/assessments",
+                      "response": {
+                        "$ref": "GoogleCloudContactcenterinsightsV1ListAssessmentsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "publish": {
+                      "description": "Publish an Assessment.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/conversations/{conversationsId}/assessments/{assessmentsId}:publish",
+                      "httpMethod": "POST",
+                      "id": "contactcenterinsights.projects.locations.conversations.assessments.publish",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the assessment to publish.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/conversations/[^/]+/assessments/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:publish",
+                      "request": {
+                        "$ref": "GoogleCloudContactcenterinsightsV1PublishAssessmentRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudContactcenterinsightsV1Assessment"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  },
+                  "resources": {
+                    "notes": {
+                      "methods": {
+                        "create": {
+                          "description": "Create Note.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/conversations/{conversationsId}/assessments/{assessmentsId}/notes",
+                          "httpMethod": "POST",
+                          "id": "contactcenterinsights.projects.locations.conversations.assessments.notes.create",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "parent": {
+                              "description": "Required. The parent resource of the note.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/conversations/[^/]+/assessments/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+parent}/notes",
+                          "request": {
+                            "$ref": "GoogleCloudContactcenterinsightsV1Note"
+                          },
+                          "response": {
+                            "$ref": "GoogleCloudContactcenterinsightsV1Note"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "delete": {
+                          "description": "Deletes a Note.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/conversations/{conversationsId}/assessments/{assessmentsId}/notes/{notesId}",
+                          "httpMethod": "DELETE",
+                          "id": "contactcenterinsights.projects.locations.conversations.assessments.notes.delete",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The name of the note to delete.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/conversations/[^/]+/assessments/[^/]+/notes/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+name}",
+                          "response": {
+                            "$ref": "GoogleProtobufEmpty"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "list": {
+                          "description": "List Notes.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/conversations/{conversationsId}/assessments/{assessmentsId}/notes",
+                          "httpMethod": "GET",
+                          "id": "contactcenterinsights.projects.locations.conversations.assessments.notes.list",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "pageSize": {
+                              "description": "Optional. The maximum number of notes to return in the response. If zero the service will select a default size. A call might return fewer objects than requested. A non-empty `next_page_token` in the response indicates that more data is available.",
+                              "format": "int32",
+                              "location": "query",
+                              "type": "integer"
+                            },
+                            "pageToken": {
+                              "description": "Optional. The value returned by the last `ListNotesResponse`. This value indicates that this is a continuation of a prior `ListNotes` call and that the system should return the next page of data.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "parent": {
+                              "description": "Required. The parent resource of the notes.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/conversations/[^/]+/assessments/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+parent}/notes",
+                          "response": {
+                            "$ref": "GoogleCloudContactcenterinsightsV1ListNotesResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "patch": {
+                          "description": "Update Note.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/conversations/{conversationsId}/assessments/{assessmentsId}/notes/{notesId}",
+                          "httpMethod": "PATCH",
+                          "id": "contactcenterinsights.projects.locations.conversations.assessments.notes.patch",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Identifier. The resource name of the note. Format: projects/{project}/locations/{location}/conversations/{conversation}/assessments/{assessment}/notes/{note}",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/conversations/[^/]+/assessments/[^/]+/notes/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "updateMask": {
+                              "description": "Optional. The list of fields to be updated. If the update_mask is empty, all updateable fields will be updated. Acceptable fields include: * `content`",
+                              "format": "google-fieldmask",
+                              "location": "query",
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+name}",
+                          "request": {
+                            "$ref": "GoogleCloudContactcenterinsightsV1Note"
+                          },
+                          "response": {
+                            "$ref": "GoogleCloudContactcenterinsightsV1Note"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        }
+                      }
                     }
                   }
                 },
@@ -4254,7 +5093,7 @@
       }
     }
   },
-  "revision": "20250512",
+  "revision": "20250526",
   "rootUrl": "https://contactcenterinsights.googleapis.com/",
   "schemas": {
     "GoogleCloudContactcenterinsightsV1Analysis": {
@@ -4532,10 +5371,15 @@
             "BASELINE_MODEL",
             "BASELINE_MODEL_V2_0"
           ],
+          "enumDeprecated": [
+            false,
+            true,
+            true
+          ],
           "enumDescriptions": [
             "Unspecified summarization model.",
-            "The CCAI baseline model.",
-            "The CCAI baseline model, V2.0."
+            "The CCAI baseline model. This model is deprecated and will be removed in the future. We recommend using `generator` instead.",
+            "The CCAI baseline model, V2.0. This model is deprecated and will be removed in the future. We recommend using `generator` instead."
           ],
           "type": "string"
         }
@@ -4573,6 +5417,12 @@
       },
       "type": "object"
     },
+    "GoogleCloudContactcenterinsightsV1AppealAssessmentRequest": {
+      "description": "The message to appeal an assessment.",
+      "id": "GoogleCloudContactcenterinsightsV1AppealAssessmentRequest",
+      "properties": {},
+      "type": "object"
+    },
     "GoogleCloudContactcenterinsightsV1ArticleSuggestionData": {
       "description": "Agent Assist Article Suggestion data.",
       "id": "GoogleCloudContactcenterinsightsV1ArticleSuggestionData",
@@ -4603,6 +5453,91 @@
         },
         "uri": {
           "description": "Article URI.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1Assessment": {
+      "description": "The assessment resource.",
+      "id": "GoogleCloudContactcenterinsightsV1Assessment",
+      "properties": {
+        "agentInfo": {
+          "$ref": "GoogleCloudContactcenterinsightsV1ConversationQualityMetadataAgentInfo",
+          "description": "Information about the agent the assessment is for."
+        },
+        "createTime": {
+          "description": "Output only. The time at which the assessment was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The resource name of the assessment. Format: projects/{project}/locations/{location}/conversations/{conversation}/assessments/{assessment}",
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The state of the assessment.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "DRAFT",
+            "PUBLISHED",
+            "APPEALED",
+            "FINALIZED"
+          ],
+          "enumDescriptions": [
+            "The state is unspecified. This value should not be used.",
+            "The default state of all new assessments.",
+            "The assessment has been published.",
+            "The assessment has been appealed.",
+            "The assessment has been finalized."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The time at which the assessment was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1AssessmentRule": {
+      "description": "The CCAI Insights project wide assessment rule. This assessment rule will be applied to all conversations from the previous sampling cycle that match the sample rule defined in the assessment rule. One project can have multiple assessment rules.",
+      "id": "GoogleCloudContactcenterinsightsV1AssessmentRule",
+      "properties": {
+        "active": {
+          "description": "If true, apply this rule to conversations. Otherwise, this rule is inactive.",
+          "type": "boolean"
+        },
+        "createTime": {
+          "description": "Output only. The time at which this assessment rule was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Display Name of the assessment rule.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The resource name of the assessment rule. Format: projects/{project}/locations/{location}/assessmentRules/{assessment_rule}",
+          "type": "string"
+        },
+        "sampleRule": {
+          "$ref": "GoogleCloudContactcenterinsightsV1SampleRule",
+          "description": "The sample rule for the assessment rule."
+        },
+        "scheduleInfo": {
+          "$ref": "GoogleCloudContactcenterinsightsV1ScheduleInfo",
+          "description": "Schedule info for the assessment rule."
+        },
+        "updateTime": {
+          "description": "Output only. The most recent time at which this assessment rule was updated.",
+          "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -5410,6 +6345,10 @@
         "gcsSource": {
           "$ref": "GoogleCloudContactcenterinsightsV1GcsSource",
           "description": "A Cloud Storage location specification for the audio and transcript."
+        },
+        "metadataUri": {
+          "description": "Cloud Storage URI that points to a file that contains the conversation metadata.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -6486,6 +7425,12 @@
       },
       "type": "object"
     },
+    "GoogleCloudContactcenterinsightsV1FinalizeAssessmentRequest": {
+      "description": "The message to finalize an assessment. Finalizing makes an assessment and its notes immutable.",
+      "id": "GoogleCloudContactcenterinsightsV1FinalizeAssessmentRequest",
+      "properties": {},
+      "type": "object"
+    },
     "GoogleCloudContactcenterinsightsV1GcsSource": {
       "description": "A Cloud Storage source of conversation data.",
       "id": "GoogleCloudContactcenterinsightsV1GcsSource",
@@ -7136,6 +8081,42 @@
       },
       "type": "object"
     },
+    "GoogleCloudContactcenterinsightsV1ListAssessmentRulesResponse": {
+      "description": "The response of listing assessment rules.",
+      "id": "GoogleCloudContactcenterinsightsV1ListAssessmentRulesResponse",
+      "properties": {
+        "assessmentRules": {
+          "description": "The assessment rules that match the request.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1AssessmentRule"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1ListAssessmentsResponse": {
+      "description": "The response of listing assessments.",
+      "id": "GoogleCloudContactcenterinsightsV1ListAssessmentsResponse",
+      "properties": {
+        "assessments": {
+          "description": "The assessments that match the request.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1Assessment"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudContactcenterinsightsV1ListAuthorizedViewSetsResponse": {
       "description": "The response from a ListAuthorizedViewSet request.",
       "id": "GoogleCloudContactcenterinsightsV1ListAuthorizedViewSetsResponse",
@@ -7236,6 +8217,24 @@
       },
       "type": "object"
     },
+    "GoogleCloudContactcenterinsightsV1ListNotesResponse": {
+      "description": "The response of listing notes.",
+      "id": "GoogleCloudContactcenterinsightsV1ListNotesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "notes": {
+          "description": "The notes that match the request.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1Note"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudContactcenterinsightsV1ListPhraseMatchersResponse": {
       "description": "The response of listing phrase matchers.",
       "id": "GoogleCloudContactcenterinsightsV1ListPhraseMatchersResponse",
@@ -7322,6 +8321,79 @@
             "$ref": "GoogleCloudContactcenterinsightsV1View"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1Note": {
+      "description": "The conversation assessment note resource.",
+      "id": "GoogleCloudContactcenterinsightsV1Note",
+      "properties": {
+        "assessmentNote": {
+          "$ref": "GoogleCloudContactcenterinsightsV1NoteAssessmentNote",
+          "description": "The note is associated to the entire parent assessment."
+        },
+        "content": {
+          "description": "The note content.",
+          "type": "string"
+        },
+        "conversationTurnNote": {
+          "$ref": "GoogleCloudContactcenterinsightsV1NoteConversationTurnNote",
+          "description": "The note is associated with a conversation turn."
+        },
+        "createTime": {
+          "description": "Output only. The time at which the note was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The resource name of the note. Format: projects/{project}/locations/{location}/conversations/{conversation}/assessments/{assessment}/notes/{note}",
+          "type": "string"
+        },
+        "noteCreator": {
+          "$ref": "GoogleCloudContactcenterinsightsV1UserInfo",
+          "description": "Output only. The user that created the note.",
+          "readOnly": true
+        },
+        "qaQuestionNote": {
+          "$ref": "GoogleCloudContactcenterinsightsV1NoteQaQuestionNote",
+          "description": "The note is associated with a QA question in one of the conversation's scorecard results."
+        },
+        "updateTime": {
+          "description": "Output only. The time at which the note was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1NoteAssessmentNote": {
+      "description": "A note about the entire parent assessment.",
+      "id": "GoogleCloudContactcenterinsightsV1NoteAssessmentNote",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1NoteConversationTurnNote": {
+      "description": "A note about a conversation turn.",
+      "id": "GoogleCloudContactcenterinsightsV1NoteConversationTurnNote",
+      "properties": {
+        "turnIndex": {
+          "description": "The conversation turn index that the note is associated with.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1NoteQaQuestionNote": {
+      "description": "A note about a QA question.",
+      "id": "GoogleCloudContactcenterinsightsV1NoteQaQuestionNote",
+      "properties": {
+        "qaQuestion": {
+          "description": "The question resource that the note is associated with.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -7482,6 +8554,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1PublishAssessmentRequest": {
+      "description": "The message to publish an assessment. Draft and appealed assessments can be published. Publishing simply changes the state of the assessment to published, allowing the console and authorized views to filter on the state.",
+      "id": "GoogleCloudContactcenterinsightsV1PublishAssessmentRequest",
+      "properties": {},
       "type": "object"
     },
     "GoogleCloudContactcenterinsightsV1QaAnswer": {
@@ -8386,6 +9464,31 @@
       },
       "type": "object"
     },
+    "GoogleCloudContactcenterinsightsV1ScheduleInfo": {
+      "description": "Message for schedule info.",
+      "id": "GoogleCloudContactcenterinsightsV1ScheduleInfo",
+      "properties": {
+        "endTime": {
+          "description": "End time of the schedule. If not specified, will keep scheduling new pipelines for execution util the schedule is no longer active or deleted.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "schedule": {
+          "description": "The groc expression. Format: `every number [synchronized]` Time units can be: minutes, hours Synchronized is optional and indicates that the schedule should be synchronized to the start of the interval: every 5 minutes synchronized means 00:00, 00:05 ... Otherwise the start time is random within the interval. Example: `every 5 minutes` could be 00:02, 00:07, 00:12, ...",
+          "type": "string"
+        },
+        "startTime": {
+          "description": "Start time of the schedule. If not specified, will start as soon as the schedule is created.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "timeZone": {
+          "description": "The timezone to use for the groc expression. If not specified, defaults to UTC.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudContactcenterinsightsV1SearchAuthorizedViewsResponse": {
       "description": "The response from a ListAuthorizedViews request.",
       "id": "GoogleCloudContactcenterinsightsV1SearchAuthorizedViewsResponse",
@@ -8686,6 +9789,17 @@
       },
       "type": "object"
     },
+    "GoogleCloudContactcenterinsightsV1UserInfo": {
+      "description": "Information about a user.",
+      "id": "GoogleCloudContactcenterinsightsV1UserInfo",
+      "properties": {
+        "username": {
+          "description": "The user's username.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudContactcenterinsightsV1View": {
       "description": "The View resource.",
       "id": "GoogleCloudContactcenterinsightsV1View",
@@ -8948,10 +10062,15 @@
             "BASELINE_MODEL",
             "BASELINE_MODEL_V2_0"
           ],
+          "enumDeprecated": [
+            false,
+            true,
+            true
+          ],
           "enumDescriptions": [
             "Unspecified summarization model.",
-            "The CCAI baseline model.",
-            "The CCAI baseline model, V2.0."
+            "The CCAI baseline model. This model is deprecated and will be removed in the future. We recommend using `generator` instead.",
+            "The CCAI baseline model, V2.0. This model is deprecated and will be removed in the future. We recommend using `generator` instead."
           ],
           "type": "string"
         }
@@ -9417,6 +10536,10 @@
         "gcsSource": {
           "$ref": "GoogleCloudContactcenterinsightsV1alpha1GcsSource",
           "description": "A Cloud Storage location specification for the audio and transcript."
+        },
+        "metadataUri": {
+          "description": "Cloud Storage URI that points to a file that contains the conversation metadata.",
+          "type": "string"
         }
       },
       "type": "object"

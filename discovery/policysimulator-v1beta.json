@@ -143,6 +143,97 @@
               }
             },
             "replays": {
+              "methods": {
+                "create": {
+                  "description": "Creates and starts a Replay using the given ReplayConfig.",
+                  "flatPath": "v1beta/folders/{foldersId}/locations/{locationsId}/replays",
+                  "httpMethod": "POST",
+                  "id": "policysimulator.folders.locations.replays.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent resource where this Replay will be created. This resource must be a project, folder, or organization with a location. Example: `projects/my-example-project/locations/global`",
+                      "location": "path",
+                      "pattern": "^folders/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta/{+parent}/replays",
+                  "request": {
+                    "$ref": "GoogleCloudPolicysimulatorV1betaReplay"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets the specified Replay. Each `Replay` is available for at least 7 days.",
+                  "flatPath": "v1beta/folders/{foldersId}/locations/{locationsId}/replays/{replaysId}",
+                  "httpMethod": "GET",
+                  "id": "policysimulator.folders.locations.replays.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the Replay to retrieve, in the following format: `{projects|folders|organizations}/{resource-id}/locations/global/replays/{replay-id}`, where `{resource-id}` is the ID of the project, folder, or organization that owns the `Replay`. Example: `projects/my-example-project/locations/global/replays/506a5f7f-38ce-4d7d-8e03-479ce1833c36`",
+                      "location": "path",
+                      "pattern": "^folders/[^/]+/locations/[^/]+/replays/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudPolicysimulatorV1betaReplay"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists each Replay in a project, folder, or organization. Each `Replay` is available for at least 7 days.",
+                  "flatPath": "v1beta/folders/{foldersId}/locations/{locationsId}/replays",
+                  "httpMethod": "GET",
+                  "id": "policysimulator.folders.locations.replays.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "The maximum number of Replay objects to return. Defaults to 50. The maximum value is 1000; values above 1000 are rounded down to 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "A page token, received from a previous Simulator.ListReplays call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to Simulator.ListReplays must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent resource, in the following format: `{projects|folders|organizations}/{resource-id}/locations/global`, where `{resource-id}` is the ID of the project, folder, or organization that owns the Replay. Example: `projects/my-example-project/locations/global` Only `Replay` objects that are direct children of the provided parent are listed. In other words, `Replay` objects that are children of a project will not be included when the parent is a folder of that project.",
+                      "location": "path",
+                      "pattern": "^folders/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta/{+parent}/replays",
+                  "response": {
+                    "$ref": "GoogleCloudPolicysimulatorV1betaListReplaysResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              },
               "resources": {
                 "operations": {
                   "methods": {
@@ -207,6 +298,46 @@
                       "path": "v1beta/{+name}",
                       "response": {
                         "$ref": "GoogleLongrunningListOperationsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                },
+                "results": {
+                  "methods": {
+                    "list": {
+                      "description": "Lists the results of running a Replay.",
+                      "flatPath": "v1beta/folders/{foldersId}/locations/{locationsId}/replays/{replaysId}/results",
+                      "httpMethod": "GET",
+                      "id": "policysimulator.folders.locations.replays.results.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "pageSize": {
+                          "description": "The maximum number of ReplayResult objects to return. Defaults to 5000. The maximum value is 5000; values above 5000 are rounded down to 5000.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "A page token, received from a previous Simulator.ListReplayResults call. Provide this token to retrieve the next page of results. When paginating, all other parameters provided to [Simulator.ListReplayResults[] must match the call that provided the page token.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The Replay whose results are listed, in the following format: `{projects|folders|organizations}/{resource-id}/locations/global/replays/{replay-id}` Example: `projects/my-project/locations/global/replays/506a5f7f-38ce-4d7d-8e03-479ce1833c36`",
+                          "location": "path",
+                          "pattern": "^folders/[^/]+/locations/[^/]+/replays/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta/{+parent}/results",
+                      "response": {
+                        "$ref": "GoogleCloudPolicysimulatorV1betaListReplayResultsResponse"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
@@ -295,6 +426,130 @@
         "locations": {
           "resources": {
             "orgPolicyViolationsPreviews": {
+              "methods": {
+                "create": {
+                  "description": "CreateOrgPolicyViolationsPreview creates an OrgPolicyViolationsPreview for the proposed changes in the provided OrgPolicyViolationsPreview.OrgPolicyOverlay. The changes to OrgPolicy are specified by this `OrgPolicyOverlay`. The resources to scan are inferred from these specified changes.",
+                  "flatPath": "v1beta/organizations/{organizationsId}/locations/{locationsId}/orgPolicyViolationsPreviews",
+                  "httpMethod": "POST",
+                  "id": "policysimulator.organizations.locations.orgPolicyViolationsPreviews.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "orgPolicyViolationsPreviewId": {
+                      "description": "Optional. An optional user-specified ID for the OrgPolicyViolationsPreview. If not provided, a random ID will be generated.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The organization under which this OrgPolicyViolationsPreview will be created. Example: `organizations/my-example-org/locations/global`",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta/{+parent}/orgPolicyViolationsPreviews",
+                  "request": {
+                    "$ref": "GoogleCloudPolicysimulatorV1betaOrgPolicyViolationsPreview"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "generate": {
+                  "description": "GenerateOrgPolicyViolationsPreview generates an OrgPolicyViolationsPreview for the proposed changes in the provided OrgPolicyViolationsPreview.OrgPolicyOverlay. The changes to OrgPolicy are specified by this `OrgPolicyOverlay`. The resources to scan are inferred from these specified changes.",
+                  "flatPath": "v1beta/organizations/{organizationsId}/locations/{locationsId}/orgPolicyViolationsPreviews:generate",
+                  "httpMethod": "POST",
+                  "id": "policysimulator.organizations.locations.orgPolicyViolationsPreviews.generate",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The organization under which this OrgPolicyViolationsPreview will be created. Example: `organizations/my-example-org/locations/global`",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta/{+parent}/orgPolicyViolationsPreviews:generate",
+                  "request": {
+                    "$ref": "GoogleCloudPolicysimulatorV1betaOrgPolicyViolationsPreview"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "GetOrgPolicyViolationsPreview gets the specified OrgPolicyViolationsPreview. Each OrgPolicyViolationsPreview is available for at least 7 days.",
+                  "flatPath": "v1beta/organizations/{organizationsId}/locations/{locationsId}/orgPolicyViolationsPreviews/{orgPolicyViolationsPreviewsId}",
+                  "httpMethod": "GET",
+                  "id": "policysimulator.organizations.locations.orgPolicyViolationsPreviews.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the OrgPolicyViolationsPreview to get.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+/orgPolicyViolationsPreviews/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudPolicysimulatorV1betaOrgPolicyViolationsPreview"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "ListOrgPolicyViolationsPreviews lists each OrgPolicyViolationsPreview in an organization. Each OrgPolicyViolationsPreview is available for at least 7 days.",
+                  "flatPath": "v1beta/organizations/{organizationsId}/locations/{locationsId}/orgPolicyViolationsPreviews",
+                  "httpMethod": "GET",
+                  "id": "policysimulator.organizations.locations.orgPolicyViolationsPreviews.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Optional. The maximum number of items to return. The service may return fewer than this value. If unspecified, at most 5 items will be returned. The maximum value is 10; values above 10 will be coerced to 10.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A page token, received from a previous call. Provide this to retrieve the subsequent page. When paginating, all other parameters must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent the violations are scoped to. Format: `organizations/{organization}/locations/{location}` Example: `organizations/my-example-org/locations/global`",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta/{+parent}/orgPolicyViolationsPreviews",
+                  "response": {
+                    "$ref": "GoogleCloudPolicysimulatorV1betaListOrgPolicyViolationsPreviewsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              },
               "resources": {
                 "operations": {
                   "methods": {
@@ -324,10 +579,141 @@
                       ]
                     }
                   }
+                },
+                "orgPolicyViolations": {
+                  "methods": {
+                    "list": {
+                      "description": "ListOrgPolicyViolations lists the OrgPolicyViolations that are present in an OrgPolicyViolationsPreview.",
+                      "flatPath": "v1beta/organizations/{organizationsId}/locations/{locationsId}/orgPolicyViolationsPreviews/{orgPolicyViolationsPreviewsId}/orgPolicyViolations",
+                      "httpMethod": "GET",
+                      "id": "policysimulator.organizations.locations.orgPolicyViolationsPreviews.orgPolicyViolations.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "pageSize": {
+                          "description": "Optional. The maximum number of items to return. The service may return fewer than this value. If unspecified, at most 1000 items will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. A page token, received from a previous call. Provide this to retrieve the subsequent page. When paginating, all other parameters must match the call that provided the page token.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The OrgPolicyViolationsPreview to get OrgPolicyViolations from. Format: organizations/{organization}/locations/{location}/orgPolicyViolationsPreviews/{orgPolicyViolationsPreview}",
+                          "location": "path",
+                          "pattern": "^organizations/[^/]+/locations/[^/]+/orgPolicyViolationsPreviews/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta/{+parent}/orgPolicyViolations",
+                      "response": {
+                        "$ref": "GoogleCloudPolicysimulatorV1betaListOrgPolicyViolationsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
                 }
               }
             },
             "replays": {
+              "methods": {
+                "create": {
+                  "description": "Creates and starts a Replay using the given ReplayConfig.",
+                  "flatPath": "v1beta/organizations/{organizationsId}/locations/{locationsId}/replays",
+                  "httpMethod": "POST",
+                  "id": "policysimulator.organizations.locations.replays.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent resource where this Replay will be created. This resource must be a project, folder, or organization with a location. Example: `projects/my-example-project/locations/global`",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta/{+parent}/replays",
+                  "request": {
+                    "$ref": "GoogleCloudPolicysimulatorV1betaReplay"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets the specified Replay. Each `Replay` is available for at least 7 days.",
+                  "flatPath": "v1beta/organizations/{organizationsId}/locations/{locationsId}/replays/{replaysId}",
+                  "httpMethod": "GET",
+                  "id": "policysimulator.organizations.locations.replays.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the Replay to retrieve, in the following format: `{projects|folders|organizations}/{resource-id}/locations/global/replays/{replay-id}`, where `{resource-id}` is the ID of the project, folder, or organization that owns the `Replay`. Example: `projects/my-example-project/locations/global/replays/506a5f7f-38ce-4d7d-8e03-479ce1833c36`",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+/replays/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudPolicysimulatorV1betaReplay"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists each Replay in a project, folder, or organization. Each `Replay` is available for at least 7 days.",
+                  "flatPath": "v1beta/organizations/{organizationsId}/locations/{locationsId}/replays",
+                  "httpMethod": "GET",
+                  "id": "policysimulator.organizations.locations.replays.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "The maximum number of Replay objects to return. Defaults to 50. The maximum value is 1000; values above 1000 are rounded down to 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "A page token, received from a previous Simulator.ListReplays call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to Simulator.ListReplays must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent resource, in the following format: `{projects|folders|organizations}/{resource-id}/locations/global`, where `{resource-id}` is the ID of the project, folder, or organization that owns the Replay. Example: `projects/my-example-project/locations/global` Only `Replay` objects that are direct children of the provided parent are listed. In other words, `Replay` objects that are children of a project will not be included when the parent is a folder of that project.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta/{+parent}/replays",
+                  "response": {
+                    "$ref": "GoogleCloudPolicysimulatorV1betaListReplaysResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              },
               "resources": {
                 "operations": {
                   "methods": {
@@ -398,6 +784,46 @@
                       ]
                     }
                   }
+                },
+                "results": {
+                  "methods": {
+                    "list": {
+                      "description": "Lists the results of running a Replay.",
+                      "flatPath": "v1beta/organizations/{organizationsId}/locations/{locationsId}/replays/{replaysId}/results",
+                      "httpMethod": "GET",
+                      "id": "policysimulator.organizations.locations.replays.results.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "pageSize": {
+                          "description": "The maximum number of ReplayResult objects to return. Defaults to 5000. The maximum value is 5000; values above 5000 are rounded down to 5000.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "A page token, received from a previous Simulator.ListReplayResults call. Provide this token to retrieve the next page of results. When paginating, all other parameters provided to [Simulator.ListReplayResults[] must match the call that provided the page token.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The Replay whose results are listed, in the following format: `{projects|folders|organizations}/{resource-id}/locations/global/replays/{replay-id}` Example: `projects/my-project/locations/global/replays/506a5f7f-38ce-4d7d-8e03-479ce1833c36`",
+                          "location": "path",
+                          "pattern": "^organizations/[^/]+/locations/[^/]+/replays/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta/{+parent}/results",
+                      "response": {
+                        "$ref": "GoogleCloudPolicysimulatorV1betaListReplayResultsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
                 }
               }
             }
@@ -443,6 +869,97 @@
               }
             },
             "replays": {
+              "methods": {
+                "create": {
+                  "description": "Creates and starts a Replay using the given ReplayConfig.",
+                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/replays",
+                  "httpMethod": "POST",
+                  "id": "policysimulator.projects.locations.replays.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent resource where this Replay will be created. This resource must be a project, folder, or organization with a location. Example: `projects/my-example-project/locations/global`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta/{+parent}/replays",
+                  "request": {
+                    "$ref": "GoogleCloudPolicysimulatorV1betaReplay"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets the specified Replay. Each `Replay` is available for at least 7 days.",
+                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/replays/{replaysId}",
+                  "httpMethod": "GET",
+                  "id": "policysimulator.projects.locations.replays.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the Replay to retrieve, in the following format: `{projects|folders|organizations}/{resource-id}/locations/global/replays/{replay-id}`, where `{resource-id}` is the ID of the project, folder, or organization that owns the `Replay`. Example: `projects/my-example-project/locations/global/replays/506a5f7f-38ce-4d7d-8e03-479ce1833c36`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/replays/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudPolicysimulatorV1betaReplay"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists each Replay in a project, folder, or organization. Each `Replay` is available for at least 7 days.",
+                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/replays",
+                  "httpMethod": "GET",
+                  "id": "policysimulator.projects.locations.replays.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "The maximum number of Replay objects to return. Defaults to 50. The maximum value is 1000; values above 1000 are rounded down to 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "A page token, received from a previous Simulator.ListReplays call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to Simulator.ListReplays must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent resource, in the following format: `{projects|folders|organizations}/{resource-id}/locations/global`, where `{resource-id}` is the ID of the project, folder, or organization that owns the Replay. Example: `projects/my-example-project/locations/global` Only `Replay` objects that are direct children of the provided parent are listed. In other words, `Replay` objects that are children of a project will not be included when the parent is a folder of that project.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta/{+parent}/replays",
+                  "response": {
+                    "$ref": "GoogleCloudPolicysimulatorV1betaListReplaysResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              },
               "resources": {
                 "operations": {
                   "methods": {
@@ -513,6 +1030,46 @@
                       ]
                     }
                   }
+                },
+                "results": {
+                  "methods": {
+                    "list": {
+                      "description": "Lists the results of running a Replay.",
+                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/replays/{replaysId}/results",
+                      "httpMethod": "GET",
+                      "id": "policysimulator.projects.locations.replays.results.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "pageSize": {
+                          "description": "The maximum number of ReplayResult objects to return. Defaults to 5000. The maximum value is 5000; values above 5000 are rounded down to 5000.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "A page token, received from a previous Simulator.ListReplayResults call. Provide this token to retrieve the next page of results. When paginating, all other parameters provided to [Simulator.ListReplayResults[] must match the call that provided the page token.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The Replay whose results are listed, in the following format: `{projects|folders|organizations}/{resource-id}/locations/global/replays/{replay-id}` Example: `projects/my-project/locations/global/replays/506a5f7f-38ce-4d7d-8e03-479ce1833c36`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/replays/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta/{+parent}/results",
+                      "response": {
+                        "$ref": "GoogleCloudPolicysimulatorV1betaListReplayResultsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
                 }
               }
             }
@@ -521,9 +1078,213 @@
       }
     }
   },
-  "revision": "20250323",
+  "revision": "20250614",
   "rootUrl": "https://policysimulator.googleapis.com/",
   "schemas": {
+    "GoogleCloudOrgpolicyV2AlternatePolicySpec": {
+      "description": "Similar to PolicySpec but with an extra 'launch' field for launch reference. The PolicySpec here is specific for dry-run.",
+      "id": "GoogleCloudOrgpolicyV2AlternatePolicySpec",
+      "properties": {
+        "launch": {
+          "description": "Reference to the launch that will be used while audit logging and to control the launch. Should be set only in the alternate policy.",
+          "type": "string"
+        },
+        "spec": {
+          "$ref": "GoogleCloudOrgpolicyV2PolicySpec",
+          "description": "Specify constraint for configurations of Google Cloud resources."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudOrgpolicyV2CustomConstraint": {
+      "description": "A custom constraint defined by customers which can *only* be applied to the given resource types and organization. By creating a custom constraint, customers can apply policies of this custom constraint. *Creating a custom constraint itself does NOT apply any policy enforcement*.",
+      "id": "GoogleCloudOrgpolicyV2CustomConstraint",
+      "properties": {
+        "actionType": {
+          "description": "Allow or deny type.",
+          "enum": [
+            "ACTION_TYPE_UNSPECIFIED",
+            "ALLOW",
+            "DENY"
+          ],
+          "enumDescriptions": [
+            "This is only used for distinguishing unset values and should never be used. Results in an error.",
+            "Allowed action type.",
+            "Deny action type."
+          ],
+          "type": "string"
+        },
+        "condition": {
+          "description": "A Common Expression Language (CEL) condition which is used in the evaluation of the constraint. For example: `resource.instanceName.matches(\"[production|test]_.*_(\\d)+\")` or, `resource.management.auto_upgrade == true` The max length of the condition is 1000 characters.",
+          "type": "string"
+        },
+        "description": {
+          "description": "Detailed information about this custom policy constraint. The max length of the description is 2000 characters.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "One line display name for the UI. The max length of the display_name is 200 characters.",
+          "type": "string"
+        },
+        "methodTypes": {
+          "description": "All the operations being applied for this constraint.",
+          "items": {
+            "enum": [
+              "METHOD_TYPE_UNSPECIFIED",
+              "CREATE",
+              "UPDATE",
+              "DELETE",
+              "REMOVE_GRANT",
+              "GOVERN_TAGS"
+            ],
+            "enumDescriptions": [
+              "This is only used for distinguishing unset values and should never be used. Results in an error.",
+              "Constraint applied when creating the resource.",
+              "Constraint applied when updating the resource.",
+              "Constraint applied when deleting the resource. Not currently supported.",
+              "Constraint applied when removing an IAM grant.",
+              "Constraint applied when enforcing forced tagging."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "Immutable. Name of the constraint. This is unique within the organization. Format of the name should be * `organizations/{organization_id}/customConstraints/{custom_constraint_id}` Example: `organizations/123/customConstraints/custom.createOnlyE2TypeVms` The max length is 70 characters and the minimum length is 1. Note that the prefix `organizations/{organization_id}/customConstraints/` is not counted.",
+          "type": "string"
+        },
+        "resourceTypes": {
+          "description": "Immutable. The resource instance type on which this policy applies. Format will be of the form : `/` Example: * `compute.googleapis.com/Instance`.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "updateTime": {
+          "description": "Output only. The last time this custom constraint was updated. This represents the last time that the `CreateCustomConstraint` or `UpdateCustomConstraint` methods were called.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudOrgpolicyV2Policy": {
+      "description": "Defines an organization policy which is used to specify constraints for configurations of Google Cloud resources.",
+      "id": "GoogleCloudOrgpolicyV2Policy",
+      "properties": {
+        "alternate": {
+          "$ref": "GoogleCloudOrgpolicyV2AlternatePolicySpec",
+          "deprecated": true,
+          "description": "Deprecated."
+        },
+        "dryRunSpec": {
+          "$ref": "GoogleCloudOrgpolicyV2PolicySpec",
+          "description": "Dry-run policy. Audit-only policy, can be used to monitor how the policy would have impacted the existing and future resources if it's enforced."
+        },
+        "etag": {
+          "description": "Optional. An opaque tag indicating the current state of the policy, used for concurrency control. This 'etag' is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Immutable. The resource name of the policy. Must be one of the following forms, where `constraint_name` is the name of the constraint which this policy configures: * `projects/{project_number}/policies/{constraint_name}` * `folders/{folder_id}/policies/{constraint_name}` * `organizations/{organization_id}/policies/{constraint_name}` For example, `projects/123/policies/compute.disableSerialPortAccess`. Note: `projects/{project_id}/policies/{constraint_name}` is also an acceptable name for API requests, but responses will return the name using the equivalent project number.",
+          "type": "string"
+        },
+        "spec": {
+          "$ref": "GoogleCloudOrgpolicyV2PolicySpec",
+          "description": "Basic information about the organization policy."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudOrgpolicyV2PolicySpec": {
+      "description": "Defines a Google Cloud policy specification which is used to specify constraints for configurations of Google Cloud resources.",
+      "id": "GoogleCloudOrgpolicyV2PolicySpec",
+      "properties": {
+        "etag": {
+          "description": "An opaque tag indicating the current version of the policySpec, used for concurrency control. This field is ignored if used in a `CreatePolicy` request. When the policy is returned from either a `GetPolicy` or a `ListPolicies` request, this `etag` indicates the version of the current policySpec to use when executing a read-modify-write loop. When the policy is returned from a `GetEffectivePolicy` request, the `etag` will be unset.",
+          "type": "string"
+        },
+        "inheritFromParent": {
+          "description": "Determines the inheritance behavior for this policy. If `inherit_from_parent` is true, policy rules set higher up in the hierarchy (up to the closest root) are inherited and present in the effective policy. If it is false, then no rules are inherited, and this policy becomes the new root for evaluation. This field can be set only for policies which configure list constraints.",
+          "type": "boolean"
+        },
+        "reset": {
+          "description": "Ignores policies set above this resource and restores the `constraint_default` enforcement behavior of the specific constraint at this resource. This field can be set in policies for either list or boolean constraints. If set, `rules` must be empty and `inherit_from_parent` must be set to false.",
+          "type": "boolean"
+        },
+        "rules": {
+          "description": "In policies for boolean constraints, the following requirements apply: - There must be one and only one policy rule where condition is unset. - Boolean policy rules with conditions must set `enforced` to the opposite of the policy rule without a condition. - During policy evaluation, policy rules with conditions that are true for a target resource take precedence.",
+          "items": {
+            "$ref": "GoogleCloudOrgpolicyV2PolicySpecPolicyRule"
+          },
+          "type": "array"
+        },
+        "updateTime": {
+          "description": "Output only. The time stamp this was previously updated. This represents the last time a call to `CreatePolicy` or `UpdatePolicy` was made for that policy.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudOrgpolicyV2PolicySpecPolicyRule": {
+      "description": "A rule used to express this policy.",
+      "id": "GoogleCloudOrgpolicyV2PolicySpecPolicyRule",
+      "properties": {
+        "allowAll": {
+          "description": "Setting this to true means that all values are allowed. This field can be set only in policies for list constraints.",
+          "type": "boolean"
+        },
+        "condition": {
+          "$ref": "GoogleTypeExpr",
+          "description": "A condition which determines whether this rule is used in the evaluation of the policy. When set, the `expression` field in the `Expr' must include from 1 to 10 subexpressions, joined by the \"||\" or \"&&\" operators. Each subexpression must be of the form \"resource.matchTag('/tag_key_short_name, 'tag_value_short_name')\". or \"resource.matchTagId('tagKeys/key_id', 'tagValues/value_id')\". where key_name and value_name are the resource names for Label Keys and Values. These names are available from the Tag Manager Service. An example expression is: \"resource.matchTag('123456789/environment, 'prod')\". or \"resource.matchTagId('tagKeys/123', 'tagValues/456')\"."
+        },
+        "denyAll": {
+          "description": "Setting this to true means that all values are denied. This field can be set only in policies for list constraints.",
+          "type": "boolean"
+        },
+        "enforce": {
+          "description": "If `true`, then the policy is enforced. If `false`, then any configuration is acceptable. This field can be set in policies for boolean constraints, custom constraints and managed constraints.",
+          "type": "boolean"
+        },
+        "parameters": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. Required for managed constraints if parameters are defined. Passes parameter values when policy enforcement is enabled. Ensure that parameter value types match those defined in the constraint definition. For example: { \"allowedLocations\" : [\"us-east1\", \"us-west1\"], \"allowAll\" : true }",
+          "type": "object"
+        },
+        "values": {
+          "$ref": "GoogleCloudOrgpolicyV2PolicySpecPolicyRuleStringValues",
+          "description": "List of values to be used for this policy rule. This field can be set only in policies for list constraints."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudOrgpolicyV2PolicySpecPolicyRuleStringValues": {
+      "description": "A message that holds specific allowed and denied values. This message can define specific values and subtrees of the Resource Manager resource hierarchy (`Organizations`, `Folders`, `Projects`) that are allowed or denied. This is achieved by using the `under:` and optional `is:` prefixes. The `under:` prefix is used to denote resource subtree values. The `is:` prefix is used to denote specific values, and is required only if the value contains a \":\". Values prefixed with \"is:\" are treated the same as values with no prefix. Ancestry subtrees must be in one of the following formats: - `projects/` (for example, `projects/tokyo-rain-123`) - `folders/` (for example, `folders/1234`) - `organizations/` (for example, `organizations/1234`) The `supports_under` field of the associated `Constraint` defines whether ancestry prefixes can be used.",
+      "id": "GoogleCloudOrgpolicyV2PolicySpecPolicyRuleStringValues",
+      "properties": {
+        "allowedValues": {
+          "description": "List of values allowed at this resource.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "deniedValues": {
+          "description": "List of values denied at this resource.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudPolicysimulatorV1Replay": {
       "description": "A resource describing a `Replay`, or simulation.",
       "id": "GoogleCloudPolicysimulatorV1Replay",
@@ -633,6 +1394,787 @@
           "description": "The number of replayed log entries with no difference between baseline and simulated policies.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudPolicysimulatorV1betaAccessStateDiff": {
+      "description": "A summary and comparison of the principal's access under the current (baseline) policies and the proposed (simulated) policies for a single access tuple.",
+      "id": "GoogleCloudPolicysimulatorV1betaAccessStateDiff",
+      "properties": {
+        "accessChange": {
+          "description": "How the principal's access, specified in the AccessState field, changed between the current (baseline) policies and proposed (simulated) policies.",
+          "enum": [
+            "ACCESS_CHANGE_TYPE_UNSPECIFIED",
+            "NO_CHANGE",
+            "UNKNOWN_CHANGE",
+            "ACCESS_REVOKED",
+            "ACCESS_GAINED",
+            "ACCESS_MAYBE_REVOKED",
+            "ACCESS_MAYBE_GAINED"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "The principal's access did not change. This includes the case where both baseline and simulated are UNKNOWN, but the unknown information is equivalent.",
+            "The principal's access under both the current policies and the proposed policies is `UNKNOWN`, but the unknown information differs between them.",
+            "The principal had access under the current policies (`GRANTED`), but will no longer have access after the proposed changes (`NOT_GRANTED`).",
+            "The principal did not have access under the current policies (`NOT_GRANTED`), but will have access after the proposed changes (`GRANTED`).",
+            "This result can occur for the following reasons: * The principal had access under the current policies (`GRANTED`), but their access after the proposed changes is `UNKNOWN`. * The principal's access under the current policies is `UNKNOWN`, but they will not have access after the proposed changes (`NOT_GRANTED`).",
+            "This result can occur for the following reasons: * The principal did not have access under the current policies (`NOT_GRANTED`), but their access after the proposed changes is `UNKNOWN`. * The principal's access under the current policies is `UNKNOWN`, but they will have access after the proposed changes (`GRANTED`)."
+          ],
+          "type": "string"
+        },
+        "baseline": {
+          "$ref": "GoogleCloudPolicysimulatorV1betaExplainedAccess",
+          "description": "The results of evaluating the access tuple under the current (baseline) policies. If the AccessState couldn't be fully evaluated, this field explains why."
+        },
+        "simulated": {
+          "$ref": "GoogleCloudPolicysimulatorV1betaExplainedAccess",
+          "description": "The results of evaluating the access tuple under the proposed (simulated) policies. If the AccessState couldn't be fully evaluated, this field explains why."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudPolicysimulatorV1betaAccessTuple": {
+      "description": "Information about the principal, resource, and permission to check.",
+      "id": "GoogleCloudPolicysimulatorV1betaAccessTuple",
+      "properties": {
+        "fullResourceName": {
+          "description": "Required. The full resource name that identifies the resource. For example, `//compute.googleapis.com/projects/my-project/zones/us-central1-a/instances/my-instance`. For examples of full resource names for Google Cloud services, see https://cloud.google.com/iam/help/troubleshooter/full-resource-names.",
+          "type": "string"
+        },
+        "permission": {
+          "description": "Required. The IAM permission to check for the specified principal and resource. For a complete list of IAM permissions, see https://cloud.google.com/iam/help/permissions/reference. For a complete list of predefined IAM roles and the permissions in each role, see https://cloud.google.com/iam/help/roles/reference.",
+          "type": "string"
+        },
+        "principal": {
+          "description": "Required. The principal whose access you want to check, in the form of the email address that represents that principal. For example, `alice@example.com` or `my-service-account@my-project.iam.gserviceaccount.com`. The principal must be a Google Account or a service account. Other types of principals are not supported.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudPolicysimulatorV1betaBindingExplanation": {
+      "description": "Details about how a binding in a policy affects a principal's ability to use a permission.",
+      "id": "GoogleCloudPolicysimulatorV1betaBindingExplanation",
+      "properties": {
+        "access": {
+          "description": "Required. Indicates whether _this binding_ provides the specified permission to the specified principal for the specified resource. This field does _not_ indicate whether the principal actually has the permission for the resource. There might be another binding that overrides this binding. To determine whether the principal actually has the permission, use the `access` field in the TroubleshootIamPolicyResponse.",
+          "enum": [
+            "ACCESS_STATE_UNSPECIFIED",
+            "GRANTED",
+            "NOT_GRANTED",
+            "UNKNOWN_CONDITIONAL",
+            "UNKNOWN_INFO_DENIED"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "The principal has the permission.",
+            "The principal does not have the permission.",
+            "The principal has the permission only if a condition expression evaluates to `true`.",
+            "The user who created the Replay does not have access to all of the policies that Policy Simulator needs to evaluate."
+          ],
+          "type": "string"
+        },
+        "condition": {
+          "$ref": "GoogleTypeExpr",
+          "description": "A condition expression that prevents this binding from granting access unless the expression evaluates to `true`. To learn about IAM Conditions, see https://cloud.google.com/iam/docs/conditions-overview."
+        },
+        "memberships": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudPolicysimulatorV1betaBindingExplanationAnnotatedMembership"
+          },
+          "description": "Indicates whether each principal in the binding includes the principal specified in the request, either directly or indirectly. Each key identifies a principal in the binding, and each value indicates whether the principal in the binding includes the principal in the request. For example, suppose that a binding includes the following principals: * `user:alice@example.com` * `group:product-eng@example.com` The principal in the replayed access tuple is `user:bob@example.com`. This user is a principal of the group `group:product-eng@example.com`. For the first principal in the binding, the key is `user:alice@example.com`, and the `membership` field in the value is set to `MEMBERSHIP_NOT_INCLUDED`. For the second principal in the binding, the key is `group:product-eng@example.com`, and the `membership` field in the value is set to `MEMBERSHIP_INCLUDED`.",
+          "type": "object"
+        },
+        "relevance": {
+          "description": "The relevance of this binding to the overall determination for the entire policy.",
+          "enum": [
+            "HEURISTIC_RELEVANCE_UNSPECIFIED",
+            "NORMAL",
+            "HIGH"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "The data point has a limited effect on the result. Changing the data point is unlikely to affect the overall determination.",
+            "The data point has a strong effect on the result. Changing the data point is likely to affect the overall determination."
+          ],
+          "type": "string"
+        },
+        "role": {
+          "description": "The role that this binding grants. For example, `roles/compute.serviceAgent`. For a complete list of predefined IAM roles, as well as the permissions in each role, see https://cloud.google.com/iam/help/roles/reference.",
+          "type": "string"
+        },
+        "rolePermission": {
+          "description": "Indicates whether the role granted by this binding contains the specified permission.",
+          "enum": [
+            "ROLE_PERMISSION_UNSPECIFIED",
+            "ROLE_PERMISSION_INCLUDED",
+            "ROLE_PERMISSION_NOT_INCLUDED",
+            "ROLE_PERMISSION_UNKNOWN_INFO_DENIED"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "The permission is included in the role.",
+            "The permission is not included in the role.",
+            "The user who created the Replay is not allowed to access the binding."
+          ],
+          "type": "string"
+        },
+        "rolePermissionRelevance": {
+          "description": "The relevance of the permission's existence, or nonexistence, in the role to the overall determination for the entire policy.",
+          "enum": [
+            "HEURISTIC_RELEVANCE_UNSPECIFIED",
+            "NORMAL",
+            "HIGH"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "The data point has a limited effect on the result. Changing the data point is unlikely to affect the overall determination.",
+            "The data point has a strong effect on the result. Changing the data point is likely to affect the overall determination."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudPolicysimulatorV1betaBindingExplanationAnnotatedMembership": {
+      "description": "Details about whether the binding includes the principal.",
+      "id": "GoogleCloudPolicysimulatorV1betaBindingExplanationAnnotatedMembership",
+      "properties": {
+        "membership": {
+          "description": "Indicates whether the binding includes the principal.",
+          "enum": [
+            "MEMBERSHIP_UNSPECIFIED",
+            "MEMBERSHIP_INCLUDED",
+            "MEMBERSHIP_NOT_INCLUDED",
+            "MEMBERSHIP_UNKNOWN_INFO_DENIED",
+            "MEMBERSHIP_UNKNOWN_UNSUPPORTED"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "The binding includes the principal. The principal can be included directly or indirectly. For example: * A principal is included directly if that principal is listed in the binding. * A principal is included indirectly if that principal is in a Google group or Google Workspace domain that is listed in the binding.",
+            "The binding does not include the principal.",
+            "The user who created the Replay is not allowed to access the binding.",
+            "The principal is an unsupported type. Only Google Accounts and service accounts are supported."
+          ],
+          "type": "string"
+        },
+        "relevance": {
+          "description": "The relevance of the principal's status to the overall determination for the binding.",
+          "enum": [
+            "HEURISTIC_RELEVANCE_UNSPECIFIED",
+            "NORMAL",
+            "HIGH"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "The data point has a limited effect on the result. Changing the data point is unlikely to affect the overall determination.",
+            "The data point has a strong effect on the result. Changing the data point is likely to affect the overall determination."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudPolicysimulatorV1betaCreateOrgPolicyViolationsPreviewOperationMetadata": {
+      "description": "CreateOrgPolicyViolationsPreviewOperationMetadata is metadata about an OrgPolicyViolationsPreview generations operation.",
+      "id": "GoogleCloudPolicysimulatorV1betaCreateOrgPolicyViolationsPreviewOperationMetadata",
+      "properties": {
+        "requestTime": {
+          "description": "Time when the request was received.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "resourcesFound": {
+          "description": "Total number of resources that need scanning. Should equal resource_scanned + resources_pending",
+          "format": "int32",
+          "type": "integer"
+        },
+        "resourcesPending": {
+          "description": "Number of resources still to scan.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "resourcesScanned": {
+          "description": "Number of resources already scanned.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "startTime": {
+          "description": "Time when the request started processing, i.e., when the state was set to RUNNING.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The current state of the operation.",
+          "enum": [
+            "PREVIEW_STATE_UNSPECIFIED",
+            "PREVIEW_PENDING",
+            "PREVIEW_RUNNING",
+            "PREVIEW_SUCCEEDED",
+            "PREVIEW_FAILED"
+          ],
+          "enumDescriptions": [
+            "The state is unspecified.",
+            "The OrgPolicyViolationsPreview has not been created yet.",
+            "The OrgPolicyViolationsPreview is currently being created.",
+            "The OrgPolicyViolationsPreview creation finished successfully.",
+            "The OrgPolicyViolationsPreview creation failed with an error."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudPolicysimulatorV1betaExplainedAccess": {
+      "description": "Details about how a set of policies, listed in ExplainedPolicy, resulted in a certain AccessState when replaying an access tuple.",
+      "id": "GoogleCloudPolicysimulatorV1betaExplainedAccess",
+      "properties": {
+        "accessState": {
+          "description": "Whether the principal in the access tuple has permission to access the resource in the access tuple under the given policies.",
+          "enum": [
+            "ACCESS_STATE_UNSPECIFIED",
+            "GRANTED",
+            "NOT_GRANTED",
+            "UNKNOWN_CONDITIONAL",
+            "UNKNOWN_INFO_DENIED"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "The principal has the permission.",
+            "The principal does not have the permission.",
+            "The principal has the permission only if a condition expression evaluates to `true`.",
+            "The user who created the Replay does not have access to all of the policies that Policy Simulator needs to evaluate."
+          ],
+          "type": "string"
+        },
+        "errors": {
+          "description": "If the AccessState is `UNKNOWN`, this field contains a list of errors explaining why the result is `UNKNOWN`. If the `AccessState` is `GRANTED` or `NOT_GRANTED`, this field is omitted.",
+          "items": {
+            "$ref": "GoogleRpcStatus"
+          },
+          "type": "array"
+        },
+        "policies": {
+          "description": "If the AccessState is `UNKNOWN`, this field contains the policies that led to that result. If the `AccessState` is `GRANTED` or `NOT_GRANTED`, this field is omitted.",
+          "items": {
+            "$ref": "GoogleCloudPolicysimulatorV1betaExplainedPolicy"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudPolicysimulatorV1betaExplainedPolicy": {
+      "description": "Details about how a specific IAM Policy contributed to the access check.",
+      "id": "GoogleCloudPolicysimulatorV1betaExplainedPolicy",
+      "properties": {
+        "access": {
+          "description": "Indicates whether _this policy_ provides the specified permission to the specified principal for the specified resource. This field does _not_ indicate whether the principal actually has the permission for the resource. There might be another policy that overrides this policy. To determine whether the principal actually has the permission, use the `access` field in the TroubleshootIamPolicyResponse.",
+          "enum": [
+            "ACCESS_STATE_UNSPECIFIED",
+            "GRANTED",
+            "NOT_GRANTED",
+            "UNKNOWN_CONDITIONAL",
+            "UNKNOWN_INFO_DENIED"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "The principal has the permission.",
+            "The principal does not have the permission.",
+            "The principal has the permission only if a condition expression evaluates to `true`.",
+            "The user who created the Replay does not have access to all of the policies that Policy Simulator needs to evaluate."
+          ],
+          "type": "string"
+        },
+        "bindingExplanations": {
+          "description": "Details about how each binding in the policy affects the principal's ability, or inability, to use the permission for the resource. If the user who created the Replay does not have access to the policy, this field is omitted.",
+          "items": {
+            "$ref": "GoogleCloudPolicysimulatorV1betaBindingExplanation"
+          },
+          "type": "array"
+        },
+        "fullResourceName": {
+          "description": "The full resource name that identifies the resource. For example, `//compute.googleapis.com/projects/my-project/zones/us-central1-a/instances/my-instance`. If the user who created the Replay does not have access to the policy, this field is omitted. For examples of full resource names for Google Cloud services, see https://cloud.google.com/iam/help/troubleshooter/full-resource-names.",
+          "type": "string"
+        },
+        "policy": {
+          "$ref": "GoogleIamV1Policy",
+          "description": "The IAM policy attached to the resource. If the user who created the Replay does not have access to the policy, this field is empty."
+        },
+        "relevance": {
+          "description": "The relevance of this policy to the overall determination in the TroubleshootIamPolicyResponse. If the user who created the Replay does not have access to the policy, this field is omitted.",
+          "enum": [
+            "HEURISTIC_RELEVANCE_UNSPECIFIED",
+            "NORMAL",
+            "HIGH"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "The data point has a limited effect on the result. Changing the data point is unlikely to affect the overall determination.",
+            "The data point has a strong effect on the result. Changing the data point is likely to affect the overall determination."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudPolicysimulatorV1betaGenerateOrgPolicyViolationsPreviewOperationMetadata": {
+      "description": "GenerateOrgPolicyViolationsPreviewOperationMetadata is metadata about an OrgPolicyViolationsPreview generations operation.",
+      "id": "GoogleCloudPolicysimulatorV1betaGenerateOrgPolicyViolationsPreviewOperationMetadata",
+      "properties": {
+        "requestTime": {
+          "description": "Time when the request was received.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "resourcesFound": {
+          "description": "Total number of resources that need scanning. Should equal resource_scanned + resources_pending",
+          "format": "int32",
+          "type": "integer"
+        },
+        "resourcesPending": {
+          "description": "Number of resources still to scan.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "resourcesScanned": {
+          "description": "Number of resources already scanned.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "startTime": {
+          "description": "Time when the request started processing, i.e. when the state was set to RUNNING.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "state": {
+          "description": "The current state of the operation.",
+          "enum": [
+            "PREVIEW_STATE_UNSPECIFIED",
+            "PREVIEW_PENDING",
+            "PREVIEW_RUNNING",
+            "PREVIEW_SUCCEEDED",
+            "PREVIEW_FAILED"
+          ],
+          "enumDescriptions": [
+            "The state is unspecified.",
+            "The OrgPolicyViolationsPreview has not been created yet.",
+            "The OrgPolicyViolationsPreview is currently being created.",
+            "The OrgPolicyViolationsPreview creation finished successfully.",
+            "The OrgPolicyViolationsPreview creation failed with an error."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudPolicysimulatorV1betaListOrgPolicyViolationsPreviewsResponse": {
+      "description": "ListOrgPolicyViolationsPreviewsResponse is the response message for OrgPolicyViolationsPreviewService.ListOrgPolicyViolationsPreviews.",
+      "id": "GoogleCloudPolicysimulatorV1betaListOrgPolicyViolationsPreviewsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token that you can use to retrieve the next page of results. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "orgPolicyViolationsPreviews": {
+          "description": "The list of OrgPolicyViolationsPreview",
+          "items": {
+            "$ref": "GoogleCloudPolicysimulatorV1betaOrgPolicyViolationsPreview"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudPolicysimulatorV1betaListOrgPolicyViolationsResponse": {
+      "description": "ListOrgPolicyViolationsResponse is the response message for OrgPolicyViolationsPreviewService.ListOrgPolicyViolations",
+      "id": "GoogleCloudPolicysimulatorV1betaListOrgPolicyViolationsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token that you can use to retrieve the next page of results. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "orgPolicyViolations": {
+          "description": "The list of OrgPolicyViolations",
+          "items": {
+            "$ref": "GoogleCloudPolicysimulatorV1betaOrgPolicyViolation"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudPolicysimulatorV1betaListReplayResultsResponse": {
+      "description": "Response message for Simulator.ListReplayResults.",
+      "id": "GoogleCloudPolicysimulatorV1betaListReplayResultsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token that you can use to retrieve the next page of ReplayResult objects. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "replayResults": {
+          "description": "The results of running a Replay.",
+          "items": {
+            "$ref": "GoogleCloudPolicysimulatorV1betaReplayResult"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudPolicysimulatorV1betaListReplaysResponse": {
+      "description": "Response message for Simulator.ListReplays.",
+      "id": "GoogleCloudPolicysimulatorV1betaListReplaysResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token that you can use to retrieve the next page of results. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "replays": {
+          "description": "The list of Replay objects.",
+          "items": {
+            "$ref": "GoogleCloudPolicysimulatorV1betaReplay"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudPolicysimulatorV1betaOrgPolicyOverlay": {
+      "description": "The proposed changes to OrgPolicy.",
+      "id": "GoogleCloudPolicysimulatorV1betaOrgPolicyOverlay",
+      "properties": {
+        "customConstraints": {
+          "description": "Optional. The OrgPolicy CustomConstraint changes to preview violations for. Any existing CustomConstraints with the same name will be overridden in the simulation. That is, violations will be determined as if all custom constraints in the overlay were instantiated. Only a single custom_constraint is supported in the overlay at a time. For evaluating multiple constraints, multiple `GenerateOrgPolicyViolationsPreview` requests are made, where each request evaluates a single constraint.",
+          "items": {
+            "$ref": "GoogleCloudPolicysimulatorV1betaOrgPolicyOverlayCustomConstraintOverlay"
+          },
+          "type": "array"
+        },
+        "policies": {
+          "description": "Optional. The OrgPolicy changes to preview violations for. Any existing OrgPolicies with the same name will be overridden in the simulation. That is, violations will be determined as if all policies in the overlay were created or updated.",
+          "items": {
+            "$ref": "GoogleCloudPolicysimulatorV1betaOrgPolicyOverlayPolicyOverlay"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudPolicysimulatorV1betaOrgPolicyOverlayCustomConstraintOverlay": {
+      "description": "A change to an OrgPolicy custom constraint.",
+      "id": "GoogleCloudPolicysimulatorV1betaOrgPolicyOverlayCustomConstraintOverlay",
+      "properties": {
+        "customConstraint": {
+          "$ref": "GoogleCloudOrgpolicyV2CustomConstraint",
+          "description": "Optional. The new or updated custom constraint."
+        },
+        "customConstraintParent": {
+          "description": "Optional. Resource the constraint is attached to. Example: \"organization/987654\"",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudPolicysimulatorV1betaOrgPolicyOverlayPolicyOverlay": {
+      "description": "A change to an OrgPolicy.",
+      "id": "GoogleCloudPolicysimulatorV1betaOrgPolicyOverlayPolicyOverlay",
+      "properties": {
+        "policy": {
+          "$ref": "GoogleCloudOrgpolicyV2Policy",
+          "description": "Optional. The new or updated OrgPolicy."
+        },
+        "policyParent": {
+          "description": "Optional. The parent of the policy we are attaching to. Example: \"projects/123456\"",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudPolicysimulatorV1betaOrgPolicyViolation": {
+      "description": "OrgPolicyViolation is a resource representing a single resource violating a single OrgPolicy constraint.",
+      "id": "GoogleCloudPolicysimulatorV1betaOrgPolicyViolation",
+      "properties": {
+        "customConstraint": {
+          "$ref": "GoogleCloudOrgpolicyV2CustomConstraint",
+          "description": "The custom constraint being violated."
+        },
+        "error": {
+          "$ref": "GoogleRpcStatus",
+          "description": "Any error encountered during the evaluation."
+        },
+        "name": {
+          "description": "The name of the `OrgPolicyViolation`. Example: organizations/my-example-org/locations/global/orgPolicyViolationsPreviews/506a5f7f/orgPolicyViolations/38ce`",
+          "type": "string"
+        },
+        "resource": {
+          "$ref": "GoogleCloudPolicysimulatorV1betaResourceContext",
+          "description": "The resource violating the constraint."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudPolicysimulatorV1betaOrgPolicyViolationsPreview": {
+      "description": "OrgPolicyViolationsPreview is a resource providing a preview of the violations that will exist if an OrgPolicy change is made. The list of violations are modeled as child resources and retrieved via a ListOrgPolicyViolations API call. There are potentially more OrgPolicyViolations than could fit in an embedded field. Thus, the use of a child resource instead of a field.",
+      "id": "GoogleCloudPolicysimulatorV1betaOrgPolicyViolationsPreview",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Time when this `OrgPolicyViolationsPreview` was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "customConstraints": {
+          "description": "Output only. The names of the constraints against which all `OrgPolicyViolations` were evaluated. If `OrgPolicyOverlay` only contains `PolicyOverlay` then it contains the name of the configured custom constraint, applicable to the specified policies. Otherwise it contains the name of the constraint specified in `CustomConstraintOverlay`. Format: `organizations/{organization_id}/customConstraints/{custom_constraint_id}` Example: `organizations/123/customConstraints/custom.createOnlyE2TypeVms`",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "name": {
+          "description": "Output only. The resource name of the `OrgPolicyViolationsPreview`. It has the following format: `organizations/{organization}/locations/{location}/orgPolicyViolationsPreviews/{orgPolicyViolationsPreview}` Example: `organizations/my-example-org/locations/global/orgPolicyViolationsPreviews/506a5f7f`",
+          "readOnly": true,
+          "type": "string"
+        },
+        "overlay": {
+          "$ref": "GoogleCloudPolicysimulatorV1betaOrgPolicyOverlay",
+          "description": "Required. The proposed changes we are previewing violations for."
+        },
+        "resourceCounts": {
+          "$ref": "GoogleCloudPolicysimulatorV1betaOrgPolicyViolationsPreviewResourceCounts",
+          "description": "Output only. A summary of the state of all resources scanned for compliance with the changed OrgPolicy.",
+          "readOnly": true
+        },
+        "state": {
+          "description": "Output only. The state of the `OrgPolicyViolationsPreview`.",
+          "enum": [
+            "PREVIEW_STATE_UNSPECIFIED",
+            "PREVIEW_PENDING",
+            "PREVIEW_RUNNING",
+            "PREVIEW_SUCCEEDED",
+            "PREVIEW_FAILED"
+          ],
+          "enumDescriptions": [
+            "The state is unspecified.",
+            "The OrgPolicyViolationsPreview has not been created yet.",
+            "The OrgPolicyViolationsPreview is currently being created.",
+            "The OrgPolicyViolationsPreview creation finished successfully.",
+            "The OrgPolicyViolationsPreview creation failed with an error."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "violationsCount": {
+          "description": "Output only. The number of OrgPolicyViolations in this `OrgPolicyViolationsPreview`. This count may differ from `resource_summary.noncompliant_count` because each OrgPolicyViolation is specific to a resource **and** constraint. If there are multiple constraints being evaluated (i.e. multiple policies in the overlay), a single resource may violate multiple constraints.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudPolicysimulatorV1betaOrgPolicyViolationsPreviewResourceCounts": {
+      "description": "A summary of the state of all resources scanned for compliance with the changed OrgPolicy.",
+      "id": "GoogleCloudPolicysimulatorV1betaOrgPolicyViolationsPreviewResourceCounts",
+      "properties": {
+        "compliant": {
+          "description": "Output only. Number of scanned resources with zero violations.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "errors": {
+          "description": "Output only. Number of resources that returned an error when scanned.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "noncompliant": {
+          "description": "Output only. Number of scanned resources with at least one violation.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "scanned": {
+          "description": "Output only. Number of resources checked for compliance. Must equal: unenforced + noncompliant + compliant + error",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "unenforced": {
+          "description": "Output only. Number of resources where the constraint was not enforced, i.e. the Policy set `enforced: false` for that resource.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudPolicysimulatorV1betaReplay": {
+      "description": "A resource describing a `Replay`, or simulation.",
+      "id": "GoogleCloudPolicysimulatorV1betaReplay",
+      "properties": {
+        "config": {
+          "$ref": "GoogleCloudPolicysimulatorV1betaReplayConfig",
+          "description": "Required. The configuration used for the `Replay`."
+        },
+        "name": {
+          "description": "Output only. The resource name of the `Replay`, which has the following format: `{projects|folders|organizations}/{resource-id}/locations/global/replays/{replay-id}`, where `{resource-id}` is the ID of the project, folder, or organization that owns the Replay. Example: `projects/my-example-project/locations/global/replays/506a5f7f-38ce-4d7d-8e03-479ce1833c36`",
+          "readOnly": true,
+          "type": "string"
+        },
+        "resultsSummary": {
+          "$ref": "GoogleCloudPolicysimulatorV1betaReplayResultsSummary",
+          "description": "Output only. Summary statistics about the replayed log entries.",
+          "readOnly": true
+        },
+        "state": {
+          "description": "Output only. The current state of the `Replay`.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "PENDING",
+            "RUNNING",
+            "SUCCEEDED",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "The `Replay` has not started yet.",
+            "The `Replay` is currently running.",
+            "The `Replay` has successfully completed.",
+            "The `Replay` has finished with an error."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudPolicysimulatorV1betaReplayConfig": {
+      "description": "The configuration used for a Replay.",
+      "id": "GoogleCloudPolicysimulatorV1betaReplayConfig",
+      "properties": {
+        "logSource": {
+          "description": "The logs to use as input for the Replay.",
+          "enum": [
+            "LOG_SOURCE_UNSPECIFIED",
+            "RECENT_ACCESSES"
+          ],
+          "enumDescriptions": [
+            "An unspecified log source. If the log source is unspecified, the Replay defaults to using `RECENT_ACCESSES`.",
+            "All access logs from the last 90 days. These logs may not include logs from the most recent 7 days."
+          ],
+          "type": "string"
+        },
+        "policyOverlay": {
+          "additionalProperties": {
+            "$ref": "GoogleIamV1Policy"
+          },
+          "description": "A mapping of the resources that you want to simulate policies for and the policies that you want to simulate. Keys are the full resource names for the resources. For example, `//cloudresourcemanager.googleapis.com/projects/my-project`. For examples of full resource names for Google Cloud services, see https://cloud.google.com/iam/help/troubleshooter/full-resource-names. Values are Policy objects representing the policies that you want to simulate. Replays automatically take into account any IAM policies inherited through the resource hierarchy, and any policies set on descendant resources. You do not need to include these policies in the policy overlay.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudPolicysimulatorV1betaReplayDiff": {
+      "description": "The difference between the results of evaluating an access tuple under the current (baseline) policies and under the proposed (simulated) policies. This difference explains how a principal's access could change if the proposed policies were applied.",
+      "id": "GoogleCloudPolicysimulatorV1betaReplayDiff",
+      "properties": {
+        "accessDiff": {
+          "$ref": "GoogleCloudPolicysimulatorV1betaAccessStateDiff",
+          "description": "A summary and comparison of the principal's access under the current (baseline) policies and the proposed (simulated) policies for a single access tuple. The evaluation of the principal's access is reported in the AccessState field."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudPolicysimulatorV1betaReplayResult": {
+      "description": "The result of replaying a single access tuple against a simulated state.",
+      "id": "GoogleCloudPolicysimulatorV1betaReplayResult",
+      "properties": {
+        "accessTuple": {
+          "$ref": "GoogleCloudPolicysimulatorV1betaAccessTuple",
+          "description": "The access tuple that was replayed. This field includes information about the principal, resource, and permission that were involved in the access attempt."
+        },
+        "diff": {
+          "$ref": "GoogleCloudPolicysimulatorV1betaReplayDiff",
+          "description": "The difference between the principal's access under the current (baseline) policies and the principal's access under the proposed (simulated) policies. This field is only included for access tuples that were successfully replayed and had different results under the current policies and the proposed policies."
+        },
+        "error": {
+          "$ref": "GoogleRpcStatus",
+          "description": "The error that caused the access tuple replay to fail. This field is only included for access tuples that were not replayed successfully."
+        },
+        "lastSeenDate": {
+          "$ref": "GoogleTypeDate",
+          "description": "The latest date this access tuple was seen in the logs."
+        },
+        "name": {
+          "description": "The resource name of the `ReplayResult`, in the following format: `{projects|folders|organizations}/{resource-id}/locations/global/replays/{replay-id}/results/{replay-result-id}`, where `{resource-id}` is the ID of the project, folder, or organization that owns the Replay. Example: `projects/my-example-project/locations/global/replays/506a5f7f-38ce-4d7d-8e03-479ce1833c36/results/1234`",
+          "type": "string"
+        },
+        "parent": {
+          "description": "The Replay that the access tuple was included in.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudPolicysimulatorV1betaReplayResultsSummary": {
+      "description": "Summary statistics about the replayed log entries.",
+      "id": "GoogleCloudPolicysimulatorV1betaReplayResultsSummary",
+      "properties": {
+        "differenceCount": {
+          "description": "The number of replayed log entries with a difference between baseline and simulated policies.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "errorCount": {
+          "description": "The number of log entries that could not be replayed.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "logCount": {
+          "description": "The total number of log entries replayed.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "newestDate": {
+          "$ref": "GoogleTypeDate",
+          "description": "The date of the newest log entry replayed."
+        },
+        "oldestDate": {
+          "$ref": "GoogleTypeDate",
+          "description": "The date of the oldest log entry replayed."
+        },
+        "unchangedCount": {
+          "description": "The number of replayed log entries with no difference between baseline and simulated policies.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudPolicysimulatorV1betaResourceContext": {
+      "description": "ResourceContext provides the context we know about a resource. It is similar in concept to google.cloud.asset.v1.Resource, but focuses on the information specifically used by Simulator.",
+      "id": "GoogleCloudPolicysimulatorV1betaResourceContext",
+      "properties": {
+        "ancestors": {
+          "description": "The ancestry path of the resource in Google Cloud [resource hierarchy](https://cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy), represented as a list of relative resource names. An ancestry path starts with the closest ancestor in the hierarchy and ends at root. If the resource is a project, folder, or organization, the ancestry path starts from the resource itself. Example: `[\"projects/123456789\", \"folders/5432\", \"organizations/1234\"]`",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "assetType": {
+          "description": "The asset type of the resource as defined by CAIS. Example: `compute.googleapis.com/Firewall` See [Supported asset types](https://cloud.google.com/asset-inventory/docs/supported-asset-types) for more information.",
+          "type": "string"
+        },
+        "resource": {
+          "description": "The full name of the resource. Example: `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1` See [Resource names](https://cloud.google.com/apis/design/resource_names#full_resource_name) for more information.",
+          "type": "string"
         }
       },
       "type": "object"

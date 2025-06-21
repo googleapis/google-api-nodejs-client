@@ -1366,6 +1366,37 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "getIamPolicy": {
+                  "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/internalRanges/{internalRangesId}:getIamPolicy",
+                  "httpMethod": "GET",
+                  "id": "networkconnectivity.projects.locations.internalRanges.getIamPolicy",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "options.requestedPolicyVersion": {
+                      "description": "Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/internalRanges/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+resource}:getIamPolicy",
+                  "response": {
+                    "$ref": "Policy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "list": {
                   "description": "Lists internal ranges in a given project and location.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/internalRanges",
@@ -1422,7 +1453,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Immutable. The name of an internal range. Format: projects/{project}/locations/{location}/internalRanges/{internal_range} See: https://google.aip.dev/122#fields-representing-resource-names",
+                      "description": "Identifier. The name of an internal range. Format: projects/{project}/locations/{location}/internalRanges/{internal_range} See: https://google.aip.dev/122#fields-representing-resource-names",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/internalRanges/[^/]+$",
                       "required": true,
@@ -1446,6 +1477,62 @@
                   },
                   "response": {
                     "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "setIamPolicy": {
+                  "description": "Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/internalRanges/{internalRangesId}:setIamPolicy",
+                  "httpMethod": "POST",
+                  "id": "networkconnectivity.projects.locations.internalRanges.setIamPolicy",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/internalRanges/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+resource}:setIamPolicy",
+                  "request": {
+                    "$ref": "SetIamPolicyRequest"
+                  },
+                  "response": {
+                    "$ref": "Policy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "testIamPermissions": {
+                  "description": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/internalRanges/{internalRangesId}:testIamPermissions",
+                  "httpMethod": "POST",
+                  "id": "networkconnectivity.projects.locations.internalRanges.testIamPermissions",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/internalRanges/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+resource}:testIamPermissions",
+                  "request": {
+                    "$ref": "TestIamPermissionsRequest"
+                  },
+                  "response": {
+                    "$ref": "TestIamPermissionsResponse"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -2925,7 +3012,7 @@
       }
     }
   },
-  "revision": "20250502",
+  "revision": "20250527",
   "rootUrl": "https://networkconnectivity.googleapis.com/",
   "schemas": {
     "AcceptHubSpokeRequest": {
@@ -2987,7 +3074,7 @@
             "FIRST_SMALLEST_FITTING"
           ],
           "enumDescriptions": [
-            "Unspecified strategy must be used when the range is specified explicitly using ip_cidr_range field. Othherwise unspefified means using the default strategy.",
+            "Unspecified is the only valid option when the range is specified explicitly by ip_cidr_range field. Otherwise unspefified means using the default strategy.",
             "Random strategy, the legacy algorithm, used for backwards compatibility. This allocation strategy remains efficient in the case of concurrent allocation requests in the same peered network space and doesn't require providing the level of concurrency in an explicit parameter, but it is prone to fragmenting available address space.",
             "Pick the first available address range. This strategy is deterministic and the result is easy to predict.",
             "Pick an arbitrary range out of the first N available ones. The N will be set in the first_available_ranges_lookup_size field. This strategy should be used when concurrent allocation requests are made in the same space of peered networks while the fragmentation of the addrress space is reduced.",
@@ -3312,7 +3399,7 @@
       "id": "Filter",
       "properties": {
         "destRange": {
-          "description": "Optional. The destination IP range of outgoing packets that this policy-based route applies to. Default is \"0.0.0.0/0\" if protocol version is IPv4.",
+          "description": "Optional. The destination IP range of outgoing packets that this policy-based route applies to. Default is \"0.0.0.0/0\" if protocol version is IPv4 and \"::/0\" if protocol version is IPv6.",
           "type": "string"
         },
         "ipProtocol": {
@@ -3320,19 +3407,21 @@
           "type": "string"
         },
         "protocolVersion": {
-          "description": "Required. Internet protocol versions this policy-based route applies to. For this version, only IPV4 is supported. IPV6 is supported in preview.",
+          "description": "Required. Internet protocol versions this policy-based route applies to. IPV4 and IPV6 is supported.",
           "enum": [
             "PROTOCOL_VERSION_UNSPECIFIED",
-            "IPV4"
+            "IPV4",
+            "IPV6"
           ],
           "enumDescriptions": [
             "Default value.",
-            "The PBR is for IPv4 internet protocol traffic."
+            "The PBR is for IPv4 internet protocol traffic.",
+            "The PBR is for IPv6 internet protocol traffic."
           ],
           "type": "string"
         },
         "srcRange": {
-          "description": "Optional. The source IP range of outgoing packets that this policy-based route applies to. Default is \"0.0.0.0/0\" if protocol version is IPv4.",
+          "description": "Optional. The source IP range of outgoing packets that this policy-based route applies to. Default is \"0.0.0.0/0\" if protocol version is IPv4 and \"::/0\" if protocol version is IPv6.",
           "type": "string"
         }
       },
@@ -3587,10 +3676,11 @@
           "type": "array"
         },
         "routingVpcs": {
-          "description": "The VPC networks associated with this hub's spokes. This field is read-only. Network Connectivity Center automatically populates it based on the set of spokes attached to the hub.",
+          "description": "Output only. The VPC networks associated with this hub's spokes. This field is read-only. Network Connectivity Center automatically populates it based on the set of spokes attached to the hub.",
           "items": {
             "$ref": "RoutingVPC"
           },
+          "readOnly": true,
           "type": "array"
         },
         "spokeSummary": {
@@ -3686,7 +3776,7 @@
           "type": "string"
         },
         "description": {
-          "description": "A description of this resource.",
+          "description": "Optional. A description of this resource.",
           "type": "string"
         },
         "excludeCidrRanges": {
@@ -3701,7 +3791,7 @@
           "type": "boolean"
         },
         "ipCidrRange": {
-          "description": "The IP range that this internal range defines. NOTE: IPv6 ranges are limited to usage=EXTERNAL_TO_VPC and peering=FOR_SELF. NOTE: For IPv6 Ranges this field is compulsory, i.e. the address range must be specified explicitly.",
+          "description": "Optional. The IP range that this internal range defines. NOTE: IPv6 ranges are limited to usage=EXTERNAL_TO_VPC and peering=FOR_SELF. NOTE: For IPv6 Ranges this field is compulsory, i.e. the address range must be specified explicitly.",
           "type": "string"
         },
         "labels": {
@@ -3716,11 +3806,11 @@
           "description": "Optional. Must be present if usage is set to FOR_MIGRATION."
         },
         "name": {
-          "description": "Immutable. The name of an internal range. Format: projects/{project}/locations/{location}/internalRanges/{internal_range} See: https://google.aip.dev/122#fields-representing-resource-names",
+          "description": "Identifier. The name of an internal range. Format: projects/{project}/locations/{location}/internalRanges/{internal_range} See: https://google.aip.dev/122#fields-representing-resource-names",
           "type": "string"
         },
         "network": {
-          "description": "The URL or resource ID of the network in which to reserve the internal range. The network cannot be deleted if there are any reserved internal ranges referring to it. Legacy networks are not supported. For example: https://www.googleapis.com/compute/v1/projects/{project}/locations/global/networks/{network} projects/{project}/locations/global/networks/{network} {network}",
+          "description": "Immutable. The URL or resource ID of the network in which to reserve the internal range. The network cannot be deleted if there are any reserved internal ranges referring to it. Legacy networks are not supported. For example: https://www.googleapis.com/compute/v1/projects/{project}/locations/global/networks/{network} projects/{project}/locations/global/networks/{network} {network}",
           "type": "string"
         },
         "overlaps": {
@@ -3741,7 +3831,7 @@
           "type": "array"
         },
         "peering": {
-          "description": "The type of peering set for this internal range.",
+          "description": "Optional. The type of peering set for this internal range.",
           "enum": [
             "PEERING_UNSPECIFIED",
             "FOR_SELF",
@@ -3757,7 +3847,7 @@
           "type": "string"
         },
         "prefixLength": {
-          "description": "An alternate to ip_cidr_range. Can be set when trying to create an IPv4 reservation that automatically finds a free range of the given size. If both ip_cidr_range and prefix_length are set, there is an error if the range sizes do not match. Can also be used during updates to change the range size. NOTE: For IPv6 this field only works if ip_cidr_range is set as well, and both fields must match. In other words, with IPv6 this field only works as a redundant parameter.",
+          "description": "Optional. An alternate to ip_cidr_range. Can be set when trying to create an IPv4 reservation that automatically finds a free range of the given size. If both ip_cidr_range and prefix_length are set, there is an error if the range sizes do not match. Can also be used during updates to change the range size. NOTE: For IPv6 this field only works if ip_cidr_range is set as well, and both fields must match. In other words, with IPv6 this field only works as a redundant parameter.",
           "format": "int32",
           "type": "integer"
         },
@@ -3774,7 +3864,7 @@
           "type": "string"
         },
         "usage": {
-          "description": "The type of usage set for this InternalRange.",
+          "description": "Optional. The type of usage set for this InternalRange.",
           "enum": [
             "USAGE_UNSPECIFIED",
             "FOR_VPC",
@@ -3869,10 +3959,11 @@
           "type": "array"
         },
         "proposedIncludeExportRanges": {
-          "description": "Optional. The proposed include export IP ranges waiting for hub administration's approval.",
+          "description": "Output only. The proposed include export IP ranges waiting for hub administration's approval.",
           "items": {
             "type": "string"
           },
+          "readOnly": true,
           "type": "array"
         },
         "serviceConsumerVpcSpoke": {
@@ -3948,10 +4039,11 @@
           "type": "array"
         },
         "proposedIncludeExportRanges": {
-          "description": "Optional. The proposed include export IP ranges waiting for hub administration's approval.",
+          "description": "Output only. The proposed include export IP ranges waiting for hub administration's approval.",
           "items": {
             "type": "string"
           },
+          "readOnly": true,
           "type": "array"
         },
         "uri": {
@@ -4378,12 +4470,14 @@
             "enum": [
               "LOCATION_FEATURE_UNSPECIFIED",
               "SITE_TO_CLOUD_SPOKES",
-              "SITE_TO_SITE_SPOKES"
+              "SITE_TO_SITE_SPOKES",
+              "GATEWAY_SPOKES"
             ],
             "enumDescriptions": [
               "No publicly supported feature in this location",
               "Site-to-cloud spokes are supported in this location",
-              "Site-to-site spokes are supported in this location"
+              "Site-to-site spokes are supported in this location",
+              "Gateway spokes are supported in this location."
             ],
             "type": "string"
           },

@@ -2,7 +2,7 @@
 
 # bigqueryreservation
 
-> A service to modify your BigQuery flat-rate reservations.
+> A service to modify your BigQuery reservations.
 
 ## Support status
 **Note**: Google provides multiple libraries for this service. This library is in

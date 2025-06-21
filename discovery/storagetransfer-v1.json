@@ -632,7 +632,7 @@
       }
     }
   },
-  "revision": "20250503",
+  "revision": "20250523",
   "rootUrl": "https://storagetransfer.googleapis.com/",
   "schemas": {
     "AgentPool": {
@@ -763,6 +763,10 @@
         "credentialsSecret": {
           "description": "Optional. The Resource name of a secret in Secret Manager. The Azure SAS token must be stored in Secret Manager in JSON format: { \"sas_token\" : \"SAS_TOKEN\" } GoogleServiceAccount must be granted `roles/secretmanager.secretAccessor` for the resource. See [Configure access to a source: Microsoft Azure Blob Storage] (https://cloud.google.com/storage-transfer/docs/source-microsoft-azure#secret_manager) for more information. If `credentials_secret` is specified, do not specify azure_credentials. Format: `projects/{project_number}/secrets/{secret_name}`",
           "type": "string"
+        },
+        "federatedIdentityConfig": {
+          "$ref": "FederatedIdentityConfig",
+          "description": "Optional. Federated identity config of a user registered Azure application. If `federated_identity_config` is specified, do not specify azure_credentials or credentials_secret."
         },
         "path": {
           "description": "Root path to transfer objects. Must be an empty string or full path name that ends with a '/'. This field is treated as an object prefix. As such, it should generally not begin with a '/'.",
@@ -927,6 +931,21 @@
         },
         "name": {
           "description": "Required. Specifies a unique name of the resource such as AWS SQS ARN in the form 'arn:aws:sqs:region:account_id:queue_name', or Pub/Sub subscription resource name in the form 'projects/{project}/subscriptions/{sub}'.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "FederatedIdentityConfig": {
+      "description": "The identity of an Azure application through which Storage Transfer Service can authenticate requests using Azure workload identity federation. Storage Transfer Service can issue requests to Azure Storage through registered Azure applications, eliminating the need to pass credentials to Storage Transfer Service directly. To configure federated identity, see [Configure access to Microsoft Azure Storage](https://cloud.google.com/storage-transfer/docs/source-microsoft-azure#option_3_authenticate_using_federated_identity).",
+      "id": "FederatedIdentityConfig",
+      "properties": {
+        "clientId": {
+          "description": "Required. The client (application) ID of the application with federated credentials.",
+          "type": "string"
+        },
+        "tenantId": {
+          "description": "Required. The tenant (directory) ID of the application with federated credentials.",
           "type": "string"
         }
       },
@@ -1725,7 +1744,7 @@
           "description": "Specifies schedule for the transfer job. This is an optional field. When the field is not set, the job never executes a transfer, unless you invoke RunTransferJob or update the job to have a non-empty schedule."
         },
         "serviceAccount": {
-          "description": "Optional. The service account to be used to access resources in the consumer project in the transfer job. We accept `email` or `uniqueId` for the service account. Service account format is projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID} See https://cloud.google.com/iam/docs/reference/credentials/rest/v1/projects.serviceAccounts/generateAccessToken#path-parameters for details. Caller requires the following IAM permission on the specified service account: `iam.serviceAccounts.actAs`. project-PROJECT_NUMBER@storage-transfer-service.iam.gserviceaccount.com requires the following IAM permission on the specified service account: `iam.serviceAccounts.getAccessToken`",
+          "description": "Optional. The user-managed service account to which to delegate service agent permissions. You can grant Cloud Storage bucket permissions to this service account instead of to the Transfer Service service agent. Format is `projects/-/serviceAccounts/ACCOUNT_EMAIL_OR_UNIQUEID` Either the service account email (`SERVICE_ACCOUNT_NAME@PROJECT_ID.iam.gserviceaccount.com`) or the unique ID (`123456789012345678901`) are accepted in the string. The `-` wildcard character is required; replacing it with a project ID is invalid. See https://cloud.google.com//storage-transfer/docs/delegate-service-agent-permissions for required permissions.",
           "type": "string"
         },
         "status": {

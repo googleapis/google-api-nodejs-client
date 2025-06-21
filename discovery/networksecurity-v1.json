@@ -2014,6 +2014,168 @@
                 }
               }
             },
+            "backendAuthenticationConfigs": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new BackendAuthenticationConfig in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/backendAuthenticationConfigs",
+                  "httpMethod": "POST",
+                  "id": "networksecurity.projects.locations.backendAuthenticationConfigs.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "backendAuthenticationConfigId": {
+                      "description": "Required. Short name of the BackendAuthenticationConfig resource to be created. This value should be 1-63 characters long, containing only letters, numbers, hyphens, and underscores, and should not start with a number. E.g. \"backend-auth-config\".",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent resource of the BackendAuthenticationConfig. Must be in the format `projects/*/locations/{location}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/backendAuthenticationConfigs",
+                  "request": {
+                    "$ref": "BackendAuthenticationConfig"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a single BackendAuthenticationConfig to BackendAuthenticationConfig.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/backendAuthenticationConfigs/{backendAuthenticationConfigsId}",
+                  "httpMethod": "DELETE",
+                  "id": "networksecurity.projects.locations.backendAuthenticationConfigs.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "etag": {
+                      "description": "Optional. Etag of the resource. If this is provided, it must match the server's etag.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "Required. A name of the BackendAuthenticationConfig to delete. Must be in the format `projects/*/locations/{location}/backendAuthenticationConfigs/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/backendAuthenticationConfigs/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets details of a single BackendAuthenticationConfig to BackendAuthenticationConfig.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/backendAuthenticationConfigs/{backendAuthenticationConfigsId}",
+                  "httpMethod": "GET",
+                  "id": "networksecurity.projects.locations.backendAuthenticationConfigs.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. A name of the BackendAuthenticationConfig to get. Must be in the format `projects/*/locations/{location}/backendAuthenticationConfigs/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/backendAuthenticationConfigs/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "BackendAuthenticationConfig"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists BackendAuthenticationConfigs in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/backendAuthenticationConfigs",
+                  "httpMethod": "GET",
+                  "id": "networksecurity.projects.locations.backendAuthenticationConfigs.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Maximum number of BackendAuthenticationConfigs to return per call.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "The value returned by the last `ListBackendAuthenticationConfigsResponse` Indicates that this is a continuation of a prior `ListBackendAuthenticationConfigs` call, and that the system should return the next page of data.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The project and location from which the BackendAuthenticationConfigs should be listed, specified in the format `projects/*/locations/{location}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/backendAuthenticationConfigs",
+                  "response": {
+                    "$ref": "ListBackendAuthenticationConfigsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates the parameters of a single BackendAuthenticationConfig to BackendAuthenticationConfig.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/backendAuthenticationConfigs/{backendAuthenticationConfigsId}",
+                  "httpMethod": "PATCH",
+                  "id": "networksecurity.projects.locations.backendAuthenticationConfigs.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the BackendAuthenticationConfig resource. It matches the pattern `projects/*/locations/{location}/backendAuthenticationConfigs/{backend_authentication_config}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/backendAuthenticationConfigs/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. Field mask is used to specify the fields to be overwritten in the BackendAuthenticationConfig resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "BackendAuthenticationConfig"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "clientTlsPolicies": {
               "methods": {
                 "create": {
@@ -4908,7 +5070,7 @@
       }
     }
   },
-  "revision": "20250428",
+  "revision": "20250604",
   "rootUrl": "https://networksecurity.googleapis.com/",
   "schemas": {
     "AddAddressGroupItemsRequest": {
@@ -5224,10 +5386,10 @@
       "description": "Describes the properties of a single source.",
       "id": "AuthzPolicyAuthzRuleFromRequestSource",
       "properties": {
-        "principals": {
-          "description": "Optional. A list of identities derived from the client's certificate. This field is under development and we don't recommend using it at this time. Limited to 5 principals.",
+        "ipBlocks": {
+          "description": "Optional. A list of IPs or CIDRs to match against the source IP of a request. Limited to 5 ip_blocks.",
           "items": {
-            "$ref": "AuthzPolicyAuthzRuleStringMatch"
+            "$ref": "AuthzPolicyAuthzRuleIpBlock"
           },
           "type": "array"
         },
@@ -5252,6 +5414,22 @@
         "value": {
           "$ref": "AuthzPolicyAuthzRuleStringMatch",
           "description": "Optional. Specifies how the header match will be performed."
+        }
+      },
+      "type": "object"
+    },
+    "AuthzPolicyAuthzRuleIpBlock": {
+      "description": "Represents a range of IP Addresses.",
+      "id": "AuthzPolicyAuthzRuleIpBlock",
+      "properties": {
+        "length": {
+          "description": "Required. The length of the address range.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "prefix": {
+          "description": "Required. The address prefix.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -5441,6 +5619,67 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BackendAuthenticationConfig": {
+      "description": "BackendAuthenticationConfig message groups the TrustConfig together with other settings that control how the load balancer authenticates, and expresses its identity to, the backend: * `trustConfig` is the attached TrustConfig. * `wellKnownRoots` indicates whether the load balance should trust backend server certificates that are issued by public certificate authorities, in addition to certificates trusted by the TrustConfig. * `clientCertificate` is a client certificate that the load balancer uses to express its identity to the backend, if the connection to the backend uses mTLS. You can attach the BackendAuthenticationConfig to the load balancer’s BackendService directly determining how that BackendService negotiates TLS.",
+      "id": "BackendAuthenticationConfig",
+      "properties": {
+        "clientCertificate": {
+          "description": "Optional. A reference to a certificatemanager.googleapis.com.Certificate resource. This is a relative resource path following the form \"projects/{project}/locations/{location}/certificates/{certificate}\". Used by a BackendService to negotiate mTLS when the backend connection uses TLS and the backend requests a client certificate. Must have a CLIENT_AUTH scope.",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. The timestamp when the resource was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. Free-text description of the resource.",
+          "type": "string"
+        },
+        "etag": {
+          "description": "Output only. Etag of the resource.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Set of label tags associated with the resource.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Required. Name of the BackendAuthenticationConfig resource. It matches the pattern `projects/*/locations/{location}/backendAuthenticationConfigs/{backend_authentication_config}`",
+          "type": "string"
+        },
+        "trustConfig": {
+          "description": "Optional. A reference to a TrustConfig resource from the certificatemanager.googleapis.com namespace. This is a relative resource path following the form \"projects/{project}/locations/{location}/trustConfigs/{trust_config}\". A BackendService uses the chain of trust represented by this TrustConfig, if specified, to validate the server certificates presented by the backend. Required unless wellKnownRoots is set to PUBLIC_ROOTS.",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The timestamp when the resource was updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "wellKnownRoots": {
+          "description": "Well known roots to use for server certificate validation.",
+          "enum": [
+            "WELL_KNOWN_ROOTS_UNSPECIFIED",
+            "NONE",
+            "PUBLIC_ROOTS"
+          ],
+          "enumDescriptions": [
+            "Equivalent to NONE.",
+            "The BackendService will only validate server certificates against roots specified in TrustConfig.",
+            "The BackendService uses a set of well-known public roots, in addition to any roots specified in the trustConfig field, when validating the server certificates presented by the backend. Validation with these roots is only considered when the TlsSettings.sni field in the BackendService is set. The well-known roots are a set of root CAs managed by Google. CAs in this set can be added or removed without notice."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -6635,6 +6874,31 @@
         },
         "nextPageToken": {
           "description": "A token identifying a page of results that the server returns.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListBackendAuthenticationConfigsResponse": {
+      "description": "Response returned by the ListBackendAuthenticationConfigs method.",
+      "id": "ListBackendAuthenticationConfigsResponse",
+      "properties": {
+        "backendAuthenticationConfigs": {
+          "description": "List of BackendAuthenticationConfig resources.",
+          "items": {
+            "$ref": "BackendAuthenticationConfig"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "If there might be more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token`.",
           "type": "string"
         },
         "unreachable": {

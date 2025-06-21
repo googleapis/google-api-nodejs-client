@@ -498,6 +498,11 @@
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
                       "type": "string"
+                    },
+                    "returnPartialSuccess": {
+                      "description": "If set, the request will return all reachable Notes and report all unreachable regions in the `unreachable` field in the response. Only applicable for requests in the global region.",
+                      "location": "query",
+                      "type": "boolean"
                     }
                   },
                   "path": "v1beta1/{+parent}/notes",
@@ -828,6 +833,11 @@
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
                       "type": "string"
+                    },
+                    "returnPartialSuccess": {
+                      "description": "If set, the request will return all reachable occurrence summaries and report all unreachable regions in the `unreachable` field in the response. Only applicable for requests in the global region.",
+                      "location": "query",
+                      "type": "boolean"
                     }
                   },
                   "path": "v1beta1/{+parent}/occurrences:vulnerabilitySummary",
@@ -869,6 +879,11 @@
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
                       "type": "string"
+                    },
+                    "returnPartialSuccess": {
+                      "description": "If set, the request will return all reachable Occurrences and report all unreachable regions in the `unreachable` field in the response. Only applicable for requests in the global region.",
+                      "location": "query",
+                      "type": "boolean"
                     }
                   },
                   "path": "v1beta1/{+parent}/occurrences",
@@ -1205,6 +1220,11 @@
                   "pattern": "^projects/[^/]+$",
                   "required": true,
                   "type": "string"
+                },
+                "returnPartialSuccess": {
+                  "description": "If set, the request will return all reachable Notes and report all unreachable regions in the `unreachable` field in the response. Only applicable for requests in the global region.",
+                  "location": "query",
+                  "type": "boolean"
                 }
               },
               "path": "v1beta1/{+parent}/notes",
@@ -1535,6 +1555,11 @@
                   "pattern": "^projects/[^/]+$",
                   "required": true,
                   "type": "string"
+                },
+                "returnPartialSuccess": {
+                  "description": "If set, the request will return all reachable occurrence summaries and report all unreachable regions in the `unreachable` field in the response. Only applicable for requests in the global region.",
+                  "location": "query",
+                  "type": "boolean"
                 }
               },
               "path": "v1beta1/{+parent}/occurrences:vulnerabilitySummary",
@@ -1576,6 +1601,11 @@
                   "pattern": "^projects/[^/]+$",
                   "required": true,
                   "type": "string"
+                },
+                "returnPartialSuccess": {
+                  "description": "If set, the request will return all reachable Occurrences and report all unreachable regions in the `unreachable` field in the response. Only applicable for requests in the global region.",
+                  "location": "query",
+                  "type": "boolean"
                 }
               },
               "path": "v1beta1/{+parent}/occurrences",
@@ -1741,7 +1771,7 @@
       }
     }
   },
-  "revision": "20250425",
+  "revision": "20250616",
   "rootUrl": "https://containeranalysis.googleapis.com/",
   "schemas": {
     "AliasContext": {
@@ -3615,7 +3645,7 @@
       "id": "ContaineranalysisGoogleDevtoolsCloudbuildV1DependencyGitSourceRepository",
       "properties": {
         "developerConnect": {
-          "description": "The Developer Connect Git repository link or the url that matches a repository link in the current project, formatted as `projects/*/locations/*/connections/*/gitRepositoryLink/*`",
+          "description": "The Developer Connect Git repository link formatted as `projects/*/locations/*/connections/*/gitRepositoryLink/*`",
           "type": "string"
         },
         "url": {
@@ -4379,6 +4409,13 @@
           ],
           "type": "string"
         },
+        "files": {
+          "description": "Files that make up the resource described by the occurrence.",
+          "items": {
+            "$ref": "File"
+          },
+          "type": "array"
+        },
         "lastAnalysisTime": {
           "description": "The last time continuous analysis was done for this resource. Deprecated, do not use.",
           "format": "google-datetime",
@@ -4671,6 +4708,21 @@
         },
         "type": {
           "description": "Type of category (e.g. 'npm' for the PACKAGE_MANAGER category)",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "File": {
+      "id": "File",
+      "properties": {
+        "digest": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object"
+        },
+        "name": {
           "type": "string"
         }
       },
@@ -5532,6 +5584,13 @@
             "$ref": "Note"
           },
           "type": "array"
+        },
+        "unreachable": {
+          "description": "Unordered list. Unreachable regions. Populated for requests from the global region when `return_partial_success` is set. Format: projects//locations/",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -5548,6 +5607,13 @@
           "description": "The occurrences requested.",
           "items": {
             "$ref": "Occurrence"
+          },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "Unordered list. Unreachable regions. Populated for requests from the global region when `return_partial_success` is set. Format: projects//locations/",
+          "items": {
+            "type": "string"
           },
           "type": "array"
         }
@@ -7184,6 +7250,13 @@
           "description": "A listing by resource of the number of fixable and total vulnerabilities.",
           "items": {
             "$ref": "FixableTotalByDigest"
+          },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "Unordered list. Unreachable regions. Populated for requests from the global region when `return_partial_success` is set. Format: projects//locations/",
+          "items": {
+            "type": "string"
           },
           "type": "array"
         }

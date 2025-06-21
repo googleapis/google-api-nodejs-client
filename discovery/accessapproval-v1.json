@@ -913,7 +913,7 @@
       }
     }
   },
-  "revision": "20250411",
+  "revision": "20250617",
   "rootUrl": "https://accessapproval.googleapis.com/",
   "schemas": {
     "AccessApprovalServiceAccount": {
@@ -1334,7 +1334,8 @@
             "HMAC_SHA224",
             "EXTERNAL_SYMMETRIC_ENCRYPTION",
             "PQ_SIGN_ML_DSA_65",
-            "PQ_SIGN_SLH_DSA_SHA2_128S"
+            "PQ_SIGN_SLH_DSA_SHA2_128S",
+            "PQ_SIGN_HASH_SLH_DSA_SHA2_128S_SHA256"
           ],
           "enumDescriptions": [
             "Not specified.",
@@ -1374,7 +1375,8 @@
             "HMAC-SHA224 signing with a 224 bit key.",
             "Algorithm representing symmetric encryption by an external key manager.",
             "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 3. Randomized version.",
-            "The post-quantum stateless hash-based digital signature algorithm, at security level 1. Randomized version."
+            "The post-quantum stateless hash-based digital signature algorithm, at security level 1. Randomized version.",
+            "The post-quantum stateless hash-based digital signature algorithm, at security level 1. Randomized pre-hash version supporting SHA256 digests."
           ],
           "type": "string"
         },

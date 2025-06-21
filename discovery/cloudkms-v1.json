@@ -228,6 +228,32 @@
             "https://www.googleapis.com/auth/cloudkms"
           ]
         },
+        "getKajPolicyConfig": {
+          "description": "Gets the KeyAccessJustificationsPolicyConfig for a given organization/folder/projects.",
+          "flatPath": "v1/folders/{foldersId}/kajPolicyConfig",
+          "httpMethod": "GET",
+          "id": "cloudkms.folders.getKajPolicyConfig",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. The name of the KeyAccessJustificationsPolicyConfig to get.",
+              "location": "path",
+              "pattern": "^folders/[^/]+/kajPolicyConfig$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/{+name}",
+          "response": {
+            "$ref": "KeyAccessJustificationsPolicyConfig"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/cloudkms"
+          ]
+        },
         "updateAutokeyConfig": {
           "description": "Updates the AutokeyConfig for a folder. The caller must have both `cloudkms.autokeyConfigs.update` permission on the parent folder and `cloudkms.cryptoKeys.setIamPolicy` permission on the provided key project. A KeyHandle creation in the folder's descendant projects will use this configuration to determine where to create the resulting CryptoKey.",
           "flatPath": "v1/folders/{foldersId}/autokeyConfig",
@@ -262,11 +288,137 @@
             "https://www.googleapis.com/auth/cloud-platform",
             "https://www.googleapis.com/auth/cloudkms"
           ]
+        },
+        "updateKajPolicyConfig": {
+          "description": "Updates the KeyAccessJustificationsPolicyConfig for a given organization/folder/projects.",
+          "flatPath": "v1/folders/{foldersId}/kajPolicyConfig",
+          "httpMethod": "PATCH",
+          "id": "cloudkms.folders.updateKajPolicyConfig",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Identifier. The resource name for this KeyAccessJustificationsPolicyConfig in the format of \"{organizations|folders|projects}/*/kajPolicyConfig\".",
+              "location": "path",
+              "pattern": "^folders/[^/]+/kajPolicyConfig$",
+              "required": true,
+              "type": "string"
+            },
+            "updateMask": {
+              "description": "Optional. The list of fields to update.",
+              "format": "google-fieldmask",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v1/{+name}",
+          "request": {
+            "$ref": "KeyAccessJustificationsPolicyConfig"
+          },
+          "response": {
+            "$ref": "KeyAccessJustificationsPolicyConfig"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/cloudkms"
+          ]
+        }
+      }
+    },
+    "organizations": {
+      "methods": {
+        "getKajPolicyConfig": {
+          "description": "Gets the KeyAccessJustificationsPolicyConfig for a given organization/folder/projects.",
+          "flatPath": "v1/organizations/{organizationsId}/kajPolicyConfig",
+          "httpMethod": "GET",
+          "id": "cloudkms.organizations.getKajPolicyConfig",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. The name of the KeyAccessJustificationsPolicyConfig to get.",
+              "location": "path",
+              "pattern": "^organizations/[^/]+/kajPolicyConfig$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/{+name}",
+          "response": {
+            "$ref": "KeyAccessJustificationsPolicyConfig"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/cloudkms"
+          ]
+        },
+        "updateKajPolicyConfig": {
+          "description": "Updates the KeyAccessJustificationsPolicyConfig for a given organization/folder/projects.",
+          "flatPath": "v1/organizations/{organizationsId}/kajPolicyConfig",
+          "httpMethod": "PATCH",
+          "id": "cloudkms.organizations.updateKajPolicyConfig",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Identifier. The resource name for this KeyAccessJustificationsPolicyConfig in the format of \"{organizations|folders|projects}/*/kajPolicyConfig\".",
+              "location": "path",
+              "pattern": "^organizations/[^/]+/kajPolicyConfig$",
+              "required": true,
+              "type": "string"
+            },
+            "updateMask": {
+              "description": "Optional. The list of fields to update.",
+              "format": "google-fieldmask",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v1/{+name}",
+          "request": {
+            "$ref": "KeyAccessJustificationsPolicyConfig"
+          },
+          "response": {
+            "$ref": "KeyAccessJustificationsPolicyConfig"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/cloudkms"
+          ]
         }
       }
     },
     "projects": {
       "methods": {
+        "getKajPolicyConfig": {
+          "description": "Gets the KeyAccessJustificationsPolicyConfig for a given organization/folder/projects.",
+          "flatPath": "v1/projects/{projectsId}/kajPolicyConfig",
+          "httpMethod": "GET",
+          "id": "cloudkms.projects.getKajPolicyConfig",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. The name of the KeyAccessJustificationsPolicyConfig to get.",
+              "location": "path",
+              "pattern": "^projects/[^/]+/kajPolicyConfig$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/{+name}",
+          "response": {
+            "$ref": "KeyAccessJustificationsPolicyConfig"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/cloudkms"
+          ]
+        },
         "showEffectiveAutokeyConfig": {
           "description": "Returns the effective Cloud KMS Autokey configuration for a given project.",
           "flatPath": "v1/projects/{projectsId}:showEffectiveAutokeyConfig",
@@ -287,6 +439,93 @@
           "path": "v1/{+parent}:showEffectiveAutokeyConfig",
           "response": {
             "$ref": "ShowEffectiveAutokeyConfigResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/cloudkms"
+          ]
+        },
+        "showEffectiveKeyAccessJustificationsEnrollmentConfig": {
+          "description": "Returns the KeyAccessJustificationsEnrollmentConfig of the resource closest to the given project in hierarchy.",
+          "flatPath": "v1/projects/{projectsId}:showEffectiveKeyAccessJustificationsEnrollmentConfig",
+          "httpMethod": "GET",
+          "id": "cloudkms.projects.showEffectiveKeyAccessJustificationsEnrollmentConfig",
+          "parameterOrder": [
+            "project"
+          ],
+          "parameters": {
+            "project": {
+              "description": "Required. The number or id of the project to get the effective KeyAccessJustificationsEnrollmentConfig for.",
+              "location": "path",
+              "pattern": "^projects/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/{+project}:showEffectiveKeyAccessJustificationsEnrollmentConfig",
+          "response": {
+            "$ref": "ShowEffectiveKeyAccessJustificationsEnrollmentConfigResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/cloudkms"
+          ]
+        },
+        "showEffectiveKeyAccessJustificationsPolicyConfig": {
+          "description": "Returns the KeyAccessJustificationsPolicyConfig of the resource closest to the given project in hierarchy.",
+          "flatPath": "v1/projects/{projectsId}:showEffectiveKeyAccessJustificationsPolicyConfig",
+          "httpMethod": "GET",
+          "id": "cloudkms.projects.showEffectiveKeyAccessJustificationsPolicyConfig",
+          "parameterOrder": [
+            "project"
+          ],
+          "parameters": {
+            "project": {
+              "description": "Required. The number or id of the project to get the effective KeyAccessJustificationsPolicyConfig. In the format of \"projects/{|}\"",
+              "location": "path",
+              "pattern": "^projects/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/{+project}:showEffectiveKeyAccessJustificationsPolicyConfig",
+          "response": {
+            "$ref": "ShowEffectiveKeyAccessJustificationsPolicyConfigResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/cloudkms"
+          ]
+        },
+        "updateKajPolicyConfig": {
+          "description": "Updates the KeyAccessJustificationsPolicyConfig for a given organization/folder/projects.",
+          "flatPath": "v1/projects/{projectsId}/kajPolicyConfig",
+          "httpMethod": "PATCH",
+          "id": "cloudkms.projects.updateKajPolicyConfig",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Identifier. The resource name for this KeyAccessJustificationsPolicyConfig in the format of \"{organizations|folders|projects}/*/kajPolicyConfig\".",
+              "location": "path",
+              "pattern": "^projects/[^/]+/kajPolicyConfig$",
+              "required": true,
+              "type": "string"
+            },
+            "updateMask": {
+              "description": "Optional. The list of fields to update.",
+              "format": "google-fieldmask",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v1/{+name}",
+          "request": {
+            "$ref": "KeyAccessJustificationsPolicyConfig"
+          },
+          "response": {
+            "$ref": "KeyAccessJustificationsPolicyConfig"
           },
           "scopes": [
             "https://www.googleapis.com/auth/cloud-platform",
@@ -2163,7 +2402,7 @@
       }
     }
   },
-  "revision": "20250501",
+  "revision": "20250523",
   "rootUrl": "https://cloudkms.googleapis.com/",
   "schemas": {
     "AsymmetricDecryptRequest": {
@@ -2347,6 +2586,10 @@
       "description": "Cloud KMS Autokey configuration for a folder.",
       "id": "AutokeyConfig",
       "properties": {
+        "etag": {
+          "description": "Optional. A checksum computed by the server based on the value of other fields. This may be sent on update requests to ensure that the client has an up-to-date value before proceeding. The request will be rejected with an ABORTED error on a mismatched etag.",
+          "type": "string"
+        },
         "keyProject": {
           "description": "Optional. Name of the key project, e.g. `projects/{PROJECT_ID}` or `projects/{PROJECT_NUMBER}`, where Cloud KMS Autokey will provision a new CryptoKey when a KeyHandle is created. On UpdateAutokeyConfig, the caller will require `cloudkms.cryptoKeys.setIamPolicy` permission on this key project. Once configured, for Cloud KMS Autokey to function properly, this key project must have the Cloud KMS API activated and the Cloud KMS Service Agent for this key project must be granted the `cloudkms.admin` role (or pertinent permissions). A request with an empty key project field will clear the configuration.",
           "type": "string"
@@ -2624,7 +2867,8 @@
             "HMAC_SHA224",
             "EXTERNAL_SYMMETRIC_ENCRYPTION",
             "PQ_SIGN_ML_DSA_65",
-            "PQ_SIGN_SLH_DSA_SHA2_128S"
+            "PQ_SIGN_SLH_DSA_SHA2_128S",
+            "PQ_SIGN_HASH_SLH_DSA_SHA2_128S_SHA256"
           ],
           "enumDescriptions": [
             "Not specified.",
@@ -2664,7 +2908,8 @@
             "HMAC-SHA224 signing with a 224 bit key.",
             "Algorithm representing symmetric encryption by an external key manager.",
             "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 3. Randomized version.",
-            "The post-quantum stateless hash-based digital signature algorithm, at security level 1. Randomized version."
+            "The post-quantum stateless hash-based digital signature algorithm, at security level 1. Randomized version.",
+            "The post-quantum stateless hash-based digital signature algorithm, at security level 1. Randomized pre-hash version supporting SHA256 digests."
           ],
           "readOnly": true,
           "type": "string"
@@ -2777,7 +3022,7 @@
             "This version is still being generated. It may not be used, enabled, disabled, or destroyed yet. Cloud KMS will automatically mark this version ENABLED as soon as the version is ready.",
             "This version may be used for cryptographic operations.",
             "This version may not be used, but the key material is still available, and the version can be placed back into the ENABLED state.",
-            "This key material of this version is destroyed and no longer stored. This version may only become ENABLED again if this version is reimport_eligible and the original key material is reimported with a call to KeyManagementService.ImportCryptoKeyVersion.",
+            "The key material of this version is destroyed and no longer stored. This version may only become ENABLED again if this version is reimport_eligible and the original key material is reimported with a call to KeyManagementService.ImportCryptoKeyVersion.",
             "This version is scheduled for destruction, and will be destroyed soon. Call RestoreCryptoKeyVersion to put it back into the DISABLED state.",
             "This version is still being imported. It may not be used, enabled, disabled, or destroyed yet. Cloud KMS will automatically mark this version ENABLED as soon as the version is ready.",
             "This version was not imported successfully. It may not be used, enabled, disabled, or destroyed. The submitted key material has been discarded. Additional details can be found in CryptoKeyVersion.import_failure_reason.",
@@ -2834,7 +3079,8 @@
             "HMAC_SHA224",
             "EXTERNAL_SYMMETRIC_ENCRYPTION",
             "PQ_SIGN_ML_DSA_65",
-            "PQ_SIGN_SLH_DSA_SHA2_128S"
+            "PQ_SIGN_SLH_DSA_SHA2_128S",
+            "PQ_SIGN_HASH_SLH_DSA_SHA2_128S_SHA256"
           ],
           "enumDescriptions": [
             "Not specified.",
@@ -2874,7 +3120,8 @@
             "HMAC-SHA224 signing with a 224 bit key.",
             "Algorithm representing symmetric encryption by an external key manager.",
             "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 3. Randomized version.",
-            "The post-quantum stateless hash-based digital signature algorithm, at security level 1. Randomized version."
+            "The post-quantum stateless hash-based digital signature algorithm, at security level 1. Randomized version.",
+            "The post-quantum stateless hash-based digital signature algorithm, at security level 1. Randomized pre-hash version supporting SHA256 digests."
           ],
           "type": "string"
         },
@@ -3259,7 +3506,8 @@
             "HMAC_SHA224",
             "EXTERNAL_SYMMETRIC_ENCRYPTION",
             "PQ_SIGN_ML_DSA_65",
-            "PQ_SIGN_SLH_DSA_SHA2_128S"
+            "PQ_SIGN_SLH_DSA_SHA2_128S",
+            "PQ_SIGN_HASH_SLH_DSA_SHA2_128S_SHA256"
           ],
           "enumDescriptions": [
             "Not specified.",
@@ -3299,7 +3547,8 @@
             "HMAC-SHA224 signing with a 224 bit key.",
             "Algorithm representing symmetric encryption by an external key manager.",
             "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 3. Randomized version.",
-            "The post-quantum stateless hash-based digital signature algorithm, at security level 1. Randomized version."
+            "The post-quantum stateless hash-based digital signature algorithm, at security level 1. Randomized version.",
+            "The post-quantum stateless hash-based digital signature algorithm, at security level 1. Randomized pre-hash version supporting SHA256 digests."
           ],
           "type": "string"
         },
@@ -3427,6 +3676,21 @@
       },
       "type": "object"
     },
+    "KeyAccessJustificationsEnrollmentConfig": {
+      "description": "The configuration of a protection level for a project's Key Access Justifications enrollment.",
+      "id": "KeyAccessJustificationsEnrollmentConfig",
+      "properties": {
+        "auditLogging": {
+          "description": "Whether the project has KAJ logging enabled.",
+          "type": "boolean"
+        },
+        "policyEnforcement": {
+          "description": "Whether the project is enrolled in KAJ policy enforcement.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "KeyAccessJustificationsPolicy": {
       "description": "A KeyAccessJustificationsPolicy specifies zero or more allowed AccessReason values for encrypt, decrypt, and sign operations on a CryptoKey.",
       "id": "KeyAccessJustificationsPolicy",
@@ -3465,6 +3729,21 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "KeyAccessJustificationsPolicyConfig": {
+      "description": "A singleton configuration for Key Access Justifications policies.",
+      "id": "KeyAccessJustificationsPolicyConfig",
+      "properties": {
+        "defaultKeyAccessJustificationPolicy": {
+          "$ref": "KeyAccessJustificationsPolicy",
+          "description": "Optional. The default key access justification policy used when a CryptoKey is created in this folder. This is only used when a Key Access Justifications policy is not provided in the CreateCryptoKeyRequest. This overrides any default policies in its ancestry."
+        },
+        "name": {
+          "description": "Identifier. The resource name for this KeyAccessJustificationsPolicyConfig in the format of \"{organizations|folders|projects}/*/kajPolicyConfig\".",
+          "type": "string"
         }
       },
       "type": "object"
@@ -3982,7 +4261,8 @@
             "HMAC_SHA224",
             "EXTERNAL_SYMMETRIC_ENCRYPTION",
             "PQ_SIGN_ML_DSA_65",
-            "PQ_SIGN_SLH_DSA_SHA2_128S"
+            "PQ_SIGN_SLH_DSA_SHA2_128S",
+            "PQ_SIGN_HASH_SLH_DSA_SHA2_128S_SHA256"
           ],
           "enumDescriptions": [
             "Not specified.",
@@ -4022,7 +4302,8 @@
             "HMAC-SHA224 signing with a 224 bit key.",
             "Algorithm representing symmetric encryption by an external key manager.",
             "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 3. Randomized version.",
-            "The post-quantum stateless hash-based digital signature algorithm, at security level 1. Randomized version."
+            "The post-quantum stateless hash-based digital signature algorithm, at security level 1. Randomized version.",
+            "The post-quantum stateless hash-based digital signature algorithm, at security level 1. Randomized pre-hash version supporting SHA256 digests."
           ],
           "type": "string"
         },
@@ -4325,6 +4606,36 @@
         "keyProject": {
           "description": "Name of the key project configured in the resource project's folder ancestry.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ShowEffectiveKeyAccessJustificationsEnrollmentConfigResponse": {
+      "description": "Response message for KeyAccessJustificationsConfig.ShowEffectiveKeyAccessJustificationsEnrollmentConfig",
+      "id": "ShowEffectiveKeyAccessJustificationsEnrollmentConfigResponse",
+      "properties": {
+        "externalConfig": {
+          "$ref": "KeyAccessJustificationsEnrollmentConfig",
+          "description": "The effective KeyAccessJustificationsEnrollmentConfig for external keys."
+        },
+        "hardwareConfig": {
+          "$ref": "KeyAccessJustificationsEnrollmentConfig",
+          "description": "The effective KeyAccessJustificationsEnrollmentConfig for hardware keys."
+        },
+        "softwareConfig": {
+          "$ref": "KeyAccessJustificationsEnrollmentConfig",
+          "description": "The effective KeyAccessJustificationsEnrollmentConfig for software keys."
+        }
+      },
+      "type": "object"
+    },
+    "ShowEffectiveKeyAccessJustificationsPolicyConfigResponse": {
+      "description": "Response message for KeyAccessJustificationsConfig.ShowEffectiveKeyAccessJustificationsPolicyConfig.",
+      "id": "ShowEffectiveKeyAccessJustificationsPolicyConfigResponse",
+      "properties": {
+        "effectiveKajPolicy": {
+          "$ref": "KeyAccessJustificationsPolicyConfig",
+          "description": "The effective KeyAccessJustificationsPolicyConfig."
         }
       },
       "type": "object"
