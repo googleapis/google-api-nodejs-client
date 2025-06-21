@@ -710,7 +710,7 @@
       }
     }
   },
-  "revision": "20250414",
+  "revision": "20250604",
   "rootUrl": "https://looker.googleapis.com/",
   "schemas": {
     "AdminSettings": {
@@ -1505,8 +1505,15 @@
           "type": "string"
         },
         "localFqdn": {
-          "description": "Required. Fully qualified domain name that will be used in the private DNS record created for the service attachment.",
+          "description": "Optional. Fully qualified domain name that will be used in the private DNS record created for the service attachment.",
           "type": "string"
+        },
+        "localFqdns": {
+          "description": "Optional. List of fully qualified domain names that will be used in the private DNS record created for the service attachment.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "targetServiceAttachmentUri": {
           "description": "Required. URI of the service attachment to connect to. Format: projects/{project}/regions/{region}/serviceAttachments/{service_attachment}",
