@@ -680,72 +680,6 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
-                    "accessNativeBuildInfo": {
-                      "description": "Obtain build data for Native Job",
-                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/batches/{batchesId}/sparkApplications/{sparkApplicationsId}:accessNativeBuildInfo",
-                      "httpMethod": "GET",
-                      "id": "dataproc.projects.locations.batches.sparkApplications.accessNativeBuildInfo",
-                      "parameterOrder": [
-                        "name"
-                      ],
-                      "parameters": {
-                        "name": {
-                          "description": "Required. The fully qualified name of the batch to retrieve in the format \"projects/PROJECT_ID/locations/DATAPROC_REGION/batches/BATCH_ID/sparkApplications/APPLICATION_ID\"",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/locations/[^/]+/batches/[^/]+/sparkApplications/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        },
-                        "parent": {
-                          "description": "Required. Parent (Batch) resource reference.",
-                          "location": "query",
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1/{+name}:accessNativeBuildInfo",
-                      "response": {
-                        "$ref": "AccessSparkApplicationNativeBuildInfoResponse"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    },
-                    "accessNativeSqlQuery": {
-                      "description": "Obtain data corresponding to a particular Native SQL Query for a Spark Application.",
-                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/batches/{batchesId}/sparkApplications/{sparkApplicationsId}:accessNativeSqlQuery",
-                      "httpMethod": "GET",
-                      "id": "dataproc.projects.locations.batches.sparkApplications.accessNativeSqlQuery",
-                      "parameterOrder": [
-                        "name"
-                      ],
-                      "parameters": {
-                        "executionId": {
-                          "description": "Required. Execution ID",
-                          "format": "int64",
-                          "location": "query",
-                          "type": "string"
-                        },
-                        "name": {
-                          "description": "Required. The fully qualified name of the batch to retrieve in the format \"projects/PROJECT_ID/locations/DATAPROC_REGION/batches/BATCH_ID/sparkApplications/APPLICATION_ID\"",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/locations/[^/]+/batches/[^/]+/sparkApplications/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        },
-                        "parent": {
-                          "description": "Required. Parent (Batch) resource reference.",
-                          "location": "query",
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1/{+name}:accessNativeSqlQuery",
-                      "response": {
-                        "$ref": "AccessSparkApplicationNativeSqlQueryResponse"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    },
                     "accessSqlPlan": {
                       "description": "Obtain Spark Plan Graph for a Spark Application SQL execution. Limits the number of clusters returned as part of the graph to 10000.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/batches/{batchesId}/sparkApplications/{sparkApplicationsId}:accessSqlPlan",
@@ -1151,47 +1085,6 @@
                       "path": "v1/{+name}:searchJobs",
                       "response": {
                         "$ref": "SearchSparkApplicationJobsResponse"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    },
-                    "searchNativeSqlQueries": {
-                      "description": "Obtain data corresponding to Native SQL Queries for a Spark Application.",
-                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/batches/{batchesId}/sparkApplications/{sparkApplicationsId}:searchNativeSqlQueries",
-                      "httpMethod": "GET",
-                      "id": "dataproc.projects.locations.batches.sparkApplications.searchNativeSqlQueries",
-                      "parameterOrder": [
-                        "name"
-                      ],
-                      "parameters": {
-                        "name": {
-                          "description": "Required. The fully qualified name of the batch to retrieve in the format \"projects/PROJECT_ID/locations/DATAPROC_REGION/batches/BATCH_ID/sparkApplications/APPLICATION_ID\"",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/locations/[^/]+/batches/[^/]+/sparkApplications/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        },
-                        "pageSize": {
-                          "description": "Optional. Maximum number of queries to return in each response. The service may return fewer than this. The default page size is 10; the maximum page size is 100.",
-                          "format": "int32",
-                          "location": "query",
-                          "type": "integer"
-                        },
-                        "pageToken": {
-                          "description": "Optional. A page token received from a previous SearchSparkApplicationNativeSqlQueries call. Provide this token to retrieve the subsequent page.",
-                          "location": "query",
-                          "type": "string"
-                        },
-                        "parent": {
-                          "description": "Required. Parent (Batch) resource reference.",
-                          "location": "query",
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1/{+name}:searchNativeSqlQueries",
-                      "response": {
-                        "$ref": "SearchSparkApplicationNativeSqlQueriesResponse"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
@@ -2147,72 +2040,6 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
-                    "accessNativeBuildInfo": {
-                      "description": "Obtain data corresponding to Native Build Information for a Spark Application.",
-                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/sessions/{sessionsId}/sparkApplications/{sparkApplicationsId}:accessNativeBuildInfo",
-                      "httpMethod": "GET",
-                      "id": "dataproc.projects.locations.sessions.sparkApplications.accessNativeBuildInfo",
-                      "parameterOrder": [
-                        "name"
-                      ],
-                      "parameters": {
-                        "name": {
-                          "description": "Required. The fully qualified name of the session to retrieve in the format \"projects/PROJECT_ID/locations/DATAPROC_REGION/sessions/SESSION_ID/sparkApplications/APPLICATION_ID\"",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/locations/[^/]+/sessions/[^/]+/sparkApplications/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        },
-                        "parent": {
-                          "description": "Required. Parent (Session) resource reference.",
-                          "location": "query",
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1/{+name}:accessNativeBuildInfo",
-                      "response": {
-                        "$ref": "AccessSessionSparkApplicationNativeBuildInfoResponse"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    },
-                    "accessNativeSqlQuery": {
-                      "description": "Obtain data corresponding to a particular Native SQL Query for a Spark Application.",
-                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/sessions/{sessionsId}/sparkApplications/{sparkApplicationsId}:accessNativeSqlQuery",
-                      "httpMethod": "GET",
-                      "id": "dataproc.projects.locations.sessions.sparkApplications.accessNativeSqlQuery",
-                      "parameterOrder": [
-                        "name"
-                      ],
-                      "parameters": {
-                        "executionId": {
-                          "description": "Required. Execution ID",
-                          "format": "int64",
-                          "location": "query",
-                          "type": "string"
-                        },
-                        "name": {
-                          "description": "Required. The fully qualified name of the session to retrieve in the format \"projects/PROJECT_ID/locations/DATAPROC_REGION/sessions/SESSION_ID/sparkApplications/APPLICATION_ID\"",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/locations/[^/]+/sessions/[^/]+/sparkApplications/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        },
-                        "parent": {
-                          "description": "Required. Parent (Session) resource reference.",
-                          "location": "query",
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1/{+name}:accessNativeSqlQuery",
-                      "response": {
-                        "$ref": "AccessSessionSparkApplicationNativeSqlQueryResponse"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    },
                     "accessSqlPlan": {
                       "description": "Obtain Spark Plan Graph for a Spark Application SQL execution. Limits the number of clusters returned as part of the graph to 10000.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/sessions/{sessionsId}/sparkApplications/{sparkApplicationsId}:accessSqlPlan",
@@ -2572,6 +2399,13 @@
                         "name"
                       ],
                       "parameters": {
+                        "jobIds": {
+                          "description": "Optional. List of Job IDs to filter by if provided.",
+                          "format": "int64",
+                          "location": "query",
+                          "repeated": true,
+                          "type": "string"
+                        },
                         "jobStatus": {
                           "description": "Optional. List only jobs in the specific state.",
                           "enum": [
@@ -2623,47 +2457,6 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
-                    "searchNativeSqlQueries": {
-                      "description": "Obtain data corresponding to Native SQL Queries for a Spark Application.",
-                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/sessions/{sessionsId}/sparkApplications/{sparkApplicationsId}:searchNativeSqlQueries",
-                      "httpMethod": "GET",
-                      "id": "dataproc.projects.locations.sessions.sparkApplications.searchNativeSqlQueries",
-                      "parameterOrder": [
-                        "name"
-                      ],
-                      "parameters": {
-                        "name": {
-                          "description": "Required. The fully qualified name of the session to retrieve in the format \"projects/PROJECT_ID/locations/DATAPROC_REGION/sessions/SESSION_ID/sparkApplications/APPLICATION_ID\"",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/locations/[^/]+/sessions/[^/]+/sparkApplications/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        },
-                        "pageSize": {
-                          "description": "Optional. Maximum number of queries to return in each response. The service may return fewer than this. The default page size is 10; the maximum page size is 100.",
-                          "format": "int32",
-                          "location": "query",
-                          "type": "integer"
-                        },
-                        "pageToken": {
-                          "description": "Optional. A page token received from a previous SearchSessionSparkApplicationSqlQueries call. Provide this token to retrieve the subsequent page.",
-                          "location": "query",
-                          "type": "string"
-                        },
-                        "parent": {
-                          "description": "Required. Parent (Session) resource reference.",
-                          "location": "query",
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1/{+name}:searchNativeSqlQueries",
-                      "response": {
-                        "$ref": "SearchSessionSparkApplicationNativeSqlQueriesResponse"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    },
                     "searchSqlQueries": {
                       "description": "Obtain data corresponding to SQL Queries for a Spark Application.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/sessions/{sessionsId}/sparkApplications/{sparkApplicationsId}:searchSqlQueries",
@@ -2683,6 +2476,12 @@
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/sessions/[^/]+/sparkApplications/[^/]+$",
                           "required": true,
+                          "type": "string"
+                        },
+                        "operationIds": {
+                          "description": "Optional. List of Spark Connect operation IDs to filter by if provided.",
+                          "location": "query",
+                          "repeated": true,
                           "type": "string"
                         },
                         "pageSize": {
@@ -2877,6 +2676,13 @@
                         "parent": {
                           "description": "Required. Parent (Session) resource reference.",
                           "location": "query",
+                          "type": "string"
+                        },
+                        "stageIds": {
+                          "description": "Optional. List of Stage IDs to filter by if provided.",
+                          "format": "int64",
+                          "location": "query",
+                          "repeated": true,
                           "type": "string"
                         },
                         "stageStatus": {
@@ -5192,7 +4998,7 @@
       }
     }
   },
-  "revision": "20250315",
+  "revision": "20250604",
   "rootUrl": "https://dataproc.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -5230,28 +5036,6 @@
           "$ref": "JobData",
           "description": "Output only. Data corresponding to a spark job.",
           "readOnly": true
-        }
-      },
-      "type": "object"
-    },
-    "AccessSessionSparkApplicationNativeBuildInfoResponse": {
-      "description": "Details of a native build info for a Spark Application",
-      "id": "AccessSessionSparkApplicationNativeBuildInfoResponse",
-      "properties": {
-        "executionData": {
-          "$ref": "NativeBuildInfoUiData",
-          "description": "Native SQL Execution Data"
-        }
-      },
-      "type": "object"
-    },
-    "AccessSessionSparkApplicationNativeSqlQueryResponse": {
-      "description": "Details of a native query for a Spark Application",
-      "id": "AccessSessionSparkApplicationNativeSqlQueryResponse",
-      "properties": {
-        "executionData": {
-          "$ref": "NativeSqlExecutionUiData",
-          "description": "Native SQL Execution Data"
         }
       },
       "type": "object"
@@ -5332,28 +5116,6 @@
           "$ref": "JobData",
           "description": "Output only. Data corresponding to a spark job.",
           "readOnly": true
-        }
-      },
-      "type": "object"
-    },
-    "AccessSparkApplicationNativeBuildInfoResponse": {
-      "description": "Details of Native Build Info for a Spark Application",
-      "id": "AccessSparkApplicationNativeBuildInfoResponse",
-      "properties": {
-        "buildInfo": {
-          "$ref": "NativeBuildInfoUiData",
-          "description": "Native Build Info Data"
-        }
-      },
-      "type": "object"
-    },
-    "AccessSparkApplicationNativeSqlQueryResponse": {
-      "description": "Details of a query for a Spark Application",
-      "id": "AccessSparkApplicationNativeSqlQueryResponse",
-      "properties": {
-        "executionData": {
-          "$ref": "NativeSqlExecutionUiData",
-          "description": "Native SQL Execution Data"
         }
       },
       "type": "object"
@@ -5701,6 +5463,20 @@
         "basicAlgorithm": {
           "$ref": "BasicAutoscalingAlgorithm"
         },
+        "clusterType": {
+          "description": "Optional. The type of the clusters for which this autoscaling policy is to be configured.",
+          "enum": [
+            "CLUSTER_TYPE_UNSPECIFIED",
+            "STANDARD",
+            "ZERO_SCALE"
+          ],
+          "enumDescriptions": [
+            "Not set.",
+            "Standard dataproc cluster with a minimum of two primary workers.",
+            "Clusters that can use only secondary workers and be scaled down to zero secondary worker nodes."
+          ],
+          "type": "string"
+        },
         "id": {
           "description": "Required. The policy id.The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). Cannot begin or end with underscore or hyphen. Must consist of between 3 and 50 characters.",
           "type": "string"
@@ -5739,13 +5515,17 @@
               "SCENARIO_UNSPECIFIED",
               "SCALING",
               "BROADCAST_HASH_JOIN",
-              "MEMORY"
+              "MEMORY",
+              "NONE",
+              "AUTO"
             ],
             "enumDescriptions": [
               "Default value.",
               "Scaling recommendations such as initialExecutors.",
               "Adding hints for potential relation broadcasts.",
-              "Memory management for workloads."
+              "Memory management for workloads.",
+              "No autotuning.",
+              "Automatic selection of scenarios."
             ],
             "type": "string"
           },
@@ -6112,6 +5892,36 @@
             "$ref": "AuxiliaryNodeGroup"
           },
           "type": "array"
+        },
+        "clusterTier": {
+          "description": "Optional. The tier of the cluster.",
+          "enum": [
+            "CLUSTER_TIER_UNSPECIFIED",
+            "CLUSTER_TIER_STANDARD",
+            "CLUSTER_TIER_PREMIUM"
+          ],
+          "enumDescriptions": [
+            "Not set. Works the same as CLUSTER_TIER_STANDARD.",
+            "Standard dataproc cluster.",
+            "Premium dataproc cluster."
+          ],
+          "type": "string"
+        },
+        "clusterType": {
+          "description": "Optional. The type of the cluster.",
+          "enum": [
+            "CLUSTER_TYPE_UNSPECIFIED",
+            "STANDARD",
+            "SINGLE_NODE",
+            "ZERO_SCALE"
+          ],
+          "enumDescriptions": [
+            "Not set.",
+            "Standard dataproc cluster with a minimum of two primary workers.",
+            "https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/single-node-clusters",
+            "Clusters that can use only secondary workers and be scaled down to zero secondary worker nodes."
+          ],
+          "type": "string"
         },
         "configBucket": {
           "description": "Optional. A Cloud Storage bucket used to stage job dependencies, config files, and job driver console output. If you do not specify a staging bucket, Cloud Dataproc will determine a Cloud Storage location (US, ASIA, or EU) for your cluster's staging bucket according to the Compute Engine zone where your cluster is deployed, and then create and manage this project-level, per-location bucket (see Dataproc staging and temp buckets (https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/staging-bucket)). This field requires a Cloud Storage bucket name, not a gs://... URI to a Cloud Storage bucket.",
@@ -6597,7 +6407,7 @@
       "type": "object"
     },
     "DiskConfig": {
-      "description": "Specifies the config of disk options for a group of VM instances.",
+      "description": "Specifies the config of boot disk and attached disk options for a group of VM instances.",
       "id": "DiskConfig",
       "properties": {
         "bootDiskProvisionedIops": {
@@ -9335,6 +9145,21 @@
       },
       "type": "object"
     },
+    "PropertiesInfo": {
+      "description": "Properties of the workload organized by origin.",
+      "id": "PropertiesInfo",
+      "properties": {
+        "autotuningProperties": {
+          "additionalProperties": {
+            "$ref": "ValueInfo"
+          },
+          "description": "Output only. Properties set by autotuning engine.",
+          "readOnly": true,
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
     "ProvisioningModelMix": {
       "description": "Defines how Dataproc should create VMs with a mixture of provisioning models.",
       "id": "ProvisioningModelMix",
@@ -9986,6 +9811,10 @@
           "description": "Output only. A URI pointing to the location of the stdout and stderr of the workload.",
           "readOnly": true,
           "type": "string"
+        },
+        "propertiesInfo": {
+          "$ref": "PropertiesInfo",
+          "description": "Optional. Properties of the workload organized by origin."
         }
       },
       "type": "object"
@@ -10038,25 +9867,6 @@
           "description": "Output only. Data corresponding to a spark job.",
           "items": {
             "$ref": "JobData"
-          },
-          "readOnly": true,
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "SearchSessionSparkApplicationNativeSqlQueriesResponse": {
-      "description": "List of all Native queries for a Spark Application.",
-      "id": "SearchSessionSparkApplicationNativeSqlQueriesResponse",
-      "properties": {
-        "nextPageToken": {
-          "description": "This token is included in the response if there are more results to fetch. To fetch additional results, provide this value as the page_token in a subsequent SearchSessionSparkApplicationSqlQueriesRequest.",
-          "type": "string"
-        },
-        "sparkApplicationNativeSqlQueries": {
-          "description": "Output only. Native SQL Execution Data",
-          "items": {
-            "$ref": "NativeSqlExecutionUiData"
           },
           "readOnly": true,
           "type": "array"
@@ -10207,25 +10017,6 @@
           "description": "Output only. Data corresponding to a spark job.",
           "items": {
             "$ref": "JobData"
-          },
-          "readOnly": true,
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "SearchSparkApplicationNativeSqlQueriesResponse": {
-      "description": "List of all Native SQL queries details for a Spark Application.",
-      "id": "SearchSparkApplicationNativeSqlQueriesResponse",
-      "properties": {
-        "nextPageToken": {
-          "description": "This token is included in the response if there are more results to fetch. To fetch additional results, provide this value as the page_token in a subsequent SearchSparkApplicationNativeSqlQueriesRequest.",
-          "type": "string"
-        },
-        "sparkApplicationNativeSqlQueries": {
-          "description": "Output only. Native SQL Execution Data",
-          "items": {
-            "$ref": "NativeSqlExecutionUiData"
           },
           "readOnly": true,
           "type": "array"
@@ -12833,6 +12624,25 @@
         "snapshotTime": {
           "description": "Optional. The timestamp of the usage snapshot.",
           "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ValueInfo": {
+      "description": "Annotatated property value.",
+      "id": "ValueInfo",
+      "properties": {
+        "annotation": {
+          "description": "Annotation, comment or explanation why the property was set.",
+          "type": "string"
+        },
+        "overriddenValue": {
+          "description": "Optional. Value which was replaced by the corresponding component.",
+          "type": "string"
+        },
+        "value": {
+          "description": "Property value.",
           "type": "string"
         }
       },
