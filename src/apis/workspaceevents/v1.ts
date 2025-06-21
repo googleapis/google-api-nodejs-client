@@ -281,6 +281,73 @@ export namespace workspaceevents_v1 {
 
     /**
      * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/workspaceevents.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const workspaceevents = google.workspaceevents('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chat.bot',
+     *       'https://www.googleapis.com/auth/chat.memberships',
+     *       'https://www.googleapis.com/auth/chat.memberships.readonly',
+     *       'https://www.googleapis.com/auth/chat.messages',
+     *       'https://www.googleapis.com/auth/chat.messages.reactions',
+     *       'https://www.googleapis.com/auth/chat.messages.reactions.readonly',
+     *       'https://www.googleapis.com/auth/chat.messages.readonly',
+     *       'https://www.googleapis.com/auth/chat.spaces',
+     *       'https://www.googleapis.com/auth/chat.spaces.readonly',
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.metadata',
+     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *       'https://www.googleapis.com/auth/meetings.space.created',
+     *       'https://www.googleapis.com/auth/meetings.space.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await workspaceevents.operations.get({
+     *     // The name of the operation resource.
+     *     name: 'operations/.*',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -383,6 +450,96 @@ export namespace workspaceevents_v1 {
 
     /**
      * Creates a Google Workspace subscription. To learn how to use this method, see [Create a Google Workspace subscription](https://developers.google.com/workspace/events/guides/create-subscription).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/workspaceevents.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const workspaceevents = google.workspaceevents('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chat.app.memberships',
+     *       'https://www.googleapis.com/auth/chat.app.spaces',
+     *       'https://www.googleapis.com/auth/chat.memberships',
+     *       'https://www.googleapis.com/auth/chat.memberships.readonly',
+     *       'https://www.googleapis.com/auth/chat.messages',
+     *       'https://www.googleapis.com/auth/chat.messages.reactions',
+     *       'https://www.googleapis.com/auth/chat.messages.reactions.readonly',
+     *       'https://www.googleapis.com/auth/chat.messages.readonly',
+     *       'https://www.googleapis.com/auth/chat.spaces',
+     *       'https://www.googleapis.com/auth/chat.spaces.readonly',
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.metadata',
+     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *       'https://www.googleapis.com/auth/meetings.space.created',
+     *       'https://www.googleapis.com/auth/meetings.space.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await workspaceevents.subscriptions.create({
+     *     // Optional. If set to `true`, validates and previews the request, but doesn't create the subscription.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "authority": "my_authority",
+     *       //   "createTime": "my_createTime",
+     *       //   "etag": "my_etag",
+     *       //   "eventTypes": [],
+     *       //   "expireTime": "my_expireTime",
+     *       //   "name": "my_name",
+     *       //   "notificationEndpoint": {},
+     *       //   "payloadOptions": {},
+     *       //   "reconciling": false,
+     *       //   "state": "my_state",
+     *       //   "suspensionReason": "my_suspensionReason",
+     *       //   "targetResource": "my_targetResource",
+     *       //   "ttl": "my_ttl",
+     *       //   "uid": "my_uid",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -472,6 +629,79 @@ export namespace workspaceevents_v1 {
 
     /**
      * Deletes a Google Workspace subscription. To learn how to use this method, see [Delete a Google Workspace subscription](https://developers.google.com/workspace/events/guides/delete-subscription).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/workspaceevents.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const workspaceevents = google.workspaceevents('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chat.bot',
+     *       'https://www.googleapis.com/auth/chat.memberships',
+     *       'https://www.googleapis.com/auth/chat.memberships.readonly',
+     *       'https://www.googleapis.com/auth/chat.messages',
+     *       'https://www.googleapis.com/auth/chat.messages.reactions',
+     *       'https://www.googleapis.com/auth/chat.messages.reactions.readonly',
+     *       'https://www.googleapis.com/auth/chat.messages.readonly',
+     *       'https://www.googleapis.com/auth/chat.spaces',
+     *       'https://www.googleapis.com/auth/chat.spaces.readonly',
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.metadata',
+     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *       'https://www.googleapis.com/auth/meetings.space.created',
+     *       'https://www.googleapis.com/auth/meetings.space.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await workspaceevents.subscriptions.delete({
+     *     // Optional. If set to `true` and the subscription isn't found, the request succeeds but doesn't delete the subscription.
+     *     allowMissing: 'placeholder-value',
+     *     // Optional. Etag of the subscription. If present, it must match with the server's etag. Otherwise, request fails with the status `ABORTED`.
+     *     etag: 'placeholder-value',
+     *     // Required. Resource name of the subscription to delete. Format: `subscriptions/{subscription\}`
+     *     name: 'subscriptions/my-subscription',
+     *     // Optional. If set to `true`, validates and previews the request, but doesn't delete the subscription.
+     *     validateOnly: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -561,6 +791,83 @@ export namespace workspaceevents_v1 {
 
     /**
      * Gets details about a Google Workspace subscription. To learn how to use this method, see [Get details about a Google Workspace subscription](https://developers.google.com/workspace/events/guides/get-subscription).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/workspaceevents.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const workspaceevents = google.workspaceevents('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chat.bot',
+     *       'https://www.googleapis.com/auth/chat.memberships',
+     *       'https://www.googleapis.com/auth/chat.memberships.readonly',
+     *       'https://www.googleapis.com/auth/chat.messages',
+     *       'https://www.googleapis.com/auth/chat.messages.reactions',
+     *       'https://www.googleapis.com/auth/chat.messages.reactions.readonly',
+     *       'https://www.googleapis.com/auth/chat.messages.readonly',
+     *       'https://www.googleapis.com/auth/chat.spaces',
+     *       'https://www.googleapis.com/auth/chat.spaces.readonly',
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.metadata',
+     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *       'https://www.googleapis.com/auth/meetings.space.created',
+     *       'https://www.googleapis.com/auth/meetings.space.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await workspaceevents.subscriptions.get({
+     *     // Required. Resource name of the subscription. Format: `subscriptions/{subscription\}`
+     *     name: 'subscriptions/my-subscription',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "authority": "my_authority",
+     *   //   "createTime": "my_createTime",
+     *   //   "etag": "my_etag",
+     *   //   "eventTypes": [],
+     *   //   "expireTime": "my_expireTime",
+     *   //   "name": "my_name",
+     *   //   "notificationEndpoint": {},
+     *   //   "payloadOptions": {},
+     *   //   "reconciling": false,
+     *   //   "state": "my_state",
+     *   //   "suspensionReason": "my_suspensionReason",
+     *   //   "targetResource": "my_targetResource",
+     *   //   "ttl": "my_ttl",
+     *   //   "uid": "my_uid",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -650,6 +957,74 @@ export namespace workspaceevents_v1 {
 
     /**
      * Lists Google Workspace subscriptions. To learn how to use this method, see [List Google Workspace subscriptions](https://developers.google.com/workspace/events/guides/list-subscriptions).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/workspaceevents.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const workspaceevents = google.workspaceevents('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chat.bot',
+     *       'https://www.googleapis.com/auth/chat.memberships',
+     *       'https://www.googleapis.com/auth/chat.memberships.readonly',
+     *       'https://www.googleapis.com/auth/chat.messages',
+     *       'https://www.googleapis.com/auth/chat.messages.reactions',
+     *       'https://www.googleapis.com/auth/chat.messages.reactions.readonly',
+     *       'https://www.googleapis.com/auth/chat.messages.readonly',
+     *       'https://www.googleapis.com/auth/chat.spaces',
+     *       'https://www.googleapis.com/auth/chat.spaces.readonly',
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.metadata',
+     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *       'https://www.googleapis.com/auth/meetings.space.created',
+     *       'https://www.googleapis.com/auth/meetings.space.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await workspaceevents.subscriptions.list({
+     *     // Required. A query filter. You can filter subscriptions by event type (`event_types`) and target resource (`target_resource`). You must specify at least one event type in your query. To filter for multiple event types, use the `OR` operator. To filter by both event type and target resource, use the `AND` operator and specify the full resource name, such as `//chat.googleapis.com/spaces/{space\}`. For example, the following queries are valid: ``` event_types:"google.workspace.chat.membership.v1.updated" OR event_types:"google.workspace.chat.message.v1.created" event_types:"google.workspace.chat.message.v1.created" AND target_resource="//chat.googleapis.com/spaces/{space\}" ( event_types:"google.workspace.chat.membership.v1.updated" OR event_types:"google.workspace.chat.message.v1.created" ) AND target_resource="//chat.googleapis.com/spaces/{space\}" ``` The server rejects invalid queries with an `INVALID_ARGUMENT` error.
+     *     filter: 'placeholder-value',
+     *     // Optional. The maximum number of subscriptions to return. The service might return fewer than this value. If unspecified or set to `0`, up to 50 subscriptions are returned. The maximum value is 100. If you specify a value more than 100, the system only returns 100 subscriptions.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous list subscriptions call. Provide this parameter to retrieve the subsequent page. When paginating, the filter value should match the call that provided the page token. Passing a different value might lead to unexpected results.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "subscriptions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -743,6 +1118,100 @@ export namespace workspaceevents_v1 {
 
     /**
      * Updates or renews a Google Workspace subscription. To learn how to use this method, see [Update or renew a Google Workspace subscription](https://developers.google.com/workspace/events/guides/update-subscription).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/workspaceevents.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const workspaceevents = google.workspaceevents('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chat.app.memberships',
+     *       'https://www.googleapis.com/auth/chat.app.spaces',
+     *       'https://www.googleapis.com/auth/chat.memberships',
+     *       'https://www.googleapis.com/auth/chat.memberships.readonly',
+     *       'https://www.googleapis.com/auth/chat.messages',
+     *       'https://www.googleapis.com/auth/chat.messages.reactions',
+     *       'https://www.googleapis.com/auth/chat.messages.reactions.readonly',
+     *       'https://www.googleapis.com/auth/chat.messages.readonly',
+     *       'https://www.googleapis.com/auth/chat.spaces',
+     *       'https://www.googleapis.com/auth/chat.spaces.readonly',
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.metadata',
+     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *       'https://www.googleapis.com/auth/meetings.space.created',
+     *       'https://www.googleapis.com/auth/meetings.space.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await workspaceevents.subscriptions.patch({
+     *     // Identifier. Resource name of the subscription. Format: `subscriptions/{subscription\}`
+     *     name: 'subscriptions/my-subscription',
+     *     // Optional. The field to update. If omitted, updates any fields included in the request. You can update one of the following fields in a subscription: * `expire_time`: The timestamp when the subscription expires. * `ttl`: The time-to-live (TTL) or duration of the subscription. * `event_types`: The list of event types to receive about the target resource. To fully replace the subscription (the equivalent of `PUT`), use `*`. Any omitted fields are updated with empty values.
+     *     updateMask: 'placeholder-value',
+     *     // Optional. If set to `true`, validates and previews the request, but doesn't update the subscription.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "authority": "my_authority",
+     *       //   "createTime": "my_createTime",
+     *       //   "etag": "my_etag",
+     *       //   "eventTypes": [],
+     *       //   "expireTime": "my_expireTime",
+     *       //   "name": "my_name",
+     *       //   "notificationEndpoint": {},
+     *       //   "payloadOptions": {},
+     *       //   "reconciling": false,
+     *       //   "state": "my_state",
+     *       //   "suspensionReason": "my_suspensionReason",
+     *       //   "targetResource": "my_targetResource",
+     *       //   "ttl": "my_ttl",
+     *       //   "uid": "my_uid",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -832,6 +1301,80 @@ export namespace workspaceevents_v1 {
 
     /**
      * Reactivates a suspended Google Workspace subscription. This method resets your subscription's `State` field to `ACTIVE`. Before you use this method, you must fix the error that suspended the subscription. This method will ignore or reject any subscription that isn't currently in a suspended state. To learn how to use this method, see [Reactivate a Google Workspace subscription](https://developers.google.com/workspace/events/guides/reactivate-subscription).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/workspaceevents.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const workspaceevents = google.workspaceevents('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chat.app.memberships',
+     *       'https://www.googleapis.com/auth/chat.app.spaces',
+     *       'https://www.googleapis.com/auth/chat.memberships',
+     *       'https://www.googleapis.com/auth/chat.memberships.readonly',
+     *       'https://www.googleapis.com/auth/chat.messages',
+     *       'https://www.googleapis.com/auth/chat.messages.reactions',
+     *       'https://www.googleapis.com/auth/chat.messages.reactions.readonly',
+     *       'https://www.googleapis.com/auth/chat.messages.readonly',
+     *       'https://www.googleapis.com/auth/chat.spaces',
+     *       'https://www.googleapis.com/auth/chat.spaces.readonly',
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.metadata',
+     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *       'https://www.googleapis.com/auth/meetings.space.created',
+     *       'https://www.googleapis.com/auth/meetings.space.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await workspaceevents.subscriptions.reactivate({
+     *     // Required. Resource name of the subscription. Format: `subscriptions/{subscription\}`
+     *     name: 'subscriptions/my-subscription',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
