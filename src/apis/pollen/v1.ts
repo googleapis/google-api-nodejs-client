@@ -337,6 +337,66 @@ export namespace pollen_v1 {
 
     /**
      * Returns up to 5 days of daily pollen information in more than 65 countries, up to 1km resolution.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/pollen.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const pollen = google.pollen('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await pollen.forecast.lookup({
+     *     // Required. A number that indicates how many forecast days to request (minimum value 1, maximum value is 5).
+     *     days: 'placeholder-value',
+     *     // Optional. Allows the client to choose the language for the response. If data cannot be provided for that language, the API uses the closest match. Allowed values rely on the IETF BCP-47 standard. The default value is "en".
+     *     languageCode: 'placeholder-value',
+     *     // The latitude in degrees. It must be in the range [-90.0, +90.0].
+     *     'location.latitude': 'placeholder-value',
+     *     // The longitude in degrees. It must be in the range [-180.0, +180.0].
+     *     'location.longitude': 'placeholder-value',
+     *     // Optional. The maximum number of daily info records to return per page. The default and max value is 5, indicating 5 days of data.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token received from a previous daily call. It is used to retrieve the subsequent page. Note that when providing a value for the page token, all other request parameters provided must match the previous call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Optional. Contains general information about plants, including details on their seasonality, special shapes and colors, information about allergic cross-reactions, and plant photos. The default value is "true".
+     *     plantsDescription: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dailyInfo": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "regionCode": "my_regionCode"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -476,6 +536,60 @@ export namespace pollen_v1 {
 
     /**
      * Returns a byte array containing the data of the tile PNG image.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/pollen.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const pollen = google.pollen('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await pollen.mapTypes.heatmapTiles.lookupHeatmapTile({
+     *     // Required. The type of the pollen heatmap. Defines the combination of pollen type and index that the map will graphically represent.
+     *     mapType: 'placeholder-value',
+     *     // Required. Defines the east-west point in the requested tile.
+     *     x: 'placeholder-value',
+     *     // Required. Defines the north-south point in the requested tile.
+     *     y: 'placeholder-value',
+     *     // Required. The map's zoom level. Defines how large or small the contents of a map appear in a map view. * Zoom level 0 is the entire world in a single tile. * Zoom level 1 is the entire world in 4 tiles. * Zoom level 2 is the entire world in 16 tiles. * Zoom level 16 is the entire world in 65,536 tiles. Allowed values: 0-16
+     *     zoom: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contentType": "my_contentType",
+     *   //   "data": "my_data",
+     *   //   "extensions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
