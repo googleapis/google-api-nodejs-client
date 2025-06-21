@@ -2714,6 +2714,76 @@ export namespace mybusinesslodging_v1 {
 
     /**
      * Returns the Lodging of a specific location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/mybusinesslodging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const mybusinesslodging = google.mybusinesslodging('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await mybusinesslodging.locations.getLodging({
+     *     // Required. Google identifier for this location in the form: `locations/{location_id\}/lodging`
+     *     name: 'locations/my-location/lodging',
+     *     // Required. The specific fields to return. Use "*" to include all fields. Repeated field items cannot be individually specified.
+     *     readMask: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accessibility": {},
+     *   //   "activities": {},
+     *   //   "allUnits": {},
+     *   //   "business": {},
+     *   //   "commonLivingArea": {},
+     *   //   "connectivity": {},
+     *   //   "families": {},
+     *   //   "foodAndDrink": {},
+     *   //   "guestUnits": [],
+     *   //   "healthAndSafety": {},
+     *   //   "housekeeping": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "parking": {},
+     *   //   "pets": {},
+     *   //   "policies": {},
+     *   //   "pools": {},
+     *   //   "property": {},
+     *   //   "services": {},
+     *   //   "someUnits": {},
+     *   //   "sustainability": {},
+     *   //   "transportation": {},
+     *   //   "wellness": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2803,6 +2873,106 @@ export namespace mybusinesslodging_v1 {
 
     /**
      * Updates the Lodging of a specific location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/mybusinesslodging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const mybusinesslodging = google.mybusinesslodging('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await mybusinesslodging.locations.updateLodging({
+     *     // Required. Google identifier for this location in the form: `locations/{location_id\}/lodging`
+     *     name: 'locations/my-location/lodging',
+     *     // Required. The specific fields to update. Use "*" to update all fields, which may include unsetting empty fields in the request. Repeated field items cannot be individually updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accessibility": {},
+     *       //   "activities": {},
+     *       //   "allUnits": {},
+     *       //   "business": {},
+     *       //   "commonLivingArea": {},
+     *       //   "connectivity": {},
+     *       //   "families": {},
+     *       //   "foodAndDrink": {},
+     *       //   "guestUnits": [],
+     *       //   "healthAndSafety": {},
+     *       //   "housekeeping": {},
+     *       //   "metadata": {},
+     *       //   "name": "my_name",
+     *       //   "parking": {},
+     *       //   "pets": {},
+     *       //   "policies": {},
+     *       //   "pools": {},
+     *       //   "property": {},
+     *       //   "services": {},
+     *       //   "someUnits": {},
+     *       //   "sustainability": {},
+     *       //   "transportation": {},
+     *       //   "wellness": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accessibility": {},
+     *   //   "activities": {},
+     *   //   "allUnits": {},
+     *   //   "business": {},
+     *   //   "commonLivingArea": {},
+     *   //   "connectivity": {},
+     *   //   "families": {},
+     *   //   "foodAndDrink": {},
+     *   //   "guestUnits": [],
+     *   //   "healthAndSafety": {},
+     *   //   "housekeeping": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "parking": {},
+     *   //   "pets": {},
+     *   //   "policies": {},
+     *   //   "pools": {},
+     *   //   "property": {},
+     *   //   "services": {},
+     *   //   "someUnits": {},
+     *   //   "sustainability": {},
+     *   //   "transportation": {},
+     *   //   "wellness": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2927,6 +3097,55 @@ export namespace mybusinesslodging_v1 {
 
     /**
      * Returns the Google updated Lodging of a specific location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/mybusinesslodging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const mybusinesslodging = google.mybusinesslodging('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await mybusinesslodging.locations.lodging.getGoogleUpdated({
+     *     // Required. Google identifier for this location in the form: `locations/{location_id\}/lodging`
+     *     name: 'locations/my-location/lodging',
+     *     // Required. The specific fields to return. Use "*" to include all fields. Repeated field items cannot be individually specified.
+     *     readMask: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "diffMask": "my_diffMask",
+     *   //   "lodging": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
