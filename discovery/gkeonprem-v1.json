@@ -2042,6 +2042,11 @@
                       "location": "query",
                       "type": "string"
                     },
+                    "ignoreErrors": {
+                      "description": "Optional. If set to true, the unenrollment of a vmware admin cluster resource will succeed even if errors occur during unenrollment. This parameter can be used when you want to unenroll admin cluster resource and the on-prem admin cluster is disconnected / unreachable. WARNING: Using this parameter when your admin cluster still exists may result in a deleted GCP admin cluster but existing resourcelink in on-prem admin cluster and membership.",
+                      "location": "query",
+                      "type": "boolean"
+                    },
                     "name": {
                       "description": "Required. Name of the VMware admin cluster to be unenrolled. Format: \"projects/{project}/locations/{location}/vmwareAdminClusters/{cluster}\"",
                       "location": "path",
@@ -3100,7 +3105,7 @@
       }
     }
   },
-  "revision": "20250423",
+  "revision": "20250606",
   "rootUrl": "https://gkeonprem.googleapis.com/",
   "schemas": {
     "Authorization": {
@@ -4578,6 +4583,10 @@
         "localName": {
           "description": "Optional. The object name of the bare metal cluster custom resource on the associated admin cluster. This field is used to support conflicting resource names when enrolling existing clusters to the API. When not provided, this field will resolve to the bare_metal_cluster_id. Otherwise, it must match the object name of the bare metal cluster custom resource. It is not modifiable outside / beyond the enrollment operation.",
           "type": "string"
+        },
+        "localNamespace": {
+          "description": "Optional. The namespace of the cluster.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -5682,6 +5691,10 @@
           "description": "Output only. The VMware admin cluster prepared secrets configuration. It should always be enabled by the Central API, instead of letting users set it.",
           "readOnly": true
         },
+        "privateRegistryConfig": {
+          "$ref": "VmwareAdminPrivateRegistryConfig",
+          "description": "Configuration for registry."
+        },
         "reconciling": {
           "description": "Output only. If set, there are currently changes in flight to the VMware admin cluster.",
           "readOnly": true,
@@ -5908,6 +5921,21 @@
         "enabled": {
           "description": "Whether prepared secrets is enabled.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "VmwareAdminPrivateRegistryConfig": {
+      "description": "VmwareAdminPrivateRegistryConfig represents configuration for admin cluster registry.",
+      "id": "VmwareAdminPrivateRegistryConfig",
+      "properties": {
+        "address": {
+          "description": "The registry address.",
+          "type": "string"
+        },
+        "caCert": {
+          "description": "When the container runtime pulls an image from private registry, the registry must prove its identity by presenting a certificate. The registry's certificate is signed by a certificate authority (CA). The container runtime uses the CA's certificate to validate the registry's certificate.",
+          "type": "string"
         }
       },
       "type": "object"
