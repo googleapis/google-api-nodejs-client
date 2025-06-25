@@ -4531,12 +4531,12 @@
           "type": "string"
         },
         "lifetime": {
-          "description": "Optional. Lifetime of the workload certificates issued by the CA pool. Must be between 10 hours and 30 days. If not specified, this will be defaulted to 24 hours.",
+          "description": "Optional. Lifetime of the workload certificates issued by the CA pool. Must be between 24 hours and 30 days. If not specified, this will be defaulted to 24 hours.",
           "format": "google-duration",
           "type": "string"
         },
         "rotationWindowPercentage": {
-          "description": "Optional. Rotation window percentage indicating when certificate rotation should be initiated based on remaining lifetime. Must be between 10 and 80. If not specified, this will be defaulted to 50.",
+          "description": "Optional. Rotation window percentage, the percentage of remaining lifetime after which certificate rotation is initiated. Must be between 50 and 80. If no value is specified, rotation window percentage is defaulted to 50.",
           "format": "int32",
           "type": "integer"
         }
