@@ -38426,7 +38426,11 @@
             false,
             false,
             false,
-            true
+            true,
+            false,
+            false,
+            false,
+            false
           ],
           "enumDescriptions": [
             "The harm category is unspecified.",
@@ -38577,7 +38581,11 @@
             false,
             false,
             false,
-            true
+            true,
+            false,
+            false,
+            false,
+            false
           ],
           "enumDescriptions": [
             "The harm category is unspecified.",
