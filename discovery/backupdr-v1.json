@@ -903,6 +903,11 @@
                       "location": "query",
                       "type": "boolean"
                     },
+                    "forceUpdateAccessRestriction": {
+                      "description": "Optional. If set to true, we will force update access restriction even if some non compliant data sources are present. The default is 'false'.",
+                      "location": "query",
+                      "type": "boolean"
+                    },
                     "name": {
                       "description": "Output only. Identifier. Name of the backup vault to create. It must have the format`\"projects/{project}/locations/{location}/backupVaults/{backupvault}\"`. `{backupvault}` cannot be changed after creation. It must be between 3-63 characters long and must be unique within the project and location.",
                       "location": "path",

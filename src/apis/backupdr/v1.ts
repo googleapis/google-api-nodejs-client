@@ -1138,6 +1138,10 @@ export namespace backupdr_v1 {
    */
   export interface Schema$DataSource {
     /**
+     * Output only. This field is set to true if the backup is blocked by vault access restriction.
+     */
+    backupBlockedByVaultAccessRestriction?: boolean | null;
+    /**
      * Output only. Details of how the resource is configured for backup.
      */
     backupConfigInfo?: Schema$BackupConfigInfo;
@@ -1228,6 +1232,10 @@ export namespace backupdr_v1 {
      */
     computeInstanceDatasourceProperties?: Schema$ComputeInstanceDataSourceProperties;
     /**
+     * DiskDataSourceProperties has a subset of Disk properties that are useful at the Datasource level.
+     */
+    diskDatasourceProperties?: Schema$DiskDataSourceProperties;
+    /**
      * Output only. Full resource pathname URL of the source Google Cloud resource.
      */
     gcpResourcename?: string | null;
@@ -1239,6 +1247,158 @@ export namespace backupdr_v1 {
      * The type of the Google Cloud resource. Use the Unified Resource Type, eg. compute.googleapis.com/Instance.
      */
     type?: string | null;
+  }
+  /**
+   * DiskBackupProperties represents the properties of a Disk backup.
+   */
+  export interface Schema$DiskBackupProperties {
+    /**
+     * The architecture of the source disk. Valid values are ARM64 or X86_64.
+     */
+    architecture?: string | null;
+    /**
+     * A description of the source disk.
+     */
+    description?: string | null;
+    /**
+     * A list of guest OS features that are applicable to this backup.
+     */
+    guestOsFeature?: Schema$GuestOsFeature[];
+    /**
+     * A list of publicly available licenses that are applicable to this backup. This is applicable if the original image had licenses attached, e.g. Windows image.
+     */
+    licenses?: string[] | null;
+    /**
+     * Region and zone are mutually exclusive fields. The URL of the region of the source disk.
+     */
+    region?: string | null;
+    /**
+     * The URL of the Zones where the source disk should be replicated.
+     */
+    replicaZones?: string[] | null;
+    /**
+     * Size(in GB) of the source disk.
+     */
+    sizeGb?: string | null;
+    /**
+     * The source disk used to create this backup.
+     */
+    sourceDisk?: string | null;
+    /**
+     * The URL of the type of the disk.
+     */
+    type?: string | null;
+    /**
+     * The URL of the Zone where the source disk.
+     */
+    zone?: string | null;
+  }
+  /**
+   * DiskDataSourceProperties represents the properties of a Disk resource that are stored in the DataSource. .
+   */
+  export interface Schema$DiskDataSourceProperties {
+    /**
+     * The description of the disk.
+     */
+    description?: string | null;
+    /**
+     * Name of the disk backed up by the datasource.
+     */
+    name?: string | null;
+    /**
+     * The size of the disk in GB.
+     */
+    sizeGb?: string | null;
+    /**
+     * The type of the disk.
+     */
+    type?: string | null;
+  }
+  /**
+   * DiskRestoreProperties represents the properties of a Disk restore.
+   */
+  export interface Schema$DiskRestoreProperties {
+    /**
+     * Optional. The access mode of the disk.
+     */
+    accessMode?: string | null;
+    /**
+     * Optional. The architecture of the source disk. Valid values are ARM64 or X86_64.
+     */
+    architecture?: string | null;
+    /**
+     * Optional. An optional description of this resource. Provide this property when you create the resource.
+     */
+    description?: string | null;
+    /**
+     * Optional. Encrypts the disk using a customer-supplied encryption key or a customer-managed encryption key.
+     */
+    diskEncryptionKey?: Schema$CustomerEncryptionKey;
+    /**
+     * Optional. Indicates whether this disk is using confidential compute mode. Encryption with a Cloud KMS key is required to enable this option.
+     */
+    enableConfidentialCompute?: boolean | null;
+    /**
+     * Optional. A list of features to enable in the guest operating system. This is applicable only for bootable images.
+     */
+    guestOsFeature?: Schema$GuestOsFeature[];
+    /**
+     * Optional. Labels to apply to this disk. These can be modified later using setLabels method. Label values can be empty.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Optional. A list of publicly available licenses that are applicable to this backup. This is applicable if the original image had licenses attached, e.g. Windows image
+     */
+    licenses?: string[] | null;
+    /**
+     * Required. Name of the disk..
+     */
+    name?: string | null;
+    /**
+     * Optional. Physical block size of the persistent disk, in bytes. If not present in a request, a default value is used. Currently, the supported size is 4096.
+     */
+    physicalBlockSizeBytes?: string | null;
+    /**
+     * Optional. Indicates how many IOPS to provision for the disk. This sets the number of I/O operations per second that the disk can handle.
+     */
+    provisionedIops?: string | null;
+    /**
+     * Optional. Indicates how much throughput to provision for the disk. This sets the number of throughput MB per second that the disk can handle.
+     */
+    provisionedThroughput?: string | null;
+    /**
+     * Optional. Resource manager tags to be bound to the disk.
+     */
+    resourceManagerTags?: {[key: string]: string} | null;
+    /**
+     * Optional. Resource policies applied to this disk.
+     */
+    resourcePolicy?: string[] | null;
+    /**
+     * Required. The size of the disk in GB.
+     */
+    sizeGb?: string | null;
+    /**
+     * Optional. The storage pool in which the new disk is created. You can provide this as a partial or full URL to the resource.
+     */
+    storagePool?: string | null;
+    /**
+     * Required. URL of the disk type resource describing which disk type to use to create the disk.
+     */
+    type?: string | null;
+  }
+  /**
+   * DiskTargetEnvironment represents the target environment for the disk.
+   */
+  export interface Schema$DiskTargetEnvironment {
+    /**
+     * Required. Target project for the disk.
+     */
+    project?: string | null;
+    /**
+     * Required. Target zone for the disk.
+     */
+    zone?: string | null;
   }
   /**
    * A set of Display Device options
