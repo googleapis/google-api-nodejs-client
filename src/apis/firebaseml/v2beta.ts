@@ -1498,6 +1498,15 @@ export namespace firebaseml_v2beta {
    */
   export interface Schema$GoogleCloudAiplatformV1beta1ToolCodeExecution {}
   /**
+   * Tool to support computer use.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1ToolComputerUse {
+    /**
+     * Required. The environment being operated.
+     */
+    environment?: string | null;
+  }
+  /**
    * Tool config. This config is shared for all tools provided in the request.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1ToolConfig {
