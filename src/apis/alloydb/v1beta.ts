@@ -1334,6 +1334,10 @@ export namespace alloydb_v1beta {
      */
     trackActiveQueries?: boolean | null;
     /**
+     * Track client address for an instance. If not set, default value is "off".
+     */
+    trackClientAddress?: boolean | null;
+    /**
      * Track wait events during query execution for an instance. This flag is turned "on" by default but tracking is enabled only after observability enabled flag is also turned on.
      */
     trackWaitEvents?: boolean | null;
