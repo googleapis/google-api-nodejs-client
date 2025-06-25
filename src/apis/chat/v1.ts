@@ -1427,7 +1427,6 @@ export namespace chat_v1 {
      * For multiselect menus, a text description or label that's displayed below the item's `text` field.
      */
     bottomText?: string | null;
-    materialIcon?: Schema$GoogleAppsCardV1MaterialIcon;
     /**
      * Whether the item is selected by default. If the selection input only accepts one value (such as for radio buttons or a dropdown menu), only set this field for one item.
      */
