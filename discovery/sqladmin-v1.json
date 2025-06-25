@@ -6136,8 +6136,7 @@
             "MANAGE_BACKUP",
             "ENHANCED_BACKUP",
             "REPAIR_READ_POOL",
-            "CREATE_READ_POOL",
-            "PRE_CHECK_MAJOR_VERSION_UPGRADE"
+            "CREATE_READ_POOL"
           ],
           "enumDeprecated": [
             false,
@@ -6189,7 +6188,6 @@
             false,
             false,
             true,
-            false,
             false,
             false,
             false,
@@ -6247,8 +6245,7 @@
             "Changes the BackupTier of a Cloud SQL instance.",
             "Creates a backup for an Enhanced BackupTier Cloud SQL instance.",
             "Repairs entire read pool or specified read pool nodes in the read pool.",
-            "Creates a Cloud SQL read pool instance.",
-            "Pre-checks the major version upgrade operation."
+            "Creates a Cloud SQL read pool instance."
           ],
           "type": "string"
         },
