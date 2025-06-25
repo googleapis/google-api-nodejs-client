@@ -363,6 +363,21 @@
       },
       "type": "object"
     },
+    "Market": {
+      "description": "A pair of airports.",
+      "id": "Market",
+      "properties": {
+        "destination": {
+          "description": "Required. IATA airport code for flight destination, e.g. \"JFK\".",
+          "type": "string"
+        },
+        "origin": {
+          "description": "Required. IATA airport code for flight origin, e.g. \"LHR\".",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ModelVersion": {
       "description": "Travel Impact Model version. For more information about the model versioning see [GitHub](https://github.com/google/travel-impact-model/#versioning).",
       "id": "ModelVersion",
